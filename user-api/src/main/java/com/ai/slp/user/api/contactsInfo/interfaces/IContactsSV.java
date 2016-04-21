@@ -16,7 +16,7 @@ public interface IContactsSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public String contactsManuallyInfo(ContactsGroupParamsRequest contactsGroup);
+	public String contactsManuallyInfo(ContactsParamsRequest contactsGroup);
 	
 	
 	@interface ContactExportInfo{}
@@ -42,7 +42,7 @@ public interface IContactsSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public String updateContactsInfo(ContactsGroupParamsRequest contactsGroup);
+	public String updateContactsInfo(ContactsParamsRequest contactsGroup);
 
 	@interface DeleteContactsInfo{}
 	
@@ -82,5 +82,5 @@ public interface IContactsSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public List<ContactsParamsRequest> getTelInfo(int telGroupId,String provinceCode,String basicOrgId,String telNameOrTelMp);
+	public List<ContactsParamsRequest> getTelInfo(ContactsParamsRequest contactsGroup,int startPage,int limit);
 }
