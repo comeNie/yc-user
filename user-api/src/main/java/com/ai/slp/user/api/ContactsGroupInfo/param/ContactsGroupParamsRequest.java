@@ -8,7 +8,7 @@ import com.ai.slp.user.api.ContactsGroupInfo.interfaces.IContactsGroupSV;
 
 public class ContactsGroupParamsRequest {
 	/**
-	 * 租户ID
+	 * 租户ID sdfsd
 	 */
 	@NotNull(message="租户ID不能为空",groups={IContactsGroupSV.ContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
     @Size(max=32,groups={IContactsGroupSV.ContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
