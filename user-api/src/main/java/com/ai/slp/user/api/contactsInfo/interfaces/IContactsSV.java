@@ -83,4 +83,18 @@ public interface IContactsSV {
 	 * @ApiDocMethod
 	 */
 	public List<ContactsParamsRequest> getTelInfo(ContactsParamsRequest contactsGroup,int startPage,int limit);
+	
+	
+	@interface GetAllContactsInfo{}
+	/**
+	 * 显示某个通讯录组中的所有联系人
+	 * @param contactsGroupId
+	 * @return
+	 * @author zhangyh7
+	 * @ApiDocMethod
+	 */
+	
+	public List<ContactsParamsRequest> getAllContactsInfo(String contactsGroupId);
+	
+	
 }
