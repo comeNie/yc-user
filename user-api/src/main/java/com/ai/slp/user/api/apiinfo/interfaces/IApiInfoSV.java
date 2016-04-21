@@ -29,7 +29,7 @@ public interface IApiInfoSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER
+     * @UCUSER_001
      */
     BaseResponse insertApiInfo(CreateApiInfoRequest saveApiInfoRequest)
             throws BusinessException, SystemException;
@@ -45,7 +45,7 @@ public interface IApiInfoSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER
+     * @UCUSER_002
      */
     BaseResponse updateApiInfo(UcApiInfoParams ucApiInfoParams)
             throws BusinessException, SystemException;
@@ -61,7 +61,7 @@ public interface IApiInfoSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER
+     * @UCUSER_003
      */
     PageInfo<ApiInfoResponse> queryApiInfo(ApiInfoRequest apiInfoRequest)
             throws BusinessException, SystemException;

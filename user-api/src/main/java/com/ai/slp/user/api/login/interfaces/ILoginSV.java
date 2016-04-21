@@ -21,7 +21,7 @@ public interface ILoginSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER
+     * @UCUSER_007
      */
     LoginResponse login(LoginRequest loginRequest) throws BusinessException,SystemException;
 }

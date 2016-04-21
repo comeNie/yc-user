@@ -24,7 +24,7 @@ public interface IUserMessageSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER
+     * @UCUSER_008
      */
     BaseResponse insertUserMessage(CreateUserMessageRequest createUserMessageRequest)
             throws BusinessException, SystemException;
@@ -40,7 +40,7 @@ public interface IUserMessageSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER
+     * @UCUSER_009
      */
     BaseResponse updateUserMessage(UcUserMessageParams ucUserMessageParams)
             throws BusinessException, SystemException;

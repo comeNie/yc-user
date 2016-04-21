@@ -30,7 +30,7 @@ public interface IUserSafariSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER
+     * @UCUSER_010
      */
     BaseResponse insertUserSafari(CreateUserSafariRequest createUserSafariRequest)
             throws BusinessException, SystemException;
@@ -46,7 +46,7 @@ public interface IUserSafariSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER
+     * @UCUSER_011
      */
     BaseResponse updateUserSafari(UcUserSafariParams ucUserSafariParams)
             throws BusinessException, SystemException;
@@ -62,7 +62,7 @@ public interface IUserSafariSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER
+     * @UCUSER_012
      */
     PageInfo<UserSafariInfoResponse> queryUserSafari(UserSafariInfoRequest userSafariInfoRequest)
             throws BusinessException, SystemException;

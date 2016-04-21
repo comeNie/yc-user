@@ -29,7 +29,7 @@ public interface IUserFavoriteSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER
+     * @UCUSER_004
      */
     BaseResponse insertUcFavorite(CreateUserFavoriteRequest saveUserFavoriteRequest)
             throws BusinessException, SystemException;
@@ -45,7 +45,7 @@ public interface IUserFavoriteSV {
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
-     * @UCUSER
+     * @UCUSER_005
      */
     BaseResponse updateFavorite(UcUserFavoriteParams ucUserFavoriteParams)
             throws SystemException, BusinessException;
@@ -61,7 +61,7 @@ public interface IUserFavoriteSV {
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
-     * @UCUSER
+     * @UCUSER_006
      */
     PageInfo<UserFavoriteResponse> queryFavorite(UserFavoriteRequest userFavoriteRequest)
             throws SystemException, BusinessException;
