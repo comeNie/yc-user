@@ -1,13 +1,13 @@
-package com.ai.slp.user.api.ContactsGroupInfo.interfaces;
+package com.ai.slp.user.api.ucTelGroupInfo.interfaces;
 
 import java.util.List;
 
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.slp.user.api.ContactsGroupInfo.param.ContactsGroupParamsRequest;
+import com.ai.slp.user.api.ucTelGroupInfo.param.UcTelGroupParamsRequest;
 
-public interface IContactsGroupSV {
+public interface IUcTelGroupSV {
 	 
-	@interface InsertContactsGroupInfo{}
+	@interface InsertUcTelGroupInfo{}
 	/**
 	 * 
 	 * 通讯录组新增</br>
@@ -17,7 +17,7 @@ public interface IContactsGroupSV {
 	 * @ApiDocMethod
 	 */
 	 
-	public BaseResponse insertcontactsGroupInfo(ContactsGroupParamsRequest contactsGroup);
+	public BaseResponse insertUcTelGroupInfo(UcTelGroupParamsRequest contactsGroup);
 	
 	@interface UpdateGroupInfo{}
 	/**
@@ -28,7 +28,7 @@ public interface IContactsGroupSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public BaseResponse updateGroupInfo(ContactsGroupParamsRequest contactsGroup);
+	public BaseResponse updateGroupInfo(UcTelGroupParamsRequest contactsGroup);
 	
 	@interface DeleteGroupInfo{}
 	/**
@@ -39,11 +39,11 @@ public interface IContactsGroupSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public BaseResponse deleteGroupInfo(ContactsGroupParamsRequest contactsGroup);
+	public BaseResponse deleteGroupInfo(UcTelGroupParamsRequest contactsGroup);
 
 	@interface GetContactsGroupInfo{}
 	/**
 	 * 通讯录组查询
 	 */
-	public List<ContactsGroupParamsRequest> getContactsGroupInfo();
+	public List<UcTelGroupParamsRequest> getContactsGroupInfo();
 }

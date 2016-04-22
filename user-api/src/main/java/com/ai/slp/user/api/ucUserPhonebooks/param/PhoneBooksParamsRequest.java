@@ -1,85 +1,85 @@
-package com.ai.slp.user.api.contactsInfo.param;
+package com.ai.slp.user.api.ucUserPhonebooks.param;
 
 import java.util.Date;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import com.ai.slp.user.api.contactsInfo.interfaces.IContactsSV;
+import com.ai.slp.user.api.ucUserPhonebooks.interfaces.IUcUserPhoneBooksSV;
 
 
-public class ContactsParamsRequest {
+public class PhoneBooksParamsRequest {
 	/**
 	 * 租户ID
 	 */
-	@NotNull(message="租户ID不能为空",groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
-    @Size(max=32,groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
+	@NotNull(message="租户ID不能为空",groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
+    @Size(max=32,groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
 	private String tenantId;
 	
 	/**
 	 * 用户ID
 	 */
-	@NotNull(message="用户ID不能为空",groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
-    @Size(max=18,groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
+	@NotNull(message="用户ID不能为空",groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
+    @Size(max=18,groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
 	private int userId;
 	
 	/**
 	 * 通讯录组ID
 	 */
-	@NotNull(message="通讯录组ID不能为空",groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
-    @Size(max=32,groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
+	@NotNull(message="通讯录组ID不能为空",groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
+    @Size(max=32,groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
 	private String telGroupId;
 	
 	/**
 	 * 通讯录ID
 	 */
-	@NotNull(message="通讯录ID不能为空",groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
-    @Size(max=32,groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
+	@NotNull(message="通讯录ID不能为空",groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
+    @Size(max=32,groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
 	private String telId;
 	
 	
 	/**
 	 * 序号
 	 */
-    @Size(max=10,groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
+    @Size(max=10,groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
 	private int seq;
 	
     /**
 	 * 联系人
 	 */
-    @Size(max=64,groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
+    @Size(max=64,groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
 	private String telName;
     
     
     /**
      * 通讯录名称
      */
-    @NotNull(message="通讯录名称不能为空",groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
-    @Size(max=128,groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
+    @NotNull(message="通讯录名称不能为空",groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
+    @Size(max=128,groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
 	private String telGroupName;
     
     /**
      * 联系手机
      */
-    @NotNull(message="手机号不能为空",groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
-    @Size(max=16,groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
+    @NotNull(message="手机号不能为空",groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
+    @Size(max=16,groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
     private String telMp;
     
     /**
      * 归属省
      */
-    @Size(max=6,groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
+    @Size(max=6,groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
     private String provinceCode;
     
     /**
      * 归属地市
      */
-    @Size(max=6,groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
+    @Size(max=6,groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
     private String cityCode;
     
     /**
      * 基础运营商
      */
-    @Size(max=2,groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
+    @Size(max=2,groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
     private String basicBasicOrgId;
     
     /**
@@ -90,13 +90,13 @@ public class ContactsParamsRequest {
     /**
      * 创建渠道
      */
-    @Size(max=7,groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
+    @Size(max=7,groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
     private String createChlId;
     
     /**
      * 创建员工
      */
-    @Size(max=10,groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
+    @Size(max=10,groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
     private int createOperId;
     
     /**
@@ -107,13 +107,13 @@ public class ContactsParamsRequest {
     /**
      * 创建渠道
      */
-    @Size(max=7,groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
+    @Size(max=7,groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
     private String updateChlId;
     
     /**
      * 创建员工
      */
-    @Size(max=10,groups={IContactsSV.ContactsManuallyInfo.class,IContactsSV.ContactExportInfo.class,IContactsSV.UpdateContactsInfo.class})
+    @Size(max=10,groups={IUcUserPhoneBooksSV.ContactsManuallyInfo.class,IUcUserPhoneBooksSV.ContactExportInfo.class,IUcUserPhoneBooksSV.UpdateContactsInfo.class})
     private int updateOperId;
 
     public String getTenantId() {
