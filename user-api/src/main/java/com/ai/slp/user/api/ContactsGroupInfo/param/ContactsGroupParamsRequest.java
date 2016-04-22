@@ -10,35 +10,35 @@ public class ContactsGroupParamsRequest {
 	/**
 	 * 租户ID
 	 */
-	@NotNull(message="租户ID不能为空",groups={IContactsGroupSV.ContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
-    @Size(max=32,groups={IContactsGroupSV.ContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
+	@NotNull(message="租户ID不能为空",groups={IContactsGroupSV.InsertContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
+    @Size(max=32,groups={IContactsGroupSV.InsertContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
 	private String tenantId;
 	
 	/**
 	 * 用户ID
 	 */
-	@NotNull(message="用户ID不能为空",groups={IContactsGroupSV.ContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
-    @Size(max=18,groups={IContactsGroupSV.ContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
+	@NotNull(message="用户ID不能为空",groups={IContactsGroupSV.InsertContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
+    @Size(max=18,groups={IContactsGroupSV.InsertContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
 	private int userId;
 	
 	/**
 	 * 通讯录组ID
 	 */
-	@NotNull(message="通讯录组ID不能为空",groups={IContactsGroupSV.ContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
-    @Size(max=32,groups={IContactsGroupSV.ContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
+	@NotNull(message="通讯录组ID不能为空",groups={IContactsGroupSV.InsertContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
+    @Size(max=32,groups={IContactsGroupSV.InsertContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
 	private String telGroupId;
 	
 	/**
 	 * 序号
 	 */
-    @Size(max=10,groups={IContactsGroupSV.ContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
+    @Size(max=10,groups={IContactsGroupSV.InsertContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
 	private int seq;
 	
     /**
      * 通讯录名称
      */
-    @NotNull(message="通讯录组NAME不能为空",groups={IContactsGroupSV.ContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
-    @Size(max=128,groups={IContactsGroupSV.ContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
+    @NotNull(message="通讯录组NAME不能为空",groups={IContactsGroupSV.InsertContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
+    @Size(max=128,groups={IContactsGroupSV.InsertContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
 	private String telGroupName;
     
     /**
@@ -49,13 +49,13 @@ public class ContactsGroupParamsRequest {
     /**
      * 创建渠道
      */
-    @Size(max=7,groups={IContactsGroupSV.ContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
+    @Size(max=7,groups={IContactsGroupSV.InsertContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
     private String createChlId;
     
     /**
      * 创建员工
      */
-    @Size(max=10,groups={IContactsGroupSV.ContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
+    @Size(max=10,groups={IContactsGroupSV.InsertContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
     private int createOperId;
     
     /**
@@ -66,13 +66,13 @@ public class ContactsGroupParamsRequest {
     /**
      * 创建渠道
      */
-    @Size(max=7,groups={IContactsGroupSV.ContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
+    @Size(max=7,groups={IContactsGroupSV.InsertContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
     private String updateChlId;
     
     /**
      * 创建员工
      */
-    @Size(max=10,groups={IContactsGroupSV.ContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
+    @Size(max=10,groups={IContactsGroupSV.InsertContactsGroupInfo.class,IContactsGroupSV.UpdateGroupInfo.class})
     private int updateOperId;
 
 	public String getTenantId() {

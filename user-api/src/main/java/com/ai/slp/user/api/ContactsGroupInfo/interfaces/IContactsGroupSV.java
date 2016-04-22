@@ -2,11 +2,12 @@ package com.ai.slp.user.api.ContactsGroupInfo.interfaces;
 
 import java.util.List;
 
+import com.ai.opt.base.vo.BaseResponse;
 import com.ai.slp.user.api.ContactsGroupInfo.param.ContactsGroupParamsRequest;
 
 public interface IContactsGroupSV {
 	 
-	@interface ContactsGroupInfo{}
+	@interface InsertContactsGroupInfo{}
 	/**
 	 * 
 	 * 通讯录组新增</br>
@@ -16,7 +17,7 @@ public interface IContactsGroupSV {
 	 * @ApiDocMethod
 	 */
 	 
-	public String contactsGroupInfo(ContactsGroupParamsRequest contactsGroup);
+	public BaseResponse insertcontactsGroupInfo(ContactsGroupParamsRequest contactsGroup);
 	
 	@interface UpdateGroupInfo{}
 	/**
@@ -27,7 +28,7 @@ public interface IContactsGroupSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public String updateGroupInfo(ContactsGroupParamsRequest contactsGroup);
+	public BaseResponse updateGroupInfo(ContactsGroupParamsRequest contactsGroup);
 	
 	@interface DeleteGroupInfo{}
 	/**
@@ -38,7 +39,7 @@ public interface IContactsGroupSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public String deleteGroupInfo(ContactsGroupParamsRequest contactsGroup);
+	public BaseResponse deleteGroupInfo(ContactsGroupParamsRequest contactsGroup);
 
 	@interface GetContactsGroupInfo{}
 	/**

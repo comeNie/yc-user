@@ -2,6 +2,7 @@ package com.ai.slp.user.api.contactsInfo.interfaces;
 
 import java.util.List;
 
+import com.ai.opt.base.vo.BaseResponse;
 import com.ai.slp.user.api.ContactsGroupInfo.param.ContactsGroupParamsRequest;
 import com.ai.slp.user.api.contactsInfo.param.ContactsParamsRequest;
 
@@ -16,7 +17,7 @@ public interface IContactsSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public String contactsManuallyInfo(ContactsParamsRequest contactsGroup);
+	public BaseResponse contactsManuallyInfo(ContactsParamsRequest contactsGroup);
 	
 	
 	@interface ContactExportInfo{}
@@ -29,7 +30,7 @@ public interface IContactsSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public String contactsImportInfo(String filePath);
+	public BaseResponse contactsImportInfo(String filePath);
 	
 	
 	@interface UpdateContactsInfo{}
@@ -42,7 +43,7 @@ public interface IContactsSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public String updateContactsInfo(ContactsParamsRequest contactsGroup);
+	public BaseResponse updateContactsInfo(ContactsParamsRequest contactsGroup);
 
 	@interface DeleteContactsInfo{}
 	
@@ -54,7 +55,7 @@ public interface IContactsSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public String deleteContactsInfo(String telNo);
+	public BaseResponse deleteContactsInfo(String telNo);
 	
 	@interface ExportContacts{}; 
 	
@@ -67,7 +68,7 @@ public interface IContactsSV {
 	 * @ApiDocMethod
 	 */
 	
-	public String exportContacts(String filepath);
+	public BaseResponse exportContacts(String filepath);
 	
 	@interface GetContactsInfo{}
 	
