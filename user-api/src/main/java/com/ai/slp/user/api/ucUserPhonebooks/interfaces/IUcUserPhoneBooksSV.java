@@ -1,12 +1,12 @@
-package com.ai.slp.user.api.contactsInfo.interfaces;
+package com.ai.slp.user.api.ucUserPhonebooks.interfaces;
 
 import java.util.List;
 
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.slp.user.api.ContactsGroupInfo.param.ContactsGroupParamsRequest;
-import com.ai.slp.user.api.contactsInfo.param.ContactsParamsRequest;
+import com.ai.opt.base.vo.PageInfo;
+import com.ai.slp.user.api.ucUserPhonebooks.param.PhoneBooksParamsRequest;
 
-public interface IContactsSV {
+public interface IUcUserPhoneBooksSV {
 	
 	@interface ContactsManuallyInfo{}
 	/**
@@ -17,7 +17,7 @@ public interface IContactsSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public BaseResponse contactsManuallyInfo(ContactsParamsRequest contactsGroup);
+	public BaseResponse contactsManuallyInfo(PhoneBooksParamsRequest contactsGroup);
 	
 	
 	@interface ContactExportInfo{}
@@ -43,7 +43,7 @@ public interface IContactsSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public BaseResponse updateContactsInfo(ContactsParamsRequest contactsGroup);
+	public BaseResponse updateContactsInfo(PhoneBooksParamsRequest contactsGroup);
 
 	@interface DeleteContactsInfo{}
 	
@@ -83,7 +83,7 @@ public interface IContactsSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public List<ContactsParamsRequest> getTelInfo(ContactsParamsRequest contactsGroup,int startPage,int limit);
+	public List<PhoneBooksParamsRequest> getTelInfo(PhoneBooksParamsRequest contactsGroup,int startPage,int limit);
 	
 	
 	@interface GetAllContactsInfo{}
@@ -95,7 +95,7 @@ public interface IContactsSV {
 	 * @ApiDocMethod
 	 */
 	
-	public List<ContactsParamsRequest> getAllContactsInfo(String contactsGroupId);
+	PageInfo<PhoneBooksParamsRequest> getAllContactsInfo(String contactsGroupId);
 	
 	
 }
