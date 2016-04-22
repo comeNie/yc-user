@@ -28,6 +28,7 @@ public class LoginSVImplTest {
         // loginRequest.setUserLoginName("test");
         loginRequest.setUserEmail("11@11.com");
         loginRequest.setUserLoginPwd("123456");
+        loginRequest.setUserType("11");
         LoginResponse loginResponse = iLoginSV.login(loginRequest);
         System.out.println(loginResponse.getCount());
     }
