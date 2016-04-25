@@ -24,7 +24,7 @@ public class LoginSVImplTest {
     @Test
     public void loginTest(){
         LoginRequest loginRequest=new LoginRequest();
-        loginRequest.setTenantId("tst111");
+        loginRequest.setTenantId("test111");
         // loginRequest.setUserLoginName("test");
         loginRequest.setUserEmail("11@11.com");
         loginRequest.setUserLoginPwd("123456");

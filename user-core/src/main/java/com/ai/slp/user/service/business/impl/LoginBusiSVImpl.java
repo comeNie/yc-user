@@ -51,7 +51,8 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
 
         int count = iLoginAtomSV.countByExample(ucUserCriteria);
 
-        LoginResponse loginResponse = new LoginResponse(count);
+        LoginResponse loginResponse = new LoginResponse();
+        loginResponse.setCount(count);
         return loginResponse;
     }
 
