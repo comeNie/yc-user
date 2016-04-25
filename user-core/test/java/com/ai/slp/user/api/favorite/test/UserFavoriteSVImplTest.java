@@ -1,4 +1,4 @@
-package com.ai.slp.user.api.favorite.impl;
+package com.ai.slp.user.api.favorite.test;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

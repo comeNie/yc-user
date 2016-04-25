@@ -1,4 +1,4 @@
-package com.ai.slp.user.api.safari;
+package com.ai.slp.user.api.safari.test;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
