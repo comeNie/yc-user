@@ -22,9 +22,18 @@ public class CreateUserSafariRequest extends BaseInfo {
     @NotNull(message = "用户Id不能为空", groups = { IUserSafariSV.InsertUserSafari.class })
     private Integer userId;
 
-    public CreateUserSafariRequest(Integer userId) {
-        super();
-        this.userId = userId;
+    /**
+     * 浏览商品ID NOT NULL
+     */
+    @NotNull(message = "浏览商品Id不能为空", groups = { IUserSafariSV.InsertUserSafari.class })
+    private String prodId;
+
+    public String getProdId() {
+        return prodId;
+    }
+
+    public void setProdId(String prodId) {
+        this.prodId = prodId;
     }
 
     public Integer getUserId() {

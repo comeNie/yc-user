@@ -2,10 +2,10 @@ package com.ai.slp.user.api.safari.interfaces;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
-import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.safari.param.CreateUserSafariRequest;
-import com.ai.slp.user.api.safari.param.UcUserSafariParams;
+import com.ai.slp.user.api.safari.param.CreateUserSafariResponse;
+import com.ai.slp.user.api.safari.param.DeleteSafariRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoResponse;
 
@@ -32,23 +32,22 @@ public interface IUserSafariSV {
      * @author zhangqiang7
      * @UCUSER_010
      */
-    BaseResponse insertUserSafari(CreateUserSafariRequest createUserSafariRequest)
+    CreateUserSafariResponse insertUserSafari(CreateUserSafariRequest createUserSafariRequest)
             throws BusinessException, SystemException;
 
-    @interface UpdateUserSafari {
+    @interface DeleteUserSafari {
     }
 
     /**
-     * 用户浏览商品信息更新
+     * 用户浏览商品信息删除
      * 
      * @param ucUserSafariParams
-     * @return
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
      * @UCUSER_011
      */
-    BaseResponse updateUserSafari(UcUserSafariParams ucUserSafariParams)
+    void deleteUserSafari(DeleteSafariRequest deleetSafariRequest)
             throws BusinessException, SystemException;
 
     @interface QueryUserSafari {

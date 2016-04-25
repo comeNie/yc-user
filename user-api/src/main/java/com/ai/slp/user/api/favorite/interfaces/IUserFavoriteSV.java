@@ -2,9 +2,10 @@ package com.ai.slp.user.api.favorite.interfaces;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
-import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.favorite.param.CreateUserFavoriteRequest;
+import com.ai.slp.user.api.favorite.param.CreateUserFavoriteResponse;
+import com.ai.slp.user.api.favorite.param.DeleteFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UcUserFavoriteParams;
 import com.ai.slp.user.api.favorite.param.UserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UserFavoriteResponse;
@@ -31,7 +32,7 @@ public interface IUserFavoriteSV {
      * @author zhangqiang7
      * @UCUSER_004
      */
-    BaseResponse insertUcFavorite(CreateUserFavoriteRequest saveUserFavoriteRequest)
+    CreateUserFavoriteResponse insertUcFavorite(CreateUserFavoriteRequest createUserFavoriteRequest)
             throws BusinessException, SystemException;
 
     @interface UpdateFavorite {
@@ -41,13 +42,28 @@ public interface IUserFavoriteSV {
      * 用户收藏信息更新
      * 
      * @param ucUserFavoriteParams
-     * @return
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
      * @UCUSER_005
      */
-    BaseResponse updateFavorite(UcUserFavoriteParams ucUserFavoriteParams)
+    void updateFavorite(UcUserFavoriteParams ucUserFavoriteParams)
+            throws SystemException, BusinessException;
+
+    @interface DeleteFavorite {
+    }
+
+    /**
+     * 用户收藏信息删除
+     * 
+     * @param deleteRequest
+     * @throws SystemException
+     * @throws BusinessException
+     * @author zhangqiang7
+     * @UCUSER
+     */
+
+    void deleteFavorite(DeleteFavoriteRequest deleteRequest)
             throws SystemException, BusinessException;
 
     @interface QueryFavorite {

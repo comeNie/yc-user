@@ -17,11 +17,6 @@ public class LoginResponse extends BaseResponse {
      */
     private int count;
 
-    public LoginResponse(int count) {
-        super();
-        this.count = count;
-    }
-
     public int getCount() {
         return count;
     }

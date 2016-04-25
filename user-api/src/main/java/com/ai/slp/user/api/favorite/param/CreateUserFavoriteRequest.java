@@ -12,25 +12,49 @@ import com.ai.slp.user.api.favorite.interfaces.IUserFavoriteSV;
  * 
  * @author zhangqiang7
  */
-public class CreateUserFavoriteRequest extends BaseInfo{
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * 用户ID
-	 * NOT NULL
-	 */
-	@NotNull(message="用户Id不能为空",groups={IUserFavoriteSV.InsertUcFavorite.class})
-	private Integer userId;
-	
-	public CreateUserFavoriteRequest(Integer userId) {
-        super();
+public class CreateUserFavoriteRequest extends BaseInfo {
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 用户ID NOT NULL
+     */
+    @NotNull(message = "用户Id不能为空", groups = { IUserFavoriteSV.InsertUcFavorite.class })
+    private Integer userId;
+
+    /**
+     * 收藏关系ID NOT NULL
+     */
+    @NotNull(message = "收藏关系ID不能为空", groups = { IUserFavoriteSV.InsertUcFavorite.class })
+    private String favoriteRelId;
+
+    /**
+     * 收藏类型
+     */
+    @NotNull(message = "收藏类型不能为空", groups = { IUserFavoriteSV.InsertUcFavorite.class })
+    private String favoriteType;
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
-    public Integer getUserId() {
-		return userId;
-	}
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
-	
+
+    public String getFavoriteRelId() {
+        return favoriteRelId;
+    }
+
+    public void setFavoriteRelId(String favoriteRelId) {
+        this.favoriteRelId = favoriteRelId;
+    }
+
+    public String getFavoriteType() {
+        return favoriteType;
+    }
+
+    public void setFavoriteType(String favoriteType) {
+        this.favoriteType = favoriteType;
+    }
+
 }
