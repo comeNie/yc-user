@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UcTelGroupCriteria {
+    
     protected String orderByClause;
 
     protected boolean distinct;
@@ -15,6 +16,8 @@ public class UcTelGroupCriteria {
 
     protected Integer limitEnd;
 
+    protected String groupByClause;
+    
     public UcTelGroupCriteria() {
         oredCriteria = new ArrayList<Criteria>();
     }
@@ -25,6 +28,15 @@ public class UcTelGroupCriteria {
 
     public String getOrderByClause() {
         return orderByClause;
+    }
+
+    
+    public String getGroupByClause() {
+        return groupByClause;
+    }
+
+    public void setGroupByClause(String groupByClause) {
+        this.groupByClause = groupByClause;
     }
 
     public void setDistinct(boolean distinct) {
@@ -927,5 +939,7 @@ public class UcTelGroupCriteria {
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
         }
+        
+        
     }
 }
