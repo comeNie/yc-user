@@ -1,5 +1,8 @@
 package com.ai.slp.user.api.favorite.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
@@ -12,21 +15,22 @@ import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.favorite.interfaces.IUserFavoriteSV;
 import com.ai.slp.user.api.favorite.param.CreateUserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.CreateUserFavoriteResponse;
-import com.ai.slp.user.api.favorite.param.DeleteFavoriteRequest;
+import com.ai.slp.user.api.favorite.param.DeleteFavoriteListRequest;
 import com.ai.slp.user.api.favorite.param.UcUserFavoriteParams;
 import com.ai.slp.user.api.favorite.param.UserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UserFavoriteResponse;
+import com.ai.slp.user.api.login.test.LoginSVImplTest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "/context/core-context.xml" })
 public class UserFavoriteSVImplTest {
 
-    private static final Log LOG = LogFactory.getLog(UserFavoriteSVImplTest.class);
+    private static final Log LOG = LogFactory.getLog(LoginSVImplTest.class);
 
     @Autowired
     private IUserFavoriteSV iUserFavoriteSV;
 
-    //@Test
+    @Test
     public void createUserFavoriteTest() {
         CreateUserFavoriteRequest request = new CreateUserFavoriteRequest();
         request.setTenantId("test111");
@@ -34,20 +38,21 @@ public class UserFavoriteSVImplTest {
         request.setTenantPwd("123456");
         request.setFavoriteType("01");
         request.setFavoriteRelId("1234");
+        request.setFavoriteReqId("223333");
         CreateUserFavoriteResponse response = new CreateUserFavoriteResponse();
         response = iUserFavoriteSV.insertUcFavorite(request);
         System.out.println(response.getResponseId());
     }
 
-    @Test
+    //@Test
     public void updateUserFavoriteTest() {
         UcUserFavoriteParams userFavorite = new UcUserFavoriteParams();
         userFavorite.setUserId(111);
         userFavorite.setTenantId("test111");
         userFavorite.setTenantPwd("123456");
         userFavorite.setFavoriteType("00");
-        userFavorite.setFavoriteRelId("1234");
-        userFavorite.setFavoriteSeqId("222");
+        userFavorite.setFavoriteRelId("223333");
+        userFavorite.setFavoriteSeqId("223333");
         userFavorite.setState("1");
         LOG.info("开始更新了");
         iUserFavoriteSV.updateFavorite(userFavorite);
@@ -55,13 +60,17 @@ public class UserFavoriteSVImplTest {
 
     //@Test
     public void deleteFavoriteSVImplTest() {
-        DeleteFavoriteRequest request = new DeleteFavoriteRequest();
+        DeleteFavoriteListRequest request = new DeleteFavoriteListRequest();
         request.setTenantId("test111");
         request.setUserId(111);
-        request.setFavoriteReqId("222");
         request.setTenantPwd("123456");
+        List<String> list = new ArrayList<String>();
+        //list.add("111111");
+        list.add("223333");
+        request.setFavoriteReqIdList(list);
         iUserFavoriteSV.deleteFavorite(request);
     }
+    
     
     //@Test
     public void  queryFavoriteSVImplTest(){

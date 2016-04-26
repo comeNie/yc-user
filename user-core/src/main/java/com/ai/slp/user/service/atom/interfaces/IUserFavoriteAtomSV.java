@@ -16,6 +16,9 @@ public interface IUserFavoriteAtomSV {
     int deleteByExample(UcUserFavoriteCriteria example);
 
     List<UcUserFavorite> selectByExample(UcUserFavoriteCriteria example);
-    
+
     int countByExample(UcUserFavoriteCriteria example);
+
+    int updateByExampleSelective(@Param("record") UcUserFavorite record,
+            @Param("example") UcUserFavoriteCriteria example);
 }

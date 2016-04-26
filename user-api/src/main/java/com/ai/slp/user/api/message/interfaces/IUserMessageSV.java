@@ -2,8 +2,9 @@ package com.ai.slp.user.api.message.interfaces;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
-import com.ai.opt.base.vo.BaseResponse;
 import com.ai.slp.user.api.message.param.CreateUserMessageRequest;
+import com.ai.slp.user.api.message.param.CreateUserMessageResponse;
+import com.ai.slp.user.api.message.param.DeleteMessageRequest;
 import com.ai.slp.user.api.message.param.UcUserMessageParams;
 
 /**
@@ -26,7 +27,7 @@ public interface IUserMessageSV {
      * @author zhangqiang7
      * @UCUSER_008
      */
-    BaseResponse insertUserMessage(CreateUserMessageRequest createUserMessageRequest)
+    CreateUserMessageResponse insertUserMessage(CreateUserMessageRequest createUserMessageRequest)
             throws BusinessException, SystemException;
 
     @interface UpdateUserMessage {
@@ -42,6 +43,9 @@ public interface IUserMessageSV {
      * @author zhangqiang7
      * @UCUSER_009
      */
-    BaseResponse updateUserMessage(UcUserMessageParams ucUserMessageParams)
+    void updateUserMessage(UcUserMessageParams ucUserMessageParams)
+            throws BusinessException, SystemException;
+    
+    void deleteUserMessage(DeleteMessageRequest deleteRequest) 
             throws BusinessException, SystemException;
 }

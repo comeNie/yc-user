@@ -22,7 +22,7 @@ public class UcApiInfoParams extends BaseInfo {
      * APIID NOT NULL
      */
     @NotNull(message = "ApiId不能为空", groups = { IApiInfoSV.UpdateApiInfo.class })
-    private String apiReqId;
+    private String apiSeqId;
 
     /**
      * 用户ID NOT NULL
@@ -133,7 +133,7 @@ public class UcApiInfoParams extends BaseInfo {
     /**
      * 创建员工
      */
-    private Integer createOperId;
+    private String createOperId;
 
     /**
      * 修改时间
@@ -148,14 +148,14 @@ public class UcApiInfoParams extends BaseInfo {
     /**
      * 修改员工
      */
-    private Integer updateOperId;
+    private String updateOperId;
 
-    public String getApiReqId() {
-        return apiReqId;
+    public String getApiSeqId() {
+        return apiSeqId;
     }
 
-    public void setApiReqId(String apiReqId) {
-        this.apiReqId = apiReqId;
+    public void setApiSeqId(String apiSeqId) {
+        this.apiSeqId = apiSeqId;
     }
 
     public Integer getUserId() {
@@ -326,11 +326,11 @@ public class UcApiInfoParams extends BaseInfo {
         this.createChlId = createChlId;
     }
 
-    public Integer getCreateOperId() {
+    public String getCreateOperId() {
         return createOperId;
     }
 
-    public void setCreateOperId(Integer createOperId) {
+    public void setCreateOperId(String createOperId) {
         this.createOperId = createOperId;
     }
 
@@ -350,11 +350,11 @@ public class UcApiInfoParams extends BaseInfo {
         this.updateChlId = updateChlId;
     }
 
-    public Integer getUpdateOperId() {
+    public String getUpdateOperId() {
         return updateOperId;
     }
 
-    public void setUpdateOperId(Integer updateOperId) {
+    public void setUpdateOperId(String updateOperId) {
         this.updateOperId = updateOperId;
     }
 

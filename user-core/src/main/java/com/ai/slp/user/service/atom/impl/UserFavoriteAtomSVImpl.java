@@ -37,4 +37,9 @@ public class UserFavoriteAtomSVImpl implements IUserFavoriteAtomSV {
         return MapperFactory.getUcUserFavoriteMapper().countByExample(example);
     }
 
+    @Override
+    public int updateByExampleSelective(UcUserFavorite record, UcUserFavoriteCriteria example) {
+        return MapperFactory.getUcUserFavoriteMapper().updateByExampleSelective(record, example);
+    }
+
 }

@@ -22,7 +22,7 @@ public class ApiInfoResponse extends BaseResponse {
     /**
      * APIId
      */
-    private String apiReqId;
+    private String apiSeqId;
 
     /**
      * 用户Id
@@ -132,7 +132,7 @@ public class ApiInfoResponse extends BaseResponse {
     /**
      * 创建员工
      */
-    private Integer createOperId;
+    private String createOperId;
 
     /**
      * 修改时间
@@ -147,7 +147,7 @@ public class ApiInfoResponse extends BaseResponse {
     /**
      * 修改员工
      */
-    private Integer updateOperId;
+    private String updateOperId;
 
     public String getTenantId() {
         return tenantId;
@@ -157,12 +157,12 @@ public class ApiInfoResponse extends BaseResponse {
         this.tenantId = tenantId;
     }
 
-    public String getApiReqId() {
-        return apiReqId;
+    public String getApiSeqId() {
+        return apiSeqId;
     }
 
-    public void setApiReqId(String apiReqId) {
-        this.apiReqId = apiReqId;
+    public void setApiSeqId(String apiSeqId) {
+        this.apiSeqId = apiSeqId;
     }
 
     public Integer getUserId() {
@@ -333,11 +333,11 @@ public class ApiInfoResponse extends BaseResponse {
         this.createChlId = createChlId;
     }
 
-    public Integer getCreateOperId() {
+    public String getCreateOperId() {
         return createOperId;
     }
 
-    public void setCreateOperId(Integer createOperId) {
+    public void setCreateOperId(String createOperId) {
         this.createOperId = createOperId;
     }
 
@@ -357,16 +357,12 @@ public class ApiInfoResponse extends BaseResponse {
         this.updateChlId = updateChlId;
     }
 
-    public Integer getUpdateOperId() {
+    public String getUpdateOperId() {
         return updateOperId;
     }
 
-    public void setUpdateOperId(Integer updateOperId) {
+    public void setUpdateOperId(String updateOperId) {
         this.updateOperId = updateOperId;
-    }
-
-    public static long getSerialversionuid() {
-        return serialVersionUID;
     }
 
 }

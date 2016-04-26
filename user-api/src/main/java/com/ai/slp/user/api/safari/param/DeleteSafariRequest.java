@@ -22,10 +22,14 @@ public class DeleteSafariRequest extends BaseInfo {
     private Integer userId;
 
     /**
-     * 浏览商品ID NOT NULL
+     * 浏览商品ID 可以为空
      */
-    @NotNull(message = "商品Id不能为空", groups = { IUserSafariSV.DeleteUserSafari.class })
     private String prodId;
+
+    /**
+     * 时间参数 可以为空
+     */
+    private String dateTime;
 
     public Integer getUserId() {
         return userId;
@@ -41,6 +45,14 @@ public class DeleteSafariRequest extends BaseInfo {
 
     public void setProdId(String prodId) {
         this.prodId = prodId;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 
 }

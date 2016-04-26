@@ -13,7 +13,6 @@ import com.ai.slp.user.api.safari.param.DeleteSafariRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoResponse;
 import com.ai.slp.user.service.business.interfaces.IUserSafariBusiSV;
-import com.ai.slp.user.util.DateUtils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "/context/core-context.xml" })
@@ -22,7 +21,7 @@ public class UserSafariSVImplTest {
     @Autowired
     private IUserSafariBusiSV iUserSafariBusiSV;
     
-    //@Test
+    @Test
     public void insertSafariTest(){
         CreateUserSafariRequest request = new CreateUserSafariRequest();
         request.setUserId(111);
@@ -47,13 +46,14 @@ public class UserSafariSVImplTest {
        System.out.println(response.getResult().size());
     }
     
-    @Test
+    //@Test
     public void deleteSafariTest(){
         DeleteSafariRequest request = new DeleteSafariRequest();
         request.setUserId(111);
         request.setTenantId("test111");
         request.setTenantPwd("123456");
-        request.setProdId("111");
+        //request.setProdId("111");
+        request.setDateTime("2016-4-26");
         iUserSafariBusiSV.deleteUserSafari(request);
     }
 }

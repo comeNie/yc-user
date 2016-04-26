@@ -10,7 +10,7 @@ import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.favorite.interfaces.IUserFavoriteSV;
 import com.ai.slp.user.api.favorite.param.CreateUserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.CreateUserFavoriteResponse;
-import com.ai.slp.user.api.favorite.param.DeleteFavoriteRequest;
+import com.ai.slp.user.api.favorite.param.DeleteFavoriteListRequest;
 import com.ai.slp.user.api.favorite.param.UcUserFavoriteParams;
 import com.ai.slp.user.api.favorite.param.UserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UserFavoriteResponse;
@@ -42,9 +42,9 @@ public class UserFavoriteSVImpl implements IUserFavoriteSV {
     }
 
     @Override
-    public void deleteFavorite(DeleteFavoriteRequest deleteRequest)
+    public void deleteFavorite(DeleteFavoriteListRequest deleteListRequest)
             throws SystemException, BusinessException {
-        iUserFavoriteBusiSV.deleteFavorite(deleteRequest);
+        iUserFavoriteBusiSV.deleteFavorite(deleteListRequest);
     }
 
 }

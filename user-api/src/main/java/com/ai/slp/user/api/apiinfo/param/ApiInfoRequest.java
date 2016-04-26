@@ -26,11 +26,15 @@ public class ApiInfoRequest extends BaseInfo {
     @NotNull(message = "用户Id不能为空", groups = { IApiInfoSV.QueryApiInfo.class })
     private Integer userId;
 
-    public ApiInfoRequest(String apiReqId, Integer userId) {
-        super();
-        this.apiReqId = apiReqId;
-        this.userId = userId;
-    }
+    /**
+     * pageNo
+     */
+    private Integer pageNo;
+
+    /**
+     * pageSize
+     */
+    private Integer pageSize;
 
     public String getApiReqId() {
         return apiReqId;
@@ -46,6 +50,22 @@ public class ApiInfoRequest extends BaseInfo {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public Integer getPageNo() {
+        return pageNo;
+    }
+
+    public void setPageNo(Integer pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
     }
 
 }

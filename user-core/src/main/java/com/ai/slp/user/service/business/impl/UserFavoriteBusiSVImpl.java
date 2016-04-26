@@ -14,6 +14,7 @@ import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.favorite.param.CreateUserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.CreateUserFavoriteResponse;
+import com.ai.slp.user.api.favorite.param.DeleteFavoriteListRequest;
 import com.ai.slp.user.api.favorite.param.DeleteFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UcUserFavoriteParams;
 import com.ai.slp.user.api.favorite.param.UserFavoriteRequest;
@@ -42,7 +43,7 @@ public class UserFavoriteBusiSVImpl implements IUserFavoriteBusiSV {
         ucUserFavorite.setUserId(Long.parseLong(createUserFavoriteRequest.getUserId().toString()));
         ucUserFavorite.setFavoriteRelId(createUserFavoriteRequest.getFavoriteRelId());
         ucUserFavorite.setFavoriteType(createUserFavoriteRequest.getFavoriteType());
-        ucUserFavorite.setFavoriteSeqId("222");
+        ucUserFavorite.setFavoriteSeqId(createUserFavoriteRequest.getFavoriteReqId());
         ucUserFavorite.setState("1");
         try {
             ucUserFavorite.setCreateTime(DateUtils.currTimeStamp());
@@ -59,21 +60,16 @@ public class UserFavoriteBusiSVImpl implements IUserFavoriteBusiSV {
     public void updateFavorite(UcUserFavoriteParams ucUserFavoriteParams)
             throws SystemException, BusinessException {
         UcUserFavorite ucUserFavorite = new UcUserFavorite();
-        ucUserFavorite.setTenantId(ucUserFavoriteParams.getTenantId());
-        ucUserFavorite.setUserId(Long.parseLong(ucUserFavoriteParams.getUserId().toString()));
-        ucUserFavorite.setFavoriteType(ucUserFavoriteParams.getFavoriteType());
-        ucUserFavorite.setFavoriteRelId(ucUserFavoriteParams.getFavoriteRelId());
+        ucUserFavorite.setFavoriteSeqId(ucUserFavoriteParams.getFavoriteSeqId());
         ucUserFavorite.setState(ucUserFavoriteParams.getState());
         ucUserFavorite.setUpdateTime(DateUtils.currTimeStamp());
-        ucUserFavorite.setFavoriteSeqId(ucUserFavoriteParams.getFavoriteSeqId());
         UcUserFavoriteCriteria ucUserFavoriteCriteria = new UcUserFavoriteCriteria();
         UcUserFavoriteCriteria.Criteria criteria = ucUserFavoriteCriteria.createCriteria();
         criteria.andUserIdEqualTo(Long.parseLong(ucUserFavoriteParams.getUserId().toString()));
         criteria.andTenantIdEqualTo(ucUserFavoriteParams.getTenantId());
         criteria.andFavoriteSeqIdEqualTo(ucUserFavorite.getFavoriteSeqId());
         try {
-            iUserFavoriteAtomSV.updateByExample(ucUserFavorite, ucUserFavoriteCriteria);
-
+            iUserFavoriteAtomSV.updateByExampleSelective(ucUserFavorite, ucUserFavoriteCriteria);
         } catch (Exception e) {
             LOG.error("更新操作失败");
             e.printStackTrace();
@@ -81,13 +77,27 @@ public class UserFavoriteBusiSVImpl implements IUserFavoriteBusiSV {
     }
 
     @Override
-    public void deleteFavorite(DeleteFavoriteRequest deleteFavoriteRequest)
+    public void deleteFavorite(DeleteFavoriteListRequest deleteFavoriteRequest)
+            throws SystemException, BusinessException {
+        List<String> list = new ArrayList<String>();
+        list = deleteFavoriteRequest.getFavoriteReqIdList();
+        DeleteFavoriteRequest request = new DeleteFavoriteRequest();
+        request.setTenantId(deleteFavoriteRequest.getTenantId());
+        request.setTenantPwd(deleteFavoriteRequest.getTenantPwd());
+        request.setUserId(deleteFavoriteRequest.getUserId());
+        for (String favoriteReqId : list) {
+            request.setFavoriteReqId(favoriteReqId);
+            deleteFavoriteSingle(request);
+        }
+    }
+
+    public void deleteFavoriteSingle(DeleteFavoriteRequest deleteRequest)
             throws SystemException, BusinessException {
         UcUserFavoriteCriteria example = new UcUserFavoriteCriteria();
         UcUserFavoriteCriteria.Criteria criteria = example.createCriteria();
-        criteria.andTenantIdEqualTo(deleteFavoriteRequest.getTenantId());
-        criteria.andUserIdEqualTo(Long.parseLong(deleteFavoriteRequest.getUserId().toString()));
-        criteria.andFavoriteSeqIdEqualTo(deleteFavoriteRequest.getFavoriteReqId());
+        criteria.andTenantIdEqualTo(deleteRequest.getTenantId());
+        criteria.andUserIdEqualTo(Long.parseLong(deleteRequest.getUserId().toString()));
+        criteria.andFavoriteSeqIdEqualTo(deleteRequest.getFavoriteReqId());
         try {
             iUserFavoriteAtomSV.deleteByExample(example);
         } catch (Exception e) {
@@ -122,7 +132,7 @@ public class UserFavoriteBusiSVImpl implements IUserFavoriteBusiSV {
             response.setUpdateTime(ucUserFavorite.getUpdateTime());
             responseList.add(response);
         }
-        PageInfo<UserFavoriteResponse> pageInfo= new PageInfo<UserFavoriteResponse>();
+        PageInfo<UserFavoriteResponse> pageInfo = new PageInfo<UserFavoriteResponse>();
         pageInfo.setResult(responseList);
         pageInfo.setCount(count);
         pageInfo.setPageNo(pageNo);

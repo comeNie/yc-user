@@ -1,27 +1,27 @@
-package com.ai.slp.user.api.safari.param;
+package com.ai.slp.user.api.apiinfo.param;
 
 import com.ai.opt.base.vo.BaseResponse;
 
 /**
- * 创建浏览记录出参 Date: 2016年4月25日 <br>
+ * 创建服务返回 Date: 2016年4月26日 <br>
  * Copyright (c) 2016 asiainfo.com <br>
  * 
  * @author zhangqiang7
  */
-public class CreateUserSafariResponse extends BaseResponse {
+public class CreateApiInfoResponse extends BaseResponse {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * 返回标志
      */
-    Integer responseId;
+    private String responseId;
 
-    public Integer getResponseId() {
+    public String getResponseId() {
         return responseId;
     }
 
-    public void setResponseId(Integer responseId) {
+    public void setResponseId(String responseId) {
         this.responseId = responseId;
     }
 

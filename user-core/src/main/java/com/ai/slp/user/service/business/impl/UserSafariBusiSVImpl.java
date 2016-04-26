@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
+import com.ai.opt.sdk.util.StringUtil;
 import com.ai.slp.user.api.safari.param.CreateUserSafariRequest;
 import com.ai.slp.user.api.safari.param.CreateUserSafariResponse;
 import com.ai.slp.user.api.safari.param.DeleteSafariRequest;
@@ -53,28 +54,34 @@ public class UserSafariBusiSVImpl implements IUserSafariBusiSV {
         UcUserSafariCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(deleteSafariRequest.getTenantId());
         criteria.andUserIdEqualTo(Long.parseLong(deleteSafariRequest.getUserId().toString()));
-        criteria.andProdIdEqualTo(deleteSafariRequest.getProdId());
+        if (StringUtil.isBlank(deleteSafariRequest.getDateTime())) {
+            criteria.andProdIdEqualTo(deleteSafariRequest.getProdId());
+        } else {
+            String beginTime = deleteSafariRequest.getDateTime() + " 00:00:00";
+            String endTime = deleteSafariRequest.getDateTime() + " 23:59:59";
+            criteria.andSafariTimeBetween(DateUtils.getTimestamp(beginTime, "yyyy-MM-dd HH:mm:ss"),
+                    DateUtils.getTimestamp(endTime, "yyyy-MM-dd HH:mm:ss"));
+        }
         try {
             iUserSafariAtomSV.deleteByExample(example);
         } catch (Exception e) {
             e.printStackTrace();
             LOG.error("删除失败");
         }
-
     }
 
     @Override
-    public PageInfo<UserSafariInfoResponse> queryUserSafari(
-            UserSafariInfoRequest request) throws BusinessException, SystemException {
+    public PageInfo<UserSafariInfoResponse> queryUserSafari(UserSafariInfoRequest request)
+            throws BusinessException, SystemException {
         UcUserSafariCriteria example = new UcUserSafariCriteria();
         UcUserSafariCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(request.getTenantId());
         criteria.andUserIdEqualTo(Long.parseLong(request.getUserId().toString()));
-        //criteria.andSafariTimeBetween(value1, value2);
+        // criteria.andSafariTimeBetween(value1, value2);
         PageInfo<UserSafariInfoResponse> pageInfo = new PageInfo<UserSafariInfoResponse>();
         List<UcUserSafari> queryList = new ArrayList<UcUserSafari>();
         List<UserSafariInfoResponse> responseList = new ArrayList<UserSafariInfoResponse>();
-        
+
         Integer pageNo = request.getPageNo();
         Integer pageSize = request.getPageSize();
         int count = iUserSafariAtomSV.countByExample(example);

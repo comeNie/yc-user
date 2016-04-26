@@ -22,6 +22,11 @@ public class CreateUserFavoriteRequest extends BaseInfo {
     private Integer userId;
 
     /**
+     * 收藏ID
+     */
+    private String favoriteReqId;
+    
+    /**
      * 收藏关系ID NOT NULL
      */
     @NotNull(message = "收藏关系ID不能为空", groups = { IUserFavoriteSV.InsertUcFavorite.class })
@@ -55,6 +60,14 @@ public class CreateUserFavoriteRequest extends BaseInfo {
 
     public void setFavoriteType(String favoriteType) {
         this.favoriteType = favoriteType;
+    }
+
+    public String getFavoriteReqId() {
+        return favoriteReqId;
+    }
+
+    public void setFavoriteReqId(String favoriteReqId) {
+        this.favoriteReqId = favoriteReqId;
     }
 
 }
