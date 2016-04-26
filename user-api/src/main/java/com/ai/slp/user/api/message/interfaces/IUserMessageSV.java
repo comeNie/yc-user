@@ -45,7 +45,19 @@ public interface IUserMessageSV {
      */
     void updateUserMessage(UcUserMessageParams ucUserMessageParams)
             throws BusinessException, SystemException;
-    
-    void deleteUserMessage(DeleteMessageRequest deleteRequest) 
+
+    @interface DeleteUserMessage {
+    }
+
+    /**
+     * 删除消息服务
+     * 
+     * @param deleteRequest
+     * @throws BusinessException
+     * @throws SystemException
+     * @author zhangqiang7
+     * @UCUSER
+     */
+    void deleteUserMessage(DeleteMessageRequest deleteRequest)
             throws BusinessException, SystemException;
 }
