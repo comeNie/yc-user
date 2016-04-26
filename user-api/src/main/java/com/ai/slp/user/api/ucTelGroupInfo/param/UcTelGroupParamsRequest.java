@@ -21,7 +21,7 @@ public class UcTelGroupParamsRequest {
 	 */
 	@NotNull(message="用户ID不能为空",groups={IUcTelGroupSV.InsertUcTelGroupInfo.class,IUcTelGroupSV.UpdateGroupInfo.class})
     @Size(max=18,groups={IUcTelGroupSV.InsertUcTelGroupInfo.class,IUcTelGroupSV.UpdateGroupInfo.class})
-	private int userId;
+	private Long userId;
 	
 	/**
 	 * 通讯录组ID
@@ -34,7 +34,7 @@ public class UcTelGroupParamsRequest {
 	 * 序号
 	 */
     @Size(max=10,groups={IUcTelGroupSV.InsertUcTelGroupInfo.class,IUcTelGroupSV.UpdateGroupInfo.class})
-	private int seq;
+	private long seq;
 	
     /**
      * 通讯录名称
@@ -58,7 +58,7 @@ public class UcTelGroupParamsRequest {
      * 创建员工
      */
     @Size(max=10,groups={IUcTelGroupSV.InsertUcTelGroupInfo.class,IUcTelGroupSV.UpdateGroupInfo.class})
-    private int createOperId;
+    private long createOperId;
     
     /**
      * 修改时间
@@ -75,7 +75,7 @@ public class UcTelGroupParamsRequest {
      * 创建员工
      */
     @Size(max=10,groups={IUcTelGroupSV.InsertUcTelGroupInfo.class,IUcTelGroupSV.UpdateGroupInfo.class})
-    private int updateOperId;
+    private long updateOperId;
 
 	public String getTenantId() {
 		return tenantId;
@@ -85,11 +85,11 @@ public class UcTelGroupParamsRequest {
 		this.tenantId = tenantId;
 	}
 
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
@@ -101,11 +101,11 @@ public class UcTelGroupParamsRequest {
 		this.telGroupId = telGroupId;
 	}
 
-	public int getSeq() {
+	public long getSeq() {
 		return seq;
 	}
 
-	public void setSeq(int seq) {
+	public void setSeq(long seq) {
 		this.seq = seq;
 	}
 
@@ -133,11 +133,11 @@ public class UcTelGroupParamsRequest {
 		this.createChlId = createChlId;
 	}
 
-	public int getCreateOperId() {
+	public long getCreateOperId() {
 		return createOperId;
 	}
 
-	public void setCreateOperId(int createOperId) {
+	public void setCreateOperId(long createOperId) {
 		this.createOperId = createOperId;
 	}
 
@@ -157,11 +157,11 @@ public class UcTelGroupParamsRequest {
 		this.updateChlId = updateChlId;
 	}
 
-	public int getUpdateOperId() {
+	public long getUpdateOperId() {
 		return updateOperId;
 	}
 
-	public void setUpdateOperId(int updateOperId) {
+	public void setUpdateOperId(long updateOperId) {
 		this.updateOperId = updateOperId;
 	}
 }

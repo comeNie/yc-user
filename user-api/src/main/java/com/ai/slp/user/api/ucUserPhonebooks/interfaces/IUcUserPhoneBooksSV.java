@@ -1,14 +1,14 @@
 package com.ai.slp.user.api.ucUserPhonebooks.interfaces;
 
-import java.util.List;
 
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
-import com.ai.slp.user.api.ucUserPhonebooks.param.PhoneBooksParamsRequest;
+import com.ai.slp.user.api.ucUserPhonebooks.param.UcPhoneBooksParamsRequest;
+import com.ai.slp.user.api.ucUserPhonebooks.param.UcPhoneBooksParamsResponse;
 
 public interface IUcUserPhoneBooksSV {
 	
-	@interface ContactsManuallyInfo{}
+	@interface PhoneBooksManuallyInfo{}
 	/**
 	 * 
 	 * 通讯录手动新增  </br>
@@ -17,10 +17,10 @@ public interface IUcUserPhoneBooksSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public BaseResponse contactsManuallyInfo(PhoneBooksParamsRequest contactsGroup);
+	public BaseResponse phoneBooksManuallyInfo(UcPhoneBooksParamsRequest contactsGroup);
 	
 	
-	@interface ContactExportInfo{}
+	@interface PhoneBooksImportCvsInfo{}
 	
 	/**
 	 * 
@@ -30,10 +30,34 @@ public interface IUcUserPhoneBooksSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public BaseResponse contactsImportInfo(String filePath);
+	public BaseResponse phoneBooksImportCvsInfo(String filePath);
 	
+    @interface PhoneBooksImportXlsInfo{}
+        
+        /**
+         * 
+         * 通讯录导入   </br>
+         * @param filePath
+         * @return
+         * @author zhangyuehong
+         * @ApiDocMethod
+         */
+    public BaseResponse phoneBooksImportXlsInfo(String filePath);
+        
+    @interface PhoneBooksImportXlsxInfo{}
+    
+    /**
+     * 
+     * 通讯录导入   </br>
+     * @param filePath
+     * @return
+     * @author zhangyuehong
+     * @ApiDocMethod
+     */
+    public BaseResponse phoneBooksImportXlsxInfo(String filePath);
+    
 	
-	@interface UpdateContactsInfo{}
+	@interface UpdatePhoneBooksInfo{}
 	
 	/**
 	 * 
@@ -43,7 +67,7 @@ public interface IUcUserPhoneBooksSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public BaseResponse updateContactsInfo(PhoneBooksParamsRequest contactsGroup);
+	public BaseResponse updatePhoneBooksInfo(UcPhoneBooksParamsRequest contactsGroup);
 
 	@interface DeleteContactsInfo{}
 	
@@ -55,7 +79,7 @@ public interface IUcUserPhoneBooksSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public BaseResponse deleteContactsInfo(String telNo);
+	public BaseResponse deletePhoneBooksInfo(String telNo);
 	
 	@interface ExportContacts{}; 
 	
@@ -68,9 +92,9 @@ public interface IUcUserPhoneBooksSV {
 	 * @ApiDocMethod
 	 */
 	
-	public BaseResponse exportContacts(String filepath);
+	public BaseResponse exportPhoneBooks(String filepath);
 	
-	@interface GetContactsInfo{}
+	@interface GetPhoneBooksInfo{}
 	
 	/**
 	 * 
@@ -83,10 +107,10 @@ public interface IUcUserPhoneBooksSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public List<PhoneBooksParamsRequest> getTelInfo(PhoneBooksParamsRequest contactsGroup,int startPage,int limit);
+	public UcPhoneBooksParamsResponse getPhoneBooksInfo(UcPhoneBooksParamsRequest telGroup,int startPage,int limit);
 	
 	
-	@interface GetAllContactsInfo{}
+	@interface GetAllPhoneBooksInfo{}
 	/**
 	 * 显示某个通讯录组中的所有联系人
 	 * @param contactsGroupId
@@ -95,7 +119,10 @@ public interface IUcUserPhoneBooksSV {
 	 * @ApiDocMethod
 	 */
 	
-	PageInfo<PhoneBooksParamsRequest> getAllContactsInfo(String contactsGroupId);
+	UcPhoneBooksParamsResponse GetAllPhoneBooksInfo(UcPhoneBooksParamsRequest phoneBookId);
 	
 	
+	@interface DownloadPhoneBooksTemplate{}
+	
+	BaseResponse DownloadPhoneBooksTemplate(String path);
 }

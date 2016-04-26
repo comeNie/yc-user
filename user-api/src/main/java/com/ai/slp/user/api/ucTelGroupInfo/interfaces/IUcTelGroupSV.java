@@ -1,9 +1,9 @@
 package com.ai.slp.user.api.ucTelGroupInfo.interfaces;
 
-import java.util.List;
 
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.slp.user.api.ucTelGroupInfo.param.UcTelGroupParamsRequest;
+import com.ai.slp.user.api.ucTelGroupInfo.param.UcTelGroupResponse;
 
 public interface IUcTelGroupSV {
 	 
@@ -17,7 +17,7 @@ public interface IUcTelGroupSV {
 	 * @ApiDocMethod
 	 */
 	 
-	public BaseResponse insertUcTelGroupInfo(UcTelGroupParamsRequest contactsGroup);
+	public BaseResponse insertUcTelGroupInfo(UcTelGroupParamsRequest telGroup);
 	
 	@interface UpdateGroupInfo{}
 	/**
@@ -28,7 +28,7 @@ public interface IUcTelGroupSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public BaseResponse updateGroupInfo(UcTelGroupParamsRequest contactsGroup);
+	public BaseResponse updateGroupInfo(UcTelGroupParamsRequest telGroup);
 	
 	@interface DeleteGroupInfo{}
 	/**
@@ -39,11 +39,28 @@ public interface IUcTelGroupSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public BaseResponse deleteGroupInfo(UcTelGroupParamsRequest contactsGroup);
+	public BaseResponse deleteGroupInfo(String telGroupId);
 
-	@interface GetContactsGroupInfo{}
+	@interface GetTelGroupInfo{}
 	/**
 	 * 通讯录组查询
+	 * @param startPage
+	 * @param limit
+	 * @return
+	 * @author zhangyh7
+	 * @ApiDocMethod
 	 */
-	public List<UcTelGroupParamsRequest> getContactsGroupInfo();
+	public UcTelGroupResponse getTelGroupInfo(int startPage,int limit);
+	
+	
+	@interface GetTelgroupCount{}
+	/**
+	 * 得到通讯录总数
+	 * @param telGroup
+	 * @return
+	 * @author zhangyh7
+	 * @ApiDocMethod
+	 */
+	public int getTelGroupCount(UcTelGroupParamsRequest telGroup);
+	
 }
