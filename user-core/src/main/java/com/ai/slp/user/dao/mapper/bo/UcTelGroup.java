@@ -25,6 +25,8 @@ public class UcTelGroup {
 
     private Long updateOperId;
 
+    private Long phoneCount;
+    
     public String getTenantId() {
         return tenantId;
     }
@@ -112,4 +114,14 @@ public class UcTelGroup {
     public void setUpdateOperId(Long updateOperId) {
         this.updateOperId = updateOperId;
     }
+
+    public Long getPhoneCount() {
+        return phoneCount;
+    }
+
+    public void setPhoneCount(Long phoneCount) {
+        this.phoneCount = phoneCount;
+    }
+    
+    
 }
