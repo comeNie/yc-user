@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
@@ -32,7 +34,7 @@ public class UcUserPhoneBooksBusiSVImpl implements IUcUserPhoneBooksBusiSv{
     static final Log LOG = LogFactory.getLog(UcUserPhoneBooksBusiSVImpl.class);
         
     @Override
-    public BaseResponse phoneBooksManuallyInfo(UcPhoneBooksParamsRequest contactsGroup) {
+    public BaseResponse phoneBooksManuallyInfo(UcPhoneBooksParamsRequest contactsGroup)throws BusinessException, SystemException {
         
         BaseResponse reponse = new BaseResponse();
         
@@ -52,22 +54,22 @@ public class UcUserPhoneBooksBusiSVImpl implements IUcUserPhoneBooksBusiSv{
     }
 
     @Override
-    public BaseResponse phoneBooksImportCvsInfo(String filePath) {
+    public BaseResponse phoneBooksImportCvsInfo(String filePath)throws BusinessException, SystemException {
         return null;
     }
 
     @Override
-    public BaseResponse phoneBooksImportXlsInfo(String filePath) {
+    public BaseResponse phoneBooksImportXlsInfo(String filePath)throws BusinessException, SystemException {
         return null;
     }
 
     @Override
-    public BaseResponse phoneBooksImportXlsxInfo(String filePath) {
+    public BaseResponse phoneBooksImportXlsxInfo(String filePath)throws BusinessException, SystemException {
         return null;
     }
 
     @Override
-    public BaseResponse updatePhoneBooksInfo(UcPhoneBooksParamsRequest contactsGroup) {
+    public BaseResponse updatePhoneBooksInfo(UcPhoneBooksParamsRequest contactsGroup)throws BusinessException, SystemException {
         
         BaseResponse reponse = new BaseResponse();
         
@@ -96,7 +98,7 @@ public class UcUserPhoneBooksBusiSVImpl implements IUcUserPhoneBooksBusiSv{
     }
 
     @Override
-    public BaseResponse deletePhoneBooksInfo(String telNo) {
+    public BaseResponse deletePhoneBooksInfo(String telNo)throws BusinessException, SystemException {
         
         BaseResponse reponse = new BaseResponse();
         
@@ -122,13 +124,13 @@ public class UcUserPhoneBooksBusiSVImpl implements IUcUserPhoneBooksBusiSv{
     }
 
     @Override
-    public BaseResponse exportPhoneBooks(String filepath) {
+    public BaseResponse exportPhoneBooks(String filepath) throws BusinessException, SystemException{
         return null;
     }
 
     @Override
     public UcPhoneBooksParamsResponse getPhoneBooksInfo(UcPhoneBooksParamsRequest phoneBook,
-            int startPage, int limit) {
+            int limitStart, int limitEnd)throws BusinessException, SystemException {
         
         UcPhoneBooksParamsResponse response = new UcPhoneBooksParamsResponse();
         
@@ -146,7 +148,7 @@ public class UcUserPhoneBooksBusiSVImpl implements IUcUserPhoneBooksBusiSv{
             cr.andBasicOrgIdEqualTo(phoneBook.getBasicBasicOrgId());
         }
         
-        if(!StringUtils.isBlank(phoneBook.getTelName())||!StringUtils.isBlank(phoneBook.getTelMp())){
+        if(!StringUtils.isBlank(phoneBook.getTelPhoneOrTelName())){
             cr.andTelNameLike(phoneBook.getTelName());
             criteria.or().andTelMpLike(phoneBook.getTelMp());
         }
@@ -156,13 +158,11 @@ public class UcUserPhoneBooksBusiSVImpl implements IUcUserPhoneBooksBusiSv{
          */
         int count = ucUserPhoneBooksAtomSv.countUcTelGroupInfo(criteria);
         
-        criteria.setLimitStart(startPage);
-        criteria.setLimitEnd(limit);
+        criteria.setLimitStart(limitStart);
+        criteria.setLimitEnd(limitEnd);
         List<UcUserPhonebooks> ucUserPhonebookds = ucUserPhoneBooksAtomSv.selectUcTelGroupInfo(criteria);
         
         PageInfo<UcPhoneBooksParamsResponse> pageInfo = getUserPhoneBooksList(ucUserPhonebookds);
-        pageInfo.setPageNo(startPage);
-        pageInfo.setPageSize(limit);
         pageInfo.setCount(count);
         response.setPageInfo(pageInfo);
         
@@ -171,7 +171,7 @@ public class UcUserPhoneBooksBusiSVImpl implements IUcUserPhoneBooksBusiSv{
 
     
     @Override
-    public UcPhoneBooksParamsResponse getAllPhoneBooksInfo(UcPhoneBooksParamsRequest phoneBook) {
+    public UcPhoneBooksParamsResponse getAllPhoneBooksInfo(UcPhoneBooksParamsRequest phoneBook)throws BusinessException, SystemException {
         
         UcPhoneBooksParamsResponse response = new UcPhoneBooksParamsResponse();
         
@@ -198,8 +198,6 @@ public class UcUserPhoneBooksBusiSVImpl implements IUcUserPhoneBooksBusiSv{
         List<UcUserPhonebooks> ucUserPhonebookds = ucUserPhoneBooksAtomSv.selectUcTelGroupInfo(criteria);
         
         PageInfo<UcPhoneBooksParamsResponse> pageInfo = getUserPhoneBooksList(ucUserPhonebookds);
-        pageInfo.setPageNo(1);
-        pageInfo.setPageSize(ucUserPhonebookds.size());
         pageInfo.setCount(ucUserPhonebookds.size());
         response.setPageInfo(pageInfo);
         
@@ -207,12 +205,12 @@ public class UcUserPhoneBooksBusiSVImpl implements IUcUserPhoneBooksBusiSv{
     }
     
     @Override
-    public BaseResponse DownloadPhoneBooksTemplate(String path) {
+    public BaseResponse DownloadPhoneBooksTemplate(String path)throws BusinessException, SystemException {
         return null;
     }
 
     @Override
-    public UcPhoneBooksParamsResponse GetAllPhoneBooksInfo(String contactsGroupId) {
+    public UcPhoneBooksParamsResponse GetAllPhoneBooksInfo(String contactsGroupId)throws BusinessException, SystemException {
         
         
         
@@ -220,7 +218,7 @@ public class UcUserPhoneBooksBusiSVImpl implements IUcUserPhoneBooksBusiSv{
     }
 
     
-   public PageInfo<UcPhoneBooksParamsResponse> getUserPhoneBooksList(List<UcUserPhonebooks> list){
+   public PageInfo<UcPhoneBooksParamsResponse> getUserPhoneBooksList(List<UcUserPhonebooks> list)throws BusinessException, SystemException{
         
         List<UcPhoneBooksParamsResponse> phoneBooksList = new ArrayList<UcPhoneBooksParamsResponse>();
         
