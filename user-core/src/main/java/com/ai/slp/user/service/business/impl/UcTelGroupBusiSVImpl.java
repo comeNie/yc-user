@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
@@ -32,7 +34,7 @@ public class UcTelGroupBusiSVImpl implements IUcTelGroupBusiSV{
     
     
     @Override
-    public BaseResponse insertUcTelGroupInfo(UcTelGroupParamsRequest contactsGroup) {
+    public BaseResponse insertUcTelGroupInfo(UcTelGroupParamsRequest contactsGroup)throws BusinessException, SystemException {
         
         BaseResponse reponse = new BaseResponse();
         ResponseHeader responseHeader;
@@ -49,7 +51,7 @@ public class UcTelGroupBusiSVImpl implements IUcTelGroupBusiSV{
     }
 
     @Override
-    public BaseResponse deleteGroupInfo(String telGroupId) {
+    public BaseResponse deleteGroupInfo(String telGroupId)throws BusinessException, SystemException {
         BaseResponse reponse = new BaseResponse();
         ResponseHeader responseHeader;
         try{
@@ -67,27 +69,32 @@ public class UcTelGroupBusiSVImpl implements IUcTelGroupBusiSV{
 
   
     @Override
-    public UcTelGroupResponse selectGroupInfo(int startPage, int limit) {
+    public UcTelGroupResponse selectGroupInfo(int limitStart, int limitEnd)throws BusinessException, SystemException {
         
         UcTelGroupResponse reponse = new UcTelGroupResponse();
         UcTelGroupCriteria ucTelGroupCriteria = new UcTelGroupCriteria();
-        ucTelGroupCriteria.setLimitStart(startPage);
-        ucTelGroupCriteria.setLimitEnd(limit);
         
+        int count = ucTelGroupAtomSv.countUcTelGroupInfo(ucTelGroupCriteria);
+        
+        ucTelGroupCriteria.setLimitStart(limitStart);
+        ucTelGroupCriteria.setLimitEnd(limitEnd);
+        
+       
+        
+        ucTelGroupCriteria.or().andCreateChlIdBetween("telGroup.TEL_GROUP_ID", "books.TEL_GROUP_ID");
+        ucTelGroupCriteria.setGroupByClause("books.TEL_GROUP_ID");
         List<Map<String,Object>> map = ucTelGroupAtomSv.selectUcTelGroupInfo(ucTelGroupCriteria);
         
         PageInfo<Map<String,Object>> pageInfo = new PageInfo<Map<String,Object>>();
         pageInfo.setResult(map);
-        pageInfo.setPageNo(startPage);
-        pageInfo.setPageSize(limit);
-        
+        pageInfo.setCount(count);
         reponse.setPageInfo(pageInfo);
         
         return reponse;
     }
 
     @Override
-    public BaseResponse updateUcTelGroupInfo(UcTelGroupParamsRequest contactsGroup) {
+    public BaseResponse updateUcTelGroupInfo(UcTelGroupParamsRequest contactsGroup)throws BusinessException, SystemException {
         
         BaseResponse reponse = new BaseResponse();
         ResponseHeader responseHeader;
@@ -108,7 +115,7 @@ public class UcTelGroupBusiSVImpl implements IUcTelGroupBusiSV{
     }
 
     @Override
-    public int getUcTelGroupCount(UcTelGroupParamsRequest contactsGroup) {
+    public int getUcTelGroupCount(UcTelGroupParamsRequest contactsGroup)throws BusinessException, SystemException {
         
         UcTelGroupCriteria ucTelGroupCriteria = new UcTelGroupCriteria();
         
