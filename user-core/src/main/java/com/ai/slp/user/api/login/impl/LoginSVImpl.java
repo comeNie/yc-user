@@ -21,13 +21,13 @@ import com.ai.slp.user.service.business.interfaces.ILoginBusiSV;
 public class LoginSVImpl implements ILoginSV {
 
     @Autowired
-    private ILoginBusiSV iLoginBusiSV;
+    private ILoginBusiSV loginBusiSV;
     
     @Override
     public LoginResponse login(LoginRequest loginRequest)
             throws BusinessException, SystemException {
         
-        return iLoginBusiSV.login(loginRequest);
+        return loginBusiSV.login(loginRequest);
     }
 
 }

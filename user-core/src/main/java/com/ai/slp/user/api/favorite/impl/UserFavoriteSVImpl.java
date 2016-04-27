@@ -11,7 +11,7 @@ import com.ai.slp.user.api.favorite.interfaces.IUserFavoriteSV;
 import com.ai.slp.user.api.favorite.param.CreateUserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.CreateUserFavoriteResponse;
 import com.ai.slp.user.api.favorite.param.DeleteFavoriteListRequest;
-import com.ai.slp.user.api.favorite.param.UcUserFavoriteParams;
+import com.ai.slp.user.api.favorite.param.UpdateFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UserFavoriteResponse;
 import com.ai.slp.user.service.business.interfaces.IUserFavoriteBusiSV;
@@ -21,30 +21,30 @@ import com.ai.slp.user.service.business.interfaces.IUserFavoriteBusiSV;
 public class UserFavoriteSVImpl implements IUserFavoriteSV {
 
     @Autowired
-    private IUserFavoriteBusiSV iUserFavoriteBusiSV;
+    private IUserFavoriteBusiSV userFavoriteBusiSV;
     
     @Override
     public CreateUserFavoriteResponse insertUcFavorite(CreateUserFavoriteRequest createUserFavoriteRequest)
             throws BusinessException, SystemException {
-        return iUserFavoriteBusiSV.insertUcFavorite(createUserFavoriteRequest);
+        return userFavoriteBusiSV.insertUcFavorite(createUserFavoriteRequest);
     }
 
     @Override
-    public void updateFavorite(UcUserFavoriteParams ucUserFavoriteParams)
+    public void cancelFavorite(UpdateFavoriteRequest updateRequest)
             throws SystemException, BusinessException {
-        iUserFavoriteBusiSV.updateFavorite(ucUserFavoriteParams);
+        userFavoriteBusiSV.updateFavorite(updateRequest);
     }
 
     @Override
     public PageInfo<UserFavoriteResponse> queryFavorite(UserFavoriteRequest userFavoriteRequest)
             throws SystemException, BusinessException {
-        return iUserFavoriteBusiSV.queryFavorite(userFavoriteRequest);
+        return userFavoriteBusiSV.queryFavorite(userFavoriteRequest);
     }
 
     @Override
     public void deleteFavorite(DeleteFavoriteListRequest deleteListRequest)
             throws SystemException, BusinessException {
-        iUserFavoriteBusiSV.deleteFavorite(deleteListRequest);
+        userFavoriteBusiSV.deleteFavorite(deleteListRequest);
     }
 
 }

@@ -6,7 +6,7 @@ import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.favorite.param.CreateUserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.CreateUserFavoriteResponse;
 import com.ai.slp.user.api.favorite.param.DeleteFavoriteListRequest;
-import com.ai.slp.user.api.favorite.param.UcUserFavoriteParams;
+import com.ai.slp.user.api.favorite.param.UpdateFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UserFavoriteResponse;
 
@@ -16,7 +16,7 @@ public interface IUserFavoriteBusiSV {
             CreateUserFavoriteRequest createUserFavoriteRequest)
                     throws BusinessException, SystemException;
 
-    public void updateFavorite(UcUserFavoriteParams ucUserFavoriteParams)
+    public void updateFavorite(UpdateFavoriteRequest updateRequest)
             throws SystemException, BusinessException;
 
     public void deleteFavorite(DeleteFavoriteListRequest deleteFavoriteListRequest)

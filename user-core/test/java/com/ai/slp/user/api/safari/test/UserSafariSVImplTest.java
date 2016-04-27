@@ -19,20 +19,20 @@ import com.ai.slp.user.service.business.interfaces.IUserSafariBusiSV;
 public class UserSafariSVImplTest {
 
     @Autowired
-    private IUserSafariBusiSV iUserSafariBusiSV;
+    private IUserSafariBusiSV userSafariBusiSV;
     
-    @Test
+    //@Test
     public void insertSafariTest(){
         CreateUserSafariRequest request = new CreateUserSafariRequest();
-        request.setUserId(111);
+        request.setUserId(111L);
         request.setTenantId("test111");
         request.setTenantPwd("123456");
-        request.setProdId("111");
-       CreateUserSafariResponse response = iUserSafariBusiSV.insertUserSafari(request);
+        request.setProdId("333");
+       CreateUserSafariResponse response = userSafariBusiSV.insertUserSafari(request);
        System.out.println(response.getResponseId());
     }
     
-    //@Test
+    @Test
     public void querySafariTest(){
        UserSafariInfoRequest request = new UserSafariInfoRequest();
        request.setPageNo(11);
@@ -40,8 +40,8 @@ public class UserSafariSVImplTest {
        //request.setSafariTime(DateUtils.currTimeStamp());
        request.setTenantId("test111");
        request.setTenantPwd("123456");
-       request.setUserId(111);
-       PageInfo<UserSafariInfoResponse> response = iUserSafariBusiSV.queryUserSafari(request);
+       request.setUserId(111L);
+       PageInfo<UserSafariInfoResponse> response = userSafariBusiSV.queryUserSafari(request);
        System.out.println(response.getCount());
        System.out.println(response.getResult().size());
     }
@@ -49,11 +49,12 @@ public class UserSafariSVImplTest {
     //@Test
     public void deleteSafariTest(){
         DeleteSafariRequest request = new DeleteSafariRequest();
-        request.setUserId(111);
+        request.setUserId(111L);
         request.setTenantId("test111");
         request.setTenantPwd("123456");
-        //request.setProdId("111");
-        request.setDateTime("2016-4-26");
-        iUserSafariBusiSV.deleteUserSafari(request);
+        //request.setProdId("333");
+        //request.setDateTime("2016-4-27");
+        request.setDeleteCode("1");
+        userSafariBusiSV.deleteUserSafari(request);
     }
 }

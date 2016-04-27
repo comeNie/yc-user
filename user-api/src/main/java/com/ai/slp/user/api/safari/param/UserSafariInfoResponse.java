@@ -1,6 +1,6 @@
 package com.ai.slp.user.api.safari.param;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import com.ai.opt.base.vo.BaseResponse;
 
@@ -17,7 +17,7 @@ public class UserSafariInfoResponse extends BaseResponse {
     /**
      * 用户ID
      */
-    private Integer userId;
+    private Long userId;
 
     /**
      * 商品ID
@@ -32,18 +32,18 @@ public class UserSafariInfoResponse extends BaseResponse {
     /**
      * 浏览时间
      */
-    private Date safariTime;
+    private Timestamp safariTime;
 
     /**
      * 状态
      */
     private String state;
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -63,11 +63,11 @@ public class UserSafariInfoResponse extends BaseResponse {
         this.safariSeqId = safariSeqId;
     }
 
-    public Date getSafariTime() {
+    public Timestamp getSafariTime() {
         return safariTime;
     }
 
-    public void setSafariTime(Date safariTime) {
+    public void setSafariTime(Timestamp safariTime) {
         this.safariTime = safariTime;
     }
 

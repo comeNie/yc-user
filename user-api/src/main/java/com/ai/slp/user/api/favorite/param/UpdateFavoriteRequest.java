@@ -1,28 +1,29 @@
-package com.ai.slp.user.api.message.param;
+package com.ai.slp.user.api.favorite.param;
 
 import java.util.List;
 
 import com.ai.opt.base.vo.BaseInfo;
 
 /**
- * 删除消息入参 Date: 2016年4月27日 <br>
+ * 用户收藏信息更新入参 Date: 2016年4月27日 <br>
  * Copyright (c) 2016 asiainfo.com <br>
  * 
  * @author zhangqiang7
  */
-public class DeleteMessageRequest extends BaseInfo {
+public class UpdateFavoriteRequest extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户ID
+     * userID NOT NULL
      */
+
     private Long userId;
 
     /**
-     * messageIDList
+     * favoriteList
      */
-    private List<String> list;
+    private List<String> favoriteList;
 
     public Long getUserId() {
         return userId;
@@ -32,12 +33,12 @@ public class DeleteMessageRequest extends BaseInfo {
         this.userId = userId;
     }
 
-    public List<String> getList() {
-        return list;
+    public List<String> getFavoriteList() {
+        return favoriteList;
     }
 
-    public void setList(List<String> list) {
-        this.list = list;
+    public void setFavoriteList(List<String> favoriteList) {
+        this.favoriteList = favoriteList;
     }
 
 }

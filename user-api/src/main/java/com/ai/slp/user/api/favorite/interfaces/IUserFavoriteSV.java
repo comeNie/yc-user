@@ -6,7 +6,7 @@ import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.favorite.param.CreateUserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.CreateUserFavoriteResponse;
 import com.ai.slp.user.api.favorite.param.DeleteFavoriteListRequest;
-import com.ai.slp.user.api.favorite.param.UcUserFavoriteParams;
+import com.ai.slp.user.api.favorite.param.UpdateFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UserFavoriteResponse;
 
@@ -35,11 +35,12 @@ public interface IUserFavoriteSV {
     CreateUserFavoriteResponse insertUcFavorite(CreateUserFavoriteRequest createUserFavoriteRequest)
             throws BusinessException, SystemException;
 
-    @interface UpdateFavorite {
+    @interface CancelFavorite {
     }
 
     /**
-     * 用户收藏信息更新
+     * 用户收藏信息更新 
+     * 取消收藏即更新收藏状态
      * 
      * @param ucUserFavoriteParams
      * @throws SystemException
@@ -47,7 +48,7 @@ public interface IUserFavoriteSV {
      * @author zhangqiang7
      * @UCUSER_005
      */
-    void updateFavorite(UcUserFavoriteParams ucUserFavoriteParams)
+    void cancelFavorite(UpdateFavoriteRequest updateRequest)
             throws SystemException, BusinessException;
 
     @interface DeleteFavorite {

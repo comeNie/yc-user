@@ -1,6 +1,6 @@
 package com.ai.slp.user.api.safari.param;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.validation.constraints.NotNull;
 
@@ -21,12 +21,12 @@ public class UserSafariInfoRequest extends BaseInfo {
      * 用户ID NOT NULL
      */
     @NotNull(message = "用户Id不能为空", groups = { IUserSafariSV.DeleteUserSafari.class })
-    private Integer userId;
+    private Long userId;
 
     /**
      * 浏览时间
      */
-    private Date safariTime;
+    private Timestamp safariTime;
 
     /**
      * pageNo
@@ -38,19 +38,19 @@ public class UserSafariInfoRequest extends BaseInfo {
      */
     private Integer pageSize;
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public Date getSafariTime() {
+    public Timestamp getSafariTime() {
         return safariTime;
     }
 
-    public void setSafariTime(Date safariTime) {
+    public void setSafariTime(Timestamp safariTime) {
         this.safariTime = safariTime;
     }
 

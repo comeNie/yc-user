@@ -1,207 +1,207 @@
 package com.ai.slp.user.api.message.param;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
-import javax.validation.constraints.NotNull;
-
-import com.ai.opt.base.vo.BaseInfo;
-import com.ai.slp.user.api.message.interfaces.IUserMessageSV;
+import com.ai.opt.base.vo.BaseResponse;
 
 /**
- * 用户消息表
- * Date: 2016年4月20日 <br>
+ * 获取消息列表出参 Date: 2016年4月27日 <br>
  * Copyright (c) 2016 asiainfo.com <br>
  * 
  * @author zhangqiang7
  */
-public class UcUserMessageParams extends BaseInfo {
+public class QueryMessageResponse extends BaseResponse {
 
     private static final long serialVersionUID = 1L;
-    /**
-     * 用户消息ID NOT NULL
-     */
-    @NotNull(message = "用户消息Id不能为空", groups = { IUserMessageSV.UpdateUserMessage.class })
+
+    private String tenantId;
+
     private String infoSeqId;
-    /**
-     * 用户ID NOT NULL
-     */
-    @NotNull(message = "用户Id不能为空", groups = { IUserMessageSV.UpdateUserMessage.class })
-    private String userId;
-    /**
-     * 消息类型
-     */
+
+    private Long userId;
+
     private String infoType;
-    /**
-     * 消息读取状态
-     */
+
     private String readFlag;
-    /**
-     * 消息读取时间
-     */
-    private Date readTime;
-    /**
-     * 消息标题
-     */
+
+    private Timestamp readTime;
+
     private String infoHeadline;
-    /**
-     * 消息内容
-     */
+
     private String infoMessage;
-    /**
-     * 消息状态
-     */
+
     private String state;
-    /**
-     * 生效时间
-     */
-    private String activeTime;
-    /**
-     * 失效时间
-     */
-    private String inactiveTime;
-    /**
-     * 状态变更时间
-     */
-    private Date stateUpdateTime;
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-    /**
-     * 创建渠道
-     */
+
+    private Timestamp activeTime;
+
+    private Timestamp inactiveTime;
+
+    private Timestamp stateUpdateTime;
+
+    private Timestamp createTime;
+
     private String createChlId;
-    /**
-     * 创建员工
-     */
-    private String createOperId;
-    /**
-     * 修改时间
-     */
-    private Date updateTime;
-    /**
-     * 修改渠道
-     */
+
+    private Long createOperId;
+
+    private Timestamp updateTime;
+
     private String updateChlId;
-    /**
-     * 修改员工
-     */
-    private String updateOperId;
-    /**
-     * 备注
-     */
+
+    private Long updateOperId;
+
     private String remark;
+
+    public String getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
+    }
+
     public String getInfoSeqId() {
         return infoSeqId;
     }
+
     public void setInfoSeqId(String infoSeqId) {
         this.infoSeqId = infoSeqId;
     }
-    public String getUserId() {
+
+    public Long getUserId() {
         return userId;
     }
-    public void setUserId(String userId) {
+
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
+
     public String getInfoType() {
         return infoType;
     }
+
     public void setInfoType(String infoType) {
         this.infoType = infoType;
     }
+
     public String getReadFlag() {
         return readFlag;
     }
+
     public void setReadFlag(String readFlag) {
         this.readFlag = readFlag;
     }
-    public Date getReadTime() {
+
+    public Timestamp getReadTime() {
         return readTime;
     }
-    public void setReadTime(Date readTime) {
+
+    public void setReadTime(Timestamp readTime) {
         this.readTime = readTime;
     }
+
     public String getInfoHeadline() {
         return infoHeadline;
     }
+
     public void setInfoHeadline(String infoHeadline) {
         this.infoHeadline = infoHeadline;
     }
+
     public String getInfoMessage() {
         return infoMessage;
     }
+
     public void setInfoMessage(String infoMessage) {
         this.infoMessage = infoMessage;
     }
+
     public String getState() {
         return state;
     }
+
     public void setState(String state) {
         this.state = state;
     }
-    public String getActiveTime() {
+
+    public Timestamp getActiveTime() {
         return activeTime;
     }
-    public void setActiveTime(String activeTime) {
+
+    public void setActiveTime(Timestamp activeTime) {
         this.activeTime = activeTime;
     }
-    public String getInactiveTime() {
+
+    public Timestamp getInactiveTime() {
         return inactiveTime;
     }
-    public void setInactiveTime(String inactiveTime) {
+
+    public void setInactiveTime(Timestamp inactiveTime) {
         this.inactiveTime = inactiveTime;
     }
-    public Date getStateUpdateTime() {
+
+    public Timestamp getStateUpdateTime() {
         return stateUpdateTime;
     }
-    public void setStateUpdateTime(Date stateUpdateTime) {
+
+    public void setStateUpdateTime(Timestamp stateUpdateTime) {
         this.stateUpdateTime = stateUpdateTime;
     }
-    public Date getCreateTime() {
+
+    public Timestamp getCreateTime() {
         return createTime;
     }
-    public void setCreateTime(Date createTime) {
+
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
+
     public String getCreateChlId() {
         return createChlId;
     }
+
     public void setCreateChlId(String createChlId) {
         this.createChlId = createChlId;
     }
-    public String getCreateOperId() {
+
+    public Long getCreateOperId() {
         return createOperId;
     }
-    public void setCreateOperId(String createOperId) {
+
+    public void setCreateOperId(Long createOperId) {
         this.createOperId = createOperId;
     }
-    public Date getUpdateTime() {
+
+    public Timestamp getUpdateTime() {
         return updateTime;
     }
-    public void setUpdateTime(Date updateTime) {
+
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
+
     public String getUpdateChlId() {
         return updateChlId;
     }
+
     public void setUpdateChlId(String updateChlId) {
         this.updateChlId = updateChlId;
     }
-    public String getUpdateOperId() {
+
+    public Long getUpdateOperId() {
         return updateOperId;
     }
-    public void setUpdateOperId(String updateOperId) {
+
+    public void setUpdateOperId(Long updateOperId) {
         this.updateOperId = updateOperId;
     }
+
     public String getRemark() {
         return remark;
     }
+
     public void setRemark(String remark) {
         this.remark = remark;
     }
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
-    
-    
+
 }

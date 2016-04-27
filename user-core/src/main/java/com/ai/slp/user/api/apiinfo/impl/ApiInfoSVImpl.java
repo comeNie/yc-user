@@ -20,24 +20,24 @@ import com.ai.slp.user.service.business.interfaces.IApiInfoBusiSV;
 public class ApiInfoSVImpl implements IApiInfoSV {
 
     @Autowired
-    private IApiInfoBusiSV iApiInfoBusiSV;
+    private IApiInfoBusiSV apiInfoBusiSV;
     
     @Override
     public CreateUserFavoriteResponse insertApiInfo(CreateApiInfoRequest saveApiInfoRequest)
             throws BusinessException, SystemException {
-        return iApiInfoBusiSV.insertApiInfo(saveApiInfoRequest);
+        return apiInfoBusiSV.insertApiInfo(saveApiInfoRequest);
     }
 
     @Override
     public void updateApiInfo(UcApiInfoParams ucApiInfoParams)
             throws BusinessException, SystemException {
-        iApiInfoBusiSV.updateApiInfo(ucApiInfoParams);
+        apiInfoBusiSV.updateApiInfo(ucApiInfoParams);
     }
 
     @Override
     public PageInfo<ApiInfoResponse> queryApiInfo(ApiInfoRequest apiInfoRequest)
             throws BusinessException, SystemException {
-        return iApiInfoBusiSV.queryApiInfo(apiInfoRequest);
+        return apiInfoBusiSV.queryApiInfo(apiInfoRequest);
     }
 
 }

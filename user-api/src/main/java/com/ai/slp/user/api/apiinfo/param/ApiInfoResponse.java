@@ -1,6 +1,6 @@
 package com.ai.slp.user.api.apiinfo.param;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import com.ai.opt.base.vo.BaseResponse;
 
@@ -27,7 +27,7 @@ public class ApiInfoResponse extends BaseResponse {
     /**
      * 用户Id
      */
-    private Integer userId;
+    private Long userId;
 
     /**
      * API名称
@@ -122,7 +122,7 @@ public class ApiInfoResponse extends BaseResponse {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Timestamp createTime;
 
     /**
      * 创建渠道
@@ -132,12 +132,12 @@ public class ApiInfoResponse extends BaseResponse {
     /**
      * 创建员工
      */
-    private String createOperId;
+    private Long createOperId;
 
     /**
      * 修改时间
      */
-    private Date updateTime;
+    private Timestamp updateTime;
 
     /**
      * 修改渠道
@@ -147,7 +147,7 @@ public class ApiInfoResponse extends BaseResponse {
     /**
      * 修改员工
      */
-    private String updateOperId;
+    private Long updateOperId;
 
     public String getTenantId() {
         return tenantId;
@@ -165,11 +165,11 @@ public class ApiInfoResponse extends BaseResponse {
         this.apiSeqId = apiSeqId;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -317,11 +317,11 @@ public class ApiInfoResponse extends BaseResponse {
         this.remark = remark;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
@@ -333,19 +333,19 @@ public class ApiInfoResponse extends BaseResponse {
         this.createChlId = createChlId;
     }
 
-    public String getCreateOperId() {
+    public Long getCreateOperId() {
         return createOperId;
     }
 
-    public void setCreateOperId(String createOperId) {
+    public void setCreateOperId(Long createOperId) {
         this.createOperId = createOperId;
     }
 
-    public Date getUpdateTime() {
+    public Timestamp getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
 
@@ -357,11 +357,11 @@ public class ApiInfoResponse extends BaseResponse {
         this.updateChlId = updateChlId;
     }
 
-    public String getUpdateOperId() {
+    public Long getUpdateOperId() {
         return updateOperId;
     }
 
-    public void setUpdateOperId(String updateOperId) {
+    public void setUpdateOperId(Long updateOperId) {
         this.updateOperId = updateOperId;
     }
 

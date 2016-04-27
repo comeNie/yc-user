@@ -31,5 +31,10 @@ public class UserSafariAtomSVImpl implements IUserSafariAtomSV {
     public int countByExample(UcUserSafariCriteria example) {
         return MapperFactory.getUcUserSafariMapper().countByExample(example);
     }
+
+    @Override
+    public int updateByExampleSelective(UcUserSafari record, UcUserSafariCriteria example) {
+        return MapperFactory.getUcUserSafariMapper().updateByExampleSelective(record, example);
+    }
     
 }

@@ -24,7 +24,7 @@ public class ApiInfoRequest extends BaseInfo {
      * 用户ID NOT NULL
      */
     @NotNull(message = "用户Id不能为空", groups = { IApiInfoSV.QueryApiInfo.class })
-    private Integer userId;
+    private Long userId;
 
     /**
      * pageNo
@@ -44,11 +44,11 @@ public class ApiInfoRequest extends BaseInfo {
         this.apiReqId = apiReqId;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
