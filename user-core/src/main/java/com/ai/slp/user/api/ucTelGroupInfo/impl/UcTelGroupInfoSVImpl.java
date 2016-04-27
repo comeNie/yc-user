@@ -36,8 +36,8 @@ public class UcTelGroupInfoSVImpl implements IUcTelGroupSV{
     }
 
     @Override
-    public UcTelGroupResponse getTelGroupInfo(int startPage,int limit) throws BusinessException, SystemException {
-        return ucTelGroupBusiSv.selectGroupInfo(startPage, limit);
+    public UcTelGroupResponse getTelGroupInfo(int limitStart,int limitEnd) throws BusinessException, SystemException {
+        return ucTelGroupBusiSv.selectGroupInfo(limitStart, limitEnd);
     }
 
     @Override
