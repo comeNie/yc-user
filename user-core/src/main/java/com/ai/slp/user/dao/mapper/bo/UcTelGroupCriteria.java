@@ -18,6 +18,7 @@ public class UcTelGroupCriteria {
 
     protected String groupByClause;
     
+    
     public UcTelGroupCriteria() {
         oredCriteria = new ArrayList<Criteria>();
     }
