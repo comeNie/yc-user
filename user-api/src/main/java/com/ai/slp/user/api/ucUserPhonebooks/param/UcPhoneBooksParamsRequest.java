@@ -116,6 +116,9 @@ public class UcPhoneBooksParamsRequest {
     @Size(max=10,groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
     private long updateOperId;
 
+    
+    private String telPhoneOrTelName;
+    
     public String getTenantId() {
         return tenantId;
     }
