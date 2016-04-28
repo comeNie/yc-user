@@ -256,5 +256,13 @@ public class UcPhoneBooksParamsRequest {
     public void setUpdateOperId(long updateOperId) {
         this.updateOperId = updateOperId;
     }
+
+    public String getTelPhoneOrTelName() {
+        return telPhoneOrTelName;
+    }
+
+    public void setTelPhoneOrTelName(String telPhoneOrTelName) {
+        this.telPhoneOrTelName = telPhoneOrTelName;
+    }
 	
 }
