@@ -1,4 +1,5 @@
 package com.ai.slp.user.api.ucStateChg.param;
+import java.sql.Timestamp;
 import java.util.Date;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -20,7 +21,7 @@ public class UcStateChgParamsRequest {
 	 */
 	@NotNull(message="用户ID不能为空",groups={IUcStateChgSV.InsertUcStateChgInfo.class,IUcStateChgSV.UpdateUcStateChgInfo.class})
     @Size(max=18,groups={IUcStateChgSV.InsertUcStateChgInfo.class,IUcStateChgSV.UpdateUcStateChgInfo.class})
-	private int userId;
+	private long userId;
 	
 	
 	/**
@@ -51,7 +52,7 @@ public class UcStateChgParamsRequest {
     /**
      * 状态变化时间
      */
-    private Date chgTime;
+    private Timestamp chgTime;
     
     /**
      * 操作渠道
@@ -61,7 +62,7 @@ public class UcStateChgParamsRequest {
     /**
      * 操作员
      */
-    private int operId;
+    private long operId;
 
     public String getTenantId() {
         return tenantId;
@@ -71,7 +72,7 @@ public class UcStateChgParamsRequest {
         this.tenantId = tenantId;
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
     }
 
@@ -119,11 +120,11 @@ public class UcStateChgParamsRequest {
         this.chgdesc = chgdesc;
     }
 
-    public Date getChgTime() {
+    public Timestamp getChgTime() {
         return chgTime;
     }
 
-    public void setChgTime(Date chgTime) {
+    public void setChgTime(Timestamp chgTime) {
         this.chgTime = chgTime;
     }
 
@@ -135,11 +136,11 @@ public class UcStateChgParamsRequest {
         this.chlId = chlId;
     }
 
-    public int getOperId() {
+    public long getOperId() {
         return operId;
     }
 
-    public void setOperId(int operId) {
+    public void setOperId(long operId) {
         this.operId = operId;
     }
     
