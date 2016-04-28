@@ -19,7 +19,7 @@ public class LoginSVImplTest {
     private static final Log LOG = LogFactory.getLog(LoginSVImplTest.class);
 
     @Autowired
-    private ILoginSV iLoginSV;
+    private ILoginSV loginSV;
     
     @Test
     public void loginTest(){
@@ -29,7 +29,7 @@ public class LoginSVImplTest {
         loginRequest.setUserEmail("11@11.com");
         loginRequest.setUserLoginPwd("123456");
         loginRequest.setUserType("11");
-        LoginResponse loginResponse = iLoginSV.login(loginRequest);
+        LoginResponse loginResponse = loginSV.login(loginRequest);
         System.out.println(loginResponse.getCount());
     }
 }

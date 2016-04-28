@@ -19,9 +19,9 @@ import com.ai.slp.user.util.DateUtils;
 public class ApiInfoSVImplTest {
 
     @Autowired
-    private IApiInfoBusiSV iApiInfoBusiSV;
+    private IApiInfoBusiSV apiInfoBusiSV;
 
-    // @Test
+    //@Test
     public void insertApiInfoTest() {
         CreateApiInfoRequest request = new CreateApiInfoRequest();
         request.setApiInfo("test11111");
@@ -30,34 +30,34 @@ public class ApiInfoSVImplTest {
         request.setApiType("00");
         request.setWebAddr("www.111.com");
         request.setCreateTime(DateUtils.currTimeStamp());
-        request.setUserId(111);
-        request.setCreateOperId("111");
+        request.setUserId(111L);
+        request.setCreateOperId(111L);
         request.setTenantId("test111");
         request.setTenantPwd("123456");
-        System.out.println(iApiInfoBusiSV.insertApiInfo(request).getResponseId());
+        System.out.println(apiInfoBusiSV.insertApiInfo(request).getResponseId());
     }
 
-    // @Test
+   @Test
     public void updateApiInfoTest() {
         UcApiInfoParams request = new UcApiInfoParams();
-        request.setApiKey("111");
-        request.setSecretKey("222");
+        request.setApiKey("333");
+        request.setSecretKey("555");
         request.setTenantId("test111");
-        request.setUserId(111);
-        request.setApiSeqId("1111");
-        request.setUpdateOperId("111");
+        request.setUserId(111L);
+        request.setApiSeqId("2222");
+        request.setUpdateOperId(111L);
 
-        iApiInfoBusiSV.updateApiInfo(request);
+        apiInfoBusiSV.updateApiInfo(request);
     }
 
-    @Test
+    //@Test
     public void queryApiInfoTest() {
         ApiInfoRequest request = new ApiInfoRequest();
         request.setTenantId("test111");
-        request.setUserId(111);
+        request.setUserId(111L);
         request.setPageNo(11);
         request.setPageSize(11);
-        PageInfo<ApiInfoResponse> pageInfo = iApiInfoBusiSV.queryApiInfo(request);
+        PageInfo<ApiInfoResponse> pageInfo = apiInfoBusiSV.queryApiInfo(request);
         System.out.println(pageInfo.getCount());
         System.out.println("***************************************");
         System.out.println(pageInfo.getResult().size());

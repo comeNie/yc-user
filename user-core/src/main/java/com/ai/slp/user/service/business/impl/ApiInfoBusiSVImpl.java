@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,30 +31,19 @@ public class ApiInfoBusiSVImpl implements IApiInfoBusiSV {
     private static final Log LOG = LogFactory.getLog(ApiInfoBusiSVImpl.class);
 
     @Autowired
-    private IApiInfoAtomSV iApiInfoAtomSV;
+    private IApiInfoAtomSV apiInfoAtomSV;
 
     @Override
-    public CreateUserFavoriteResponse insertApiInfo(CreateApiInfoRequest saveApiInfoRequest)
+    public CreateUserFavoriteResponse insertApiInfo(CreateApiInfoRequest createRequest)
             throws BusinessException, SystemException {
         UcApiInfo ucApiInfo = new UcApiInfo();
-        ucApiInfo.setApiInfo(saveApiInfoRequest.getApiInfo());
-        ucApiInfo.setApiName(saveApiInfoRequest.getApiName());
-        ucApiInfo.setApiSeqId(saveApiInfoRequest.getApiSeqId());
-        ucApiInfo.setApiType(saveApiInfoRequest.getApiType());
-        ucApiInfo.setContactEmail(saveApiInfoRequest.getContactEmail());
-        ucApiInfo.setContactMp(saveApiInfoRequest.getContactMp());
-        ucApiInfo.setContactName(saveApiInfoRequest.getContactName());
-        ucApiInfo.setTenantId(saveApiInfoRequest.getTenantId());
-        ucApiInfo.setUserId(Long.parseLong(saveApiInfoRequest.getUserId().toString()));
-        ucApiInfo.setWebAddr(saveApiInfoRequest.getWebAddr());
-        ucApiInfo.setIpAddr(saveApiInfoRequest.getIpAddr());
-        ucApiInfo.setCreateChlId(saveApiInfoRequest.getCreateChlId());
-        ucApiInfo.setCreateOperId(Long.parseLong(saveApiInfoRequest.getCreateOperId().toString()));
+        
+        BeanUtils.copyProperties(createRequest, ucApiInfo);
+        ucApiInfo.setUserId(Long.parseLong(createRequest.getUserId().toString()));
         ucApiInfo.setCreateTime(DateUtils.currTimeStamp());
-        ucApiInfo.setOperService(saveApiInfoRequest.getOperService());
         int responseId=0;
         try {
-            responseId = iApiInfoAtomSV.insert(ucApiInfo);
+            responseId = apiInfoAtomSV.insert(ucApiInfo);
         } catch (Exception e) {
             LOG.error("操作失败");
             e.printStackTrace();
@@ -67,10 +57,7 @@ public class ApiInfoBusiSVImpl implements IApiInfoBusiSV {
     public void updateApiInfo(UcApiInfoParams ucApiInfoParams)
             throws BusinessException, SystemException {
         UcApiInfo ucApiInfo = new UcApiInfo();
-        ucApiInfo.setApiKey(ucApiInfoParams.getApiKey());
-        ucApiInfo.setSecretKey(ucApiInfoParams.getSecretKey());
-        ucApiInfo.setUpdateChlId(ucApiInfoParams.getUpdateChlId());
-        ucApiInfo.setUpdateOperId(Long.parseLong(ucApiInfoParams.getUpdateOperId().toString()));
+        BeanUtils.copyProperties(ucApiInfoParams, ucApiInfo);
         ucApiInfo.setUpdateTime(DateUtils.currTimeStamp());
         
         UcApiInfoCriteria example = new UcApiInfoCriteria();
@@ -80,7 +67,7 @@ public class ApiInfoBusiSVImpl implements IApiInfoBusiSV {
         criteria.andApiSeqIdEqualTo(ucApiInfoParams.getApiSeqId());
         
         try {
-            iApiInfoAtomSV.updateByExampleSelective(ucApiInfo, example);
+            apiInfoAtomSV.updateByExampleSelective(ucApiInfo, example);
         } catch (Exception e) {
             LOG.error("更新失败");
             e.printStackTrace();
@@ -96,41 +83,15 @@ public class ApiInfoBusiSVImpl implements IApiInfoBusiSV {
         criteria.andTenantIdEqualTo(apiInfoRequest.getTenantId());
         criteria.andUserIdEqualTo(Long.parseLong(apiInfoRequest.getUserId().toString()));
         
-        int count = iApiInfoAtomSV.countByExample(example);
+        int count = apiInfoAtomSV.countByExample(example);
         Integer pageNo = apiInfoRequest.getPageNo();
         Integer pageSize = apiInfoRequest.getPageSize();
         List<UcApiInfo> list = new ArrayList<UcApiInfo>();
-        list = iApiInfoAtomSV.selectByExample(example);
+        list = apiInfoAtomSV.selectByExample(example);
         List<ApiInfoResponse> responseList = new ArrayList<ApiInfoResponse>();
         ApiInfoResponse response = new ApiInfoResponse();
         for (UcApiInfo ucApiInfo : list) {
-            response.setApiInfo(ucApiInfo.getApiInfo());
-            response.setApiKey(ucApiInfo.getApiKey());
-            response.setApiName(ucApiInfo.getApiName());
-            response.setApiSeqId(ucApiInfo.getApiSeqId());
-            response.setApiType(ucApiInfo.getApiType());
-            response.setContactAddress(ucApiInfo.getContactAddress());
-            response.setContactCretNum(ucApiInfo.getContactCertNum());
-            response.setContactCretType(ucApiInfo.getContactCertType());
-            response.setContactDept(ucApiInfo.getContactDept());
-            response.setContactEmail(ucApiInfo.getContactEmail());
-            response.setContactMp(ucApiInfo.getContactMp());
-            response.setContactName(ucApiInfo.getContactName());
-            response.setContactWxId(ucApiInfo.getContactWxId());
-            response.setCreateChlId(ucApiInfo.getCreateChlId());
-            response.setCreateOperId(ucApiInfo.getCreateOperId().toString());
-            response.setCreateTime(ucApiInfo.getCreateTime());
-            response.setGroupZip(ucApiInfo.getGroupZip());
-            response.setIpAddr(ucApiInfo.getIpAddr());
-            response.setOperService(ucApiInfo.getOperService());
-            response.setRemark(ucApiInfo.getRemark());
-            response.setSecretKey(ucApiInfo.getSecretKey());
-            response.setTenantId(ucApiInfo.getTenantId());
-            response.setUpdateChlId(ucApiInfo.getUpdateChlId());
-            response.setUpdateOperId(ucApiInfo.getUpdateOperId().toString());
-            response.setUpdateTime(ucApiInfo.getUpdateTime());
-            response.setUserId(ucApiInfo.getUserId().intValue());
-            response.setWebAddr(ucApiInfo.getWebAddr());
+            BeanUtils.copyProperties(ucApiInfo, response);
             responseList.add(response);
         }
         PageInfo<ApiInfoResponse> pageInfo = new PageInfo<ApiInfoResponse>();

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,14 +16,18 @@ import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.sdk.util.StringUtil;
 import com.ai.slp.user.api.safari.param.CreateUserSafariRequest;
 import com.ai.slp.user.api.safari.param.CreateUserSafariResponse;
+import com.ai.slp.user.api.safari.param.DeleteSafariHisRequest;
 import com.ai.slp.user.api.safari.param.DeleteSafariRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoResponse;
 import com.ai.slp.user.dao.mapper.bo.UcUserSafari;
 import com.ai.slp.user.dao.mapper.bo.UcUserSafariCriteria;
+import com.ai.slp.user.dao.mapper.bo.UcUserSafariHisCriteria;
 import com.ai.slp.user.service.atom.interfaces.IUserSafariAtomSV;
+import com.ai.slp.user.service.atom.interfaces.IUserSafariHisAtomSV;
 import com.ai.slp.user.service.business.interfaces.IUserSafariBusiSV;
 import com.ai.slp.user.util.DateUtils;
+import com.alibaba.dubbo.common.utils.StringUtils;
 
 @Service
 @Transactional
@@ -30,7 +35,10 @@ public class UserSafariBusiSVImpl implements IUserSafariBusiSV {
     private final static Log LOG = LogFactory.getLog(UserSafariBusiSVImpl.class);
 
     @Autowired
-    private IUserSafariAtomSV iUserSafariAtomSV;
+    private IUserSafariAtomSV userSafariAtomSV;
+
+    @Autowired
+    private IUserSafariHisAtomSV userSafariHisAtomSV;
 
     @Override
     public CreateUserSafariResponse insertUserSafari(CreateUserSafariRequest request)
@@ -41,32 +49,46 @@ public class UserSafariBusiSVImpl implements IUserSafariBusiSV {
         ucUserSafari.setProdId(request.getProdId());
         ucUserSafari.setState("1");
         ucUserSafari.setSafariTime(DateUtils.currTimeStamp());
-        int responseId = iUserSafariAtomSV.insert(ucUserSafari);
+        int responseId = userSafariAtomSV.insert(ucUserSafari);
         CreateUserSafariResponse response = new CreateUserSafariResponse();
         response.setResponseId(responseId);
         return response;
     }
 
     @Override
-    public void deleteUserSafari(DeleteSafariRequest deleteSafariRequest)
+    public void deleteUserSafari(DeleteSafariRequest deleteRequest)
             throws BusinessException, SystemException {
         UcUserSafariCriteria example = new UcUserSafariCriteria();
         UcUserSafariCriteria.Criteria criteria = example.createCriteria();
-        criteria.andTenantIdEqualTo(deleteSafariRequest.getTenantId());
-        criteria.andUserIdEqualTo(Long.parseLong(deleteSafariRequest.getUserId().toString()));
-        if (StringUtil.isBlank(deleteSafariRequest.getDateTime())) {
-            criteria.andProdIdEqualTo(deleteSafariRequest.getProdId());
+        criteria.andTenantIdEqualTo(deleteRequest.getTenantId());
+        criteria.andUserIdEqualTo(Long.parseLong(deleteRequest.getUserId().toString()));
+
+        // UcUserSafariHis safariHis = new UcUserSafariHis();
+        // 浏览历史表
+        if (!StringUtil.isBlank(deleteRequest.getDeleteCode())) {
+            updateSafariSingle(example);
         } else {
-            String beginTime = deleteSafariRequest.getDateTime() + " 00:00:00";
-            String endTime = deleteSafariRequest.getDateTime() + " 23:59:59";
-            criteria.andSafariTimeBetween(DateUtils.getTimestamp(beginTime, "yyyy-MM-dd HH:mm:ss"),
-                    DateUtils.getTimestamp(endTime, "yyyy-MM-dd HH:mm:ss"));
+            if (StringUtil.isBlank(deleteRequest.getDateTime())) {
+                criteria.andProdIdEqualTo(deleteRequest.getProdId());
+            } else {
+                String beginTime = deleteRequest.getDateTime() + " 00:00:00";
+                String endTime = deleteRequest.getDateTime() + " 23:59:59";
+                criteria.andSafariTimeBetween(
+                        DateUtils.getTimestamp(beginTime, "yyyy-MM-dd HH:mm:ss"),
+                        DateUtils.getTimestamp(endTime, "yyyy-MM-dd HH:mm:ss"));
+            }
+            updateSafariSingle(example);
         }
+    }
+
+    public void updateSafariSingle(UcUserSafariCriteria example) {
         try {
-            iUserSafariAtomSV.deleteByExample(example);
+            UcUserSafari record = new UcUserSafari();
+            record.setState("0");
+            userSafariAtomSV.updateByExampleSelective(record, example);
         } catch (Exception e) {
             e.printStackTrace();
-            LOG.error("删除失败");
+            LOG.error("更新失败");
         }
     }
 
@@ -84,15 +106,11 @@ public class UserSafariBusiSVImpl implements IUserSafariBusiSV {
 
         Integer pageNo = request.getPageNo();
         Integer pageSize = request.getPageSize();
-        int count = iUserSafariAtomSV.countByExample(example);
-        queryList = iUserSafariAtomSV.selectByExample(example);
+        int count = userSafariAtomSV.countByExample(example);
+        queryList = userSafariAtomSV.selectByExample(example);
         UserSafariInfoResponse response = new UserSafariInfoResponse();
         for (UcUserSafari ucUserSafari : queryList) {
-            response.setUserId(ucUserSafari.getUserId().intValue());
-            response.setProdId(ucUserSafari.getProdId());
-            response.setSafariSeqId(ucUserSafari.getSafariSeqId());
-            response.setSafariTime(ucUserSafari.getSafariTime());
-            response.setState(ucUserSafari.getState());
+            BeanUtils.copyProperties(ucUserSafari, response);
             responseList.add(response);
         }
         pageInfo.setCount(count);
@@ -102,4 +120,14 @@ public class UserSafariBusiSVImpl implements IUserSafariBusiSV {
         return pageInfo;
     }
 
+    @Override
+    public void deleteUserSafariHis(DeleteSafariHisRequest deleteRequest)
+            throws BusinessException, SystemException {
+        UcUserSafariHisCriteria example = new UcUserSafariHisCriteria();
+        UcUserSafariHisCriteria.Criteria criteria = example.createCriteria();
+        criteria.andTenantIdEqualTo(deleteRequest.getTenantId());
+        criteria.andUserIdEqualTo(Long.parseLong(deleteRequest.getUserId().toString()));
+        criteria.andSafariSeqIdIn(deleteRequest.getSafariHisIdList());
+        userSafariHisAtomSV.deleteByExample(example);
+    }
 }

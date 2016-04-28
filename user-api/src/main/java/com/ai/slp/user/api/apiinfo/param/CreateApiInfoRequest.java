@@ -1,6 +1,6 @@
 package com.ai.slp.user.api.apiinfo.param;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import javax.validation.constraints.NotNull;
 
@@ -21,20 +21,20 @@ public class CreateApiInfoRequest extends BaseInfo {
      * 用户Id NOT NULL
      */
     @NotNull(message = "用户Id不能为空", groups = { IApiInfoSV.InsertApiInfo.class })
-    private Integer userId;
+    private Long userId;
 
     /**
-     * API ID
+     * ApiInfoID
      */
     private String apiSeqId;
 
     /**
-     * API名称
+     * ApiInfoName
      */
     private String apiName;
 
     /**
-     * API类型
+     * Api类型
      */
     private String apiType;
 
@@ -54,9 +54,19 @@ public class CreateApiInfoRequest extends BaseInfo {
     private String ipAddr;
 
     /**
-     * 开通服务串
+     * 服务
      */
     private String operService;
+
+    /**
+     * 安全码
+     */
+    private String secretKey;
+
+    /**
+     * API码
+     */
+    private String apiKey;
 
     /**
      * 联系人姓名
@@ -64,14 +74,44 @@ public class CreateApiInfoRequest extends BaseInfo {
     private String contactName;
 
     /**
-     * 联系人手机号码
+     * 联系人证件类型
+     */
+    private String contactCertType;
+
+    /**
+     * 联系人证件号
+     */
+    private String contactCertNum;
+
+    /**
+     * 联系人微信号
+     */
+    private String contactWxId;
+
+    /**
+     * 联系手机号
      */
     private String contactMp;
 
     /**
-     * 联系人EMAIL
+     * 联系邮箱
      */
     private String contactEmail;
+
+    /**
+     * 联系地址
+     */
+    private String contactAddress;
+
+    /**
+     * 联系人邮政编码
+     */
+    private String groupZip;
+
+    /**
+     * 联系人部门
+     */
+    private String contactDept;
 
     /**
      * 备注
@@ -81,7 +121,7 @@ public class CreateApiInfoRequest extends BaseInfo {
     /**
      * 创建时间
      */
-    private Date createTime;
+    private Timestamp createTime;
 
     /**
      * 创建渠道
@@ -91,10 +131,29 @@ public class CreateApiInfoRequest extends BaseInfo {
     /**
      * 创建员工
      */
-    private String createOperId;
+    private Long createOperId;
 
-    public Integer getUserId() {
+    /**
+     * 更新时间
+     */
+    private Timestamp updateTime;
+
+    /**
+     * 更新渠道
+     */
+    private String updateChlId;
+
+    /**
+     * 更新员工
+     */
+    private Long updateOperId;
+
+    public Long getUserId() {
         return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getApiSeqId() {
@@ -103,10 +162,6 @@ public class CreateApiInfoRequest extends BaseInfo {
 
     public void setApiSeqId(String apiSeqId) {
         this.apiSeqId = apiSeqId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     public String getApiName() {
@@ -157,12 +212,52 @@ public class CreateApiInfoRequest extends BaseInfo {
         this.operService = operService;
     }
 
+    public String getSecretKey() {
+        return secretKey;
+    }
+
+    public void setSecretKey(String secretKey) {
+        this.secretKey = secretKey;
+    }
+
+    public String getApiKey() {
+        return apiKey;
+    }
+
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
+    }
+
     public String getContactName() {
         return contactName;
     }
 
     public void setContactName(String contactName) {
         this.contactName = contactName;
+    }
+
+    public String getContactCertType() {
+        return contactCertType;
+    }
+
+    public void setContactCertType(String contactCertType) {
+        this.contactCertType = contactCertType;
+    }
+
+    public String getContactCertNum() {
+        return contactCertNum;
+    }
+
+    public void setContactCertNum(String contactCertNum) {
+        this.contactCertNum = contactCertNum;
+    }
+
+    public String getContactWxId() {
+        return contactWxId;
+    }
+
+    public void setContactWxId(String contactWxId) {
+        this.contactWxId = contactWxId;
     }
 
     public String getContactMp() {
@@ -181,6 +276,30 @@ public class CreateApiInfoRequest extends BaseInfo {
         this.contactEmail = contactEmail;
     }
 
+    public String getContactAddress() {
+        return contactAddress;
+    }
+
+    public void setContactAddress(String contactAddress) {
+        this.contactAddress = contactAddress;
+    }
+
+    public String getGroupZip() {
+        return groupZip;
+    }
+
+    public void setGroupZip(String groupZip) {
+        this.groupZip = groupZip;
+    }
+
+    public String getContactDept() {
+        return contactDept;
+    }
+
+    public void setContactDept(String contactDept) {
+        this.contactDept = contactDept;
+    }
+
     public String getRemark() {
         return remark;
     }
@@ -189,11 +308,11 @@ public class CreateApiInfoRequest extends BaseInfo {
         this.remark = remark;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
@@ -205,12 +324,36 @@ public class CreateApiInfoRequest extends BaseInfo {
         this.createChlId = createChlId;
     }
 
-    public String getCreateOperId() {
+    public Long getCreateOperId() {
         return createOperId;
     }
 
-    public void setCreateOperId(String createOperId) {
+    public void setCreateOperId(Long createOperId) {
         this.createOperId = createOperId;
+    }
+
+    public Timestamp getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public String getUpdateChlId() {
+        return updateChlId;
+    }
+
+    public void setUpdateChlId(String updateChlId) {
+        this.updateChlId = updateChlId;
+    }
+
+    public Long getUpdateOperId() {
+        return updateOperId;
+    }
+
+    public void setUpdateOperId(Long updateOperId) {
+        this.updateOperId = updateOperId;
     }
 
 }

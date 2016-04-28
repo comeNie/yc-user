@@ -26,7 +26,7 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
     static final Log LOG = LogFactory.getLog(LoginBusiSVImpl.class);
 
     @Autowired
-    private ILoginAtomSV iLoginAtomSV;
+    private ILoginAtomSV loginAtomSV;
 
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
@@ -49,7 +49,7 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
         criteria.andUserTypeEqualTo(loginRequest.getUserType());
         criteria.andUserLoginPwdEqualTo(loginRequest.getUserLoginPwd());
 
-        int count = iLoginAtomSV.countByExample(ucUserCriteria);
+        int count = loginAtomSV.countByExample(ucUserCriteria);
 
         LoginResponse loginResponse = new LoginResponse();
         loginResponse.setCount(count);

@@ -1,6 +1,6 @@
 package com.ai.slp.user.api.favorite.param;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 import com.ai.opt.base.vo.BaseResponse;
 
@@ -27,7 +27,7 @@ public class UserFavoriteResponse extends BaseResponse {
     /**
      * 用户ID
      */
-    private Integer userId;
+    private Long userId;
 
     /**
      * 收藏类型
@@ -47,12 +47,12 @@ public class UserFavoriteResponse extends BaseResponse {
     /**
      * 创建时间
      */
-    private Date CreateTime;
+    private Timestamp CreateTime;
 
     /**
      * 修改时间
      */
-    private Date UpdateTime;
+    private Timestamp UpdateTime;
 
     public String getTenantId() {
         return TenantId;
@@ -70,11 +70,11 @@ public class UserFavoriteResponse extends BaseResponse {
         this.favoriteSeqId = favoriteSeqId;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
@@ -102,19 +102,19 @@ public class UserFavoriteResponse extends BaseResponse {
         this.state = state;
     }
 
-    public Date getCreateTime() {
+    public Timestamp getCreateTime() {
         return CreateTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(Timestamp createTime) {
         CreateTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public Timestamp getUpdateTime() {
         return UpdateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Timestamp updateTime) {
         UpdateTime = updateTime;
     }
 

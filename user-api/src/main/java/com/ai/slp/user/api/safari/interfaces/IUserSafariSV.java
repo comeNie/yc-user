@@ -5,6 +5,7 @@ import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.safari.param.CreateUserSafariRequest;
 import com.ai.slp.user.api.safari.param.CreateUserSafariResponse;
+import com.ai.slp.user.api.safari.param.DeleteSafariHisRequest;
 import com.ai.slp.user.api.safari.param.DeleteSafariRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoResponse;
@@ -39,7 +40,7 @@ public interface IUserSafariSV {
     }
 
     /**
-     * 用户浏览商品信息删除
+     * 用户浏览商品信息前端删除
      * 
      * @param ucUserSafariParams
      * @throws BusinessException
@@ -47,7 +48,37 @@ public interface IUserSafariSV {
      * @author zhangqiang7
      * @UCUSER_011
      */
-    void deleteUserSafari(DeleteSafariRequest deleetSafariRequest)
+    void deleteUserSafari(DeleteSafariRequest deletSafariRequest)
+            throws BusinessException, SystemException;
+
+    interface DeleteSafariBack {
+    }
+
+    /**
+     * 用户浏览商品信息后台删除
+     * 
+     * @param deleteRequest
+     * @throws BusinessException
+     * @throws SystemException
+     * @author zhangqiang7
+     * @UCUSER
+     */
+    void deleteSafariBack(DeleteSafariRequest deleteRequest)
+            throws BusinessException, SystemException;
+
+    interface DeleteUserSafariHis {
+    }
+
+    /**
+     * 删除浏览商品足迹历史表
+     * 
+     * @param deleteReuqest
+     * @throws BusinessException
+     * @throws SystemException
+     * @author zhangqiang7
+     * @UCUSER
+     */
+    void deleteUserSafariHis(DeleteSafariHisRequest deleteReuqest)
             throws BusinessException, SystemException;
 
     @interface QueryUserSafari {
