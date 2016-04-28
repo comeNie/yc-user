@@ -1,6 +1,7 @@
 package com.ai.slp.user.api.register.param;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -20,27 +21,39 @@ public class UcBankKeyInfoParams implements Serializable {
     @NotNull(message="租户id不能为空",groups={IRegisterSV.InsertUcUser.class})
     private String tenantId;
     
-    private Integer userId;
-   
-    private String acctId;
-    
+    private Long userId;
+
     private String bankSeqId;
-    
+
     private String state;
-    
+
     private String licenseNo;
-    
+
     private String bankNo;
-    
-    private String bankName;
-    
-    private String acctName;
-    
-    private String createTime;
 
     private String provinceCode;
-    
+
     private String cityCode;
+
+    private String bankName;
+
+    private String acctName;
+
+    private String acctNo;
+
+    private String remark;
+
+    private Timestamp createTime;
+
+    private String createChlId;
+
+    private Long createOperId;
+
+    private Timestamp updateTime;
+
+    private String updateChlId;
+
+    private Long updateOperId;
 
     public String getTenantId() {
         return tenantId;
@@ -50,20 +63,12 @@ public class UcBankKeyInfoParams implements Serializable {
         this.tenantId = tenantId;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    public String getAcctId() {
-        return acctId;
-    }
-
-    public void setAcctId(String acctId) {
-        this.acctId = acctId;
     }
 
     public String getBankSeqId() {
@@ -98,6 +103,22 @@ public class UcBankKeyInfoParams implements Serializable {
         this.bankNo = bankNo;
     }
 
+    public String getProvinceCode() {
+        return provinceCode;
+    }
+
+    public void setProvinceCode(String provinceCode) {
+        this.provinceCode = provinceCode;
+    }
+
+    public String getCityCode() {
+        return cityCode;
+    }
+
+    public void setCityCode(String cityCode) {
+        this.cityCode = cityCode;
+    }
+
     public String getBankName() {
         return bankName;
     }
@@ -114,31 +135,69 @@ public class UcBankKeyInfoParams implements Serializable {
         this.acctName = acctName;
     }
 
-    public String getCreateTime() {
+    public String getAcctNo() {
+        return acctNo;
+    }
+
+    public void setAcctNo(String acctNo) {
+        this.acctNo = acctNo;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public Timestamp getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
 
-    public String getProvinceCode() {
-        return provinceCode;
+    public String getCreateChlId() {
+        return createChlId;
     }
 
-    public void setProvinceCode(String provinceCode) {
-        this.provinceCode = provinceCode;
+    public void setCreateChlId(String createChlId) {
+        this.createChlId = createChlId;
     }
 
-    public String getCityCode() {
-        return cityCode;
+    public Long getCreateOperId() {
+        return createOperId;
     }
 
-    public void setCityCode(String cityCode) {
-        this.cityCode = cityCode;
+    public void setCreateOperId(Long createOperId) {
+        this.createOperId = createOperId;
     }
-    
-    
+
+    public Timestamp getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public String getUpdateChlId() {
+        return updateChlId;
+    }
+
+    public void setUpdateChlId(String updateChlId) {
+        this.updateChlId = updateChlId;
+    }
+
+    public Long getUpdateOperId() {
+        return updateOperId;
+    }
+
+    public void setUpdateOperId(Long updateOperId) {
+        this.updateOperId = updateOperId;
+    }
     
     
 }

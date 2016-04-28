@@ -1,6 +1,7 @@
 package com.ai.slp.user.api.register.interfaces;
 
 import com.ai.opt.base.vo.BaseResponse;
+import com.ai.slp.user.api.register.param.RegisterParamsResponse;
 import com.ai.slp.user.api.register.param.UcBankKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcContactInfoParams;
 import com.ai.slp.user.api.register.param.UcCustKeyInfoParams;
@@ -46,7 +47,7 @@ public interface IRegisterSV {
      * @author zhaogw
      * @REG_0003
      */
-    BaseResponse searchUserInfo(UcUserParams ucUser);
+    RegisterParamsResponse searchUserInfo(UcUserParams ucUser);
     
     /**
      * 
@@ -148,6 +149,34 @@ public interface IRegisterSV {
      */
     BaseResponse updateUcContactInfo(UcContactInfoParams ucContact);
     
+    /**
+     * 
+     *   插入用户银行卡信息</br> 
+     * @param ucBank
+     * @return
+     * @author zhaogw
+     * @ApiDocMethod
+     */
+    BaseResponse insertUcBankInfo(UcBankKeyInfoParams ucBank);
+    
+    /**
+     * 
+     * 查询用户银行卡信息  </br> 
+     * @param ucBank
+     * @return
+     * @author zhaogw
+     * @ApiDocMethod
+     */
+    BaseResponse searchUcBankInfo(UcBankKeyInfoParams ucBank);
+    /**
+     * 
+     *   修改用户银行卡信息</br> 
+     * @param ucBank
+     * @return
+     * @author zhaogw
+     * @ApiDocMethod
+     */
+    BaseResponse updateUcBankInfo(UcBankKeyInfoParams ucBank);
     
     /**
      * 

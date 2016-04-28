@@ -1,6 +1,7 @@
 package com.ai.slp.user.api.register.param;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -19,37 +20,56 @@ public class UcUserAgreeParams implements Serializable {
     
     @NotNull(message="租户id不能为空",groups={IRegisterSV.InsertUcUser.class})
     private String tenantId;
-    
-    private Integer userId;
-   
-    private String agreeId;
-    private String subsTime;
-    
-    
+
+    private String agreeSeqId;
+
+    private Long userId;
+
+    private String agreementId;
+
+    private Timestamp subsTime;
+
     public String getTenantId() {
         return tenantId;
     }
+
     public void setTenantId(String tenantId) {
         this.tenantId = tenantId;
     }
-    public Integer getUserId() {
+
+    public String getAgreeSeqId() {
+        return agreeSeqId;
+    }
+
+    public void setAgreeSeqId(String agreeSeqId) {
+        this.agreeSeqId = agreeSeqId;
+    }
+
+    public Long getUserId() {
         return userId;
     }
-    public void setUserId(Integer userId) {
+
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
-    public String getAgreeId() {
-        return agreeId;
+
+    public String getAgreementId() {
+        return agreementId;
     }
-    public void setAgreeId(String agreeId) {
-        this.agreeId = agreeId;
+
+    public void setAgreementId(String agreementId) {
+        this.agreementId = agreementId;
     }
-    public String getSubsTime() {
+
+    public Timestamp getSubsTime() {
         return subsTime;
     }
-    public void setSubsTime(String subsTime) {
+
+    public void setSubsTime(Timestamp subsTime) {
         this.subsTime = subsTime;
     }
+    
+    
     
     
 }
