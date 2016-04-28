@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.ai.opt.validator.constraints.MobilePhone;
 import com.ai.slp.user.api.register.interfaces.IRegisterSV;
 
 /**
@@ -31,6 +32,7 @@ public class UcUserParams implements Serializable {
     private String userLoginName;
     private String userLoginPwd;
     private String pwdSafetyLevel;
+    @MobilePhone
     private String userMp;
     private String userEmail;
     private String emailValidateFlag;
