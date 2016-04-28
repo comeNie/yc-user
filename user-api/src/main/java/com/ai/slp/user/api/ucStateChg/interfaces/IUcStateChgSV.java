@@ -18,7 +18,7 @@ public interface IUcStateChgSV {
      */
 	@interface InsertUcStateChgInfo{};
 	
-	BaseResponse InsertUcStateChgInfo(UcStateChgParamsRequest ucStateChgParam);
+	BaseResponse insertUcStateChgInfo(UcStateChgParamsRequest ucStateChgParam);
 	
 	  /**
      * 
@@ -30,6 +30,6 @@ public interface IUcStateChgSV {
      */
     @interface UpdateUcStateChgInfo{};
     
-    BaseResponse UpdateUcStateChgInfo(UcStateChgParamsRequest ucStateChgParam);
+    BaseResponse updateUcStateChgInfo(UcStateChgParamsRequest ucStateChgParam);
 	
 }
