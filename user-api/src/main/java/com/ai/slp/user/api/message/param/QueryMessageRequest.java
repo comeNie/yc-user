@@ -1,6 +1,9 @@
 package com.ai.slp.user.api.message.param;
 
+import javax.validation.constraints.NotNull;
+
 import com.ai.opt.base.vo.BaseInfo;
+import com.ai.slp.user.api.message.interfaces.IUserMessageSV;
 
 /**
  * 查询消息入参 Date: 2016年4月27日 <br>
@@ -25,6 +28,7 @@ public class QueryMessageRequest extends BaseInfo {
     /**
      * userID NOT NULL
      */
+    @NotNull(message = "用户ID不能为空", groups = { IUserMessageSV.QueryUserMessage.class })
     private Long userId;
 
     /**

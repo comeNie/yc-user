@@ -2,7 +2,10 @@ package com.ai.slp.user.api.favorite.param;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 import com.ai.opt.base.vo.BaseInfo;
+import com.ai.slp.user.api.favorite.interfaces.IUserFavoriteSV;
 
 /**
  * 用户收藏信息更新入参 Date: 2016年4月27日 <br>
@@ -17,7 +20,7 @@ public class UpdateFavoriteRequest extends BaseInfo {
     /**
      * userID NOT NULL
      */
-
+    @NotNull(message = "用户ID不能为空", groups = { IUserFavoriteSV.CancelFavorite.class })
     private Long userId;
 
     /**

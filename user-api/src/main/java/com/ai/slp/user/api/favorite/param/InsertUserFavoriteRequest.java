@@ -12,7 +12,7 @@ import com.ai.slp.user.api.favorite.interfaces.IUserFavoriteSV;
  * 
  * @author zhangqiang7
  */
-public class CreateUserFavoriteRequest extends BaseInfo {
+public class InsertUserFavoriteRequest extends BaseInfo {
     private static final long serialVersionUID = 1L;
 
     /**

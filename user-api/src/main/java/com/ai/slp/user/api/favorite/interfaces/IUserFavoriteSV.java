@@ -3,8 +3,8 @@ package com.ai.slp.user.api.favorite.interfaces;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
-import com.ai.slp.user.api.favorite.param.CreateUserFavoriteRequest;
-import com.ai.slp.user.api.favorite.param.CreateUserFavoriteResponse;
+import com.ai.slp.user.api.favorite.param.InsertUserFavoriteRequest;
+import com.ai.slp.user.api.favorite.param.InsertUserFavoriteResponse;
 import com.ai.slp.user.api.favorite.param.DeleteFavoriteListRequest;
 import com.ai.slp.user.api.favorite.param.UpdateFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UserFavoriteRequest;
@@ -32,7 +32,7 @@ public interface IUserFavoriteSV {
      * @author zhangqiang7
      * @UCUSER_004
      */
-    CreateUserFavoriteResponse insertUcFavorite(CreateUserFavoriteRequest createUserFavoriteRequest)
+    InsertUserFavoriteResponse insertUcFavorite(InsertUserFavoriteRequest favoriteRequest)
             throws BusinessException, SystemException;
 
     @interface CancelFavorite {

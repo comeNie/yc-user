@@ -13,8 +13,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.favorite.interfaces.IUserFavoriteSV;
-import com.ai.slp.user.api.favorite.param.CreateUserFavoriteRequest;
-import com.ai.slp.user.api.favorite.param.CreateUserFavoriteResponse;
+import com.ai.slp.user.api.favorite.param.InsertUserFavoriteRequest;
+import com.ai.slp.user.api.favorite.param.InsertUserFavoriteResponse;
 import com.ai.slp.user.api.favorite.param.DeleteFavoriteListRequest;
 import com.ai.slp.user.api.favorite.param.UpdateFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UserFavoriteRequest;
@@ -32,14 +32,14 @@ public class UserFavoriteSVImplTest {
 
     //@Test
     public void createUserFavoriteTest() {
-        CreateUserFavoriteRequest request = new CreateUserFavoriteRequest();
+        InsertUserFavoriteRequest request = new InsertUserFavoriteRequest();
         request.setTenantId("test111");
         request.setUserId(111L);
         request.setTenantPwd("123456");
         request.setFavoriteType("01");
         request.setFavoriteRelId("1234");
         request.setFavoriteReqId("222222");
-        CreateUserFavoriteResponse response = new CreateUserFavoriteResponse();
+        InsertUserFavoriteResponse response = new InsertUserFavoriteResponse();
         response = userFavoriteSV.insertUcFavorite(request);
         System.out.println(response.getResponseId());
     }

@@ -5,9 +5,9 @@ import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.apiinfo.param.ApiInfoRequest;
 import com.ai.slp.user.api.apiinfo.param.ApiInfoResponse;
-import com.ai.slp.user.api.apiinfo.param.CreateApiInfoRequest;
+import com.ai.slp.user.api.apiinfo.param.InsertApiInfoRequest;
+import com.ai.slp.user.api.apiinfo.param.InsertApiInfoResponse;
 import com.ai.slp.user.api.apiinfo.param.UcApiInfoParams;
-import com.ai.slp.user.api.favorite.param.CreateUserFavoriteResponse;
 
 /**
  * 企业、代理商申请API服务 <br>
@@ -31,7 +31,7 @@ public interface IApiInfoSV {
      * @author zhangqiang7
      * @UCUSER_001
      */
-    CreateUserFavoriteResponse insertApiInfo(CreateApiInfoRequest saveApiInfoRequest)
+    InsertApiInfoResponse insertApiInfo(InsertApiInfoRequest infoRequest)
             throws BusinessException, SystemException;
 
     @interface UpdateApiInfo {
@@ -50,7 +50,7 @@ public interface IApiInfoSV {
     void updateApiInfo(UcApiInfoParams ucApiInfoParams)
             throws BusinessException, SystemException;
 
-    interface QueryApiInfo {
+    @interface QueryApiInfo {
     }
 
     /**

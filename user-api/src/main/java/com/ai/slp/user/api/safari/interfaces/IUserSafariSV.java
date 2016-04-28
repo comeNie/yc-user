@@ -3,8 +3,8 @@ package com.ai.slp.user.api.safari.interfaces;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
-import com.ai.slp.user.api.safari.param.CreateUserSafariRequest;
-import com.ai.slp.user.api.safari.param.CreateUserSafariResponse;
+import com.ai.slp.user.api.safari.param.InsertUserSafariRequest;
+import com.ai.slp.user.api.safari.param.InsertUserSafariResponse;
 import com.ai.slp.user.api.safari.param.DeleteSafariHisRequest;
 import com.ai.slp.user.api.safari.param.DeleteSafariRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoRequest;
@@ -33,7 +33,7 @@ public interface IUserSafariSV {
      * @author zhangqiang7
      * @UCUSER_010
      */
-    CreateUserSafariResponse insertUserSafari(CreateUserSafariRequest createUserSafariRequest)
+    InsertUserSafariResponse insertUserSafari(InsertUserSafariRequest safariRequest)
             throws BusinessException, SystemException;
 
     @interface DeleteUserSafari {
@@ -51,7 +51,7 @@ public interface IUserSafariSV {
     void deleteUserSafari(DeleteSafariRequest deletSafariRequest)
             throws BusinessException, SystemException;
 
-    interface DeleteSafariBack {
+    @interface DeleteSafariBack {
     }
 
     /**
@@ -66,7 +66,7 @@ public interface IUserSafariSV {
     void deleteSafariBack(DeleteSafariRequest deleteRequest)
             throws BusinessException, SystemException;
 
-    interface DeleteUserSafariHis {
+    @interface DeleteUserSafariHis {
     }
 
     /**

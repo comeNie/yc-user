@@ -10,7 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ai.slp.user.api.message.interfaces.IUserMessageSV;
-import com.ai.slp.user.api.message.param.CreateUserMessageRequest;
+import com.ai.slp.user.api.message.param.InsertUserMessageRequest;
 import com.ai.slp.user.api.message.param.DeleteMessageRequest;
 import com.ai.slp.user.api.message.param.QueryMessageRequest;
 import com.ai.slp.user.api.message.param.UpdateMessageRequest;
@@ -24,7 +24,7 @@ public class UserMessageSVImplTest {
     
     //@Test
     public void insertMessageTest(){
-        CreateUserMessageRequest request = new CreateUserMessageRequest();
+        InsertUserMessageRequest request = new InsertUserMessageRequest();
         request.setTenantId("test111");
         request.setTenantPwd("123456");
         request.setUserId(111L);

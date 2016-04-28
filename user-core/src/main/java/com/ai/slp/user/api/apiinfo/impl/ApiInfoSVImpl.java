@@ -10,9 +10,9 @@ import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.apiinfo.interfaces.IApiInfoSV;
 import com.ai.slp.user.api.apiinfo.param.ApiInfoRequest;
 import com.ai.slp.user.api.apiinfo.param.ApiInfoResponse;
-import com.ai.slp.user.api.apiinfo.param.CreateApiInfoRequest;
+import com.ai.slp.user.api.apiinfo.param.InsertApiInfoRequest;
+import com.ai.slp.user.api.apiinfo.param.InsertApiInfoResponse;
 import com.ai.slp.user.api.apiinfo.param.UcApiInfoParams;
-import com.ai.slp.user.api.favorite.param.CreateUserFavoriteResponse;
 import com.ai.slp.user.service.business.interfaces.IApiInfoBusiSV;
 
 @Service
@@ -23,9 +23,9 @@ public class ApiInfoSVImpl implements IApiInfoSV {
     private IApiInfoBusiSV apiInfoBusiSV;
     
     @Override
-    public CreateUserFavoriteResponse insertApiInfo(CreateApiInfoRequest saveApiInfoRequest)
+    public InsertApiInfoResponse insertApiInfo(InsertApiInfoRequest infoRequest)
             throws BusinessException, SystemException {
-        return apiInfoBusiSV.insertApiInfo(saveApiInfoRequest);
+        return apiInfoBusiSV.insertApiInfo(infoRequest);
     }
 
     @Override

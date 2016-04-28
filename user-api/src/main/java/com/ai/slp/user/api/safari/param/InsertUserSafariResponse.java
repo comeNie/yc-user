@@ -8,14 +8,14 @@ import com.ai.opt.base.vo.BaseResponse;
  * 
  * @author zhangqiang7
  */
-public class CreateUserSafariResponse extends BaseResponse {
+public class InsertUserSafariResponse extends BaseResponse {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * 返回标志
      */
-    Integer responseId;
+    private Integer responseId;
 
     public Integer getResponseId() {
         return responseId;

@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.apiinfo.param.ApiInfoRequest;
 import com.ai.slp.user.api.apiinfo.param.ApiInfoResponse;
-import com.ai.slp.user.api.apiinfo.param.CreateApiInfoRequest;
+import com.ai.slp.user.api.apiinfo.param.InsertApiInfoRequest;
 import com.ai.slp.user.api.apiinfo.param.UcApiInfoParams;
 import com.ai.slp.user.service.business.interfaces.IApiInfoBusiSV;
 import com.ai.slp.user.util.DateUtils;
@@ -23,7 +23,7 @@ public class ApiInfoSVImplTest {
 
     //@Test
     public void insertApiInfoTest() {
-        CreateApiInfoRequest request = new CreateApiInfoRequest();
+        InsertApiInfoRequest request = new InsertApiInfoRequest();
         request.setApiInfo("test11111");
         request.setApiName("1111");
         request.setApiSeqId("2222");

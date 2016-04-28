@@ -7,8 +7,8 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.safari.interfaces.IUserSafariSV;
-import com.ai.slp.user.api.safari.param.CreateUserSafariRequest;
-import com.ai.slp.user.api.safari.param.CreateUserSafariResponse;
+import com.ai.slp.user.api.safari.param.InsertUserSafariRequest;
+import com.ai.slp.user.api.safari.param.InsertUserSafariResponse;
 import com.ai.slp.user.api.safari.param.DeleteSafariHisRequest;
 import com.ai.slp.user.api.safari.param.DeleteSafariRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoRequest;
@@ -22,9 +22,9 @@ public class UserSafariSVImpl implements IUserSafariSV {
     private IUserSafariBusiSV userSafariBusiSV;
 
     @Override
-    public CreateUserSafariResponse insertUserSafari(CreateUserSafariRequest request)
+    public InsertUserSafariResponse insertUserSafari(InsertUserSafariRequest safariRequest)
             throws BusinessException, SystemException {
-        return userSafariBusiSV.insertUserSafari(request);
+        return userSafariBusiSV.insertUserSafari(safariRequest);
     }
 
     @Override

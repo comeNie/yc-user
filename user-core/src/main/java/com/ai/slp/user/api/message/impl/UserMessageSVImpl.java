@@ -8,8 +8,8 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.message.interfaces.IUserMessageSV;
-import com.ai.slp.user.api.message.param.CreateUserMessageRequest;
-import com.ai.slp.user.api.message.param.CreateUserMessageResponse;
+import com.ai.slp.user.api.message.param.InsertUserMessageRequest;
+import com.ai.slp.user.api.message.param.InsertUserMessageResponse;
 import com.ai.slp.user.api.message.param.DeleteMessageRequest;
 import com.ai.slp.user.api.message.param.QueryMessageRequest;
 import com.ai.slp.user.api.message.param.QueryMessageResponse;
@@ -24,10 +24,10 @@ public class UserMessageSVImpl implements IUserMessageSV {
     private IUserMessageBusiSV userMessageBusiSV;
 
     @Override
-    public CreateUserMessageResponse insertUserMessage(
-            CreateUserMessageRequest createUserMessageRequest)
+    public InsertUserMessageResponse insertUserMessage(
+            InsertUserMessageRequest messageRequest)
                     throws BusinessException, SystemException {
-        return userMessageBusiSV.insertUserMessage(createUserMessageRequest);
+        return userMessageBusiSV.insertUserMessage(messageRequest);
     }
 
     @Override

@@ -13,7 +13,7 @@ import com.ai.slp.user.api.safari.interfaces.IUserSafariSV;
  * @author zhangqiang7
  */
 
-public class CreateUserSafariRequest extends BaseInfo {
+public class InsertUserSafariRequest extends BaseInfo {
     private static final long serialVersionUID = 1L;
 
     /**

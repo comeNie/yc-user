@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.ai.slp.user.dao.mapper.bo.UcUserSafari;
-import com.ai.slp.user.dao.mapper.bo.UcUserSafariCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcUserSafariHis;
 import com.ai.slp.user.dao.mapper.bo.UcUserSafariHisCriteria;
 import com.ai.slp.user.dao.mapper.factory.MapperFactory;

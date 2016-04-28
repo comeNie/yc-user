@@ -14,7 +14,7 @@ import com.ai.slp.user.api.apiinfo.interfaces.IApiInfoSV;
  * 
  * @author zhangqiang7
  */
-public class CreateApiInfoRequest extends BaseInfo {
+public class InsertApiInfoRequest extends BaseInfo {
     private static final long serialVersionUID = 1L;
 
     /**

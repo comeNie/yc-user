@@ -148,34 +148,6 @@ public interface IRegisterSV {
      */
     BaseResponse updateUcContactInfo(UcContactInfoParams ucContact);
     
-    /**
-     * 
-     *   插入用户银行卡信息</br> 
-     * @param ucBank
-     * @return
-     * @author zhaogw
-     * @ApiDocMethod
-     */
-    BaseResponse insertUcBankInfo(UcBankKeyInfoParams ucBank);
-    
-    /**
-     * 
-     * 查询用户银行卡信息  </br> 
-     * @param ucBank
-     * @return
-     * @author zhaogw
-     * @ApiDocMethod
-     */
-    BaseResponse searchUcBankInfo(UcBankKeyInfoParams ucBank);
-    /**
-     * 
-     *   修改用户银行卡信息</br> 
-     * @param ucBank
-     * @return
-     * @author zhaogw
-     * @ApiDocMethod
-     */
-    BaseResponse updateUcBankInfo(UcBankKeyInfoParams ucBank);
     
     /**
      * 
