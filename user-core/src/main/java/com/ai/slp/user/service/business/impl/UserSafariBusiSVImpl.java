@@ -14,8 +14,8 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.sdk.util.StringUtil;
-import com.ai.slp.user.api.safari.param.CreateUserSafariRequest;
-import com.ai.slp.user.api.safari.param.CreateUserSafariResponse;
+import com.ai.slp.user.api.safari.param.InsertUserSafariRequest;
+import com.ai.slp.user.api.safari.param.InsertUserSafariResponse;
 import com.ai.slp.user.api.safari.param.DeleteSafariHisRequest;
 import com.ai.slp.user.api.safari.param.DeleteSafariRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoRequest;
@@ -27,7 +27,6 @@ import com.ai.slp.user.service.atom.interfaces.IUserSafariAtomSV;
 import com.ai.slp.user.service.atom.interfaces.IUserSafariHisAtomSV;
 import com.ai.slp.user.service.business.interfaces.IUserSafariBusiSV;
 import com.ai.slp.user.util.DateUtils;
-import com.alibaba.dubbo.common.utils.StringUtils;
 
 @Service
 @Transactional
@@ -41,16 +40,16 @@ public class UserSafariBusiSVImpl implements IUserSafariBusiSV {
     private IUserSafariHisAtomSV userSafariHisAtomSV;
 
     @Override
-    public CreateUserSafariResponse insertUserSafari(CreateUserSafariRequest request)
+    public InsertUserSafariResponse insertUserSafari(InsertUserSafariRequest safariRequest)
             throws BusinessException, SystemException {
         UcUserSafari ucUserSafari = new UcUserSafari();
-        ucUserSafari.setTenantId(request.getTenantId());
-        ucUserSafari.setUserId(Long.parseLong(request.getUserId().toString()));
-        ucUserSafari.setProdId(request.getProdId());
+        ucUserSafari.setTenantId(safariRequest.getTenantId());
+        ucUserSafari.setUserId(safariRequest.getUserId());
+        ucUserSafari.setProdId(safariRequest.getProdId());
         ucUserSafari.setState("1");
         ucUserSafari.setSafariTime(DateUtils.currTimeStamp());
         int responseId = userSafariAtomSV.insert(ucUserSafari);
-        CreateUserSafariResponse response = new CreateUserSafariResponse();
+        InsertUserSafariResponse response = new InsertUserSafariResponse();
         response.setResponseId(responseId);
         return response;
     }
@@ -61,7 +60,7 @@ public class UserSafariBusiSVImpl implements IUserSafariBusiSV {
         UcUserSafariCriteria example = new UcUserSafariCriteria();
         UcUserSafariCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(deleteRequest.getTenantId());
-        criteria.andUserIdEqualTo(Long.parseLong(deleteRequest.getUserId().toString()));
+        criteria.andUserIdEqualTo(deleteRequest.getUserId());
 
         // UcUserSafariHis safariHis = new UcUserSafariHis();
         // 浏览历史表
@@ -98,7 +97,7 @@ public class UserSafariBusiSVImpl implements IUserSafariBusiSV {
         UcUserSafariCriteria example = new UcUserSafariCriteria();
         UcUserSafariCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(request.getTenantId());
-        criteria.andUserIdEqualTo(Long.parseLong(request.getUserId().toString()));
+        criteria.andUserIdEqualTo(request.getUserId());
         // criteria.andSafariTimeBetween(value1, value2);
         PageInfo<UserSafariInfoResponse> pageInfo = new PageInfo<UserSafariInfoResponse>();
         List<UcUserSafari> queryList = new ArrayList<UcUserSafari>();
@@ -126,7 +125,7 @@ public class UserSafariBusiSVImpl implements IUserSafariBusiSV {
         UcUserSafariHisCriteria example = new UcUserSafariHisCriteria();
         UcUserSafariHisCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(deleteRequest.getTenantId());
-        criteria.andUserIdEqualTo(Long.parseLong(deleteRequest.getUserId().toString()));
+        criteria.andUserIdEqualTo(deleteRequest.getUserId());
         criteria.andSafariSeqIdIn(deleteRequest.getSafariHisIdList());
         userSafariHisAtomSV.deleteByExample(example);
     }

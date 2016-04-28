@@ -13,7 +13,7 @@ import com.ai.slp.user.api.message.interfaces.IUserMessageSV;
  * 
  * @author zhangqiang7
  */
-public class CreateUserMessageRequest extends BaseInfo {
+public class InsertUserMessageRequest extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
 

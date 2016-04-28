@@ -15,9 +15,9 @@ import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.apiinfo.param.ApiInfoRequest;
 import com.ai.slp.user.api.apiinfo.param.ApiInfoResponse;
-import com.ai.slp.user.api.apiinfo.param.CreateApiInfoRequest;
+import com.ai.slp.user.api.apiinfo.param.InsertApiInfoRequest;
+import com.ai.slp.user.api.apiinfo.param.InsertApiInfoResponse;
 import com.ai.slp.user.api.apiinfo.param.UcApiInfoParams;
-import com.ai.slp.user.api.favorite.param.CreateUserFavoriteResponse;
 import com.ai.slp.user.dao.mapper.bo.UcApiInfo;
 import com.ai.slp.user.dao.mapper.bo.UcApiInfoCriteria;
 import com.ai.slp.user.service.atom.interfaces.IApiInfoAtomSV;
@@ -34,12 +34,12 @@ public class ApiInfoBusiSVImpl implements IApiInfoBusiSV {
     private IApiInfoAtomSV apiInfoAtomSV;
 
     @Override
-    public CreateUserFavoriteResponse insertApiInfo(CreateApiInfoRequest createRequest)
+    public InsertApiInfoResponse insertApiInfo(InsertApiInfoRequest infoRequest)
             throws BusinessException, SystemException {
         UcApiInfo ucApiInfo = new UcApiInfo();
         
-        BeanUtils.copyProperties(createRequest, ucApiInfo);
-        ucApiInfo.setUserId(Long.parseLong(createRequest.getUserId().toString()));
+        BeanUtils.copyProperties(infoRequest, ucApiInfo);
+        ucApiInfo.setUserId(infoRequest.getUserId());
         ucApiInfo.setCreateTime(DateUtils.currTimeStamp());
         int responseId=0;
         try {
@@ -48,7 +48,7 @@ public class ApiInfoBusiSVImpl implements IApiInfoBusiSV {
             LOG.error("操作失败");
             e.printStackTrace();
         }
-        CreateUserFavoriteResponse response = new CreateUserFavoriteResponse();
+        InsertApiInfoResponse response = new InsertApiInfoResponse();
         response.setResponseId(responseId);
         return response;
     }
@@ -63,7 +63,7 @@ public class ApiInfoBusiSVImpl implements IApiInfoBusiSV {
         UcApiInfoCriteria example = new UcApiInfoCriteria();
         UcApiInfoCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(ucApiInfoParams.getTenantId());
-        criteria.andUserIdEqualTo(Long.parseLong(ucApiInfoParams.getUserId().toString()));
+        criteria.andUserIdEqualTo(ucApiInfo.getUserId());
         criteria.andApiSeqIdEqualTo(ucApiInfoParams.getApiSeqId());
         
         try {
@@ -81,7 +81,7 @@ public class ApiInfoBusiSVImpl implements IApiInfoBusiSV {
         UcApiInfoCriteria example = new UcApiInfoCriteria();
         UcApiInfoCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(apiInfoRequest.getTenantId());
-        criteria.andUserIdEqualTo(Long.parseLong(apiInfoRequest.getUserId().toString()));
+        criteria.andUserIdEqualTo(apiInfoRequest.getUserId());
         
         int count = apiInfoAtomSV.countByExample(example);
         Integer pageNo = apiInfoRequest.getPageNo();

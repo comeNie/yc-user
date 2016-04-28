@@ -35,7 +35,7 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
 
         UcUserCriteria.Criteria criteria = ucUserCriteria.createCriteria();
         if (!StringUtil.isBlank(loginRequest.getUserLoginName())) {
-            criteria.andUserIdEqualTo(Long.parseLong(loginRequest.getUserLoginName()));
+            criteria.andUserLoginNameEqualTo(loginRequest.getUserLoginName());
         }
         if (!StringUtil.isBlank(loginRequest.getTenantId())) {
             criteria.andTenantIdEqualTo(loginRequest.getTenantId());

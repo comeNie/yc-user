@@ -20,7 +20,7 @@ public class UserSafariInfoRequest extends BaseInfo {
     /**
      * 用户ID NOT NULL
      */
-    @NotNull(message = "用户Id不能为空", groups = { IUserSafariSV.DeleteUserSafari.class })
+    @NotNull(message = "用户Id不能为空", groups = { IUserSafariSV.QueryUserSafari.class })
     private Long userId;
 
     /**

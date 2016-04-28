@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
-import com.ai.slp.user.api.message.param.CreateUserMessageRequest;
-import com.ai.slp.user.api.message.param.CreateUserMessageResponse;
+import com.ai.slp.user.api.message.param.InsertUserMessageRequest;
+import com.ai.slp.user.api.message.param.InsertUserMessageResponse;
 import com.ai.slp.user.api.message.param.DeleteMessageRequest;
 import com.ai.slp.user.api.message.param.QueryMessageRequest;
 import com.ai.slp.user.api.message.param.QueryMessageResponse;
@@ -33,14 +33,14 @@ public class UserMessageBusiSVImpl implements IUserMessageBusiSV {
     private IUserMessageAtomSV userMessageAtomSV;
 
     @Override
-    public CreateUserMessageResponse insertUserMessage(CreateUserMessageRequest createRequest)
+    public InsertUserMessageResponse insertUserMessage(InsertUserMessageRequest messageRequest)
             throws BusinessException, SystemException {
         UcUserMessage ucUserMessage = new UcUserMessage();
-        BeanUtils.copyProperties(createRequest, ucUserMessage);
+        BeanUtils.copyProperties(messageRequest, ucUserMessage);
         ucUserMessage.setCreateTime(DateUtils.currTimeStamp());
 
         int responseId = userMessageAtomSV.insert(ucUserMessage);
-        CreateUserMessageResponse response = new CreateUserMessageResponse();
+        InsertUserMessageResponse response = new InsertUserMessageResponse();
         response.setResponseId(responseId);
         return response;
     }
@@ -52,7 +52,7 @@ public class UserMessageBusiSVImpl implements IUserMessageBusiSV {
         UcUserMessageCriteria example = new UcUserMessageCriteria();
         UcUserMessageCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(request.getTenantId());
-        criteria.andUserIdEqualTo(Long.parseLong(request.getUserId().toString()));
+        criteria.andUserIdEqualTo(request.getUserId());
         UcUserMessage ucUserMessage = new UcUserMessage();
 
         // 判断更新read flag还是更新state

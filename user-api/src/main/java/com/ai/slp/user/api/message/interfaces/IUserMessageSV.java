@@ -3,8 +3,8 @@ package com.ai.slp.user.api.message.interfaces;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
-import com.ai.slp.user.api.message.param.CreateUserMessageRequest;
-import com.ai.slp.user.api.message.param.CreateUserMessageResponse;
+import com.ai.slp.user.api.message.param.InsertUserMessageRequest;
+import com.ai.slp.user.api.message.param.InsertUserMessageResponse;
 import com.ai.slp.user.api.message.param.DeleteMessageRequest;
 import com.ai.slp.user.api.message.param.QueryMessageRequest;
 import com.ai.slp.user.api.message.param.QueryMessageResponse;
@@ -30,7 +30,7 @@ public interface IUserMessageSV {
      * @author zhangqiang7
      * @UCUSER_008
      */
-    CreateUserMessageResponse insertUserMessage(CreateUserMessageRequest createUserMessageRequest)
+    InsertUserMessageResponse insertUserMessage(InsertUserMessageRequest messageRequest)
             throws BusinessException, SystemException;
 
     @interface UpdateUserMessage {

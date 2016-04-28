@@ -8,8 +8,8 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.favorite.interfaces.IUserFavoriteSV;
-import com.ai.slp.user.api.favorite.param.CreateUserFavoriteRequest;
-import com.ai.slp.user.api.favorite.param.CreateUserFavoriteResponse;
+import com.ai.slp.user.api.favorite.param.InsertUserFavoriteRequest;
+import com.ai.slp.user.api.favorite.param.InsertUserFavoriteResponse;
 import com.ai.slp.user.api.favorite.param.DeleteFavoriteListRequest;
 import com.ai.slp.user.api.favorite.param.UpdateFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UserFavoriteRequest;
@@ -24,9 +24,9 @@ public class UserFavoriteSVImpl implements IUserFavoriteSV {
     private IUserFavoriteBusiSV userFavoriteBusiSV;
     
     @Override
-    public CreateUserFavoriteResponse insertUcFavorite(CreateUserFavoriteRequest createUserFavoriteRequest)
+    public InsertUserFavoriteResponse insertUcFavorite(InsertUserFavoriteRequest favoriteRequest)
             throws BusinessException, SystemException {
-        return userFavoriteBusiSV.insertUcFavorite(createUserFavoriteRequest);
+        return userFavoriteBusiSV.insertUcFavorite(favoriteRequest);
     }
 
     @Override
