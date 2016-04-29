@@ -3,6 +3,7 @@ package com.ai.slp.user.service.atom.impl;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Component;
 
 import com.ai.slp.user.dao.mapper.bo.UcBankInfo;
 import com.ai.slp.user.dao.mapper.bo.UcContactsInfo;
@@ -17,6 +18,7 @@ import com.ai.slp.user.dao.mapper.bo.UcUserCriteria;
 import com.ai.slp.user.dao.mapper.factory.MapperFactory;
 import com.ai.slp.user.service.atom.interfaces.IRegisterAtomSV;
 
+@Component
 public class RegisterAtomSVImpl implements IRegisterAtomSV {
 
     @Override
