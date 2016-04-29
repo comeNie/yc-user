@@ -10,6 +10,7 @@ import com.ai.slp.user.dao.mapper.interfaces.CmCustIndexCertNumMapper;
 import com.ai.slp.user.dao.mapper.interfaces.CmCustIndexPhoneNumMapper;
 import com.ai.slp.user.dao.mapper.interfaces.UcApiInfoMapper;
 import com.ai.slp.user.dao.mapper.interfaces.UcBankInfoMapper;
+import com.ai.slp.user.dao.mapper.interfaces.UcContactsInfoMapper;
 import com.ai.slp.user.dao.mapper.interfaces.UcCustKeyInfoMapper;
 import com.ai.slp.user.dao.mapper.interfaces.UcGroupKeyInfoMapper;
 import com.ai.slp.user.dao.mapper.interfaces.UcLoginLogMapper;
@@ -114,4 +115,7 @@ public class MapperFactory {
         return sqlSessionTemplate.getMapper(UcGroupKeyInfoMapper.class);
     }
     
+    public static UcContactsInfoMapper getUcContactsInfoMapper(){
+        return sqlSessionTemplate.getMapper(UcContactsInfoMapper.class);
+    }
 }
