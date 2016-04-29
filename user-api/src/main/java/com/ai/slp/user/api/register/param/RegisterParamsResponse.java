@@ -1,7 +1,5 @@
 package com.ai.slp.user.api.register.param;
 
-import java.io.Serializable;
-
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
 

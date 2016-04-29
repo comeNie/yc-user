@@ -12,7 +12,6 @@ import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfoCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcUser;
 import com.ai.slp.user.dao.mapper.bo.UcUserCriteria;
 import com.ai.slp.user.dao.mapper.factory.MapperFactory;
-import com.ai.slp.user.service.atom.interfaces.ILoginAtomSV;
 import com.ai.slp.user.service.atom.interfaces.IUcUserAtomSV;
 
 @Component
@@ -32,5 +31,10 @@ public class UcUserAtomSVImpl implements IUcUserAtomSV {
     @Override
     public List<UcGroupKeyInfo> searchUcGroupKeyInfo(UcGroupKeyInfoCriteria example) throws SystemException {
         return MapperFactory.getUcGroupKeyInfoMapper().selectByExample(example);
+    }
+
+    @Override
+    public int countByExample(UcUserCriteria example) {
+        return MapperFactory.getUcUserMapper().countByExample(example);
     }
 }

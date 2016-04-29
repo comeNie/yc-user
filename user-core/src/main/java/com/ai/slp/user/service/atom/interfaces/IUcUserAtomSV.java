@@ -2,7 +2,6 @@ package com.ai.slp.user.service.atom.interfaces;
 
 import java.util.List;
 
-import com.ai.opt.base.exception.SystemException;
 import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfo;
 import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfoCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfo;
@@ -17,4 +16,6 @@ public interface IUcUserAtomSV {
     List<UcCustKeyInfo> searchUcCustKeyInfo(UcCustKeyInfoCriteria example);
     
     List<UcGroupKeyInfo> searchUcGroupKeyInfo(UcGroupKeyInfoCriteria example);
+    
+    int countByExample(UcUserCriteria example);
 }
