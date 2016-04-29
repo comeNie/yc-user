@@ -21,7 +21,7 @@ public class UcUserParams implements Serializable {
     @NotNull(message="租户id不能为空",groups={IRegisterSV.InsertUcUser.class})
     private String tenantId;
     
-    private Integer userId;
+    private long userId;
     
     @NotNull(message="用户类型不能为空",groups={IRegisterSV.InsertUcUser.class})
     private String userType;
@@ -86,10 +86,10 @@ public class UcUserParams implements Serializable {
     public void setTenantId(String tenantId) {
         this.tenantId = tenantId;
     }
-    public Integer getUserId() {
+    public long getUserId() {
         return userId;
     }
-    public void setUserId(Integer userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
     public String getUserType() {
