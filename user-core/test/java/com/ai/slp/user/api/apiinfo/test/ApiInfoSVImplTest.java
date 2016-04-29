@@ -34,7 +34,7 @@ public class ApiInfoSVImplTest {
         request.setCreateOperId(111L);
         request.setTenantId("test111");
         request.setTenantPwd("123456");
-        System.out.println(apiInfoBusiSV.insertApiInfo(request).getResponseId());
+        System.out.println(apiInfoBusiSV.insertApiInfo(request).getResponseHeader());
     }
 
    @Test

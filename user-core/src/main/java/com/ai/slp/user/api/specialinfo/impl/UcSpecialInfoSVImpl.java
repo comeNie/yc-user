@@ -6,9 +6,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.BaseResponse;
 import com.ai.slp.user.api.specialinfo.interfaces.IUcSpecialInfoSV;
 import com.ai.slp.user.api.specialinfo.param.InsertSpecialInfoRequest;
-import com.ai.slp.user.api.specialinfo.param.InsertSpecialInfoResponse;
 import com.ai.slp.user.api.specialinfo.param.QuerySpecialInfoRequest;
 import com.ai.slp.user.api.specialinfo.param.QuerySpecialInfoResponse;
 import com.ai.slp.user.api.specialinfo.param.UpdateSepcialInfoRequest;
@@ -22,15 +22,15 @@ public class UcSpecialInfoSVImpl implements IUcSpecialInfoSV {
     private IUcSpecialInfoBusiSV ucSpecialInfoBusiSV;
 
     @Override
-    public InsertSpecialInfoResponse insertSpecialInfo(InsertSpecialInfoRequest specialInfoRequest)
+    public BaseResponse insertSpecialInfo(InsertSpecialInfoRequest specialInfoRequest)
             throws BusinessException, SystemException {
         return ucSpecialInfoBusiSV.insertSpecialInfo(specialInfoRequest);
     }
 
     @Override
-    public void updateSpecialInfo(UpdateSepcialInfoRequest specialInfoRequest)
+    public BaseResponse updateSpecialInfo(UpdateSepcialInfoRequest specialInfoRequest)
             throws BusinessException, SystemException {
-        ucSpecialInfoBusiSV.updateSpecialInfo(specialInfoRequest);
+        return ucSpecialInfoBusiSV.updateSpecialInfo(specialInfoRequest);
     }
 
     @Override

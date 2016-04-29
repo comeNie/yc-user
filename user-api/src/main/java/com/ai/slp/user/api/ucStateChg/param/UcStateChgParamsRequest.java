@@ -1,76 +1,68 @@
 package com.ai.slp.user.api.ucStateChg.param;
+
 import java.sql.Timestamp;
-import java.util.Date;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.ai.opt.base.vo.BaseInfo;
 import com.ai.slp.user.api.ucStateChg.interfaces.IUcStateChgSV;
 
+public class UcStateChgParamsRequest extends BaseInfo {
+    private static final long serialVersionUID = 1L;
 
+    /**
+     * 用户ID
+     */
+    @NotNull(message = "用户ID不能为空", groups = { IUcStateChgSV.InsertUcStateChgInfo.class,
+            IUcStateChgSV.UpdateUcStateChgInfo.class })
+    @Size(max = 18, groups = { IUcStateChgSV.InsertUcStateChgInfo.class,
+            IUcStateChgSV.UpdateUcStateChgInfo.class })
+    private long userId;
 
-public class UcStateChgParamsRequest {
-	/**
-	 * 租户ID
-	 */
-	@NotNull(message="租户ID不能为空",groups={IUcStateChgSV.InsertUcStateChgInfo.class,IUcStateChgSV.UpdateUcStateChgInfo.class})
-    @Size(max=32,groups={IUcStateChgSV.InsertUcStateChgInfo.class,IUcStateChgSV.UpdateUcStateChgInfo.class})
-	private String tenantId;
-	
-	/**
-	 * 用户ID
-	 */
-	@NotNull(message="用户ID不能为空",groups={IUcStateChgSV.InsertUcStateChgInfo.class,IUcStateChgSV.UpdateUcStateChgInfo.class})
-    @Size(max=18,groups={IUcStateChgSV.InsertUcStateChgInfo.class,IUcStateChgSV.UpdateUcStateChgInfo.class})
-	private long userId;
-	
-	
-	/**
+    /**
      * 状态变更流水ID
      */
-    @NotNull(message="状态变更流水ID不能为空",groups={IUcStateChgSV.InsertUcStateChgInfo.class,IUcStateChgSV.UpdateUcStateChgInfo.class})
-    @Size(max=32,groups={IUcStateChgSV.InsertUcStateChgInfo.class,IUcStateChgSV.UpdateUcStateChgInfo.class})
+    @NotNull(message = "状态变更流水ID不能为空", groups = { IUcStateChgSV.InsertUcStateChgInfo.class,
+            IUcStateChgSV.UpdateUcStateChgInfo.class })
+    @Size(max = 32, groups = { IUcStateChgSV.InsertUcStateChgInfo.class,
+            IUcStateChgSV.UpdateUcStateChgInfo.class })
     private String stateChgId;
-    
+
     /**
      * 业务操作类型
      */
     private String operType;
+
     /**
      * 原状态
      */
     private String oldState;
-    
+
     /**
      * 新状态
      */
     private String newState;
-    
+
     /**
      * 状态原因描述
      */
     private String chgdesc;
+
     /**
      * 状态变化时间
      */
     private Timestamp chgTime;
-    
+
     /**
      * 操作渠道
      */
     private String chlId;
-    
+
     /**
      * 操作员
      */
     private long operId;
-
-    public String getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
-    }
 
     public long getUserId() {
         return userId;
@@ -143,6 +135,5 @@ public class UcStateChgParamsRequest {
     public void setOperId(long operId) {
         this.operId = operId;
     }
-    
-    
+
 }

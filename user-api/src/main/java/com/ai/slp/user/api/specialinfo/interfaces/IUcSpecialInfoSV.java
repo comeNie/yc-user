@@ -2,8 +2,8 @@ package com.ai.slp.user.api.specialinfo.interfaces;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.BaseResponse;
 import com.ai.slp.user.api.specialinfo.param.InsertSpecialInfoRequest;
-import com.ai.slp.user.api.specialinfo.param.InsertSpecialInfoResponse;
 import com.ai.slp.user.api.specialinfo.param.QuerySpecialInfoRequest;
 import com.ai.slp.user.api.specialinfo.param.QuerySpecialInfoResponse;
 import com.ai.slp.user.api.specialinfo.param.UpdateSepcialInfoRequest;
@@ -29,7 +29,7 @@ public interface IUcSpecialInfoSV {
      * @author zhangqiang7
      * @UCUSER
      */
-    InsertSpecialInfoResponse insertSpecialInfo(InsertSpecialInfoRequest specialInfoRequest)
+    BaseResponse insertSpecialInfo(InsertSpecialInfoRequest specialInfoRequest)
             throws BusinessException, SystemException;
 
     @interface UpdateSpecialInfo {
@@ -44,7 +44,7 @@ public interface IUcSpecialInfoSV {
      * @author zhangqiang7
      * @UCUSER
      */
-    void updateSpecialInfo(UpdateSepcialInfoRequest specialInfoRequest)
+    BaseResponse updateSpecialInfo(UpdateSepcialInfoRequest specialInfoRequest)
             throws BusinessException, SystemException;
 
     @interface QuerySpecialInfo {

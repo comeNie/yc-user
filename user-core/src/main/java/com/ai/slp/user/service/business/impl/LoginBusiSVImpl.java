@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.StringUtil;
 import com.ai.slp.user.api.login.param.LoginRequest;
 import com.ai.slp.user.api.login.param.LoginResponse;
@@ -48,11 +50,18 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
         }
         criteria.andUserTypeEqualTo(loginRequest.getUserType());
         criteria.andUserLoginPwdEqualTo(loginRequest.getUserLoginPwd());
-
-        int count = loginAtomSV.countByExample(ucUserCriteria);
-
+        int count = 0;
+        ResponseHeader responseHeader;
+        try {
+            count = loginAtomSV.countByExample(ucUserCriteria);
+            responseHeader = new ResponseHeader(true, "success", "查询成功");
+        } catch (SystemException e) {
+            LOG.error("查询失败", e);
+            responseHeader = new ResponseHeader(false, "fail", "查询成功");
+        }
         LoginResponse loginResponse = new LoginResponse();
         loginResponse.setCount(count);
+        loginResponse.setResponseHeader(responseHeader);
         return loginResponse;
     }
 

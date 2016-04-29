@@ -3,6 +3,8 @@ package com.ai.slp.user.service.business.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,9 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
+import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.slp.user.api.bankinfo.param.InsertBankInfoRequest;
-import com.ai.slp.user.api.bankinfo.param.InsertBankInfoResponse;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoRequest;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoResponse;
 import com.ai.slp.user.api.bankinfo.param.UpdateBankInfoRequest;
@@ -26,28 +29,32 @@ import com.ai.slp.user.util.DateUtils;
 @Transactional
 public class UcBankInfoBusiSVImpl implements IUcBankInfoBusiSV {
 
+    static final Log LOG = LogFactory.getLog(UcBankInfoBusiSVImpl.class);
+
     @Autowired
     private IUcBankInfoAtomSV ucBankInfoAtomSV;
 
     @Override
-    public InsertBankInfoResponse insertBankInfo(InsertBankInfoRequest bankInfoRequest)
+    public BaseResponse insertBankInfo(InsertBankInfoRequest bankInfoRequest)
             throws BusinessException, SystemException {
         UcBankInfo ucBankInfo = new UcBankInfo();
         BeanUtils.copyProperties(bankInfoRequest, ucBankInfo);
         ucBankInfo.setCreateTime(DateUtils.currTimeStamp());
-        Integer responseId = 0;
+        BaseResponse response = new BaseResponse();
+        ResponseHeader responseHeader;
         try {
-            responseId = ucBankInfoAtomSV.insert(ucBankInfo);
+            ucBankInfoAtomSV.insert(ucBankInfo);
+            responseHeader = new ResponseHeader(true, "success", "添加成功");
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("添加失败", e);
+            responseHeader = new ResponseHeader(false, "fail", "添加失败");
         }
-        InsertBankInfoResponse response = new InsertBankInfoResponse();
-        response.setResponseId(responseId);
+        response.setResponseHeader(responseHeader);
         return response;
     }
 
     @Override
-    public void UpdateBankInfo(UpdateBankInfoRequest bankInfoRequest)
+    public BaseResponse UpdateBankInfo(UpdateBankInfoRequest bankInfoRequest)
             throws BusinessException, SystemException {
         UcBankInfo bankInfo = new UcBankInfo();
         BeanUtils.copyProperties(bankInfoRequest, bankInfo);
@@ -56,11 +63,17 @@ public class UcBankInfoBusiSVImpl implements IUcBankInfoBusiSV {
         criteria.andTenantIdEqualTo(bankInfoRequest.getTenantId());
         criteria.andUserIdEqualTo(bankInfoRequest.getUserId());
         criteria.andBankSeqIdEqualTo(bankInfoRequest.getBankSeqId());
+        BaseResponse response = new BaseResponse();
+        ResponseHeader responseHeader;
         try {
             ucBankInfoAtomSV.updateByExampleSelective(bankInfo, example);
+            responseHeader = new ResponseHeader(true, "success", "更新成功");
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("更新失败");
+            responseHeader = new ResponseHeader(false, "fail", "更新失败");
         }
+        response.setResponseHeader(responseHeader);
+        return response;
     }
 
     @Override
@@ -70,18 +83,27 @@ public class UcBankInfoBusiSVImpl implements IUcBankInfoBusiSV {
         UcBankInfoCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(bankInfoRequest.getTenantId());
         criteria.andUserIdEqualTo(bankInfoRequest.getUserId());
-        int count = ucBankInfoAtomSV.countByExample(example);
         Integer pageNo = bankInfoRequest.getPageNo();
         Integer pageSize = bankInfoRequest.getPageSize();
         List<UcBankInfo> list = new ArrayList<UcBankInfo>();
-        list = ucBankInfoAtomSV.selectByExample(example);
+        int count = 0;
         QueryBankInfoResponse response = new QueryBankInfoResponse();
+        ResponseHeader responseHeader;
+        try {
+            count = ucBankInfoAtomSV.countByExample(example);
+            list = ucBankInfoAtomSV.selectByExample(example);
+            responseHeader = new ResponseHeader(true, "success", "查询成功");
+        } catch (Exception e) {
+            LOG.error("查询失败", e);
+            responseHeader = new ResponseHeader(false, "fail", "查询失败");
+        }
         PageInfo<QueryBankInfoResponse> pageInfo = new PageInfo<QueryBankInfoResponse>();
         List<QueryBankInfoResponse> responseList = new ArrayList<QueryBankInfoResponse>();
         for (UcBankInfo ucBankInfo : list) {
             BeanUtils.copyProperties(ucBankInfo, response);
             responseList.add(response);
         }
+        response.setResponseHeader(responseHeader);
         pageInfo.setCount(count);
         pageInfo.setPageNo(pageNo);
         pageInfo.setPageSize(pageSize);

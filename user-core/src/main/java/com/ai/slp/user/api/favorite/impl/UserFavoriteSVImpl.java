@@ -6,11 +6,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.favorite.interfaces.IUserFavoriteSV;
-import com.ai.slp.user.api.favorite.param.InsertUserFavoriteRequest;
-import com.ai.slp.user.api.favorite.param.InsertUserFavoriteResponse;
 import com.ai.slp.user.api.favorite.param.DeleteFavoriteListRequest;
+import com.ai.slp.user.api.favorite.param.InsertUserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UpdateFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UserFavoriteResponse;
@@ -24,15 +24,15 @@ public class UserFavoriteSVImpl implements IUserFavoriteSV {
     private IUserFavoriteBusiSV userFavoriteBusiSV;
     
     @Override
-    public InsertUserFavoriteResponse insertUcFavorite(InsertUserFavoriteRequest favoriteRequest)
+    public BaseResponse insertUcFavorite(InsertUserFavoriteRequest favoriteRequest)
             throws BusinessException, SystemException {
         return userFavoriteBusiSV.insertUcFavorite(favoriteRequest);
     }
 
     @Override
-    public void cancelFavorite(UpdateFavoriteRequest updateRequest)
+    public BaseResponse cancelFavorite(UpdateFavoriteRequest updateRequest)
             throws SystemException, BusinessException {
-        userFavoriteBusiSV.updateFavorite(updateRequest);
+        return userFavoriteBusiSV.updateFavorite(updateRequest);
     }
 
     @Override
@@ -42,9 +42,9 @@ public class UserFavoriteSVImpl implements IUserFavoriteSV {
     }
 
     @Override
-    public void deleteFavorite(DeleteFavoriteListRequest deleteListRequest)
+    public BaseResponse deleteFavorite(DeleteFavoriteListRequest deleteListRequest)
             throws SystemException, BusinessException {
-        userFavoriteBusiSV.deleteFavorite(deleteListRequest);
+        return userFavoriteBusiSV.deleteFavorite(deleteListRequest);
     }
 
 }
