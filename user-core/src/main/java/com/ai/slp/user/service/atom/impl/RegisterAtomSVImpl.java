@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.ai.slp.user.dao.mapper.bo.UcBankInfo;
 import com.ai.slp.user.dao.mapper.bo.UcContactsInfo;
+import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfo;
 import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfo;
 import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfoCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcStateChg;
@@ -58,6 +60,16 @@ public class RegisterAtomSVImpl implements IRegisterAtomSV {
     @Override
     public int insertUcStateChgBusiInfo(UcStateChg ucStateChgParam) {
         return MapperFactory.getUcStateChgMapper().insert(ucStateChgParam);
+    }
+
+    @Override
+    public int insertUcBankInfo(UcBankInfo ucBankInfo) {
+        return MapperFactory.getUcBankInfoMapper().insert(ucBankInfo);
+    }
+
+    @Override
+    public int insertUcCustKeyInfo(UcCustKeyInfo ucContactsInfo) {
+        return MapperFactory.getUcCustKeyInfoMapper().insert(ucContactsInfo);
     }
     
 }
