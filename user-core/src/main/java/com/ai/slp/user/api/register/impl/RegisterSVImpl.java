@@ -1,5 +1,8 @@
 package com.ai.slp.user.api.register.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.slp.user.api.register.interfaces.IRegisterSV;
 import com.ai.slp.user.api.register.param.RegisterParamsResponse;
@@ -10,9 +13,14 @@ import com.ai.slp.user.api.register.param.UcGroupKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcUserAgreeParams;
 import com.ai.slp.user.api.register.param.UcUserFileExtParams;
 import com.ai.slp.user.api.register.param.UcUserParams;
+import com.ai.slp.user.service.business.interfaces.IRegisterBusiSV;
 
+@Service
 public class RegisterSVImpl implements IRegisterSV {
 
+    @Autowired
+    public IRegisterBusiSV registerBusiSv;
+    
     @Override
     public BaseResponse insertUcUser(UcUserParams ucUser, UcUserAgreeParams agreeInfo,
             UcContactInfoParams contactInfo) {
