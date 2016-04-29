@@ -9,6 +9,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
@@ -32,6 +33,7 @@ import com.ai.slp.user.service.atom.interfaces.IRegisterAtomSV;
 import com.ai.slp.user.service.business.interfaces.IRegisterBusiSV;
 
 @Service
+@Transactional
 public class RegisterBusiSVImpl implements IRegisterBusiSV {
 
     private static final Log LOG = LogFactory.getLog(RegisterBusiSVImpl.class);
@@ -101,7 +103,9 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
            response.setResponseHeader(responseHeader);
            return response;
     }
-
+    /**
+     * 获取用户信息
+     */
     @Override
     public BaseResponse getUserInfo(UcUserParams userParams) {
         BaseResponse response = new BaseResponse();
