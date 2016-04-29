@@ -6,10 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.bankinfo.interfaces.IUcBankInfoSV;
 import com.ai.slp.user.api.bankinfo.param.InsertBankInfoRequest;
-import com.ai.slp.user.api.bankinfo.param.InsertBankInfoResponse;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoRequest;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoResponse;
 import com.ai.slp.user.api.bankinfo.param.UpdateBankInfoRequest;
@@ -23,7 +23,7 @@ public class UcBankInfoSVImpl implements IUcBankInfoSV {
     private IUcBankInfoBusiSV ucBankInfoBusiSV;
 
     @Override
-    public InsertBankInfoResponse insertBankInfo(InsertBankInfoRequest bankInfoRequest)
+    public BaseResponse insertBankInfo(InsertBankInfoRequest bankInfoRequest)
             throws BusinessException, SystemException {
         return ucBankInfoBusiSV.insertBankInfo(bankInfoRequest);
     }
@@ -35,9 +35,9 @@ public class UcBankInfoSVImpl implements IUcBankInfoSV {
     }
 
     @Override
-    public void updateBankInfo(UpdateBankInfoRequest bankInfoRequest)
+    public BaseResponse updateBankInfo(UpdateBankInfoRequest bankInfoRequest)
             throws BusinessException, SystemException {
-        ucBankInfoBusiSV.UpdateBankInfo(bankInfoRequest);
+        return ucBankInfoBusiSV.UpdateBankInfo(bankInfoRequest);
     }
 
 }

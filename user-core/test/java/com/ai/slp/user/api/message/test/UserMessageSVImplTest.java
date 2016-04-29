@@ -32,7 +32,7 @@ public class UserMessageSVImplTest {
         request.setInfoType("2");
         request.setReadFlag("2");
         
-        System.out.println(userMessageSV.insertUserMessage(request).getResponseId());
+        System.out.println(userMessageSV.insertUserMessage(request).getResponseHeader());
     }
     
     //@Test

@@ -2,9 +2,9 @@ package com.ai.slp.user.api.bankinfo.interfaces;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.bankinfo.param.InsertBankInfoRequest;
-import com.ai.slp.user.api.bankinfo.param.InsertBankInfoResponse;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoRequest;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoResponse;
 import com.ai.slp.user.api.bankinfo.param.UpdateBankInfoRequest;
@@ -30,7 +30,7 @@ public interface IUcBankInfoSV {
      * @author zhangqiang7
      * @UCUSER
      */
-    InsertBankInfoResponse insertBankInfo(InsertBankInfoRequest bankInfoRequest)
+    BaseResponse insertBankInfo(InsertBankInfoRequest bankInfoRequest)
             throws BusinessException, SystemException;
 
     @interface UpdateBankInfo {
@@ -45,7 +45,7 @@ public interface IUcBankInfoSV {
      * @author zhangqiang7
      * @UCUSER
      */
-    void updateBankInfo(UpdateBankInfoRequest bankInfoRequest)
+    BaseResponse updateBankInfo(UpdateBankInfoRequest bankInfoRequest)
             throws BusinessException, SystemException;
 
     @interface QueryBankInfo{}

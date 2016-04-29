@@ -12,10 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
-import com.ai.slp.user.api.favorite.param.InsertUserFavoriteRequest;
-import com.ai.slp.user.api.favorite.param.InsertUserFavoriteResponse;
+import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.slp.user.api.favorite.param.DeleteFavoriteListRequest;
+import com.ai.slp.user.api.favorite.param.InsertUserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UpdateFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UserFavoriteResponse;
@@ -35,26 +36,28 @@ public class UserFavoriteBusiSVImpl implements IUserFavoriteBusiSV {
     private IUserFavoriteAtomSV userFavoriteAtomSV;
 
     @Override
-    public InsertUserFavoriteResponse insertUcFavorite(
-            InsertUserFavoriteRequest favoriteRequest)
-                    throws BusinessException, SystemException {
+    public BaseResponse insertUcFavorite(InsertUserFavoriteRequest favoriteRequest)
+            throws BusinessException, SystemException {
         UcUserFavorite ucUserFavorite = new UcUserFavorite();
         BeanUtils.copyProperties(favoriteRequest, ucUserFavorite);
         ucUserFavorite.setUserId(favoriteRequest.getUserId());
+        ucUserFavorite.setCreateTime(DateUtils.currTimeStamp());
         ucUserFavorite.setState("0");
+        BaseResponse response = new BaseResponse();
+        ResponseHeader responseHeader;
         try {
-            ucUserFavorite.setCreateTime(DateUtils.currTimeStamp());
+            userFavoriteAtomSV.insert(ucUserFavorite);
+            responseHeader = new ResponseHeader(true, "success", "添加成功");
         } catch (Exception e) {
-            LOG.error("插入操作失败");
+            LOG.error("插入操作失败", e);
+            responseHeader = new ResponseHeader(false, "fail", "添加失败");
         }
-        int responseId = userFavoriteAtomSV.insert(ucUserFavorite);
-        InsertUserFavoriteResponse response = new InsertUserFavoriteResponse();
-        response.setResponseId(responseId);
+        response.setResponseHeader(responseHeader);
         return response;
     }
 
     @Override
-    public void updateFavorite(UpdateFavoriteRequest updateRequest)
+    public BaseResponse updateFavorite(UpdateFavoriteRequest updateRequest)
             throws SystemException, BusinessException {
         UcUserFavorite ucUserFavorite = new UcUserFavorite();
         List<String> list = new ArrayList<String>();
@@ -66,16 +69,21 @@ public class UserFavoriteBusiSVImpl implements IUserFavoriteBusiSV {
         criteria.andFavoriteSeqIdIn(list);
         ucUserFavorite.setState("1");
         ucUserFavorite.setUpdateTime(DateUtils.currTimeStamp());
+        BaseResponse response = new BaseResponse();
+        ResponseHeader responseHeader;
         try {
             userFavoriteAtomSV.updateByExampleSelective(ucUserFavorite, example);
+            responseHeader = new ResponseHeader(false, "fail", "更新成功");
         } catch (Exception e) {
-            LOG.error("更新操作失败");
-            e.printStackTrace();
+            LOG.error("更新操作失败", e);
+            responseHeader = new ResponseHeader(true, "success", "更新失败");
         }
+        response.setResponseHeader(responseHeader);
+        return response;
     }
 
     @Override
-    public void deleteFavorite(DeleteFavoriteListRequest deleteFavoriteRequest)
+    public BaseResponse deleteFavorite(DeleteFavoriteListRequest deleteFavoriteRequest)
             throws SystemException, BusinessException {
         List<String> list = new ArrayList<String>();
         list = deleteFavoriteRequest.getFavoriteReqIdList();
@@ -85,12 +93,17 @@ public class UserFavoriteBusiSVImpl implements IUserFavoriteBusiSV {
         criteria.andTenantIdEqualTo(deleteFavoriteRequest.getTenantId());
         criteria.andUserIdEqualTo(deleteFavoriteRequest.getUserId());
         criteria.andFavoriteSeqIdIn(list);
+        BaseResponse response = new BaseResponse();
+        ResponseHeader responseHeader;
         try {
             userFavoriteAtomSV.deleteByExample(example);
+            responseHeader = new ResponseHeader(true, "success", "删除成功");
         } catch (Exception e) {
             LOG.error("删除失败");
-            e.printStackTrace();
+            responseHeader = new ResponseHeader(false, "fail", "删除失败");
         }
+        response.setResponseHeader(responseHeader);
+        return response;
     }
 
     @Override
@@ -101,8 +114,16 @@ public class UserFavoriteBusiSVImpl implements IUserFavoriteBusiSV {
         criteria.andTenantIdEqualTo(userFavoriteRequest.getTenantId());
         criteria.andUserIdEqualTo(userFavoriteRequest.getUserId());
         List<UcUserFavorite> favoriteList = new ArrayList<UcUserFavorite>();
-        Integer count = userFavoriteAtomSV.countByExample(example);
         List<UserFavoriteResponse> responseList = new ArrayList<UserFavoriteResponse>();
+        ResponseHeader responseHeader;
+        int count = 0;
+        try {
+            count = userFavoriteAtomSV.countByExample(example);
+            responseHeader = new ResponseHeader(true, "success", "查询成功");
+        } catch (Exception e) {
+            LOG.error("查询失败", e);
+            responseHeader = new ResponseHeader(false, "fail", "查询失败");
+        }
         favoriteList = userFavoriteAtomSV.selectByExample(example);
         UserFavoriteResponse response = new UserFavoriteResponse();
         Integer pageSize = userFavoriteRequest.getPageSize();
@@ -112,6 +133,7 @@ public class UserFavoriteBusiSVImpl implements IUserFavoriteBusiSV {
             responseList.add(response);
         }
         PageInfo<UserFavoriteResponse> pageInfo = new PageInfo<UserFavoriteResponse>();
+        response.setResponseHeader(responseHeader);
         pageInfo.setResult(responseList);
         pageInfo.setCount(count);
         pageInfo.setPageNo(pageNo);

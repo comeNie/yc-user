@@ -12,12 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
+import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.StringUtil;
-import com.ai.slp.user.api.safari.param.InsertUserSafariRequest;
-import com.ai.slp.user.api.safari.param.InsertUserSafariResponse;
 import com.ai.slp.user.api.safari.param.DeleteSafariHisRequest;
 import com.ai.slp.user.api.safari.param.DeleteSafariRequest;
+import com.ai.slp.user.api.safari.param.InsertUserSafariRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoResponse;
 import com.ai.slp.user.dao.mapper.bo.UcUserSafari;
@@ -40,7 +41,7 @@ public class UserSafariBusiSVImpl implements IUserSafariBusiSV {
     private IUserSafariHisAtomSV userSafariHisAtomSV;
 
     @Override
-    public InsertUserSafariResponse insertUserSafari(InsertUserSafariRequest safariRequest)
+    public BaseResponse insertUserSafari(InsertUserSafariRequest safariRequest)
             throws BusinessException, SystemException {
         UcUserSafari ucUserSafari = new UcUserSafari();
         ucUserSafari.setTenantId(safariRequest.getTenantId());
@@ -48,20 +49,29 @@ public class UserSafariBusiSVImpl implements IUserSafariBusiSV {
         ucUserSafari.setProdId(safariRequest.getProdId());
         ucUserSafari.setState("1");
         ucUserSafari.setSafariTime(DateUtils.currTimeStamp());
-        int responseId = userSafariAtomSV.insert(ucUserSafari);
-        InsertUserSafariResponse response = new InsertUserSafariResponse();
-        response.setResponseId(responseId);
+
+        BaseResponse response = new BaseResponse();
+        ResponseHeader responseHeader;
+        try {
+            userSafariAtomSV.insert(ucUserSafari);
+            responseHeader = new ResponseHeader(true, "success", "添加成功");
+        } catch (Exception e) {
+            LOG.error("添加失败", e);
+            responseHeader = new ResponseHeader(false, "fail", "添加失败");
+        }
+        response.setResponseHeader(responseHeader);
         return response;
     }
 
     @Override
-    public void deleteUserSafari(DeleteSafariRequest deleteRequest)
+    public BaseResponse deleteUserSafari(DeleteSafariRequest deleteRequest)
             throws BusinessException, SystemException {
         UcUserSafariCriteria example = new UcUserSafariCriteria();
         UcUserSafariCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(deleteRequest.getTenantId());
         criteria.andUserIdEqualTo(deleteRequest.getUserId());
 
+        BaseResponse response = new BaseResponse();
         // UcUserSafariHis safariHis = new UcUserSafariHis();
         // 浏览历史表
         if (!StringUtil.isBlank(deleteRequest.getDeleteCode())) {
@@ -76,19 +86,25 @@ public class UserSafariBusiSVImpl implements IUserSafariBusiSV {
                         DateUtils.getTimestamp(beginTime, "yyyy-MM-dd HH:mm:ss"),
                         DateUtils.getTimestamp(endTime, "yyyy-MM-dd HH:mm:ss"));
             }
-            updateSafariSingle(example);
+            response = updateSafariSingle(example);
         }
+        return response;
     }
 
-    public void updateSafariSingle(UcUserSafariCriteria example) {
+    public BaseResponse updateSafariSingle(UcUserSafariCriteria example) {
+        BaseResponse response = new BaseResponse();
+        ResponseHeader responseHeader;
         try {
             UcUserSafari record = new UcUserSafari();
             record.setState("0");
             userSafariAtomSV.updateByExampleSelective(record, example);
+            responseHeader = new ResponseHeader(true, "success", "更新成功");
         } catch (Exception e) {
-            e.printStackTrace();
-            LOG.error("更新失败");
+            LOG.error("更新操作失败", e);
+            responseHeader = new ResponseHeader(false, "fail", "更新失败");
         }
+        response.setResponseHeader(responseHeader);
+        return response;
     }
 
     @Override
@@ -105,13 +121,22 @@ public class UserSafariBusiSVImpl implements IUserSafariBusiSV {
 
         Integer pageNo = request.getPageNo();
         Integer pageSize = request.getPageSize();
-        int count = userSafariAtomSV.countByExample(example);
-        queryList = userSafariAtomSV.selectByExample(example);
+        int count = 0;
+        ResponseHeader responseHeader;
+        try {
+            count = userSafariAtomSV.countByExample(example);
+            queryList = userSafariAtomSV.selectByExample(example);
+            responseHeader = new ResponseHeader(true, "success", "查询成功");
+        } catch (Exception e) {
+            LOG.error("查询失败", e);
+            responseHeader = new ResponseHeader(false, "fail", "查询失败");
+        }
         UserSafariInfoResponse response = new UserSafariInfoResponse();
         for (UcUserSafari ucUserSafari : queryList) {
             BeanUtils.copyProperties(ucUserSafari, response);
             responseList.add(response);
         }
+        response.setResponseHeader(responseHeader);
         pageInfo.setCount(count);
         pageInfo.setPageNo(pageNo);
         pageInfo.setPageSize(pageSize);
@@ -120,13 +145,23 @@ public class UserSafariBusiSVImpl implements IUserSafariBusiSV {
     }
 
     @Override
-    public void deleteUserSafariHis(DeleteSafariHisRequest deleteRequest)
+    public BaseResponse deleteUserSafariHis(DeleteSafariHisRequest deleteRequest)
             throws BusinessException, SystemException {
+        BaseResponse response = new BaseResponse();
+        ResponseHeader responseHeader;
         UcUserSafariHisCriteria example = new UcUserSafariHisCriteria();
         UcUserSafariHisCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(deleteRequest.getTenantId());
         criteria.andUserIdEqualTo(deleteRequest.getUserId());
         criteria.andSafariSeqIdIn(deleteRequest.getSafariHisIdList());
-        userSafariHisAtomSV.deleteByExample(example);
+        try {
+            userSafariHisAtomSV.deleteByExample(example);
+            responseHeader = new ResponseHeader(true, "success", "查询失败");
+        } catch (Exception e) {
+            LOG.error("查询失败", e);
+            responseHeader = new ResponseHeader(false, "fail", "查询失败");
+        }
+        response.setResponseHeader(responseHeader);
+        return response;
     }
 }

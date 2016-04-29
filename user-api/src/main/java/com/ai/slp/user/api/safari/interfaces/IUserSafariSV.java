@@ -2,11 +2,11 @@ package com.ai.slp.user.api.safari.interfaces;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
-import com.ai.slp.user.api.safari.param.InsertUserSafariRequest;
-import com.ai.slp.user.api.safari.param.InsertUserSafariResponse;
 import com.ai.slp.user.api.safari.param.DeleteSafariHisRequest;
 import com.ai.slp.user.api.safari.param.DeleteSafariRequest;
+import com.ai.slp.user.api.safari.param.InsertUserSafariRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoResponse;
 
@@ -33,7 +33,7 @@ public interface IUserSafariSV {
      * @author zhangqiang7
      * @UCUSER_010
      */
-    InsertUserSafariResponse insertUserSafari(InsertUserSafariRequest safariRequest)
+    BaseResponse insertUserSafari(InsertUserSafariRequest safariRequest)
             throws BusinessException, SystemException;
 
     @interface DeleteUserSafari {
@@ -48,7 +48,7 @@ public interface IUserSafariSV {
      * @author zhangqiang7
      * @UCUSER_011
      */
-    void deleteUserSafari(DeleteSafariRequest deletSafariRequest)
+    BaseResponse deleteUserSafari(DeleteSafariRequest deletSafariRequest)
             throws BusinessException, SystemException;
 
     @interface DeleteSafariBack {
@@ -63,7 +63,7 @@ public interface IUserSafariSV {
      * @author zhangqiang7
      * @UCUSER
      */
-    void deleteSafariBack(DeleteSafariRequest deleteRequest)
+    BaseResponse deleteSafariBack(DeleteSafariRequest deleteRequest)
             throws BusinessException, SystemException;
 
     @interface DeleteUserSafariHis {
@@ -78,7 +78,7 @@ public interface IUserSafariSV {
      * @author zhangqiang7
      * @UCUSER
      */
-    void deleteUserSafariHis(DeleteSafariHisRequest deleteReuqest)
+    BaseResponse deleteUserSafariHis(DeleteSafariHisRequest deleteReuqest)
             throws BusinessException, SystemException;
 
     @interface QueryUserSafari {

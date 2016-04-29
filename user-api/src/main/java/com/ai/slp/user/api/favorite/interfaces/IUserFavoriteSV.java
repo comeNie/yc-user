@@ -2,10 +2,10 @@ package com.ai.slp.user.api.favorite.interfaces;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
-import com.ai.slp.user.api.favorite.param.InsertUserFavoriteRequest;
-import com.ai.slp.user.api.favorite.param.InsertUserFavoriteResponse;
 import com.ai.slp.user.api.favorite.param.DeleteFavoriteListRequest;
+import com.ai.slp.user.api.favorite.param.InsertUserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UpdateFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UserFavoriteResponse;
@@ -32,7 +32,7 @@ public interface IUserFavoriteSV {
      * @author zhangqiang7
      * @UCUSER_004
      */
-    InsertUserFavoriteResponse insertUcFavorite(InsertUserFavoriteRequest favoriteRequest)
+    BaseResponse insertUcFavorite(InsertUserFavoriteRequest favoriteRequest)
             throws BusinessException, SystemException;
 
     @interface CancelFavorite {
@@ -48,7 +48,7 @@ public interface IUserFavoriteSV {
      * @author zhangqiang7
      * @UCUSER_005
      */
-    void cancelFavorite(UpdateFavoriteRequest updateRequest)
+    BaseResponse cancelFavorite(UpdateFavoriteRequest updateRequest)
             throws SystemException, BusinessException;
 
     @interface DeleteFavorite {
@@ -64,7 +64,7 @@ public interface IUserFavoriteSV {
      * @UCUSER
      */
 
-    void deleteFavorite(DeleteFavoriteListRequest deleteListRequest)
+    BaseResponse deleteFavorite(DeleteFavoriteListRequest deleteListRequest)
             throws SystemException, BusinessException;
 
     @interface QueryFavorite {

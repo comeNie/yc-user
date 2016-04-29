@@ -5,12 +5,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.safari.interfaces.IUserSafariSV;
-import com.ai.slp.user.api.safari.param.InsertUserSafariRequest;
-import com.ai.slp.user.api.safari.param.InsertUserSafariResponse;
 import com.ai.slp.user.api.safari.param.DeleteSafariHisRequest;
 import com.ai.slp.user.api.safari.param.DeleteSafariRequest;
+import com.ai.slp.user.api.safari.param.InsertUserSafariRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoResponse;
 import com.ai.slp.user.service.business.interfaces.IUserSafariBusiSV;
@@ -22,15 +22,15 @@ public class UserSafariSVImpl implements IUserSafariSV {
     private IUserSafariBusiSV userSafariBusiSV;
 
     @Override
-    public InsertUserSafariResponse insertUserSafari(InsertUserSafariRequest safariRequest)
+    public BaseResponse insertUserSafari(InsertUserSafariRequest safariRequest)
             throws BusinessException, SystemException {
         return userSafariBusiSV.insertUserSafari(safariRequest);
     }
 
     @Override
-    public void deleteUserSafari(DeleteSafariRequest deleteSafariRequest)
+    public BaseResponse deleteUserSafari(DeleteSafariRequest deleteSafariRequest)
             throws BusinessException, SystemException {
-        userSafariBusiSV.deleteUserSafari(deleteSafariRequest);
+        return userSafariBusiSV.deleteUserSafari(deleteSafariRequest);
     }
 
     @Override
@@ -40,13 +40,15 @@ public class UserSafariSVImpl implements IUserSafariSV {
     }
 
     @Override
-    public void deleteUserSafariHis(DeleteSafariHisRequest deleteReuqest)
+    public BaseResponse deleteUserSafariHis(DeleteSafariHisRequest deleteReuqest)
             throws BusinessException, SystemException {
+        return userSafariBusiSV.deleteUserSafariHis(deleteReuqest);
     }
 
     @Override
-    public void deleteSafariBack(DeleteSafariRequest deleteRequest)
+    public BaseResponse deleteSafariBack(DeleteSafariRequest deleteRequest)
             throws BusinessException, SystemException {
+        return userSafariBusiSV.deleteUserSafari(deleteRequest);
     }
 
 }

@@ -3,6 +3,8 @@ package com.ai.slp.user.service.business.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,8 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.BaseResponse;
+import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.slp.user.api.specialinfo.param.InsertSpecialInfoRequest;
-import com.ai.slp.user.api.specialinfo.param.InsertSpecialInfoResponse;
 import com.ai.slp.user.api.specialinfo.param.QuerySpecialInfoRequest;
 import com.ai.slp.user.api.specialinfo.param.QuerySpecialInfoResponse;
 import com.ai.slp.user.api.specialinfo.param.UpdateSepcialInfoRequest;
@@ -25,28 +28,31 @@ import com.ai.slp.user.util.DateUtils;
 @Transactional
 public class UcSpecialInfoBusiSVImpl implements IUcSpecialInfoBusiSV {
 
+    private static final Log LOG = LogFactory.getLog(UcSpecialInfoBusiSVImpl.class);
     @Autowired
     private IUcSpecialInfoAtomSV ucSpecialInfoAtomSV;
 
     @Override
-    public InsertSpecialInfoResponse insertSpecialInfo(InsertSpecialInfoRequest specialInfoRequest)
+    public BaseResponse insertSpecialInfo(InsertSpecialInfoRequest specialInfoRequest)
             throws BusinessException, SystemException {
         UcSpecialInfo ucSpecialInfo = new UcSpecialInfo();
         BeanUtils.copyProperties(specialInfoRequest, ucSpecialInfo);
         ucSpecialInfo.setCreateTime(DateUtils.currTimeStamp());
-        Integer responseId = 0;
+        BaseResponse response = new BaseResponse();
+        ResponseHeader responseHeader;
         try {
-            responseId = ucSpecialInfoAtomSV.insert(ucSpecialInfo);
+            ucSpecialInfoAtomSV.insert(ucSpecialInfo);
+            responseHeader = new ResponseHeader(true,"success","插入成功");
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("插入失败",e);
+            responseHeader = new ResponseHeader(false,"fail","插入失败");
         }
-        InsertSpecialInfoResponse response = new InsertSpecialInfoResponse();
-        response.setResponseId(responseId);
+        response.setResponseHeader(responseHeader);
         return response;
     }
 
     @Override
-    public void updateSpecialInfo(UpdateSepcialInfoRequest specialInfoRequest)
+    public BaseResponse updateSpecialInfo(UpdateSepcialInfoRequest specialInfoRequest)
             throws BusinessException, SystemException {
         UcSpecialInfo ucSpecialInfo = new UcSpecialInfo();
         BeanUtils.copyProperties(specialInfoRequest, ucSpecialInfo);
@@ -56,11 +62,18 @@ public class UcSpecialInfoBusiSVImpl implements IUcSpecialInfoBusiSV {
         criteria.andTenantIdEqualTo(specialInfoRequest.getTenantId());
         criteria.andUserIdEqualTo(specialInfoRequest.getUserId());
         criteria.andInfoSpecialIdEqualTo(specialInfoRequest.getInfoSpecialId());
+        
+        BaseResponse response = new BaseResponse();
+        ResponseHeader responseHeader;
         try {
             ucSpecialInfoAtomSV.updateByExampleSelective(ucSpecialInfo, example);
+            responseHeader = new ResponseHeader(true,"success","更新成功");
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("更新失败",e);
+            responseHeader = new ResponseHeader(false,"fail","更新失败");
         }
+        response.setResponseHeader(responseHeader);
+        return response;
     }
 
     @Override
@@ -73,13 +86,17 @@ public class UcSpecialInfoBusiSVImpl implements IUcSpecialInfoBusiSV {
         criteria.andInfoSpecialIdEqualTo(specialInfoRequest.getSpecialInfoId());
 
         List<UcSpecialInfo> list = new ArrayList<UcSpecialInfo>();
+        ResponseHeader responseHeader;
         try {
             list = ucSpecialInfoAtomSV.selectByExample(example);
+            responseHeader = new ResponseHeader(true,"success","查询成功");
         } catch (Exception e) {
-            e.printStackTrace();
+            LOG.error("查询失败",e);
+            responseHeader = new ResponseHeader(false,"fail","查询失败");
         }
         QuerySpecialInfoResponse response = new QuerySpecialInfoResponse();
         BeanUtils.copyProperties(list.get(0), response);
+        response.setResponseHeader(responseHeader);
         return response;
     }
 

@@ -27,7 +27,7 @@ public class UcSpecialInfoSVImplTest {
         request.setInfoSpecialId(111L);
         request.setCreateTime(DateUtils.currTimeStamp());
         request.setAttrValue("666");
-        System.out.println(ucSpecialInfoSV.insertSpecialInfo(request).getResponseId());
+        System.out.println(ucSpecialInfoSV.insertSpecialInfo(request).getResponseHeader());
     }
 
    // @Test
