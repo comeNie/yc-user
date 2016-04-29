@@ -19,7 +19,9 @@ import com.ai.slp.user.api.register.param.UcBankKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcContactInfoParams;
 import com.ai.slp.user.api.register.param.UcCustKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcGroupKeyInfoParams;
+import com.ai.slp.user.api.register.param.UcUserAgreeParams;
 import com.ai.slp.user.api.register.param.UcUserParams;
+import com.ai.slp.user.api.register.param.UpdateUserParams;
 import com.ai.slp.user.dao.mapper.bo.UcBankInfo;
 import com.ai.slp.user.dao.mapper.bo.UcContactsInfo;
 import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfo;
@@ -61,7 +63,8 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
      */
     
     @Override
-    public BaseResponse insertUserInfo(UcUserParams userParams) {
+    public BaseResponse insertUserInfo(UcUserParams userParams, UcUserAgreeParams agreeInfo,
+            UcContactInfoParams contactInfo) {
             BaseResponse response = new BaseResponse();
             ResponseHeader responseHeader = null;
             /**
@@ -93,7 +96,9 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
                 //插入用户协议表
                 UcUserAgree ucUserAgree = new UcUserAgree();
                 ucUserAgree.setUserId(Long.parseLong(String.valueOf(userId)));
+                ucUserAgree.setAgreementId(agreeInfo.getAgreementId());
                 registerAtomSv.InsertUcUserAgreeAtomSv(ucUserAgree);
+                //TODO 插入用户联系人信息
                 responseHeader = new ResponseHeader(true,"success","注册成功");
             
             }catch(Exception e){
@@ -350,5 +355,22 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
         ucStateChgRegister.setNewState(state);
         ucStateChgRegister.setChgTime(new Timestamp(new Date().getTime()));
         return registerAtomSv.insertUcStateChgBusiInfo(ucStateChgRegister);
+    }
+    
+    @Override
+    public BaseResponse updateUserInfo(UpdateUserParams updateUserParams){
+        BaseResponse response = new BaseResponse();
+        ResponseHeader responseHeader = null;
+        boolean flag = false;
+        if(updateUserParams==null){
+            responseHeader = new ResponseHeader(false,"fail","用户信息为空，更新失败");
+            response.setResponseHeader(responseHeader);
+            return response;
+        }
+        UcUserParams ucUserParams = updateUserParams.getUcUserParams();
+        
+        
+        response.setResponseHeader(responseHeader);
+        return response;
     }
 }

@@ -13,6 +13,7 @@ import com.ai.slp.user.api.register.param.UcGroupKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcUserAgreeParams;
 import com.ai.slp.user.api.register.param.UcUserFileExtParams;
 import com.ai.slp.user.api.register.param.UcUserParams;
+import com.ai.slp.user.api.register.param.UpdateUserParams;
 import com.ai.slp.user.service.business.interfaces.IRegisterBusiSV;
 
 @Service
@@ -24,13 +25,12 @@ public class RegisterSVImpl implements IRegisterSV {
     @Override
     public BaseResponse insertUcUser(UcUserParams ucUser, UcUserAgreeParams agreeInfo,
             UcContactInfoParams contactInfo) {
-        return null;
+        return registerBusiSv.insertUserInfo(ucUser,agreeInfo,contactInfo);
     }
 
     @Override
-    public BaseResponse updateUserInfo(UcUserParams ucUser, UcUserAgreeParams agreeInfo,
-            UcContactInfoParams contactInfo, UcUserFileExtParams userFileExt) {
-        return null;
+    public BaseResponse updateUserInfo(UpdateUserParams updateUserParams) {
+        return registerBusiSv.updateUserInfo(updateUserParams);
     }
 
     @Override

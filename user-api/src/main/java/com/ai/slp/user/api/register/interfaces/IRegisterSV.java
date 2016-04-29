@@ -9,6 +9,7 @@ import com.ai.slp.user.api.register.param.UcGroupKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcUserAgreeParams;
 import com.ai.slp.user.api.register.param.UcUserFileExtParams;
 import com.ai.slp.user.api.register.param.UcUserParams;
+import com.ai.slp.user.api.register.param.UpdateUserParams;
 
 /**
  * 用户注册 <br>
@@ -36,8 +37,7 @@ public interface IRegisterSV {
      * @author zhaogw
      * @REG_0002
      */
-    @interface UpdateUserInfo{}
-    BaseResponse updateUserInfo(UcUserParams ucUser, UcUserAgreeParams agreeInfo,UcContactInfoParams contactInfo,UcUserFileExtParams userFileExt);
+    BaseResponse updateUserInfo(UpdateUserParams updateUserParams);
     
     /**
      * 查询单个用户信息</br> 

@@ -5,11 +5,14 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.slp.user.api.register.param.UcBankKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcContactInfoParams;
 import com.ai.slp.user.api.register.param.UcGroupKeyInfoParams;
+import com.ai.slp.user.api.register.param.UcUserAgreeParams;
 import com.ai.slp.user.api.register.param.UcUserParams;
+import com.ai.slp.user.api.register.param.UpdateUserParams;
 
 public interface IRegisterBusiSV {
     
-    public BaseResponse insertUserInfo(UcUserParams userParams);
+    public BaseResponse insertUserInfo(UcUserParams ucUser, UcUserAgreeParams agreeInfo,
+            UcContactInfoParams contactInfo);
     
     public BaseResponse insertCompanyInfoAttest(UcUserParams userParams,UcGroupKeyInfoParams ucGroupKeyInfoParams,UcContactInfoParams ucContactInfoParams);
     
@@ -18,4 +21,7 @@ public interface IRegisterBusiSV {
     public BaseResponse getUcGroupKeyInfo(UcGroupKeyInfoParams ucGroupKeyInfoParams);
     
     public BaseResponse insertAgentInfoAttest(UcUserParams userParams,UcGroupKeyInfoParams ucGroupKeyInfoParams,UcContactInfoParams ucContactInfoParams,UcBankKeyInfoParams ucBankKeyInfoParam);
+
+    public BaseResponse updateUserInfo(UpdateUserParams updateUserParams);
+
 }
