@@ -7,9 +7,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ai.opt.base.vo.PageInfo;
-import com.ai.slp.user.api.safari.param.InsertUserSafariRequest;
-import com.ai.slp.user.api.safari.param.InsertUserSafariResponse;
 import com.ai.slp.user.api.safari.param.DeleteSafariRequest;
+import com.ai.slp.user.api.safari.param.InsertUserSafariRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoResponse;
 import com.ai.slp.user.service.business.interfaces.IUserSafariBusiSV;
@@ -28,8 +27,7 @@ public class UserSafariSVImplTest {
         request.setTenantId("test111");
         request.setTenantPwd("123456");
         request.setProdId("333");
-       InsertUserSafariResponse response = userSafariBusiSV.insertUserSafari(request);
-       System.out.println(response.getResponseId());
+       System.out.println(userSafariBusiSV.insertUserSafari(request).getResponseHeader());
     }
     
     @Test

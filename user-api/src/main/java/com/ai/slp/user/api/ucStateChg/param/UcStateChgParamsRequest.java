@@ -18,7 +18,7 @@ public class UcStateChgParamsRequest extends BaseInfo {
             IUcStateChgSV.UpdateUcStateChgInfo.class })
     @Size(max = 18, groups = { IUcStateChgSV.InsertUcStateChgInfo.class,
             IUcStateChgSV.UpdateUcStateChgInfo.class })
-    private long userId;
+    private Long userId;
 
     /**
      * 状态变更流水ID
@@ -64,11 +64,11 @@ public class UcStateChgParamsRequest extends BaseInfo {
      */
     private long operId;
 
-    public long getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
