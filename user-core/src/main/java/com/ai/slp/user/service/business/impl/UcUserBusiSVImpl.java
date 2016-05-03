@@ -13,8 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
-import com.ai.slp.user.api.register.param.SearchUcUserParams;
-import com.ai.slp.user.api.register.param.UcUserParams;
+import com.ai.slp.user.api.ucuser.param.SearchUserInfoRequest;
+import com.ai.slp.user.api.ucuser.param.SearchUserInfoResponse;
+import com.ai.slp.user.api.ucuser.param.UcUserInfoParams;
 import com.ai.slp.user.dao.mapper.bo.UcUser;
 import com.ai.slp.user.dao.mapper.bo.UcUserCriteria;
 import com.ai.slp.user.service.atom.interfaces.IUcUserAtomSV;
@@ -37,45 +38,45 @@ public class UcUserBusiSVImpl implements IUcUserBusiSV {
     private IUcUserAtomSV ucUserAtomSV;
 
     @Override
-    public PageInfo<SearchUcUserParams> searchUserInfo(UcUserParams ucUser) {
+    public SearchUserInfoResponse searchUserInfo(SearchUserInfoRequest userInfoRequest) {
 
         UcUserCriteria example = new UcUserCriteria();
         UcUserCriteria.Criteria criteria = example.createCriteria();
 
-        criteria.andTenantIdEqualTo(ucUser.getTenantId());
+        criteria.andTenantIdEqualTo(userInfoRequest.getTenantId());
 
-        if (ucUser.getUserId()!=0) {
-            criteria.andUserIdEqualTo(ucUser.getUserId());
+        if (!StringUtils.isBlank(userInfoRequest.getUserLoginName())){
+            criteria.andUserLoginNameEqualTo(userInfoRequest.getUserLoginName());
         }
-        if (!StringUtils.isBlank(ucUser.getUserLoginName())) {
-            criteria.andUserLoginNameEqualTo(ucUser.getUserLoginName());
+        if (!StringUtils.isBlank(userInfoRequest.getUserLoginName())) {
+            criteria.andUserLoginNameEqualTo(userInfoRequest.getUserLoginName());
         }
-        if (!StringUtils.isBlank(ucUser.getUserMp())) {
-            criteria.andUserMpEqualTo(ucUser.getUserMp());
+        if (!StringUtils.isBlank(userInfoRequest.getUserMp())) {
+            criteria.andUserMpEqualTo(userInfoRequest.getUserMp());
         }
-        if (!StringUtils.isBlank(ucUser.getUserEmail())) {
-            criteria.andUserEmailEqualTo(ucUser.getUserEmail());
+        if (!StringUtils.isBlank(userInfoRequest.getUserEmail())) {
+            criteria.andUserEmailEqualTo(userInfoRequest.getUserEmail());
         }
-        if (!StringUtils.isBlank(ucUser.getVipLevel())) {
-            criteria.andVipLevelEqualTo(ucUser.getVipLevel());
+        if (!StringUtils.isBlank(userInfoRequest.getVipLevel())) {
+            criteria.andVipLevelEqualTo(userInfoRequest.getVipLevel());
         }
-        if (!StringUtils.isBlank(ucUser.getRegisterSource())) {
-            criteria.andRegisterSourceEqualTo(ucUser.getRegisterSource());
+        if (!StringUtils.isBlank(userInfoRequest.getRegisterSource())) {
+            criteria.andRegisterSourceEqualTo(userInfoRequest.getRegisterSource());
         }
-        if (!StringUtils.isBlank(ucUser.getUserState())) {
-            criteria.andUserStateEqualTo(ucUser.getUserState());
+        if (!StringUtils.isBlank(userInfoRequest.getUserState())) {
+            criteria.andUserStateEqualTo(userInfoRequest.getUserState());
         }
-        if ((ucUser.getBeginTime()!=null)
-                && (ucUser.getEndTime()!=null)) {
+        if ((userInfoRequest.getBeginTime()!=null)
+                && (userInfoRequest.getEndTime()!=null)) {
             criteria.andCreateTimeBetween(
-                    DateUtils.getTimestamp(ucUser.getBeginTime(), "yyyy-MM-dd HH:mm:ss"),
-                    DateUtils.getTimestamp(ucUser.getEndTime(), "yyyy-MM-dd HH:mm:ss"));
+                    DateUtils.getTimestamp(userInfoRequest.getBeginTime(), "yyyy-MM-dd HH:mm:ss"),
+                    DateUtils.getTimestamp(userInfoRequest.getEndTime(), "yyyy-MM-dd HH:mm:ss"));
         }
 
         List<UcUser> list = new ArrayList<UcUser>();
         ResponseHeader responseHeader;
-        Integer pageNo = ucUser.getPageNo();
-        Integer pageSize = ucUser.getPageSize();
+        Integer pageNo = userInfoRequest.getPageNo();
+        Integer pageSize = userInfoRequest.getPageSize();
         int count = 0;
         try {
             count = ucUserAtomSV.countByExample(example);
@@ -85,19 +86,21 @@ public class UcUserBusiSVImpl implements IUcUserBusiSV {
             LOG.error("查询失败");
             responseHeader = new ResponseHeader(false, "fail", "查询失败");
         }
-        List<SearchUcUserParams> responseList = new ArrayList<SearchUcUserParams>();
-        SearchUcUserParams response = new SearchUcUserParams();
+        List<UcUserInfoParams> responseList = new ArrayList<UcUserInfoParams>();
         for (UcUser user : list) {
-            BeanUtils.copyProperties(user, response);
-            responseList.add(response);
+            UcUserInfoParams ucUserInfoParams = new UcUserInfoParams();
+            BeanUtils.copyProperties(user, ucUserInfoParams);
+            responseList.add(ucUserInfoParams);
         }
-        PageInfo<SearchUcUserParams> pageInfo = new PageInfo<SearchUcUserParams>();
-        response.setResponseHeader(responseHeader);
+        PageInfo<UcUserInfoParams> pageInfo = new PageInfo<UcUserInfoParams>();
+        SearchUserInfoResponse response = new SearchUserInfoResponse();
         pageInfo.setCount(count);
         pageInfo.setPageNo(pageNo);
         pageInfo.setPageSize(pageSize);
         pageInfo.setResult(responseList);
-        return pageInfo;
+        response.setPageInfo(pageInfo);
+        response.setResponseHeader(responseHeader);
+        return response;
     }
 
 }
