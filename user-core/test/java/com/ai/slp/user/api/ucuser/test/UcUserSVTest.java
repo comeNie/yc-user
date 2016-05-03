@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.ai.slp.user.api.ucuser.intefaces.IUcUserInfoSV;
 import com.ai.slp.user.api.ucuser.param.SearchUserInfoRequest;
-import com.ai.slp.user.service.business.interfaces.IUcUserBusiSV;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "/context/core-context.xml" })
 public class UcUserSVTest {
 
     @Autowired
-    private IUcUserBusiSV ucUserBusiSV;
+    private IUcUserInfoSV ucUserInfoSV;
 
     @Test
     public void searchUserTest() {
@@ -24,6 +24,6 @@ public class UcUserSVTest {
         request.setBeginTime("2016-4-27 00:00:00");
        request.setEndTime("2016-4-30 00:00:00");
         
-        System.out.println(ucUserBusiSV.searchUserInfo(request).getPageInfo().getResult().size());
+        System.out.println(ucUserInfoSV.searchUserInfo(request).getPageInfo().getResult().size());
     }
 }
