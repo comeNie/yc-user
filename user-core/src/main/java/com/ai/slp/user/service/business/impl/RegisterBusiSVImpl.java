@@ -23,8 +23,11 @@ import com.ai.slp.user.api.register.param.UcUserAgreeParams;
 import com.ai.slp.user.api.register.param.UcUserParams;
 import com.ai.slp.user.api.register.param.UpdateUserParams;
 import com.ai.slp.user.dao.mapper.bo.UcBankInfo;
+import com.ai.slp.user.dao.mapper.bo.UcBankInfoCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcContactsInfo;
+import com.ai.slp.user.dao.mapper.bo.UcContactsInfoCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfo;
+import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfoCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfo;
 import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfoCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcStateChg;
@@ -32,7 +35,10 @@ import com.ai.slp.user.dao.mapper.bo.UcUser;
 import com.ai.slp.user.dao.mapper.bo.UcUserAgree;
 import com.ai.slp.user.dao.mapper.bo.UcUserCriteria;
 import com.ai.slp.user.service.atom.interfaces.IRegisterAtomSV;
+import com.ai.slp.user.service.atom.interfaces.IUcBankInfoAtomSV;
+import com.ai.slp.user.service.atom.interfaces.IUcContactsInfoAtomSV;
 import com.ai.slp.user.service.business.interfaces.IRegisterBusiSV;
+import com.ai.slp.user.service.business.interfaces.IUcBankInfoBusiSV;
 
 @Service
 @Transactional
@@ -41,6 +47,13 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
     private static final Log LOG = LogFactory.getLog(RegisterBusiSVImpl.class);
     @Autowired
     public IRegisterAtomSV registerAtomSv;
+    
+    @Autowired
+    public IUcContactsInfoAtomSV iUcContactsInfoAtomSV;
+    
+    @Autowired
+    public IUcBankInfoAtomSV iUcBankInfoAtomSV;
+    
     
     //注册
     public String REGISTER_STATE = "11";
@@ -64,7 +77,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
     
     @Override
     public BaseResponse insertUserInfo(UcUserParams userParams, UcUserAgreeParams agreeInfo,
-            UcContactInfoParams contactInfo) {
+            UcContactInfoParams contactParams) {
             BaseResponse response = new BaseResponse();
             ResponseHeader responseHeader = null;
             /**
@@ -98,7 +111,20 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
                 ucUserAgree.setUserId(Long.parseLong(String.valueOf(userId)));
                 ucUserAgree.setAgreementId(agreeInfo.getAgreementId());
                 registerAtomSv.InsertUcUserAgreeAtomSv(ucUserAgree);
-                //TODO 插入用户联系人信息
+                UcContactsInfo contactsInfo = new UcContactsInfo();
+                BeanUtils.copyProperties(contactsInfo, contactParams);
+                contactsInfo.setUserId(ucUser.getUserId());
+                contactsInfo.setTenantId(ucUser.getTenantId());
+                //TODO 插入用户联系人表sequence
+                contactsInfo.setContactSeqId("11");
+                iUcContactsInfoAtomSV.insert(contactsInfo);
+                //用户银行卡信息记
+                UcBankInfo bankInfo = new UcBankInfo();
+                bankInfo.setUserId(ucUser.getUserId());
+                bankInfo.setTenantId(ucUser.getTenantId());
+                //TODO  获取银行卡sequence 
+                bankInfo.setBankSeqId("22");
+                iUcBankInfoAtomSV.insert(bankInfo );
                 responseHeader = new ResponseHeader(true,"success","注册成功");
             
             }catch(Exception e){
@@ -367,9 +393,78 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
             response.setResponseHeader(responseHeader);
             return response;
         }
+        /*************更新用户基本信息*********************/
         UcUserParams ucUserParams = updateUserParams.getUcUserParams();
-        
-        
+        if(ucUserParams ==null){
+            responseHeader = new ResponseHeader(false,"fail","用户基本信息为空信息为空，更新失败");
+            response.setResponseHeader(responseHeader);
+            return response;
+        }else{
+            //校验用户名、邮箱、手机号码
+            List<UcUser> list = getUserInfoBycondition(ucUserParams);
+            boolean valide = list.size()>0?false:true;
+            if(valide){
+                //根据用户id判断是否是当前用户如果不是当前用户 则表示用户名、邮箱、手机号码重复
+                boolean uservalide = false;
+                for(UcUser user :list){
+                    if(!user.getUserId().equals(ucUserParams.getUserId())){
+                        uservalide = true ;
+                    }
+                }
+                if(uservalide){
+                    responseHeader = new ResponseHeader(false,"fail","请输入有效信息");
+                    response.setResponseHeader(responseHeader);
+                    return response;
+                }
+            }
+            UcUser record = new UcUser();
+            BeanUtils.copyProperties(record, ucUserParams);
+            UcUserCriteria example = new UcUserCriteria();
+            example.createCriteria().andUserIdEqualTo(record.getUserId())
+                                                       .andTenantIdEqualTo(record.getTenantId());
+            registerAtomSv.updateUserInfo(record, example);
+        }
+        //更新用户个人详细信息
+        UcCustKeyInfoParams ucCustKey = updateUserParams.getUcCustKeyInfoParams();
+        if(ucCustKey!=null){
+            UcCustKeyInfo record = new UcCustKeyInfo();
+            BeanUtils.copyProperties(record, ucCustKey);
+            UcCustKeyInfoCriteria example = new UcCustKeyInfoCriteria();
+            example.createCriteria().andUserIdEqualTo(record.getUserId())
+                                                       .andTenantIdEqualTo(record.getTenantId());
+            registerAtomSv.updateCustKeyInfo(record, example);
+        }
+        //更新企业信息
+        UcGroupKeyInfoParams  ucGroupKeyInfoParams  = updateUserParams.getUcGroupKeyInfoParams();
+        if(ucGroupKeyInfoParams!=null ){
+            UcGroupKeyInfo record = new UcGroupKeyInfo();
+            BeanUtils.copyProperties(record, ucGroupKeyInfoParams);
+            UcGroupKeyInfoCriteria example = new UcGroupKeyInfoCriteria();
+            example.createCriteria().andUserIdEqualTo(record.getUserId())
+                                            .andTenantIdEqualTo(record.getTenantId());
+            registerAtomSv.updateGroupKeyInfo(record, example);
+        }
+        //更新用户联系人信息
+        UcContactInfoParams ucContactInfoParams  = updateUserParams.getUcContactInfoParams();
+        if(ucContactInfoParams!=null){
+            UcContactsInfo record = new UcContactsInfo();
+            BeanUtils.copyProperties(record, ucContactInfoParams);
+            UcContactsInfoCriteria example = new UcContactsInfoCriteria();
+            example.createCriteria().andUserIdEqualTo(record.getUserId())
+                                            .andTenantIdEqualTo(record.getTenantId());
+            iUcContactsInfoAtomSV.updateByExampleSelective(record, example);
+        }
+        //更新用户银行信息
+        UcBankKeyInfoParams ucBankKeyParams = updateUserParams.getUcBankKeyParams();
+        if(ucBankKeyParams!=null){
+            UcBankInfo record = new UcBankInfo();
+            BeanUtils.copyProperties(record, ucBankKeyParams);
+            UcBankInfoCriteria example = new UcBankInfoCriteria();
+            example.createCriteria().andUserIdEqualTo(record.getUserId())
+            .andTenantIdEqualTo(record.getTenantId());
+            iUcBankInfoAtomSV.updateByExampleSelective(record, example);
+        }
+        responseHeader = new ResponseHeader(true,"success","更新成功");
         response.setResponseHeader(responseHeader);
         return response;
     }
