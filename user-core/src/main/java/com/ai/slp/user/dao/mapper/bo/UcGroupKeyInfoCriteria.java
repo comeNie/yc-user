@@ -805,63 +805,63 @@ public class UcGroupKeyInfoCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andRegisteredCapitassIsNull() {
-            addCriterion("REGISTERED_CAPITASS is null");
+        public Criteria andRegisteredCapitalsIsNull() {
+            addCriterion("REGISTERED_CAPITAlS is null");
             return (Criteria) this;
         }
 
-        public Criteria andRegisteredCapitassIsNotNull() {
-            addCriterion("REGISTERED_CAPITASS is not null");
+        public Criteria andRegisteredCapitalsIsNotNull() {
+            addCriterion("REGISTERED_CAPITAlS is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRegisteredCapitassEqualTo(Long value) {
-            addCriterion("REGISTERED_CAPITASS =", value, "registeredCapitass");
+        public Criteria andRegisteredCapitalsEqualTo(Long value) {
+            addCriterion("REGISTERED_CAPITAlS =", value, "registeredCapitals");
             return (Criteria) this;
         }
 
-        public Criteria andRegisteredCapitassNotEqualTo(Long value) {
-            addCriterion("REGISTERED_CAPITASS <>", value, "registeredCapitass");
+        public Criteria andRegisteredCapitalsNotEqualTo(Long value) {
+            addCriterion("REGISTERED_CAPITAlS <>", value, "registeredCapitals");
             return (Criteria) this;
         }
 
-        public Criteria andRegisteredCapitassGreaterThan(Long value) {
-            addCriterion("REGISTERED_CAPITASS >", value, "registeredCapitass");
+        public Criteria andRegisteredCapitalsGreaterThan(Long value) {
+            addCriterion("REGISTERED_CAPITAlS >", value, "registeredCapitals");
             return (Criteria) this;
         }
 
-        public Criteria andRegisteredCapitassGreaterThanOrEqualTo(Long value) {
-            addCriterion("REGISTERED_CAPITASS >=", value, "registeredCapitass");
+        public Criteria andRegisteredCapitalsGreaterThanOrEqualTo(Long value) {
+            addCriterion("REGISTERED_CAPITAlS >=", value, "registeredCapitals");
             return (Criteria) this;
         }
 
-        public Criteria andRegisteredCapitassLessThan(Long value) {
-            addCriterion("REGISTERED_CAPITASS <", value, "registeredCapitass");
+        public Criteria andRegisteredCapitalsLessThan(Long value) {
+            addCriterion("REGISTERED_CAPITAlS <", value, "registeredCapitals");
             return (Criteria) this;
         }
 
-        public Criteria andRegisteredCapitassLessThanOrEqualTo(Long value) {
-            addCriterion("REGISTERED_CAPITASS <=", value, "registeredCapitass");
+        public Criteria andRegisteredCapitalsLessThanOrEqualTo(Long value) {
+            addCriterion("REGISTERED_CAPITAlS <=", value, "registeredCapitals");
             return (Criteria) this;
         }
 
-        public Criteria andRegisteredCapitassIn(List<Long> values) {
-            addCriterion("REGISTERED_CAPITASS in", values, "registeredCapitass");
+        public Criteria andRegisteredCapitalsIn(List<Long> values) {
+            addCriterion("REGISTERED_CAPITAlS in", values, "registeredCapitals");
             return (Criteria) this;
         }
 
-        public Criteria andRegisteredCapitassNotIn(List<Long> values) {
-            addCriterion("REGISTERED_CAPITASS not in", values, "registeredCapitass");
+        public Criteria andRegisteredCapitalsNotIn(List<Long> values) {
+            addCriterion("REGISTERED_CAPITAlS not in", values, "registeredCapitals");
             return (Criteria) this;
         }
 
-        public Criteria andRegisteredCapitassBetween(Long value1, Long value2) {
-            addCriterion("REGISTERED_CAPITASS between", value1, value2, "registeredCapitass");
+        public Criteria andRegisteredCapitalsBetween(Long value1, Long value2) {
+            addCriterion("REGISTERED_CAPITAlS between", value1, value2, "registeredCapitals");
             return (Criteria) this;
         }
 
-        public Criteria andRegisteredCapitassNotBetween(Long value1, Long value2) {
-            addCriterion("REGISTERED_CAPITASS not between", value1, value2, "registeredCapitass");
+        public Criteria andRegisteredCapitalsNotBetween(Long value1, Long value2) {
+            addCriterion("REGISTERED_CAPITAlS not between", value1, value2, "registeredCapitals");
             return (Criteria) this;
         }
 
