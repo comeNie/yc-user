@@ -3,7 +3,6 @@ package com.ai.slp.user.service.business.interfaces;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.safari.param.DeleteSafariHisRequest;
 import com.ai.slp.user.api.safari.param.DeleteSafariRequest;
 import com.ai.slp.user.api.safari.param.InsertUserSafariRequest;
@@ -17,7 +16,7 @@ public interface IUserSafariBusiSV {
     public BaseResponse deleteUserSafari(DeleteSafariRequest deleteSafariRequest)
             throws BusinessException, SystemException;
 
-    public PageInfo<UserSafariInfoResponse> queryUserSafari(
+    public UserSafariInfoResponse queryUserSafari(
             UserSafariInfoRequest userSafariInfoRequest) throws BusinessException, SystemException;
 
     public BaseResponse deleteUserSafariHis(DeleteSafariHisRequest deleteRequest)

@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.apiinfo.interfaces.IApiInfoSV;
 import com.ai.slp.user.api.apiinfo.param.ApiInfoRequest;
 import com.ai.slp.user.api.apiinfo.param.ApiInfoResponse;
@@ -35,7 +34,7 @@ public class ApiInfoSVImpl implements IApiInfoSV {
     }
 
     @Override
-    public PageInfo<ApiInfoResponse> queryApiInfo(ApiInfoRequest apiInfoRequest)
+    public ApiInfoResponse queryApiInfo(ApiInfoRequest apiInfoRequest)
             throws BusinessException, SystemException {
         return apiInfoBusiSV.queryApiInfo(apiInfoRequest);
     }

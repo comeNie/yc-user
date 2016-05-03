@@ -3,7 +3,6 @@ package com.ai.slp.user.api.favorite.interfaces;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.favorite.param.DeleteFavoriteListRequest;
 import com.ai.slp.user.api.favorite.param.InsertUserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UpdateFavoriteRequest;
@@ -80,6 +79,6 @@ public interface IUserFavoriteSV {
      * @author zhangqiang7
      * @UCUSER_006
      */
-    PageInfo<UserFavoriteResponse> queryFavorite(UserFavoriteRequest userFavoriteRequest)
+   UserFavoriteResponse queryFavorite(UserFavoriteRequest userFavoriteRequest)
             throws SystemException, BusinessException;
 }

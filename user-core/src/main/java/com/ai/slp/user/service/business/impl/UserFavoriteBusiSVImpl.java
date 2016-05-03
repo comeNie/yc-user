@@ -18,6 +18,7 @@ import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.slp.user.api.favorite.param.DeleteFavoriteListRequest;
 import com.ai.slp.user.api.favorite.param.InsertUserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UpdateFavoriteRequest;
+import com.ai.slp.user.api.favorite.param.UserFavoriteParams;
 import com.ai.slp.user.api.favorite.param.UserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UserFavoriteResponse;
 import com.ai.slp.user.dao.mapper.bo.UcUserFavorite;
@@ -107,14 +108,14 @@ public class UserFavoriteBusiSVImpl implements IUserFavoriteBusiSV {
     }
 
     @Override
-    public PageInfo<UserFavoriteResponse> queryFavorite(UserFavoriteRequest userFavoriteRequest)
+    public UserFavoriteResponse queryFavorite(UserFavoriteRequest userFavoriteRequest)
             throws SystemException, BusinessException {
         UcUserFavoriteCriteria example = new UcUserFavoriteCriteria();
         UcUserFavoriteCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(userFavoriteRequest.getTenantId());
         criteria.andUserIdEqualTo(userFavoriteRequest.getUserId());
         List<UcUserFavorite> favoriteList = new ArrayList<UcUserFavorite>();
-        List<UserFavoriteResponse> responseList = new ArrayList<UserFavoriteResponse>();
+        List<UserFavoriteParams> responseList = new ArrayList<UserFavoriteParams>();
         ResponseHeader responseHeader;
         int count = 0;
         try {
@@ -129,16 +130,18 @@ public class UserFavoriteBusiSVImpl implements IUserFavoriteBusiSV {
         Integer pageSize = userFavoriteRequest.getPageSize();
         Integer pageNo = userFavoriteRequest.getPageNo();
         for (UcUserFavorite ucUserFavorite : favoriteList) {
-            BeanUtils.copyProperties(ucUserFavorite, response);
-            responseList.add(response);
+            UserFavoriteParams userFavoriteParams = new UserFavoriteParams();
+            BeanUtils.copyProperties(ucUserFavorite, userFavoriteParams);
+            responseList.add(userFavoriteParams);
         }
-        PageInfo<UserFavoriteResponse> pageInfo = new PageInfo<UserFavoriteResponse>();
-        response.setResponseHeader(responseHeader);
+        PageInfo<UserFavoriteParams> pageInfo = new PageInfo<UserFavoriteParams>();
         pageInfo.setResult(responseList);
         pageInfo.setCount(count);
         pageInfo.setPageNo(pageNo);
         pageInfo.setPageSize(pageSize);
-        return pageInfo;
+        response.setPageInfo(pageInfo);
+        response.setResponseHeader(responseHeader);
+        return response;
     }
 
 }

@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.message.interfaces.IUserMessageSV;
 import com.ai.slp.user.api.message.param.DeleteMessageRequest;
 import com.ai.slp.user.api.message.param.InsertUserMessageRequest;
@@ -37,7 +36,7 @@ public class UserMessageSVImpl implements IUserMessageSV {
     }
 
     @Override
-    public PageInfo<QueryMessageResponse> queryUserMessage(QueryMessageRequest queryRequest)
+    public QueryMessageResponse queryUserMessage(QueryMessageRequest queryRequest)
             throws BusinessException, SystemException {
         return userMessageBusiSV.queryUserMessage(queryRequest);
     }

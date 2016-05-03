@@ -18,6 +18,7 @@ import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.slp.user.api.contactsinfo.param.InsertContactsInfoRequest;
 import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoRequest;
 import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoResponse;
+import com.ai.slp.user.api.contactsinfo.param.UcContactsInfoParams;
 import com.ai.slp.user.api.contactsinfo.param.UpdateContactsInfoRequest;
 import com.ai.slp.user.dao.mapper.bo.UcContactsInfo;
 import com.ai.slp.user.dao.mapper.bo.UcContactsInfoCriteria;
@@ -80,7 +81,7 @@ public class UcContactsInfoBusiSVImpl implements IUcContactsInfoBusiSV {
     }
 
     @Override
-    public PageInfo<QueryContactsInfoResponse> queryContactsInfo(
+    public QueryContactsInfoResponse queryContactsInfo(
             QueryContactsInfoRequest contactsInfoRequest)
                     throws BusinessException, SystemException {
         UcContactsInfoCriteria example = new UcContactsInfoCriteria();
@@ -89,7 +90,7 @@ public class UcContactsInfoBusiSVImpl implements IUcContactsInfoBusiSV {
         criteria.andUserIdEqualTo(contactsInfoRequest.getUserId());
 
         QueryContactsInfoResponse response = new QueryContactsInfoResponse();
-        List<QueryContactsInfoResponse> responseList = new ArrayList<QueryContactsInfoResponse>();
+        List<UcContactsInfoParams> responseList = new ArrayList<UcContactsInfoParams>();
         ResponseHeader responseHeader;
 
         Integer pageNo = contactsInfoRequest.getPageNo();
@@ -105,16 +106,18 @@ public class UcContactsInfoBusiSVImpl implements IUcContactsInfoBusiSV {
             responseHeader = new ResponseHeader(false, "fail", "查询失败");
         }
         for (UcContactsInfo ucContactsInfo : list) {
-            BeanUtils.copyProperties(ucContactsInfo, response);
-            responseList.add(response);
+            UcContactsInfoParams ucContactsInfoParams = new UcContactsInfoParams();
+            BeanUtils.copyProperties(ucContactsInfo, ucContactsInfoParams);
+            responseList.add(ucContactsInfoParams);
         }
-        PageInfo<QueryContactsInfoResponse> pageInfo = new PageInfo<QueryContactsInfoResponse>();
-        response.setResponseHeader(responseHeader);
+        PageInfo<UcContactsInfoParams> pageInfo = new PageInfo<UcContactsInfoParams>();
         pageInfo.setCount(count);
         pageInfo.setPageNo(pageNo);
         pageInfo.setPageSize(pageSize);
         pageInfo.setResult(responseList);
-        return pageInfo;
+        response.setPageInfo(pageInfo);
+        response.setResponseHeader(responseHeader);
+        return response;
     }
 
 }

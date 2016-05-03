@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.safari.interfaces.IUserSafariSV;
 import com.ai.slp.user.api.safari.param.DeleteSafariHisRequest;
 import com.ai.slp.user.api.safari.param.DeleteSafariRequest;
@@ -34,7 +33,7 @@ public class UserSafariSVImpl implements IUserSafariSV {
     }
 
     @Override
-    public PageInfo<UserSafariInfoResponse> queryUserSafari(
+    public UserSafariInfoResponse queryUserSafari(
             UserSafariInfoRequest userSafariInfoRequest) throws BusinessException, SystemException {
         return userSafariBusiSV.queryUserSafari(userSafariInfoRequest);
     }

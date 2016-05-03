@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.contactsinfo.interfaces.IUcContactsInfoSV;
 import com.ai.slp.user.api.contactsinfo.param.InsertContactsInfoRequest;
 import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoRequest;
@@ -35,7 +34,7 @@ public class UcContactsInfoSVImpl implements IUcContactsInfoSV {
     }
 
     @Override
-    public PageInfo<QueryContactsInfoResponse> queryContactsInfo(
+    public QueryContactsInfoResponse queryContactsInfo(
             QueryContactsInfoRequest contactsInfoRequest)
                     throws BusinessException, SystemException {
         return ucContactsInfoBusiSV.queryContactsInfo(contactsInfoRequest);

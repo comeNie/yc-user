@@ -3,7 +3,6 @@ package com.ai.slp.user.api.contactsinfo.interfaces;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.contactsinfo.param.InsertContactsInfoRequest;
 import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoRequest;
 import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoResponse;
@@ -62,7 +61,7 @@ public interface IUcContactsInfoSV {
      * @author zhangqiang7
      * @UCUSER
      */
-    PageInfo<QueryContactsInfoResponse> queryContactsInfo(
-            QueryContactsInfoRequest contactsInfoRequest) throws BusinessException, SystemException;
+    QueryContactsInfoResponse queryContactsInfo(QueryContactsInfoRequest contactsInfoRequest)
+            throws BusinessException, SystemException;
 
 }

@@ -3,7 +3,6 @@ package com.ai.slp.user.api.bankinfo.interfaces;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.bankinfo.param.InsertBankInfoRequest;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoRequest;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoResponse;
@@ -59,6 +58,6 @@ public interface IUcBankInfoSV {
      * @author zhangqiang7
      * @UCUSER
      */
-    PageInfo<QueryBankInfoResponse> queryBankInfo(QueryBankInfoRequest bankInfoRequest)
+    QueryBankInfoResponse queryBankInfo(QueryBankInfoRequest bankInfoRequest)
             throws BusinessException, SystemException;
 }

@@ -19,6 +19,7 @@ import com.ai.opt.sdk.util.StringUtil;
 import com.ai.slp.user.api.safari.param.DeleteSafariHisRequest;
 import com.ai.slp.user.api.safari.param.DeleteSafariRequest;
 import com.ai.slp.user.api.safari.param.InsertUserSafariRequest;
+import com.ai.slp.user.api.safari.param.UserSafariInfoPatams;
 import com.ai.slp.user.api.safari.param.UserSafariInfoRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoResponse;
 import com.ai.slp.user.dao.mapper.bo.UcUserSafari;
@@ -108,16 +109,16 @@ public class UserSafariBusiSVImpl implements IUserSafariBusiSV {
     }
 
     @Override
-    public PageInfo<UserSafariInfoResponse> queryUserSafari(UserSafariInfoRequest request)
+    public UserSafariInfoResponse queryUserSafari(UserSafariInfoRequest request)
             throws BusinessException, SystemException {
         UcUserSafariCriteria example = new UcUserSafariCriteria();
         UcUserSafariCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(request.getTenantId());
         criteria.andUserIdEqualTo(request.getUserId());
         // criteria.andSafariTimeBetween(value1, value2);
-        PageInfo<UserSafariInfoResponse> pageInfo = new PageInfo<UserSafariInfoResponse>();
+        PageInfo<UserSafariInfoPatams> pageInfo = new PageInfo<UserSafariInfoPatams>();
         List<UcUserSafari> queryList = new ArrayList<UcUserSafari>();
-        List<UserSafariInfoResponse> responseList = new ArrayList<UserSafariInfoResponse>();
+        List<UserSafariInfoPatams> responseList = new ArrayList<UserSafariInfoPatams>();
 
         Integer pageNo = request.getPageNo();
         Integer pageSize = request.getPageSize();
@@ -133,15 +134,17 @@ public class UserSafariBusiSVImpl implements IUserSafariBusiSV {
         }
         UserSafariInfoResponse response = new UserSafariInfoResponse();
         for (UcUserSafari ucUserSafari : queryList) {
-            BeanUtils.copyProperties(ucUserSafari, response);
-            responseList.add(response);
+            UserSafariInfoPatams userSafariInfoPatams = new UserSafariInfoPatams();
+            BeanUtils.copyProperties(ucUserSafari, userSafariInfoPatams);
+            responseList.add(userSafariInfoPatams);
         }
-        response.setResponseHeader(responseHeader);
         pageInfo.setCount(count);
         pageInfo.setPageNo(pageNo);
         pageInfo.setPageSize(pageSize);
         pageInfo.setResult(responseList);
-        return pageInfo;
+        response.setPageInfo(pageInfo);
+        response.setResponseHeader(responseHeader);
+        return response;
     }
 
     @Override

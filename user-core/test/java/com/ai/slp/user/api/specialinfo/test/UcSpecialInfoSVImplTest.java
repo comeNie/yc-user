@@ -46,6 +46,6 @@ public class UcSpecialInfoSVImplTest {
         request.setTenantId("test111");
         request.setUserId(111L);
         request.setSpecialInfoId(111L);
-        System.out.println(ucSpecialInfoSV.querySpecialInfo(request).getInfoSpecialId());
+        System.out.println(ucSpecialInfoSV.querySpecialInfo(request).getResponseHeader());
     }
 }

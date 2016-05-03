@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.bankinfo.interfaces.IUcBankInfoSV;
 import com.ai.slp.user.api.bankinfo.param.InsertBankInfoRequest;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoRequest;
@@ -29,7 +28,7 @@ public class UcBankInfoSVImpl implements IUcBankInfoSV {
     }
 
     @Override
-    public PageInfo<QueryBankInfoResponse> queryBankInfo(QueryBankInfoRequest bankInfoRequest)
+    public QueryBankInfoResponse queryBankInfo(QueryBankInfoRequest bankInfoRequest)
             throws BusinessException, SystemException {
         return ucBankInfoBusiSV.queryBankInfo(bankInfoRequest);
     }
