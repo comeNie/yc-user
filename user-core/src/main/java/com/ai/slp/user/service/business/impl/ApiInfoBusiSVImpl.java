@@ -81,7 +81,7 @@ public class ApiInfoBusiSVImpl implements IApiInfoBusiSV {
     }
 
     @Override
-    public PageInfo<ApiInfoResponse> queryApiInfo(ApiInfoRequest apiInfoRequest)
+    public ApiInfoResponse queryApiInfo(ApiInfoRequest apiInfoRequest)
             throws BusinessException, SystemException {
 
         UcApiInfoCriteria example = new UcApiInfoCriteria();
@@ -102,19 +102,22 @@ public class ApiInfoBusiSVImpl implements IApiInfoBusiSV {
             LOG.error("查询失败");
             responseHeader = new ResponseHeader(false, "fail", "查询失败");
         }
-        List<ApiInfoResponse> responseList = new ArrayList<ApiInfoResponse>();
         ApiInfoResponse response = new ApiInfoResponse();
+        List<UcApiInfoParams> responseList = new ArrayList<UcApiInfoParams>();
         for (UcApiInfo ucApiInfo : list) {
-            BeanUtils.copyProperties(ucApiInfo, response);
-            responseList.add(response);
+            UcApiInfoParams ucApiInfoParams = new UcApiInfoParams();
+            BeanUtils.copyProperties(ucApiInfo, ucApiInfoParams);
+            responseList.add(ucApiInfoParams);
         }
-        PageInfo<ApiInfoResponse> pageInfo = new PageInfo<ApiInfoResponse>();
         response.setResponseHeader(responseHeader);
+        PageInfo<UcApiInfoParams> pageInfo = new PageInfo<UcApiInfoParams>();
         pageInfo.setCount(count);
         pageInfo.setPageNo(pageNo);
         pageInfo.setPageSize(pageSize);
         pageInfo.setResult(responseList);
-        return pageInfo;
+        response.setPageInfo(pageInfo);
+        response.setResponseHeader(responseHeader);
+        return response;
     }
 
 }

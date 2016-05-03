@@ -3,7 +3,6 @@ package com.ai.slp.user.api.safari.interfaces;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.safari.param.DeleteSafariHisRequest;
 import com.ai.slp.user.api.safari.param.DeleteSafariRequest;
 import com.ai.slp.user.api.safari.param.InsertUserSafariRequest;
@@ -94,6 +93,6 @@ public interface IUserSafariSV {
      * @author zhangqiang7
      * @UCUSER_012
      */
-    PageInfo<UserSafariInfoResponse> queryUserSafari(UserSafariInfoRequest userSafariInfoRequest)
+    UserSafariInfoResponse queryUserSafari(UserSafariInfoRequest userSafariInfoRequest)
             throws BusinessException, SystemException;
 }

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.safari.param.DeleteSafariRequest;
 import com.ai.slp.user.api.safari.param.InsertUserSafariRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoRequest;
@@ -39,16 +38,14 @@ public class UserSafariSVImplTest {
        request.setTenantId("test111");
        request.setTenantPwd("123456");
        request.setUserId(111L);
-       PageInfo<UserSafariInfoResponse> response = userSafariBusiSV.queryUserSafari(request);
-       System.out.println(response.getCount());
-       System.out.println(response.getResult().size());
+       UserSafariInfoResponse response = userSafariBusiSV.queryUserSafari(request);
+       System.out.println(response.getPageInfo().getCount());
     }
     
     //@Test
     public void deleteSafariTest(){
         DeleteSafariRequest request = new DeleteSafariRequest();
-        request.setUserId(111L);
-        request.setTenantId("test111");
+        request.setUserId(111L);         request.setTenantId("test111");
         request.setTenantPwd("123456");
         //request.setProdId("333");
         //request.setDateTime("2016-4-27");

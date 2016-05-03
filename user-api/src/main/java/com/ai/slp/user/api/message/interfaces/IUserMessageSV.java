@@ -3,7 +3,6 @@ package com.ai.slp.user.api.message.interfaces;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.message.param.DeleteMessageRequest;
 import com.ai.slp.user.api.message.param.InsertUserMessageRequest;
 import com.ai.slp.user.api.message.param.QueryMessageRequest;
@@ -61,7 +60,7 @@ public interface IUserMessageSV {
      * @author zhangqiang7
      * @UCUSER
      */
-    PageInfo<QueryMessageResponse> queryUserMessage(QueryMessageRequest queryRequest)
+    QueryMessageResponse queryUserMessage(QueryMessageRequest queryRequest)
             throws BusinessException, SystemException;
 
     @interface DeleteUserMessage {

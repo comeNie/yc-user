@@ -10,5 +10,56 @@ import java.io.Serializable;
  * @author zhaogw
  */
 public class RegisterParamsRequest implements Serializable {
+    
+    private UcContactInfoParams ucContactInfoParams ;
+    
+    private UcUserParams ucUserParam;
+    
+    private UcGroupKeyInfoParams ucGroupKeyInfoParams;
+    
+    private UcCustKeyInfoParams ucCustKeyInfoParams ;
+    
+    private UcBankKeyInfoParams ucBankKeyParams;
+
+    public UcContactInfoParams getUcContactInfoParams() {
+        return ucContactInfoParams;
+    }
+
+    public void setUcContactInfoParams(UcContactInfoParams ucContactInfoParams) {
+        this.ucContactInfoParams = ucContactInfoParams;
+    }
+
+    public UcUserParams getUcUserParam() {
+        return ucUserParam;
+    }
+
+    public void setUcUserParam(UcUserParams ucUserParam) {
+        this.ucUserParam = ucUserParam;
+    }
+
+    public UcGroupKeyInfoParams getUcGroupKeyInfoParams() {
+        return ucGroupKeyInfoParams;
+    }
+
+    public void setUcGroupKeyInfoParams(UcGroupKeyInfoParams ucGroupKeyInfoParams) {
+        this.ucGroupKeyInfoParams = ucGroupKeyInfoParams;
+    }
+
+    public UcCustKeyInfoParams getUcCustKeyInfoParams() {
+        return ucCustKeyInfoParams;
+    }
+
+    public void setUcCustKeyInfoParams(UcCustKeyInfoParams ucCustKeyInfoParams) {
+        this.ucCustKeyInfoParams = ucCustKeyInfoParams;
+    }
+
+    public UcBankKeyInfoParams getUcBankKeyParams() {
+        return ucBankKeyParams;
+    }
+
+    public void setUcBankKeyParams(UcBankKeyInfoParams ucBankKeyParams) {
+        this.ucBankKeyParams = ucBankKeyParams;
+    }
+    
 
 }

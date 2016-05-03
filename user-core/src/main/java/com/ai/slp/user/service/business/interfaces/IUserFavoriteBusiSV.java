@@ -3,7 +3,6 @@ package com.ai.slp.user.service.business.interfaces;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.favorite.param.DeleteFavoriteListRequest;
 import com.ai.slp.user.api.favorite.param.InsertUserFavoriteRequest;
 import com.ai.slp.user.api.favorite.param.UpdateFavoriteRequest;
@@ -22,7 +21,7 @@ public interface IUserFavoriteBusiSV {
     public BaseResponse deleteFavorite(DeleteFavoriteListRequest deleteFavoriteListRequest)
             throws SystemException, BusinessException;
 
-    public PageInfo<UserFavoriteResponse> queryFavorite(UserFavoriteRequest userFavoriteRequest)
+    public UserFavoriteResponse queryFavorite(UserFavoriteRequest userFavoriteRequest)
             throws SystemException, BusinessException;
 
 }

@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.favorite.interfaces.IUserFavoriteSV;
 import com.ai.slp.user.api.favorite.param.DeleteFavoriteListRequest;
 import com.ai.slp.user.api.favorite.param.InsertUserFavoriteRequest;
@@ -36,7 +35,7 @@ public class UserFavoriteSVImpl implements IUserFavoriteSV {
     }
 
     @Override
-    public PageInfo<UserFavoriteResponse> queryFavorite(UserFavoriteRequest userFavoriteRequest)
+    public UserFavoriteResponse queryFavorite(UserFavoriteRequest userFavoriteRequest)
             throws SystemException, BusinessException {
         return userFavoriteBusiSV.queryFavorite(userFavoriteRequest);
     }

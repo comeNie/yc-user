@@ -29,6 +29,7 @@ import com.ai.slp.user.util.DateUtils;
 public class UcSpecialInfoBusiSVImpl implements IUcSpecialInfoBusiSV {
 
     private static final Log LOG = LogFactory.getLog(UcSpecialInfoBusiSVImpl.class);
+
     @Autowired
     private IUcSpecialInfoAtomSV ucSpecialInfoAtomSV;
 
@@ -42,10 +43,10 @@ public class UcSpecialInfoBusiSVImpl implements IUcSpecialInfoBusiSV {
         ResponseHeader responseHeader;
         try {
             ucSpecialInfoAtomSV.insert(ucSpecialInfo);
-            responseHeader = new ResponseHeader(true,"success","插入成功");
+            responseHeader = new ResponseHeader(true, "success", "插入成功");
         } catch (Exception e) {
-            LOG.error("插入失败",e);
-            responseHeader = new ResponseHeader(false,"fail","插入失败");
+            LOG.error("插入失败", e);
+            responseHeader = new ResponseHeader(false, "fail", "插入失败");
         }
         response.setResponseHeader(responseHeader);
         return response;
@@ -62,15 +63,15 @@ public class UcSpecialInfoBusiSVImpl implements IUcSpecialInfoBusiSV {
         criteria.andTenantIdEqualTo(specialInfoRequest.getTenantId());
         criteria.andUserIdEqualTo(specialInfoRequest.getUserId());
         criteria.andInfoSpecialIdEqualTo(specialInfoRequest.getInfoSpecialId());
-        
+
         BaseResponse response = new BaseResponse();
         ResponseHeader responseHeader;
         try {
             ucSpecialInfoAtomSV.updateByExampleSelective(ucSpecialInfo, example);
-            responseHeader = new ResponseHeader(true,"success","更新成功");
+            responseHeader = new ResponseHeader(true, "success", "更新成功");
         } catch (Exception e) {
-            LOG.error("更新失败",e);
-            responseHeader = new ResponseHeader(false,"fail","更新失败");
+            LOG.error("更新失败", e);
+            responseHeader = new ResponseHeader(false, "fail", "更新失败");
         }
         response.setResponseHeader(responseHeader);
         return response;
@@ -89,10 +90,10 @@ public class UcSpecialInfoBusiSVImpl implements IUcSpecialInfoBusiSV {
         ResponseHeader responseHeader;
         try {
             list = ucSpecialInfoAtomSV.selectByExample(example);
-            responseHeader = new ResponseHeader(true,"success","查询成功");
+            responseHeader = new ResponseHeader(true, "success", "查询成功");
         } catch (Exception e) {
-            LOG.error("查询失败",e);
-            responseHeader = new ResponseHeader(false,"fail","查询失败");
+            LOG.error("查询失败", e);
+            responseHeader = new ResponseHeader(false, "fail", "查询失败");
         }
         QuerySpecialInfoResponse response = new QuerySpecialInfoResponse();
         BeanUtils.copyProperties(list.get(0), response);

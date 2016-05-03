@@ -18,7 +18,7 @@ public class UcStateChgSVImplTest {
     @Autowired
     private IUcStateChgSV ucStateChgSV;
 
-    // @Test
+    //@Test
     public void insertStateChg() {
         UcStateChgParamsRequest request = new UcStateChgParamsRequest();
         request.setTenantId("test111");

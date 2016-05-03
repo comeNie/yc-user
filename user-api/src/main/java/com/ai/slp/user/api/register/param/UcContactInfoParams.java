@@ -3,7 +3,6 @@ package com.ai.slp.user.api.register.param;
 import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import com.ai.slp.user.api.register.interfaces.IRegisterSV;
 
@@ -17,6 +16,8 @@ import com.ai.slp.user.api.register.interfaces.IRegisterSV;
 public class UcContactInfoParams implements Serializable {
 
     
+    private static final long serialVersionUID = 1L;
+
     @NotNull(message="租户id不能为空",groups={IRegisterSV.InsertUcUser.class})
     private String tenantId;
     

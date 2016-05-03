@@ -3,7 +3,6 @@ package com.ai.slp.user.api.apiinfo.interfaces;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.apiinfo.param.ApiInfoRequest;
 import com.ai.slp.user.api.apiinfo.param.ApiInfoResponse;
 import com.ai.slp.user.api.apiinfo.param.InsertApiInfoRequest;
@@ -63,6 +62,6 @@ public interface IApiInfoSV {
      * @author zhangqiang7
      * @UCUSER_003
      */
-    PageInfo<ApiInfoResponse> queryApiInfo(ApiInfoRequest apiInfoRequest)
+    ApiInfoResponse queryApiInfo(ApiInfoRequest apiInfoRequest)
             throws BusinessException, SystemException;
 }

@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.favorite.interfaces.IUserFavoriteSV;
 import com.ai.slp.user.api.favorite.param.DeleteFavoriteListRequest;
 import com.ai.slp.user.api.favorite.param.InsertUserFavoriteRequest;
@@ -80,9 +79,7 @@ public class UserFavoriteSVImplTest {
         //request.setFavoriteSeqId("223333");
         request.setPageNo(11);
         request.setPageSize(11);;
-        PageInfo<UserFavoriteResponse> pageInfo = new PageInfo<UserFavoriteResponse>();
-        pageInfo = userFavoriteSV.queryFavorite(request);
-        System.out.println(pageInfo.getPageCount());
-        System.out.println(pageInfo.getResult().size());
+        UserFavoriteResponse response = userFavoriteSV.queryFavorite(request);
+        System.out.println(response.getPageInfo().getPageCount());
     }
 }

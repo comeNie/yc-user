@@ -18,6 +18,7 @@ import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.slp.user.api.bankinfo.param.InsertBankInfoRequest;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoRequest;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoResponse;
+import com.ai.slp.user.api.bankinfo.param.UcBankInfoParams;
 import com.ai.slp.user.api.bankinfo.param.UpdateBankInfoRequest;
 import com.ai.slp.user.dao.mapper.bo.UcBankInfo;
 import com.ai.slp.user.dao.mapper.bo.UcBankInfoCriteria;
@@ -77,7 +78,7 @@ public class UcBankInfoBusiSVImpl implements IUcBankInfoBusiSV {
     }
 
     @Override
-    public PageInfo<QueryBankInfoResponse> queryBankInfo(QueryBankInfoRequest bankInfoRequest)
+    public QueryBankInfoResponse queryBankInfo(QueryBankInfoRequest bankInfoRequest)
             throws BusinessException, SystemException {
         UcBankInfoCriteria example = new UcBankInfoCriteria();
         UcBankInfoCriteria.Criteria criteria = example.createCriteria();
@@ -97,18 +98,20 @@ public class UcBankInfoBusiSVImpl implements IUcBankInfoBusiSV {
             LOG.error("查询失败", e);
             responseHeader = new ResponseHeader(false, "fail", "查询失败");
         }
-        PageInfo<QueryBankInfoResponse> pageInfo = new PageInfo<QueryBankInfoResponse>();
-        List<QueryBankInfoResponse> responseList = new ArrayList<QueryBankInfoResponse>();
+        PageInfo<UcBankInfoParams> pageInfo = new PageInfo<UcBankInfoParams>();
+        List<UcBankInfoParams> responseList = new ArrayList<UcBankInfoParams>();
         for (UcBankInfo ucBankInfo : list) {
-            BeanUtils.copyProperties(ucBankInfo, response);
-            responseList.add(response);
+            UcBankInfoParams ucBankInfoParams = new UcBankInfoParams();
+            BeanUtils.copyProperties(ucBankInfo, ucBankInfoParams);
+            responseList.add(ucBankInfoParams);
         }
-        response.setResponseHeader(responseHeader);
         pageInfo.setCount(count);
         pageInfo.setPageNo(pageNo);
         pageInfo.setPageSize(pageSize);
         pageInfo.setResult(responseList);
-        return pageInfo;
+        response.setPageInfo(pageInfo);
+        response.setResponseHeader(responseHeader);
+        return response;
     }
 
 }

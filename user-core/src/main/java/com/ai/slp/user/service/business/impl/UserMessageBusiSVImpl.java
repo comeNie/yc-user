@@ -20,6 +20,7 @@ import com.ai.slp.user.api.message.param.InsertUserMessageRequest;
 import com.ai.slp.user.api.message.param.QueryMessageRequest;
 import com.ai.slp.user.api.message.param.QueryMessageResponse;
 import com.ai.slp.user.api.message.param.UpdateMessageRequest;
+import com.ai.slp.user.api.message.param.UserMessageParams;
 import com.ai.slp.user.constants.OperMessageCodeConstants;
 import com.ai.slp.user.dao.mapper.bo.UcUserMessage;
 import com.ai.slp.user.dao.mapper.bo.UcUserMessageCriteria;
@@ -104,7 +105,7 @@ public class UserMessageBusiSVImpl implements IUserMessageBusiSV {
     }
 
     @Override
-    public PageInfo<QueryMessageResponse> queryUserMessage(QueryMessageRequest queryRequest)
+    public QueryMessageResponse queryUserMessage(QueryMessageRequest queryRequest)
             throws BusinessException, SystemException {
         UcUserMessageCriteria example = new UcUserMessageCriteria();
         UcUserMessageCriteria.Criteria criteria = example.createCriteria();
@@ -131,19 +132,21 @@ public class UserMessageBusiSVImpl implements IUserMessageBusiSV {
             LOG.error("查询失败", e);
             responseHeader = new ResponseHeader(false, "fail", "查询失败");
         }
-        PageInfo<QueryMessageResponse> pageInfo = new PageInfo<QueryMessageResponse>();
-        List<QueryMessageResponse> responseList = new ArrayList<QueryMessageResponse>();
+        PageInfo<UserMessageParams> pageInfo = new PageInfo<UserMessageParams>();
+        List<UserMessageParams> responseList = new ArrayList<UserMessageParams>();
         QueryMessageResponse response = new QueryMessageResponse();
         for (UcUserMessage ucUserMessage : list) {
-            BeanUtils.copyProperties(ucUserMessage, response);
-            responseList.add(response);
+            UserMessageParams userMessageParams = new UserMessageParams();
+            BeanUtils.copyProperties(ucUserMessage, userMessageParams);
+            responseList.add(userMessageParams);
         }
-        response.setResponseHeader(responseHeader);
         pageInfo.setCount(count);
         pageInfo.setPageNo(pageNo);
         pageInfo.setPageSize(pageSize);
         pageInfo.setResult(responseList);
-        return pageInfo;
+        response.setPageInfo(pageInfo);
+        response.setResponseHeader(responseHeader);
+        return response;
     }
 
     @Override
