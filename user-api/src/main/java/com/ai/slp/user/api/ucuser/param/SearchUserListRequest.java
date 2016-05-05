@@ -10,7 +10,7 @@ import com.ai.opt.base.vo.BaseInfo;
  * 
  * @author zhangqiang7
  */
-public class SearchUserInfoRequest extends BaseInfo {
+public class SearchUserListRequest extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
 

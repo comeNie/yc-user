@@ -2,10 +2,10 @@ package com.ai.slp.user.api.ucuser.intefaces;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
-import com.ai.slp.user.api.ucuser.param.SearchUserInfoRequest;
-import com.ai.slp.user.api.ucuser.param.SearchUserInfoResponse;
+import com.ai.slp.user.api.ucuser.param.SearchUserListRequest;
+import com.ai.slp.user.api.ucuser.param.SearchUserListResponse;
 
-public interface IUcUserInfoSV {
+public interface IUcUserListSV {
 
     /**
      * 查询用户信息
@@ -14,6 +14,6 @@ public interface IUcUserInfoSV {
      * @author zhangqiang7
      * @UCUSER
      */
-    public SearchUserInfoResponse searchUserInfo(SearchUserInfoRequest userInfoRequest)
+    public SearchUserListResponse searchUserList(SearchUserListRequest userListRequest)
             throws BusinessException, SystemException;
 }

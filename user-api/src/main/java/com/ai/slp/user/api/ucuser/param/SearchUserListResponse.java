@@ -10,7 +10,7 @@ import com.ai.opt.base.vo.PageInfo;
  * 
  * @author zhangqiang7
  */
-public class SearchUserInfoResponse extends BaseResponse {
+public class SearchUserListResponse extends BaseResponse {
 
     private static final long serialVersionUID = 1L;
 
