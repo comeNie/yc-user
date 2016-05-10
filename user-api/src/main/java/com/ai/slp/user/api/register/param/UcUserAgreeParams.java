@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import javax.validation.constraints.Size;
 
 import com.ai.opt.base.vo.BaseInfo;
+import com.ai.slp.user.api.contactsinfo.interfaces.IUcContactsInfoSV;
 import com.ai.slp.user.api.register.interfaces.IRegisterSV;
 
 /**

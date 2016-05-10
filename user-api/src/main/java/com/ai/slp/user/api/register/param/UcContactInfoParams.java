@@ -3,7 +3,7 @@ package com.ai.slp.user.api.register.param;
 import javax.validation.constraints.Size;
 
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.slp.user.api.register.interfaces.IRegisterSV;
+import com.ai.slp.user.api.contactsinfo.interfaces.IUcContactsInfoSV;
 
 /**
  * 用户信息 <br>
@@ -16,7 +16,7 @@ public class UcContactInfoParams extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
 
-    @Size(min = 18, max = 18, message = "用户Id长度不是18位", groups = { IRegisterSV.InsertUcUser.class })
+    @Size(min = 18, max = 18, message = "用户Id长度不是18位", groups = { IUcContactsInfoSV.InsertContactsInfo.class })
     private String userId;
 
     private String contactSeqId;
