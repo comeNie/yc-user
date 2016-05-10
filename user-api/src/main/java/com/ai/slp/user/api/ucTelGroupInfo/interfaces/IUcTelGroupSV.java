@@ -1,6 +1,8 @@
 package com.ai.slp.user.api.ucTelGroupInfo.interfaces;
 
 
+import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.slp.user.api.ucTelGroupInfo.param.UcTelGroupParamsRequest;
 import com.ai.slp.user.api.ucTelGroupInfo.param.UcTelGroupResponse;
@@ -17,7 +19,7 @@ public interface IUcTelGroupSV {
 	 * @ApiDocMethod
 	 */
 	 
-	public BaseResponse insertUcTelGroupInfo(UcTelGroupParamsRequest telGroup);
+	public BaseResponse insertUcTelGroupInfo (UcTelGroupParamsRequest telGroup) throws BusinessException, SystemException;
 	
 	@interface UpdateGroupInfo{}
 	/**
@@ -28,7 +30,7 @@ public interface IUcTelGroupSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public BaseResponse updateGroupInfo(UcTelGroupParamsRequest telGroup);
+	public BaseResponse updateGroupInfo(UcTelGroupParamsRequest telGroup) throws BusinessException, SystemException;
 	
 	@interface DeleteGroupInfo{}
 	/**
@@ -39,7 +41,7 @@ public interface IUcTelGroupSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public BaseResponse deleteGroupInfo(String telGroupId);
+	public BaseResponse deleteGroupInfo(String telGroupId) throws BusinessException, SystemException;
 
 	@interface GetTelGroupInfo{}
 	/**
@@ -50,7 +52,7 @@ public interface IUcTelGroupSV {
 	 * @author zhangyh7
 	 * @ApiDocMethod
 	 */
-	public UcTelGroupResponse getTelGroupInfo(int startPage,int limit);
+	public UcTelGroupResponse getTelGroupInfo(int startPage,int limit) throws BusinessException, SystemException;
 	
 	
 	@interface GetTelgroupCount{}
@@ -61,6 +63,6 @@ public interface IUcTelGroupSV {
 	 * @author zhangyh7
 	 * @ApiDocMethod
 	 */
-	public int getTelGroupCount(UcTelGroupParamsRequest telGroup);
+	public int getTelGroupCount(UcTelGroupParamsRequest telGroup) throws BusinessException, SystemException;
 	
 }
