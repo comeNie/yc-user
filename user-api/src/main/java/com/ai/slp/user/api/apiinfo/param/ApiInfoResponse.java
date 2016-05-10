@@ -13,6 +13,9 @@ public class ApiInfoResponse extends BaseResponse {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 返回信息
+     */
     private PageInfo<UcApiInfoParams> pageInfo;
 
     public PageInfo<UcApiInfoParams> getPageInfo() {

@@ -13,13 +13,16 @@ public class UserSafariInfoResponse extends BaseResponse {
 
     private static final long serialVersionUID = 1L;
 
-    PageInfo<UserSafariInfoPatams> pageInfo = new PageInfo<UserSafariInfoPatams>();
+    /**
+     * 返回信息
+     */
+    PageInfo<UserSafariInfoParams> pageInfo;
 
-    public PageInfo<UserSafariInfoPatams> getPageInfo() {
+    public PageInfo<UserSafariInfoParams> getPageInfo() {
         return pageInfo;
     }
 
-    public void setPageInfo(PageInfo<UserSafariInfoPatams> pageInfo) {
+    public void setPageInfo(PageInfo<UserSafariInfoParams> pageInfo) {
         this.pageInfo = pageInfo;
     }
 

@@ -3,7 +3,7 @@ package com.ai.slp.user.api.safari.param;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class UserSafariInfoPatams implements Serializable {
+public class UserSafariInfoParams implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

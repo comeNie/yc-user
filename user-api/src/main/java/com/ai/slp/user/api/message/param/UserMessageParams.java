@@ -13,42 +13,99 @@ public class UserMessageParams implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 租户Id
+     */
     private String tenantId;
 
+    /**
+     * 唯一标识
+     */
     private String infoSeqId;
 
+    /**
+     * 用户Id
+     */
     private Long userId;
 
+    /**
+     * 消息类型
+     */
     private String infoType;
 
+    /**
+     * 消息读取状态
+     */
     private String readFlag;
 
+    /**
+     * 阅读时间
+     */
     private Timestamp readTime;
 
+    /**
+     * 消息标题
+     */
     private String infoHeadline;
 
+    /**
+     * 消息内容
+     */
     private String infoMessage;
 
+    /**
+     * 状态
+     */
     private String state;
 
+    /**
+     * 生效时间
+     */
     private Timestamp activeTime;
 
+    /**
+     * 失效时间
+     */
     private Timestamp inactiveTime;
 
+    /**
+     * 状态变更时间
+     */
     private Timestamp stateUpdateTime;
 
+    /**
+     * 创建时间
+     */
     private Timestamp createTime;
 
+    /**
+     * 创建渠道
+     */
     private String createChlId;
 
+    /**
+     * 创建员工
+     */
     private Long createOperId;
 
+    /**
+     * 更新时间
+     */
     private Timestamp updateTime;
 
+    /**
+     * 更新渠道
+     */
     private String updateChlId;
 
+    /**
+     * 更新员工
+     */
     private Long updateOperId;
 
+    /**
+     * 备注
+     */
     private String remark;
 
     public String getTenantId() {

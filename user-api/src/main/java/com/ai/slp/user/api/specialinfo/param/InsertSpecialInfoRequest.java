@@ -1,7 +1,5 @@
 package com.ai.slp.user.api.specialinfo.param;
 
-import java.sql.Timestamp;
-
 import javax.validation.constraints.NotNull;
 
 import com.ai.opt.base.vo.BaseInfo;
@@ -17,33 +15,52 @@ public class InsertSpecialInfoRequest extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 用户Id NOT NULL
+     */
     @NotNull(message = "userID不能为空", groups = { IUcSpecialInfoSV.InsertSpecialInfo.class })
     private Long userId;
 
+    /**
+     * 扩展ID
+     */
     @NotNull(message = "infoSpecialId不能为空", groups = { IUcSpecialInfoSV.InsertSpecialInfo.class })
     private Long infoSpecialId;
 
+    /**
+     * 个人性化分类
+     */
     private String infoType;
 
+    /**
+     * 子分类
+     */
     private String infoItem;
 
+    /**
+     * 状态
+     */
     private String state;
 
+    /**
+     * 属性ID
+     */
     private String attrId;
 
+    /**
+     * 属性值
+     */
     private String attrValue;
 
-    private Timestamp createTime;
-
+    /**
+     * 创建渠道
+     */
     private String createChlId;
 
+    /**
+     * 创建员工
+     */
     private Long createOperId;
-
-    private Timestamp updateTime;
-
-    private String updateChlId;
-
-    private Long updateOperId;
 
     public Long getUserId() {
         return userId;
@@ -101,14 +118,6 @@ public class InsertSpecialInfoRequest extends BaseInfo {
         this.attrValue = attrValue;
     }
 
-    public Timestamp getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
-    }
-
     public String getCreateChlId() {
         return createChlId;
     }
@@ -123,30 +132,6 @@ public class InsertSpecialInfoRequest extends BaseInfo {
 
     public void setCreateOperId(Long createOperId) {
         this.createOperId = createOperId;
-    }
-
-    public Timestamp getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public String getUpdateChlId() {
-        return updateChlId;
-    }
-
-    public void setUpdateChlId(String updateChlId) {
-        this.updateChlId = updateChlId;
-    }
-
-    public Long getUpdateOperId() {
-        return updateOperId;
-    }
-
-    public void setUpdateOperId(Long updateOperId) {
-        this.updateOperId = updateOperId;
     }
 
 }

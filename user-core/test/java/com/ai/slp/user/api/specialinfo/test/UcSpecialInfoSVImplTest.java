@@ -10,7 +10,6 @@ import com.ai.slp.user.api.specialinfo.interfaces.IUcSpecialInfoSV;
 import com.ai.slp.user.api.specialinfo.param.InsertSpecialInfoRequest;
 import com.ai.slp.user.api.specialinfo.param.QuerySpecialInfoRequest;
 import com.ai.slp.user.api.specialinfo.param.UpdateSepcialInfoRequest;
-import com.ai.slp.user.util.DateUtils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "/context/core-context.xml" })
@@ -25,7 +24,6 @@ public class UcSpecialInfoSVImplTest {
         request.setTenantId("test111");
         request.setUserId(111L);
         request.setInfoSpecialId(111L);
-        request.setCreateTime(DateUtils.currTimeStamp());
         request.setAttrValue("666");
         System.out.println(ucSpecialInfoSV.insertSpecialInfo(request).getResponseHeader());
     }
@@ -36,7 +34,6 @@ public class UcSpecialInfoSVImplTest {
         request.setTenantId("test111");
         request.setUserId(111L);
         request.setInfoSpecialId(111L);
-        request.setUpdateTime(DateUtils.currTimeStamp());
         ucSpecialInfoSV.updateSpecialInfo(request);
     }
     

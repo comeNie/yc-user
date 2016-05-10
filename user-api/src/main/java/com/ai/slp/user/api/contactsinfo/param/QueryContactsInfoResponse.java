@@ -13,6 +13,9 @@ public class QueryContactsInfoResponse extends BaseResponse {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 返回信息
+     */
     PageInfo<UcContactsInfoParams> pageInfo;
 
     public PageInfo<UcContactsInfoParams> getPageInfo() {

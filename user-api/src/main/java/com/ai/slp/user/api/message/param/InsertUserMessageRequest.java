@@ -24,34 +24,58 @@ public class InsertUserMessageRequest extends BaseInfo {
     private Long userId;
 
     /**
-     * 消息ID
+     * 用户消息ID
      */
     private String infoSeqId;
-    
+
+    /**
+     * 消息类型
+     */
     private String infoType;
 
+    /**
+     * 消息读取状态
+     */
     private String readFlag;
 
-    private Timestamp readTime;
-
+    /**
+     * 消息标题
+     */
     private String infoHeadline;
 
+    /**
+     * 消息内容
+     */
     private String infoMessage;
 
+    /**
+     * 状态
+     */
     private String state;
 
+    /**
+     * 生效时间
+     */
     private Timestamp activeTime;
 
+    /**
+     * 失效时间
+     */
     private Timestamp inactiveTime;
 
-    private Timestamp stateUpdateTime;
-
-    private Timestamp createTime;
-
+    /**
+     * 创建渠道
+     */
     private String createChlId;
 
+    /**
+     * 创建员工
+     */
     private Long createOperId;
 
+    /**
+     * 备注
+     */
     private String remark;
 
     public Long getUserId() {
@@ -84,14 +108,6 @@ public class InsertUserMessageRequest extends BaseInfo {
 
     public void setReadFlag(String readFlag) {
         this.readFlag = readFlag;
-    }
-
-    public Timestamp getReadTime() {
-        return readTime;
-    }
-
-    public void setReadTime(Timestamp readTime) {
-        this.readTime = readTime;
     }
 
     public String getInfoHeadline() {
@@ -132,22 +148,6 @@ public class InsertUserMessageRequest extends BaseInfo {
 
     public void setInactiveTime(Timestamp inactiveTime) {
         this.inactiveTime = inactiveTime;
-    }
-
-    public Timestamp getStateUpdateTime() {
-        return stateUpdateTime;
-    }
-
-    public void setStateUpdateTime(Timestamp stateUpdateTime) {
-        this.stateUpdateTime = stateUpdateTime;
-    }
-
-    public Timestamp getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
     }
 
     public String getCreateChlId() {

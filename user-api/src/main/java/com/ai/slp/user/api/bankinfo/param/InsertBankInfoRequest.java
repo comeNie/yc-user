@@ -1,15 +1,12 @@
 package com.ai.slp.user.api.bankinfo.param;
 
-import java.sql.Timestamp;
-
 import javax.validation.constraints.NotNull;
 
 import com.ai.opt.base.vo.BaseInfo;
 import com.ai.slp.user.api.bankinfo.interfaces.IUcBankInfoSV;
 
 /**
- * 创建用户银行信息入参
- * Date: 2016年4月28日 <br>
+ * 创建用户银行信息入参 Date: 2016年4月28日 <br>
  * Copyright (c) 2016 asiainfo.com <br>
  * 
  * @author zhangqiang7
@@ -17,40 +14,72 @@ import com.ai.slp.user.api.bankinfo.interfaces.IUcBankInfoSV;
 public class InsertBankInfoRequest extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
+
+    /**
+     * 用户Id NOT NULL
+     */
     @NotNull(message = "UserID不能为空", groups = { IUcBankInfoSV.InsertBankInfo.class })
     private Long userId;
 
+    /**
+     * 唯一标识
+     */
     private String bankSeqId;
 
+    /**
+     * 状态
+     */
     private String state;
 
+    /**
+     * 开户许可证号
+     */
     private String licenseNo;
 
+    /**
+     * 开户银行编码
+     */
     private String bankNo;
 
+    /**
+     * 开户省
+     */
     private String provinceCode;
 
+    /**
+     * 开户地市
+     */
     private String cityCode;
 
+    /**
+     * 开户银行网点名称
+     */
     private String bankName;
 
+    /**
+     * 开户账户名称
+     */
     private String acctName;
 
+    /**
+     * 开户账户密码
+     */
     private String acctNo;
 
+    /**
+     * 备注
+     */
     private String remark;
 
-    private Timestamp createTime;
-
+    /**
+     * 创建渠道
+     */
     private String createChlId;
 
+    /**
+     * 创建员工
+     */
     private Long createOperId;
-
-    private Timestamp updateTime;
-
-    private String updateChlId;
-
-    private Long updateOperId;
 
     public Long getUserId() {
         return userId;
@@ -140,14 +169,6 @@ public class InsertBankInfoRequest extends BaseInfo {
         this.remark = remark;
     }
 
-    public Timestamp getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
-    }
-
     public String getCreateChlId() {
         return createChlId;
     }
@@ -162,30 +183,6 @@ public class InsertBankInfoRequest extends BaseInfo {
 
     public void setCreateOperId(Long createOperId) {
         this.createOperId = createOperId;
-    }
-
-    public Timestamp getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public String getUpdateChlId() {
-        return updateChlId;
-    }
-
-    public void setUpdateChlId(String updateChlId) {
-        this.updateChlId = updateChlId;
-    }
-
-    public Long getUpdateOperId() {
-        return updateOperId;
-    }
-
-    public void setUpdateOperId(Long updateOperId) {
-        this.updateOperId = updateOperId;
     }
 
 }

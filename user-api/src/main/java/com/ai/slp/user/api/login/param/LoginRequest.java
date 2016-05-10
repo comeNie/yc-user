@@ -2,7 +2,10 @@ package com.ai.slp.user.api.login.param;
 
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Email;
+
 import com.ai.opt.base.vo.BaseInfo;
+import com.ai.opt.validator.constraints.MobilePhone;
 import com.ai.slp.user.api.login.interfaces.ILoginSV;
 
 /**
@@ -29,11 +32,13 @@ public class LoginRequest extends BaseInfo {
     /**
      * 用户邮箱
      */
+    @Email(message = "邮箱格式不正确", groups = { ILoginSV.Login.class })
     private String userEmail;
 
     /**
      * 用户手机号
      */
+    @MobilePhone(message = "手机号码格式不正确", groups = { ILoginSV.Login.class })
     private String userMp;
 
     /**

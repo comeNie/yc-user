@@ -15,6 +15,7 @@ import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
+import com.ai.opt.sdk.sequence.util.SeqUtil;
 import com.ai.slp.user.api.apiinfo.param.ApiInfoRequest;
 import com.ai.slp.user.api.apiinfo.param.ApiInfoResponse;
 import com.ai.slp.user.api.apiinfo.param.InsertApiInfoRequest;
@@ -38,9 +39,9 @@ public class ApiInfoBusiSVImpl implements IApiInfoBusiSV {
     public BaseResponse insertApiInfo(InsertApiInfoRequest infoRequest)
             throws BusinessException, SystemException {
         UcApiInfo ucApiInfo = new UcApiInfo();
-
         BeanUtils.copyProperties(infoRequest, ucApiInfo);
         ucApiInfo.setUserId(infoRequest.getUserId());
+        ucApiInfo.setApiSeqId(SeqUtil.getNewId("UC_API_INFO$API_SEQ_ID$SEQ", 10));
         ucApiInfo.setCreateTime(DateUtils.currTimeStamp());
         ResponseHeader responseHeader;
         try {
@@ -65,6 +66,7 @@ public class ApiInfoBusiSVImpl implements IApiInfoBusiSV {
         UcApiInfoCriteria example = new UcApiInfoCriteria();
         UcApiInfoCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(ucApiInfoParams.getTenantId());
+        
         criteria.andUserIdEqualTo(ucApiInfo.getUserId());
         criteria.andApiSeqIdEqualTo(ucApiInfoParams.getApiSeqId());
         BaseResponse response = new BaseResponse();

@@ -13,44 +13,104 @@ public class UcContactsInfoParams implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 租户Id
+     */
     private String tenantId;
 
+    /**
+     * 用户Id
+     */
     private Long userId;
 
+    /**
+     * 唯一标识
+     */
     private String contactSeqId;
 
+    /**
+     * 状态
+     */
     private String state;
 
+    /**
+     * 联系人姓名
+     */
     private String contactName;
 
+    /**
+     * 联系人证件类型
+     */
     private String contactCertType;
 
+    /**
+     * 联系人证件号码
+     */
     private String contactCertNum;
 
+    /**
+     * 联系人微信Id
+     */
     private String contactWxId;
 
+    /**
+     * 联系人电话
+     */
     private String contactMp;
 
+    /**
+     * 联系人邮箱
+     */
     private String contactEmail;
 
+    /**
+     * 联系人地址
+     */
     private String contactAddress;
 
+    /**
+     * 联系人邮政编码
+     */
     private String groupZip;
 
+    /**
+     * 联系人工作部门
+     */
     private String contactDept;
 
+    /**
+     * 备注
+     */
     private String remark;
 
+    /**
+     * 创建时间
+     */
     private Timestamp createTime;
 
+    /**
+     * 创建渠道
+     */
     private String createChlId;
 
+    /**
+     * 创建员工
+     */
     private Long createOperId;
 
+    /**
+     * 更新时间
+     */
     private Timestamp updateTime;
 
+    /**
+     * 更新渠道
+     */
     private String updateChlId;
 
+    /**
+     * 更新员工
+     */
     private Long updateOperId;
 
     public String getTenantId() {

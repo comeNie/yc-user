@@ -19,7 +19,7 @@ import com.ai.opt.sdk.util.StringUtil;
 import com.ai.slp.user.api.safari.param.DeleteSafariHisRequest;
 import com.ai.slp.user.api.safari.param.DeleteSafariRequest;
 import com.ai.slp.user.api.safari.param.InsertUserSafariRequest;
-import com.ai.slp.user.api.safari.param.UserSafariInfoPatams;
+import com.ai.slp.user.api.safari.param.UserSafariInfoParams;
 import com.ai.slp.user.api.safari.param.UserSafariInfoRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoResponse;
 import com.ai.slp.user.dao.mapper.bo.UcUserSafari;
@@ -116,9 +116,9 @@ public class UserSafariBusiSVImpl implements IUserSafariBusiSV {
         criteria.andTenantIdEqualTo(request.getTenantId());
         criteria.andUserIdEqualTo(request.getUserId());
         // criteria.andSafariTimeBetween(value1, value2);
-        PageInfo<UserSafariInfoPatams> pageInfo = new PageInfo<UserSafariInfoPatams>();
+        PageInfo<UserSafariInfoParams> pageInfo = new PageInfo<UserSafariInfoParams>();
         List<UcUserSafari> queryList = new ArrayList<UcUserSafari>();
-        List<UserSafariInfoPatams> responseList = new ArrayList<UserSafariInfoPatams>();
+        List<UserSafariInfoParams> responseList = new ArrayList<UserSafariInfoParams>();
 
         Integer pageNo = request.getPageNo();
         Integer pageSize = request.getPageSize();
@@ -134,7 +134,7 @@ public class UserSafariBusiSVImpl implements IUserSafariBusiSV {
         }
         UserSafariInfoResponse response = new UserSafariInfoResponse();
         for (UcUserSafari ucUserSafari : queryList) {
-            UserSafariInfoPatams userSafariInfoPatams = new UserSafariInfoPatams();
+            UserSafariInfoParams userSafariInfoPatams = new UserSafariInfoParams();
             BeanUtils.copyProperties(ucUserSafari, userSafariInfoPatams);
             responseList.add(userSafariInfoPatams);
         }

@@ -1,7 +1,5 @@
 package com.ai.slp.user.api.bankinfo.param;
 
-import java.sql.Timestamp;
-
 import javax.validation.constraints.NotNull;
 
 import com.ai.opt.base.vo.BaseInfo;
@@ -11,40 +9,71 @@ public class UpdateBankInfoRequest extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 用户Id NOT NULL
+     */
     @NotNull(message = "UserID不能为空", groups = { IUcBankInfoSV.UpdateBankInfo.class })
     private Long userId;
 
+    /**
+     * 唯一标识
+     */
     @NotNull(message = "BankSeqId不能为空", groups = { IUcBankInfoSV.UpdateBankInfo.class })
     private String bankSeqId;
 
+    /**
+     * 状态
+     */
     private String state;
 
+    /**
+     * 开户许可证号
+     */
     private String licenseNo;
 
+    /**
+     * 开户银行编码
+     */
     private String bankNo;
 
+    /**
+     * 开户省
+     */
     private String provinceCode;
 
+    /**
+     * 开户地市
+     */
     private String cityCode;
 
+    /**
+     * 开户银行网点名称
+     */
     private String bankName;
 
+    /**
+     * 开户账户名称
+     */
     private String acctName;
 
+    /**
+     * 开户账户密码
+     */
     private String acctNo;
 
+    /**
+     * 备注
+     */
     private String remark;
 
-    private Timestamp createTime;
-
-    private String createChlId;
-
-    private Long createOperId;
-
-    private Timestamp updateTime;
-
+    /**
+     * 更新渠道
+     */
     private String updateChlId;
 
+    /**
+     * 更新员工
+     */
     private Long updateOperId;
 
     public Long getUserId() {
@@ -133,38 +162,6 @@ public class UpdateBankInfoRequest extends BaseInfo {
 
     public void setRemark(String remark) {
         this.remark = remark;
-    }
-
-    public Timestamp getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getCreateChlId() {
-        return createChlId;
-    }
-
-    public void setCreateChlId(String createChlId) {
-        this.createChlId = createChlId;
-    }
-
-    public Long getCreateOperId() {
-        return createOperId;
-    }
-
-    public void setCreateOperId(Long createOperId) {
-        this.createOperId = createOperId;
-    }
-
-    public Timestamp getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
     }
 
     public String getUpdateChlId() {

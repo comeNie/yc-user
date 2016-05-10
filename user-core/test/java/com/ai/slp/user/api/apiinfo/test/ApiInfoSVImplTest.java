@@ -11,7 +11,6 @@ import com.ai.slp.user.api.apiinfo.param.ApiInfoResponse;
 import com.ai.slp.user.api.apiinfo.param.InsertApiInfoRequest;
 import com.ai.slp.user.api.apiinfo.param.UcApiInfoParams;
 import com.ai.slp.user.service.business.interfaces.IApiInfoBusiSV;
-import com.ai.slp.user.util.DateUtils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "/context/core-context.xml" })
@@ -25,10 +24,8 @@ public class ApiInfoSVImplTest {
         InsertApiInfoRequest request = new InsertApiInfoRequest();
         request.setApiInfo("test11111");
         request.setApiName("1111");
-        request.setApiSeqId("2222");
         request.setApiType("00");
         request.setWebAddr("www.111.com");
-        request.setCreateTime(DateUtils.currTimeStamp());
         request.setUserId(111L);
         request.setCreateOperId(111L);
         request.setTenantId("test111");

@@ -1,15 +1,12 @@
 package com.ai.slp.user.api.contactsinfo.param;
 
-import java.sql.Timestamp;
-
 import javax.validation.constraints.NotNull;
 
 import com.ai.opt.base.vo.BaseInfo;
 import com.ai.slp.user.api.contactsinfo.interfaces.IUcContactsInfoSV;
 
 /**
- * 创建用户联系人入参
- * Date: 2016年4月29日 <br>
+ * 创建用户联系人入参 Date: 2016年4月29日 <br>
  * Copyright (c) 2016 asiainfo.com <br>
  * 
  * @author zhangqiang7
@@ -18,44 +15,81 @@ public class InsertContactsInfoRequest extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
 
-    @NotNull(message="userId不能为空",groups={IUcContactsInfoSV.InsertContactsInfo.class})
+    /**
+     * 用户Id NOT NULL
+     */
+    @NotNull(message = "userId不能为空", groups = { IUcContactsInfoSV.InsertContactsInfo.class })
     private Long userId;
 
+    /**
+     * 唯一标识
+     */
     private String contactSeqId;
 
+    /**
+     * 状态
+     */
     private String state;
 
+    /**
+     * 联系人姓名
+     */
     private String contactName;
 
+    /**
+     * 联系人证件类型
+     */
     private String contactCertType;
 
+    /**
+     * 联系人证件号码
+     */
     private String contactCertNum;
 
+    /**
+     * 联系人微信Id
+     */
     private String contactWxId;
 
+    /**
+     * 联系人电话
+     */
     private String contactMp;
 
+    /**
+     * 联系人邮箱
+     */
     private String contactEmail;
 
+    /**
+     * 联系人地址
+     */
     private String contactAddress;
 
+    /**
+     * 联系人邮政编码
+     */
     private String groupZip;
 
+    /**
+     * 联系人工作部门
+     */
     private String contactDept;
 
+    /**
+     * 备注
+     */
     private String remark;
 
-    private Timestamp createTime;
-
+    /**
+     * 创建渠道
+     */
     private String createChlId;
 
+    /**
+     * 创建员工
+     */
     private Long createOperId;
-
-    private Timestamp updateTime;
-
-    private String updateChlId;
-
-    private Long updateOperId;
 
     public Long getUserId() {
         return userId;
@@ -161,14 +195,6 @@ public class InsertContactsInfoRequest extends BaseInfo {
         this.remark = remark;
     }
 
-    public Timestamp getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
-    }
-
     public String getCreateChlId() {
         return createChlId;
     }
@@ -183,30 +209,6 @@ public class InsertContactsInfoRequest extends BaseInfo {
 
     public void setCreateOperId(Long createOperId) {
         this.createOperId = createOperId;
-    }
-
-    public Timestamp getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public String getUpdateChlId() {
-        return updateChlId;
-    }
-
-    public void setUpdateChlId(String updateChlId) {
-        this.updateChlId = updateChlId;
-    }
-
-    public Long getUpdateOperId() {
-        return updateOperId;
-    }
-
-    public void setUpdateOperId(Long updateOperId) {
-        this.updateOperId = updateOperId;
     }
 
 }

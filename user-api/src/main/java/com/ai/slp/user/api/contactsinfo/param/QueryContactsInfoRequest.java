@@ -15,11 +15,20 @@ public class QueryContactsInfoRequest extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 用户ID NOT NULL
+     */
     @NotNull(message = "userId不能为空", groups = { IUcContactsInfoSV.QueryContactsInfo.class })
     private Long userId;
 
+    /**
+     * pageNo
+     */
     private Integer pageNo;
 
+    /**
+     * pageSize
+     */
     private Integer pageSize;
 
     public Long getUserId() {

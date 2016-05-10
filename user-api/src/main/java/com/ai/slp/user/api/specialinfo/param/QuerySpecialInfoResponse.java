@@ -1,7 +1,5 @@
 package com.ai.slp.user.api.specialinfo.param;
 
-import java.sql.Timestamp;
-
 import com.ai.opt.base.vo.BaseResponse;
 
 /**
@@ -14,32 +12,54 @@ public class QuerySpecialInfoResponse extends BaseResponse {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 租户Id
+     */
     private String tenantId;
 
+    /**
+     * 用户Id
+     */
     private Long userId;
 
+    /**
+     * 拓展Id
+     */
     private Long infoSpecialId;
 
+    /**
+     * 个性化类型
+     */
     private String infoType;
 
+    /**
+     * 子分类
+     */
     private String infoItem;
 
+    /**
+     * 状态
+     */
     private String state;
 
+    /**
+     * 属性Id
+     */
     private String attrId;
 
+    /**
+     * 属性名称
+     */
     private String attrValue;
 
-    private Timestamp createTime;
-
-    private String createChlId;
-
-    private Long createOperId;
-
-    private Timestamp updateTime;
-
+    /**
+     * 更新渠道
+     */
     private String updateChlId;
 
+    /**
+     * 更新员工
+     */
     private Long updateOperId;
 
     public String getTenantId() {
@@ -104,38 +124,6 @@ public class QuerySpecialInfoResponse extends BaseResponse {
 
     public void setAttrValue(String attrValue) {
         this.attrValue = attrValue;
-    }
-
-    public Timestamp getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getCreateChlId() {
-        return createChlId;
-    }
-
-    public void setCreateChlId(String createChlId) {
-        this.createChlId = createChlId;
-    }
-
-    public Long getCreateOperId() {
-        return createOperId;
-    }
-
-    public void setCreateOperId(Long createOperId) {
-        this.createOperId = createOperId;
-    }
-
-    public Timestamp getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
     }
 
     public String getUpdateChlId() {

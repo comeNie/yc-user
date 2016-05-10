@@ -1,7 +1,5 @@
 package com.ai.slp.user.api.apiinfo.param;
 
-import java.sql.Timestamp;
-
 import javax.validation.constraints.NotNull;
 
 import com.ai.opt.base.vo.BaseInfo;
@@ -24,12 +22,7 @@ public class InsertApiInfoRequest extends BaseInfo {
     private Long userId;
 
     /**
-     * ApiInfoID
-     */
-    private String apiSeqId;
-
-    /**
-     * ApiInfoName
+     * Api信息名称
      */
     private String apiName;
 
@@ -119,11 +112,6 @@ public class InsertApiInfoRequest extends BaseInfo {
     private String remark;
 
     /**
-     * 创建时间
-     */
-    private Timestamp createTime;
-
-    /**
      * 创建渠道
      */
     private String createChlId;
@@ -133,35 +121,12 @@ public class InsertApiInfoRequest extends BaseInfo {
      */
     private Long createOperId;
 
-    /**
-     * 更新时间
-     */
-    private Timestamp updateTime;
-
-    /**
-     * 更新渠道
-     */
-    private String updateChlId;
-
-    /**
-     * 更新员工
-     */
-    private Long updateOperId;
-
     public Long getUserId() {
         return userId;
     }
 
     public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    public String getApiSeqId() {
-        return apiSeqId;
-    }
-
-    public void setApiSeqId(String apiSeqId) {
-        this.apiSeqId = apiSeqId;
     }
 
     public String getApiName() {
@@ -308,14 +273,6 @@ public class InsertApiInfoRequest extends BaseInfo {
         this.remark = remark;
     }
 
-    public Timestamp getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
-    }
-
     public String getCreateChlId() {
         return createChlId;
     }
@@ -330,30 +287,6 @@ public class InsertApiInfoRequest extends BaseInfo {
 
     public void setCreateOperId(Long createOperId) {
         this.createOperId = createOperId;
-    }
-
-    public Timestamp getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public String getUpdateChlId() {
-        return updateChlId;
-    }
-
-    public void setUpdateChlId(String updateChlId) {
-        this.updateChlId = updateChlId;
-    }
-
-    public Long getUpdateOperId() {
-        return updateOperId;
-    }
-
-    public void setUpdateOperId(Long updateOperId) {
-        this.updateOperId = updateOperId;
     }
 
 }

@@ -1,6 +1,6 @@
 package com.ai.slp.user.constants;
 
-public class OperMessageCodeConstants {
+public final class OperMessageCodeConstants {
 
     /**
      * 删除消息操作代码

@@ -18,13 +18,13 @@ public class UpdateFavoriteRequest extends BaseInfo {
     private static final long serialVersionUID = 1L;
 
     /**
-     * userID NOT NULL
+     * 用户ID NOT NULL
      */
     @NotNull(message = "用户ID不能为空", groups = { IUserFavoriteSV.CancelFavorite.class })
     private Long userId;
 
     /**
-     * favoriteList
+     * 收藏列表
      */
     private List<String> favoriteList;
 

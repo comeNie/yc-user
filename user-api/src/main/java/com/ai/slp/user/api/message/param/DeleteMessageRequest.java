@@ -20,7 +20,7 @@ public class DeleteMessageRequest extends BaseInfo {
     private Long userId;
 
     /**
-     * messageIDList
+     * 消息IDList
      */
     private List<String> list;
 

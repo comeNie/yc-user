@@ -45,9 +45,6 @@ public class UcUserBusiSVImpl implements IUcUserBusiSV {
 
         criteria.andTenantIdEqualTo(userListRequest.getTenantId());
 
-        if (!StringUtils.isBlank(userListRequest.getUserLoginName())){
-            criteria.andUserLoginNameEqualTo(userListRequest.getUserLoginName());
-        }
         if (!StringUtils.isBlank(userListRequest.getUserLoginName())) {
             criteria.andUserLoginNameEqualTo(userListRequest.getUserLoginName());
         }
@@ -66,8 +63,7 @@ public class UcUserBusiSVImpl implements IUcUserBusiSV {
         if (!StringUtils.isBlank(userListRequest.getUserState())) {
             criteria.andUserStateEqualTo(userListRequest.getUserState());
         }
-        if ((userListRequest.getBeginTime()!=null)
-                && (userListRequest.getEndTime()!=null)) {
+        if ((userListRequest.getBeginTime() != null) && (userListRequest.getEndTime() != null)) {
             criteria.andCreateTimeBetween(
                     DateUtils.getTimestamp(userListRequest.getBeginTime(), "yyyy-MM-dd HH:mm:ss"),
                     DateUtils.getTimestamp(userListRequest.getEndTime(), "yyyy-MM-dd HH:mm:ss"));

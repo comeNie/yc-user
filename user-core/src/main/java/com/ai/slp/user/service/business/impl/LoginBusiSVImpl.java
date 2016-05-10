@@ -56,7 +56,7 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
         }
         if (!StringUtil.isBlank(loginRequest.getUserEmail())) {
             criteria.andUserEmailEqualTo(loginRequest.getUserEmail());
-            criteria.andEmailValidateFlagEqualTo("10");
+            criteria.andEmailValidateFlagEqualTo("11");
             userList = loginAtomSV.selectByExample(example);
             if (userList.isEmpty()) {
                 responseHeader = new ResponseHeader(false, "fail", "邮箱未验证");

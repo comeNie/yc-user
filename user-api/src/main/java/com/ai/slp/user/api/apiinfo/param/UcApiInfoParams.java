@@ -136,11 +136,6 @@ public class UcApiInfoParams extends BaseInfo {
     private Long createOperId;
 
     /**
-     * 修改时间
-     */
-    private Timestamp updateTime;
-
-    /**
      * 修改渠道
      */
     private String updateChlId;
@@ -332,14 +327,6 @@ public class UcApiInfoParams extends BaseInfo {
 
     public void setCreateOperId(Long createOperId) {
         this.createOperId = createOperId;
-    }
-
-    public Timestamp getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
     }
 
     public String getUpdateChlId() {

@@ -13,7 +13,10 @@ public class UserFavoriteResponse extends BaseResponse {
 
     private static final long serialVersionUID = 1L;
 
-    PageInfo<UserFavoriteParams> pageInfo = new PageInfo<UserFavoriteParams>();
+    /**
+     * 返回信息
+     */
+    PageInfo<UserFavoriteParams> pageInfo;
 
     public PageInfo<UserFavoriteParams> getPageInfo() {
         return pageInfo;

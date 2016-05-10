@@ -32,12 +32,12 @@ public class QueryMessageRequest extends BaseInfo {
     private Long userId;
 
     /**
-     * infoType
+     * 消息类型
      */
     private String infoType;
 
     /**
-     * readFlag
+     * 消息读取状态
      */
     private String readFlag;
 

@@ -16,13 +16,13 @@ public class QuerySpecialInfoRequest extends BaseInfo {
     private static final long serialVersionUID = 1L;
 
     /**
-     * userId
+     * 用户Id NOT NULL
      */
     @NotNull(message = "userID不能为空", groups = { IUcSpecialInfoSV.UpdateSpecialInfo.class })
     private Long userId;
 
     /**
-     * specialInfoId
+     * 扩展ID
      */
     @NotNull(message = "specialInfoId不能为空", groups = { IUcSpecialInfoSV.UpdateSpecialInfo.class })
     private Long specialInfoId;

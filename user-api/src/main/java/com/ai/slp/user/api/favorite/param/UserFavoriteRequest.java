@@ -27,10 +27,13 @@ public class UserFavoriteRequest extends BaseInfo {
     private Long userId;
 
     /**
-     * 分页信息
+     * pageNo
      */
     private Integer pageNo;
 
+    /**
+     * pageSize
+     */
     private Integer pageSize;
 
     public String getFavoriteSeqId() {

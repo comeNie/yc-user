@@ -13,7 +13,10 @@ public class QueryMessageResponse extends BaseResponse {
 
     private static final long serialVersionUID = 1L;
 
-    PageInfo<UserMessageParams> pageInfo = new PageInfo<UserMessageParams>();
+    /**
+     * 返回信息
+     */
+    PageInfo<UserMessageParams> pageInfo;
 
     public PageInfo<UserMessageParams> getPageInfo() {
         return pageInfo;
