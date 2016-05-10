@@ -1,15 +1,19 @@
 package com.ai.slp.user.api.ucTelGroupInfo.param;
+import java.io.Serializable;
 import java.util.Date;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.ai.opt.base.vo.BaseInfo;
 import com.ai.slp.user.api.ucTelGroupInfo.interfaces.IUcTelGroupSV;
 
 
 
 
-public class UcTelGroupParamsRequest {
-	/**
+public class UcTelGroupParamsRequest extends BaseInfo implements Serializable{
+	private static final long serialVersionUID = 1L;
+
+    /**
 	 * 租户ID
 	 */
 	@NotNull(message="租户ID不能为空",groups={IUcTelGroupSV.InsertUcTelGroupInfo.class,IUcTelGroupSV.UpdateGroupInfo.class})
