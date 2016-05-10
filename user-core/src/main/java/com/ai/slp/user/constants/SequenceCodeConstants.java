@@ -1,5 +1,8 @@
 package com.ai.slp.user.constants;
 
+/**
+ * SequenceCode常量
+ */
 public class SequenceCodeConstants {
 
     private SequenceCodeConstants() {
