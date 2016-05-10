@@ -1,16 +1,18 @@
 package com.ai.slp.user.service.business.impl;
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.StringUtil;
 import com.ai.slp.user.api.login.param.LoginRequest;
 import com.ai.slp.user.api.login.param.LoginResponse;
+import com.ai.slp.user.dao.mapper.bo.UcUser;
 import com.ai.slp.user.dao.mapper.bo.UcUserCriteria;
 import com.ai.slp.user.service.atom.interfaces.ILoginAtomSV;
 import com.ai.slp.user.service.business.interfaces.ILoginBusiSV;
@@ -33,36 +35,49 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
 
-        UcUserCriteria ucUserCriteria = new UcUserCriteria();
+        UcUserCriteria example = new UcUserCriteria();
+        UcUserCriteria.Criteria criteria = example.createCriteria();
+        criteria.andTenantIdEqualTo(loginRequest.getTenantId());
+        criteria.andUserTypeEqualTo(loginRequest.getUserType());
+        ResponseHeader responseHeader = null;
+        LoginResponse response = new LoginResponse();
+        List<UcUser> userList = loginAtomSV.selectByExample(example);
 
-        UcUserCriteria.Criteria criteria = ucUserCriteria.createCriteria();
         if (!StringUtil.isBlank(loginRequest.getUserLoginName())) {
             criteria.andUserLoginNameEqualTo(loginRequest.getUserLoginName());
-        }
-        if (!StringUtil.isBlank(loginRequest.getTenantId())) {
-            criteria.andTenantIdEqualTo(loginRequest.getTenantId());
+            userList = loginAtomSV.selectByExample(example);
+            if (userList.isEmpty()) {
+                responseHeader = new ResponseHeader(false, "fail", "用户名不存在");
+            } else {
+                responseHeader = new ResponseHeader(true, "success", "查询成功");
+                response.setUserLoginName(loginRequest.getUserLoginName());
+                response.setUserLoginPwd(userList.get(0).getUserLoginPwd());
+            }
         }
         if (!StringUtil.isBlank(loginRequest.getUserEmail())) {
             criteria.andUserEmailEqualTo(loginRequest.getUserEmail());
+            criteria.andEmailValidateFlagEqualTo("10");
+            userList = loginAtomSV.selectByExample(example);
+            if (userList.isEmpty()) {
+                responseHeader = new ResponseHeader(false, "fail", "邮箱未验证");
+            } else {
+                responseHeader = new ResponseHeader(true, "success", "查询成功");
+                response.setUserEmail(loginRequest.getUserEmail());
+                response.setUserLoginPwd(loginRequest.getUserLoginPwd());
+            }
         }
         if (!StringUtil.isBlank(loginRequest.getUserMp())) {
             criteria.andUserMpEqualTo(loginRequest.getUserMp());
+            userList = loginAtomSV.selectByExample(example);
+            if (userList.isEmpty()) {
+                responseHeader = new ResponseHeader(false, "fail", "手机号未注册");
+            } else {
+                responseHeader = new ResponseHeader(true, "success", "查询成功");
+                response.setUserMp(loginRequest.getUserMp());
+                response.setUserLoginPwd(userList.get(0).getUserLoginPwd());
+            }
         }
-        criteria.andUserTypeEqualTo(loginRequest.getUserType());
-        criteria.andUserLoginPwdEqualTo(loginRequest.getUserLoginPwd());
-        int count = 0;
-        ResponseHeader responseHeader;
-        try {
-            count = loginAtomSV.countByExample(ucUserCriteria);
-            responseHeader = new ResponseHeader(true, "success", "查询成功");
-        } catch (SystemException e) {
-            LOG.error("查询失败", e);
-            responseHeader = new ResponseHeader(false, "fail", "查询成功");
-        }
-        LoginResponse loginResponse = new LoginResponse();
-        loginResponse.setCount(count);
-        loginResponse.setResponseHeader(responseHeader);
-        return loginResponse;
+        response.setResponseHeader(responseHeader);
+        return response;
     }
-
 }

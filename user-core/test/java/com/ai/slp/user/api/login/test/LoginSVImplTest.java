@@ -22,10 +22,11 @@ public class LoginSVImplTest {
         LoginRequest loginRequest=new LoginRequest();
         loginRequest.setTenantId("test111");
         // loginRequest.setUserLoginName("test");
-        loginRequest.setUserEmail("11@11.com");
-        loginRequest.setUserLoginPwd("123456");
+        loginRequest.setUserEmail("112@11.com");
         loginRequest.setUserType("11");
+        loginRequest.setUserLoginPwd("123456");
         LoginResponse loginResponse = loginSV.login(loginRequest);
-        System.out.println(loginResponse.getCount());
+        System.out.println(loginResponse.getResponseHeader().getResultMessage());
+        System.out.println(loginResponse.getUserLoginPwd());
     }
 }

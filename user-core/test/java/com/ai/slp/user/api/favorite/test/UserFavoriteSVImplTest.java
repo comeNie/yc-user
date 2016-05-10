@@ -28,7 +28,7 @@ public class UserFavoriteSVImplTest {
     @Autowired
     private IUserFavoriteSV userFavoriteSV;
 
-    //@Test
+    @Test
     public void createUserFavoriteTest() {
         InsertUserFavoriteRequest request = new InsertUserFavoriteRequest();
         request.setTenantId("test111");
@@ -40,13 +40,13 @@ public class UserFavoriteSVImplTest {
         System.out.println(userFavoriteSV.insertUcFavorite(request).getResponseHeader());
     }
 
-    //@Test
+    // @Test
     public void updateUserFavoriteTest() {
-        UpdateFavoriteRequest request =new UpdateFavoriteRequest();
+        UpdateFavoriteRequest request = new UpdateFavoriteRequest();
         request.setUserId(111L);
         request.setTenantId("test111");
         request.setTenantPwd("123456");
-        
+
         List<String> list = new ArrayList<String>();
         list.add("111111");
         list.add("222222");
@@ -55,7 +55,7 @@ public class UserFavoriteSVImplTest {
         userFavoriteSV.cancelFavorite(request);
     }
 
-    //@Test
+    // @Test
     public void deleteFavoriteSVImplTest() {
         DeleteFavoriteListRequest request = new DeleteFavoriteListRequest();
         request.setTenantId("test111");
@@ -64,21 +64,21 @@ public class UserFavoriteSVImplTest {
         List<String> list = new ArrayList<String>();
         list.add("111111");
         list.add("223333");
-        
+
         request.setFavoriteReqIdList(list);
         userFavoriteSV.deleteFavorite(request);
     }
-    
-    
-    @Test
-    public void  queryFavoriteSVImplTest(){
+
+    // @Test
+    public void queryFavoriteSVImplTest() {
         UserFavoriteRequest request = new UserFavoriteRequest();
         request.setTenantId("test111");
         request.setTenantPwd("123456");
         request.setUserId(111L);
-        //request.setFavoriteSeqId("223333");
+        // request.setFavoriteSeqId("223333");
         request.setPageNo(11);
-        request.setPageSize(11);;
+        request.setPageSize(11);
+        ;
         UserFavoriteResponse response = userFavoriteSV.queryFavorite(request);
         System.out.println(response.getPageInfo().getPageCount());
     }

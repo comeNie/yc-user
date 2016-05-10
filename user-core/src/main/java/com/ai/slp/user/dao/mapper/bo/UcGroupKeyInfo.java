@@ -23,7 +23,7 @@ public class UcGroupKeyInfo {
 
     private Timestamp certIssueDate;
 
-    private Long registeredCapitass;
+    private Long registeredCapitals;
 
     private Timestamp certValidDate;
 
@@ -151,12 +151,12 @@ public class UcGroupKeyInfo {
         this.certIssueDate = certIssueDate;
     }
 
-    public Long getRegisteredCapitass() {
-        return registeredCapitass;
+    public Long getRegisteredCapitals() {
+        return registeredCapitals;
     }
 
-    public void setRegisteredCapitass(Long registeredCapitass) {
-        this.registeredCapitass = registeredCapitass;
+    public void setRegisteredCapitals(Long registeredCapitals) {
+        this.registeredCapitals = registeredCapitals;
     }
 
     public Timestamp getCertValidDate() {

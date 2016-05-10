@@ -46,6 +46,6 @@ public class UserBankInfoSVImplTest {
         QueryBankInfoRequest request = new QueryBankInfoRequest();
         request.setTenantId("test111");
         request.setUserId(111L);
-        System.out.println(userBankInfoBusiSV.queryBankInfo(request).getPageInfo().getResult().size());
+        System.out.println(userBankInfoBusiSV.queryBankInfo(request).getResponseHeader().getResultMessage());
     }
 }

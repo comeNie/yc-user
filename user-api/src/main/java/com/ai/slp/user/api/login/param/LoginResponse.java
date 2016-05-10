@@ -13,16 +13,68 @@ public class LoginResponse extends BaseResponse {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 返回值
+     * 用户类型
      */
-    private int count;
+    private String userType;
 
-    public int getCount() {
-        return count;
+    /**
+     * 用户登陆用户名
+     */
+    private String UserLoginName;
+
+    /**
+     * 用户邮箱
+     */
+    private String userEmail;
+
+    /**
+     * 用户手机号
+     */
+    private String userMp;
+
+    /**
+     * 用户密码
+     */
+    private String userLoginPwd;
+
+    public String getUserType() {
+        return userType;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    public String getUserLoginName() {
+        return UserLoginName;
+    }
+
+    public void setUserLoginName(String userLoginName) {
+        UserLoginName = userLoginName;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public String getUserMp() {
+        return userMp;
+    }
+
+    public void setUserMp(String userMp) {
+        this.userMp = userMp;
+    }
+
+    public String getUserLoginPwd() {
+        return userLoginPwd;
+    }
+
+    public void setUserLoginPwd(String userLoginPwd) {
+        this.userLoginPwd = userLoginPwd;
     }
 
 }
