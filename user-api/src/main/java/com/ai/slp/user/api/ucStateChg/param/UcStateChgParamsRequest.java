@@ -1,5 +1,6 @@
 package com.ai.slp.user.api.ucStateChg.param;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.validation.constraints.NotNull;
@@ -8,7 +9,7 @@ import javax.validation.constraints.Size;
 import com.ai.opt.base.vo.BaseInfo;
 import com.ai.slp.user.api.ucStateChg.interfaces.IUcStateChgSV;
 
-public class UcStateChgParamsRequest extends BaseInfo {
+public class UcStateChgParamsRequest extends BaseInfo implements Serializable{
     private static final long serialVersionUID = 1L;
 
     /**
