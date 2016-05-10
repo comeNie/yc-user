@@ -29,7 +29,7 @@ public class QueryMessageRequest extends BaseInfo {
      * userID NOT NULL
      */
     @NotNull(message = "用户ID不能为空", groups = { IUserMessageSV.QueryUserMessage.class })
-    private Long userId;
+    private String userId;
 
     /**
      * 消息类型
@@ -41,11 +41,12 @@ public class QueryMessageRequest extends BaseInfo {
      */
     private String readFlag;
 
-    public Long getUserId() {
+
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

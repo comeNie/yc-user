@@ -35,12 +35,13 @@ public class UcTelGroupBusiSVImpl implements IUcTelGroupBusiSV{
     
     @Override
     public BaseResponse insertUcTelGroupInfo(UcTelGroupParamsRequest contactsGroup)throws BusinessException, SystemException {
-        
+        UcTelGroup ucTelGroup =new UcTelGroup();
+        BeanUtils.copyProperties(contactsGroup, ucTelGroup);
         BaseResponse reponse = new BaseResponse();
         ResponseHeader responseHeader;
        
         try{
-            ucTelGroupAtomSv.insertUcTelGroupInfo(contactsGroup);
+            ucTelGroupAtomSv.insertUcTelGroupInfo(ucTelGroup);
             responseHeader = new ResponseHeader(true,"success","添加成功");
         }catch(Exception e){
             LOG.error("通讯录组添加失败",e);
@@ -82,11 +83,11 @@ public class UcTelGroupBusiSVImpl implements IUcTelGroupBusiSV{
        
         
         ucTelGroupCriteria.or().andCreateChlIdBetween("telGroup.TEL_GROUP_ID", "books.TEL_GROUP_ID");
-        ucTelGroupCriteria.setGroupByClause("books.TEL_GROUP_ID");
-        List<Map<String,Object>> map = ucTelGroupAtomSv.selectUcTelGroupInfo(ucTelGroupCriteria);
-        
+        ucTelGroupCriteria.or().andTelGroupIdEqualTo(("books.TEL_GROUP_ID"));
+        List<UcTelGroup> map = ucTelGroupAtomSv.selectUcTelGroupInfo(ucTelGroupCriteria);
+         
         PageInfo<Map<String,Object>> pageInfo = new PageInfo<Map<String,Object>>();
-        pageInfo.setResult(map);
+        //pageInfo.setResult(map);
         pageInfo.setCount(count);
         reponse.setPageInfo(pageInfo);
         

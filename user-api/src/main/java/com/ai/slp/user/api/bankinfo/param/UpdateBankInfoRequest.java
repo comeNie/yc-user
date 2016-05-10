@@ -13,7 +13,7 @@ public class UpdateBankInfoRequest extends BaseInfo {
      * 用户Id NOT NULL
      */
     @NotNull(message = "UserID不能为空", groups = { IUcBankInfoSV.UpdateBankInfo.class })
-    private Long userId;
+    private String userId;
 
     /**
      * 唯一标识
@@ -76,11 +76,11 @@ public class UpdateBankInfoRequest extends BaseInfo {
      */
     private Long updateOperId;
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

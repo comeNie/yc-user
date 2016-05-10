@@ -19,7 +19,7 @@ public class QueryContactsInfoRequest extends BaseInfo {
      * 用户ID NOT NULL
      */
     @NotNull(message = "userId不能为空", groups = { IUcContactsInfoSV.QueryContactsInfo.class })
-    private Long userId;
+    private String userId;
 
     /**
      * pageNo
@@ -31,11 +31,11 @@ public class QueryContactsInfoRequest extends BaseInfo {
      */
     private Integer pageSize;
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

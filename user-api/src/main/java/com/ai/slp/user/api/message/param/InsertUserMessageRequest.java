@@ -21,7 +21,7 @@ public class InsertUserMessageRequest extends BaseInfo {
      * 用户ID NOT NULL
      */
     @NotNull(message = "用户ID不能为空", groups = { IUserMessageSV.InsertUserMessage.class })
-    private Long userId;
+    private String userId;
 
     /**
      * 用户消息ID
@@ -78,11 +78,11 @@ public class InsertUserMessageRequest extends BaseInfo {
      */
     private String remark;
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

@@ -22,7 +22,7 @@ public class UserSafariSVImplTest {
     // @Test
     public void insertSafariTest() {
         InsertUserSafariRequest request = new InsertUserSafariRequest();
-        request.setUserId(111L);
+        request.setUserId("111");
         request.setTenantId("test111");
         request.setTenantPwd("123456");
         request.setProdId("333");
@@ -37,7 +37,7 @@ public class UserSafariSVImplTest {
         // request.setSafariTime(DateUtils.currTimeStamp());
         request.setTenantId("test111");
         request.setTenantPwd("123456");
-        request.setUserId(111L);
+        request.setUserId("111");
         UserSafariInfoResponse response = userSafariBusiSV.queryUserSafari(request);
         System.out.println(response.getPageInfo().getCount());
     }
@@ -45,7 +45,7 @@ public class UserSafariSVImplTest {
     //@Test
     public void deleteSafariTest() {
         DeleteSafariRequest request = new DeleteSafariRequest();
-        request.setUserId(111L);
+        request.setUserId("111");
         request.setTenantId("test111");
         request.setTenantPwd("123456");
         // request.setProdId("333");

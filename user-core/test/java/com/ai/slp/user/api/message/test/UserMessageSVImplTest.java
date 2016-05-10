@@ -27,7 +27,7 @@ public class UserMessageSVImplTest {
         InsertUserMessageRequest request = new InsertUserMessageRequest();
         request.setTenantId("test111");
         request.setTenantPwd("123456");
-        request.setUserId(111L);
+        request.setUserId("111");
         request.setInfoSeqId("111");
         request.setInfoType("2");
         request.setReadFlag("2");
@@ -39,7 +39,7 @@ public class UserMessageSVImplTest {
     public void updateMessageTest(){
         UpdateMessageRequest request = new UpdateMessageRequest();
         request.setTenantId("test111");
-        request.setUserId(111L);
+        request.setUserId("111");
         request.setOperCode("0001");
         request.setOperId("111");
         userMessageSV.updateUserMessage(request);
@@ -52,7 +52,7 @@ public class UserMessageSVImplTest {
         request.setPageSize(11);
         request.setReadFlag("10");
         request.setTenantId("test111");
-        request.setUserId(111L);
+        request.setUserId("111");
         System.out.println(userMessageSV.queryUserMessage(request).getPageInfo().getResult().size());
     }
     
@@ -60,7 +60,7 @@ public class UserMessageSVImplTest {
     public void deleteMessageTest(){
         DeleteMessageRequest request = new DeleteMessageRequest();
         request.setTenantId("test111");
-        request.setUserId(111L);
+        request.setUserId("111");
         List<String> list = new ArrayList<String>();
         list.add("111");
         request.setList(list);

@@ -17,13 +17,12 @@ import com.ai.slp.user.api.register.interfaces.IRegisterSV;
  */
 public class UcUserAgreeParams implements Serializable {
 
-    
-    @NotNull(message="租户id不能为空",groups={IRegisterSV.InsertUcUser.class})
+    @NotNull(message = "租户id不能为空", groups = { IRegisterSV.InsertUcUser.class })
     private String tenantId;
 
     private String agreeSeqId;
 
-    private Long userId;
+    private String userId;
 
     private String agreementId;
 
@@ -45,11 +44,11 @@ public class UcUserAgreeParams implements Serializable {
         this.agreeSeqId = agreeSeqId;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -68,8 +67,5 @@ public class UcUserAgreeParams implements Serializable {
     public void setSubsTime(Timestamp subsTime) {
         this.subsTime = subsTime;
     }
-    
-    
-    
-    
+
 }

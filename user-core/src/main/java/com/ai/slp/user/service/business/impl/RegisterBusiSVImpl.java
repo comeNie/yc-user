@@ -38,7 +38,6 @@ import com.ai.slp.user.service.atom.interfaces.IRegisterAtomSV;
 import com.ai.slp.user.service.atom.interfaces.IUcBankInfoAtomSV;
 import com.ai.slp.user.service.atom.interfaces.IUcContactsInfoAtomSV;
 import com.ai.slp.user.service.business.interfaces.IRegisterBusiSV;
-import com.ai.slp.user.service.business.interfaces.IUcBankInfoBusiSV;
 
 @Service
 @Transactional
@@ -96,7 +95,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
                 BeanUtils.copyProperties(ucUser, userParams);
                 //插入user主表
                 ucUser.setUserType(REGISTER_STATE);
-                int userId = registerAtomSv.insertUserInfo(ucUser);
+                registerAtomSv.insertUserInfo(ucUser);
                 
                 //用户状态变更
                 insertUserStateChg(userParams,REGISTER_STATE);
@@ -108,7 +107,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
                 
                 //插入用户协议表
                 UcUserAgree ucUserAgree = new UcUserAgree();
-                ucUserAgree.setUserId(Long.parseLong(String.valueOf(userId)));
+                ucUserAgree.setUserId(agreeInfo.getUserId());
                 ucUserAgree.setAgreementId(agreeInfo.getAgreementId());
                 registerAtomSv.InsertUcUserAgreeAtomSv(ucUserAgree);
                 UcContactsInfo contactsInfo = new UcContactsInfo();
@@ -184,7 +183,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
              * 获取当前用户信息
              */
             List<UcUser> list = getUserInfoBycondition(userParams);
-            long userId = list.get(0).getUserId();
+            String userId = list.get(0).getUserId();
             userParams.setUserId(userId);
             //企业客户关键信息表
             UcGroupKeyInfo ucGroupKeyInfo = new UcGroupKeyInfo();
@@ -223,7 +222,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
              * 获取当前用户信息
              */
             List<UcUser> list = getUserInfoBycondition(userParams);
-            long userId = list.get(0).getUserId();
+            String userId = list.get(0).getUserId();
             userParams.setUserId(userId);
             //企业客户关键信息表
             UcGroupKeyInfo ucGroupKeyInfo = new UcGroupKeyInfo();
@@ -272,7 +271,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
              * 获取当前用户信息
              */
             List<UcUser> list = getUserInfoBycondition(userParams);
-            long userId = list.get(0).getUserId();
+            String userId = list.get(0).getUserId();
             userParams.setUserId(userId);
             
             UcCustKeyInfo ucCustKeyInfo = new UcCustKeyInfo();
@@ -377,7 +376,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
     public int insertUserStateChg(UcUserParams userParams,String state){
         UcStateChg ucStateChgRegister = new UcStateChg();
         ucStateChgRegister.setTenantId(userParams.getTenantId());
-        ucStateChgRegister.setUserId(Long.parseLong(String.valueOf(userParams.getUserId())));
+        ucStateChgRegister.setUserId(userParams.getUserId());
         ucStateChgRegister.setOperType(userParams.getUserType());
         ucStateChgRegister.setNewState(state);
         ucStateChgRegister.setChgTime(new Timestamp(new Date().getTime()));

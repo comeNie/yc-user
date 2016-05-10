@@ -10,15 +10,15 @@ public class QueryStateChgRequest extends BaseInfo {
     private static final long serialVersionUID = 1L;
 
     @NotNull(message = "userId不能为空", groups = { IUcStateChgSV.InsertUcStateChgInfo.class })
-    private Long userId;
+    private String userId;
 
     private String stateChgId;
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -29,6 +29,5 @@ public class QueryStateChgRequest extends BaseInfo {
     public void setStateChgId(String stateChgId) {
         this.stateChgId = stateChgId;
     }
-    
-    
+
 }

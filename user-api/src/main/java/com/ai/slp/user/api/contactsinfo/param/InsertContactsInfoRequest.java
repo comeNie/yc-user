@@ -19,7 +19,7 @@ public class InsertContactsInfoRequest extends BaseInfo {
      * 用户Id NOT NULL
      */
     @NotNull(message = "userId不能为空", groups = { IUcContactsInfoSV.InsertContactsInfo.class })
-    private Long userId;
+    private String userId;
 
     /**
      * 唯一标识
@@ -91,11 +91,11 @@ public class InsertContactsInfoRequest extends BaseInfo {
      */
     private Long createOperId;
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

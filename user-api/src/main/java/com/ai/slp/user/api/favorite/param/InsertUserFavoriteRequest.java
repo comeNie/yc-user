@@ -19,13 +19,13 @@ public class InsertUserFavoriteRequest extends BaseInfo {
      * 用户ID NOT NULL
      */
     @NotNull(message = "用户Id不能为空", groups = { IUserFavoriteSV.InsertUcFavorite.class })
-    private Long userId;
+    private String userId;
 
     /**
      * 收藏ID
      */
     private String favoriteSeqId;
-    
+
     /**
      * 收藏关系ID NOT NULL
      */
@@ -38,12 +38,16 @@ public class InsertUserFavoriteRequest extends BaseInfo {
     @NotNull(message = "收藏类型不能为空", groups = { IUserFavoriteSV.InsertUcFavorite.class })
     private String favoriteType;
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public void setFavoriteSeqId(String favoriteSeqId) {
+        this.favoriteSeqId = favoriteSeqId;
     }
 
     public String getFavoriteRelId() {

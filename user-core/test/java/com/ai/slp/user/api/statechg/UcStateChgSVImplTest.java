@@ -22,7 +22,7 @@ public class UcStateChgSVImplTest {
     public void insertStateChg() {
         UcStateChgParamsRequest request = new UcStateChgParamsRequest();
         request.setTenantId("test111");
-        request.setUserId(111L);
+        request.setUserId("111");
         request.setStateChgId("111");
         request.setChgTime(DateUtils.currTimeStamp());
         ucStateChgSV.insertUcStateChgInfo(request);
@@ -32,7 +32,7 @@ public class UcStateChgSVImplTest {
     public void updateStateChg() {
         UcStateChgParamsRequest request = new UcStateChgParamsRequest();
         request.setTenantId("test111");
-        request.setUserId(111L);
+        request.setUserId("111");
         request.setStateChgId("111");
         request.setChgTime(DateUtils.currTimeStamp());
         ucStateChgSV.updateUcStateChgInfo(request);
@@ -42,7 +42,7 @@ public class UcStateChgSVImplTest {
     public void queryStateChg() {
         QueryStateChgRequest request = new QueryStateChgRequest();
         request.setTenantId("test111");
-        request.setUserId(111L);
+        request.setUserId("111");
         request.setStateChgId("111");
         System.out.println(ucStateChgSV.queryStateChg(request).getTenantId());
     }

@@ -5,8 +5,7 @@ import java.sql.Timestamp;
 import com.ai.opt.base.vo.BaseResponse;
 
 /**
- * 查询用户信息出参
- * Date: 2016年4月29日 <br>
+ * 查询用户信息出参 Date: 2016年4月29日 <br>
  * Copyright (c) 2016 asiainfo.com <br>
  * 
  * @author zhangqiang7
@@ -17,7 +16,7 @@ public class SearchUcUserParams extends BaseResponse {
 
     private String tenantId;
 
-    private Long userId;
+    private String userId;
 
     private String userType;
 
@@ -81,11 +80,11 @@ public class SearchUcUserParams extends BaseResponse {
         this.tenantId = tenantId;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

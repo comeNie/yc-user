@@ -26,7 +26,7 @@ public class ApiInfoSVImplTest {
         request.setApiName("1111");
         request.setApiType("00");
         request.setWebAddr("www.111.com");
-        request.setUserId(111L);
+        request.setUserId("111");
         request.setCreateOperId(111L);
         request.setTenantId("test111");
         request.setTenantPwd("123456");
@@ -39,7 +39,7 @@ public class ApiInfoSVImplTest {
         request.setApiKey("333");
         request.setSecretKey("555");
         request.setTenantId("test111");
-        request.setUserId(111L);
+        request.setUserId("111");
         request.setApiSeqId("2222");
         request.setUpdateOperId(111L);
 
@@ -50,7 +50,7 @@ public class ApiInfoSVImplTest {
     public void queryApiInfoTest() {
         ApiInfoRequest request = new ApiInfoRequest();
         request.setTenantId("test111");
-        request.setUserId(111L);
+        request.setUserId("111");
         request.setPageNo(11);
         request.setPageSize(11);
         ApiInfoResponse response = apiInfoBusiSV.queryApiInfo(request);

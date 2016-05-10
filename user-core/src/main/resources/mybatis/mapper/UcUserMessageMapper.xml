@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.ai.slp.user.dao.mapper.bo.UcUserMessage" >
     <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />
     <result column="INFO_SEQ_ID" property="infoSeqId" jdbcType="VARCHAR" />
-    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
     <result column="INFO_TYPE" property="infoType" jdbcType="VARCHAR" />
     <result column="READ_FLAG" property="readFlag" jdbcType="VARCHAR" />
     <result column="READ_TIME" property="readTime" jdbcType="TIMESTAMP" />
@@ -117,7 +117,7 @@
       CREATE_TIME, CREATE_CHL_ID, CREATE_OPER_ID, 
       UPDATE_TIME, UPDATE_CHL_ID, UPDATE_OPER_ID, 
       REMARK)
-    values (#{tenantId,jdbcType=VARCHAR}, #{infoSeqId,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
+    values (#{tenantId,jdbcType=VARCHAR}, #{infoSeqId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
       #{infoType,jdbcType=VARCHAR}, #{readFlag,jdbcType=VARCHAR}, #{readTime,jdbcType=TIMESTAMP}, 
       #{infoHeadline,jdbcType=VARCHAR}, #{infoMessage,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
       #{activeTime,jdbcType=TIMESTAMP}, #{inactiveTime,jdbcType=TIMESTAMP}, #{stateUpdateTime,jdbcType=TIMESTAMP}, 
@@ -194,7 +194,7 @@
         #{infoSeqId,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
-        #{userId,jdbcType=BIGINT},
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="infoType != null" >
         #{infoType,jdbcType=VARCHAR},
@@ -262,7 +262,7 @@
         INFO_SEQ_ID = #{record.infoSeqId,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null" >
-        USER_ID = #{record.userId,jdbcType=BIGINT},
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.infoType != null" >
         INFO_TYPE = #{record.infoType,jdbcType=VARCHAR},
@@ -321,7 +321,7 @@
     update uc_user_message
     set TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
       INFO_SEQ_ID = #{record.infoSeqId,jdbcType=VARCHAR},
-      USER_ID = #{record.userId,jdbcType=BIGINT},
+      USER_ID = #{record.userId,jdbcType=VARCHAR},
       INFO_TYPE = #{record.infoType,jdbcType=VARCHAR},
       READ_FLAG = #{record.readFlag,jdbcType=VARCHAR},
       READ_TIME = #{record.readTime,jdbcType=TIMESTAMP},

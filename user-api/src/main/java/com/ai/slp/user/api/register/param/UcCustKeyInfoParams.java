@@ -17,13 +17,12 @@ import com.ai.slp.user.api.register.interfaces.IRegisterSV;
  */
 public class UcCustKeyInfoParams implements Serializable {
 
-    
-    @NotNull(message="租户id不能为空",groups={IRegisterSV.InsertUcUser.class})
+    @NotNull(message = "租户id不能为空", groups = { IRegisterSV.InsertUcUser.class })
     private String tenantId;
-    
-    private Integer userId;
-    
-    @NotNull(message="用户类型不能为空",groups={IRegisterSV.InsertUcUser.class})
+
+    private String userId;
+
+    @NotNull(message = "用户类型不能为空", groups = { IRegisterSV.InsertUcUser.class })
     private String userType;
 
     private String custName;
@@ -86,11 +85,11 @@ public class UcCustKeyInfoParams implements Serializable {
         this.tenantId = tenantId;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -309,9 +308,5 @@ public class UcCustKeyInfoParams implements Serializable {
     public void setUpdateOperId(Long updateOperId) {
         this.updateOperId = updateOperId;
     }
-    
-    
-    
-    
-    
+
 }

@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.ai.slp.user.dao.mapper.bo.UcUserAgree" >
     <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />
     <result column="AGREE_SEQ_ID" property="agreeSeqId" jdbcType="VARCHAR" />
-    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
     <result column="AGREEMENT_ID" property="agreementId" jdbcType="VARCHAR" />
     <result column="SUBS_TIME" property="subsTime" jdbcType="TIMESTAMP" />
   </resultMap>
@@ -96,7 +96,7 @@
   <insert id="insert" parameterType="com.ai.slp.user.dao.mapper.bo.UcUserAgree" >
     insert into uc_user_agree (TENANT_ID, AGREE_SEQ_ID, USER_ID, 
       AGREEMENT_ID, SUBS_TIME)
-    values (#{tenantId,jdbcType=VARCHAR}, #{agreeSeqId,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
+    values (#{tenantId,jdbcType=VARCHAR}, #{agreeSeqId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
       #{agreementId,jdbcType=VARCHAR}, #{subsTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.ai.slp.user.dao.mapper.bo.UcUserAgree" >
@@ -126,7 +126,7 @@
         #{agreeSeqId,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
-        #{userId,jdbcType=BIGINT},
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="agreementId != null" >
         #{agreementId,jdbcType=VARCHAR},
@@ -152,7 +152,7 @@
         AGREE_SEQ_ID = #{record.agreeSeqId,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null" >
-        USER_ID = #{record.userId,jdbcType=BIGINT},
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.agreementId != null" >
         AGREEMENT_ID = #{record.agreementId,jdbcType=VARCHAR},
@@ -169,7 +169,7 @@
     update uc_user_agree
     set TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
       AGREE_SEQ_ID = #{record.agreeSeqId,jdbcType=VARCHAR},
-      USER_ID = #{record.userId,jdbcType=BIGINT},
+      USER_ID = #{record.userId,jdbcType=VARCHAR},
       AGREEMENT_ID = #{record.agreementId,jdbcType=VARCHAR},
       SUBS_TIME = #{record.subsTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >

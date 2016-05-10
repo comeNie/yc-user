@@ -16,12 +16,11 @@ import com.ai.slp.user.api.register.interfaces.IRegisterSV;
  */
 public class UcUserFileExtParams implements Serializable {
 
-    
-    @NotNull(message="租户id不能为空",groups={IRegisterSV.InsertUcUser.class})
+    @NotNull(message = "租户id不能为空", groups = { IRegisterSV.InsertUcUser.class })
     private String tenantId;
-    
-    private Integer userId;
-    
+
+    private String userId;
+
     private String extendinfo;
 
     public String getTenantId() {
@@ -32,11 +31,11 @@ public class UcUserFileExtParams implements Serializable {
         this.tenantId = tenantId;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -47,8 +46,5 @@ public class UcUserFileExtParams implements Serializable {
     public void setExtendinfo(String extendinfo) {
         this.extendinfo = extendinfo;
     }
-    
-    
-    
-    
+
 }

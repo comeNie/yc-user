@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ai.slp.user.dao.mapper.interfaces.CmCustIndexCertNumMapper" >
   <resultMap id="BaseResultMap" type="com.ai.slp.user.dao.mapper.bo.CmCustIndexCertNum" >
-    <id column="CUST_ID" property="custId" jdbcType="BIGINT" />
+    <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />
+    <result column="CUST_ID" property="custId" jdbcType="DECIMAL" />
     <result column="CERT_TYPE" property="certType" jdbcType="VARCHAR" />
     <result column="CERT_NUM" property="certNum" jdbcType="VARCHAR" />
-    <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    CUST_ID, CERT_TYPE, CERT_NUM, TENANT_ID
+    TENANT_ID, CUST_ID, CERT_TYPE, CERT_NUM
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.user.dao.mapper.bo.CmCustIndexCertNumCriteria" >
     select
@@ -86,16 +86,6 @@
       limit #{limitStart} , #{limitEnd}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from cm_cust_index_cert_num
-    where CUST_ID = #{custId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="Long" >
-    delete from cm_cust_index_cert_num
-    where CUST_ID = #{custId,jdbcType=BIGINT}
-  </delete>
   <delete id="deleteByExample" parameterType="com.ai.slp.user.dao.mapper.bo.CmCustIndexCertNumCriteria" >
     delete from cm_cust_index_cert_num
     <if test="_parameter != null" >
@@ -103,14 +93,17 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.ai.slp.user.dao.mapper.bo.CmCustIndexCertNum" >
-    insert into cm_cust_index_cert_num (CUST_ID, CERT_TYPE, CERT_NUM, 
-      TENANT_ID)
-    values (#{custId,jdbcType=BIGINT}, #{certType,jdbcType=VARCHAR}, #{certNum,jdbcType=VARCHAR}, 
-      #{tenantId,jdbcType=VARCHAR})
+    insert into cm_cust_index_cert_num (TENANT_ID, CUST_ID, CERT_TYPE, 
+      CERT_NUM)
+    values (#{tenantId,jdbcType=VARCHAR}, #{custId,jdbcType=DECIMAL}, #{certType,jdbcType=VARCHAR}, 
+      #{certNum,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ai.slp.user.dao.mapper.bo.CmCustIndexCertNum" >
     insert into cm_cust_index_cert_num
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tenantId != null" >
+        TENANT_ID,
+      </if>
       <if test="custId != null" >
         CUST_ID,
       </if>
@@ -120,22 +113,19 @@
       <if test="certNum != null" >
         CERT_NUM,
       </if>
-      <if test="tenantId != null" >
-        TENANT_ID,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tenantId != null" >
+        #{tenantId,jdbcType=VARCHAR},
+      </if>
       <if test="custId != null" >
-        #{custId,jdbcType=BIGINT},
+        #{custId,jdbcType=DECIMAL},
       </if>
       <if test="certType != null" >
         #{certType,jdbcType=VARCHAR},
       </if>
       <if test="certNum != null" >
         #{certNum,jdbcType=VARCHAR},
-      </if>
-      <if test="tenantId != null" >
-        #{tenantId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -148,17 +138,17 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update cm_cust_index_cert_num
     <set >
+      <if test="record.tenantId != null" >
+        TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
+      </if>
       <if test="record.custId != null" >
-        CUST_ID = #{record.custId,jdbcType=BIGINT},
+        CUST_ID = #{record.custId,jdbcType=DECIMAL},
       </if>
       <if test="record.certType != null" >
         CERT_TYPE = #{record.certType,jdbcType=VARCHAR},
       </if>
       <if test="record.certNum != null" >
         CERT_NUM = #{record.certNum,jdbcType=VARCHAR},
-      </if>
-      <if test="record.tenantId != null" >
-        TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -167,34 +157,12 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update cm_cust_index_cert_num
-    set CUST_ID = #{record.custId,jdbcType=BIGINT},
+    set TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
+      CUST_ID = #{record.custId,jdbcType=DECIMAL},
       CERT_TYPE = #{record.certType,jdbcType=VARCHAR},
-      CERT_NUM = #{record.certNum,jdbcType=VARCHAR},
-      TENANT_ID = #{record.tenantId,jdbcType=VARCHAR}
+      CERT_NUM = #{record.certNum,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ai.slp.user.dao.mapper.bo.CmCustIndexCertNum" >
-    update cm_cust_index_cert_num
-    <set >
-      <if test="certType != null" >
-        CERT_TYPE = #{certType,jdbcType=VARCHAR},
-      </if>
-      <if test="certNum != null" >
-        CERT_NUM = #{certNum,jdbcType=VARCHAR},
-      </if>
-      <if test="tenantId != null" >
-        TENANT_ID = #{tenantId,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where CUST_ID = #{custId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.ai.slp.user.dao.mapper.bo.CmCustIndexCertNum" >
-    update cm_cust_index_cert_num
-    set CERT_TYPE = #{certType,jdbcType=VARCHAR},
-      CERT_NUM = #{certNum,jdbcType=VARCHAR},
-      TENANT_ID = #{tenantId,jdbcType=VARCHAR}
-    where CUST_ID = #{custId,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -3,7 +3,7 @@
 <mapper namespace="com.ai.slp.user.dao.mapper.interfaces.UcTelGroupMapper" >
   <resultMap id="BaseResultMap" type="com.ai.slp.user.dao.mapper.bo.UcTelGroup" >
     <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />
-    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
     <result column="TEL_GROUP_ID" property="telGroupId" jdbcType="VARCHAR" />
     <result column="SEQ" property="seq" jdbcType="BIGINT" />
     <result column="TEL_GROUP_NAME" property="telGroupName" jdbcType="VARCHAR" />
@@ -76,21 +76,20 @@
     TENANT_ID, USER_ID, TEL_GROUP_ID, SEQ, TEL_GROUP_NAME, CREATE_TIME, CREATE_CHL_ID, 
     CREATE_OPER_ID, UPDATE_TIME, UPDATE_CHL_ID, UPDATE_OPER_ID
   </sql>
-  
-  
-  <select id="selectByExample" resultType="java.util.LinkedHashMap"  parameterType="com.ai.slp.user.dao.mapper.bo.UcTelGroupCriteria" >
-    
-    select  telGroup.TEL_GROUP_ID,telGroup.seq,telGroup.TEL_GROUP_NAME,count(books.tel_mp) phoneCount,books.UPDATE_TIME 
-	from uc_tel_group telGroup,uc_user_phonebooks books where telGroup.TEL_GROUP_ID = books.TEL_GROUP_ID
-    
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.user.dao.mapper.bo.UcTelGroupCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from uc_tel_group
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
-    
-    <if test="groupByClause != null" >
-      group by ${groupByClause}
-    </if>
-    
     <if test="limitStart != null and limitStart>=0" >
       limit #{limitStart} , #{limitEnd}
     </if>
@@ -106,7 +105,7 @@
       SEQ, TEL_GROUP_NAME, CREATE_TIME, 
       CREATE_CHL_ID, CREATE_OPER_ID, UPDATE_TIME, 
       UPDATE_CHL_ID, UPDATE_OPER_ID)
-    values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{telGroupId,jdbcType=VARCHAR}, 
+    values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{telGroupId,jdbcType=VARCHAR}, 
       #{seq,jdbcType=BIGINT}, #{telGroupName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{createChlId,jdbcType=VARCHAR}, #{createOperId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{updateChlId,jdbcType=VARCHAR}, #{updateOperId,jdbcType=BIGINT})
@@ -153,7 +152,7 @@
         #{tenantId,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
-        #{userId,jdbcType=BIGINT},
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="telGroupId != null" >
         #{telGroupId,jdbcType=VARCHAR},
@@ -197,7 +196,7 @@
         TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null" >
-        USER_ID = #{record.userId,jdbcType=BIGINT},
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.telGroupId != null" >
         TEL_GROUP_ID = #{record.telGroupId,jdbcType=VARCHAR},
@@ -233,9 +232,17 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update uc_tel_group
-    set 
+    set TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
+      USER_ID = #{record.userId,jdbcType=VARCHAR},
+      TEL_GROUP_ID = #{record.telGroupId,jdbcType=VARCHAR},
+      SEQ = #{record.seq,jdbcType=BIGINT},
       TEL_GROUP_NAME = #{record.telGroupName,jdbcType=VARCHAR},
-      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_CHL_ID = #{record.createChlId,jdbcType=VARCHAR},
+      CREATE_OPER_ID = #{record.createOperId,jdbcType=BIGINT},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_CHL_ID = #{record.updateChlId,jdbcType=VARCHAR},
+      UPDATE_OPER_ID = #{record.updateOperId,jdbcType=BIGINT}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

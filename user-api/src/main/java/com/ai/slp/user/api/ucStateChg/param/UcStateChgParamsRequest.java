@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 import com.ai.opt.base.vo.BaseInfo;
 import com.ai.slp.user.api.ucStateChg.interfaces.IUcStateChgSV;
 
-public class UcStateChgParamsRequest extends BaseInfo implements Serializable{
+public class UcStateChgParamsRequest extends BaseInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
@@ -19,7 +19,7 @@ public class UcStateChgParamsRequest extends BaseInfo implements Serializable{
             IUcStateChgSV.UpdateUcStateChgInfo.class })
     @Size(max = 18, groups = { IUcStateChgSV.InsertUcStateChgInfo.class,
             IUcStateChgSV.UpdateUcStateChgInfo.class })
-    private Long userId;
+    private String userId;
 
     /**
      * 状态变更流水ID
@@ -65,11 +65,11 @@ public class UcStateChgParamsRequest extends BaseInfo implements Serializable{
      */
     private long operId;
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

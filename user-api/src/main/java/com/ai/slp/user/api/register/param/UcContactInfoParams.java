@@ -15,32 +15,31 @@ import com.ai.slp.user.api.register.interfaces.IRegisterSV;
  */
 public class UcContactInfoParams implements Serializable {
 
-    
     private static final long serialVersionUID = 1L;
 
-    @NotNull(message="租户id不能为空",groups={IRegisterSV.InsertUcUser.class})
+    @NotNull(message = "租户id不能为空", groups = { IRegisterSV.InsertUcUser.class })
     private String tenantId;
-    
-    private Integer userId;
-    
+
+    private String userId;
+
     private String contactSeqId;
-    
+
     private String contactName;
-    
+
     private String contactCertTy;
-    
+
     private String contactCertNu;
-    
+
     private String contactWxId;
-    
+
     private String contactMp;
-    
+
     private String contactEmail;
-    
+
     private String contactAdress;
-    
+
     private String groupZip;
-    
+
     private String createTime;
 
     public String getTenantId() {
@@ -51,11 +50,11 @@ public class UcContactInfoParams implements Serializable {
         this.tenantId = tenantId;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -138,8 +137,5 @@ public class UcContactInfoParams implements Serializable {
     public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
-   
-    
-    
-    
+
 }

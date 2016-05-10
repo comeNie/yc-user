@@ -19,7 +19,7 @@ public class InsertSpecialInfoRequest extends BaseInfo {
      * 用户Id NOT NULL
      */
     @NotNull(message = "userID不能为空", groups = { IUcSpecialInfoSV.InsertSpecialInfo.class })
-    private Long userId;
+    private String userId;
 
     /**
      * 扩展ID
@@ -62,11 +62,11 @@ public class InsertSpecialInfoRequest extends BaseInfo {
      */
     private Long createOperId;
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

@@ -1,13 +1,21 @@
 package com.ai.slp.user.dao.mapper.bo;
 
 public class CmCustIndexCertNum {
+    private String tenantId;
+
     private Long custId;
 
     private String certType;
 
     private String certNum;
 
-    private String tenantId;
+    public String getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId == null ? null : tenantId.trim();
+    }
 
     public Long getCustId() {
         return custId;
@@ -31,13 +39,5 @@ public class CmCustIndexCertNum {
 
     public void setCertNum(String certNum) {
         this.certNum = certNum == null ? null : certNum.trim();
-    }
-
-    public String getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId == null ? null : tenantId.trim();
     }
 }

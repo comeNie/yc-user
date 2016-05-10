@@ -1,11 +1,9 @@
 package com.ai.slp.user.service.atom.impl;
 
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import com.ai.slp.user.api.ucTelGroupInfo.param.UcTelGroupParamsRequest;
 import com.ai.slp.user.dao.mapper.bo.UcTelGroup;
 import com.ai.slp.user.dao.mapper.bo.UcTelGroupCriteria;
 import com.ai.slp.user.dao.mapper.factory.MapperFactory;
@@ -15,13 +13,13 @@ import com.ai.slp.user.service.atom.interfaces.IUcTelGroupAtomSV;
 public class TelGroupAtomSVImpl implements IUcTelGroupAtomSV {
   
     @Override
-    public void insertUcTelGroupInfo(UcTelGroupParamsRequest contactsGroup) {
+    public void insertUcTelGroupInfo(UcTelGroup contactsGroup) {
         MapperFactory.getUcTelGroupMapper().insert(contactsGroup);
     }
 
     @Override
-    public List<Map<String,Object>> selectUcTelGroupInfo(UcTelGroupCriteria ucTelGroupCriteria) {
-        List<Map<String,Object>> result = MapperFactory.getUcTelGroupMapper().selectByExample(ucTelGroupCriteria);
+    public List<UcTelGroup> selectUcTelGroupInfo(UcTelGroupCriteria ucTelGroupCriteria) {
+        List<UcTelGroup> result = MapperFactory.getUcTelGroupMapper().selectByExample(ucTelGroupCriteria);
         return result;
     }
 

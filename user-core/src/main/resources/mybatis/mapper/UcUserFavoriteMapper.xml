@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.ai.slp.user.dao.mapper.bo.UcUserFavorite" >
     <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />
     <result column="FAVORITE_SEQ_ID" property="favoriteSeqId" jdbcType="VARCHAR" />
-    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
     <result column="FAVORITE_TYPE" property="favoriteType" jdbcType="VARCHAR" />
     <result column="FAVORITE_REL_ID" property="favoriteRelId" jdbcType="VARCHAR" />
     <result column="STATE" property="state" jdbcType="VARCHAR" />
@@ -101,7 +101,7 @@
     insert into uc_user_favorite (TENANT_ID, FAVORITE_SEQ_ID, USER_ID, 
       FAVORITE_TYPE, FAVORITE_REL_ID, STATE, 
       CREATE_TIME, UPDATE_TIME)
-    values (#{tenantId,jdbcType=VARCHAR}, #{favoriteSeqId,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
+    values (#{tenantId,jdbcType=VARCHAR}, #{favoriteSeqId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
       #{favoriteType,jdbcType=VARCHAR}, #{favoriteRelId,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
@@ -141,7 +141,7 @@
         #{favoriteSeqId,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
-        #{userId,jdbcType=BIGINT},
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="favoriteType != null" >
         #{favoriteType,jdbcType=VARCHAR},
@@ -176,7 +176,7 @@
         FAVORITE_SEQ_ID = #{record.favoriteSeqId,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null" >
-        USER_ID = #{record.userId,jdbcType=BIGINT},
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.favoriteType != null" >
         FAVORITE_TYPE = #{record.favoriteType,jdbcType=VARCHAR},
@@ -202,7 +202,7 @@
     update uc_user_favorite
     set TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
       FAVORITE_SEQ_ID = #{record.favoriteSeqId,jdbcType=VARCHAR},
-      USER_ID = #{record.userId,jdbcType=BIGINT},
+      USER_ID = #{record.userId,jdbcType=VARCHAR},
       FAVORITE_TYPE = #{record.favoriteType,jdbcType=VARCHAR},
       FAVORITE_REL_ID = #{record.favoriteRelId,jdbcType=VARCHAR},
       STATE = #{record.state,jdbcType=VARCHAR},

@@ -124,6 +124,76 @@ public class CmCustIndexCertNumCriteria {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andTenantIdIsNull() {
+            addCriterion("TENANT_ID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenantIdIsNotNull() {
+            addCriterion("TENANT_ID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenantIdEqualTo(String value) {
+            addCriterion("TENANT_ID =", value, "tenantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenantIdNotEqualTo(String value) {
+            addCriterion("TENANT_ID <>", value, "tenantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenantIdGreaterThan(String value) {
+            addCriterion("TENANT_ID >", value, "tenantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenantIdGreaterThanOrEqualTo(String value) {
+            addCriterion("TENANT_ID >=", value, "tenantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenantIdLessThan(String value) {
+            addCriterion("TENANT_ID <", value, "tenantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenantIdLessThanOrEqualTo(String value) {
+            addCriterion("TENANT_ID <=", value, "tenantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenantIdLike(String value) {
+            addCriterion("TENANT_ID like", value, "tenantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenantIdNotLike(String value) {
+            addCriterion("TENANT_ID not like", value, "tenantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenantIdIn(List<String> values) {
+            addCriterion("TENANT_ID in", values, "tenantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenantIdNotIn(List<String> values) {
+            addCriterion("TENANT_ID not in", values, "tenantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenantIdBetween(String value1, String value2) {
+            addCriterion("TENANT_ID between", value1, value2, "tenantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTenantIdNotBetween(String value1, String value2) {
+            addCriterion("TENANT_ID not between", value1, value2, "tenantId");
+            return (Criteria) this;
+        }
+
         public Criteria andCustIdIsNull() {
             addCriterion("CUST_ID is null");
             return (Criteria) this;
@@ -321,76 +391,6 @@ public class CmCustIndexCertNumCriteria {
 
         public Criteria andCertNumNotBetween(String value1, String value2) {
             addCriterion("CERT_NUM not between", value1, value2, "certNum");
-            return (Criteria) this;
-        }
-
-        public Criteria andTenantIdIsNull() {
-            addCriterion("TENANT_ID is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTenantIdIsNotNull() {
-            addCriterion("TENANT_ID is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTenantIdEqualTo(String value) {
-            addCriterion("TENANT_ID =", value, "tenantId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTenantIdNotEqualTo(String value) {
-            addCriterion("TENANT_ID <>", value, "tenantId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTenantIdGreaterThan(String value) {
-            addCriterion("TENANT_ID >", value, "tenantId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTenantIdGreaterThanOrEqualTo(String value) {
-            addCriterion("TENANT_ID >=", value, "tenantId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTenantIdLessThan(String value) {
-            addCriterion("TENANT_ID <", value, "tenantId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTenantIdLessThanOrEqualTo(String value) {
-            addCriterion("TENANT_ID <=", value, "tenantId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTenantIdLike(String value) {
-            addCriterion("TENANT_ID like", value, "tenantId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTenantIdNotLike(String value) {
-            addCriterion("TENANT_ID not like", value, "tenantId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTenantIdIn(List<String> values) {
-            addCriterion("TENANT_ID in", values, "tenantId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTenantIdNotIn(List<String> values) {
-            addCriterion("TENANT_ID not in", values, "tenantId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTenantIdBetween(String value1, String value2) {
-            addCriterion("TENANT_ID between", value1, value2, "tenantId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTenantIdNotBetween(String value1, String value2) {
-            addCriterion("TENANT_ID not between", value1, value2, "tenantId");
             return (Criteria) this;
         }
     }

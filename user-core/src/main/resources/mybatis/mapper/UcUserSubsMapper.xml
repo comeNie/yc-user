@@ -3,7 +3,7 @@
 <mapper namespace="com.ai.slp.user.dao.mapper.interfaces.UcUserSubsMapper" >
   <resultMap id="BaseResultMap" type="com.ai.slp.user.dao.mapper.bo.UcUserSubs" >
     <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />
-    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
     <result column="CARD_SEQ_ID" property="cardSeqId" jdbcType="VARCHAR" />
     <result column="CARD_NAME" property="cardName" jdbcType="VARCHAR" />
     <result column="CARD_TYPE" property="cardType" jdbcType="VARCHAR" />
@@ -118,7 +118,7 @@
       USER_MP, CREATE_TIME, CREATE_CHL_ID, 
       CREATE_OPER_ID, UPDATE_TIME, UPDATE_CHL_ID, 
       UPDATE_OPER_ID, REMARK)
-    values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{cardSeqId,jdbcType=VARCHAR}, 
+    values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{cardSeqId,jdbcType=VARCHAR}, 
       #{cardName,jdbcType=VARCHAR}, #{cardType,jdbcType=VARCHAR}, #{ordId,jdbcType=VARCHAR}, 
       #{skuId,jdbcType=VARCHAR}, #{prodId,jdbcType=VARCHAR}, #{activeTime,jdbcType=TIMESTAMP}, 
       #{inactiveTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR}, #{stateUpdateTime,jdbcType=TIMESTAMP}, 
@@ -195,7 +195,7 @@
         #{tenantId,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
-        #{userId,jdbcType=BIGINT},
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="cardSeqId != null" >
         #{cardSeqId,jdbcType=VARCHAR},
@@ -266,7 +266,7 @@
         TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null" >
-        USER_ID = #{record.userId,jdbcType=BIGINT},
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.cardSeqId != null" >
         CARD_SEQ_ID = #{record.cardSeqId,jdbcType=VARCHAR},
@@ -330,7 +330,7 @@
   <update id="updateByExample" parameterType="map" >
     update uc_user_subs
     set TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
-      USER_ID = #{record.userId,jdbcType=BIGINT},
+      USER_ID = #{record.userId,jdbcType=VARCHAR},
       CARD_SEQ_ID = #{record.cardSeqId,jdbcType=VARCHAR},
       CARD_NAME = #{record.cardName,jdbcType=VARCHAR},
       CARD_TYPE = #{record.cardType,jdbcType=VARCHAR},

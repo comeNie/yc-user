@@ -8,8 +8,7 @@ import com.ai.opt.base.vo.BaseInfo;
 import com.ai.slp.user.api.safari.interfaces.IUserSafariSV;
 
 /**
- * 删除浏览历史表入参
- * Date: 2016年4月27日 <br>
+ * 删除浏览历史表入参 Date: 2016年4月27日 <br>
  * Copyright (c) 2016 asiainfo.com <br>
  * 
  * @author zhangqiang7
@@ -22,7 +21,7 @@ public class DeleteSafariHisRequest extends BaseInfo {
      * 用户ID NOT NULL
      */
     @NotNull(message = "用户Id不能为空", groups = { IUserSafariSV.DeleteUserSafariHis.class })
-    private Long userId;
+    private String userId;
 
     /**
      * 浏览ID列表
@@ -30,11 +29,11 @@ public class DeleteSafariHisRequest extends BaseInfo {
     @NotNull(message = "浏览Id列表不能为空", groups = { IUserSafariSV.DeleteUserSafariHis.class })
     private List<String> safariHisIdList;
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

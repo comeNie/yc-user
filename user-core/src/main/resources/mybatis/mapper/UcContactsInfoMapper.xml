@@ -3,7 +3,7 @@
 <mapper namespace="com.ai.slp.user.dao.mapper.interfaces.UcContactsInfoMapper" >
   <resultMap id="BaseResultMap" type="com.ai.slp.user.dao.mapper.bo.UcContactsInfo" >
     <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />
-    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
     <result column="CONTACT_SEQ_ID" property="contactSeqId" jdbcType="VARCHAR" />
     <result column="STATE" property="state" jdbcType="VARCHAR" />
     <result column="CONTACT_NAME" property="contactName" jdbcType="VARCHAR" />
@@ -118,7 +118,7 @@
       CONTACT_DEPT, REMARK, CREATE_TIME, 
       CREATE_CHL_ID, CREATE_OPER_ID, UPDATE_TIME, 
       UPDATE_CHL_ID, UPDATE_OPER_ID)
-    values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{contactSeqId,jdbcType=VARCHAR}, 
+    values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{contactSeqId,jdbcType=VARCHAR}, 
       #{state,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, #{contactCertType,jdbcType=VARCHAR}, 
       #{contactCertNum,jdbcType=VARCHAR}, #{contactWxId,jdbcType=VARCHAR}, #{contactMp,jdbcType=VARCHAR}, 
       #{contactEmail,jdbcType=VARCHAR}, #{contactAddress,jdbcType=VARCHAR}, #{groupZip,jdbcType=VARCHAR}, 
@@ -195,7 +195,7 @@
         #{tenantId,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
-        #{userId,jdbcType=BIGINT},
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="contactSeqId != null" >
         #{contactSeqId,jdbcType=VARCHAR},
@@ -266,7 +266,7 @@
         TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null" >
-        USER_ID = #{record.userId,jdbcType=BIGINT},
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.contactSeqId != null" >
         CONTACT_SEQ_ID = #{record.contactSeqId,jdbcType=VARCHAR},
@@ -330,7 +330,7 @@
   <update id="updateByExample" parameterType="map" >
     update uc_contacts_info
     set TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
-      USER_ID = #{record.userId,jdbcType=BIGINT},
+      USER_ID = #{record.userId,jdbcType=VARCHAR},
       CONTACT_SEQ_ID = #{record.contactSeqId,jdbcType=VARCHAR},
       STATE = #{record.state,jdbcType=VARCHAR},
       CONTACT_NAME = #{record.contactName,jdbcType=VARCHAR},

@@ -25,7 +25,7 @@ public class UcTelGroupParamsRequest extends BaseInfo implements Serializable{
 	 */
 	@NotNull(message="用户ID不能为空",groups={IUcTelGroupSV.InsertUcTelGroupInfo.class,IUcTelGroupSV.UpdateGroupInfo.class})
     @Size(max=18,groups={IUcTelGroupSV.InsertUcTelGroupInfo.class,IUcTelGroupSV.UpdateGroupInfo.class})
-	private Long userId;
+	private String userId;
 	
 	/**
 	 * 通讯录组ID
@@ -89,15 +89,15 @@ public class UcTelGroupParamsRequest extends BaseInfo implements Serializable{
 		this.tenantId = tenantId;
 	}
 
-	public Long getUserId() {
-		return userId;
-	}
+    public String getUserId() {
+        return userId;
+    }
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-	public String getTelGroupId() {
+    public String getTelGroupId() {
 		return telGroupId;
 	}
 

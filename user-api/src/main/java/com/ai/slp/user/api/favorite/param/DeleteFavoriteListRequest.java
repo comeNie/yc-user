@@ -21,7 +21,7 @@ public class DeleteFavoriteListRequest extends BaseInfo {
      * 用户ID NOT NULL
      */
     @NotNull(message = "用户Id不能为空", groups = { IUserFavoriteSV.DeleteFavorite.class })
-    private Long userId;
+    private String userId;
 
     /**
      * 收藏ID列表 NOT NULL
@@ -29,11 +29,11 @@ public class DeleteFavoriteListRequest extends BaseInfo {
     @NotNull(message = "收藏ID列表不能为空", groups = { IUserFavoriteSV.DeleteFavorite.class })
     private List<String> favoriteReqIdList;
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

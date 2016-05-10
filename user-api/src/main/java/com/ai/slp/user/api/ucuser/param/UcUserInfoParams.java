@@ -21,7 +21,7 @@ public class UcUserInfoParams implements Serializable {
     /**
      * 用户Id
      */
-    private Long userId;
+    private String userId;
 
     /**
      * 用户类型
@@ -161,11 +161,11 @@ public class UcUserInfoParams implements Serializable {
         this.tenantId = tenantId;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

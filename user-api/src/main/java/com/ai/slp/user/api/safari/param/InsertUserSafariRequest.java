@@ -20,7 +20,7 @@ public class InsertUserSafariRequest extends BaseInfo {
      * 用户ID NOT NULL
      */
     @NotNull(message = "用户Id不能为空", groups = { IUserSafariSV.InsertUserSafari.class })
-    private Long userId;
+    private String userId;
 
     /**
      * 浏览商品ID NOT NULL
@@ -36,11 +36,11 @@ public class InsertUserSafariRequest extends BaseInfo {
         this.prodId = prodId;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

@@ -3,7 +3,7 @@
 <mapper namespace="com.ai.slp.user.dao.mapper.interfaces.UcUserSafariMapper" >
   <resultMap id="BaseResultMap" type="com.ai.slp.user.dao.mapper.bo.UcUserSafari" >
     <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />
-    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
     <result column="SAFARI_SEQ_ID" property="safariSeqId" jdbcType="VARCHAR" />
     <result column="PROD_ID" property="prodId" jdbcType="VARCHAR" />
     <result column="SAFARI_TIME" property="safariTime" jdbcType="TIMESTAMP" />
@@ -98,7 +98,7 @@
     insert into uc_user_safari (TENANT_ID, USER_ID, SAFARI_SEQ_ID, 
       PROD_ID, SAFARI_TIME, STATE
       )
-    values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{safariSeqId,jdbcType=VARCHAR}, 
+    values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{safariSeqId,jdbcType=VARCHAR}, 
       #{prodId,jdbcType=VARCHAR}, #{safariTime,jdbcType=TIMESTAMP}, #{state,jdbcType=VARCHAR}
       )
   </insert>
@@ -129,7 +129,7 @@
         #{tenantId,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
-        #{userId,jdbcType=BIGINT},
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="safariSeqId != null" >
         #{safariSeqId,jdbcType=VARCHAR},
@@ -158,7 +158,7 @@
         TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null" >
-        USER_ID = #{record.userId,jdbcType=BIGINT},
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.safariSeqId != null" >
         SAFARI_SEQ_ID = #{record.safariSeqId,jdbcType=VARCHAR},
@@ -180,7 +180,7 @@
   <update id="updateByExample" parameterType="map" >
     update uc_user_safari
     set TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
-      USER_ID = #{record.userId,jdbcType=BIGINT},
+      USER_ID = #{record.userId,jdbcType=VARCHAR},
       SAFARI_SEQ_ID = #{record.safariSeqId,jdbcType=VARCHAR},
       PROD_ID = #{record.prodId,jdbcType=VARCHAR},
       SAFARI_TIME = #{record.safariTime,jdbcType=TIMESTAMP},

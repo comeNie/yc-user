@@ -21,7 +21,7 @@ public class UcContactsInfoParams implements Serializable {
     /**
      * 用户Id
      */
-    private Long userId;
+    private String userId;
 
     /**
      * 唯一标识
@@ -121,11 +121,11 @@ public class UcContactsInfoParams implements Serializable {
         this.tenantId = tenantId;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

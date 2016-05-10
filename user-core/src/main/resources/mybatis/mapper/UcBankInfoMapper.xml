@@ -3,7 +3,7 @@
 <mapper namespace="com.ai.slp.user.dao.mapper.interfaces.UcBankInfoMapper" >
   <resultMap id="BaseResultMap" type="com.ai.slp.user.dao.mapper.bo.UcBankInfo" >
     <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />
-    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
     <result column="BANK_SEQ_ID" property="bankSeqId" jdbcType="VARCHAR" />
     <result column="STATE" property="state" jdbcType="VARCHAR" />
     <result column="LICENSE_NO" property="licenseNo" jdbcType="VARCHAR" />
@@ -116,7 +116,7 @@
       CREATE_TIME, CREATE_CHL_ID, CREATE_OPER_ID, 
       UPDATE_TIME, UPDATE_CHL_ID, UPDATE_OPER_ID
       )
-    values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{bankSeqId,jdbcType=VARCHAR}, 
+    values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{bankSeqId,jdbcType=VARCHAR}, 
       #{state,jdbcType=VARCHAR}, #{licenseNo,jdbcType=VARCHAR}, #{bankNo,jdbcType=VARCHAR}, 
       #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, 
       #{acctName,jdbcType=VARCHAR}, #{acctNo,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
@@ -187,7 +187,7 @@
         #{tenantId,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
-        #{userId,jdbcType=BIGINT},
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="bankSeqId != null" >
         #{bankSeqId,jdbcType=VARCHAR},
@@ -252,7 +252,7 @@
         TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null" >
-        USER_ID = #{record.userId,jdbcType=BIGINT},
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.bankSeqId != null" >
         BANK_SEQ_ID = #{record.bankSeqId,jdbcType=VARCHAR},
@@ -310,7 +310,7 @@
   <update id="updateByExample" parameterType="map" >
     update uc_bank_info
     set TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
-      USER_ID = #{record.userId,jdbcType=BIGINT},
+      USER_ID = #{record.userId,jdbcType=VARCHAR},
       BANK_SEQ_ID = #{record.bankSeqId,jdbcType=VARCHAR},
       STATE = #{record.state,jdbcType=VARCHAR},
       LICENSE_NO = #{record.licenseNo,jdbcType=VARCHAR},

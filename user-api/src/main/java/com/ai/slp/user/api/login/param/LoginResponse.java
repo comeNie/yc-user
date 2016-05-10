@@ -13,6 +13,11 @@ public class LoginResponse extends BaseResponse {
     private static final long serialVersionUID = 1L;
 
     /**
+     * 用户Id
+     */
+    private String userId;
+
+    /**
      * 用户类型
      */
     private String userType;
@@ -75,6 +80,14 @@ public class LoginResponse extends BaseResponse {
 
     public void setUserLoginPwd(String userLoginPwd) {
         this.userLoginPwd = userLoginPwd;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
 }

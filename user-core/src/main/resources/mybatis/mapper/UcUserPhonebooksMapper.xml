@@ -3,7 +3,7 @@
 <mapper namespace="com.ai.slp.user.dao.mapper.interfaces.UcUserPhonebooksMapper" >
   <resultMap id="BaseResultMap" type="com.ai.slp.user.dao.mapper.bo.UcUserPhonebooks" >
     <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />
-    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
     <result column="TEL_GROUP_ID" property="telGroupId" jdbcType="VARCHAR" />
     <result column="TEL_NO" property="telNo" jdbcType="VARCHAR" />
     <result column="SEQ" property="seq" jdbcType="BIGINT" />
@@ -113,7 +113,7 @@
       BASIC_ORG_ID, CREATE_TIME, CREATE_CHL_ID, 
       CREATE_OPER_ID, UPDATE_TIME, UPDATE_CHL_ID, 
       UPDATE_OPER_ID)
-    values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{telGroupId,jdbcType=VARCHAR}, 
+    values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{telGroupId,jdbcType=VARCHAR}, 
       #{telNo,jdbcType=VARCHAR}, #{seq,jdbcType=BIGINT}, #{telName,jdbcType=VARCHAR}, 
       #{telMp,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, #{citypCode,jdbcType=VARCHAR}, 
       #{basicOrgId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createChlId,jdbcType=VARCHAR}, 
@@ -177,7 +177,7 @@
         #{tenantId,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
-        #{userId,jdbcType=BIGINT},
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="telGroupId != null" >
         #{telGroupId,jdbcType=VARCHAR},
@@ -236,7 +236,7 @@
         TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null" >
-        USER_ID = #{record.userId,jdbcType=BIGINT},
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.telGroupId != null" >
         TEL_GROUP_ID = #{record.telGroupId,jdbcType=VARCHAR},
@@ -288,7 +288,7 @@
   <update id="updateByExample" parameterType="map" >
     update uc_user_phonebooks
     set TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
-      USER_ID = #{record.userId,jdbcType=BIGINT},
+      USER_ID = #{record.userId,jdbcType=VARCHAR},
       TEL_GROUP_ID = #{record.telGroupId,jdbcType=VARCHAR},
       TEL_NO = #{record.telNo,jdbcType=VARCHAR},
       SEQ = #{record.seq,jdbcType=BIGINT},

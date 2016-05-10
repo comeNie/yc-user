@@ -19,7 +19,15 @@ public class UpdateSepcialInfoRequest extends BaseInfo {
      * 用户Id NOT NULL
      */
     @NotNull(message = "userID不能为空", groups = { IUcSpecialInfoSV.QuerySpecialInfo.class })
-    private Long userId;
+    private String userId;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     /**
      * 拓展Id NOT NULL
@@ -61,14 +69,6 @@ public class UpdateSepcialInfoRequest extends BaseInfo {
      * 更新员工
      */
     private Long updateOperId;
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
 
     public Long getInfoSpecialId() {
         return infoSpecialId;

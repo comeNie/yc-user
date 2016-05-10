@@ -7,7 +7,7 @@ public class UcUserFavorite {
 
     private String favoriteSeqId;
 
-    private Long userId;
+    private String userId;
 
     private String favoriteType;
 
@@ -35,12 +35,12 @@ public class UcUserFavorite {
         this.favoriteSeqId = favoriteSeqId == null ? null : favoriteSeqId.trim();
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
     }
 
     public String getFavoriteType() {

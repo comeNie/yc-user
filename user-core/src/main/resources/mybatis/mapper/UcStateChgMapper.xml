@@ -3,7 +3,7 @@
 <mapper namespace="com.ai.slp.user.dao.mapper.interfaces.UcStateChgMapper" >
   <resultMap id="BaseResultMap" type="com.ai.slp.user.dao.mapper.bo.UcStateChg" >
     <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />
-    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
     <result column="STATE_CHG_ID" property="stateChgId" jdbcType="VARCHAR" />
     <result column="OPER_TYPE" property="operType" jdbcType="VARCHAR" />
     <result column="OLD_STATE" property="oldState" jdbcType="VARCHAR" />
@@ -104,7 +104,7 @@
       OPER_TYPE, OLD_STATE, NEW_STATE, 
       CHG_DESC, CHG_TIME, CHL_ID, 
       OPER_ID)
-    values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{stateChgId,jdbcType=VARCHAR}, 
+    values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{stateChgId,jdbcType=VARCHAR}, 
       #{operType,jdbcType=VARCHAR}, #{oldState,jdbcType=VARCHAR}, #{newState,jdbcType=VARCHAR}, 
       #{chgDesc,jdbcType=VARCHAR}, #{chgTime,jdbcType=TIMESTAMP}, #{chlId,jdbcType=VARCHAR}, 
       #{operId,jdbcType=BIGINT})
@@ -148,7 +148,7 @@
         #{tenantId,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
-        #{userId,jdbcType=BIGINT},
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="stateChgId != null" >
         #{stateChgId,jdbcType=VARCHAR},
@@ -189,7 +189,7 @@
         TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null" >
-        USER_ID = #{record.userId,jdbcType=BIGINT},
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.stateChgId != null" >
         STATE_CHG_ID = #{record.stateChgId,jdbcType=VARCHAR},
@@ -223,7 +223,7 @@
   <update id="updateByExample" parameterType="map" >
     update uc_state_chg
     set TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
-      USER_ID = #{record.userId,jdbcType=BIGINT},
+      USER_ID = #{record.userId,jdbcType=VARCHAR},
       STATE_CHG_ID = #{record.stateChgId,jdbcType=VARCHAR},
       OPER_TYPE = #{record.operType,jdbcType=VARCHAR},
       OLD_STATE = #{record.oldState,jdbcType=VARCHAR},

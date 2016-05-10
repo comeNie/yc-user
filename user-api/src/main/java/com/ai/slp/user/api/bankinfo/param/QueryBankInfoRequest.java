@@ -19,7 +19,7 @@ public class QueryBankInfoRequest extends BaseInfo {
      * 用户Id NOT NULL
      */
     @NotNull(message = "用户Id不能为空", groups = { IUcBankInfoSV.QueryBankInfo.class })
-    private Long userId;
+    private String userId;
 
     /**
      * pageNo
@@ -31,11 +31,11 @@ public class QueryBankInfoRequest extends BaseInfo {
      */
     private Integer pageSize;
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

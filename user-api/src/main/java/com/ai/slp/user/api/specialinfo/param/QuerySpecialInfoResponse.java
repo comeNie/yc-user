@@ -20,7 +20,7 @@ public class QuerySpecialInfoResponse extends BaseResponse {
     /**
      * 用户Id
      */
-    private Long userId;
+    private String userId;
 
     /**
      * 拓展Id
@@ -70,11 +70,11 @@ public class QuerySpecialInfoResponse extends BaseResponse {
         this.tenantId = tenantId;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

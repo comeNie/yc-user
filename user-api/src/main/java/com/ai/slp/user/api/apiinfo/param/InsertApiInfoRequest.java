@@ -19,7 +19,7 @@ public class InsertApiInfoRequest extends BaseInfo {
      * 用户Id NOT NULL
      */
     @NotNull(message = "用户Id不能为空", groups = { IApiInfoSV.InsertApiInfo.class })
-    private Long userId;
+    private String userId;
 
     /**
      * Api信息名称
@@ -121,11 +121,11 @@ public class InsertApiInfoRequest extends BaseInfo {
      */
     private Long createOperId;
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

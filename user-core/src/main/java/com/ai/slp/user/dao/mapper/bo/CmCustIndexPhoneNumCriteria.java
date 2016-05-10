@@ -124,66 +124,6 @@ public class CmCustIndexPhoneNumCriteria {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andCustIdIsNull() {
-            addCriterion("CUST_ID is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCustIdIsNotNull() {
-            addCriterion("CUST_ID is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCustIdEqualTo(Long value) {
-            addCriterion("CUST_ID =", value, "custId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCustIdNotEqualTo(Long value) {
-            addCriterion("CUST_ID <>", value, "custId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCustIdGreaterThan(Long value) {
-            addCriterion("CUST_ID >", value, "custId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCustIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("CUST_ID >=", value, "custId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCustIdLessThan(Long value) {
-            addCriterion("CUST_ID <", value, "custId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCustIdLessThanOrEqualTo(Long value) {
-            addCriterion("CUST_ID <=", value, "custId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCustIdIn(List<Long> values) {
-            addCriterion("CUST_ID in", values, "custId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCustIdNotIn(List<Long> values) {
-            addCriterion("CUST_ID not in", values, "custId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCustIdBetween(Long value1, Long value2) {
-            addCriterion("CUST_ID between", value1, value2, "custId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCustIdNotBetween(Long value1, Long value2) {
-            addCriterion("CUST_ID not between", value1, value2, "custId");
-            return (Criteria) this;
-        }
-
         public Criteria andCustPhoneNumIsNull() {
             addCriterion("CUST_PHONE_NUM is null");
             return (Criteria) this;
@@ -321,6 +261,66 @@ public class CmCustIndexPhoneNumCriteria {
 
         public Criteria andTenantIdNotBetween(String value1, String value2) {
             addCriterion("TENANT_ID not between", value1, value2, "tenantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustIdIsNull() {
+            addCriterion("CUST_ID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustIdIsNotNull() {
+            addCriterion("CUST_ID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustIdEqualTo(Long value) {
+            addCriterion("CUST_ID =", value, "custId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustIdNotEqualTo(Long value) {
+            addCriterion("CUST_ID <>", value, "custId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustIdGreaterThan(Long value) {
+            addCriterion("CUST_ID >", value, "custId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("CUST_ID >=", value, "custId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustIdLessThan(Long value) {
+            addCriterion("CUST_ID <", value, "custId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustIdLessThanOrEqualTo(Long value) {
+            addCriterion("CUST_ID <=", value, "custId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustIdIn(List<Long> values) {
+            addCriterion("CUST_ID in", values, "custId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustIdNotIn(List<Long> values) {
+            addCriterion("CUST_ID not in", values, "custId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustIdBetween(Long value1, Long value2) {
+            addCriterion("CUST_ID between", value1, value2, "custId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustIdNotBetween(Long value1, Long value2) {
+            addCriterion("CUST_ID not between", value1, value2, "custId");
             return (Criteria) this;
         }
     }

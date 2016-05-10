@@ -19,7 +19,15 @@ public class UpdateMessageRequest extends BaseInfo {
      * 用户ID NOT NULL
      */
     @NotNull(message = "用户ID不能为空", groups = { IUserMessageSV.UpdateUserMessage.class })
-    private Long userId;
+    private String userId;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     /**
      * 操作码 0000 = delete 0001 = update
@@ -30,14 +38,6 @@ public class UpdateMessageRequest extends BaseInfo {
      * 操作消息ID 可以为空
      */
     private String operId;
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
 
     public String getOperCode() {
         return operCode;

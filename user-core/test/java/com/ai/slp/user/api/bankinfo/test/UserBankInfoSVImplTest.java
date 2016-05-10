@@ -21,7 +21,7 @@ public class UserBankInfoSVImplTest {
     //@Test
     public void insertBankInfoTest(){
         InsertBankInfoRequest request = new InsertBankInfoRequest();
-        request.setUserId(111L);
+        request.setUserId("111");
         request.setTenantId("test111");
         request.setAcctName("111");
         request.setBankName("123");
@@ -36,7 +36,7 @@ public class UserBankInfoSVImplTest {
         UpdateBankInfoRequest request = new UpdateBankInfoRequest();
         request.setTenantId("test111");
         request.setBankSeqId("111");
-        request.setUserId(111L);
+        request.setUserId("111");
         request.setLicenseNo("666");
         userBankInfoBusiSV.UpdateBankInfo(request);
     }
@@ -45,7 +45,7 @@ public class UserBankInfoSVImplTest {
     public void queryBankInfoTest(){
         QueryBankInfoRequest request = new QueryBankInfoRequest();
         request.setTenantId("test111");
-        request.setUserId(111L);
+        request.setUserId("111");
         System.out.println(userBankInfoBusiSV.queryBankInfo(request).getResponseHeader().getResultMessage());
     }
 }

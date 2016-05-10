@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ai.slp.user.dao.mapper.interfaces.CmCustIndexPhoneNumMapper" >
   <resultMap id="BaseResultMap" type="com.ai.slp.user.dao.mapper.bo.CmCustIndexPhoneNum" >
-    <id column="CUST_ID" property="custId" jdbcType="BIGINT" />
     <result column="CUST_PHONE_NUM" property="custPhoneNum" jdbcType="VARCHAR" />
     <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />
+    <result column="CUST_ID" property="custId" jdbcType="DECIMAL" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    CUST_ID, CUST_PHONE_NUM, TENANT_ID
+    CUST_PHONE_NUM, TENANT_ID, CUST_ID
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.user.dao.mapper.bo.CmCustIndexPhoneNumCriteria" >
     select
@@ -85,16 +85,6 @@
       limit #{limitStart} , #{limitEnd}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from cm_cust_index_phone_num
-    where CUST_ID = #{custId,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="Long" >
-    delete from cm_cust_index_phone_num
-    where CUST_ID = #{custId,jdbcType=BIGINT}
-  </delete>
   <delete id="deleteByExample" parameterType="com.ai.slp.user.dao.mapper.bo.CmCustIndexPhoneNumCriteria" >
     delete from cm_cust_index_phone_num
     <if test="_parameter != null" >
@@ -102,33 +92,33 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.ai.slp.user.dao.mapper.bo.CmCustIndexPhoneNum" >
-    insert into cm_cust_index_phone_num (CUST_ID, CUST_PHONE_NUM, TENANT_ID
+    insert into cm_cust_index_phone_num (CUST_PHONE_NUM, TENANT_ID, CUST_ID
       )
-    values (#{custId,jdbcType=BIGINT}, #{custPhoneNum,jdbcType=VARCHAR}, #{tenantId,jdbcType=VARCHAR}
+    values (#{custPhoneNum,jdbcType=VARCHAR}, #{tenantId,jdbcType=VARCHAR}, #{custId,jdbcType=DECIMAL}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.ai.slp.user.dao.mapper.bo.CmCustIndexPhoneNum" >
     insert into cm_cust_index_phone_num
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="custId != null" >
-        CUST_ID,
-      </if>
       <if test="custPhoneNum != null" >
         CUST_PHONE_NUM,
       </if>
       <if test="tenantId != null" >
         TENANT_ID,
       </if>
+      <if test="custId != null" >
+        CUST_ID,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="custId != null" >
-        #{custId,jdbcType=BIGINT},
-      </if>
       <if test="custPhoneNum != null" >
         #{custPhoneNum,jdbcType=VARCHAR},
       </if>
       <if test="tenantId != null" >
         #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null" >
+        #{custId,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
@@ -141,14 +131,14 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update cm_cust_index_phone_num
     <set >
-      <if test="record.custId != null" >
-        CUST_ID = #{record.custId,jdbcType=BIGINT},
-      </if>
       <if test="record.custPhoneNum != null" >
         CUST_PHONE_NUM = #{record.custPhoneNum,jdbcType=VARCHAR},
       </if>
       <if test="record.tenantId != null" >
         TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custId != null" >
+        CUST_ID = #{record.custId,jdbcType=DECIMAL},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -157,29 +147,11 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update cm_cust_index_phone_num
-    set CUST_ID = #{record.custId,jdbcType=BIGINT},
-      CUST_PHONE_NUM = #{record.custPhoneNum,jdbcType=VARCHAR},
-      TENANT_ID = #{record.tenantId,jdbcType=VARCHAR}
+    set CUST_PHONE_NUM = #{record.custPhoneNum,jdbcType=VARCHAR},
+      TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
+      CUST_ID = #{record.custId,jdbcType=DECIMAL}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ai.slp.user.dao.mapper.bo.CmCustIndexPhoneNum" >
-    update cm_cust_index_phone_num
-    <set >
-      <if test="custPhoneNum != null" >
-        CUST_PHONE_NUM = #{custPhoneNum,jdbcType=VARCHAR},
-      </if>
-      <if test="tenantId != null" >
-        TENANT_ID = #{tenantId,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where CUST_ID = #{custId,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.ai.slp.user.dao.mapper.bo.CmCustIndexPhoneNum" >
-    update cm_cust_index_phone_num
-    set CUST_PHONE_NUM = #{custPhoneNum,jdbcType=VARCHAR},
-      TENANT_ID = #{tenantId,jdbcType=VARCHAR}
-    where CUST_ID = #{custId,jdbcType=BIGINT}
   </update>
 </mapper>

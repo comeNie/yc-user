@@ -8,122 +8,139 @@ import javax.validation.constraints.Size;
 import com.ai.opt.base.vo.BaseInfo;
 import com.ai.slp.user.api.ucUserPhonebooks.interfaces.IUcUserPhoneBooksSV;
 
+public class UcPhoneBooksParamsRequest extends BaseInfo implements Serializable {
 
-public class UcPhoneBooksParamsRequest extends BaseInfo implements Serializable{
-	
     private static final long serialVersionUID = 1L;
 
     /**
-	 * 租户ID
-	 */
-	@NotNull(message="租户ID不能为空",groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
-    @Size(max=32,groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
-	private String tenantId;
-	
-	/**
-	 * 用户ID
-	 */
-	@NotNull(message="用户ID不能为空",groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
-    @Size(max=18,groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
-	private long userId;
-	
-	/**
-	 * 通讯录组ID
-	 */
-	@NotNull(message="通讯录组ID不能为空",groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
-    @Size(max=32,groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
-	private String telGroupId;
-	
-	/**
-	 * 通讯录ID
-	 */
-	@NotNull(message="通讯录ID不能为空",groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
-    @Size(max=32,groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
-	private String telNo;
-	
-	
-	/**
-	 * 序号
-	 */
-    @Size(max=10,groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
-	private long seq;
-	
+     * 租户ID
+     */
+    @NotNull(message = "租户ID不能为空", groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
+    @Size(max = 32, groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
+    private String tenantId;
+
     /**
-	 * 联系人
-	 */
-    @Size(max=64,groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
-	private String telName;
-    
-    
+     * 用户ID
+     */
+    @NotNull(message = "用户ID不能为空", groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
+    @Size(max = 18, groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
+    private String userId;
+
+    /**
+     * 通讯录组ID
+     */
+    @NotNull(message = "通讯录组ID不能为空", groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
+    @Size(max = 32, groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
+    private String telGroupId;
+
+    /**
+     * 通讯录ID
+     */
+    @NotNull(message = "通讯录ID不能为空", groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
+    @Size(max = 32, groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
+    private String telNo;
+
+    /**
+     * 序号
+     */
+    @Size(max = 10, groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
+    private long seq;
+
+    /**
+     * 联系人
+     */
+    @Size(max = 64, groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
+    private String telName;
+
     /**
      * 通讯录名称
      */
-    @NotNull(message="通讯录名称不能为空",groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
-    @Size(max=128,groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
-	private String telGroupName;
-    
+    @NotNull(message = "通讯录名称不能为空", groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
+    @Size(max = 128, groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
+    private String telGroupName;
+
     /**
      * 联系手机
      */
-    @NotNull(message="手机号不能为空",groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
-    @Size(max=16,groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
+    @NotNull(message = "手机号不能为空", groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
+    @Size(max = 16, groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
     private String telMp;
-    
+
     /**
      * 归属省
      */
-    @Size(max=6,groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
+    @Size(max = 6, groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
     private String provinceCode;
-    
+
     /**
      * 归属地市
      */
-    @Size(max=6,groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
+    @Size(max = 6, groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
     private String cityCode;
-    
+
     /**
      * 基础运营商
      */
-    @Size(max=2,groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
+    @Size(max = 2, groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
     private String basicBasicOrgId;
-    
+
     /**
      * 创建时间
      */
     private Date createTime;
-    
+
     /**
      * 创建渠道
      */
-    @Size(max=7,groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
+    @Size(max = 7, groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
     private String createChlId;
-    
+
     /**
      * 创建员工
      */
-    @Size(max=10,groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
+    @Size(max = 10, groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
     private long createOperId;
-    
+
     /**
      * 修改时间
      */
     private Date updateTime;
-    
+
     /**
      * 创建渠道
      */
-    @Size(max=7,groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
+    @Size(max = 7, groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
     private String updateChlId;
-    
+
     /**
      * 创建员工
      */
-    @Size(max=10,groups={IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class})
+    @Size(max = 10, groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
+            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
     private long updateOperId;
 
-    
     private String telPhoneOrTelName;
-    
+
     public String getTenantId() {
         return tenantId;
     }
@@ -132,11 +149,11 @@ public class UcPhoneBooksParamsRequest extends BaseInfo implements Serializable{
         this.tenantId = tenantId;
     }
 
-    public long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -147,8 +164,6 @@ public class UcPhoneBooksParamsRequest extends BaseInfo implements Serializable{
     public void setTelGroupId(String telGroupId) {
         this.telGroupId = telGroupId;
     }
-
-   
 
     public String getTelNo() {
         return telNo;
@@ -269,5 +284,5 @@ public class UcPhoneBooksParamsRequest extends BaseInfo implements Serializable{
     public void setTelPhoneOrTelName(String telPhoneOrTelName) {
         this.telPhoneOrTelName = telPhoneOrTelName;
     }
-	
+
 }

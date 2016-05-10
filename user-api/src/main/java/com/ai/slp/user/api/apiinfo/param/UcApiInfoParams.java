@@ -2,10 +2,7 @@ package com.ai.slp.user.api.apiinfo.param;
 
 import java.sql.Timestamp;
 
-import javax.validation.constraints.NotNull;
-
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.slp.user.api.apiinfo.interfaces.IApiInfoSV;
 
 /**
  * 企业、代理商申请API信息表 <br>
@@ -19,16 +16,14 @@ public class UcApiInfoParams extends BaseInfo {
     private static final long serialVersionUID = 1L;
 
     /**
-     * APIID NOT NULL
+     * APIID
      */
-    @NotNull(message = "ApiId不能为空", groups = { IApiInfoSV.UpdateApiInfo.class })
     private String apiSeqId;
 
     /**
-     * 用户ID NOT NULL
+     * 用户ID
      */
-    @NotNull(message = "用户Id不能为空", groups = { IApiInfoSV.UpdateApiInfo.class })
-    private Long userId;
+    private String userId;
 
     /**
      * API名称
@@ -153,11 +148,11 @@ public class UcApiInfoParams extends BaseInfo {
         this.apiSeqId = apiSeqId;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

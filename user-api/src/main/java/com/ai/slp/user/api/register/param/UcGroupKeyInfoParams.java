@@ -16,21 +16,21 @@ import com.ai.slp.user.api.register.interfaces.IRegisterSV;
  */
 public class UcGroupKeyInfoParams implements Serializable {
 
-    
-    @NotNull(message="租户id不能为空",groups={IRegisterSV.InsertUcUser.class})
+    @NotNull(message = "租户id不能为空", groups = { IRegisterSV.InsertUcUser.class })
     private String tenantId;
-    
-    private Integer userId;
-   
+
+    private String userId;
+
     private String userType;
+
     private String cretNum;
-    
+
     private String custName;
-    
+
     private String provinceCode;
-    
+
     private String cityCode;
-    
+
     private String subsTime;
 
     public String getTenantId() {
@@ -41,11 +41,11 @@ public class UcGroupKeyInfoParams implements Serializable {
         this.tenantId = tenantId;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -96,8 +96,5 @@ public class UcGroupKeyInfoParams implements Serializable {
     public void setSubsTime(String subsTime) {
         this.subsTime = subsTime;
     }
-    
-    
-    
-    
+
 }

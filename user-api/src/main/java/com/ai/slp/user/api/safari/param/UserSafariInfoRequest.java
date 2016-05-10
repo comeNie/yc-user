@@ -21,7 +21,7 @@ public class UserSafariInfoRequest extends BaseInfo {
      * 用户ID NOT NULL
      */
     @NotNull(message = "用户Id不能为空", groups = { IUserSafariSV.QueryUserSafari.class })
-    private Long userId;
+    private String userId;
 
     /**
      * 浏览时间
@@ -38,11 +38,11 @@ public class UserSafariInfoRequest extends BaseInfo {
      */
     private Integer pageSize;
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

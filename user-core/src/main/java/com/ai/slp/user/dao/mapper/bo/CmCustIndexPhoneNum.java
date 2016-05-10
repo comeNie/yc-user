@@ -1,19 +1,11 @@
 package com.ai.slp.user.dao.mapper.bo;
 
 public class CmCustIndexPhoneNum {
-    private Long custId;
-
     private String custPhoneNum;
 
     private String tenantId;
 
-    public Long getCustId() {
-        return custId;
-    }
-
-    public void setCustId(Long custId) {
-        this.custId = custId;
-    }
+    private Long custId;
 
     public String getCustPhoneNum() {
         return custPhoneNum;
@@ -29,5 +21,13 @@ public class CmCustIndexPhoneNum {
 
     public void setTenantId(String tenantId) {
         this.tenantId = tenantId == null ? null : tenantId.trim();
+    }
+
+    public Long getCustId() {
+        return custId;
+    }
+
+    public void setCustId(Long custId) {
+        this.custId = custId;
     }
 }

@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.ai.slp.user.dao.mapper.bo.UcApiInfo" >
     <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />
     <result column="API_SEQ_ID" property="apiSeqId" jdbcType="CHAR" />
-    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
     <result column="API_NAME" property="apiName" jdbcType="VARCHAR" />
     <result column="API_TYPE" property="apiType" jdbcType="VARCHAR" />
     <result column="API_INFO" property="apiInfo" jdbcType="VARCHAR" />
@@ -129,7 +129,7 @@
       CREATE_TIME, CREATE_CHL_ID, CREATE_OPER_ID, 
       UPDATE_TIME, UPDATE_CHL_ID, UPDATE_OPER_ID
       )
-    values (#{tenantId,jdbcType=VARCHAR}, #{apiSeqId,jdbcType=CHAR}, #{userId,jdbcType=BIGINT}, 
+    values (#{tenantId,jdbcType=VARCHAR}, #{apiSeqId,jdbcType=CHAR}, #{userId,jdbcType=VARCHAR}, 
       #{apiName,jdbcType=VARCHAR}, #{apiType,jdbcType=VARCHAR}, #{apiInfo,jdbcType=VARCHAR}, 
       #{webAddr,jdbcType=VARCHAR}, #{ipAddr,jdbcType=VARCHAR}, #{operService,jdbcType=VARCHAR}, 
       #{secretKey,jdbcType=VARCHAR}, #{apiKey,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, 
@@ -233,7 +233,7 @@
         #{apiSeqId,jdbcType=CHAR},
       </if>
       <if test="userId != null" >
-        #{userId,jdbcType=BIGINT},
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="apiName != null" >
         #{apiName,jdbcType=VARCHAR},
@@ -325,7 +325,7 @@
         API_SEQ_ID = #{record.apiSeqId,jdbcType=CHAR},
       </if>
       <if test="record.userId != null" >
-        USER_ID = #{record.userId,jdbcType=BIGINT},
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.apiName != null" >
         API_NAME = #{record.apiName,jdbcType=VARCHAR},
@@ -408,7 +408,7 @@
     update uc_api_info
     set TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
       API_SEQ_ID = #{record.apiSeqId,jdbcType=CHAR},
-      USER_ID = #{record.userId,jdbcType=BIGINT},
+      USER_ID = #{record.userId,jdbcType=VARCHAR},
       API_NAME = #{record.apiName,jdbcType=VARCHAR},
       API_TYPE = #{record.apiType,jdbcType=VARCHAR},
       API_INFO = #{record.apiInfo,jdbcType=VARCHAR},

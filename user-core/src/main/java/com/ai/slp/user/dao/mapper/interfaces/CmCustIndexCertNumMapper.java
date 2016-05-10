@@ -10,21 +10,13 @@ public interface CmCustIndexCertNumMapper {
 
     int deleteByExample(CmCustIndexCertNumCriteria example);
 
-    int deleteByPrimaryKey(Long custId);
-
     int insert(CmCustIndexCertNum record);
 
     int insertSelective(CmCustIndexCertNum record);
 
     List<CmCustIndexCertNum> selectByExample(CmCustIndexCertNumCriteria example);
 
-    CmCustIndexCertNum selectByPrimaryKey(Long custId);
-
     int updateByExampleSelective(@Param("record") CmCustIndexCertNum record, @Param("example") CmCustIndexCertNumCriteria example);
 
     int updateByExample(@Param("record") CmCustIndexCertNum record, @Param("example") CmCustIndexCertNumCriteria example);
-
-    int updateByPrimaryKeySelective(CmCustIndexCertNum record);
-
-    int updateByPrimaryKey(CmCustIndexCertNum record);
 }

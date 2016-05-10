@@ -22,7 +22,7 @@ public class UcSpecialInfoSVImplTest {
     public void insertSpecialInfoTest() {
         InsertSpecialInfoRequest request = new InsertSpecialInfoRequest();
         request.setTenantId("test111");
-        request.setUserId(111L);
+        request.setUserId("111");
         request.setInfoSpecialId(111L);
         request.setAttrValue("666");
         System.out.println(ucSpecialInfoSV.insertSpecialInfo(request).getResponseHeader());
@@ -32,7 +32,7 @@ public class UcSpecialInfoSVImplTest {
     public void updateSpecialInfoTest() {
         UpdateSepcialInfoRequest request = new UpdateSepcialInfoRequest();
         request.setTenantId("test111");
-        request.setUserId(111L);
+        request.setUserId("111");
         request.setInfoSpecialId(111L);
         ucSpecialInfoSV.updateSpecialInfo(request);
     }
@@ -41,7 +41,7 @@ public class UcSpecialInfoSVImplTest {
     public void querySpecialInfoTest(){
         QuerySpecialInfoRequest request = new QuerySpecialInfoRequest();
         request.setTenantId("test111");
-        request.setUserId(111L);
+        request.setUserId("111");
         request.setSpecialInfoId(111L);
         System.out.println(ucSpecialInfoSV.querySpecialInfo(request).getResponseHeader());
     }

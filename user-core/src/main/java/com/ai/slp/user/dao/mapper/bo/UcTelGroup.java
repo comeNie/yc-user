@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class UcTelGroup {
     private String tenantId;
 
-    private Long userId;
+    private String userId;
 
     private String telGroupId;
 
@@ -25,8 +25,6 @@ public class UcTelGroup {
 
     private Long updateOperId;
 
-    private Long phoneCount;
-    
     public String getTenantId() {
         return tenantId;
     }
@@ -35,12 +33,12 @@ public class UcTelGroup {
         this.tenantId = tenantId == null ? null : tenantId.trim();
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
     }
 
     public String getTelGroupId() {
@@ -114,14 +112,4 @@ public class UcTelGroup {
     public void setUpdateOperId(Long updateOperId) {
         this.updateOperId = updateOperId;
     }
-
-    public Long getPhoneCount() {
-        return phoneCount;
-    }
-
-    public void setPhoneCount(Long phoneCount) {
-        this.phoneCount = phoneCount;
-    }
-    
-    
 }

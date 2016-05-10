@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import com.ai.slp.user.api.register.interfaces.IRegisterSV;
 
@@ -17,11 +16,10 @@ import com.ai.slp.user.api.register.interfaces.IRegisterSV;
  */
 public class UcBankKeyInfoParams implements Serializable {
 
-    
-    @NotNull(message="租户id不能为空",groups={IRegisterSV.InsertUcUser.class})
+    @NotNull(message = "租户id不能为空", groups = { IRegisterSV.InsertUcUser.class })
     private String tenantId;
-    
-    private Long userId;
+
+    private String userId;
 
     private String bankSeqId;
 
@@ -63,11 +61,11 @@ public class UcBankKeyInfoParams implements Serializable {
         this.tenantId = tenantId;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -198,6 +196,5 @@ public class UcBankKeyInfoParams implements Serializable {
     public void setUpdateOperId(Long updateOperId) {
         this.updateOperId = updateOperId;
     }
-    
-    
+
 }

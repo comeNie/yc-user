@@ -32,7 +32,7 @@ public class UserFavoriteSVImplTest {
     public void createUserFavoriteTest() {
         InsertUserFavoriteRequest request = new InsertUserFavoriteRequest();
         request.setTenantId("test111");
-        request.setUserId(111L);
+        request.setUserId("111");
         request.setTenantPwd("123456");
         request.setFavoriteType("01");
         request.setFavoriteRelId("1234");
@@ -43,7 +43,7 @@ public class UserFavoriteSVImplTest {
     // @Test
     public void updateUserFavoriteTest() {
         UpdateFavoriteRequest request = new UpdateFavoriteRequest();
-        request.setUserId(111L);
+        request.setUserId("111");
         request.setTenantId("test111");
         request.setTenantPwd("123456");
 
@@ -59,7 +59,7 @@ public class UserFavoriteSVImplTest {
     public void deleteFavoriteSVImplTest() {
         DeleteFavoriteListRequest request = new DeleteFavoriteListRequest();
         request.setTenantId("test111");
-        request.setUserId(111L);
+        request.setUserId("111");
         request.setTenantPwd("123456");
         List<String> list = new ArrayList<String>();
         list.add("111111");
@@ -74,7 +74,7 @@ public class UserFavoriteSVImplTest {
         UserFavoriteRequest request = new UserFavoriteRequest();
         request.setTenantId("test111");
         request.setTenantPwd("123456");
-        request.setUserId(111L);
+        request.setUserId("111");
         // request.setFavoriteSeqId("223333");
         request.setPageNo(11);
         request.setPageSize(11);

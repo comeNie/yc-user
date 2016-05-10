@@ -21,18 +21,18 @@ public class UpdateFavoriteRequest extends BaseInfo {
      * 用户ID NOT NULL
      */
     @NotNull(message = "用户ID不能为空", groups = { IUserFavoriteSV.CancelFavorite.class })
-    private Long userId;
+    private String userId;
 
     /**
      * 收藏列表
      */
     private List<String> favoriteList;
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

@@ -3,7 +3,7 @@
 <mapper namespace="com.ai.slp.user.dao.mapper.interfaces.UcUserMapper" >
   <resultMap id="BaseResultMap" type="com.ai.slp.user.dao.mapper.bo.UcUser" >
     <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />
-    <result column="USER_ID" property="userId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
     <result column="USER_TYPE" property="userType" jdbcType="VARCHAR" />
     <result column="USER_FLAG" property="userFlag" jdbcType="VARCHAR" />
     <result column="USER_STATE" property="userState" jdbcType="VARCHAR" />
@@ -132,7 +132,7 @@
       STATE_CHG_TIME, CREATE_TIME, CREATE_CHL_ID, 
       CREATE_OPER_ID, UPDATE_TIME, UPDATE_CHL_ID, 
       UPDATE_OPER_ID, REMARK)
-    values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{userType,jdbcType=VARCHAR}, 
+    values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, 
       #{userFlag,jdbcType=VARCHAR}, #{userState,jdbcType=VARCHAR}, #{vipLevel,jdbcType=VARCHAR}, 
       #{safetyLevel,jdbcType=VARCHAR}, #{userLoginName,jdbcType=VARCHAR}, #{userLoginPwd,jdbcType=VARCHAR}, 
       #{pwdSafetyLevel,jdbcType=VARCHAR}, #{userMp,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, 
@@ -239,7 +239,7 @@
         #{tenantId,jdbcType=VARCHAR},
       </if>
       <if test="userId != null" >
-        #{userId,jdbcType=BIGINT},
+        #{userId,jdbcType=VARCHAR},
       </if>
       <if test="userType != null" >
         #{userType,jdbcType=VARCHAR},
@@ -337,7 +337,7 @@
         TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null" >
-        USER_ID = #{record.userId,jdbcType=BIGINT},
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.userType != null" >
         USER_TYPE = #{record.userType,jdbcType=VARCHAR},
@@ -428,7 +428,7 @@
   <update id="updateByExample" parameterType="map" >
     update uc_user
     set TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
-      USER_ID = #{record.userId,jdbcType=BIGINT},
+      USER_ID = #{record.userId,jdbcType=VARCHAR},
       USER_TYPE = #{record.userType,jdbcType=VARCHAR},
       USER_FLAG = #{record.userFlag,jdbcType=VARCHAR},
       USER_STATE = #{record.userState,jdbcType=VARCHAR},
