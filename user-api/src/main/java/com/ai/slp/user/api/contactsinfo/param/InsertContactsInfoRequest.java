@@ -1,8 +1,13 @@
 package com.ai.slp.user.api.contactsinfo.param;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
 
 import com.ai.opt.base.vo.BaseInfo;
+import com.ai.opt.validator.constraints.MobilePhone;
+import com.ai.slp.user.api.bankinfo.interfaces.IUcBankInfoSV;
 import com.ai.slp.user.api.contactsinfo.interfaces.IUcContactsInfoSV;
 
 /**
@@ -19,11 +24,14 @@ public class InsertContactsInfoRequest extends BaseInfo {
      * 用户Id NOT NULL
      */
     @NotNull(message = "userId不能为空", groups = { IUcContactsInfoSV.InsertContactsInfo.class })
+    @Size(min = 18, max = 18, message = "用户Id长度不是18位", groups = { IUcContactsInfoSV.InsertContactsInfo.class })
     private String userId;
 
     /**
      * 唯一标识
      */
+    @NotNull(message = "唯一标识不能为空", groups = { IUcContactsInfoSV.InsertContactsInfo.class })
+    @Size(min = 18, max = 18, message = "唯一标识长度不是18位", groups = { IUcBankInfoSV.InsertBankInfo.class })
     private String contactSeqId;
 
     /**
@@ -54,11 +62,13 @@ public class InsertContactsInfoRequest extends BaseInfo {
     /**
      * 联系人电话
      */
+    @MobilePhone(message = "手机号码格式不正确", groups = { IUcContactsInfoSV.InsertContactsInfo.class})
     private String contactMp;
 
     /**
      * 联系人邮箱
      */
+    @Email(message = "邮箱格式不正确",groups = {IUcContactsInfoSV.InsertContactsInfo.class})
     private String contactEmail;
 
     /**

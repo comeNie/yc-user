@@ -23,6 +23,7 @@ import com.ai.slp.user.dao.mapper.bo.UcSpecialInfoCriteria;
 import com.ai.slp.user.service.atom.interfaces.IUcSpecialInfoAtomSV;
 import com.ai.slp.user.service.business.interfaces.IUcSpecialInfoBusiSV;
 import com.ai.slp.user.util.DateUtils;
+import com.ai.slp.user.util.SequenceUtil;
 
 @Service
 @Transactional
@@ -37,6 +38,7 @@ public class UcSpecialInfoBusiSVImpl implements IUcSpecialInfoBusiSV {
     public BaseResponse insertSpecialInfo(InsertSpecialInfoRequest specialInfoRequest)
             throws BusinessException, SystemException {
         UcSpecialInfo ucSpecialInfo = new UcSpecialInfo();
+        ucSpecialInfo.setInfoSpecialId(SequenceUtil.createInfoSpecialId());
         BeanUtils.copyProperties(specialInfoRequest, ucSpecialInfo);
         ucSpecialInfo.setCreateTime(DateUtils.currTimeStamp());
         BaseResponse response = new BaseResponse();

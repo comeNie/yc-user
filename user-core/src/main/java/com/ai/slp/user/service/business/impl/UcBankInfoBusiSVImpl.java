@@ -25,6 +25,7 @@ import com.ai.slp.user.dao.mapper.bo.UcBankInfoCriteria;
 import com.ai.slp.user.service.atom.interfaces.IUcBankInfoAtomSV;
 import com.ai.slp.user.service.business.interfaces.IUcBankInfoBusiSV;
 import com.ai.slp.user.util.DateUtils;
+import com.ai.slp.user.util.SequenceUtil;
 
 @Service
 @Transactional
@@ -39,6 +40,7 @@ public class UcBankInfoBusiSVImpl implements IUcBankInfoBusiSV {
     public BaseResponse insertBankInfo(InsertBankInfoRequest bankInfoRequest)
             throws BusinessException, SystemException {
         UcBankInfo ucBankInfo = new UcBankInfo();
+        ucBankInfo.setBankSeqId(SequenceUtil.createBankSeqId());
         BeanUtils.copyProperties(bankInfoRequest, ucBankInfo);
         ucBankInfo.setCreateTime(DateUtils.currTimeStamp());
         BaseResponse response = new BaseResponse();

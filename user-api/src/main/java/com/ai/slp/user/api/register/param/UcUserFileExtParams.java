@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.ai.slp.user.api.message.interfaces.IUserMessageSV;
 import com.ai.slp.user.api.register.interfaces.IRegisterSV;
 
 /**
@@ -19,6 +20,8 @@ public class UcUserFileExtParams implements Serializable {
     @NotNull(message = "租户id不能为空", groups = { IRegisterSV.InsertUcUser.class })
     private String tenantId;
 
+    @Size(min = 18, max = 18, message = "用户Id长度不是18位", groups = {
+            IRegisterSV.InsertUcUser.class })
     private String userId;
 
     private String extendinfo;

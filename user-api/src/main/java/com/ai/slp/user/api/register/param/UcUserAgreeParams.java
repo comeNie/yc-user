@@ -1,11 +1,10 @@
 package com.ai.slp.user.api.register.param;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.ai.opt.base.vo.BaseInfo;
 import com.ai.slp.user.api.register.interfaces.IRegisterSV;
 
 /**
@@ -15,26 +14,17 @@ import com.ai.slp.user.api.register.interfaces.IRegisterSV;
  * 
  * @author zhaogw
  */
-public class UcUserAgreeParams implements Serializable {
-
-    @NotNull(message = "租户id不能为空", groups = { IRegisterSV.InsertUcUser.class })
-    private String tenantId;
+public class UcUserAgreeParams extends BaseInfo {
 
     private String agreeSeqId;
 
+    @Size(min = 18, max = 18, message = "用户Id长度不是18位", groups = {
+            IRegisterSV.InsertUcUser.class })
     private String userId;
 
     private String agreementId;
 
     private Timestamp subsTime;
-
-    public String getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
-    }
 
     public String getAgreeSeqId() {
         return agreeSeqId;

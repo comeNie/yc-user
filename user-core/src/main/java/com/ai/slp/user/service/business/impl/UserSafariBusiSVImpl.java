@@ -29,6 +29,7 @@ import com.ai.slp.user.service.atom.interfaces.IUserSafariAtomSV;
 import com.ai.slp.user.service.atom.interfaces.IUserSafariHisAtomSV;
 import com.ai.slp.user.service.business.interfaces.IUserSafariBusiSV;
 import com.ai.slp.user.util.DateUtils;
+import com.ai.slp.user.util.SequenceUtil;
 
 @Service
 @Transactional
@@ -45,6 +46,7 @@ public class UserSafariBusiSVImpl implements IUserSafariBusiSV {
     public BaseResponse insertUserSafari(InsertUserSafariRequest safariRequest)
             throws BusinessException, SystemException {
         UcUserSafari ucUserSafari = new UcUserSafari();
+        ucUserSafari.setSafariSeqId(SequenceUtil.createSafariSeqId());
         ucUserSafari.setTenantId(safariRequest.getTenantId());
         ucUserSafari.setUserId(safariRequest.getUserId());
         ucUserSafari.setProdId(safariRequest.getProdId());

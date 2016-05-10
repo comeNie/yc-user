@@ -1,9 +1,8 @@
 package com.ai.slp.user.api.register.param;
 
-import java.io.Serializable;
+import javax.validation.constraints.Size;
 
-import javax.validation.constraints.NotNull;
-
+import com.ai.opt.base.vo.BaseInfo;
 import com.ai.slp.user.api.register.interfaces.IRegisterSV;
 
 /**
@@ -13,13 +12,11 @@ import com.ai.slp.user.api.register.interfaces.IRegisterSV;
  * 
  * @author zhaogw
  */
-public class UcContactInfoParams implements Serializable {
+public class UcContactInfoParams extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
 
-    @NotNull(message = "租户id不能为空", groups = { IRegisterSV.InsertUcUser.class })
-    private String tenantId;
-
+    @Size(min = 18, max = 18, message = "用户Id长度不是18位", groups = { IRegisterSV.InsertUcUser.class })
     private String userId;
 
     private String contactSeqId;
@@ -41,14 +38,6 @@ public class UcContactInfoParams implements Serializable {
     private String groupZip;
 
     private String createTime;
-
-    public String getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
-    }
 
     public String getUserId() {
         return userId;

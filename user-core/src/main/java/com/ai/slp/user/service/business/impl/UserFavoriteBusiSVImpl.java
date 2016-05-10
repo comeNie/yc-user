@@ -26,6 +26,7 @@ import com.ai.slp.user.dao.mapper.bo.UcUserFavoriteCriteria;
 import com.ai.slp.user.service.atom.interfaces.IUserFavoriteAtomSV;
 import com.ai.slp.user.service.business.interfaces.IUserFavoriteBusiSV;
 import com.ai.slp.user.util.DateUtils;
+import com.ai.slp.user.util.SequenceUtil;
 
 @Service
 @Transactional
@@ -40,6 +41,7 @@ public class UserFavoriteBusiSVImpl implements IUserFavoriteBusiSV {
     public BaseResponse insertUcFavorite(InsertUserFavoriteRequest favoriteRequest)
             throws BusinessException, SystemException {
         UcUserFavorite ucUserFavorite = new UcUserFavorite();
+        ucUserFavorite.setFavoriteSeqId(SequenceUtil.createFavoriteSeqId());
         BeanUtils.copyProperties(favoriteRequest, ucUserFavorite);
         ucUserFavorite.setUserId(favoriteRequest.getUserId());
         ucUserFavorite.setCreateTime(DateUtils.currTimeStamp());

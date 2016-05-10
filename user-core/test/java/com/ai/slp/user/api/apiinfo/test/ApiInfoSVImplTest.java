@@ -19,7 +19,7 @@ public class ApiInfoSVImplTest {
     @Autowired
     private IApiInfoBusiSV apiInfoBusiSV;
 
-    //@Test
+    @Test
     public void insertApiInfoTest() {
         InsertApiInfoRequest request = new InsertApiInfoRequest();
         request.setApiInfo("test11111");
@@ -46,7 +46,7 @@ public class ApiInfoSVImplTest {
         apiInfoBusiSV.updateApiInfo(request);
     }
 
-    @Test
+    //@Test
     public void queryApiInfoTest() {
         ApiInfoRequest request = new ApiInfoRequest();
         request.setTenantId("test111");

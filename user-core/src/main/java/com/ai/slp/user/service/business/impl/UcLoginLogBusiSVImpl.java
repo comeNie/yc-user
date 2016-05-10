@@ -22,6 +22,7 @@ import com.ai.slp.user.dao.mapper.bo.UcLoginLog;
 import com.ai.slp.user.dao.mapper.bo.UcLoginLogCriteria;
 import com.ai.slp.user.service.atom.interfaces.IUcLoginLogAtomSV;
 import com.ai.slp.user.service.business.interfaces.IUcLoginLogBusiSV;
+import com.ai.slp.user.util.SequenceUtil;
 
 @Service
 @Transactional
@@ -39,6 +40,7 @@ public class UcLoginLogBusiSVImpl implements IUcLoginLogBusiSV {
         ResponseHeader responseHeader;
         try{
             UcLoginLog ucLoginLog = new UcLoginLog();
+            ucLoginLog.setLoginSeqId(SequenceUtil.createLoginSeqId());
             BeanUtils.copyProperties(ucLoginLog, ucLoginLogParam);
             ucLoginLogAtomSV.insertUcLoginLogInfo(ucLoginLog);
             responseHeader = new ResponseHeader(true,"success","添加成功");

@@ -1,6 +1,7 @@
 package com.ai.slp.user.api.bankinfo.param;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.ai.opt.base.vo.BaseInfo;
 import com.ai.slp.user.api.bankinfo.interfaces.IUcBankInfoSV;
@@ -19,11 +20,13 @@ public class InsertBankInfoRequest extends BaseInfo {
      * 用户Id NOT NULL
      */
     @NotNull(message = "UserID不能为空", groups = { IUcBankInfoSV.InsertBankInfo.class })
+    @Size(min = 18, max = 18, message = "用户Id长度不是18位", groups = { IUcBankInfoSV.InsertBankInfo.class })
     private String userId;
 
     /**
      * 唯一标识
      */
+    @Size(min = 18, max = 18, message = "唯一标识长度不是18位", groups = { IUcBankInfoSV.InsertBankInfo.class })
     private String bankSeqId;
 
     /**

@@ -1,6 +1,7 @@
 package com.ai.slp.user.api.apiinfo.param;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.ai.opt.base.vo.BaseInfo;
 import com.ai.slp.user.api.apiinfo.interfaces.IApiInfoSV;
@@ -19,6 +20,7 @@ public class InsertApiInfoRequest extends BaseInfo {
      * 用户Id NOT NULL
      */
     @NotNull(message = "用户Id不能为空", groups = { IApiInfoSV.InsertApiInfo.class })
+    @Size(min = 18, max = 18, message = "用户Id长度不是18位", groups = { IApiInfoSV.InsertApiInfo.class })
     private String userId;
 
     /**

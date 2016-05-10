@@ -28,6 +28,7 @@ import com.ai.slp.user.service.atom.interfaces.IUserMessageAtomSV;
 import com.ai.slp.user.service.business.interfaces.IUserFavoriteBusiSV;
 import com.ai.slp.user.service.business.interfaces.IUserMessageBusiSV;
 import com.ai.slp.user.util.DateUtils;
+import com.ai.slp.user.util.SequenceUtil;
 import com.alibaba.dubbo.common.utils.StringUtils;
 
 @Service
@@ -43,6 +44,7 @@ public class UserMessageBusiSVImpl implements IUserMessageBusiSV {
     public BaseResponse insertUserMessage(InsertUserMessageRequest messageRequest)
             throws BusinessException, SystemException {
         UcUserMessage ucUserMessage = new UcUserMessage();
+        ucUserMessage.setInfoSeqId(SequenceUtil.createInfoSeqId());
         BeanUtils.copyProperties(messageRequest, ucUserMessage);
         ucUserMessage.setCreateTime(DateUtils.currTimeStamp());
         BaseResponse response = new BaseResponse();

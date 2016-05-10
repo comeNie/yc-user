@@ -1,6 +1,10 @@
 package com.ai.slp.user.api.ucuser.param;
 
+import org.hibernate.validator.constraints.Email;
+
 import com.ai.opt.base.vo.BaseInfo;
+import com.ai.opt.validator.constraints.MobilePhone;
+import com.ai.slp.user.api.ucuser.intefaces.IUcUserListSV;
 
 /**
  * 查询用户入参 Date: 2016年5月3日 <br>
@@ -30,11 +34,13 @@ public class SearchUserListRequest extends BaseInfo {
     /**
      * 户绑定手机号码
      */
+    @MobilePhone(message = "手机号码格式不正确", groups = { IUcUserListSV.SearchUserList.class })
     private String userMp;
 
     /**
      * 用户绑定邮箱
      */
+    @Email(message = "邮箱格式不正确", groups = { IUcUserListSV.SearchUserList.class })
     private String userEmail;
 
     /**
@@ -42,20 +48,24 @@ public class SearchUserListRequest extends BaseInfo {
      */
     private String userState;
 
-    public String getUserState() {
-        return userState;
-    }
-
-    public void setUserState(String userState) {
-        this.userState = userState;
-    }
-
+    /**
+     * 开始时间
+     */
     private String beginTime;
 
+    /**
+     * 结束时间
+     */
     private String endTime;
 
+    /**
+     * pageSize
+     */
     private Integer pageSize;
 
+    /**
+     * pageNo
+     */
     private Integer pageNo;
 
     public Integer getPageSize() {
@@ -128,6 +138,14 @@ public class SearchUserListRequest extends BaseInfo {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public String getUserState() {
+        return userState;
+    }
+
+    public void setUserState(String userState) {
+        this.userState = userState;
     }
 
 }

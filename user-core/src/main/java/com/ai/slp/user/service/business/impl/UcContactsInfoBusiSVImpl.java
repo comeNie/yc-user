@@ -25,6 +25,7 @@ import com.ai.slp.user.dao.mapper.bo.UcContactsInfoCriteria;
 import com.ai.slp.user.service.atom.interfaces.IUcContactsInfoAtomSV;
 import com.ai.slp.user.service.business.interfaces.IUcContactsInfoBusiSV;
 import com.ai.slp.user.util.DateUtils;
+import com.ai.slp.user.util.SequenceUtil;
 
 @Service
 @Transactional
@@ -39,6 +40,7 @@ public class UcContactsInfoBusiSVImpl implements IUcContactsInfoBusiSV {
     public BaseResponse insertContactsInfo(InsertContactsInfoRequest contactsInfoRequest)
             throws BusinessException, SystemException {
         UcContactsInfo ucContactsInfo = new UcContactsInfo();
+        ucContactsInfo.setContactSeqId(SequenceUtil.createContactSeqId());
         BeanUtils.copyProperties(contactsInfoRequest, ucContactsInfo);
         ucContactsInfo.setCreateTime(DateUtils.currTimeStamp());
 

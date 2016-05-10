@@ -7,8 +7,12 @@ import com.ai.slp.user.api.ucuser.param.SearchUserListResponse;
 
 public interface IUcUserListSV {
 
+    interface SearchUserList {
+    }
+
     /**
      * 查询用户信息
+     * 
      * @param userInfoRequest
      * @return
      * @author zhangqiang7

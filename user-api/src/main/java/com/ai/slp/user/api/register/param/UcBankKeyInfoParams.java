@@ -1,10 +1,10 @@
 package com.ai.slp.user.api.register.param;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import com.ai.opt.base.vo.BaseInfo;
 import com.ai.slp.user.api.register.interfaces.IRegisterSV;
 
 /**
@@ -14,11 +14,9 @@ import com.ai.slp.user.api.register.interfaces.IRegisterSV;
  * 
  * @author zhaogw
  */
-public class UcBankKeyInfoParams implements Serializable {
+public class UcBankKeyInfoParams extends BaseInfo {
 
-    @NotNull(message = "租户id不能为空", groups = { IRegisterSV.InsertUcUser.class })
-    private String tenantId;
-
+    @Size(min = 18, max = 18, message = "用户Id长度不是18位", groups = { IRegisterSV.InsertUcUser.class })
     private String userId;
 
     private String bankSeqId;
@@ -52,14 +50,6 @@ public class UcBankKeyInfoParams implements Serializable {
     private String updateChlId;
 
     private Long updateOperId;
-
-    public String getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
-    }
 
     public String getUserId() {
         return userId;
