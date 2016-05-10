@@ -21,7 +21,7 @@ public interface IUcStateChgSV {
     @interface InsertUcStateChgInfo {
     };
 
-    BaseResponse insertUcStateChgInfo(UcStateChgParamsRequest ucStateChgParam);
+    BaseResponse insertUcStateChgInfo(UcStateChgParamsRequest ucStateChgParam) throws BusinessException, SystemException;
 
     /**
      * 
@@ -35,7 +35,7 @@ public interface IUcStateChgSV {
     @interface UpdateUcStateChgInfo {
     };
 
-    BaseResponse updateUcStateChgInfo(UcStateChgParamsRequest ucStateChgParam);
+    BaseResponse updateUcStateChgInfo(UcStateChgParamsRequest ucStateChgParam) throws BusinessException, SystemException;
 
     /**
      * 用户状态轨迹状态轨迹获取
