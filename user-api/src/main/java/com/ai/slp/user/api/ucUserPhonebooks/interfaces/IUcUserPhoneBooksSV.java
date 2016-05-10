@@ -1,6 +1,8 @@
 package com.ai.slp.user.api.ucUserPhonebooks.interfaces;
 
 
+import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.ucUserPhonebooks.param.UcPhoneBooksParamsRequest;
@@ -17,7 +19,7 @@ public interface IUcUserPhoneBooksSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public BaseResponse phoneBooksManuallyInfo(UcPhoneBooksParamsRequest contactsGroup);
+	public BaseResponse phoneBooksManuallyInfo(UcPhoneBooksParamsRequest contactsGroup) throws BusinessException, SystemException;
 	
 	
 	@interface PhoneBooksImportCvsInfo{}
@@ -30,7 +32,7 @@ public interface IUcUserPhoneBooksSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public BaseResponse phoneBooksImportCvsInfo(String filePath);
+	public BaseResponse phoneBooksImportCvsInfo(String filePath) throws BusinessException, SystemException;
 	
     @interface PhoneBooksImportXlsInfo{}
         
@@ -42,7 +44,7 @@ public interface IUcUserPhoneBooksSV {
          * @author zhangyuehong
          * @ApiDocMethod
          */
-    public BaseResponse phoneBooksImportXlsInfo(String filePath);
+    public BaseResponse phoneBooksImportXlsInfo(String filePath) throws BusinessException, SystemException;
         
     @interface PhoneBooksImportXlsxInfo{}
     
@@ -54,7 +56,7 @@ public interface IUcUserPhoneBooksSV {
      * @author zhangyuehong
      * @ApiDocMethod
      */
-    public BaseResponse phoneBooksImportXlsxInfo(String filePath);
+    public BaseResponse phoneBooksImportXlsxInfo(String filePath) throws BusinessException, SystemException;
     
 	
 	@interface UpdatePhoneBooksInfo{}
@@ -67,7 +69,7 @@ public interface IUcUserPhoneBooksSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public BaseResponse updatePhoneBooksInfo(UcPhoneBooksParamsRequest contactsGroup);
+	public BaseResponse updatePhoneBooksInfo(UcPhoneBooksParamsRequest contactsGroup) throws BusinessException, SystemException;
 
 	@interface DeleteContactsInfo{}
 	
@@ -79,7 +81,7 @@ public interface IUcUserPhoneBooksSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public BaseResponse deletePhoneBooksInfo(String telNo);
+	public BaseResponse deletePhoneBooksInfo(String telNo) throws BusinessException, SystemException;
 	
 	@interface ExportContacts{}; 
 	
@@ -92,7 +94,7 @@ public interface IUcUserPhoneBooksSV {
 	 * @ApiDocMethod
 	 */
 	
-	public BaseResponse exportPhoneBooks(String filepath);
+	public BaseResponse exportPhoneBooks(String filepath) throws BusinessException, SystemException;
 	
 	@interface GetPhoneBooksInfo{}
 	
@@ -107,7 +109,7 @@ public interface IUcUserPhoneBooksSV {
 	 * @author zhangyuehong
 	 * @ApiDocMethod
 	 */
-	public UcPhoneBooksParamsResponse getPhoneBooksInfo(UcPhoneBooksParamsRequest telGroup,int startPage,int limit);
+	public UcPhoneBooksParamsResponse getPhoneBooksInfo(UcPhoneBooksParamsRequest telGroup,int startPage,int limit) throws BusinessException, SystemException;
 	
 	
 	@interface GetAllPhoneBooksInfo{}
@@ -119,10 +121,18 @@ public interface IUcUserPhoneBooksSV {
 	 * @ApiDocMethod
 	 */
 	
-	UcPhoneBooksParamsResponse GetAllPhoneBooksInfo(UcPhoneBooksParamsRequest phoneBookId);
+	UcPhoneBooksParamsResponse GetAllPhoneBooksInfo(UcPhoneBooksParamsRequest phoneBookId) throws BusinessException, SystemException;
 	
 	
 	@interface DownloadPhoneBooksTemplate{}
-	
-	BaseResponse DownloadPhoneBooksTemplate(String path);
+	/**
+	 * 下载通讯录模板
+	 * @param path
+	 * @return
+	 * @throws BusinessException
+	 * @throws SystemException
+	 * @author zhangyh7
+	 * @ApiDocMethod
+	 */
+	BaseResponse DownloadPhoneBooksTemplate(String path) throws BusinessException, SystemException;
 }
