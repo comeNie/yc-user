@@ -7,7 +7,8 @@ import com.ai.slp.user.api.register.param.UcContactInfoParams;
 import com.ai.slp.user.api.register.param.UcGroupKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcUserAgreeParams;
 import com.ai.slp.user.api.register.param.UcUserParams;
-import com.ai.slp.user.api.register.param.UpdateUserParams;
+import com.ai.slp.user.api.register.param.UserParams;
+import com.ai.slp.user.api.register.param.UserResponse;
 
 public interface IRegisterBusiSV {
     
@@ -22,6 +23,8 @@ public interface IRegisterBusiSV {
     
     public BaseResponse insertAgentInfoAttest(UcUserParams userParams,UcGroupKeyInfoParams ucGroupKeyInfoParams,UcContactInfoParams ucContactInfoParams,UcBankKeyInfoParams ucBankKeyInfoParam);
 
-    public BaseResponse updateUserInfo(UpdateUserParams updateUserParams);
+    public BaseResponse updateUserInfo(UserParams updateUserParams);
 
+    public UserResponse searchUserInfo(UcUserParams ucUser);
+    
 }
