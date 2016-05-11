@@ -15,13 +15,15 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.StringUtil;
+import com.ai.slp.user.api.contactsinfo.param.UcContactsInfoParams;
 import com.ai.slp.user.api.register.param.UcBankKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcContactInfoParams;
 import com.ai.slp.user.api.register.param.UcCustKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcGroupKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcUserAgreeParams;
 import com.ai.slp.user.api.register.param.UcUserParams;
-import com.ai.slp.user.api.register.param.UpdateUserParams;
+import com.ai.slp.user.api.register.param.UserParams;
+import com.ai.slp.user.api.register.param.UserResponse;
 import com.ai.slp.user.dao.mapper.bo.UcBankInfo;
 import com.ai.slp.user.dao.mapper.bo.UcBankInfoCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcContactsInfo;
@@ -95,7 +97,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
                 BeanUtils.copyProperties(ucUser, userParams);
                 //插入user主表
                 ucUser.setUserType(REGISTER_STATE);
-                registerAtomSv.insertUserInfo(ucUser);
+                int userId = registerAtomSv.insertUserInfo(ucUser);
                 
                 //用户状态变更
                 insertUserStateChg(userParams,REGISTER_STATE);
@@ -103,11 +105,25 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
                 //个人用户注册需要添加一个有注册转变为正常状态的记录
                 if(USER_REGISTER.equals(userParams.getUserType())){
                     insertUserStateChg(userParams,NORMAL_STATE);
+                    //个人信息详情表初始化数据
+                    UcCustKeyInfo custKeyInfo = new UcCustKeyInfo();
+                    custKeyInfo.setTenantId(userParams.getTenantId());
+                    custKeyInfo.setUserId("");
+                    registerAtomSv.insertUcCustKeyInfo(custKeyInfo);
+                    
+                }else{
+                    //企业信息表初始化数据
+                    UcGroupKeyInfo groupKeyInfo = new UcGroupKeyInfo();
+                    groupKeyInfo.setTenantId(userParams.getTenantId());
+                    groupKeyInfo.setUserId("");
+                    registerAtomSv.insertUcGroupKeyInfo(groupKeyInfo);
                 }
+                
+                
                 
                 //插入用户协议表
                 UcUserAgree ucUserAgree = new UcUserAgree();
-                ucUserAgree.setUserId(agreeInfo.getUserId());
+                ucUserAgree.setUserId("");
                 ucUserAgree.setAgreementId(agreeInfo.getAgreementId());
                 registerAtomSv.InsertUcUserAgreeAtomSv(ucUserAgree);
                 UcContactsInfo contactsInfo = new UcContactsInfo();
@@ -384,7 +400,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
     }
     
     @Override
-    public BaseResponse updateUserInfo(UpdateUserParams updateUserParams){
+    public BaseResponse updateUserInfo(UserParams updateUserParams){
         BaseResponse response = new BaseResponse();
         ResponseHeader responseHeader = null;
         boolean flag = false;
@@ -468,4 +484,70 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
         response.setResponseHeader(responseHeader);
         return response;
     }
+    
+    @Override
+    public UserResponse searchUserInfo(UcUserParams ucUser){
+        UserResponse response = new UserResponse();
+        UserParams userParams = new UserParams();
+        UcUserParams ucUserParams = new UcUserParams();
+        //查询用户基本信息
+        UcUserCriteria userCriteria = new UcUserCriteria();
+        userCriteria.createCriteria().andUserIdEqualTo(ucUser.getUserId())
+                                                        .andTenantIdEqualTo(ucUser.getTenantId());
+        List<UcUser> userlist = registerAtomSv.getUserInfo(userCriteria);
+        if(userlist!=null &&userlist.size()>0){
+            UcUser userInfo = userlist.get(0);
+            BeanUtils.copyProperties(ucUserParams, userInfo);
+        }
+        userParams.setUcUserParams(ucUserParams);
+        if(USER_REGISTER.equals(ucUserParams.getUserType())){
+            //个人用户
+            UcCustKeyInfoCriteria criteria = new UcCustKeyInfoCriteria();
+            criteria.createCriteria().andUserIdEqualTo(ucUserParams.getUserId())
+                                            .andTenantIdEqualTo(ucUserParams.getTenantId());
+           List<UcCustKeyInfo> custList = registerAtomSv.getUcCustKeyInfo(criteria);
+           
+           if(custList!=null && custList.size()>0){
+               UcCustKeyInfo ucCustKeyInfo = custList.get(0);
+               UcCustKeyInfoParams ucCustKeyInfoParams = new UcCustKeyInfoParams();
+               BeanUtils.copyProperties(ucCustKeyInfoParams, ucCustKeyInfo);
+               userParams.setUcCustKeyInfoParams(ucCustKeyInfoParams);
+           }
+        }else{
+            /*
+             * 企业用户
+             */
+            //企业资料信息
+            UcGroupKeyInfoCriteria groupCriteria = new UcGroupKeyInfoCriteria();
+            groupCriteria.createCriteria().andUserIdEqualTo(ucUserParams.getUserId())
+            .andTenantIdEqualTo(ucUserParams.getTenantId());
+            List<UcGroupKeyInfo> ucGroupList = registerAtomSv.getUcGroupKeyInfo(groupCriteria);
+            if(ucGroupList!=null&&ucGroupList.size()>0){
+                UcGroupKeyInfo ucGroupKeyInfo = ucGroupList.get(0);
+                UcGroupKeyInfoParams ucGroupKeyInfoParams = new UcGroupKeyInfoParams();
+                BeanUtils.copyProperties(ucGroupKeyInfoParams, ucGroupKeyInfo);
+                userParams.setUcGroupKeyInfoParams(ucGroupKeyInfoParams);
+            }
+            //联系人信息
+            UcContactsInfoCriteria contactsCriteria = new UcContactsInfoCriteria();
+            contactsCriteria.createCriteria().andUserIdEqualTo(ucUserParams.getUserId())
+            .andTenantIdEqualTo(ucUserParams.getTenantId());
+            List<UcContactsInfo> contactsList = registerAtomSv.getUcContactsInfo(contactsCriteria);
+            if(contactsList!=null &&contactsList.size()>0){
+                UcContactsInfo contactsInfo = contactsList.get(0);
+                UcContactInfoParams contactsInfoParams = new UcContactInfoParams();
+                BeanUtils.copyProperties(contactsInfoParams, contactsInfo);
+                userParams.setUcContactInfoParams(contactsInfoParams);
+                
+            }
+            
+        }
+        
+        ResponseHeader header = new ResponseHeader(true,"success","查询成功");
+        response.setUserParams(userParams);
+        response.setResponseHeader(header);
+        return response;
+    }
+    
+    
 }

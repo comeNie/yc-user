@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.ai.slp.user.dao.mapper.bo.UcBankInfo;
 import com.ai.slp.user.dao.mapper.bo.UcContactsInfo;
+import com.ai.slp.user.dao.mapper.bo.UcContactsInfoCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfo;
 import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfoCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfo;
@@ -30,6 +31,10 @@ public interface IRegisterAtomSV {
     public int insertUcGroupKeyInfo(UcGroupKeyInfo ucGroupKey);
 
     public List<UcGroupKeyInfo> getUcGroupKeyInfo(UcGroupKeyInfoCriteria criteria);
+    
+    public List<UcCustKeyInfo> getUcCustKeyInfo(UcCustKeyInfoCriteria  criteria);
+    
+    public List<UcContactsInfo> getUcContactsInfo(UcContactsInfoCriteria  criteria);
     
     int updateGroupKeyInfo(@Param("record") UcGroupKeyInfo record,
             @Param("example") UcGroupKeyInfoCriteria example);

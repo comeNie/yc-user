@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.ai.slp.user.dao.mapper.bo.UcBankInfo;
 import com.ai.slp.user.dao.mapper.bo.UcContactsInfo;
+import com.ai.slp.user.dao.mapper.bo.UcContactsInfoCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfo;
 import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfoCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfo;
@@ -42,6 +43,8 @@ public class RegisterAtomSVImpl implements IRegisterAtomSV {
     public List<UcGroupKeyInfo> getUcGroupKeyInfo(UcGroupKeyInfoCriteria criteria) {
         return MapperFactory.getUcGroupKeyInfoMapper().selectByExample(criteria);
     }
+    
+    
 
     @Override
     public int insertUcContactsInfo(UcContactsInfo ucContactsInfo) {
@@ -94,6 +97,16 @@ public class RegisterAtomSVImpl implements IRegisterAtomSV {
     @Override
     public int updateCustKeyInfo(UcCustKeyInfo record, UcCustKeyInfoCriteria example) {
         return MapperFactory.getUcCustKeyInfoMapper().updateByExample(record, example);
+    }
+
+    @Override
+    public List<UcCustKeyInfo> getUcCustKeyInfo(UcCustKeyInfoCriteria criteria) {
+        return MapperFactory.getUcCustKeyInfoMapper().selectByExample(criteria);
+    }
+
+    @Override
+    public List<UcContactsInfo> getUcContactsInfo(UcContactsInfoCriteria criteria) {
+        return MapperFactory.getUcContactsInfoMapper().selectByExample(criteria);
     }
     
 }
