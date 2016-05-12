@@ -7,26 +7,28 @@ import org.springframework.stereotype.Component;
 
 import com.ai.slp.user.dao.mapper.bo.UcStateChg;
 import com.ai.slp.user.dao.mapper.bo.UcStateChgCriteria;
-import com.ai.slp.user.dao.mapper.factory.MapperFactory;
+import com.ai.slp.user.dao.mapper.interfaces.UcStateChgMapper;
 import com.ai.slp.user.service.atom.interfaces.IUcStateChgAtomSV;
 
 @Component
 public class UcStateChgAtomSVImpl implements IUcStateChgAtomSV {
 
+    private transient UcStateChgMapper stateChgMapper;
+
     @Override
     public int insertUcStateChgBusiInfo(UcStateChg ucStateChgParam) {
-        return MapperFactory.getUcStateChgMapper().insert(ucStateChgParam);
+        return stateChgMapper.insert(ucStateChgParam);
     }
 
     @Override
     public int updateUcStateChgBusiInfo(@Param("record") UcStateChg record,
             @Param("example") UcStateChgCriteria example) {
-        return MapperFactory.getUcStateChgMapper().updateByExampleSelective(record, example);
+        return stateChgMapper.updateByExampleSelective(record, example);
     }
 
     @Override
     public List<UcStateChg> selectByExample(UcStateChgCriteria example) {
-        return MapperFactory.getUcStateChgMapper().selectByExample(example);
+        return stateChgMapper.selectByExample(example);
     }
 
 }

@@ -1,6 +1,6 @@
 package com.ai.slp.user.api.register.param;
 
-import java.io.Serializable;
+import com.ai.opt.base.vo.BaseInfo;
 
 /**
  * 注册用户信息参数 <br>
@@ -9,22 +9,22 @@ import java.io.Serializable;
  * 
  * @author zhaogw
  */
-public class RegisterParamsRequest implements Serializable {
-    
+public class RegisterParamsRequest extends BaseInfo {
+
     private static final long serialVersionUID = 1L;
 
-    private UcContactInfoParams ucContactInfoParams ;
-    
+    private UcContactInfoParams ucContactInfoParams;
+
     private UcUserParams ucUserParam;
-    
+
     private UcGroupKeyInfoParams ucGroupKeyInfoParams;
-    
-    private UcCustKeyInfoParams ucCustKeyInfoParams ;
-    
+
+    private UcCustKeyInfoParams ucCustKeyInfoParams;
+
     private UcBankKeyInfoParams ucBankKeyParams;
 
     private UcUserAgreeParams agreeInfoParams;
-    
+
     public UcContactInfoParams getUcContactInfoParams() {
         return ucContactInfoParams;
     }
@@ -72,6 +72,5 @@ public class RegisterParamsRequest implements Serializable {
     public void setAgreeInfoParams(UcUserAgreeParams agreeInfoParams) {
         this.agreeInfoParams = agreeInfoParams;
     }
-    
 
 }

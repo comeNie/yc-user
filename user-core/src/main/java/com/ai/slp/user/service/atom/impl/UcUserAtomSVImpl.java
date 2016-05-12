@@ -2,6 +2,7 @@ package com.ai.slp.user.service.atom.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.SystemException;
@@ -11,30 +12,41 @@ import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfo;
 import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfoCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcUser;
 import com.ai.slp.user.dao.mapper.bo.UcUserCriteria;
-import com.ai.slp.user.dao.mapper.factory.MapperFactory;
+import com.ai.slp.user.dao.mapper.interfaces.UcCustKeyInfoMapper;
+import com.ai.slp.user.dao.mapper.interfaces.UcGroupKeyInfoMapper;
+import com.ai.slp.user.dao.mapper.interfaces.UcUserMapper;
 import com.ai.slp.user.service.atom.interfaces.IUcUserAtomSV;
 
 @Component
 public class UcUserAtomSVImpl implements IUcUserAtomSV {
+    @Autowired
+    private transient UcUserMapper userMapper;
+
+    @Autowired
+    private transient UcCustKeyInfoMapper custKeyInfoMapper;
+
+    @Autowired
+    private transient UcGroupKeyInfoMapper groupKeyInfoMapper;
 
     @Override
     public List<UcUser> searchUcUserInfo(UcUserCriteria example) throws SystemException {
-        return MapperFactory.getUcUserMapper().selectByExample(example);
+        return userMapper.selectByExample(example);
     }
-    
+
     @Override
-    public List<UcCustKeyInfo> searchUcCustKeyInfo(UcCustKeyInfoCriteria example) throws SystemException {
-        return MapperFactory.getUcCustKeyInfoMapper().selectByExample(example);
+    public List<UcCustKeyInfo> searchUcCustKeyInfo(UcCustKeyInfoCriteria example)
+            throws SystemException {
+        return custKeyInfoMapper.selectByExample(example);
     }
-    
-    
+
     @Override
-    public List<UcGroupKeyInfo> searchUcGroupKeyInfo(UcGroupKeyInfoCriteria example) throws SystemException {
-        return MapperFactory.getUcGroupKeyInfoMapper().selectByExample(example);
+    public List<UcGroupKeyInfo> searchUcGroupKeyInfo(UcGroupKeyInfoCriteria example)
+            throws SystemException {
+        return groupKeyInfoMapper.selectByExample(example);
     }
 
     @Override
     public int countByExample(UcUserCriteria example) {
-        return MapperFactory.getUcUserMapper().countByExample(example);
+        return userMapper.countByExample(example);
     }
 }

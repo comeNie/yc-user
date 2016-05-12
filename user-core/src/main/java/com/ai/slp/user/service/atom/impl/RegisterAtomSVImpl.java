@@ -3,6 +3,7 @@ package com.ai.slp.user.service.atom.impl;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ai.slp.user.dao.mapper.bo.UcBankInfo;
@@ -18,95 +19,116 @@ import com.ai.slp.user.dao.mapper.bo.UcUser;
 import com.ai.slp.user.dao.mapper.bo.UcUserAgree;
 import com.ai.slp.user.dao.mapper.bo.UcUserAgreeCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcUserCriteria;
-import com.ai.slp.user.dao.mapper.factory.MapperFactory;
+import com.ai.slp.user.dao.mapper.interfaces.UcBankInfoMapper;
+import com.ai.slp.user.dao.mapper.interfaces.UcContactsInfoMapper;
+import com.ai.slp.user.dao.mapper.interfaces.UcCustKeyInfoMapper;
+import com.ai.slp.user.dao.mapper.interfaces.UcGroupKeyInfoMapper;
+import com.ai.slp.user.dao.mapper.interfaces.UcStateChgMapper;
+import com.ai.slp.user.dao.mapper.interfaces.UcUserAgreeMapper;
+import com.ai.slp.user.dao.mapper.interfaces.UcUserMapper;
 import com.ai.slp.user.service.atom.interfaces.IRegisterAtomSV;
 
 @Component
 public class RegisterAtomSVImpl implements IRegisterAtomSV {
 
+    @Autowired
+    private transient  UcUserMapper ucUserMapper;
+    
+    @Autowired
+    private transient  UcGroupKeyInfoMapper groupKeyInfoMapper;
+    @Autowired
+    private transient  UcContactsInfoMapper contactsInfoMapper;
+    @Autowired
+    private transient  UcUserAgreeMapper userAgreeMapper;
+    @Autowired
+    private transient  UcStateChgMapper stateChgMapper;
+    @Autowired
+    private transient  UcCustKeyInfoMapper custKeyInfoMapper;
+    @Autowired
+    private transient  UcUserMapper userMapper;
+    @Autowired
+    private transient  UcBankInfoMapper bankInfoMapper;
+
     @Override
     public int insertUserInfo(UcUser user) {
-        return MapperFactory.getUcUserMapper().insert(user);
+        return ucUserMapper.insert(user);
     }
 
     @Override
     public List<UcUser> getUserInfo(UcUserCriteria criteria) {
-        return MapperFactory.getUcUserMapper().selectByExample(criteria);
+        return ucUserMapper.selectByExample(criteria);
     }
 
     @Override
     public int insertUcGroupKeyInfo(UcGroupKeyInfo ucGroupKey) {
-        return MapperFactory.getUcGroupKeyInfoMapper().insert(ucGroupKey);
+        return groupKeyInfoMapper.insert(ucGroupKey);
     }
 
     @Override
     public List<UcGroupKeyInfo> getUcGroupKeyInfo(UcGroupKeyInfoCriteria criteria) {
-        return MapperFactory.getUcGroupKeyInfoMapper().selectByExample(criteria);
+        return groupKeyInfoMapper.selectByExample(criteria);
     }
-    
-    
 
     @Override
     public int insertUcContactsInfo(UcContactsInfo ucContactsInfo) {
-        
-        return MapperFactory.getUcContactsInfoMapper().insert(ucContactsInfo);
+
+        return contactsInfoMapper.insert(ucContactsInfo);
     }
 
     @Override
     public void InsertUcUserAgreeAtomSv(UcUserAgree record) {
-         MapperFactory.getUcUserAgreeMapper().insert(record);
+        userAgreeMapper.insert(record);
     }
 
     @Override
-    public int updateUcStateChgBusiInfo(@Param("record")
-    UcStateChg record, @Param("example")
-    UcStateChgCriteria example) {
-        return MapperFactory.getUcStateChgMapper().updateByExample(record, example);
+    public int updateUcStateChgBusiInfo(@Param("record") UcStateChg record,
+            @Param("example") UcStateChgCriteria example) {
+        return stateChgMapper.updateByExample(record, example);
     }
 
     @Override
     public int insertUcStateChgBusiInfo(UcStateChg ucStateChgParam) {
-        return MapperFactory.getUcStateChgMapper().insert(ucStateChgParam);
+        return stateChgMapper.insert(ucStateChgParam);
     }
 
     @Override
     public int insertUcBankInfo(UcBankInfo ucBankInfo) {
-        return MapperFactory.getUcBankInfoMapper().insert(ucBankInfo);
+        return bankInfoMapper.insert(ucBankInfo);
     }
 
     @Override
     public int insertUcCustKeyInfo(UcCustKeyInfo ucContactsInfo) {
-        return MapperFactory.getUcCustKeyInfoMapper().insert(ucContactsInfo);
+        return custKeyInfoMapper.insert(ucContactsInfo);
     }
 
     @Override
     public int updateUserInfo(UcUser record, UcUserCriteria example) {
-        return MapperFactory.getUcUserMapper().updateByExample(record, example);
+        return userMapper.updateByExample(record, example);
     }
 
     @Override
     public int updateGroupKeyInfo(UcGroupKeyInfo record, UcGroupKeyInfoCriteria example) {
-        return MapperFactory.getUcGroupKeyInfoMapper().updateByExampleSelective(record, example);
+        return groupKeyInfoMapper.updateByExampleSelective(record, example);
     }
 
     @Override
     public int updateUserAgree(UcUserAgree record, UcUserAgreeCriteria example) {
-        return MapperFactory.getUcUserAgreeMapper().updateByExample(record, example);
+        return userAgreeMapper.updateByExample(record, example);
     }
 
     @Override
     public int updateCustKeyInfo(UcCustKeyInfo record, UcCustKeyInfoCriteria example) {
-        return MapperFactory.getUcCustKeyInfoMapper().updateByExample(record, example);
+        return custKeyInfoMapper.updateByExample(record, example);
     }
 
     @Override
     public List<UcCustKeyInfo> getUcCustKeyInfo(UcCustKeyInfoCriteria criteria) {
-        return MapperFactory.getUcCustKeyInfoMapper().selectByExample(criteria);
+        return custKeyInfoMapper.selectByExample(criteria);
     }
 
     @Override
     public List<UcContactsInfo> getUcContactsInfo(UcContactsInfoCriteria criteria) {
-        return MapperFactory.getUcContactsInfoMapper().selectByExample(criteria);
+        return contactsInfoMapper.selectByExample(criteria);
     }
-    
+
 }

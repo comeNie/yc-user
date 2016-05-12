@@ -62,12 +62,9 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
     
     @Override
     public void insertUserInfo(RegisterParamsRequest registerParamsRequest) {
-            /**
-             * 用户名、手机号、邮箱是不是唯一
-             */
             UcUserParams userParams = registerParamsRequest.getUcUserParam();
             List<UcUser> list = getUserInfoBycondition(userParams);
-            if(!CollectionUtil.isEmpty(list)&&list.size()>0){
+            if(!CollectionUtil.isEmpty(list)){
                 throw new BusinessException(ExceptCodeConstants.Account.ACCOUNT_SET_INFO_CHECK_FAILED, "账户不唯一");
             }
             UcUser ucUser = new UcUser();

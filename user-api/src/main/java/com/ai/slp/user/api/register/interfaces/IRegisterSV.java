@@ -19,14 +19,16 @@ import com.ai.slp.user.api.register.param.UcUserParams;
  * @author zhaogw
  */
 public interface IRegisterSV {
+    
+    @interface InsertUcUser{}
 
     /**
-     * 注册用户账户 </br>
-     * @param request
-     * @author zhaogw
-     * @REG_0001
+     * 注册用户账户 
+     * @param registerParamsRequest
+     * @return
+     * @author zhangqiang7
+     * @ApiCode USER_0001
      */
-    @interface InsertUcUser{}
     BaseResponse insertUcUser( RegisterParamsRequest registerParamsRequest);
     
     /**
