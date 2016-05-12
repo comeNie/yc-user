@@ -17,7 +17,7 @@ public class InsertApiInfoRequest extends BaseInfo {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户Id NOT NULL
+     * 用户Id 不能为空
      */
     @NotNull(message = "用户Id不能为空", groups = { IApiInfoSV.InsertApiInfo.class })
     @Size(min = 18, max = 18, message = "用户Id长度不是18位", groups = { IApiInfoSV.InsertApiInfo.class })

@@ -16,13 +16,13 @@ public class ApiInfoRequest extends BaseInfo {
     private static final long serialVersionUID = 1L;
 
     /**
-     * ApiID NOT NULL
+     * ApiID 不能为空
      */
     @NotNull(message = "ApiId不能为空", groups = { IApiInfoSV.QueryApiInfo.class })
     private String apiReqId;
 
     /**
-     * 用户ID NOT NULL
+     * 用户ID 不能为空
      */
     @NotNull(message = "用户Id不能为空", groups = { IApiInfoSV.QueryApiInfo.class })
     @Size(min = 18, max = 18, message = "用户Id长度不是18位", groups = { IApiInfoSV.QueryApiInfo.class })

@@ -19,7 +19,7 @@ public class LoginRequest extends BaseInfo {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户类型 NOT NULL
+     * 用户类型  不能为空
      */
     @NotNull(message = "用户类型不能为空", groups = { ILoginSV.Login.class })
     private String userType;
@@ -42,7 +42,7 @@ public class LoginRequest extends BaseInfo {
     private String userMp;
 
     /**
-     * 用户密码
+     * 用户密码 不能为空
      */
     @NotNull(message = "密码不能为空", groups = { ILoginSV.Login.class })
     private String userLoginPwd;

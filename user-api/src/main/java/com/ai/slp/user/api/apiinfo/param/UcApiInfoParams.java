@@ -16,12 +16,12 @@ public class UcApiInfoParams extends BaseInfo {
     private static final long serialVersionUID = 1L;
 
     /**
-     * APIID
+     * APIId
      */
     private String apiSeqId;
 
     /**
-     * 用户ID
+     * 用户Id
      */
     private String userId;
 
