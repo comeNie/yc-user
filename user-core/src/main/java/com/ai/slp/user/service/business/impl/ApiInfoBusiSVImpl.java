@@ -15,7 +15,7 @@ import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
-import com.ai.opt.sdk.sequence.util.SeqUtil;
+import com.ai.opt.sdk.components.sequence.util.SeqUtil;
 import com.ai.slp.user.api.apiinfo.param.ApiInfoRequest;
 import com.ai.slp.user.api.apiinfo.param.ApiInfoResponse;
 import com.ai.slp.user.api.apiinfo.param.InsertApiInfoRequest;
