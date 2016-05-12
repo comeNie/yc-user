@@ -11,19 +11,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
+import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.opt.sdk.util.StringUtil;
-import com.ai.slp.user.api.contactsinfo.param.UcContactsInfoParams;
+import com.ai.slp.user.api.register.param.RegisterParamsRequest;
 import com.ai.slp.user.api.register.param.UcBankKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcContactInfoParams;
 import com.ai.slp.user.api.register.param.UcCustKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcGroupKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcUserAgreeParams;
 import com.ai.slp.user.api.register.param.UcUserParams;
-import com.ai.slp.user.api.register.param.UserParams;
-import com.ai.slp.user.api.register.param.UserResponse;
+import com.ai.slp.user.constants.ExceptCodeConstants;
 import com.ai.slp.user.dao.mapper.bo.UcBankInfo;
 import com.ai.slp.user.dao.mapper.bo.UcBankInfoCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcContactsInfo;
@@ -55,133 +56,76 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
     @Autowired
     public IUcBankInfoAtomSV iUcBankInfoAtomSV;
     
-    
-    //注册
-    public String REGISTER_STATE = "11";
-    //正常
-    public String NORMAL_STATE="10";
-    //冻结
-    public String FREEZE_STATE="12";
-    
-    //个人注册代码
-    public String USER_REGISTER="10";
-    //企业注册代码
-    public String COMPANY_REGISTER="11";
-    //代理商注册代码
-    public String AGENT_REGISTER="12";
-    //供应商注册代码
-    public String PROVIDER_REGISTER="13";
-    
     /**
      * 个人用户、企业注册、代理商、供应商注册
      */
     
     @Override
-    public BaseResponse insertUserInfo(UcUserParams userParams, UcUserAgreeParams agreeInfo,
-            UcContactInfoParams contactParams) {
-            BaseResponse response = new BaseResponse();
-            ResponseHeader responseHeader = null;
+    public void insertUserInfo(RegisterParamsRequest registerParamsRequest) {
             /**
              * 用户名、手机号、邮箱是不是唯一
              */
+            UcUserParams userParams = registerParamsRequest.getUcUserParam();
             List<UcUser> list = getUserInfoBycondition(userParams);
-            boolean flag = list.size()>0?false:true;
-            if(flag){
-                responseHeader = new ResponseHeader(false,"fail","请输入有效信息");
-                response.setResponseHeader(responseHeader);
-                return response;
+            if(!CollectionUtil.isEmpty(list)&&list.size()>0){
+                throw new BusinessException(ExceptCodeConstants.Account.ACCOUNT_SET_INFO_CHECK_FAILED, "账户不唯一");
             }
-            
-            try{
-                UcUser ucUser = new UcUser();
+            UcUser ucUser = new UcUser();
+            //用户信息
+            if(userParams!=null){
                 BeanUtils.copyProperties(ucUser, userParams);
                 //插入user主表
-                ucUser.setUserType(REGISTER_STATE);
-                int userId = registerAtomSv.insertUserInfo(ucUser);
-                
+                ucUser.setUserType(ExceptCodeConstants.Account.REGISTER_STATE);
+                registerAtomSv.insertUserInfo(ucUser);
                 //用户状态变更
-                insertUserStateChg(userParams,REGISTER_STATE);
+                insertUserStateChg(userParams,ExceptCodeConstants.Account.REGISTER_STATE);
                 
                 //个人用户注册需要添加一个有注册转变为正常状态的记录
-                if(USER_REGISTER.equals(userParams.getUserType())){
-                    insertUserStateChg(userParams,NORMAL_STATE);
-                    //个人信息详情表初始化数据
-                    UcCustKeyInfo custKeyInfo = new UcCustKeyInfo();
-                    custKeyInfo.setTenantId(userParams.getTenantId());
-                    custKeyInfo.setUserId("");
-                    registerAtomSv.insertUcCustKeyInfo(custKeyInfo);
-                    
-                }else{
-                    //企业信息表初始化数据
-                    UcGroupKeyInfo groupKeyInfo = new UcGroupKeyInfo();
-                    groupKeyInfo.setTenantId(userParams.getTenantId());
-                    groupKeyInfo.setUserId("");
-                    registerAtomSv.insertUcGroupKeyInfo(groupKeyInfo);
+                if(ExceptCodeConstants.Account.REGISTER_STATE.equals(userParams.getUserType())){
+                    insertUserStateChg(userParams,ExceptCodeConstants.Account.REGISTER_STATE);
                 }
-                
-                
-                
+                UcUserAgreeParams agreeInfo = registerParamsRequest.getAgreeInfoParams();
                 //插入用户协议表
                 UcUserAgree ucUserAgree = new UcUserAgree();
-                ucUserAgree.setUserId("");
+                ucUserAgree.setUserId(agreeInfo.getUserId());
                 ucUserAgree.setAgreementId(agreeInfo.getAgreementId());
                 registerAtomSv.InsertUcUserAgreeAtomSv(ucUserAgree);
-                UcContactsInfo contactsInfo = new UcContactsInfo();
-                BeanUtils.copyProperties(contactsInfo, contactParams);
-                contactsInfo.setUserId(ucUser.getUserId());
-                contactsInfo.setTenantId(ucUser.getTenantId());
-                //TODO 插入用户联系人表sequence
-                contactsInfo.setContactSeqId("11");
-                iUcContactsInfoAtomSV.insert(contactsInfo);
-                //用户银行卡信息记
-                UcBankInfo bankInfo = new UcBankInfo();
-                bankInfo.setUserId(ucUser.getUserId());
-                bankInfo.setTenantId(ucUser.getTenantId());
-                //TODO  获取银行卡sequence 
-                bankInfo.setBankSeqId("22");
-                iUcBankInfoAtomSV.insert(bankInfo );
-                responseHeader = new ResponseHeader(true,"success","注册成功");
-            
-            }catch(Exception e){
-                responseHeader = new ResponseHeader(false,"fail","注册失败");
-                LOG.error("注册失败", e);
+            }else{
+                throw new BusinessException("ACCOUNT_SET_INFO_CHECK_FAILED","注册失败,请输入用户信息");
             }
-           response.setResponseHeader(responseHeader);
-           return response;
+            
     }
     /**
      * 获取用户信息
      */
     @Override
-    public BaseResponse getUserInfo(UcUserParams userParams) {
-        BaseResponse response = new BaseResponse();
-        ResponseHeader responseHeader = null;
+    public boolean checkUserExist(UcUserParams userParams) {
         List<UcUser> list = getUserInfoBycondition(userParams);
-        boolean flag = list.size()>0?false:true;
-       
-        if(flag){
-            responseHeader = new ResponseHeader(false,"fail","该用户已注册，请重新输入");
-        }else{
-            responseHeader = new ResponseHeader(true,"success","");
-        }
-        response.setResponseHeader(responseHeader);
-        return response;
+        boolean flag = list!=null&&list.size()>0?false:true;
+        return flag;
     }
     
+    /**
+     * 企业用户名或者手机号是不是唯一
+     */
     @Override
-    public BaseResponse getUcGroupKeyInfo(UcGroupKeyInfoParams ucGroupKeyInfoParams){
-        BaseResponse response = new BaseResponse();
-        ResponseHeader responseHeader = null;
-        
-        boolean flag = getUcGroupKeyInfoByCondition(ucGroupKeyInfoParams);
-        if(flag){
-            responseHeader = new ResponseHeader(false,"fail","该用户已注册，请重新输入");
-        }else{
-            responseHeader = new ResponseHeader(true,"success","");
+    public boolean checkUcGroupKeyExist(UcGroupKeyInfoParams ucGroupKeyInfoParams){
+        boolean flag = false;
+        /**
+         * 用户名或者手机号是不是唯一
+         */
+        UcGroupKeyInfoCriteria example =  new UcGroupKeyInfoCriteria();
+        UcGroupKeyInfoCriteria.Criteria criteria = example.createCriteria();
+        if(!StringUtil.isBlank(ucGroupKeyInfoParams.getCustName())){
+            criteria.andCustNameEqualTo(ucGroupKeyInfoParams.getCustName());
         }
-        response.setResponseHeader(responseHeader);
+        List<UcGroupKeyInfo> list = registerAtomSv.getUcGroupKeyInfo(example);
+        /**
+         * list.size()>0说明用户名或者手机不唯一，返回false
+         */
+        flag = list!=null&&list.size()>0?false:true;
         
-        return response;
+        return flag;
     }
     
     
@@ -189,83 +133,92 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
      * 企业资质认证(企业注册后台)
      */
     @Override
-    public BaseResponse insertCompanyInfoAttest(UcUserParams userParams,UcGroupKeyInfoParams ucGroupKeyInfoParams,UcContactInfoParams ucContactInfoParams) {
-        BaseResponse response = new BaseResponse();
-        ResponseHeader responseHeader = null;
+    public void insertCompanyInfoAttest(RegisterParamsRequest registerParamsRequest) {
         
-        try{
-            
             /**
              * 获取当前用户信息
              */
+            UcUserParams userParams = registerParamsRequest.getUcUserParam();
             List<UcUser> list = getUserInfoBycondition(userParams);
-            String userId = list.get(0).getUserId();
-            userParams.setUserId(userId);
-            //企业客户关键信息表
-            UcGroupKeyInfo ucGroupKeyInfo = new UcGroupKeyInfo();
-            BeanUtils.copyProperties(ucGroupKeyInfo, ucGroupKeyInfoParams);
-            ucGroupKeyInfo.setUserId(userId);
-            registerAtomSv.insertUcGroupKeyInfo(ucGroupKeyInfo);
+            if(!CollectionUtil.isEmpty(list)&&list.size()>0){
+                String userId = list.get(0).getUserId();
+                userParams.setUserId(userId);
+                //企业客户关键信息表
+                UcGroupKeyInfo ucGroupKeyInfo = new UcGroupKeyInfo();
+                UcGroupKeyInfoParams ucGroupKeyInfoParams = registerParamsRequest.getUcGroupKeyInfoParams();
+                if(ucGroupKeyInfoParams==null){
+                    throw new BusinessException(ExceptCodeConstants.Account.ACCOUNT_SET_INFO_CHECK_FAILED, "请输入企业客户信息");
+                }
+                BeanUtils.copyProperties(ucGroupKeyInfo, ucGroupKeyInfoParams);
+                ucGroupKeyInfo.setUserId(userId);
+                registerAtomSv.insertUcGroupKeyInfo(ucGroupKeyInfo);
+                
+                //用户联系人表
+                UcContactsInfo ucContactsInfo = new UcContactsInfo();
+                ucContactsInfo.setUserId(userId);
+                UcContactInfoParams ucContactInfoParams = registerParamsRequest.getUcContactInfoParams();
+                if(ucContactInfoParams==null){
+                    throw new BusinessException(ExceptCodeConstants.Account.ACCOUNT_SET_INFO_CHECK_FAILED, "请输入企业客户信息");
+                }
+                BeanUtils.copyProperties(ucContactsInfo, ucContactInfoParams);
+                registerAtomSv.insertUcContactsInfo(ucContactsInfo);
+                
+                //用户状态变更
+                insertUserStateChg(userParams,ExceptCodeConstants.Account.REGISTER_STATE);
+            }else{
+                throw new BusinessException("ACCOUNT_NOT_FOUND", "账户资料验证失败");
+            }
             
-            //用户联系人表
-            UcContactsInfo ucContactsInfo = new UcContactsInfo();
-            ucContactsInfo.setUserId(userId);
-            BeanUtils.copyProperties(ucContactsInfo, ucContactInfoParams);
-            registerAtomSv.insertUcContactsInfo(ucContactsInfo);
             
-            //用户状态变更
-            insertUserStateChg(userParams,REGISTER_STATE);
-            
-        }catch(Exception e){
-            responseHeader = new ResponseHeader(false,"fail","注册失败");
-            LOG.error("注册失败", e);
-        }
-       response.setResponseHeader(responseHeader);
-       return response;
     }
     
     /**
      * 代理商资质认证
      */
     @Override
-    public BaseResponse insertAgentInfoAttest(UcUserParams userParams,UcGroupKeyInfoParams ucGroupKeyInfoParams,UcContactInfoParams ucContactInfoParams,UcBankKeyInfoParams ucBankKeyInfoParam) {
-        BaseResponse response = new BaseResponse();
-        ResponseHeader responseHeader = null;
-        
-        try{
-            
+    public void insertAgentInfoAttest(RegisterParamsRequest registerParamsRequest) {
             /**
              * 获取当前用户信息
              */
+            UcUserParams userParams = registerParamsRequest.getUcUserParam();
             List<UcUser> list = getUserInfoBycondition(userParams);
+            if(CollectionUtil.isEmpty(list)&&list.size()==0){
+                throw new BusinessException("ACCOUNT_NOT_FOUND", "账户资料验证失败");
+            }
             String userId = list.get(0).getUserId();
             userParams.setUserId(userId);
             //企业客户关键信息表
+            UcGroupKeyInfoParams ucGroupKeyInfoParams = registerParamsRequest.getUcGroupKeyInfoParams();
             UcGroupKeyInfo ucGroupKeyInfo = new UcGroupKeyInfo();
+            if(ucGroupKeyInfoParams==null){
+                throw new BusinessException("ACCOUNT_NOT_FOUND", "账户资料验证失败");
+            }
             BeanUtils.copyProperties(ucGroupKeyInfo, ucGroupKeyInfoParams);
             ucGroupKeyInfo.setUserId(userId);
             registerAtomSv.insertUcGroupKeyInfo(ucGroupKeyInfo);
             
             //用户联系人表
             UcContactsInfo ucContactsInfo = new UcContactsInfo();
+            UcContactInfoParams ucContactInfoParams = registerParamsRequest.getUcContactInfoParams();
             ucContactsInfo.setUserId(userId);
+            if(ucContactInfoParams==null){
+                throw new BusinessException("ACCOUNT_NOT_FOUND", "账户资料验证失败");
+            }
             BeanUtils.copyProperties(ucContactsInfo, ucContactInfoParams);
             registerAtomSv.insertUcContactsInfo(ucContactsInfo);
             
             //用户银行信息
             UcBankInfo ucBankInfo = new UcBankInfo();
             ucBankInfo.setUserId(userId);
+            UcBankKeyInfoParams ucBankKeyInfoParam = registerParamsRequest.getUcBankKeyParams();
+            if(ucBankKeyInfoParam==null){
+                throw new BusinessException("ACCOUNT_NOT_FOUND", "账户资料验证失败");
+            }
             BeanUtils.copyProperties(ucBankInfo, ucBankKeyInfoParam);
             
             //用户状态变更
-            insertUserStateChg(userParams,REGISTER_STATE);
+            insertUserStateChg(userParams,ExceptCodeConstants.Account.REGISTER_STATE);
             
-        }catch(Exception e){
-            responseHeader = new ResponseHeader(false,"fail","注册失败");
-            LOG.error("注册失败", e);
-        }
-       response.setResponseHeader(responseHeader);
-       return response;
     }
     
     
@@ -278,31 +231,29 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
      * @author zhangyh7
      * @ApiDocMethod
      */
-    public BaseResponse insertUserInfoAttest(UcUserParams userParams,UcCustKeyInfoParams ucCustKeyInfpParam,UcContactInfoParams ucContactInfoParams,UcBankInfo ucBackInfo){
+    @Override
+    public void insertUserInfoAttest(RegisterParamsRequest registerParamsRequest){
        
-        BaseResponse response = new BaseResponse();
-        ResponseHeader responseHeader = null;
-        try{
             /**
              * 获取当前用户信息
              */
+            UcUserParams userParams = registerParamsRequest.getUcUserParam();
             List<UcUser> list = getUserInfoBycondition(userParams);
+            if(CollectionUtil.isEmpty(list)||list.size()==0){
+                throw new BusinessException("ACCOUNT_NOT_FOUND", "账户资料验证失败");
+            }
             String userId = list.get(0).getUserId();
             userParams.setUserId(userId);
             
             UcCustKeyInfo ucCustKeyInfo = new UcCustKeyInfo();
             ucCustKeyInfo.setUserId(userId);
+            UcCustKeyInfoParams ucCustKeyInfpParam = registerParamsRequest.getUcCustKeyInfoParams();
+            if(ucCustKeyInfpParam==null){
+                throw new BusinessException(ExceptCodeConstants.Account.ACCOUNT_SET_INFO_CHECK_FAILED, "请输入客户信息");
+            }
             BeanUtils.copyProperties(ucCustKeyInfo, ucCustKeyInfpParam);
             registerAtomSv.insertUcCustKeyInfo(ucCustKeyInfo);
-            responseHeader = new ResponseHeader(true,"succss","认证成功");
-            
-        }catch(Exception e){
-            responseHeader = new ResponseHeader(false,"fail","认证失败");
-        }
         
-        response.setResponseHeader(responseHeader);
-        
-        return response;
     }
     
     
@@ -313,32 +264,25 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
      * @author zhangyh7
      * @ApiDocMethod
      */
-    public BaseResponse inertProviderInfo(UcUserParams userParams,UcGroupKeyInfoParams ucGroupKeyInfoParams){
+    public void inertProviderInfo(RegisterParamsRequest registerParamsRequest){
         
-        BaseResponse response = new BaseResponse();
-        ResponseHeader responseHeader = null;
-        try{
             //企业客户关键信息表
             UcGroupKeyInfo ucGroupKeyInfo = new UcGroupKeyInfo();
+            UcUserParams userParams = registerParamsRequest.getUcUserParam();
             ucGroupKeyInfo.setUserId(userParams.getUserId());
+            UcGroupKeyInfoParams ucGroupKeyInfoParams = registerParamsRequest.getUcGroupKeyInfoParams();
+            if(ucGroupKeyInfoParams==null){
+                throw new BusinessException(ExceptCodeConstants.Account.ACCOUNT_SET_INFO_CHECK_FAILED, "请输入供应商信息");
+            }
             BeanUtils.copyProperties(ucGroupKeyInfo, ucGroupKeyInfoParams);
             registerAtomSv.insertUcGroupKeyInfo(ucGroupKeyInfo);
-            responseHeader = new ResponseHeader(true,"success","注册成功");
             
             //缺少供应产品信息
             
             //用户状态变更
-            insertUserStateChg(userParams,REGISTER_STATE);
+            insertUserStateChg(userParams,ExceptCodeConstants.Account.REGISTER_STATE);
             
-        }catch(Exception e){
-            LOG.error("供应商注册失败",e);
-            responseHeader = new ResponseHeader(false,"fail","注册失败");
-        }
-        response.setResponseHeader(responseHeader);
-        return response;
     }
-    
-    
     
     public List<UcUser>  getUserInfoBycondition(UcUserParams userParams){
         /**
@@ -358,29 +302,6 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
         
         return list;
     }
-
-    
-    
-    
-    
-    public boolean getUcGroupKeyInfoByCondition(UcGroupKeyInfoParams ucGroupKeyInfoParams){
-        boolean flag = false;
-        /**
-         * 用户名或者手机号是不是唯一
-         */
-        UcGroupKeyInfoCriteria example =  new UcGroupKeyInfoCriteria();
-        UcGroupKeyInfoCriteria.Criteria criteria = example.createCriteria();
-        if(!StringUtil.isBlank(ucGroupKeyInfoParams.getCustName())){
-            criteria.andCustNameEqualTo(ucGroupKeyInfoParams.getCustName());
-        }
-        List<UcGroupKeyInfo> list = registerAtomSv.getUcGroupKeyInfo(example);
-        /**
-         * list.size()>0说明用户名或者手机不唯一，返回false
-         */
-        flag = list.size()>0?false:true;
-        
-        return flag;
-    }
   
     /**
      * 用户轨迹状态变化方法
@@ -399,26 +320,20 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
         return registerAtomSv.insertUcStateChgBusiInfo(ucStateChgRegister);
     }
     
-    @Override
-    public BaseResponse updateUserInfo(UserParams updateUserParams){
-        BaseResponse response = new BaseResponse();
-        ResponseHeader responseHeader = null;
-        boolean flag = false;
+   /* @Override
+    public void updateUserInfo(UpdateUserParams updateUserParams){
+        
         if(updateUserParams==null){
-            responseHeader = new ResponseHeader(false,"fail","用户信息为空，更新失败");
-            response.setResponseHeader(responseHeader);
-            return response;
+            throw new BusinessException(ExceptCodeConstants.Account.ACCOUNT_SET_INFO_CHECK_FAILED, "请输入用户信息");
         }
-        /*************更新用户基本信息*********************/
+        *//*************更新用户基本信息*********************//*
         UcUserParams ucUserParams = updateUserParams.getUcUserParams();
         if(ucUserParams ==null){
-            responseHeader = new ResponseHeader(false,"fail","用户基本信息为空信息为空，更新失败");
-            response.setResponseHeader(responseHeader);
-            return response;
+            throw new BusinessException(ExceptCodeConstants.Account.ACCOUNT_SET_INFO_CHECK_FAILED, "用户基本信息为空信息为空，更新失败");
         }else{
             //校验用户名、邮箱、手机号码
             List<UcUser> list = getUserInfoBycondition(ucUserParams);
-            boolean valide = list.size()>0?false:true;
+            boolean valide =CollectionUtil.isEmpty(list)&&list.size()>0?false:true;
             if(valide){
                 //根据用户id判断是否是当前用户如果不是当前用户 则表示用户名、邮箱、手机号码重复
                 boolean uservalide = false;
@@ -428,9 +343,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
                     }
                 }
                 if(uservalide){
-                    responseHeader = new ResponseHeader(false,"fail","请输入有效信息");
-                    response.setResponseHeader(responseHeader);
-                    return response;
+                    throw new BusinessException(ExceptCodeConstants.Account.ACCOUNT_SET_INFO_CHECK_FAILED, "请输入有效信息");
                 }
             }
             UcUser record = new UcUser();
@@ -480,74 +393,5 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
             .andTenantIdEqualTo(record.getTenantId());
             iUcBankInfoAtomSV.updateByExampleSelective(record, example);
         }
-        responseHeader = new ResponseHeader(true,"success","更新成功");
-        response.setResponseHeader(responseHeader);
-        return response;
-    }
-    
-    @Override
-    public UserResponse searchUserInfo(UcUserParams ucUser){
-        UserResponse response = new UserResponse();
-        UserParams userParams = new UserParams();
-        UcUserParams ucUserParams = new UcUserParams();
-        //查询用户基本信息
-        UcUserCriteria userCriteria = new UcUserCriteria();
-        userCriteria.createCriteria().andUserIdEqualTo(ucUser.getUserId())
-                                                        .andTenantIdEqualTo(ucUser.getTenantId());
-        List<UcUser> userlist = registerAtomSv.getUserInfo(userCriteria);
-        if(userlist!=null &&userlist.size()>0){
-            UcUser userInfo = userlist.get(0);
-            BeanUtils.copyProperties(ucUserParams, userInfo);
-        }
-        userParams.setUcUserParams(ucUserParams);
-        if(USER_REGISTER.equals(ucUserParams.getUserType())){
-            //个人用户
-            UcCustKeyInfoCriteria criteria = new UcCustKeyInfoCriteria();
-            criteria.createCriteria().andUserIdEqualTo(ucUserParams.getUserId())
-                                            .andTenantIdEqualTo(ucUserParams.getTenantId());
-           List<UcCustKeyInfo> custList = registerAtomSv.getUcCustKeyInfo(criteria);
-           
-           if(custList!=null && custList.size()>0){
-               UcCustKeyInfo ucCustKeyInfo = custList.get(0);
-               UcCustKeyInfoParams ucCustKeyInfoParams = new UcCustKeyInfoParams();
-               BeanUtils.copyProperties(ucCustKeyInfoParams, ucCustKeyInfo);
-               userParams.setUcCustKeyInfoParams(ucCustKeyInfoParams);
-           }
-        }else{
-            /*
-             * 企业用户
-             */
-            //企业资料信息
-            UcGroupKeyInfoCriteria groupCriteria = new UcGroupKeyInfoCriteria();
-            groupCriteria.createCriteria().andUserIdEqualTo(ucUserParams.getUserId())
-            .andTenantIdEqualTo(ucUserParams.getTenantId());
-            List<UcGroupKeyInfo> ucGroupList = registerAtomSv.getUcGroupKeyInfo(groupCriteria);
-            if(ucGroupList!=null&&ucGroupList.size()>0){
-                UcGroupKeyInfo ucGroupKeyInfo = ucGroupList.get(0);
-                UcGroupKeyInfoParams ucGroupKeyInfoParams = new UcGroupKeyInfoParams();
-                BeanUtils.copyProperties(ucGroupKeyInfoParams, ucGroupKeyInfo);
-                userParams.setUcGroupKeyInfoParams(ucGroupKeyInfoParams);
-            }
-            //联系人信息
-            UcContactsInfoCriteria contactsCriteria = new UcContactsInfoCriteria();
-            contactsCriteria.createCriteria().andUserIdEqualTo(ucUserParams.getUserId())
-            .andTenantIdEqualTo(ucUserParams.getTenantId());
-            List<UcContactsInfo> contactsList = registerAtomSv.getUcContactsInfo(contactsCriteria);
-            if(contactsList!=null &&contactsList.size()>0){
-                UcContactsInfo contactsInfo = contactsList.get(0);
-                UcContactInfoParams contactsInfoParams = new UcContactInfoParams();
-                BeanUtils.copyProperties(contactsInfoParams, contactsInfo);
-                userParams.setUcContactInfoParams(contactsInfoParams);
-                
-            }
-            
-        }
-        
-        ResponseHeader header = new ResponseHeader(true,"success","查询成功");
-        response.setUserParams(userParams);
-        response.setResponseHeader(header);
-        return response;
-    }
-    
-    
+    }*/
 }
