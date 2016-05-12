@@ -6,8 +6,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ai.slp.user.dao.mapper.interfaces.CmCustIndexCertNumMapper;
-import com.ai.slp.user.dao.mapper.interfaces.CmCustIndexPhoneNumMapper;
 import com.ai.slp.user.dao.mapper.interfaces.UcApiInfoMapper;
 import com.ai.slp.user.dao.mapper.interfaces.UcBankInfoMapper;
 import com.ai.slp.user.dao.mapper.interfaces.UcContactsInfoMapper;
@@ -41,14 +39,6 @@ public class MapperFactory {
     
     public static void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
         MapperFactory.sqlSessionTemplate = sqlSessionTemplate;
-    }
-    
-    public static CmCustIndexCertNumMapper getCmCustIndexCertNumMapper() {
-        return sqlSessionTemplate.getMapper(CmCustIndexCertNumMapper.class);
-    }
-    
-    public static CmCustIndexPhoneNumMapper getCmCustIndexPhoneNumMapper() {
-        return sqlSessionTemplate.getMapper(CmCustIndexPhoneNumMapper.class);
     }
     
     public static UcApiInfoMapper getUcApiInfoMapper() {

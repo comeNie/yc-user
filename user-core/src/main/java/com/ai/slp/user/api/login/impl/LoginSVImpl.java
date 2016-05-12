@@ -1,14 +1,16 @@
 package com.ai.slp.user.api.login.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.slp.user.api.login.interfaces.ILoginSV;
 import com.ai.slp.user.api.login.param.LoginRequest;
 import com.ai.slp.user.api.login.param.LoginResponse;
+import com.ai.slp.user.constants.UserErrorCode;
 import com.ai.slp.user.service.business.interfaces.ILoginBusiSV;
+import com.alibaba.dubbo.config.annotation.Service;
 
 /**
  * 登录服务实现
@@ -17,7 +19,7 @@ import com.ai.slp.user.service.business.interfaces.ILoginBusiSV;
  * 
  * @author zhangqiang7
  */
-@Service
+@Service(validation = "true")
 public class LoginSVImpl implements ILoginSV {
 
     @Autowired
@@ -26,8 +28,24 @@ public class LoginSVImpl implements ILoginSV {
     @Override
     public LoginResponse login(LoginRequest loginRequest)
             throws BusinessException, SystemException {
-        
-        return loginBusiSV.login(loginRequest);
+        LoginResponse response = new LoginResponse();
+        ResponseHeader responseHeader=null;
+        try{
+        response = loginBusiSV.login(loginRequest);
+        responseHeader = new ResponseHeader(true,"success","查询成功");
+        }catch(BusinessException e){
+            if(UserErrorCode.USER_ERR_001.equals(e.getErrorCode())){
+                responseHeader =new ResponseHeader(false,"fail","用户名不存在");
+            }
+            if(UserErrorCode.USER_ERR_002.equals(e.getErrorCode())){
+                responseHeader =new ResponseHeader(false,"fail","邮箱未验证");
+            }
+            if(UserErrorCode.USER_ERR_003.equals(e.getErrorCode())){
+                responseHeader =new ResponseHeader(false,"fail","手机号未绑定");
+            }
+        }
+        response.setResponseHeader(responseHeader);
+        return response;
     }
 
 }

@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ai.opt.base.vo.ResponseHeader;
+import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.sdk.util.StringUtil;
 import com.ai.slp.user.api.login.param.LoginRequest;
 import com.ai.slp.user.api.login.param.LoginResponse;
 import com.ai.slp.user.dao.mapper.bo.UcUser;
 import com.ai.slp.user.dao.mapper.bo.UcUserCriteria;
-import com.ai.slp.user.service.atom.interfaces.ILoginAtomSV;
+import com.ai.slp.user.dao.mapper.interfaces.UcUserMapper;
 import com.ai.slp.user.service.business.interfaces.ILoginBusiSV;
 
 /**
@@ -30,8 +30,8 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
     static final Log LOG = LogFactory.getLog(LoginBusiSVImpl.class);
 
     @Autowired
-    private ILoginAtomSV loginAtomSV;
-
+    private transient UcUserMapper userMapper;
+    
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
 
@@ -39,17 +39,15 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
         UcUserCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(loginRequest.getTenantId());
         criteria.andUserTypeEqualTo(loginRequest.getUserType());
-        ResponseHeader responseHeader = null;
         LoginResponse response = new LoginResponse();
-        List<UcUser> userList = loginAtomSV.selectByExample(example);
+        List<UcUser> userList = userMapper.selectByExample(example);
 
         if (!StringUtil.isBlank(loginRequest.getUserLoginName())) {
             criteria.andUserLoginNameEqualTo(loginRequest.getUserLoginName());
-            userList = loginAtomSV.selectByExample(example);
+            userList = userMapper.selectByExample(example);
             if (userList.isEmpty()) {
-                responseHeader = new ResponseHeader(false, "fail", "用户名不存在");
+                throw new BusinessException("USER-ERR-001","用户不存在");
             } else {
-                responseHeader = new ResponseHeader(true, "success", "查询成功");
                 response.setUserLoginName(loginRequest.getUserLoginName());
                 response.setUserLoginPwd(userList.get(0).getUserLoginPwd());
             }
@@ -57,27 +55,24 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
         if (!StringUtil.isBlank(loginRequest.getUserEmail())) {
             criteria.andUserEmailEqualTo(loginRequest.getUserEmail());
             criteria.andEmailValidateFlagEqualTo("11");
-            userList = loginAtomSV.selectByExample(example);
+            userList = userMapper.selectByExample(example);
             if (userList.isEmpty()) {
-                responseHeader = new ResponseHeader(false, "fail", "邮箱未验证");
+                throw new BusinessException("USER-ERR-002","邮箱未验证");
             } else {
-                responseHeader = new ResponseHeader(true, "success", "查询成功");
                 response.setUserEmail(loginRequest.getUserEmail());
                 response.setUserLoginPwd(loginRequest.getUserLoginPwd());
             }
         }
         if (!StringUtil.isBlank(loginRequest.getUserMp())) {
             criteria.andUserMpEqualTo(loginRequest.getUserMp());
-            userList = loginAtomSV.selectByExample(example);
+            userList = userMapper.selectByExample(example);
             if (userList.isEmpty()) {
-                responseHeader = new ResponseHeader(false, "fail", "手机号未注册");
+                throw new BusinessException("USER-ERR-003","手机号未绑定");
             } else {
-                responseHeader = new ResponseHeader(true, "success", "查询成功");
                 response.setUserMp(loginRequest.getUserMp());
                 response.setUserLoginPwd(userList.get(0).getUserLoginPwd());
             }
         }
-        response.setResponseHeader(responseHeader);
         return response;
     }
 }
