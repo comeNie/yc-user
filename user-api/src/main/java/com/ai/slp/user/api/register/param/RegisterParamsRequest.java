@@ -11,6 +11,8 @@ import java.io.Serializable;
  */
 public class RegisterParamsRequest implements Serializable {
     
+    private static final long serialVersionUID = 1L;
+
     private UcContactInfoParams ucContactInfoParams ;
     
     private UcUserParams ucUserParam;
@@ -21,6 +23,8 @@ public class RegisterParamsRequest implements Serializable {
     
     private UcBankKeyInfoParams ucBankKeyParams;
 
+    private UcUserAgreeParams agreeInfoParams;
+    
     public UcContactInfoParams getUcContactInfoParams() {
         return ucContactInfoParams;
     }
@@ -59,6 +63,14 @@ public class RegisterParamsRequest implements Serializable {
 
     public void setUcBankKeyParams(UcBankKeyInfoParams ucBankKeyParams) {
         this.ucBankKeyParams = ucBankKeyParams;
+    }
+
+    public UcUserAgreeParams getAgreeInfoParams() {
+        return agreeInfoParams;
+    }
+
+    public void setAgreeInfoParams(UcUserAgreeParams agreeInfoParams) {
+        this.agreeInfoParams = agreeInfoParams;
     }
     
 

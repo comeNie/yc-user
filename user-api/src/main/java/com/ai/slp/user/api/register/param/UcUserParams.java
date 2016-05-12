@@ -56,9 +56,6 @@ public class UcUserParams extends BaseInfo {
 
     private String registerSource;
 
-    private String beginTime;
-
-    private String endTime;
 
     private Integer pageNo;
 
@@ -203,22 +200,6 @@ public class UcUserParams extends BaseInfo {
 
     public void setRegisterSource(String registerSource) {
         this.registerSource = registerSource;
-    }
-
-    public String getBeginTime() {
-        return beginTime;
-    }
-
-    public void setBeginTime(String beginTime) {
-        this.beginTime = beginTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
     }
 
     public Integer getPageNo() {
