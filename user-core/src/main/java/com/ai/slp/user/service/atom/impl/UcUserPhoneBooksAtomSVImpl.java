@@ -12,19 +12,22 @@ import com.ai.slp.user.dao.mapper.interfaces.UcUserPhonebooksMapper;
 import com.ai.slp.user.service.atom.interfaces.IUcUserPhoneBooksAtomSV;
 
 @Component
-public class UcUserPhoneBooksAtomSVImpl implements IUcUserPhoneBooksAtomSV{
+public class UcUserPhoneBooksAtomSVImpl implements IUcUserPhoneBooksAtomSV {
 
     @Autowired
-    private UcUserPhonebooksMapper userPhonebooksMapper;
+    private transient UcUserPhonebooksMapper userPhonebooksMapper;
+
     @Autowired
-    private UcTelGroupMapper telGroupMapper;
+    private transient UcTelGroupMapper telGroupMapper;
+
     @Override
     public void insertUserPhoneBooksInfo(UcUserPhonebooks record) {
         userPhonebooksMapper.insert(record);
     }
 
     @Override
-    public void updateUserPhoneBooksInfo(UcUserPhonebooks record,UcUserPhonebooksCriteria example) {
+    public void updateUserPhoneBooksInfo(UcUserPhonebooks record,
+            UcUserPhonebooksCriteria example) {
         userPhonebooksMapper.updateByExample(record, example);
     }
 
@@ -34,8 +37,7 @@ public class UcUserPhoneBooksAtomSVImpl implements IUcUserPhoneBooksAtomSV{
     }
 
     @Override
-    public List<UcUserPhonebooks> selectUcTelGroupInfo(UcUserPhonebooksCriteria example
-            ) {
+    public List<UcUserPhonebooks> selectUcTelGroupInfo(UcUserPhonebooksCriteria example) {
         List<UcUserPhonebooks> list = userPhonebooksMapper.selectByExample(example);
         return list;
     }
@@ -44,6 +46,5 @@ public class UcUserPhoneBooksAtomSVImpl implements IUcUserPhoneBooksAtomSV{
     public int countUcTelGroupInfo(UcUserPhonebooksCriteria example) {
         return userPhonebooksMapper.countByExample(example);
     }
-
 
 }

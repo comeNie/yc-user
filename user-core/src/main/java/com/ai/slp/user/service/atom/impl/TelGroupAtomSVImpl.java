@@ -2,6 +2,7 @@ package com.ai.slp.user.service.atom.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ai.slp.user.dao.mapper.bo.UcTelGroup;
@@ -11,7 +12,7 @@ import com.ai.slp.user.service.atom.interfaces.IUcTelGroupAtomSV;
 
 @Component
 public class TelGroupAtomSVImpl implements IUcTelGroupAtomSV {
-
+    @Autowired
     private transient UcTelGroupMapper telGroupMapper;
 
     @Override

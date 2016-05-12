@@ -15,7 +15,7 @@ public class ApiInfoAtomSVImpl implements IApiInfoAtomSV {
 
     @Autowired
     private transient UcApiInfoMapper apiInfoMapper;
-    
+
     @Override
     public int deleteByExample(UcApiInfoCriteria example) {
         return apiInfoMapper.deleteByExample(example);

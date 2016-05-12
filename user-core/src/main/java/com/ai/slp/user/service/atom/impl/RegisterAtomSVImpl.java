@@ -32,22 +32,28 @@ import com.ai.slp.user.service.atom.interfaces.IRegisterAtomSV;
 public class RegisterAtomSVImpl implements IRegisterAtomSV {
 
     @Autowired
-    private transient  UcUserMapper ucUserMapper;
-    
+    private transient UcUserMapper ucUserMapper;
+
     @Autowired
-    private transient  UcGroupKeyInfoMapper groupKeyInfoMapper;
+    private transient UcGroupKeyInfoMapper groupKeyInfoMapper;
+
     @Autowired
-    private transient  UcContactsInfoMapper contactsInfoMapper;
+    private transient UcContactsInfoMapper contactsInfoMapper;
+
     @Autowired
-    private transient  UcUserAgreeMapper userAgreeMapper;
+    private transient UcUserAgreeMapper userAgreeMapper;
+
     @Autowired
-    private transient  UcStateChgMapper stateChgMapper;
+    private transient UcStateChgMapper stateChgMapper;
+
     @Autowired
-    private transient  UcCustKeyInfoMapper custKeyInfoMapper;
+    private transient UcCustKeyInfoMapper custKeyInfoMapper;
+
     @Autowired
-    private transient  UcUserMapper userMapper;
+    private transient UcUserMapper userMapper;
+
     @Autowired
-    private transient  UcBankInfoMapper bankInfoMapper;
+    private transient UcBankInfoMapper bankInfoMapper;
 
     @Override
     public int insertUserInfo(UcUser user) {

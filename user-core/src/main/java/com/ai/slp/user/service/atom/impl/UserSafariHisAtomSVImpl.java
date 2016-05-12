@@ -12,9 +12,9 @@ import com.ai.slp.user.service.atom.interfaces.IUserSafariHisAtomSV;
 
 @Component
 public class UserSafariHisAtomSVImpl implements IUserSafariHisAtomSV {
-@Autowired
-private transient UcUserSafariHisMapper userSafariHisMapper;
-    
+    @Autowired
+    private transient UcUserSafariHisMapper userSafariHisMapper;
+
     @Override
     public int insert(UcUserSafariHis record) {
         return userSafariHisMapper.insert(record);

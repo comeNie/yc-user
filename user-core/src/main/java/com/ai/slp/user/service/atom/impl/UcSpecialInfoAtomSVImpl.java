@@ -2,6 +2,7 @@ package com.ai.slp.user.service.atom.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ai.slp.user.dao.mapper.bo.UcSpecialInfo;
@@ -11,7 +12,7 @@ import com.ai.slp.user.service.atom.interfaces.IUcSpecialInfoAtomSV;
 
 @Component
 public class UcSpecialInfoAtomSVImpl implements IUcSpecialInfoAtomSV {
-
+    @Autowired
     private transient UcSpecialInfoMapper contactsInfoMapper;
 
     @Override

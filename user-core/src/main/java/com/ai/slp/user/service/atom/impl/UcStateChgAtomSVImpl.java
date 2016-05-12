@@ -3,6 +3,7 @@ package com.ai.slp.user.service.atom.impl;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ai.slp.user.dao.mapper.bo.UcStateChg;
@@ -12,7 +13,7 @@ import com.ai.slp.user.service.atom.interfaces.IUcStateChgAtomSV;
 
 @Component
 public class UcStateChgAtomSVImpl implements IUcStateChgAtomSV {
-
+    @Autowired
     private transient UcStateChgMapper stateChgMapper;
 
     @Override
