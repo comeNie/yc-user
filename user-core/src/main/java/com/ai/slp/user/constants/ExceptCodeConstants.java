@@ -35,6 +35,18 @@ public class ExceptCodeConstants {
         private Account() {
         }
         
+        /*
+         * 11：注册
+        10：正常
+        12：冻结
+         */
+        
+        public static final String REGISTER_STATE="10";
+        
+        public static final String REGISTER_NORMAL="11";
+        
+        public static final String REGISTER_FREEZE="12";
+        
         // 账户设置资料验证失败
         public static final String ACCOUNT_NOT_FOUND = "100001";
 
