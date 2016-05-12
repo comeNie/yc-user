@@ -2,29 +2,27 @@ package com.ai.slp.user.service.business.interfaces;
 
 
 import com.ai.opt.base.vo.BaseResponse;
+import com.ai.slp.user.api.register.param.RegisterParamsRequest;
 import com.ai.slp.user.api.register.param.UcBankKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcContactInfoParams;
 import com.ai.slp.user.api.register.param.UcGroupKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcUserAgreeParams;
 import com.ai.slp.user.api.register.param.UcUserParams;
-import com.ai.slp.user.api.register.param.UserParams;
-import com.ai.slp.user.api.register.param.UserResponse;
 
 public interface IRegisterBusiSV {
     
-    public BaseResponse insertUserInfo(UcUserParams ucUser, UcUserAgreeParams agreeInfo,
-            UcContactInfoParams contactInfo);
+    public void insertUserInfo(RegisterParamsRequest registerParamsRequest);
     
-    public BaseResponse insertCompanyInfoAttest(UcUserParams userParams,UcGroupKeyInfoParams ucGroupKeyInfoParams,UcContactInfoParams ucContactInfoParams);
+    public void insertCompanyInfoAttest(RegisterParamsRequest registerParamsRequest);
     
-    public BaseResponse getUserInfo(UcUserParams userParams);
+    public boolean checkUserExist(UcUserParams userParams);
     
-    public BaseResponse getUcGroupKeyInfo(UcGroupKeyInfoParams ucGroupKeyInfoParams);
+    public boolean checkUcGroupKeyExist(UcGroupKeyInfoParams ucGroupKeyInfoParams);
     
-    public BaseResponse insertAgentInfoAttest(UcUserParams userParams,UcGroupKeyInfoParams ucGroupKeyInfoParams,UcContactInfoParams ucContactInfoParams,UcBankKeyInfoParams ucBankKeyInfoParam);
+    public void insertAgentInfoAttest(RegisterParamsRequest registerParamsRequest);
 
-    public BaseResponse updateUserInfo(UserParams updateUserParams);
-
-    public UserResponse searchUserInfo(UcUserParams ucUser);
+   // public void updateUserInfo(UpdateUserParams updateUserParams);
     
+    public void insertUserInfoAttest(RegisterParamsRequest registerParamsRequest);
+
 }
