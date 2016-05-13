@@ -7,7 +7,7 @@ import com.ai.opt.base.vo.BaseInfo;
 
 public class UcLoginLogParamsRequest extends BaseInfo implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;  
 
     /**
      * 登录IP归属省
