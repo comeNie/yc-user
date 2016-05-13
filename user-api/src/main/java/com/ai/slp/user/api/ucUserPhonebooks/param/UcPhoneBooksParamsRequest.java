@@ -12,14 +12,6 @@ public class UcPhoneBooksParamsRequest extends BaseInfo implements Serializable 
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 租户ID
-     */
-    @NotNull(message = "租户ID不能为空", groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
-            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
-    @Size(max = 32, groups = { IUcUserPhoneBooksSV.PhoneBooksManuallyInfo.class,
-            IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
-    private String tenantId;
 
     /**
      * 用户ID
@@ -101,10 +93,6 @@ public class UcPhoneBooksParamsRequest extends BaseInfo implements Serializable 
             IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
     private String basicBasicOrgId;
 
-    /**
-     * 创建时间
-     */
-    private Date createTime;
 
     /**
      * 创建渠道
@@ -120,10 +108,6 @@ public class UcPhoneBooksParamsRequest extends BaseInfo implements Serializable 
             IUcUserPhoneBooksSV.UpdatePhoneBooksInfo.class })
     private long createOperId;
 
-    /**
-     * 修改时间
-     */
-    private Date updateTime;
 
     /**
      * 创建渠道
@@ -141,13 +125,6 @@ public class UcPhoneBooksParamsRequest extends BaseInfo implements Serializable 
 
     private String telPhoneOrTelName;
 
-    public String getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
-    }
 
     public String getUserId() {
         return userId;
@@ -229,13 +206,6 @@ public class UcPhoneBooksParamsRequest extends BaseInfo implements Serializable 
         this.basicBasicOrgId = basicBasicOrgId;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
 
     public String getCreateChlId() {
         return createChlId;
@@ -253,13 +223,6 @@ public class UcPhoneBooksParamsRequest extends BaseInfo implements Serializable 
         this.createOperId = createOperId;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 
     public String getUpdateChlId() {
         return updateChlId;
@@ -268,7 +231,7 @@ public class UcPhoneBooksParamsRequest extends BaseInfo implements Serializable 
     public void setUpdateChlId(String updateChlId) {
         this.updateChlId = updateChlId;
     }
-
+ 
     public long getUpdateOperId() {
         return updateOperId;
     }

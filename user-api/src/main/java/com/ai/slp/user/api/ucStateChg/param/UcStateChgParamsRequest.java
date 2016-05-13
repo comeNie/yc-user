@@ -13,7 +13,7 @@ public class UcStateChgParamsRequest extends BaseInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户ID
+     * 用户ID 
      */
     @NotNull(message = "用户ID不能为空", groups = { IUcStateChgSV.InsertUcStateChgInfo.class,
             IUcStateChgSV.UpdateUcStateChgInfo.class })
@@ -21,14 +21,6 @@ public class UcStateChgParamsRequest extends BaseInfo implements Serializable {
             IUcStateChgSV.UpdateUcStateChgInfo.class })
     private String userId;
 
-    /**
-     * 状态变更流水ID
-     */
-    @NotNull(message = "状态变更流水ID不能为空", groups = { IUcStateChgSV.InsertUcStateChgInfo.class,
-            IUcStateChgSV.UpdateUcStateChgInfo.class })
-    @Size(max = 32, groups = { IUcStateChgSV.InsertUcStateChgInfo.class,
-            IUcStateChgSV.UpdateUcStateChgInfo.class })
-    private String stateChgId;
 
     /**
      * 业务操作类型
@@ -50,10 +42,6 @@ public class UcStateChgParamsRequest extends BaseInfo implements Serializable {
      */
     private String chgdesc;
 
-    /**
-     * 状态变化时间
-     */
-    private Timestamp chgTime;
 
     /**
      * 操作渠道
@@ -73,13 +61,6 @@ public class UcStateChgParamsRequest extends BaseInfo implements Serializable {
         this.userId = userId;
     }
 
-    public String getStateChgId() {
-        return stateChgId;
-    }
-
-    public void setStateChgId(String stateChgId) {
-        this.stateChgId = stateChgId;
-    }
 
     public String getOperType() {
         return operType;
@@ -111,14 +92,6 @@ public class UcStateChgParamsRequest extends BaseInfo implements Serializable {
 
     public void setChgdesc(String chgdesc) {
         this.chgdesc = chgdesc;
-    }
-
-    public Timestamp getChgTime() {
-        return chgTime;
-    }
-
-    public void setChgTime(Timestamp chgTime) {
-        this.chgTime = chgTime;
     }
 
     public String getChlId() {

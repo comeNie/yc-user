@@ -68,28 +68,30 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
                 throw new BusinessException(ExceptCodeConstants.Account.ACCOUNT_SET_INFO_CHECK_FAILED, "账户不唯一");
             }
             UcUser ucUser = new UcUser();
-            //用户信息
-            if(userParams!=null){
-                BeanUtils.copyProperties(ucUser, userParams);
-                //插入user主表
-                ucUser.setUserType(ExceptCodeConstants.Account.REGISTER_STATE);
-                registerAtomSv.insertUserInfo(ucUser);
-                //用户状态变更
-                insertUserStateChg(userParams,ExceptCodeConstants.Account.REGISTER_STATE);
-                
-                //个人用户注册需要添加一个有注册转变为正常状态的记录
-                if(ExceptCodeConstants.Account.REGISTER_STATE.equals(userParams.getUserType())){
-                    insertUserStateChg(userParams,ExceptCodeConstants.Account.REGISTER_STATE);
-                }
-                UcUserAgreeParams agreeInfo = registerParamsRequest.getAgreeInfoParams();
-                //插入用户协议表
-                UcUserAgree ucUserAgree = new UcUserAgree();
-                ucUserAgree.setUserId(agreeInfo.getUserId());
-                ucUserAgree.setAgreementId(agreeInfo.getAgreementId());
-                registerAtomSv.InsertUcUserAgreeAtomSv(ucUserAgree);
-            }else{
+            if(userParams==null){
                 throw new BusinessException("ACCOUNT_SET_INFO_CHECK_FAILED","注册失败,请输入用户信息");
             }
+            //用户信息
+            BeanUtils.copyProperties(ucUser, userParams);
+            
+            //插入user主表
+            ucUser.setUserType(ExceptCodeConstants.Account.REGISTER_STATE);
+            registerAtomSv.insertUserInfo(ucUser);
+            
+            //用户状态变更
+            insertUserStateChg(userParams,ExceptCodeConstants.Account.REGISTER_STATE);
+            
+            //个人用户注册需要添加一个有注册转变为正常状态的记录
+            if(ExceptCodeConstants.Account.REGISTER_STATE.equals(userParams.getUserType())){
+                insertUserStateChg(userParams,ExceptCodeConstants.Account.REGISTER_STATE);
+            }
+            UcUserAgreeParams agreeInfo = registerParamsRequest.getAgreeInfoParams();
+            
+            //插入用户协议表
+            UcUserAgree ucUserAgree = new UcUserAgree();
+            ucUserAgree.setUserId(agreeInfo.getUserId());
+            ucUserAgree.setAgreementId(agreeInfo.getAgreementId());
+            registerAtomSv.InsertUcUserAgreeAtomSv(ucUserAgree);
             
     }
     /**
@@ -137,34 +139,35 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
              */
             UcUserParams userParams = registerParamsRequest.getUcUserParam();
             List<UcUser> list = getUserInfoBycondition(userParams);
-            if(!CollectionUtil.isEmpty(list)&&list.size()>0){
-                String userId = list.get(0).getUserId();
-                userParams.setUserId(userId);
-                //企业客户关键信息表
-                UcGroupKeyInfo ucGroupKeyInfo = new UcGroupKeyInfo();
-                UcGroupKeyInfoParams ucGroupKeyInfoParams = registerParamsRequest.getUcGroupKeyInfoParams();
-                if(ucGroupKeyInfoParams==null){
-                    throw new BusinessException(ExceptCodeConstants.Account.ACCOUNT_SET_INFO_CHECK_FAILED, "请输入企业客户信息");
-                }
-                BeanUtils.copyProperties(ucGroupKeyInfo, ucGroupKeyInfoParams);
-                ucGroupKeyInfo.setUserId(userId);
-                registerAtomSv.insertUcGroupKeyInfo(ucGroupKeyInfo);
-                
-                //用户联系人表
-                UcContactsInfo ucContactsInfo = new UcContactsInfo();
-                ucContactsInfo.setUserId(userId);
-                UcContactInfoParams ucContactInfoParams = registerParamsRequest.getUcContactInfoParams();
-                if(ucContactInfoParams==null){
-                    throw new BusinessException(ExceptCodeConstants.Account.ACCOUNT_SET_INFO_CHECK_FAILED, "请输入企业客户信息");
-                }
-                BeanUtils.copyProperties(ucContactsInfo, ucContactInfoParams);
-                registerAtomSv.insertUcContactsInfo(ucContactsInfo);
-                
-                //用户状态变更
-                insertUserStateChg(userParams,ExceptCodeConstants.Account.REGISTER_STATE);
-            }else{
+            
+            if(CollectionUtil.isEmpty(list)){
                 throw new BusinessException("ACCOUNT_NOT_FOUND", "账户资料验证失败");
             }
+            
+            String userId = list.get(0).getUserId();
+            userParams.setUserId(userId);
+            //企业客户关键信息表
+            UcGroupKeyInfo ucGroupKeyInfo = new UcGroupKeyInfo();
+            UcGroupKeyInfoParams ucGroupKeyInfoParams = registerParamsRequest.getUcGroupKeyInfoParams();
+            if(ucGroupKeyInfoParams==null){
+                throw new BusinessException(ExceptCodeConstants.Account.ACCOUNT_SET_INFO_CHECK_FAILED, "请输入企业客户信息");
+            }
+            BeanUtils.copyProperties(ucGroupKeyInfo, ucGroupKeyInfoParams);
+            ucGroupKeyInfo.setUserId(userId);
+            registerAtomSv.insertUcGroupKeyInfo(ucGroupKeyInfo);
+            
+            //用户联系人表
+            UcContactsInfo ucContactsInfo = new UcContactsInfo();
+            ucContactsInfo.setUserId(userId);
+            UcContactInfoParams ucContactInfoParams = registerParamsRequest.getUcContactInfoParams();
+            if(ucContactInfoParams==null){
+                throw new BusinessException(ExceptCodeConstants.Account.ACCOUNT_SET_INFO_CHECK_FAILED, "请输入企业客户信息");
+            }
+            BeanUtils.copyProperties(ucContactsInfo, ucContactInfoParams);
+            registerAtomSv.insertUcContactsInfo(ucContactsInfo);
+            
+            //用户状态变更
+            insertUserStateChg(userParams,ExceptCodeConstants.Account.REGISTER_STATE);
             
             
     }
