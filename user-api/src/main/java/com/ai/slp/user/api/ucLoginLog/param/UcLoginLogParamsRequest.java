@@ -1,45 +1,13 @@
 package com.ai.slp.user.api.ucLoginLog.param;
 
 import java.io.Serializable;
-import java.util.Date;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.slp.user.api.ucStateChg.interfaces.IUcStateChgSV;
 
 public class UcLoginLogParamsRequest extends BaseInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    /**
-     * 租户ID
-     */
-    @NotNull(message = "租户ID不能为空", groups = { IUcStateChgSV.InsertUcStateChgInfo.class,
-            IUcStateChgSV.UpdateUcStateChgInfo.class })
-    @Size(max = 32, groups = { IUcStateChgSV.InsertUcStateChgInfo.class,
-            IUcStateChgSV.UpdateUcStateChgInfo.class })
-    private String tenantId;
-
-    /**
-     * 用户ID
-     */
-    @NotNull(message = "用户ID不能为空", groups = { IUcStateChgSV.InsertUcStateChgInfo.class,
-            IUcStateChgSV.UpdateUcStateChgInfo.class })
-    @Size(max = 18, groups = { IUcStateChgSV.InsertUcStateChgInfo.class,
-            IUcStateChgSV.UpdateUcStateChgInfo.class })
-    private String userId;
-
-    /**
-     * 登录流水号
-     */
-    private String loginSeqId;
-
-    /**
-     * 系统登录时间
-     */
-    private Date loginTime;
 
     /**
      * 登录IP归属省
@@ -57,16 +25,6 @@ public class UcLoginLogParamsRequest extends BaseInfo implements Serializable {
      */
 
     private String loginIpAdd;
-
-    /**
-     * 登录手机号归属省
-     */
-    private String phoneProvice;
-
-    /**
-     * 登录手机号归属地市
-     */
-    private String phoneCity;
 
     /**
      * 登录用户的手机号码
@@ -108,30 +66,7 @@ public class UcLoginLogParamsRequest extends BaseInfo implements Serializable {
      */
     private String loginWay;
 
-    public String getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
-    }
-
-    public String getLoginSeqId() {
-        return loginSeqId;
-    }
-
-    public void setLoginSeqId(String loginSeqId) {
-        this.loginSeqId = loginSeqId;
-    }
-
-    public Date getLoginTime() {
-        return loginTime;
-    }
-
-    public void setLoginTime(Date loginTime) {
-        this.loginTime = loginTime;
-    }
-
+    
     public String getLoginProvice() {
         return loginProvice;
     }
@@ -154,22 +89,6 @@ public class UcLoginLogParamsRequest extends BaseInfo implements Serializable {
 
     public void setLoginIpAdd(String loginIpAdd) {
         this.loginIpAdd = loginIpAdd;
-    }
-
-    public String getPhoneProvice() {
-        return phoneProvice;
-    }
-
-    public void setPhoneProvice(String phoneProvice) {
-        this.phoneProvice = phoneProvice;
-    }
-
-    public String getPhoneCity() {
-        return phoneCity;
-    }
-
-    public void setPhoneCity(String phoneCity) {
-        this.phoneCity = phoneCity;
     }
 
     public String getLoginMp() {

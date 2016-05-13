@@ -13,12 +13,6 @@ import com.ai.slp.user.api.ucTelGroupInfo.interfaces.IUcTelGroupSV;
 public class UcTelGroupParamsRequest extends BaseInfo implements Serializable{
 	private static final long serialVersionUID = 1L;
 
-    /**
-	 * 租户ID
-	 */
-	@NotNull(message="租户ID不能为空",groups={IUcTelGroupSV.InsertUcTelGroupInfo.class,IUcTelGroupSV.UpdateGroupInfo.class})
-    @Size(max=32,groups={IUcTelGroupSV.InsertUcTelGroupInfo.class,IUcTelGroupSV.UpdateGroupInfo.class})
-	private String tenantId;
 	
 	/**
 	 * 用户ID
@@ -48,11 +42,6 @@ public class UcTelGroupParamsRequest extends BaseInfo implements Serializable{
 	private String telGroupName;
     
     /**
-     * 创建时间
-     */
-    private Date createTime;
-    
-    /**
      * 创建渠道
      */
     @Size(max=7,groups={IUcTelGroupSV.InsertUcTelGroupInfo.class,IUcTelGroupSV.UpdateGroupInfo.class})
@@ -64,10 +53,6 @@ public class UcTelGroupParamsRequest extends BaseInfo implements Serializable{
     @Size(max=10,groups={IUcTelGroupSV.InsertUcTelGroupInfo.class,IUcTelGroupSV.UpdateGroupInfo.class})
     private long createOperId;
     
-    /**
-     * 修改时间
-     */
-    private Date updateTime;
     
     /**
      * 创建渠道
@@ -81,13 +66,6 @@ public class UcTelGroupParamsRequest extends BaseInfo implements Serializable{
     @Size(max=10,groups={IUcTelGroupSV.InsertUcTelGroupInfo.class,IUcTelGroupSV.UpdateGroupInfo.class})
     private long updateOperId;
 
-	public String getTenantId() {
-		return tenantId;
-	}
-
-	public void setTenantId(String tenantId) {
-		this.tenantId = tenantId;
-	}
 
     public String getUserId() {
         return userId;
@@ -121,13 +99,6 @@ public class UcTelGroupParamsRequest extends BaseInfo implements Serializable{
 		this.telGroupName = telGroupName;
 	}
 
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
 
 	public String getCreateChlId() {
 		return createChlId;
@@ -145,13 +116,6 @@ public class UcTelGroupParamsRequest extends BaseInfo implements Serializable{
 		this.createOperId = createOperId;
 	}
 
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
 
 	public String getUpdateChlId() {
 		return updateChlId;
