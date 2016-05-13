@@ -139,34 +139,35 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
              */
             UcUserParams userParams = registerParamsRequest.getUcUserParam();
             List<UcUser> list = getUserInfoBycondition(userParams);
-            if(!CollectionUtil.isEmpty(list)&&list.size()>0){
-                String userId = list.get(0).getUserId();
-                userParams.setUserId(userId);
-                //企业客户关键信息表
-                UcGroupKeyInfo ucGroupKeyInfo = new UcGroupKeyInfo();
-                UcGroupKeyInfoParams ucGroupKeyInfoParams = registerParamsRequest.getUcGroupKeyInfoParams();
-                if(ucGroupKeyInfoParams==null){
-                    throw new BusinessException(ExceptCodeConstants.Account.ACCOUNT_SET_INFO_CHECK_FAILED, "请输入企业客户信息");
-                }
-                BeanUtils.copyProperties(ucGroupKeyInfo, ucGroupKeyInfoParams);
-                ucGroupKeyInfo.setUserId(userId);
-                registerAtomSv.insertUcGroupKeyInfo(ucGroupKeyInfo);
-                
-                //用户联系人表
-                UcContactsInfo ucContactsInfo = new UcContactsInfo();
-                ucContactsInfo.setUserId(userId);
-                UcContactInfoParams ucContactInfoParams = registerParamsRequest.getUcContactInfoParams();
-                if(ucContactInfoParams==null){
-                    throw new BusinessException(ExceptCodeConstants.Account.ACCOUNT_SET_INFO_CHECK_FAILED, "请输入企业客户信息");
-                }
-                BeanUtils.copyProperties(ucContactsInfo, ucContactInfoParams);
-                registerAtomSv.insertUcContactsInfo(ucContactsInfo);
-                
-                //用户状态变更
-                insertUserStateChg(userParams,ExceptCodeConstants.Account.REGISTER_STATE);
-            }else{
+            
+            if(CollectionUtil.isEmpty(list)){
                 throw new BusinessException("ACCOUNT_NOT_FOUND", "账户资料验证失败");
             }
+            
+            String userId = list.get(0).getUserId();
+            userParams.setUserId(userId);
+            //企业客户关键信息表
+            UcGroupKeyInfo ucGroupKeyInfo = new UcGroupKeyInfo();
+            UcGroupKeyInfoParams ucGroupKeyInfoParams = registerParamsRequest.getUcGroupKeyInfoParams();
+            if(ucGroupKeyInfoParams==null){
+                throw new BusinessException(ExceptCodeConstants.Account.ACCOUNT_SET_INFO_CHECK_FAILED, "请输入企业客户信息");
+            }
+            BeanUtils.copyProperties(ucGroupKeyInfo, ucGroupKeyInfoParams);
+            ucGroupKeyInfo.setUserId(userId);
+            registerAtomSv.insertUcGroupKeyInfo(ucGroupKeyInfo);
+            
+            //用户联系人表
+            UcContactsInfo ucContactsInfo = new UcContactsInfo();
+            ucContactsInfo.setUserId(userId);
+            UcContactInfoParams ucContactInfoParams = registerParamsRequest.getUcContactInfoParams();
+            if(ucContactInfoParams==null){
+                throw new BusinessException(ExceptCodeConstants.Account.ACCOUNT_SET_INFO_CHECK_FAILED, "请输入企业客户信息");
+            }
+            BeanUtils.copyProperties(ucContactsInfo, ucContactInfoParams);
+            registerAtomSv.insertUcContactsInfo(ucContactsInfo);
+            
+            //用户状态变更
+            insertUserStateChg(userParams,ExceptCodeConstants.Account.REGISTER_STATE);
             
             
     }
