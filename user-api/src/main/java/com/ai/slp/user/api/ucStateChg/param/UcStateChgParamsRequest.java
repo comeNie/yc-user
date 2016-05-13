@@ -13,7 +13,7 @@ public class UcStateChgParamsRequest extends BaseInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户ID
+     * 用户ID 
      */
     @NotNull(message = "用户ID不能为空", groups = { IUcStateChgSV.InsertUcStateChgInfo.class,
             IUcStateChgSV.UpdateUcStateChgInfo.class })

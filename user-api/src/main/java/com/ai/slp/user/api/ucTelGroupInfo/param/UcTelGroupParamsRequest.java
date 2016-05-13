@@ -42,7 +42,7 @@ public class UcTelGroupParamsRequest extends BaseInfo implements Serializable{
 	private String telGroupName;
     
     /**
-     * 创建渠道
+     * 创建渠道 
      */
     @Size(max=7,groups={IUcTelGroupSV.InsertUcTelGroupInfo.class,IUcTelGroupSV.UpdateGroupInfo.class})
     private String createChlId;

@@ -231,7 +231,7 @@ public class UcPhoneBooksParamsRequest extends BaseInfo implements Serializable 
     public void setUpdateChlId(String updateChlId) {
         this.updateChlId = updateChlId;
     }
-
+ 
     public long getUpdateOperId() {
         return updateOperId;
     }
