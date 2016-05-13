@@ -46,6 +46,10 @@ public class LoginRequest extends BaseInfo {
      */
     private String captchaCode;
 
+    private String username;
+
+    private String password;
+
     public String getUserLoginName() {
         return userLoginName;
     }
@@ -84,6 +88,22 @@ public class LoginRequest extends BaseInfo {
 
     public void setCaptchaCode(String captchaCode) {
         this.captchaCode = captchaCode;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }
