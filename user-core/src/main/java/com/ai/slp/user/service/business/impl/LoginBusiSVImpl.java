@@ -1,5 +1,6 @@
 package com.ai.slp.user.service.business.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -40,16 +41,15 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
         criteria.andTenantIdEqualTo(loginRequest.getTenantId());
         criteria.andUserTypeEqualTo(loginRequest.getUserType());
         LoginResponse response = new LoginResponse();
-        List<UcUser> userList = userMapper.selectByExample(example);
+        List<UcUser> userList = new ArrayList<UcUser>();
 
         if (!StringUtil.isBlank(loginRequest.getUserLoginName())) {
             criteria.andUserLoginNameEqualTo(loginRequest.getUserLoginName());
             userList = userMapper.selectByExample(example);
             if (userList.isEmpty()) {
                 throw new BusinessException("USER-ERR-001","用户不存在");
-            } else {
-                response.setUserLoginName(loginRequest.getUserLoginName());
-                response.setUserLoginPwd(userList.get(0).getUserLoginPwd());
+            } else{
+                response.setUserLoginName(userList.get(0).getUserLoginName());
             }
         }
         if (!StringUtil.isBlank(loginRequest.getUserEmail())) {
@@ -58,9 +58,8 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
             userList = userMapper.selectByExample(example);
             if (userList.isEmpty()) {
                 throw new BusinessException("USER-ERR-002","邮箱未验证");
-            } else {
-                response.setUserEmail(loginRequest.getUserEmail());
-                response.setUserLoginPwd(loginRequest.getUserLoginPwd());
+            } else{
+                response.setUserEmail(userList.get(0).getUserEmail());
             }
         }
         if (!StringUtil.isBlank(loginRequest.getUserMp())) {
@@ -68,11 +67,12 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
             userList = userMapper.selectByExample(example);
             if (userList.isEmpty()) {
                 throw new BusinessException("USER-ERR-003","手机号未绑定");
-            } else {
-                response.setUserMp(loginRequest.getUserMp());
-                response.setUserLoginPwd(userList.get(0).getUserLoginPwd());
+            } else{
+                response.setUserMp(userList.get(0).getUserMp());
             }
         }
+        response.setUserId(userList.get(0).getUserId());
+        response.setUserLoginPwd(userList.get(0).getUserLoginPwd());
         return response;
     }
 }

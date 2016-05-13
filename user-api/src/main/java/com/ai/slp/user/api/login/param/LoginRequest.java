@@ -41,14 +41,6 @@ public class LoginRequest extends BaseInfo {
     @MobilePhone(message = "手机号码格式不正确", groups = { ILoginSV.Login.class })
     private String userMp;
 
-    /**
-     * 验证码
-     */
-    private String captchaCode;
-
-    private String username;
-
-    private String password;
 
     public String getUserLoginName() {
         return userLoginName;
@@ -80,30 +72,6 @@ public class LoginRequest extends BaseInfo {
 
     public void setUserType(String userType) {
         this.userType = userType;
-    }
-
-    public String getCaptchaCode() {
-        return captchaCode;
-    }
-
-    public void setCaptchaCode(String captchaCode) {
-        this.captchaCode = captchaCode;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
 }
