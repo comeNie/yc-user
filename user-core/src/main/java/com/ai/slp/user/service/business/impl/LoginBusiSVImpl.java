@@ -32,7 +32,7 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
 
     @Autowired
     private transient UcUserMapper userMapper;
-    
+
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
 
@@ -46,9 +46,9 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
         if (!StringUtil.isBlank(loginRequest.getUserLoginName())) {
             criteria.andUserLoginNameEqualTo(loginRequest.getUserLoginName());
             userList = userMapper.selectByExample(example);
-            if (userList.isEmpty()) {
-                throw new BusinessException("USER-ERR-001","用户不存在");
-            } else{
+            if (userList.size() == 0) {
+                throw new BusinessException("USER-ERR-001", "用户不存在");
+            } else {
                 response.setUserLoginName(userList.get(0).getUserLoginName());
             }
         }
@@ -56,23 +56,25 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
             criteria.andUserEmailEqualTo(loginRequest.getUserEmail());
             criteria.andEmailValidateFlagEqualTo("11");
             userList = userMapper.selectByExample(example);
-            if (userList.isEmpty()) {
-                throw new BusinessException("USER-ERR-002","邮箱未验证");
-            } else{
+            if (userList.size() == 0) {
+                throw new BusinessException("USER-ERR-002", "邮箱未验证");
+            } else {
                 response.setUserEmail(userList.get(0).getUserEmail());
             }
         }
         if (!StringUtil.isBlank(loginRequest.getUserMp())) {
             criteria.andUserMpEqualTo(loginRequest.getUserMp());
             userList = userMapper.selectByExample(example);
-            if (userList.isEmpty()) {
-                throw new BusinessException("USER-ERR-003","手机号未绑定");
-            } else{
+            if (userList.size() == 0) {
+                throw new BusinessException("USER-ERR-003", "手机号未绑定");
+            } else {
                 response.setUserMp(userList.get(0).getUserMp());
             }
         }
-        response.setUserId(userList.get(0).getUserId());
-        response.setUserLoginPwd(userList.get(0).getUserLoginPwd());
+        if (userList.size() != 0) {
+            response.setUserId(userList.get(0).getUserId());
+            response.setUserLoginPwd(userList.get(0).getUserLoginPwd());
+        }
         return response;
     }
 }
