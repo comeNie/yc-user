@@ -8,7 +8,7 @@ import com.ai.slp.user.api.ucStateChg.param.QueryStateChgResponse;
 import com.ai.slp.user.api.ucStateChg.param.UcStateChgParamsRequest;
 
 public interface IUcStateChgSV {
-
+    @interface InsertUcStateChgInfo {};
     /**
      * 
      * 用户状态轨迹状态轨迹新增</br>
@@ -18,11 +18,10 @@ public interface IUcStateChgSV {
      * @author zhangyuehong
      * @ApiDocMethod
      */
-    @interface InsertUcStateChgInfo {
-    };
 
     BaseResponse insertUcStateChgInfo(UcStateChgParamsRequest ucStateChgParam) throws BusinessException, SystemException;
-
+   
+    @interface UpdateUcStateChgInfo {};
     /**
      * 
      * 用户状态轨迹状态轨迹修改</br>
@@ -32,11 +31,11 @@ public interface IUcStateChgSV {
      * @author zhangyuehong
      * @ApiDocMethod
      */
-    @interface UpdateUcStateChgInfo {
-    };
+    
 
     BaseResponse updateUcStateChgInfo(UcStateChgParamsRequest ucStateChgParam) throws BusinessException, SystemException;
 
+    @interface QueryStateChg {}
     /**
      * 用户状态轨迹状态轨迹获取
      * 
@@ -47,8 +46,7 @@ public interface IUcStateChgSV {
      * @author zhangqiang7
      * @UCUSER
      */
-    @interface QueryStateChg {
-    }
+   
 
     QueryStateChgResponse queryStateChg(QueryStateChgRequest stateChgRequest)
             throws BusinessException, SystemException;
