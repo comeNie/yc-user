@@ -30,11 +30,11 @@
 		 <constructor-arg name="dataSourceName" value="slp-user-db"/>
 	</bean>
 
-	<bean id="seqDataSourceLoader"
-		class="com.ai.opt.sdk.sequence.datasource.SeqDataSourceLoader"
-		init-method="init">
-		<property name="ds" ref="dataSource" />
-	</bean>
+	 <bean id="seqDataSourceLoader"
+    		class="com.ai.opt.sdk.components.sequence.datasource.SeqDataSourceLoader"
+    		init-method="init">
+    		<property name="ds" ref="dataSource" />
+    	</bean>
     
 	<!-- 配置myBatis的sqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
