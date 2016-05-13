@@ -12,17 +12,31 @@ import com.ai.opt.base.vo.BaseInfo;
 public class RegisterParamsRequest extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
-
+    /**
+     * 用户联系人
+     */
     private UcContactInfoParams ucContactInfoParams;
-
+    /**
+     * 个人用户
+     */
     private UcUserParams ucUserParam;
 
+    /**
+     * 企业客户信息
+     */
     private UcGroupKeyInfoParams ucGroupKeyInfoParams;
-
+    /**
+     * 个人客户关键信息
+     */
     private UcCustKeyInfoParams ucCustKeyInfoParams;
 
+    /**
+     * 用户银行信息
+     */
     private UcBankKeyInfoParams ucBankKeyParams;
-
+    /**
+     * 用户协议信息
+     */
     private UcUserAgreeParams agreeInfoParams;
 
     public UcContactInfoParams getUcContactInfoParams() {
