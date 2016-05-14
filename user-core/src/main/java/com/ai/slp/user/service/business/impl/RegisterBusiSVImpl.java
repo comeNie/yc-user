@@ -92,6 +92,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
             ucUserAgree.setUserId(userParams.getUserId());
             ucUserAgree.setAgreementId("1");
             ucUserAgree.setTenantId(userParams.getTenantId());
+            ucUserAgree.setAgreeSeqId("1");
             registerAtomSv.InsertUcUserAgreeAtomSv(ucUserAgree);
             
     }
