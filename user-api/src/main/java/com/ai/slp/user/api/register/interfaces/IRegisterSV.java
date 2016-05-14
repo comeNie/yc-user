@@ -49,7 +49,7 @@ public interface IRegisterSV {
      * @author zhaogw
      * @REG_0003
      */
-    RegisterParamsResponse searchUserInfo(UcUserParams ucUser);
+    BaseResponse searchUserInfo(UcUserParams ucUser);
     
     /**
      * 
