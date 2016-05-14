@@ -47,7 +47,7 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
             criteria.andUserLoginNameEqualTo(loginRequest.getUserLoginName());
             userList = userMapper.selectByExample(example);
             if (userList.size() == 0) {
-                throw new BusinessException("USER-ERR-001", "用户不存在");
+                throw new BusinessException("USER_ERR_001", "用户不存在");
             } else {
                 response.setUserLoginName(userList.get(0).getUserLoginName());
             }
@@ -57,7 +57,7 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
             criteria.andEmailValidateFlagEqualTo("11");
             userList = userMapper.selectByExample(example);
             if (userList.size() == 0) {
-                throw new BusinessException("USER-ERR-002", "邮箱未验证");
+                throw new BusinessException("USER_ERR_002", "邮箱未验证");
             } else {
                 response.setUserEmail(userList.get(0).getUserEmail());
             }
@@ -66,7 +66,7 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
             criteria.andUserMpEqualTo(loginRequest.getUserMp());
             userList = userMapper.selectByExample(example);
             if (userList.size() == 0) {
-                throw new BusinessException("USER-ERR-003", "手机号未绑定");
+                throw new BusinessException("USER_ERR_003", "手机号未绑定");
             } else {
                 response.setUserMp(userList.get(0).getUserMp());
             }
