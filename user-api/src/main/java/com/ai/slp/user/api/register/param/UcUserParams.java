@@ -18,8 +18,6 @@ public class UcUserParams extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
 
-    @NotNull(message = "userId不能为空", groups = { IRegisterSV.InsertUcUser.class })
-    @Size(min = 18, max = 18, message = "用户Id长度不是18位", groups = { IRegisterSV.InsertUcUser.class  })
     private String userId;
 
     @NotNull(message = "用户类型不能为空", groups = { IRegisterSV.InsertUcUser.class })
