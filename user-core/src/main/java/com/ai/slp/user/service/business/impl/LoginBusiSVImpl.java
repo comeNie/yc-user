@@ -1,5 +1,6 @@
 package com.ai.slp.user.service.business.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -31,7 +32,7 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
 
     @Autowired
     private transient UcUserMapper userMapper;
-    
+
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
 
@@ -40,38 +41,39 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
         criteria.andTenantIdEqualTo(loginRequest.getTenantId());
         criteria.andUserTypeEqualTo(loginRequest.getUserType());
         LoginResponse response = new LoginResponse();
-        List<UcUser> userList = userMapper.selectByExample(example);
+        List<UcUser> userList = new ArrayList<UcUser>();
 
         if (!StringUtil.isBlank(loginRequest.getUserLoginName())) {
             criteria.andUserLoginNameEqualTo(loginRequest.getUserLoginName());
             userList = userMapper.selectByExample(example);
-            if (userList.isEmpty()) {
-                throw new BusinessException("USER-ERR-001","用户不存在");
+            if (userList.size() == 0) {
+                throw new BusinessException("USER-ERR-001", "用户不存在");
             } else {
-                response.setUserLoginName(loginRequest.getUserLoginName());
-                response.setUserLoginPwd(userList.get(0).getUserLoginPwd());
+                response.setUserLoginName(userList.get(0).getUserLoginName());
             }
         }
         if (!StringUtil.isBlank(loginRequest.getUserEmail())) {
             criteria.andUserEmailEqualTo(loginRequest.getUserEmail());
             criteria.andEmailValidateFlagEqualTo("11");
             userList = userMapper.selectByExample(example);
-            if (userList.isEmpty()) {
-                throw new BusinessException("USER-ERR-002","邮箱未验证");
+            if (userList.size() == 0) {
+                throw new BusinessException("USER-ERR-002", "邮箱未验证");
             } else {
-                response.setUserEmail(loginRequest.getUserEmail());
-                response.setUserLoginPwd(loginRequest.getUserLoginPwd());
+                response.setUserEmail(userList.get(0).getUserEmail());
             }
         }
         if (!StringUtil.isBlank(loginRequest.getUserMp())) {
             criteria.andUserMpEqualTo(loginRequest.getUserMp());
             userList = userMapper.selectByExample(example);
-            if (userList.isEmpty()) {
-                throw new BusinessException("USER-ERR-003","手机号未绑定");
+            if (userList.size() == 0) {
+                throw new BusinessException("USER-ERR-003", "手机号未绑定");
             } else {
-                response.setUserMp(loginRequest.getUserMp());
-                response.setUserLoginPwd(userList.get(0).getUserLoginPwd());
+                response.setUserMp(userList.get(0).getUserMp());
             }
+        }
+        if (userList.size() != 0) {
+            response.setUserId(userList.get(0).getUserId());
+            response.setUserLoginPwd(userList.get(0).getUserLoginPwd());
         }
         return response;
     }

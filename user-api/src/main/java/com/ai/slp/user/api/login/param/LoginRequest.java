@@ -19,7 +19,7 @@ public class LoginRequest extends BaseInfo {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户类型  不能为空
+     * 用户类型 不能为空
      */
     @NotNull(message = "用户类型不能为空", groups = { ILoginSV.Login.class })
     private String userType;
@@ -27,7 +27,7 @@ public class LoginRequest extends BaseInfo {
     /**
      * 用户登陆用户名
      */
-    private String UserLoginName;
+    private String userLoginName;
 
     /**
      * 用户邮箱
@@ -42,17 +42,16 @@ public class LoginRequest extends BaseInfo {
     private String userMp;
 
     /**
-     * 用户密码 不能为空
+     * 密码
      */
-    @NotNull(message = "密码不能为空", groups = { ILoginSV.Login.class })
     private String userLoginPwd;
 
     public String getUserLoginName() {
-        return UserLoginName;
+        return userLoginName;
     }
 
     public void setUserLoginName(String userLoginName) {
-        UserLoginName = userLoginName;
+        this.userLoginName = userLoginName;
     }
 
     public String getUserEmail() {
@@ -71,20 +70,20 @@ public class LoginRequest extends BaseInfo {
         this.userMp = userMp;
     }
 
-    public String getUserLoginPwd() {
-        return userLoginPwd;
-    }
-
-    public void setUserLoginPwd(String userLoginPwd) {
-        this.userLoginPwd = userLoginPwd;
-    }
-
     public String getUserType() {
         return userType;
     }
 
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    public String getUserLoginPwd() {
+        return userLoginPwd;
+    }
+
+    public void setUserLoginPwd(String userLoginPwd) {
+        this.userLoginPwd = userLoginPwd;
     }
 
 }

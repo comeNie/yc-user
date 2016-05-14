@@ -13,6 +13,11 @@ public class LoginResponse extends BaseResponse {
     private static final long serialVersionUID = 1L;
 
     /**
+     * 租户类型
+     */
+    private String tenantId;
+
+    /**
      * 用户Id
      */
     private String userId;
@@ -88,6 +93,14 @@ public class LoginResponse extends BaseResponse {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getTenantId() {
+        return tenantId;
+    }
+
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
     }
 
 }
