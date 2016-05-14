@@ -77,7 +77,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
             //插入user主表
             ucUser.setUserType(ExceptCodeConstants.Account.REGISTER_STATE);
             registerAtomSv.insertUserInfo(ucUser);
-            
+             
             //用户状态变更
             insertUserStateChg(userParams,ExceptCodeConstants.Account.REGISTER_STATE);
             
