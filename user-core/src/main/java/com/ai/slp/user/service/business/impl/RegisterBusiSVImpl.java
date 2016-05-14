@@ -85,12 +85,12 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
             if(ExceptCodeConstants.Account.REGISTER_STATE.equals(userParams.getUserType())){
                 insertUserStateChg(userParams,ExceptCodeConstants.Account.REGISTER_STATE);
             }
-            UcUserAgreeParams agreeInfo = registerParamsRequest.getAgreeInfoParams();
             
+            UcUserAgreeParams agreeInfo = registerParamsRequest.getAgreeInfoParams();
             //插入用户协议表
             UcUserAgree ucUserAgree = new UcUserAgree();
-            ucUserAgree.setUserId(agreeInfo.getUserId());
-            ucUserAgree.setAgreementId(agreeInfo.getAgreementId());
+            ucUserAgree.setUserId(userParams.getUserId());
+            ucUserAgree.setAgreementId("1");
             registerAtomSv.InsertUcUserAgreeAtomSv(ucUserAgree);
             
     }
@@ -315,6 +315,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
         ucStateChgRegister.setTenantId(userParams.getTenantId());
         ucStateChgRegister.setUserId(userParams.getUserId());
         ucStateChgRegister.setOperType(userParams.getUserType());
+        ucStateChgRegister.setStateChgId("1");
         ucStateChgRegister.setNewState(state);
         ucStateChgRegister.setChgTime(new Timestamp(new Date().getTime()));
         return registerAtomSv.insertUcStateChgBusiInfo(ucStateChgRegister);
