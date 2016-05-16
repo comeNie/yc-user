@@ -41,6 +41,7 @@ import com.ai.slp.user.service.atom.interfaces.IRegisterAtomSV;
 import com.ai.slp.user.service.atom.interfaces.IUcBankInfoAtomSV;
 import com.ai.slp.user.service.atom.interfaces.IUcContactsInfoAtomSV;
 import com.ai.slp.user.service.business.interfaces.IRegisterBusiSV;
+import com.ai.slp.user.util.SequenceUtil;
 
 @Service
 @Transactional
@@ -75,6 +76,9 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
             BeanUtils.copyProperties(ucUser, userParams);
             
             //插入user主表
+            String userId = SequenceUtil.createUserId();
+            userParams.setUserId(userId);
+            userParams.setTenantId("1");
             ucUser.setUserType(ExceptCodeConstants.Account.REGISTER_STATE);
             registerAtomSv.insertUserInfo(ucUser);
              
@@ -86,13 +90,13 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
                 insertUserStateChg(userParams,ExceptCodeConstants.Account.REGISTER_STATE);
             }
             
-            UcUserAgreeParams agreeInfo = registerParamsRequest.getAgreeInfoParams();
             //插入用户协议表
+            String agreementId = SequenceUtil.createAgreeSeqId();
             UcUserAgree ucUserAgree = new UcUserAgree();
             ucUserAgree.setUserId(userParams.getUserId());
-            ucUserAgree.setAgreementId("1");
+            ucUserAgree.setAgreementId(agreementId);
             ucUserAgree.setTenantId(userParams.getTenantId());
-            ucUserAgree.setAgreeSeqId("1");
+            ucUserAgree.setAgreeSeqId(agreementId);
             registerAtomSv.InsertUcUserAgreeAtomSv(ucUserAgree);
             
     }

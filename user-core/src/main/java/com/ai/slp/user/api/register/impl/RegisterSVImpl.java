@@ -6,13 +6,13 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.slp.user.api.register.interfaces.IRegisterSV;
 import com.ai.slp.user.api.register.param.RegisterParamsRequest;
-import com.ai.slp.user.api.register.param.RegisterParamsResponse;
 import com.ai.slp.user.api.register.param.UcBankKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcContactInfoParams;
 import com.ai.slp.user.api.register.param.UcCustKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcGroupKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcUserFileExtParams;
 import com.ai.slp.user.api.register.param.UcUserParams;
+import com.ai.slp.user.constants.UserRegisterErrorCode;
 import com.ai.slp.user.service.business.interfaces.IRegisterBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
 
@@ -42,8 +42,8 @@ public class RegisterSVImpl implements IRegisterSV {
     public BaseResponse searchUserInfo(UcUserParams ucUser) {
         boolean flag = registerBusiSv.checkUserExist(ucUser);
         BaseResponse result = new BaseResponse();
-        if(!flag){
-            result.setResponseHeader(new ResponseHeader(false,"fail","手机已注册"));
+        if(!flag){ 
+            result.setResponseHeader(new ResponseHeader(false,UserRegisterErrorCode.NOTONE_ERROR,"用户或者手机号已注册"));
         }
         return result;
     }
