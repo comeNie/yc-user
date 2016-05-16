@@ -8,7 +8,7 @@ import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.slp.user.api.login.interfaces.ILoginSV;
 import com.ai.slp.user.api.login.param.LoginRequest;
 import com.ai.slp.user.api.login.param.LoginResponse;
-import com.ai.slp.user.constants.UserErrorCode;
+import com.ai.slp.user.constants.UserLoginErrorCode;
 import com.ai.slp.user.service.business.interfaces.ILoginBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
 
@@ -34,13 +34,13 @@ public class LoginSVImpl implements ILoginSV {
             response = loginBusiSV.login(loginRequest);
             responseHeader = new ResponseHeader(true, "success", "查询成功");
         } catch (BusinessException e) {
-            if (UserErrorCode.USER_ERR_001.equals(e.getErrorCode())) {
+            if (UserLoginErrorCode.USER_ERR_001.equals(e.getErrorCode())) {
                 responseHeader = new ResponseHeader(false, "fail", "用户名不存在");
             }
-            if (UserErrorCode.USER_ERR_002.equals(e.getErrorCode())) {
+            if (UserLoginErrorCode.USER_ERR_002.equals(e.getErrorCode())) {
                 responseHeader = new ResponseHeader(false, "fail", "邮箱未验证");
             }
-            if (UserErrorCode.USER_ERR_003.equals(e.getErrorCode())) {
+            if (UserLoginErrorCode.USER_ERR_003.equals(e.getErrorCode())) {
                 responseHeader = new ResponseHeader(false, "fail", "手机号未绑定");
             }
         }
