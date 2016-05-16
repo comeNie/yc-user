@@ -31,9 +31,9 @@ public class LoginSVImpl implements ILoginSV {
         ResponseHeader responseHeader = null;
         response = loginBusiSV.login(loginRequest);
         if(null==response.getUserId()||"".equals(response.getUserId().trim()))
-            responseHeader = new ResponseHeader(true, "success", "查询成功");
-        else
             responseHeader = new ResponseHeader(false, "fail", "查询失败");
+        else
+            responseHeader = new ResponseHeader(true, "success", "查询成功");
         response.setResponseHeader(responseHeader);
         return response;
     }
