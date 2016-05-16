@@ -35,7 +35,7 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
     private transient UcUserMapper userMapper;
 
     @Override
-    public LoginResponse login(LoginRequest loginRequest) {
+    public LoginResponse login(LoginRequest loginRequest) throws BusinessException{
 
         UcUserCriteria example = new UcUserCriteria();
         UcUserCriteria.Criteria criteria = example.createCriteria();

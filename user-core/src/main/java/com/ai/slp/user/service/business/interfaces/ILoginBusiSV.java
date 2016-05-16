@@ -1,5 +1,6 @@
 package com.ai.slp.user.service.business.interfaces;
 
+import com.ai.opt.base.exception.BusinessException;
 import com.ai.slp.user.api.login.param.LoginRequest;
 import com.ai.slp.user.api.login.param.LoginResponse;
 
@@ -11,5 +12,5 @@ import com.ai.slp.user.api.login.param.LoginResponse;
  * @author zhangqiang7
  */
 public interface ILoginBusiSV {
-    LoginResponse login(LoginRequest loginRequest);
+    LoginResponse login(LoginRequest loginRequest) throws BusinessException;
 }
