@@ -58,6 +58,11 @@ public class UcUserParams extends BaseInfo {
     private Integer pageNo;
 
     private Integer pageSize;
+    
+    /**
+     * 短信验证码
+     */
+    private String phoneVerifyCode;
 
     @Override
     protected void finalize() throws Throwable {
@@ -214,6 +219,14 @@ public class UcUserParams extends BaseInfo {
 
     public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
+    }
+
+    public String getPhoneVerifyCode() {
+        return phoneVerifyCode;
+    }
+
+    public void setPhoneVerifyCode(String phoneVerifyCode) {
+        this.phoneVerifyCode = phoneVerifyCode;
     }
 
 }
