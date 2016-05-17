@@ -72,13 +72,15 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
             if(userParams==null){
                 throw new BusinessException("ACCOUNT_SET_INFO_CHECK_FAILED","注册失败,请输入用户信息");
             }
-            //用户信息
-            BeanUtils.copyProperties(ucUser, userParams);
             
             //插入user主表
             String userId = SequenceUtil.createUserId();
             userParams.setUserId(userId);
-            userParams.setTenantId("1");
+            userParams.setTenantId("0");
+            
+            //用户信息
+            BeanUtils.copyProperties(ucUser, userParams);
+           
             ucUser.setUserType(ExceptCodeConstants.Account.REGISTER_STATE);
             registerAtomSv.insertUserInfo(ucUser);
              
