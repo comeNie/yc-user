@@ -32,13 +32,11 @@ public class LoginRequest extends BaseInfo {
     /**
      * 用户邮箱
      */
-    @Email(message = "邮箱格式不正确", groups = { ILoginSV.Login.class })
     private String userEmail;
 
     /**
      * 用户手机号
      */
-    @MobilePhone(message = "手机号码格式不正确", groups = { ILoginSV.Login.class })
     private String userMp;
 
     public String getUserLoginName() {
