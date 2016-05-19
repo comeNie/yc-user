@@ -34,10 +34,9 @@ public class LoginSVImpl implements ILoginSV {
         }catch(BusinessException e){
         if(null==response.getUserId()||"".equals(response.getUserId().trim()))
             responseHeader = new ResponseHeader(false, e.getErrorCode(), "查询失败");
-        else
-            responseHeader = new ResponseHeader(true, "success", "查询成功");
-        response.setResponseHeader(responseHeader);
         }
+        responseHeader = new ResponseHeader(true, "success", "查询成功");
+        response.setResponseHeader(responseHeader);
         return response;
     }
 
