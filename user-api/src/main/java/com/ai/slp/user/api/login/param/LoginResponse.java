@@ -10,97 +10,110 @@ import com.ai.opt.base.vo.BaseResponse;
  */
 public class LoginResponse extends BaseResponse {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * 租户类型
-     */
-    private String tenantId;
+	/**
+	 * 租户类型
+	 */
+	private String tenantId;
 
-    /**
-     * 用户Id
-     */
-    private String userId;
+	/**
+	 * 用户Id
+	 */
+	private String userId;
 
-    /**
-     * 用户类型
-     */
-    private String userType;
+	/**
+	 * 用户类型
+	 */
+	private String userType;
 
-    /**
-     * 用户登陆用户名
-     */
-    private String UserLoginName;
+	/**
+	 * 用户昵称
+	 */
+	private String userNickname;
 
-    /**
-     * 用户邮箱
-     */
-    private String userEmail;
+	/**
+	 * 用户登陆用户名
+	 */
+	private String UserLoginName;
 
-    /**
-     * 用户手机号
-     */
-    private String userMp;
+	/**
+	 * 用户邮箱
+	 */
+	private String userEmail;
 
-    /**
-     * 用户密码
-     */
-    private String userLoginPwd;
+	/**
+	 * 用户手机号
+	 */
+	private String userMp;
 
-    public String getUserType() {
-        return userType;
-    }
+	/**
+	 * 用户密码
+	 */
+	private String userLoginPwd;
 
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
+	public String getUserType() {
+		return userType;
+	}
 
-    public String getUserLoginName() {
-        return UserLoginName;
-    }
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
 
-    public void setUserLoginName(String userLoginName) {
-        UserLoginName = userLoginName;
-    }
+	public String getUserLoginName() {
+		return UserLoginName;
+	}
 
-    public String getUserEmail() {
-        return userEmail;
-    }
+	public void setUserLoginName(String userLoginName) {
+		UserLoginName = userLoginName;
+	}
 
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
+	public String getUserEmail() {
+		return userEmail;
+	}
 
-    public String getUserMp() {
-        return userMp;
-    }
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
 
-    public void setUserMp(String userMp) {
-        this.userMp = userMp;
-    }
+	public String getUserMp() {
+		return userMp;
+	}
 
-    public String getUserLoginPwd() {
-        return userLoginPwd;
-    }
+	public void setUserMp(String userMp) {
+		this.userMp = userMp;
+	}
 
-    public void setUserLoginPwd(String userLoginPwd) {
-        this.userLoginPwd = userLoginPwd;
-    }
+	public String getUserLoginPwd() {
+		return userLoginPwd;
+	}
 
-    public String getUserId() {
-        return userId;
-    }
+	public void setUserLoginPwd(String userLoginPwd) {
+		this.userLoginPwd = userLoginPwd;
+	}
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
+	public String getUserId() {
+		return userId;
+	}
 
-    public String getTenantId() {
-        return tenantId;
-    }
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
-    }
+	public String getTenantId() {
+		return tenantId;
+	}
+
+	public void setTenantId(String tenantId) {
+		this.tenantId = tenantId;
+	}
+
+	public String getUserNickname() {
+		return userNickname;
+	}
+
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
+	}
 
 }

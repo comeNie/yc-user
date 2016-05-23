@@ -18,7 +18,7 @@ import com.alibaba.dubbo.config.annotation.Service;
  * @author zhangqiang7
  */
 @Service(validation = "true")
-// @Service
+//@Service
 public class LoginSVImpl implements ILoginSV {
 
     @Autowired
@@ -28,12 +28,13 @@ public class LoginSVImpl implements ILoginSV {
     public LoginResponse login(LoginRequest loginRequest)
             throws BusinessException, SystemException {
         LoginResponse response = new LoginResponse();
-        ResponseHeader responseHeader = null;
+        ResponseHeader responseHeader = new ResponseHeader(true, "success", "查询成功");
+        try{
         response = loginBusiSV.login(loginRequest);
+        }catch(BusinessException e){
         if(null==response.getUserId()||"".equals(response.getUserId().trim()))
-            responseHeader = new ResponseHeader(false, "fail", "查询失败");
-        else
-            responseHeader = new ResponseHeader(true, "success", "查询成功");
+            responseHeader = new ResponseHeader(false, e.getErrorCode(), "查询失败");
+        }
         response.setResponseHeader(responseHeader);
         return response;
     }
