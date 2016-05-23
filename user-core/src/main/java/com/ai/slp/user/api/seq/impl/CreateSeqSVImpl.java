@@ -17,7 +17,7 @@ public class CreateSeqSVImpl implements ICreateSeqSV {
 
 	@Override
 	public PhoneMsgSeqResponse createPhoneMsgSeq()throws SystemException {
-		String newId = SequenceUtil.createUserId();
+		String newId = SequenceUtil.createPhoneSeqId();
 		String dateString = DateUtil.getDateString("yyMMddHHmmss");
 		PhoneMsgSeqResponse phoneMsgSeqResponse = new PhoneMsgSeqResponse();
 		ResponseHeader responseHeader = new ResponseHeader();

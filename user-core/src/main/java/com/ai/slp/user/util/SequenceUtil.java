@@ -67,4 +67,8 @@ public final class SequenceUtil {
                 18);
     }
     
+    public static String createPhoneSeqId() {
+        return SeqUtil.getNewId(SequenceCodeConstants.UserSequenceCode.UC_USER$USER_ID$SEQ,
+                7);
+    }
 }
