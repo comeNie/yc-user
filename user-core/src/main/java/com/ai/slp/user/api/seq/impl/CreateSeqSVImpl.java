@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.ResponseHeader;
-import com.ai.opt.sdk.components.sequence.util.SeqUtil;
 import com.ai.opt.sdk.util.DateUtil;
 import com.ai.slp.user.api.seq.interfaces.ICreateSeqSV;
 import com.ai.slp.user.api.seq.param.PhoneMsgSeqResponse;
@@ -18,7 +17,7 @@ public class CreateSeqSVImpl implements ICreateSeqSV {
 
 	@Override
 	public PhoneMsgSeqResponse createPhoneMsgSeq()throws SystemException {
-		String newId = SequenceUtil.createPhoneSeqId();
+		String newId = SequenceUtil.createUserId();
 		String dateString = DateUtil.getDateString("yyMMddHHmmss");
 		PhoneMsgSeqResponse phoneMsgSeqResponse = new PhoneMsgSeqResponse();
 		ResponseHeader responseHeader = new ResponseHeader();

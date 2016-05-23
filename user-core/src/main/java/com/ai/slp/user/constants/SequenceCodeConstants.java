@@ -88,9 +88,5 @@ public class SequenceCodeConstants {
          */
         public static final String UC_USER_SUBS$CARD_SEQ_ID$SEQ = "UC_USER_SUBS$CARD_SEQ_ID$SEQ";
         
-        /**
-         * 手机验证码
-         */
-        public static final String PHONE_MSG_SEQ = "UC_USER_PHONE$SMS_SEQ_ID$SEQ";
     }
 }
