@@ -15,6 +15,13 @@ import com.ai.slp.user.api.ucuser.intefaces.IUcUserSV;
 public class SearchUserRequest extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
+    
+    /**
+     * 用户Id
+     */
+    
+    private String userId;
+    
 
     /**
      * 注册来源
@@ -146,6 +153,14 @@ public class SearchUserRequest extends BaseInfo {
 
     public void setUserState(String userState) {
         this.userState = userState;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
 }
