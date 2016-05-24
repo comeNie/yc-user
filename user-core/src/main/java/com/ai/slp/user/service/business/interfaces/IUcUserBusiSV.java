@@ -3,7 +3,6 @@ package com.ai.slp.user.service.business.interfaces;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserListResponse;
-import com.ai.slp.user.api.ucuser.param.SearchUserResponse;
 import com.ai.slp.user.dao.mapper.bo.UcUser;
 
 /**
@@ -18,4 +17,6 @@ public interface IUcUserBusiSV {
     UcUser queryByPhone(String phone)throws SystemException;
     
     UcUser queryByEmail(String email)throws SystemException;
+    
+    UcUser queryBaseInfo(String userId) throws SystemException;
 }

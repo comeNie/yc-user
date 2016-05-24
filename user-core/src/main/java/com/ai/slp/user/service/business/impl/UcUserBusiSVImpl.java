@@ -112,5 +112,11 @@ public class UcUserBusiSVImpl implements IUcUserBusiSV {
         return ucUserAtomSV.queryByEmail(email);
     }
 
+
+    @Override
+    public UcUser queryBaseInfo(String userId) throws SystemException {
+        return  ucUserAtomSV.queryByUserId(userId);
+    }
+
     
 }

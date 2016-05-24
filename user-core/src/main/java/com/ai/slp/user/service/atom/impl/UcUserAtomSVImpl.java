@@ -76,4 +76,16 @@ public class UcUserAtomSVImpl implements IUcUserAtomSV {
         }
         return null;
     }
+
+    @Override
+    public UcUser queryByUserId(String userId) throws SystemException {
+        UcUserCriteria conditon = new UcUserCriteria();
+        UcUserCriteria.Criteria criteria = conditon.or();
+        criteria.andUserIdEqualTo(userId);
+        List<UcUser> list = userMapper.selectByExample(conditon);
+        if(!CollectionUtil.isEmpty(list)){
+            return list.get(0);
+        }
+        return null;
+    }
 }

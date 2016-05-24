@@ -50,10 +50,35 @@ public class UcUserSVImpl implements IUcUserSV {
     @Override
     public SearchUserResponse queryByEmail(SearchUserRequest request) throws BusinessException,
             SystemException {
-        return null;
+        
+        UcUser ucuser = ucUserBusiSV.queryByPhone(request.getUserEmail());
+        // 整理返回对象
+        SearchUserResponse response = new SearchUserResponse();
+        ResponseHeader responseHeader = new ResponseHeader();
+        if (ucuser != null) {
+            BeanUtils.copyProperties(response, ucuser);
+            responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "数据查询成功");
+        }else{
+            responseHeader = new ResponseHeader(true, ExceptCodeConstants.NO_RESULT, "数据不存在");
+        }
+        response.setResponseHeader(responseHeader);
+        return response;
     }
 
-  
-   
-
+    @Override
+    public SearchUserResponse queryBaseInfo(SearchUserRequest accountQueryRequest)
+            throws BusinessException, SystemException {
+        UcUser ucuser = ucUserBusiSV.queryBaseInfo(accountQueryRequest.getUserId());
+        // 整理返回对象
+        SearchUserResponse response = new SearchUserResponse();
+        ResponseHeader responseHeader = new ResponseHeader();
+        if (ucuser != null) {
+            BeanUtils.copyProperties(response, ucuser);
+            responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "数据查询成功");
+        }else{
+            responseHeader = new ResponseHeader(true, ExceptCodeConstants.NO_RESULT, "数据不存在");
+        }
+        response.setResponseHeader(responseHeader);
+        return response;
+    }
 }
