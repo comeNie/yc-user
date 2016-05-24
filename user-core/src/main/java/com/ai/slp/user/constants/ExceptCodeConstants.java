@@ -5,6 +5,12 @@ public class ExceptCodeConstants {
      * 成功
      */
     public static final String SUCCESS = "000000";
+    
+    /**
+     * 失败
+     */
+    
+    public static final String FAILD="0";
 
     /**
      * 参数为空
