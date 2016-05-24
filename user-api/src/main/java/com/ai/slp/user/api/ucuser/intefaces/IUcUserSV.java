@@ -22,17 +22,31 @@ public interface IUcUserSV {
     public SearchUserListResponse searchUserList(SearchUserRequest userListRequest)
             throws BusinessException, SystemException;
     
-    interface QueryUserInfo{}
+    interface QueryByPhone{}
     /**
      * 根据手机号码进行查询（不加状态）
      * @param request
      * @return
      * @throws BusinessException
      * @throws SystemException
-     * @author zhanglh
-     * @ApiCode UAC_0014
+     * @author zhangyh7
+     * @ApiCode 
      */
     SearchUserResponse queryByPhone(SearchUserRequest request) throws BusinessException,SystemException;
+    
+    interface QueryByEmail{}
+    /**
+     * 根据email进行查询（不加状态）
+     * @param request
+     * @return
+     * @throws BusinessException
+     * @throws SystemException
+     * @author zhangyh7
+     * @ApiCode 
+     */
+    SearchUserResponse queryByEmail(SearchUserRequest request) throws BusinessException,SystemException;
+    
+    interface QueryBaseInfo{}
     /**
      * 根据email进行查询（不加状态）
      * @param request
@@ -42,5 +56,5 @@ public interface IUcUserSV {
      * @author zhanglh
      * @ApiCode UAC_0015
      */
-    SearchUserResponse queryByEmail(SearchUserRequest request) throws BusinessException,SystemException;
+    SearchUserResponse queryBaseInfo(SearchUserRequest accountQueryRequest) throws BusinessException,SystemException;
 }
