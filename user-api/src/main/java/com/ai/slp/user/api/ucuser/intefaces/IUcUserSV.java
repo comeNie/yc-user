@@ -2,9 +2,11 @@ package com.ai.slp.user.api.ucuser.intefaces;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.BaseResponse;
 import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserListResponse;
 import com.ai.slp.user.api.ucuser.param.SearchUserResponse;
+import com.ai.slp.user.api.ucuser.param.UcUserInfoParams;
 
 public interface IUcUserSV {
 
@@ -57,4 +59,17 @@ public interface IUcUserSV {
      * @ApiCode UAC_0015
      */
     SearchUserResponse queryBaseInfo(SearchUserRequest accountQueryRequest) throws BusinessException,SystemException;
+    
+    interface UpdateBaseInfo{}
+    /**
+     * 更新用户基本信息
+     * @param request
+     * @return
+     * @throws BusinessException
+     * @throws SystemException
+     * @author zhangyh7
+     * @ApiCode UAC_0015
+     */
+    BaseResponse updateBaseInfo(SearchUserRequest accountQueryRequest) throws BusinessException,SystemException;
+    
 }
