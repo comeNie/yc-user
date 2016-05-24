@@ -1,5 +1,7 @@
 package com.ai.slp.user.api.ucuser.param;
 
+import java.sql.Timestamp;
+
 import org.hibernate.validator.constraints.Email;
 
 import com.ai.opt.base.vo.BaseInfo;
@@ -64,6 +66,11 @@ public class SearchUserRequest extends BaseInfo {
      * 结束时间
      */
     private String endTime;
+    
+    /**
+     * 更新时间
+     */
+    private Timestamp  updateTime;
 
     /**
      * pageSize
@@ -161,6 +168,14 @@ public class SearchUserRequest extends BaseInfo {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public Timestamp getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Timestamp updateTime) {
+        this.updateTime = updateTime;
     }
 
 }
