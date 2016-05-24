@@ -25,4 +25,6 @@ public interface IUcUserAtomSV {
     UcUser queryByEmail(String email)throws SystemException;
     
     UcUser queryByUserId(String userId) throws SystemException;
+    
+    int updateByAccountId(UcUser gnAccount,UcUserCriteria example) throws SystemException;
 }
