@@ -11,7 +11,7 @@ import com.ai.slp.user.api.register.param.UcUserParams;
 
 public interface IRegisterBusiSV {
     
-    public void insertUserInfo(RegisterParamsRequest registerParamsRequest);
+    public String insertUserInfo(RegisterParamsRequest registerParamsRequest);
     
     public void insertCompanyInfoAttest(RegisterParamsRequest registerParamsRequest);
     

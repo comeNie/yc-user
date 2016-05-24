@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfo;
 import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfoCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfo;
@@ -48,5 +49,31 @@ public class UcUserAtomSVImpl implements IUcUserAtomSV {
     @Override
     public int countByExample(UcUserCriteria example) {
         return userMapper.countByExample(example);
+    }
+
+    @Override
+    public UcUser queryByPhone(String phone) throws SystemException {
+        
+        UcUserCriteria conditon = new UcUserCriteria();
+        UcUserCriteria.Criteria criteria = conditon.or();
+        criteria.andUserMpEqualTo(phone);
+        List<UcUser> list = userMapper.selectByExample(conditon);
+        if(!CollectionUtil.isEmpty(list)){
+            return list.get(0);
+        }
+        return null;
+        
+    }
+
+    @Override
+    public UcUser queryByEmail(String email) throws SystemException {
+        UcUserCriteria conditon = new UcUserCriteria();
+        UcUserCriteria.Criteria criteria = conditon.or();
+        criteria.andUserEmailEqualTo(email);
+        List<UcUser> list = userMapper.selectByExample(conditon);
+        if(!CollectionUtil.isEmpty(list)){
+            return list.get(0);
+        }
+        return null;
     }
 }

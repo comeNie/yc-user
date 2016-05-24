@@ -11,10 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
-import com.ai.slp.user.api.ucuser.param.SearchUserListRequest;
+import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserListResponse;
+import com.ai.slp.user.api.ucuser.param.SearchUserResponse;
 import com.ai.slp.user.api.ucuser.param.UcUserInfoParams;
 import com.ai.slp.user.dao.mapper.bo.UcUser;
 import com.ai.slp.user.dao.mapper.bo.UcUserCriteria;
@@ -38,7 +40,7 @@ public class UcUserBusiSVImpl implements IUcUserBusiSV {
     private IUcUserAtomSV ucUserAtomSV;
 
     @Override
-    public SearchUserListResponse searchUserList(SearchUserListRequest userListRequest) {
+    public SearchUserListResponse searchUserList(SearchUserRequest userListRequest) {
 
         UcUserCriteria example = new UcUserCriteria();
         UcUserCriteria.Criteria criteria = example.createCriteria();
@@ -99,4 +101,16 @@ public class UcUserBusiSVImpl implements IUcUserBusiSV {
         return response;
     }
 
+    @Override
+    public UcUser queryByPhone(String phone) throws SystemException {
+        
+        return ucUserAtomSV.queryByPhone(phone);
+    }
+
+    @Override
+    public UcUser queryByEmail(String email) throws SystemException {
+        return ucUserAtomSV.queryByEmail(email);
+    }
+
+    
 }

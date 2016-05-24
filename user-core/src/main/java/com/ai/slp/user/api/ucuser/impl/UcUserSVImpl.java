@@ -1,0 +1,59 @@
+package com.ai.slp.user.api.ucuser.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.ResponseHeader;
+import com.ai.opt.sdk.util.BeanUtils;
+import com.ai.slp.user.api.ucuser.intefaces.IUcUserSV;
+import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
+import com.ai.slp.user.api.ucuser.param.SearchUserListResponse;
+import com.ai.slp.user.api.ucuser.param.SearchUserResponse;
+import com.ai.slp.user.constants.ExceptCodeConstants;
+import com.ai.slp.user.dao.mapper.bo.UcUser;
+import com.ai.slp.user.service.business.interfaces.IUcUserBusiSV;
+
+@Service
+@Transactional
+public class UcUserSVImpl implements IUcUserSV {
+
+    @Autowired
+    private IUcUserBusiSV ucUserBusiSV;
+
+    @Override
+    public SearchUserListResponse searchUserList(SearchUserRequest userListRequest)
+            throws BusinessException, SystemException {
+        return ucUserBusiSV.searchUserList(userListRequest);
+    }
+
+    @Override
+    public SearchUserResponse queryByPhone(SearchUserRequest request) throws BusinessException,
+            SystemException {
+        
+        UcUser ucuser = ucUserBusiSV.queryByPhone(request.getUserMp());
+        // 整理返回对象
+        SearchUserResponse response = new SearchUserResponse();
+        ResponseHeader responseHeader = new ResponseHeader();
+        if (ucuser != null) {
+            BeanUtils.copyProperties(response, ucuser);
+            responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "数据查询成功");
+        }else{
+            responseHeader = new ResponseHeader(true, ExceptCodeConstants.NO_RESULT, "数据不存在");
+        }
+        response.setResponseHeader(responseHeader);
+        return response;
+    }
+
+    @Override
+    public SearchUserResponse queryByEmail(SearchUserRequest request) throws BusinessException,
+            SystemException {
+        return null;
+    }
+
+  
+   
+
+}

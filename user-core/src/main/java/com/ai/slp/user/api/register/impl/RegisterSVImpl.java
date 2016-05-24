@@ -6,12 +6,14 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.slp.user.api.register.interfaces.IRegisterSV;
 import com.ai.slp.user.api.register.param.RegisterParamsRequest;
+import com.ai.slp.user.api.register.param.RegisterResponse;
 import com.ai.slp.user.api.register.param.UcBankKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcContactInfoParams;
 import com.ai.slp.user.api.register.param.UcCustKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcGroupKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcUserFileExtParams;
 import com.ai.slp.user.api.register.param.UcUserParams;
+import com.ai.slp.user.constants.ExceptCodeConstants;
 import com.ai.slp.user.constants.UserRegisterErrorCode;
 import com.ai.slp.user.service.business.interfaces.IRegisterBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -23,9 +25,11 @@ public class RegisterSVImpl implements IRegisterSV {
     public IRegisterBusiSV registerBusiSv;
     
     @Override
-    public BaseResponse insertUcUser(RegisterParamsRequest registerParamsRequest) {
-        registerBusiSv.insertUserInfo(registerParamsRequest);
-        BaseResponse result = new BaseResponse();
+    public RegisterResponse insertUcUser(RegisterParamsRequest registerParamsRequest) {
+        String userId = registerBusiSv.insertUserInfo(registerParamsRequest);
+        RegisterResponse result = new RegisterResponse();
+        result.setUserId(userId);
+        result.setResponseCode(ExceptCodeConstants.SUCCESS);
         return result;
     }
 

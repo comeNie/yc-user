@@ -62,7 +62,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
      */
     
     @Override
-    public void insertUserInfo(RegisterParamsRequest registerParamsRequest) {
+    public String insertUserInfo(RegisterParamsRequest registerParamsRequest) {
             UcUserParams userParams = registerParamsRequest.getUcUserParam();
             List<UcUser> list = getUserInfoBycondition(userParams);
             if(!CollectionUtil.isEmpty(list)){
@@ -100,6 +100,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
             ucUserAgree.setTenantId(userParams.getTenantId());
             ucUserAgree.setAgreeSeqId(agreementId);
             registerAtomSv.InsertUcUserAgreeAtomSv(ucUserAgree);
+            return userId;
             
     }
     /**
