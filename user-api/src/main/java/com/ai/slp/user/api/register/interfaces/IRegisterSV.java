@@ -3,6 +3,7 @@ package com.ai.slp.user.api.register.interfaces;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.slp.user.api.register.param.RegisterParamsRequest;
 import com.ai.slp.user.api.register.param.RegisterParamsResponse;
+import com.ai.slp.user.api.register.param.RegisterResponse;
 import com.ai.slp.user.api.register.param.UcBankKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcContactInfoParams;
 import com.ai.slp.user.api.register.param.UcCustKeyInfoParams;
@@ -29,7 +30,7 @@ public interface IRegisterSV {
      * @author zhangqiang7
      * @ApiCode USER_0001
      */
-    BaseResponse insertUcUser( RegisterParamsRequest registerParamsRequest);
+    RegisterResponse insertUcUser( RegisterParamsRequest registerParamsRequest);
     
     /**
      * 更新用户信息

@@ -4,7 +4,7 @@ import org.hibernate.validator.constraints.Email;
 
 import com.ai.opt.base.vo.BaseInfo;
 import com.ai.opt.validator.constraints.MobilePhone;
-import com.ai.slp.user.api.ucuser.intefaces.IUcUserListSV;
+import com.ai.slp.user.api.ucuser.intefaces.IUcUserSV;
 
 /**
  * 查询用户入参 Date: 2016年5月3日 <br>
@@ -12,7 +12,7 @@ import com.ai.slp.user.api.ucuser.intefaces.IUcUserListSV;
  * 
  * @author zhangqiang7
  */
-public class SearchUserListRequest extends BaseInfo {
+public class SearchUserRequest extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
 
@@ -34,13 +34,13 @@ public class SearchUserListRequest extends BaseInfo {
     /**
      * 户绑定手机号码
      */
-    @MobilePhone(message = "手机号码格式不正确", groups = { IUcUserListSV.SearchUserList.class })
+    @MobilePhone(message = "手机号码格式不正确", groups = { IUcUserSV.SearchUserList.class })
     private String userMp;
 
     /**
      * 用户绑定邮箱
      */
-    @Email(message = "邮箱格式不正确", groups = { IUcUserListSV.SearchUserList.class })
+    @Email(message = "邮箱格式不正确", groups = { IUcUserSV.SearchUserList.class })
     private String userEmail;
 
     /**
