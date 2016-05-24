@@ -6,14 +6,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
+import com.ai.opt.sdk.util.DateUtil;
 import com.ai.slp.user.api.ucuser.intefaces.IUcUserSV;
 import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserListResponse;
 import com.ai.slp.user.api.ucuser.param.SearchUserResponse;
 import com.ai.slp.user.constants.ExceptCodeConstants;
 import com.ai.slp.user.dao.mapper.bo.UcUser;
+import com.ai.slp.user.dao.mapper.bo.UcUserCriteria;
 import com.ai.slp.user.service.business.interfaces.IUcUserBusiSV;
 
 @Service
@@ -80,5 +83,33 @@ public class UcUserSVImpl implements IUcUserSV {
         }
         response.setResponseHeader(responseHeader);
         return response;
+    }
+
+    @Override
+    public BaseResponse updateBaseInfo(SearchUserRequest accountQueryRequest)
+            throws BusinessException, SystemException {
+        
+        
+            UcUserCriteria criteria = new UcUserCriteria();
+            criteria.or().andUserIdEqualTo(accountQueryRequest.getUserId());
+            // 数据库操作
+            UcUser gnAccount = new UcUser();
+            BeanUtils.copyProperties(gnAccount, accountQueryRequest);
+            gnAccount.setUpdateTime(DateUtil.getSysDate());
+            int updateCount = ucUserBusiSV.updateByAccountId(gnAccount,criteria);
+            // 整理返回对象
+            ResponseHeader responseHeader = new ResponseHeader();
+            if (updateCount > 0) {
+                responseHeader.setIsSuccess(true);
+                responseHeader.setResultCode(ExceptCodeConstants.SUCCESS);
+                responseHeader.setResultMessage("数据更新成功");
+            } else {
+                responseHeader.setIsSuccess(false);
+                responseHeader.setResultCode(ExceptCodeConstants.FAILD);
+                responseHeader.setResultMessage("数据库查询失败");
+            }
+            BaseResponse baseResponse = new BaseResponse();
+            baseResponse.setResponseHeader(responseHeader);
+            return baseResponse;
     }
 }
