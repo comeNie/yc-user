@@ -9,10 +9,10 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.DateUtil;
-import com.ai.slp.user.api.ucUserSecurity.interfaces.IAccountSecurityManageSV;
-import com.ai.slp.user.api.ucUserSecurity.param.AccountEmailRequest;
-import com.ai.slp.user.api.ucUserSecurity.param.AccountPasswordRequest;
-import com.ai.slp.user.api.ucUserSecurity.param.AccountPhoneRequest;
+import com.ai.slp.user.api.ucUserSecurity.interfaces.IUcUserSecurityManageSV;
+import com.ai.slp.user.api.ucUserSecurity.param.UcUserEmailRequest;
+import com.ai.slp.user.api.ucUserSecurity.param.UcUserPasswordRequest;
+import com.ai.slp.user.api.ucUserSecurity.param.UcUserPhoneRequest;
 import com.ai.slp.user.constants.ExceptCodeConstants;
 import com.ai.slp.user.dao.mapper.bo.UcUser;
 import com.ai.slp.user.dao.mapper.bo.UcUserCriteria;
@@ -21,13 +21,13 @@ import com.alibaba.dubbo.config.annotation.Service;
 
 @Service
 @Component
-public class UcUserSecurityManageSVImpl implements IAccountSecurityManageSV {
+public class UcUserSecurityManageSVImpl implements IUcUserSecurityManageSV {
 
 	@Autowired
 	IUcUserBusiSV iAccountBusiSV;
 
 	@Override
-	public BaseResponse setEmailData(AccountEmailRequest emailModifyRequest) throws BusinessException,SystemException {
+	public BaseResponse setEmailData(UcUserEmailRequest emailModifyRequest) throws BusinessException,SystemException {
 		/*// 入参检查
 		iVoValidateSV.validateSetAccountEmail(emailModifyRequest);*/
 		// 整理数据
@@ -37,7 +37,7 @@ public class UcUserSecurityManageSVImpl implements IAccountSecurityManageSV {
 	}
 
 	@Override
-	public BaseResponse setPasswordData(AccountPasswordRequest passwordModifyRequest) throws BusinessException,SystemException {
+	public BaseResponse setPasswordData(UcUserPasswordRequest passwordModifyRequest) throws BusinessException,SystemException {
 		//iVoValidateSV.validateSetAccountPwd(passwordModifyRequest);
 		// 整理数据
 	    UcUser gnAccount = new UcUser();
@@ -46,7 +46,7 @@ public class UcUserSecurityManageSVImpl implements IAccountSecurityManageSV {
 	}
 
 	@Override
-	public BaseResponse setPhoneData(AccountPhoneRequest phoneModifyRequest) throws BusinessException,SystemException {
+	public BaseResponse setPhoneData(UcUserPhoneRequest phoneModifyRequest) throws BusinessException,SystemException {
 		//iVoValidateSV.validateSetPhoneTenant(phoneModifyRequest);
 		// 整理数据
 		UcUser gnAccount = new UcUser();
