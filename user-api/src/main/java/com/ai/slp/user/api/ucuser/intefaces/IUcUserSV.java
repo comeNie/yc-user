@@ -6,7 +6,6 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserListResponse;
 import com.ai.slp.user.api.ucuser.param.SearchUserResponse;
-import com.ai.slp.user.api.ucuser.param.UcUserInfoParams;
 
 public interface IUcUserSV {
 
@@ -38,7 +37,7 @@ public interface IUcUserSV {
     
     interface QueryByEmail{}
     /**
-     * 根据email进行查询（不加状态）
+     * 根据email进行查询
      * @param request
      * @return
      * @throws BusinessException
@@ -50,13 +49,13 @@ public interface IUcUserSV {
     
     interface QueryBaseInfo{}
     /**
-     * 根据email进行查询（不加状态）
+     * 根据UserId进行查询
      * @param request
      * @return
      * @throws BusinessException
      * @throws SystemException
-     * @author zhanglh
-     * @ApiCode UAC_0015
+     * @author zhangyh7
+     * @ApiCode 
      */
     SearchUserResponse queryBaseInfo(SearchUserRequest accountQueryRequest) throws BusinessException,SystemException;
     
