@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.slp.user.dao.mapper.bo.UcUser;
 import com.ai.slp.user.dao.mapper.bo.UcUserTenant;
-import com.ai.slp.user.service.atom.interfaces.ITenantAtomSV;
+import com.ai.slp.user.service.atom.interfaces.IUcUSerTenantAtomSV;
 import com.ai.slp.user.service.atom.interfaces.IUcUserAtomSV;
 import com.ai.slp.user.service.business.interfaces.ITenantBusiSV;
 
@@ -16,7 +16,7 @@ import com.ai.slp.user.service.business.interfaces.ITenantBusiSV;
 public class TenantBusiSVImpl implements ITenantBusiSV {
 
 	@Autowired
-	ITenantAtomSV itenantAtomSV;
+	IUcUSerTenantAtomSV itenantAtomSV;
 	@Autowired
 	IUcUserAtomSV iAccountAtomSV;
 
