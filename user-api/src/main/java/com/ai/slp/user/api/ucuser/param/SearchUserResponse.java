@@ -5,6 +5,7 @@ import com.ai.opt.base.vo.ResponseHeader;
 
 public class SearchUserResponse  extends BaseResponse{
     private static final long serialVersionUID = 1L;
+    public String userId;
     public String userMp;
     public String userEmail;
     public String nickName;
@@ -27,6 +28,12 @@ public class SearchUserResponse  extends BaseResponse{
     }
     public void setNickName(String nickName) {
         this.nickName = nickName;
+    }
+    public String getUserId() {
+        return userId;
+    }
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
     
     
