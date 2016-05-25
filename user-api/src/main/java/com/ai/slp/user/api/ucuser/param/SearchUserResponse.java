@@ -9,6 +9,7 @@ public class SearchUserResponse  extends BaseResponse{
     public String userMp;
     public String userEmail;
     public String nickName;
+    public String tenantId;
     public String getUserMp() {
         return userMp;
     }
