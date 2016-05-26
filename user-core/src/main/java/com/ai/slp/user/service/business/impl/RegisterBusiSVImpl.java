@@ -297,19 +297,21 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
         /**
          * 用户名、手机号、邮箱是不是唯一
          */
-        UcUserCriteria criteria = new UcUserCriteria();
+        UcUserCriteria example = new UcUserCriteria();
+        UcUserCriteria.Criteria criteria = example.createCriteria();
         if(!StringUtils.isBlank(userParams.getUserMp())){
-            criteria.or().andUserMpEqualTo(userParams.getUserMp());
+            criteria.andUserTypeEqualTo(userParams.getUserType());
+            criteria.andUserMpEqualTo(userParams.getUserMp());
         }
         if(!StringUtils.isBlank(userParams.getUserLoginName())){
-            criteria.or().andUserLoginNameEqualTo(userParams.getUserLoginName());
+            criteria.andUserTypeEqualTo(userParams.getUserType());
+            criteria.andUserLoginNameEqualTo(userParams.getUserLoginName());
         }
         if(!StringUtils.isBlank(userParams.getUserEmail())){
-            criteria.or().andUserEmailEqualTo(userParams.getUserEmail());
+            criteria.andUserTypeEqualTo(userParams.getUserType());
+            criteria.andUserEmailEqualTo(userParams.getUserEmail());
         }
-        System.out.println("=================="+userParams.getUserType());
-        criteria.or().andUserTypeEqualTo(userParams.getUserType());
-        List<UcUser> list = registerAtomSv.getUserInfo(criteria);
+        List<UcUser> list = registerAtomSv.getUserInfo(example);
         
         return list;
     }
