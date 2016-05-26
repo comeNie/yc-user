@@ -307,6 +307,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
         if(!StringUtils.isBlank(userParams.getUserEmail())){
             criteria.or().andUserEmailEqualTo(userParams.getUserEmail());
         }
+        System.out.println("=================="+userParams.getUserType());
         criteria.or().andUserTypeEqualTo(userParams.getUserType());
         List<UcUser> list = registerAtomSv.getUserInfo(criteria);
         
