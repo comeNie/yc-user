@@ -77,7 +77,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
             String userId = SequenceUtil.createUserId();
             userParams.setUserId(userId);
             userParams.setTenantId("0");
-            
+            userParams.setUserLoginName(userParams.getUserLoginName().toLowerCase());
             //用户信息
             BeanUtils.copyProperties(ucUser, userParams);
            
