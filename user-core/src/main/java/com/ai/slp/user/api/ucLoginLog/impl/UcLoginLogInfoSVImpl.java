@@ -1,7 +1,7 @@
 package com.ai.slp.user.api.ucLoginLog.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
@@ -9,7 +9,9 @@ import com.ai.slp.user.api.ucLoginLog.interfaces.IUcLoginLogInfoSV;
 import com.ai.slp.user.api.ucLoginLog.param.UcLoginLogParamsRequest;
 import com.ai.slp.user.api.ucLoginLog.param.UcLoginLogResponse;
 import com.ai.slp.user.service.business.interfaces.IUcLoginLogBusiSV;
+import com.alibaba.dubbo.config.annotation.Service;
 
+@Component
 @Service
 public class UcLoginLogInfoSVImpl implements IUcLoginLogInfoSV{
 

@@ -14,9 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
-import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserListResponse;
-import com.ai.slp.user.api.ucuser.param.SearchUserResponse;
+import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.api.ucuser.param.UcUserInfoParams;
 import com.ai.slp.user.dao.mapper.bo.UcUser;
 import com.ai.slp.user.dao.mapper.bo.UcUserCriteria;
@@ -45,7 +44,7 @@ public class UcUserBusiSVImpl implements IUcUserBusiSV {
         UcUserCriteria example = new UcUserCriteria();
         UcUserCriteria.Criteria criteria = example.createCriteria();
 
-        criteria.andTenantIdEqualTo(userListRequest.getTenantId());
+        //criteria.andTenantIdEqualTo(userListRequest.getTenantId());
 
         if (!StringUtils.isBlank(userListRequest.getUserLoginName())) {
             criteria.andUserLoginNameEqualTo(userListRequest.getUserLoginName());

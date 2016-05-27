@@ -1,8 +1,7 @@
 package com.ai.slp.user.api.apiinfo.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
@@ -13,9 +12,10 @@ import com.ai.slp.user.api.apiinfo.param.ApiInfoResponse;
 import com.ai.slp.user.api.apiinfo.param.InsertApiInfoRequest;
 import com.ai.slp.user.api.apiinfo.param.UcApiInfoParams;
 import com.ai.slp.user.service.business.interfaces.IApiInfoBusiSV;
+import com.alibaba.dubbo.config.annotation.Service;
 
+@Component
 @Service
-@Transactional
 public class ApiInfoSVImpl implements IApiInfoSV {
 
     @Autowired

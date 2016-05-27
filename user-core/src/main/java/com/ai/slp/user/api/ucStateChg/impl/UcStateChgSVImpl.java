@@ -1,8 +1,7 @@
 package com.ai.slp.user.api.ucStateChg.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
@@ -12,9 +11,10 @@ import com.ai.slp.user.api.ucStateChg.param.QueryStateChgRequest;
 import com.ai.slp.user.api.ucStateChg.param.QueryStateChgResponse;
 import com.ai.slp.user.api.ucStateChg.param.UcStateChgParamsRequest;
 import com.ai.slp.user.service.business.interfaces.IUcStateChgBusiSV;
+import com.alibaba.dubbo.config.annotation.Service;
 
+@Component
 @Service
-@Transactional
 public class UcStateChgSVImpl implements IUcStateChgSV {
 
     @Autowired

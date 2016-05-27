@@ -1,6 +1,7 @@
 package com.ai.slp.user.api.register.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
@@ -19,6 +20,7 @@ import com.ai.slp.user.service.business.interfaces.IRegisterBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
 
 @Service(validation = "true")
+@Component
 public class RegisterSVImpl implements IRegisterSV {
 
     @Autowired

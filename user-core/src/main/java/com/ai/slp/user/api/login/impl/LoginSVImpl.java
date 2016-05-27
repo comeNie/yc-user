@@ -1,6 +1,7 @@
 package com.ai.slp.user.api.login.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
@@ -18,7 +19,7 @@ import com.alibaba.dubbo.config.annotation.Service;
  * @author zhangqiang7
  */
 @Service(validation = "true")
-//@Service
+@Component
 public class LoginSVImpl implements ILoginSV {
 
     @Autowired

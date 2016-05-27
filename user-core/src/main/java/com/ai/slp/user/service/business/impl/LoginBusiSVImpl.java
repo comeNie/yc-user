@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.StringUtil;
 import com.ai.slp.user.api.login.param.LoginRequest;
 import com.ai.slp.user.api.login.param.LoginResponse;
@@ -39,7 +40,7 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
 
         UcUserCriteria example = new UcUserCriteria();
         UcUserCriteria.Criteria criteria = example.createCriteria();
-        criteria.andTenantIdEqualTo(loginRequest.getTenantId());
+        //criteria.andTenantIdEqualTo(loginRequest.getTenantId());
         criteria.andUserTypeEqualTo(loginRequest.getUserType());
         LoginResponse response = new LoginResponse();
         List<UcUser> userList = new ArrayList<UcUser>();
@@ -73,12 +74,14 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
             }
         }
         if (userList.size() != 0) {
-            response.setUserId(userList.get(0).getUserId());
+            /*response.setUserId(userList.get(0).getUserId());
             response.setTenantId(userList.get(0).getTenantId());
             response.setUserType(userList.get(0).getUserType());
             response.setUserLoginPwd(userList.get(0).getUserLoginPwd());
             if(userList.get(0).getUserNickname()!=null)
-            response.setUserNickname(userList.get(0).getUserNickname());
+            response.setUserNickname(userList.get(0).getUserNickname());*/
+            
+            BeanUtils.copyProperties(response, userList.get(0));
         }
         return response;
     }

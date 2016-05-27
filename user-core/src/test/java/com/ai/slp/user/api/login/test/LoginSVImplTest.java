@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.ai.slp.user.api.login.interfaces.ILoginSV;
 import com.ai.slp.user.api.login.param.LoginRequest;
 import com.ai.slp.user.api.login.param.LoginResponse;
+import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "/context/core-context.xml" })
@@ -20,13 +21,12 @@ public class LoginSVImplTest {
     @Test
     public void loginTest(){
         LoginRequest loginRequest=new LoginRequest();
-        loginRequest.setTenantId("test111");
-        // loginRequest.setUserLoginName("test");
-        loginRequest.setUserEmail("123@123.com");
-        loginRequest.setUserType("01");
-        loginRequest.setUserLoginPwd("123456");
+        loginRequest.setTenantId("0");
+        loginRequest.setUserLoginName("12345");
+        //loginRequest.setUserEmail("11@qq.com");
+        loginRequest.setUserType("11");
+        //loginRequest.setUserLoginPwd("123456");
         LoginResponse loginResponse = loginSV.login(loginRequest);
-        System.out.println(loginResponse.getResponseHeader().getResultMessage());
-        System.out.println(loginResponse.getUserLoginPwd());
+        System.out.println(JSON.toJSONString(loginResponse));
     }
 }

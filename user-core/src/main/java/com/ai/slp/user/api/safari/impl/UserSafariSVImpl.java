@@ -1,7 +1,6 @@
 package com.ai.slp.user.api.safari.impl;
 
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
@@ -13,9 +12,10 @@ import com.ai.slp.user.api.safari.param.InsertUserSafariRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoRequest;
 import com.ai.slp.user.api.safari.param.UserSafariInfoResponse;
 import com.ai.slp.user.service.business.interfaces.IUserSafariBusiSV;
+import com.alibaba.dubbo.config.annotation.Service;
 
+@Component
 @Service
-@Transactional
 public class UserSafariSVImpl implements IUserSafariSV {
 
     private IUserSafariBusiSV userSafariBusiSV;

@@ -1,8 +1,7 @@
 package com.ai.slp.user.api.message.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
@@ -14,9 +13,10 @@ import com.ai.slp.user.api.message.param.QueryMessageRequest;
 import com.ai.slp.user.api.message.param.QueryMessageResponse;
 import com.ai.slp.user.api.message.param.UpdateMessageRequest;
 import com.ai.slp.user.service.business.interfaces.IUserMessageBusiSV;
+import com.alibaba.dubbo.config.annotation.Service;
 
+@Component
 @Service
-@Transactional
 public class UserMessageSVImpl implements IUserMessageSV {
 
     @Autowired
