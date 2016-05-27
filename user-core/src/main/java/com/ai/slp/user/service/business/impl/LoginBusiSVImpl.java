@@ -74,6 +74,8 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
         }
         if (userList.size() != 0) {
             response.setUserId(userList.get(0).getUserId());
+            response.setTenantId(userList.get(0).getTenantId());
+            response.setUserType(userList.get(0).getUserType());
             response.setUserLoginPwd(userList.get(0).getUserLoginPwd());
             if(userList.get(0).getUserNickname()!=null)
             response.setUserNickname(userList.get(0).getUserNickname());
