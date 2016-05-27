@@ -1,28 +1,57 @@
-package com.ai.slp.user.dao.mapper.bo;
+package com.ai.slp.user.api.ucuserphonebooks.param;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class UcTelGroup {
+public class UcTelGroup implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 租户标识
+     */
     private String tenantId;
 
+    /**
+     * 用户ID
+     */
     private String userId;
 
+    /**
+     * 分组标识
+     */
     private String telGroupId;
 
+    /**
+     * 序号
+     */
     private long seq;
 
+    /**
+     * 分组名称
+     */
     private String telGroupName;
 
+    /**
+     * 创建时间
+     */
     private Timestamp createTime;
 
+    /**
+     * 更新时间
+     */
     private Timestamp updateTime;
+
+    /**
+     * 联系人数量
+     */
+    private int count;
 
     public String getTenantId() {
         return tenantId;
     }
 
     public void setTenantId(String tenantId) {
-        this.tenantId = tenantId == null ? null : tenantId.trim();
+        this.tenantId = tenantId;
     }
 
     public String getUserId() {
@@ -30,7 +59,7 @@ public class UcTelGroup {
     }
 
     public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
+        this.userId = userId;
     }
 
     public String getTelGroupId() {
@@ -38,7 +67,7 @@ public class UcTelGroup {
     }
 
     public void setTelGroupId(String telGroupId) {
-        this.telGroupId = telGroupId == null ? null : telGroupId.trim();
+        this.telGroupId = telGroupId;
     }
 
     public long getSeq() {
@@ -54,7 +83,7 @@ public class UcTelGroup {
     }
 
     public void setTelGroupName(String telGroupName) {
-        this.telGroupName = telGroupName == null ? null : telGroupName.trim();
+        this.telGroupName = telGroupName;
     }
 
     public Timestamp getCreateTime() {
@@ -72,4 +101,14 @@ public class UcTelGroup {
     public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+    
+    
 }

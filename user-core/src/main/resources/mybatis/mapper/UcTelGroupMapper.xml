@@ -8,11 +8,7 @@
     <result column="SEQ" property="seq" jdbcType="BIGINT" />
     <result column="TEL_GROUP_NAME" property="telGroupName" jdbcType="VARCHAR" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="CREATE_CHL_ID" property="createChlId" jdbcType="VARCHAR" />
-    <result column="CREATE_OPER_ID" property="createOperId" jdbcType="BIGINT" />
     <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
-    <result column="UPDATE_CHL_ID" property="updateChlId" jdbcType="VARCHAR" />
-    <result column="UPDATE_OPER_ID" property="updateOperId" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,8 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    TENANT_ID, USER_ID, TEL_GROUP_ID, SEQ, TEL_GROUP_NAME, CREATE_TIME, CREATE_CHL_ID, 
-    CREATE_OPER_ID, UPDATE_TIME, UPDATE_CHL_ID, UPDATE_OPER_ID
+    TENANT_ID, USER_ID, TEL_GROUP_ID, SEQ, TEL_GROUP_NAME, CREATE_TIME, UPDATE_TIME
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.user.dao.mapper.bo.UcTelGroupCriteria" >
     select
@@ -103,12 +98,10 @@
   <insert id="insert" parameterType="com.ai.slp.user.dao.mapper.bo.UcTelGroup" >
     insert into uc_tel_group (TENANT_ID, USER_ID, TEL_GROUP_ID, 
       SEQ, TEL_GROUP_NAME, CREATE_TIME, 
-      CREATE_CHL_ID, CREATE_OPER_ID, UPDATE_TIME, 
-      UPDATE_CHL_ID, UPDATE_OPER_ID)
+      UPDATE_TIME)
     values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{telGroupId,jdbcType=VARCHAR}, 
       #{seq,jdbcType=BIGINT}, #{telGroupName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{createChlId,jdbcType=VARCHAR}, #{createOperId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{updateChlId,jdbcType=VARCHAR}, #{updateOperId,jdbcType=BIGINT})
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.ai.slp.user.dao.mapper.bo.UcTelGroup" >
     insert into uc_tel_group
@@ -122,29 +115,15 @@
       <if test="telGroupId != null" >
         TEL_GROUP_ID,
       </if>
-      <if test="seq != null" >
-        SEQ,
-      </if>
+      SEQ,
       <if test="telGroupName != null" >
         TEL_GROUP_NAME,
       </if>
       <if test="createTime != null" >
         CREATE_TIME,
       </if>
-      <if test="createChlId != null" >
-        CREATE_CHL_ID,
-      </if>
-      <if test="createOperId != null" >
-        CREATE_OPER_ID,
-      </if>
       <if test="updateTime != null" >
         UPDATE_TIME,
-      </if>
-      <if test="updateChlId != null" >
-        UPDATE_CHL_ID,
-      </if>
-      <if test="updateOperId != null" >
-        UPDATE_OPER_ID,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -157,29 +136,15 @@
       <if test="telGroupId != null" >
         #{telGroupId,jdbcType=VARCHAR},
       </if>
-      <if test="seq != null" >
-        #{seq,jdbcType=BIGINT},
-      </if>
+      #{seq,jdbcType=BIGINT},
       <if test="telGroupName != null" >
         #{telGroupName,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createChlId != null" >
-        #{createChlId,jdbcType=VARCHAR},
-      </if>
-      <if test="createOperId != null" >
-        #{createOperId,jdbcType=BIGINT},
-      </if>
       <if test="updateTime != null" >
         #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateChlId != null" >
-        #{updateChlId,jdbcType=VARCHAR},
-      </if>
-      <if test="updateOperId != null" >
-        #{updateOperId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -210,20 +175,8 @@
       <if test="record.createTime != null" >
         CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.createChlId != null" >
-        CREATE_CHL_ID = #{record.createChlId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createOperId != null" >
-        CREATE_OPER_ID = #{record.createOperId,jdbcType=BIGINT},
-      </if>
       <if test="record.updateTime != null" >
         UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.updateChlId != null" >
-        UPDATE_CHL_ID = #{record.updateChlId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.updateOperId != null" >
-        UPDATE_OPER_ID = #{record.updateOperId,jdbcType=BIGINT},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -238,11 +191,7 @@
       SEQ = #{record.seq,jdbcType=BIGINT},
       TEL_GROUP_NAME = #{record.telGroupName,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
-      CREATE_CHL_ID = #{record.createChlId,jdbcType=VARCHAR},
-      CREATE_OPER_ID = #{record.createOperId,jdbcType=BIGINT},
-      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
-      UPDATE_CHL_ID = #{record.updateChlId,jdbcType=VARCHAR},
-      UPDATE_OPER_ID = #{record.updateOperId,jdbcType=BIGINT}
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

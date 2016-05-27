@@ -345,32 +345,32 @@ public class UcTelGroupCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andSeqEqualTo(Long value) {
+        public Criteria andSeqEqualTo(long value) {
             addCriterion("SEQ =", value, "seq");
             return (Criteria) this;
         }
 
-        public Criteria andSeqNotEqualTo(Long value) {
+        public Criteria andSeqNotEqualTo(long value) {
             addCriterion("SEQ <>", value, "seq");
             return (Criteria) this;
         }
 
-        public Criteria andSeqGreaterThan(Long value) {
+        public Criteria andSeqGreaterThan(long value) {
             addCriterion("SEQ >", value, "seq");
             return (Criteria) this;
         }
 
-        public Criteria andSeqGreaterThanOrEqualTo(Long value) {
+        public Criteria andSeqGreaterThanOrEqualTo(long value) {
             addCriterion("SEQ >=", value, "seq");
             return (Criteria) this;
         }
 
-        public Criteria andSeqLessThan(Long value) {
+        public Criteria andSeqLessThan(long value) {
             addCriterion("SEQ <", value, "seq");
             return (Criteria) this;
         }
 
-        public Criteria andSeqLessThanOrEqualTo(Long value) {
+        public Criteria andSeqLessThanOrEqualTo(long value) {
             addCriterion("SEQ <=", value, "seq");
             return (Criteria) this;
         }
@@ -385,12 +385,12 @@ public class UcTelGroupCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andSeqBetween(Long value1, Long value2) {
+        public Criteria andSeqBetween(long value1, long value2) {
             addCriterion("SEQ between", value1, value2, "seq");
             return (Criteria) this;
         }
 
-        public Criteria andSeqNotBetween(Long value1, Long value2) {
+        public Criteria andSeqNotBetween(long value1, long value2) {
             addCriterion("SEQ not between", value1, value2, "seq");
             return (Criteria) this;
         }
@@ -525,136 +525,6 @@ public class UcTelGroupCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andCreateChlIdIsNull() {
-            addCriterion("CREATE_CHL_ID is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateChlIdIsNotNull() {
-            addCriterion("CREATE_CHL_ID is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateChlIdEqualTo(String value) {
-            addCriterion("CREATE_CHL_ID =", value, "createChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateChlIdNotEqualTo(String value) {
-            addCriterion("CREATE_CHL_ID <>", value, "createChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateChlIdGreaterThan(String value) {
-            addCriterion("CREATE_CHL_ID >", value, "createChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateChlIdGreaterThanOrEqualTo(String value) {
-            addCriterion("CREATE_CHL_ID >=", value, "createChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateChlIdLessThan(String value) {
-            addCriterion("CREATE_CHL_ID <", value, "createChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateChlIdLessThanOrEqualTo(String value) {
-            addCriterion("CREATE_CHL_ID <=", value, "createChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateChlIdLike(String value) {
-            addCriterion("CREATE_CHL_ID like", value, "createChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateChlIdNotLike(String value) {
-            addCriterion("CREATE_CHL_ID not like", value, "createChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateChlIdIn(List<String> values) {
-            addCriterion("CREATE_CHL_ID in", values, "createChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateChlIdNotIn(List<String> values) {
-            addCriterion("CREATE_CHL_ID not in", values, "createChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateChlIdBetween(String value1, String value2) {
-            addCriterion("CREATE_CHL_ID between", value1, value2, "createChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateChlIdNotBetween(String value1, String value2) {
-            addCriterion("CREATE_CHL_ID not between", value1, value2, "createChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateOperIdIsNull() {
-            addCriterion("CREATE_OPER_ID is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateOperIdIsNotNull() {
-            addCriterion("CREATE_OPER_ID is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateOperIdEqualTo(Long value) {
-            addCriterion("CREATE_OPER_ID =", value, "createOperId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateOperIdNotEqualTo(Long value) {
-            addCriterion("CREATE_OPER_ID <>", value, "createOperId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateOperIdGreaterThan(Long value) {
-            addCriterion("CREATE_OPER_ID >", value, "createOperId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateOperIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("CREATE_OPER_ID >=", value, "createOperId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateOperIdLessThan(Long value) {
-            addCriterion("CREATE_OPER_ID <", value, "createOperId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateOperIdLessThanOrEqualTo(Long value) {
-            addCriterion("CREATE_OPER_ID <=", value, "createOperId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateOperIdIn(List<Long> values) {
-            addCriterion("CREATE_OPER_ID in", values, "createOperId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateOperIdNotIn(List<Long> values) {
-            addCriterion("CREATE_OPER_ID not in", values, "createOperId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateOperIdBetween(Long value1, Long value2) {
-            addCriterion("CREATE_OPER_ID between", value1, value2, "createOperId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCreateOperIdNotBetween(Long value1, Long value2) {
-            addCriterion("CREATE_OPER_ID not between", value1, value2, "createOperId");
-            return (Criteria) this;
-        }
-
         public Criteria andUpdateTimeIsNull() {
             addCriterion("UPDATE_TIME is null");
             return (Criteria) this;
@@ -712,136 +582,6 @@ public class UcTelGroupCriteria {
 
         public Criteria andUpdateTimeNotBetween(Timestamp value1, Timestamp value2) {
             addCriterion("UPDATE_TIME not between", value1, value2, "updateTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateChlIdIsNull() {
-            addCriterion("UPDATE_CHL_ID is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateChlIdIsNotNull() {
-            addCriterion("UPDATE_CHL_ID is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateChlIdEqualTo(String value) {
-            addCriterion("UPDATE_CHL_ID =", value, "updateChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateChlIdNotEqualTo(String value) {
-            addCriterion("UPDATE_CHL_ID <>", value, "updateChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateChlIdGreaterThan(String value) {
-            addCriterion("UPDATE_CHL_ID >", value, "updateChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateChlIdGreaterThanOrEqualTo(String value) {
-            addCriterion("UPDATE_CHL_ID >=", value, "updateChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateChlIdLessThan(String value) {
-            addCriterion("UPDATE_CHL_ID <", value, "updateChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateChlIdLessThanOrEqualTo(String value) {
-            addCriterion("UPDATE_CHL_ID <=", value, "updateChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateChlIdLike(String value) {
-            addCriterion("UPDATE_CHL_ID like", value, "updateChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateChlIdNotLike(String value) {
-            addCriterion("UPDATE_CHL_ID not like", value, "updateChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateChlIdIn(List<String> values) {
-            addCriterion("UPDATE_CHL_ID in", values, "updateChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateChlIdNotIn(List<String> values) {
-            addCriterion("UPDATE_CHL_ID not in", values, "updateChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateChlIdBetween(String value1, String value2) {
-            addCriterion("UPDATE_CHL_ID between", value1, value2, "updateChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateChlIdNotBetween(String value1, String value2) {
-            addCriterion("UPDATE_CHL_ID not between", value1, value2, "updateChlId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateOperIdIsNull() {
-            addCriterion("UPDATE_OPER_ID is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateOperIdIsNotNull() {
-            addCriterion("UPDATE_OPER_ID is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateOperIdEqualTo(Long value) {
-            addCriterion("UPDATE_OPER_ID =", value, "updateOperId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateOperIdNotEqualTo(Long value) {
-            addCriterion("UPDATE_OPER_ID <>", value, "updateOperId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateOperIdGreaterThan(Long value) {
-            addCriterion("UPDATE_OPER_ID >", value, "updateOperId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateOperIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("UPDATE_OPER_ID >=", value, "updateOperId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateOperIdLessThan(Long value) {
-            addCriterion("UPDATE_OPER_ID <", value, "updateOperId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateOperIdLessThanOrEqualTo(Long value) {
-            addCriterion("UPDATE_OPER_ID <=", value, "updateOperId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateOperIdIn(List<Long> values) {
-            addCriterion("UPDATE_OPER_ID in", values, "updateOperId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateOperIdNotIn(List<Long> values) {
-            addCriterion("UPDATE_OPER_ID not in", values, "updateOperId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateOperIdBetween(Long value1, Long value2) {
-            addCriterion("UPDATE_OPER_ID between", value1, value2, "updateOperId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUpdateOperIdNotBetween(Long value1, Long value2) {
-            addCriterion("UPDATE_OPER_ID not between", value1, value2, "updateOperId");
             return (Criteria) this;
         }
     }

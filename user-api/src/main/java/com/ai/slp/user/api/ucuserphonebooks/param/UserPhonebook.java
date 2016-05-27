@@ -1,32 +1,91 @@
-package com.ai.slp.user.dao.mapper.bo;
+package com.ai.slp.user.api.ucuserphonebooks.param;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class UcUserPhonebooks {
+public class UserPhonebook implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * 记录标识
+     */
     private String recordId;
 
+    /**
+     * 租户标识
+     */
     private String tenantId;
 
+    /**
+     * 归属用户
+     */
     private String userId;
 
+    /**
+     * 通讯录分组标识
+     */
     private String telGroupId;
 
+    /**
+     * 通信录分组名称
+     */
+    private String telGroupName;
+
+    /**
+     * 电话号码
+     */
     private String telNo;
 
+    /**
+     * 排序号
+     */
     private long seq;
 
+    /**
+     * 姓名
+     */
     private String telName;
 
     private String telMp;
 
+    /**
+     * 省份编码
+     */
     private String provinceCode;
 
+    /**
+     * 省份名称
+     */
+    private String provinceName;
+
+    /**
+     * 地市编码
+     */
     private String cityCode;
 
+    /**
+     * 地市名称
+     */
+    private String cityName;
+
+    /**
+     * 基础运营商编码
+     */
     private String basicOrgId;
 
+    /**
+     * 基础运营商名称
+     */
+    private String basicOrgName;
+
+    /**
+     * 创建时间
+     */
     private Timestamp createTime;
 
+    /**
+     * 更新时间
+     */
     private Timestamp updateTime;
 
     public String getRecordId() {
@@ -34,7 +93,7 @@ public class UcUserPhonebooks {
     }
 
     public void setRecordId(String recordId) {
-        this.recordId = recordId == null ? null : recordId.trim();
+        this.recordId = recordId;
     }
 
     public String getTenantId() {
@@ -42,7 +101,7 @@ public class UcUserPhonebooks {
     }
 
     public void setTenantId(String tenantId) {
-        this.tenantId = tenantId == null ? null : tenantId.trim();
+        this.tenantId = tenantId;
     }
 
     public String getUserId() {
@@ -50,7 +109,7 @@ public class UcUserPhonebooks {
     }
 
     public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
+        this.userId = userId;
     }
 
     public String getTelGroupId() {
@@ -58,7 +117,15 @@ public class UcUserPhonebooks {
     }
 
     public void setTelGroupId(String telGroupId) {
-        this.telGroupId = telGroupId == null ? null : telGroupId.trim();
+        this.telGroupId = telGroupId;
+    }
+
+    public String getTelGroupName() {
+        return telGroupName;
+    }
+
+    public void setTelGroupName(String telGroupName) {
+        this.telGroupName = telGroupName;
     }
 
     public String getTelNo() {
@@ -66,7 +133,7 @@ public class UcUserPhonebooks {
     }
 
     public void setTelNo(String telNo) {
-        this.telNo = telNo == null ? null : telNo.trim();
+        this.telNo = telNo;
     }
 
     public long getSeq() {
@@ -82,7 +149,7 @@ public class UcUserPhonebooks {
     }
 
     public void setTelName(String telName) {
-        this.telName = telName == null ? null : telName.trim();
+        this.telName = telName;
     }
 
     public String getTelMp() {
@@ -90,7 +157,7 @@ public class UcUserPhonebooks {
     }
 
     public void setTelMp(String telMp) {
-        this.telMp = telMp == null ? null : telMp.trim();
+        this.telMp = telMp;
     }
 
     public String getProvinceCode() {
@@ -98,7 +165,15 @@ public class UcUserPhonebooks {
     }
 
     public void setProvinceCode(String provinceCode) {
-        this.provinceCode = provinceCode == null ? null : provinceCode.trim();
+        this.provinceCode = provinceCode;
+    }
+
+    public String getProvinceName() {
+        return provinceName;
+    }
+
+    public void setProvinceName(String provinceName) {
+        this.provinceName = provinceName;
     }
 
     public String getCityCode() {
@@ -106,7 +181,15 @@ public class UcUserPhonebooks {
     }
 
     public void setCityCode(String cityCode) {
-        this.cityCode = cityCode == null ? null : cityCode.trim();
+        this.cityCode = cityCode;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
     public String getBasicOrgId() {
@@ -114,7 +197,15 @@ public class UcUserPhonebooks {
     }
 
     public void setBasicOrgId(String basicOrgId) {
-        this.basicOrgId = basicOrgId == null ? null : basicOrgId.trim();
+        this.basicOrgId = basicOrgId;
+    }
+
+    public String getBasicOrgName() {
+        return basicOrgName;
+    }
+
+    public void setBasicOrgName(String basicOrgName) {
+        this.basicOrgName = basicOrgName;
     }
 
     public Timestamp getCreateTime() {
@@ -132,4 +223,5 @@ public class UcUserPhonebooks {
     public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
+
 }
