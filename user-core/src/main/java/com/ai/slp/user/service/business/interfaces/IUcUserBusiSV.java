@@ -22,4 +22,7 @@ public interface IUcUserBusiSV {
     UcUser queryBaseInfo(String userId) throws SystemException;
     
     int updateByAccountId(UcUser gnAccount,UcUserCriteria example) throws SystemException;
+    
+    int updateByAcountInfo(UcUser gnAccount,UcUserCriteria example) throws SystemException;
+    
 }

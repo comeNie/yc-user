@@ -18,7 +18,6 @@ import com.ai.slp.user.api.ucUserSecurity.param.UpdatePasswordRequest;
 import com.ai.slp.user.constants.ExceptCodeConstants;
 import com.ai.slp.user.dao.mapper.bo.UcUser;
 import com.ai.slp.user.dao.mapper.bo.UcUserCriteria;
-import com.ai.slp.user.dao.mapper.interfaces.UcUserMapper;
 import com.ai.slp.user.service.business.interfaces.IUcUserBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
 
@@ -26,10 +25,6 @@ import com.alibaba.dubbo.config.annotation.Service;
 @Component
 public class UcUserSecurityManageSVImpl implements IUcUserSecurityManageSV {
 
-
-    @Autowired
-    private transient UcUserMapper userMapper;
-    
 	@Autowired
 	IUcUserBusiSV iAccountBusiSV;
 
@@ -109,6 +104,7 @@ public class UcUserSecurityManageSVImpl implements IUcUserSecurityManageSV {
 	    
 	    UcUserCriteria example = new UcUserCriteria();
 	    UcUserCriteria.Criteria criteria = example.createCriteria();
+	    criteria.andTenantIdEqualTo(gnAccount.getTenantId());
 	    criteria.andUserTypeEqualTo(gnAccount.getUserType());
 	    //判断账户类型
 	    if (!StringUtil.isBlank(gnAccount.getUserLoginName())) {
@@ -124,7 +120,7 @@ public class UcUserSecurityManageSVImpl implements IUcUserSecurityManageSV {
         BaseResponse response = new BaseResponse();
         ResponseHeader responseHeader = null;
         try{
-        userMapper.updateByExample(ucUser, example);
+        iAccountBusiSV.updateByAcountInfo(ucUser, example);
         responseHeader = new ResponseHeader(true,"success","更新成功");
         }catch(Exception e){
             responseHeader = new ResponseHeader(false,"fail","更新失败");

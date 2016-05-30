@@ -122,5 +122,10 @@ public class UcUserBusiSVImpl implements IUcUserBusiSV {
         return ucUserAtomSV.updateByAccountId(ucUser,example) ;
     }
 
+    @Override
+    public int updateByAcountInfo(UcUser gnAccount, UcUserCriteria example) throws SystemException {
+        return ucUserAtomSV.updateByAcountInfo(gnAccount, example);
+    }
+
     
 }
