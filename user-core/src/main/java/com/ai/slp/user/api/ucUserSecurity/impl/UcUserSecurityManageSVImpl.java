@@ -109,7 +109,7 @@ public class UcUserSecurityManageSVImpl implements IUcUserSecurityManageSV {
 	    
 	    UcUserCriteria example = new UcUserCriteria();
 	    UcUserCriteria.Criteria criteria = example.createCriteria();
-	    
+	    criteria.andUserTypeEqualTo(gnAccount.getUserType());
 	    //判断账户类型
 	    if (!StringUtil.isBlank(gnAccount.getUserLoginName())) {
             criteria.andUserLoginNameEqualTo(gnAccount.getUserLoginName());
