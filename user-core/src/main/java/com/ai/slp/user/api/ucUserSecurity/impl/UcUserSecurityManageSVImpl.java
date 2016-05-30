@@ -9,13 +9,16 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.DateUtil;
+import com.ai.opt.sdk.util.StringUtil;
 import com.ai.slp.user.api.ucUserSecurity.interfaces.IUcUserSecurityManageSV;
 import com.ai.slp.user.api.ucUserSecurity.param.UcUserEmailRequest;
 import com.ai.slp.user.api.ucUserSecurity.param.UcUserPasswordRequest;
 import com.ai.slp.user.api.ucUserSecurity.param.UcUserPhoneRequest;
+import com.ai.slp.user.api.ucUserSecurity.param.UpdatePasswordRequest;
 import com.ai.slp.user.constants.ExceptCodeConstants;
 import com.ai.slp.user.dao.mapper.bo.UcUser;
 import com.ai.slp.user.dao.mapper.bo.UcUserCriteria;
+import com.ai.slp.user.dao.mapper.interfaces.UcUserMapper;
 import com.ai.slp.user.service.business.interfaces.IUcUserBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
 
@@ -23,6 +26,10 @@ import com.alibaba.dubbo.config.annotation.Service;
 @Component
 public class UcUserSecurityManageSVImpl implements IUcUserSecurityManageSV {
 
+
+    @Autowired
+    private transient UcUserMapper userMapper;
+    
 	@Autowired
 	IUcUserBusiSV iAccountBusiSV;
 
@@ -54,6 +61,14 @@ public class UcUserSecurityManageSVImpl implements IUcUserSecurityManageSV {
 		return updateAccountById(gnAccount,"电话");
 	}
 
+	    @Override
+	    public BaseResponse updatePassword(UpdatePasswordRequest updatePasswordRequest)
+	            throws BusinessException, SystemException {
+	        UcUser gnAccount = new UcUser();
+	        BeanUtils.copyProperties(gnAccount, updatePasswordRequest);
+	        return updateByAcountInfo(gnAccount);
+	    }
+	
 	/**
 	 * 根据账号ID更新账户信息
 	 * 
@@ -81,4 +96,42 @@ public class UcUserSecurityManageSVImpl implements IUcUserSecurityManageSV {
 		return baseResponse;
 	}
 
+   
+
+	/**
+	 * 根据账户信息修改密码
+	 * @return
+	 * @author zhangqiang7
+	 */
+	private BaseResponse updateByAcountInfo(UcUser gnAccount){
+	    UcUser ucUser = new UcUser();
+	    ucUser.setUserLoginPwd(gnAccount.getUserLoginPwd());
+	    
+	    UcUserCriteria example = new UcUserCriteria();
+	    UcUserCriteria.Criteria criteria = example.createCriteria();
+	    
+	    //判断账户类型
+	    if (!StringUtil.isBlank(gnAccount.getUserLoginName())) {
+            criteria.andUserLoginNameEqualTo(gnAccount.getUserLoginName());
+        }
+        if (!StringUtil.isBlank(gnAccount.getUserEmail())) {
+            criteria.andUserEmailEqualTo(gnAccount.getUserEmail());
+            criteria.andEmailValidateFlagEqualTo("11");
+        }
+        if (!StringUtil.isBlank(gnAccount.getUserMp())) {
+            criteria.andUserMpEqualTo(gnAccount.getUserMp());
+        }
+        BaseResponse response = new BaseResponse();
+        ResponseHeader responseHeader = null;
+        try{
+        userMapper.updateByExample(ucUser, example);
+        responseHeader = new ResponseHeader(true,"success","更新成功");
+        }catch(Exception e){
+            responseHeader = new ResponseHeader(false,"fail","更新失败");
+            e.printStackTrace();
+        }
+        response.setResponseHeader(responseHeader);
+        return response;
+	}
+	
 }
