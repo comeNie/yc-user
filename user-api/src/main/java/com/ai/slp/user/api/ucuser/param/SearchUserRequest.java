@@ -168,7 +168,7 @@ public class SearchUserRequest extends BaseInfo {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(String userId) { 
         this.userId = userId;
     }
 
