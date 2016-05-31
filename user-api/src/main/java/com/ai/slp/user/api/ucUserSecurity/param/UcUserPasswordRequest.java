@@ -9,7 +9,7 @@ public class UcUserPasswordRequest implements Serializable{
 	/**
 	 * 账号ID（必填）
 	 */
-	private Long accountId;
+	private String accountId;
 
 	/**
 	 * 密码（必填）
@@ -21,15 +21,17 @@ public class UcUserPasswordRequest implements Serializable{
 	 */
 	private Long updateAccountId;
 
-	public Long getAccountId() {
-		return accountId;
-	}
+	
 
-	public void setAccountId(Long accountId) {
-		this.accountId = accountId;
-	}
+	public String getAccountId() {
+        return accountId;
+    }
 
-	public Long getUpdateAccountId() {
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
+
+    public Long getUpdateAccountId() {
 		return updateAccountId;
 	}
 
