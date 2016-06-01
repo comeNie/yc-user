@@ -1,8 +1,8 @@
 package com.ai.slp.user.api.ucUserSecurity.param;
 
-import java.io.Serializable;
+import com.ai.opt.base.vo.BaseInfo;
 
-public class UcUserPasswordRequest implements Serializable{
+public class UcUserPasswordRequest extends BaseInfo{
 
 	private static final long serialVersionUID = 1L;
 	

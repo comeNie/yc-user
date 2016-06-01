@@ -43,7 +43,10 @@ public class UcUserSecurityManageSVImpl implements IUcUserSecurityManageSV {
 		//iVoValidateSV.validateSetAccountPwd(passwordModifyRequest);
 		// 整理数据
 	    UcUser gnAccount = new UcUser();
-		BeanUtils.copyProperties(gnAccount, passwordModifyRequest);
+	    gnAccount.setTenantId(passwordModifyRequest.getTenantId());
+	    gnAccount.setUserId(passwordModifyRequest.getAccountId());
+	    gnAccount.setUserLoginPwd(passwordModifyRequest.getAccountPassword());
+	    gnAccount.setCreateOperId(passwordModifyRequest.getUpdateAccountId());
 		return updateAccountById(gnAccount,"密码");
 	}
 
@@ -72,10 +75,12 @@ public class UcUserSecurityManageSVImpl implements IUcUserSecurityManageSV {
 	 * @throws SystemException
 	 */
 	private BaseResponse updateAccountById(UcUser gnAccount,String message) throws SystemException {
-	    UcUserCriteria criteria = new UcUserCriteria();
-	    criteria.or().andUserIdEqualTo(gnAccount.getUserId());
+	    UcUserCriteria example = new UcUserCriteria();
+	    UcUserCriteria.Criteria criteria = example.createCriteria();
+	    criteria.andTenantIdEqualTo(gnAccount.getTenantId());
+	    criteria.andUserIdEqualTo(gnAccount.getUserId());
 		gnAccount.setUpdateTime(DateUtil.getSysDate());
-		int updateCount = iAccountBusiSV.updateByAccountId(gnAccount,criteria);
+		int updateCount = iAccountBusiSV.updateByAccountId(gnAccount,example);
 		BaseResponse baseResponse = new BaseResponse();
 		ResponseHeader responseHeader = new ResponseHeader();
 		if (updateCount > 0) {

@@ -91,7 +91,7 @@ public class UcUserAtomSVImpl implements IUcUserAtomSV {
 
     @Override
     public int updateByAccountId(UcUser ucUser,UcUserCriteria example) throws SystemException {
-        return userMapper.updateByExample(ucUser, example);
+        return userMapper.updateByExampleSelective(ucUser, example);
     }
 
     @Override
