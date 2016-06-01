@@ -84,6 +84,8 @@ public class SearchUserRequest extends BaseInfo {
 
     private String emailValidateFlag;
     
+    private String userType;
+    
     public Integer getPageSize() {
         return pageSize;
     }
@@ -186,6 +188,14 @@ public class SearchUserRequest extends BaseInfo {
 
     public void setEmailValidateFlag(String emailValidateFlag) {
         this.emailValidateFlag = emailValidateFlag;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
 }
