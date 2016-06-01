@@ -36,7 +36,7 @@ public class UcUserSVImpl implements IUcUserSV {
     public SearchUserResponse queryByPhone(SearchUserRequest request) throws BusinessException,
             SystemException {
         
-        UcUser ucuser = ucUserBusiSV.queryByPhone(request.getUserMp());
+        UcUser ucuser = ucUserBusiSV.queryByPhone(request);
         // 整理返回对象
         SearchUserResponse response = new SearchUserResponse();
         ResponseHeader responseHeader = new ResponseHeader();

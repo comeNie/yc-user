@@ -101,9 +101,9 @@ public class UcUserBusiSVImpl implements IUcUserBusiSV {
     }
 
     @Override
-    public UcUser queryByPhone(String phone) throws SystemException {
+    public UcUser queryByPhone(SearchUserRequest request) throws SystemException {
         
-        return ucUserAtomSV.queryByPhone(phone);
+        return ucUserAtomSV.queryByPhone(request);
     }
 
     @Override
