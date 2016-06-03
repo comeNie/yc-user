@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
+import com.ai.opt.sdk.util.StringUtil;
 import com.ai.slp.user.api.ucuser.param.SearchUserListResponse;
 import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.api.ucuser.param.UcUserInfoParams;
@@ -101,16 +102,15 @@ public class UcUserBusiSVImpl implements IUcUserBusiSV {
     }
 
     @Override
-    public UcUser queryByPhone(SearchUserRequest request) throws SystemException {
+    public UcUser queryByPhone(String phone) throws SystemException {
         
-        return ucUserAtomSV.queryByPhone(request);
+        return ucUserAtomSV.queryByPhone(phone);
     }
 
     @Override
     public UcUser queryByEmail(String email) throws SystemException {
         return ucUserAtomSV.queryByEmail(email);
     }
-
 
     @Override
     public UcUser queryBaseInfo(String userId) throws SystemException {
@@ -125,6 +125,27 @@ public class UcUserBusiSVImpl implements IUcUserBusiSV {
     @Override
     public int updateByAcountInfo(UcUser gnAccount, UcUserCriteria example) throws SystemException {
         return ucUserAtomSV.updateByAcountInfo(gnAccount, example);
+    }
+
+    @Override
+    public UcUser queryByBaseInfo(UcUser gnAcount) throws SystemException {
+        UcUserCriteria example = new UcUserCriteria();
+        UcUserCriteria.Criteria criteria = example.createCriteria();
+        criteria.andTenantIdEqualTo(gnAcount.getTenantId());
+        criteria.andUserTypeEqualTo(gnAcount.getUserType());
+        
+        //判断用户登录账号
+        if (!StringUtil.isBlank(gnAcount.getUserLoginName())) {
+            criteria.andUserLoginNameEqualTo(gnAcount.getUserLoginName());
+        }
+        if (!StringUtil.isBlank(gnAcount.getUserEmail())) {
+            criteria.andUserEmailEqualTo(gnAcount.getUserEmail());
+            criteria.andEmailValidateFlagEqualTo("11");
+        }
+        if (!StringUtil.isBlank(gnAcount.getUserMp())) {
+            criteria.andUserMpEqualTo(gnAcount.getUserMp());
+        }
+        return ucUserAtomSV.queryByBaseInfo(example);
     }
 
     

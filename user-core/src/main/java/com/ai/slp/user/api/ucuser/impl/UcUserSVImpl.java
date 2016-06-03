@@ -1,5 +1,6 @@
 package com.ai.slp.user.api.ucuser.impl;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -7,9 +8,9 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
-import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.DateUtil;
 import com.ai.slp.user.api.ucuser.intefaces.IUcUserSV;
+import com.ai.slp.user.api.ucuser.param.QueryBaseInfoRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserListResponse;
 import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserResponse;
@@ -36,7 +37,7 @@ public class UcUserSVImpl implements IUcUserSV {
     public SearchUserResponse queryByPhone(SearchUserRequest request) throws BusinessException,
             SystemException {
         
-        UcUser ucuser = ucUserBusiSV.queryByPhone(request);
+        UcUser ucuser = ucUserBusiSV.queryByPhone(request.getUserMp());
         // 整理返回对象
         SearchUserResponse response = new SearchUserResponse();
         ResponseHeader responseHeader = new ResponseHeader();
@@ -111,5 +112,18 @@ public class UcUserSVImpl implements IUcUserSV {
             BaseResponse baseResponse = new BaseResponse();
             baseResponse.setResponseHeader(responseHeader);
             return baseResponse;
+    }
+
+    @Override
+    public SearchUserResponse queryBaseInfo(QueryBaseInfoRequest request)
+            throws BusinessException, SystemException {
+        UcUser gnAcount = new UcUser();
+        BeanUtils.copyProperties(request, gnAcount);
+        SearchUserResponse response = new SearchUserResponse();
+        UcUser ucUser = new UcUser();  
+        ucUser = ucUserBusiSV.queryByBaseInfo(gnAcount);
+        
+        BeanUtils.copyProperties(ucUser, response);
+        return response;
     }
 }

@@ -4,6 +4,7 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
+import com.ai.slp.user.api.ucuser.param.QueryBaseInfoRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserListResponse;
 import com.ai.slp.user.api.ucuser.param.SearchUserResponse;
 
@@ -71,4 +72,16 @@ public interface IUcUserSV {
      */
     BaseResponse updateBaseInfo(SearchUserRequest accountQueryRequest) throws BusinessException,SystemException;
     
+    interface QueryByBaseInfo{}
+    /**
+     * 根据用户类型查询信息
+     * @param request
+     * @return
+     * @throws BusinessException
+     * @throws SystemException
+     * @author zhangqiang7
+     * @ApiCode UAC_0016
+     */
+    
+    SearchUserResponse queryBaseInfo(QueryBaseInfoRequest request) throws BusinessException,SystemException;
 }

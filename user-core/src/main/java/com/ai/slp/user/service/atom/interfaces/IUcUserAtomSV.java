@@ -3,7 +3,6 @@ package com.ai.slp.user.service.atom.interfaces;
 import java.util.List;
 
 import com.ai.opt.base.exception.SystemException;
-import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfo;
 import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfoCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfo;
@@ -21,7 +20,7 @@ public interface IUcUserAtomSV {
     
     int countByExample(UcUserCriteria example);
     
-    UcUser queryByPhone(SearchUserRequest request)throws SystemException;
+    UcUser queryByPhone(String phone)throws SystemException;
     
     UcUser queryByEmail(String email)throws SystemException;
     
@@ -30,4 +29,6 @@ public interface IUcUserAtomSV {
     int updateByAccountId(UcUser gnAccount,UcUserCriteria example) throws SystemException;
     
     int updateByAcountInfo(UcUser gnAccount,UcUserCriteria example) throws SystemException;
+    
+    UcUser queryByBaseInfo(UcUserCriteria example) throws SystemException;
 }

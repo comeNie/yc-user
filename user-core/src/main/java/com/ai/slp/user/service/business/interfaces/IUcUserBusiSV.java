@@ -1,8 +1,8 @@
 package com.ai.slp.user.service.business.interfaces;
 
 import com.ai.opt.base.exception.SystemException;
-import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserListResponse;
+import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.dao.mapper.bo.UcUser;
 import com.ai.slp.user.dao.mapper.bo.UcUserCriteria;
 
@@ -15,7 +15,7 @@ import com.ai.slp.user.dao.mapper.bo.UcUserCriteria;
 public interface IUcUserBusiSV {
     SearchUserListResponse searchUserList(SearchUserRequest userListRequest);
     
-    UcUser queryByPhone(SearchUserRequest request)throws SystemException;
+    UcUser queryByPhone(String phone)throws SystemException;
     
     UcUser queryByEmail(String email)throws SystemException;
     
@@ -24,5 +24,7 @@ public interface IUcUserBusiSV {
     int updateByAccountId(UcUser gnAccount,UcUserCriteria example) throws SystemException;
     
     int updateByAcountInfo(UcUser gnAccount,UcUserCriteria example) throws SystemException;
+    
+    UcUser queryByBaseInfo(UcUser gnAcount) throws SystemException;
     
 }

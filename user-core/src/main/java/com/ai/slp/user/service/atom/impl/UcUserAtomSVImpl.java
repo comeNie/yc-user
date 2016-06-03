@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.sdk.util.CollectionUtil;
-import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfo;
 import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfoCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfo;
@@ -53,12 +52,11 @@ public class UcUserAtomSVImpl implements IUcUserAtomSV {
     }
 
     @Override
-    public UcUser queryByPhone(SearchUserRequest request) throws SystemException {
+    public UcUser queryByPhone(String phone) throws SystemException {
         
         UcUserCriteria conditon = new UcUserCriteria();
         UcUserCriteria.Criteria criteria = conditon.or();
-        criteria.andUserMpEqualTo(request.getUserMp());
-        criteria.andUserTypeEqualTo(request.getUserType());
+        criteria.andUserMpEqualTo(phone);
         List<UcUser> list = userMapper.selectByExample(conditon);
         if(!CollectionUtil.isEmpty(list)){
             return list.get(0);
@@ -69,10 +67,11 @@ public class UcUserAtomSVImpl implements IUcUserAtomSV {
 
     @Override
     public UcUser queryByEmail(String email) throws SystemException {
-        UcUserCriteria conditon = new UcUserCriteria();
-        UcUserCriteria.Criteria criteria = conditon.or();
+        UcUserCriteria example = new UcUserCriteria();
+        UcUserCriteria.Criteria criteria = example.createCriteria();
         criteria.andUserEmailEqualTo(email);
-        List<UcUser> list = userMapper.selectByExample(conditon);
+        criteria.andEmailValidateFlagEqualTo("11");
+        List<UcUser> list = userMapper.selectByExample(example);
         if(!CollectionUtil.isEmpty(list)){
             return list.get(0);
         }
@@ -99,5 +98,15 @@ public class UcUserAtomSVImpl implements IUcUserAtomSV {
     @Override
     public int updateByAcountInfo(UcUser gnAccount, UcUserCriteria example) throws SystemException {
         return userMapper.updateByExampleSelective(gnAccount, example);
+    }
+
+    @Override
+    public UcUser queryByBaseInfo(UcUserCriteria example) throws SystemException {
+        List<UcUser> list = userMapper.selectByExample(example);
+        UcUser ucUser = new UcUser();
+        if(!list.isEmpty()){
+            ucUser = list.get(0);
+        }
+        return ucUser;
     }
 }
