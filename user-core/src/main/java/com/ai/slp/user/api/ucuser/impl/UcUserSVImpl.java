@@ -1,6 +1,5 @@
 package com.ai.slp.user.api.ucuser.impl;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -8,6 +7,7 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
+import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.DateUtil;
 import com.ai.slp.user.api.ucuser.intefaces.IUcUserSV;
 import com.ai.slp.user.api.ucuser.param.QueryBaseInfoRequest;
@@ -56,16 +56,13 @@ public class UcUserSVImpl implements IUcUserSV {
             SystemException {
         
         UcUser ucuser = ucUserBusiSV.queryByEmail(request.getUserEmail());
-        System.out.println("*****************************");
         // 整理返回对象
         SearchUserResponse response = new SearchUserResponse();
         ResponseHeader responseHeader = new ResponseHeader();
         if (ucuser != null) {
-            System.out.println("=======================");
             BeanUtils.copyProperties(response, ucuser);
             responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "数据查询成功");
         }else{
-            System.out.println("--------------------------");
             responseHeader = new ResponseHeader(false, ExceptCodeConstants.NO_RESULT, "数据不存在");
         }
         response.setResponseHeader(responseHeader);
