@@ -56,16 +56,20 @@ public class UcUserSVImpl implements IUcUserSV {
             SystemException {
         
         UcUser ucuser = ucUserBusiSV.queryByEmail(request.getUserEmail());
+        System.out.println("*****************************");
         // 整理返回对象
         SearchUserResponse response = new SearchUserResponse();
         ResponseHeader responseHeader = new ResponseHeader();
         if (ucuser != null) {
+            System.out.println("=======================");
             BeanUtils.copyProperties(response, ucuser);
             responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "数据查询成功");
         }else{
+            System.out.println("--------------------------");
             responseHeader = new ResponseHeader(false, ExceptCodeConstants.NO_RESULT, "数据不存在");
         }
         response.setResponseHeader(responseHeader);
+        System.out.println("++++++++++++++"+response);
         return response;
     }
 
@@ -89,8 +93,6 @@ public class UcUserSVImpl implements IUcUserSV {
     @Override
     public BaseResponse updateBaseInfo(SearchUserRequest accountQueryRequest)
             throws BusinessException, SystemException {
-        
-        
             UcUserCriteria criteria = new UcUserCriteria();
             criteria.or().andUserIdEqualTo(accountQueryRequest.getUserId());
             // 数据库操作
