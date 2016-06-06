@@ -2,11 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ai.slp.user.dao.mapper.interfaces.UcUserPhonebooksMapper" >
   <resultMap id="BaseResultMap" type="com.ai.slp.user.dao.mapper.bo.UcUserPhonebooks" >
-    <id column="RECORD_ID" property="recordId" jdbcType="VARCHAR" />
+    <id column="TEL_NO" property="telNo" jdbcType="VARCHAR" />
     <result column="TENANT_ID" property="tenantId" jdbcType="VARCHAR" />
     <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
     <result column="TEL_GROUP_ID" property="telGroupId" jdbcType="VARCHAR" />
-    <result column="TEL_NO" property="telNo" jdbcType="VARCHAR" />
     <result column="SEQ" property="seq" jdbcType="BIGINT" />
     <result column="TEL_NAME" property="telName" jdbcType="VARCHAR" />
     <result column="TEL_MP" property="telMp" jdbcType="VARCHAR" />
@@ -14,7 +13,11 @@
     <result column="CITY_CODE" property="cityCode" jdbcType="VARCHAR" />
     <result column="BASIC_ORG_ID" property="basicOrgId" jdbcType="VARCHAR" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_CHL_ID" property="createChlId" jdbcType="VARCHAR" />
+    <result column="CREATE_OPER_ID" property="createOperId" jdbcType="VARCHAR" />
     <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_CHL_ID" property="updateChlId" jdbcType="VARCHAR" />
+    <result column="UPDATE_OPER_ID" property="updateOperId" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -75,8 +78,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    RECORD_ID, TENANT_ID, USER_ID, TEL_GROUP_ID, TEL_NO, SEQ, TEL_NAME, TEL_MP, PROVINCE_CODE, 
-    CITY_CODE, BASIC_ORG_ID, CREATE_TIME, UPDATE_TIME
+    TEL_NO, TENANT_ID, USER_ID, TEL_GROUP_ID, SEQ, TEL_NAME, TEL_MP, PROVINCE_CODE, CITY_CODE, 
+    BASIC_ORG_ID, CREATE_TIME, CREATE_CHL_ID, CREATE_OPER_ID, UPDATE_TIME, UPDATE_CHL_ID, 
+    UPDATE_OPER_ID
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.user.dao.mapper.bo.UcUserPhonebooksCriteria" >
     select
@@ -100,11 +104,11 @@
     select 
     <include refid="Base_Column_List" />
     from uc_user_phonebooks
-    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+    where TEL_NO = #{telNo,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from uc_user_phonebooks
-    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+    where TEL_NO = #{telNo,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.ai.slp.user.dao.mapper.bo.UcUserPhonebooksCriteria" >
     delete from uc_user_phonebooks
@@ -113,22 +117,24 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.ai.slp.user.dao.mapper.bo.UcUserPhonebooks" >
-    insert into uc_user_phonebooks (RECORD_ID, TENANT_ID, USER_ID, 
-      TEL_GROUP_ID, TEL_NO, SEQ, 
-      TEL_NAME, TEL_MP, PROVINCE_CODE, 
-      CITY_CODE, BASIC_ORG_ID, CREATE_TIME, 
-      UPDATE_TIME)
-    values (#{recordId,jdbcType=VARCHAR}, #{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
-      #{telGroupId,jdbcType=VARCHAR}, #{telNo,jdbcType=VARCHAR}, #{seq,jdbcType=BIGINT}, 
-      #{telName,jdbcType=VARCHAR}, #{telMp,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, 
-      #{cityCode,jdbcType=VARCHAR}, #{basicOrgId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+    insert into uc_user_phonebooks (TEL_NO, TENANT_ID, USER_ID, 
+      TEL_GROUP_ID, SEQ, TEL_NAME, 
+      TEL_MP, PROVINCE_CODE, CITY_CODE, 
+      BASIC_ORG_ID, CREATE_TIME, CREATE_CHL_ID, 
+      CREATE_OPER_ID, UPDATE_TIME, UPDATE_CHL_ID, 
+      UPDATE_OPER_ID)
+    values (#{telNo,jdbcType=VARCHAR}, #{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{telGroupId,jdbcType=VARCHAR}, #{seq,jdbcType=BIGINT}, #{telName,jdbcType=VARCHAR}, 
+      #{telMp,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+      #{basicOrgId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createChlId,jdbcType=VARCHAR}, 
+      #{createOperId,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updateChlId,jdbcType=VARCHAR}, 
+      #{updateOperId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ai.slp.user.dao.mapper.bo.UcUserPhonebooks" >
     insert into uc_user_phonebooks
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="recordId != null" >
-        RECORD_ID,
+      <if test="telNo != null" >
+        TEL_NO,
       </if>
       <if test="tenantId != null" >
         TENANT_ID,
@@ -138,9 +144,6 @@
       </if>
       <if test="telGroupId != null" >
         TEL_GROUP_ID,
-      </if>
-      <if test="telNo != null" >
-        TEL_NO,
       </if>
       SEQ,
       <if test="telName != null" >
@@ -161,13 +164,25 @@
       <if test="createTime != null" >
         CREATE_TIME,
       </if>
+      <if test="createChlId != null" >
+        CREATE_CHL_ID,
+      </if>
+      <if test="createOperId != null" >
+        CREATE_OPER_ID,
+      </if>
       <if test="updateTime != null" >
         UPDATE_TIME,
       </if>
+      <if test="updateChlId != null" >
+        UPDATE_CHL_ID,
+      </if>
+      <if test="updateOperId != null" >
+        UPDATE_OPER_ID,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="recordId != null" >
-        #{recordId,jdbcType=VARCHAR},
+      <if test="telNo != null" >
+        #{telNo,jdbcType=VARCHAR},
       </if>
       <if test="tenantId != null" >
         #{tenantId,jdbcType=VARCHAR},
@@ -177,9 +192,6 @@
       </if>
       <if test="telGroupId != null" >
         #{telGroupId,jdbcType=VARCHAR},
-      </if>
-      <if test="telNo != null" >
-        #{telNo,jdbcType=VARCHAR},
       </if>
       #{seq,jdbcType=BIGINT},
       <if test="telName != null" >
@@ -200,8 +212,20 @@
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="createChlId != null" >
+        #{createChlId,jdbcType=VARCHAR},
+      </if>
+      <if test="createOperId != null" >
+        #{createOperId,jdbcType=VARCHAR},
+      </if>
       <if test="updateTime != null" >
         #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateChlId != null" >
+        #{updateChlId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOperId != null" >
+        #{updateOperId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -214,8 +238,8 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update uc_user_phonebooks
     <set >
-      <if test="record.recordId != null" >
-        RECORD_ID = #{record.recordId,jdbcType=VARCHAR},
+      <if test="record.telNo != null" >
+        TEL_NO = #{record.telNo,jdbcType=VARCHAR},
       </if>
       <if test="record.tenantId != null" >
         TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
@@ -225,9 +249,6 @@
       </if>
       <if test="record.telGroupId != null" >
         TEL_GROUP_ID = #{record.telGroupId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.telNo != null" >
-        TEL_NO = #{record.telNo,jdbcType=VARCHAR},
       </if>
       <if test="record.seq != null" >
         SEQ = #{record.seq,jdbcType=BIGINT},
@@ -250,8 +271,20 @@
       <if test="record.createTime != null" >
         CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.createChlId != null" >
+        CREATE_CHL_ID = #{record.createChlId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createOperId != null" >
+        CREATE_OPER_ID = #{record.createOperId,jdbcType=VARCHAR},
+      </if>
       <if test="record.updateTime != null" >
         UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateChlId != null" >
+        UPDATE_CHL_ID = #{record.updateChlId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateOperId != null" >
+        UPDATE_OPER_ID = #{record.updateOperId,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -260,11 +293,10 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update uc_user_phonebooks
-    set RECORD_ID = #{record.recordId,jdbcType=VARCHAR},
+    set TEL_NO = #{record.telNo,jdbcType=VARCHAR},
       TENANT_ID = #{record.tenantId,jdbcType=VARCHAR},
       USER_ID = #{record.userId,jdbcType=VARCHAR},
       TEL_GROUP_ID = #{record.telGroupId,jdbcType=VARCHAR},
-      TEL_NO = #{record.telNo,jdbcType=VARCHAR},
       SEQ = #{record.seq,jdbcType=BIGINT},
       TEL_NAME = #{record.telName,jdbcType=VARCHAR},
       TEL_MP = #{record.telMp,jdbcType=VARCHAR},
@@ -272,7 +304,11 @@
       CITY_CODE = #{record.cityCode,jdbcType=VARCHAR},
       BASIC_ORG_ID = #{record.basicOrgId,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
-      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP}
+      CREATE_CHL_ID = #{record.createChlId,jdbcType=VARCHAR},
+      CREATE_OPER_ID = #{record.createOperId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_CHL_ID = #{record.updateChlId,jdbcType=VARCHAR},
+      UPDATE_OPER_ID = #{record.updateOperId,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -288,9 +324,6 @@
       </if>
       <if test="telGroupId != null" >
         TEL_GROUP_ID = #{telGroupId,jdbcType=VARCHAR},
-      </if>
-      <if test="telNo != null" >
-        TEL_NO = #{telNo,jdbcType=VARCHAR},
       </if>
       <if test="seq != null" >
         SEQ = #{seq,jdbcType=BIGINT},
@@ -313,18 +346,29 @@
       <if test="createTime != null" >
         CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="createChlId != null" >
+        CREATE_CHL_ID = #{createChlId,jdbcType=VARCHAR},
+      </if>
+      <if test="createOperId != null" >
+        CREATE_OPER_ID = #{createOperId,jdbcType=VARCHAR},
+      </if>
       <if test="updateTime != null" >
         UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="updateChlId != null" >
+        UPDATE_CHL_ID = #{updateChlId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOperId != null" >
+        UPDATE_OPER_ID = #{updateOperId,jdbcType=VARCHAR},
+      </if>
     </set>
-    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+    where TEL_NO = #{telNo,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ai.slp.user.dao.mapper.bo.UcUserPhonebooks" >
     update uc_user_phonebooks
     set TENANT_ID = #{tenantId,jdbcType=VARCHAR},
       USER_ID = #{userId,jdbcType=VARCHAR},
       TEL_GROUP_ID = #{telGroupId,jdbcType=VARCHAR},
-      TEL_NO = #{telNo,jdbcType=VARCHAR},
       SEQ = #{seq,jdbcType=BIGINT},
       TEL_NAME = #{telName,jdbcType=VARCHAR},
       TEL_MP = #{telMp,jdbcType=VARCHAR},
@@ -332,7 +376,11 @@
       CITY_CODE = #{cityCode,jdbcType=VARCHAR},
       BASIC_ORG_ID = #{basicOrgId,jdbcType=VARCHAR},
       CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
-      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
-    where RECORD_ID = #{recordId,jdbcType=VARCHAR}
+      CREATE_CHL_ID = #{createChlId,jdbcType=VARCHAR},
+      CREATE_OPER_ID = #{createOperId,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_CHL_ID = #{updateChlId,jdbcType=VARCHAR},
+      UPDATE_OPER_ID = #{updateOperId,jdbcType=VARCHAR}
+    where TEL_NO = #{telNo,jdbcType=VARCHAR}
   </update>
 </mapper>

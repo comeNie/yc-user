@@ -10,7 +10,7 @@ public interface UcUserPhonebooksMapper {
 
     int deleteByExample(UcUserPhonebooksCriteria example);
 
-    int deleteByPrimaryKey(String recordId);
+    int deleteByPrimaryKey(String telNo);
 
     int insert(UcUserPhonebooks record);
 
@@ -18,7 +18,7 @@ public interface UcUserPhonebooksMapper {
 
     List<UcUserPhonebooks> selectByExample(UcUserPhonebooksCriteria example);
 
-    UcUserPhonebooks selectByPrimaryKey(String recordId);
+    UcUserPhonebooks selectByPrimaryKey(String telNo);
 
     int updateByExampleSelective(@Param("record") UcUserPhonebooks record, @Param("example") UcUserPhonebooksCriteria example);
 

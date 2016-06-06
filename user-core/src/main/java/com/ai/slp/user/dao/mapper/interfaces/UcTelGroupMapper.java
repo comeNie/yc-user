@@ -10,13 +10,21 @@ public interface UcTelGroupMapper {
 
     int deleteByExample(UcTelGroupCriteria example);
 
+    int deleteByPrimaryKey(String telGroupId);
+
     int insert(UcTelGroup record);
 
     int insertSelective(UcTelGroup record);
 
     List<UcTelGroup> selectByExample(UcTelGroupCriteria example);
 
+    UcTelGroup selectByPrimaryKey(String telGroupId);
+
     int updateByExampleSelective(@Param("record") UcTelGroup record, @Param("example") UcTelGroupCriteria example);
 
     int updateByExample(@Param("record") UcTelGroup record, @Param("example") UcTelGroupCriteria example);
+
+    int updateByPrimaryKeySelective(UcTelGroup record);
+
+    int updateByPrimaryKey(UcTelGroup record);
 }

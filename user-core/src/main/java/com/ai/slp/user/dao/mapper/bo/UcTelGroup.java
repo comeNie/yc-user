@@ -3,11 +3,13 @@ package com.ai.slp.user.dao.mapper.bo;
 import java.sql.Timestamp;
 
 public class UcTelGroup {
+    private String telGroupId;
+
     private String tenantId;
 
     private String userId;
 
-    private String telGroupId;
+    private String telNo;
 
     private long seq;
 
@@ -15,7 +17,23 @@ public class UcTelGroup {
 
     private Timestamp createTime;
 
+    private String createChlId;
+
+    private String createOperId;
+
     private Timestamp updateTime;
+
+    private String updateChlId;
+
+    private String updateOperId;
+
+    public String getTelGroupId() {
+        return telGroupId;
+    }
+
+    public void setTelGroupId(String telGroupId) {
+        this.telGroupId = telGroupId == null ? null : telGroupId.trim();
+    }
 
     public String getTenantId() {
         return tenantId;
@@ -33,12 +51,12 @@ public class UcTelGroup {
         this.userId = userId == null ? null : userId.trim();
     }
 
-    public String getTelGroupId() {
-        return telGroupId;
+    public String getTelNo() {
+        return telNo;
     }
 
-    public void setTelGroupId(String telGroupId) {
-        this.telGroupId = telGroupId == null ? null : telGroupId.trim();
+    public void setTelNo(String telNo) {
+        this.telNo = telNo == null ? null : telNo.trim();
     }
 
     public long getSeq() {
@@ -65,11 +83,43 @@ public class UcTelGroup {
         this.createTime = createTime;
     }
 
+    public String getCreateChlId() {
+        return createChlId;
+    }
+
+    public void setCreateChlId(String createChlId) {
+        this.createChlId = createChlId == null ? null : createChlId.trim();
+    }
+
+    public String getCreateOperId() {
+        return createOperId;
+    }
+
+    public void setCreateOperId(String createOperId) {
+        this.createOperId = createOperId == null ? null : createOperId.trim();
+    }
+
     public Timestamp getUpdateTime() {
         return updateTime;
     }
 
     public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getUpdateChlId() {
+        return updateChlId;
+    }
+
+    public void setUpdateChlId(String updateChlId) {
+        this.updateChlId = updateChlId == null ? null : updateChlId.trim();
+    }
+
+    public String getUpdateOperId() {
+        return updateOperId;
+    }
+
+    public void setUpdateOperId(String updateOperId) {
+        this.updateOperId = updateOperId == null ? null : updateOperId.trim();
     }
 }

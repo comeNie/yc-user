@@ -125,73 +125,73 @@ public class UcUserPhonebooksCriteria {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andRecordIdIsNull() {
-            addCriterion("RECORD_ID is null");
+        public Criteria andTelNoIsNull() {
+            addCriterion("TEL_NO is null");
             return (Criteria) this;
         }
 
-        public Criteria andRecordIdIsNotNull() {
-            addCriterion("RECORD_ID is not null");
+        public Criteria andTelNoIsNotNull() {
+            addCriterion("TEL_NO is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRecordIdEqualTo(String value) {
-            addCriterion("RECORD_ID =", value, "recordId");
+        public Criteria andTelNoEqualTo(String value) {
+            addCriterion("TEL_NO =", value, "telNo");
             return (Criteria) this;
         }
 
-        public Criteria andRecordIdNotEqualTo(String value) {
-            addCriterion("RECORD_ID <>", value, "recordId");
+        public Criteria andTelNoNotEqualTo(String value) {
+            addCriterion("TEL_NO <>", value, "telNo");
             return (Criteria) this;
         }
 
-        public Criteria andRecordIdGreaterThan(String value) {
-            addCriterion("RECORD_ID >", value, "recordId");
+        public Criteria andTelNoGreaterThan(String value) {
+            addCriterion("TEL_NO >", value, "telNo");
             return (Criteria) this;
         }
 
-        public Criteria andRecordIdGreaterThanOrEqualTo(String value) {
-            addCriterion("RECORD_ID >=", value, "recordId");
+        public Criteria andTelNoGreaterThanOrEqualTo(String value) {
+            addCriterion("TEL_NO >=", value, "telNo");
             return (Criteria) this;
         }
 
-        public Criteria andRecordIdLessThan(String value) {
-            addCriterion("RECORD_ID <", value, "recordId");
+        public Criteria andTelNoLessThan(String value) {
+            addCriterion("TEL_NO <", value, "telNo");
             return (Criteria) this;
         }
 
-        public Criteria andRecordIdLessThanOrEqualTo(String value) {
-            addCriterion("RECORD_ID <=", value, "recordId");
+        public Criteria andTelNoLessThanOrEqualTo(String value) {
+            addCriterion("TEL_NO <=", value, "telNo");
             return (Criteria) this;
         }
 
-        public Criteria andRecordIdLike(String value) {
-            addCriterion("RECORD_ID like", value, "recordId");
+        public Criteria andTelNoLike(String value) {
+            addCriterion("TEL_NO like", value, "telNo");
             return (Criteria) this;
         }
 
-        public Criteria andRecordIdNotLike(String value) {
-            addCriterion("RECORD_ID not like", value, "recordId");
+        public Criteria andTelNoNotLike(String value) {
+            addCriterion("TEL_NO not like", value, "telNo");
             return (Criteria) this;
         }
 
-        public Criteria andRecordIdIn(List<String> values) {
-            addCriterion("RECORD_ID in", values, "recordId");
+        public Criteria andTelNoIn(List<String> values) {
+            addCriterion("TEL_NO in", values, "telNo");
             return (Criteria) this;
         }
 
-        public Criteria andRecordIdNotIn(List<String> values) {
-            addCriterion("RECORD_ID not in", values, "recordId");
+        public Criteria andTelNoNotIn(List<String> values) {
+            addCriterion("TEL_NO not in", values, "telNo");
             return (Criteria) this;
         }
 
-        public Criteria andRecordIdBetween(String value1, String value2) {
-            addCriterion("RECORD_ID between", value1, value2, "recordId");
+        public Criteria andTelNoBetween(String value1, String value2) {
+            addCriterion("TEL_NO between", value1, value2, "telNo");
             return (Criteria) this;
         }
 
-        public Criteria andRecordIdNotBetween(String value1, String value2) {
-            addCriterion("RECORD_ID not between", value1, value2, "recordId");
+        public Criteria andTelNoNotBetween(String value1, String value2) {
+            addCriterion("TEL_NO not between", value1, value2, "telNo");
             return (Criteria) this;
         }
 
@@ -402,76 +402,6 @@ public class UcUserPhonebooksCriteria {
 
         public Criteria andTelGroupIdNotBetween(String value1, String value2) {
             addCriterion("TEL_GROUP_ID not between", value1, value2, "telGroupId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelNoIsNull() {
-            addCriterion("TEL_NO is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelNoIsNotNull() {
-            addCriterion("TEL_NO is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelNoEqualTo(String value) {
-            addCriterion("TEL_NO =", value, "telNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelNoNotEqualTo(String value) {
-            addCriterion("TEL_NO <>", value, "telNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelNoGreaterThan(String value) {
-            addCriterion("TEL_NO >", value, "telNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelNoGreaterThanOrEqualTo(String value) {
-            addCriterion("TEL_NO >=", value, "telNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelNoLessThan(String value) {
-            addCriterion("TEL_NO <", value, "telNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelNoLessThanOrEqualTo(String value) {
-            addCriterion("TEL_NO <=", value, "telNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelNoLike(String value) {
-            addCriterion("TEL_NO like", value, "telNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelNoNotLike(String value) {
-            addCriterion("TEL_NO not like", value, "telNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelNoIn(List<String> values) {
-            addCriterion("TEL_NO in", values, "telNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelNoNotIn(List<String> values) {
-            addCriterion("TEL_NO not in", values, "telNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelNoBetween(String value1, String value2) {
-            addCriterion("TEL_NO between", value1, value2, "telNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andTelNoNotBetween(String value1, String value2) {
-            addCriterion("TEL_NO not between", value1, value2, "telNo");
             return (Criteria) this;
         }
 
@@ -945,6 +875,146 @@ public class UcUserPhonebooksCriteria {
             return (Criteria) this;
         }
 
+        public Criteria andCreateChlIdIsNull() {
+            addCriterion("CREATE_CHL_ID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateChlIdIsNotNull() {
+            addCriterion("CREATE_CHL_ID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateChlIdEqualTo(String value) {
+            addCriterion("CREATE_CHL_ID =", value, "createChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateChlIdNotEqualTo(String value) {
+            addCriterion("CREATE_CHL_ID <>", value, "createChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateChlIdGreaterThan(String value) {
+            addCriterion("CREATE_CHL_ID >", value, "createChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateChlIdGreaterThanOrEqualTo(String value) {
+            addCriterion("CREATE_CHL_ID >=", value, "createChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateChlIdLessThan(String value) {
+            addCriterion("CREATE_CHL_ID <", value, "createChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateChlIdLessThanOrEqualTo(String value) {
+            addCriterion("CREATE_CHL_ID <=", value, "createChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateChlIdLike(String value) {
+            addCriterion("CREATE_CHL_ID like", value, "createChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateChlIdNotLike(String value) {
+            addCriterion("CREATE_CHL_ID not like", value, "createChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateChlIdIn(List<String> values) {
+            addCriterion("CREATE_CHL_ID in", values, "createChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateChlIdNotIn(List<String> values) {
+            addCriterion("CREATE_CHL_ID not in", values, "createChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateChlIdBetween(String value1, String value2) {
+            addCriterion("CREATE_CHL_ID between", value1, value2, "createChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateChlIdNotBetween(String value1, String value2) {
+            addCriterion("CREATE_CHL_ID not between", value1, value2, "createChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateOperIdIsNull() {
+            addCriterion("CREATE_OPER_ID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateOperIdIsNotNull() {
+            addCriterion("CREATE_OPER_ID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateOperIdEqualTo(String value) {
+            addCriterion("CREATE_OPER_ID =", value, "createOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateOperIdNotEqualTo(String value) {
+            addCriterion("CREATE_OPER_ID <>", value, "createOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateOperIdGreaterThan(String value) {
+            addCriterion("CREATE_OPER_ID >", value, "createOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateOperIdGreaterThanOrEqualTo(String value) {
+            addCriterion("CREATE_OPER_ID >=", value, "createOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateOperIdLessThan(String value) {
+            addCriterion("CREATE_OPER_ID <", value, "createOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateOperIdLessThanOrEqualTo(String value) {
+            addCriterion("CREATE_OPER_ID <=", value, "createOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateOperIdLike(String value) {
+            addCriterion("CREATE_OPER_ID like", value, "createOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateOperIdNotLike(String value) {
+            addCriterion("CREATE_OPER_ID not like", value, "createOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateOperIdIn(List<String> values) {
+            addCriterion("CREATE_OPER_ID in", values, "createOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateOperIdNotIn(List<String> values) {
+            addCriterion("CREATE_OPER_ID not in", values, "createOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateOperIdBetween(String value1, String value2) {
+            addCriterion("CREATE_OPER_ID between", value1, value2, "createOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateOperIdNotBetween(String value1, String value2) {
+            addCriterion("CREATE_OPER_ID not between", value1, value2, "createOperId");
+            return (Criteria) this;
+        }
+
         public Criteria andUpdateTimeIsNull() {
             addCriterion("UPDATE_TIME is null");
             return (Criteria) this;
@@ -1002,6 +1072,146 @@ public class UcUserPhonebooksCriteria {
 
         public Criteria andUpdateTimeNotBetween(Timestamp value1, Timestamp value2) {
             addCriterion("UPDATE_TIME not between", value1, value2, "updateTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateChlIdIsNull() {
+            addCriterion("UPDATE_CHL_ID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateChlIdIsNotNull() {
+            addCriterion("UPDATE_CHL_ID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateChlIdEqualTo(String value) {
+            addCriterion("UPDATE_CHL_ID =", value, "updateChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateChlIdNotEqualTo(String value) {
+            addCriterion("UPDATE_CHL_ID <>", value, "updateChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateChlIdGreaterThan(String value) {
+            addCriterion("UPDATE_CHL_ID >", value, "updateChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateChlIdGreaterThanOrEqualTo(String value) {
+            addCriterion("UPDATE_CHL_ID >=", value, "updateChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateChlIdLessThan(String value) {
+            addCriterion("UPDATE_CHL_ID <", value, "updateChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateChlIdLessThanOrEqualTo(String value) {
+            addCriterion("UPDATE_CHL_ID <=", value, "updateChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateChlIdLike(String value) {
+            addCriterion("UPDATE_CHL_ID like", value, "updateChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateChlIdNotLike(String value) {
+            addCriterion("UPDATE_CHL_ID not like", value, "updateChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateChlIdIn(List<String> values) {
+            addCriterion("UPDATE_CHL_ID in", values, "updateChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateChlIdNotIn(List<String> values) {
+            addCriterion("UPDATE_CHL_ID not in", values, "updateChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateChlIdBetween(String value1, String value2) {
+            addCriterion("UPDATE_CHL_ID between", value1, value2, "updateChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateChlIdNotBetween(String value1, String value2) {
+            addCriterion("UPDATE_CHL_ID not between", value1, value2, "updateChlId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateOperIdIsNull() {
+            addCriterion("UPDATE_OPER_ID is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateOperIdIsNotNull() {
+            addCriterion("UPDATE_OPER_ID is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateOperIdEqualTo(String value) {
+            addCriterion("UPDATE_OPER_ID =", value, "updateOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateOperIdNotEqualTo(String value) {
+            addCriterion("UPDATE_OPER_ID <>", value, "updateOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateOperIdGreaterThan(String value) {
+            addCriterion("UPDATE_OPER_ID >", value, "updateOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateOperIdGreaterThanOrEqualTo(String value) {
+            addCriterion("UPDATE_OPER_ID >=", value, "updateOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateOperIdLessThan(String value) {
+            addCriterion("UPDATE_OPER_ID <", value, "updateOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateOperIdLessThanOrEqualTo(String value) {
+            addCriterion("UPDATE_OPER_ID <=", value, "updateOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateOperIdLike(String value) {
+            addCriterion("UPDATE_OPER_ID like", value, "updateOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateOperIdNotLike(String value) {
+            addCriterion("UPDATE_OPER_ID not like", value, "updateOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateOperIdIn(List<String> values) {
+            addCriterion("UPDATE_OPER_ID in", values, "updateOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateOperIdNotIn(List<String> values) {
+            addCriterion("UPDATE_OPER_ID not in", values, "updateOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateOperIdBetween(String value1, String value2) {
+            addCriterion("UPDATE_OPER_ID between", value1, value2, "updateOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateOperIdNotBetween(String value1, String value2) {
+            addCriterion("UPDATE_OPER_ID not between", value1, value2, "updateOperId");
             return (Criteria) this;
         }
     }
