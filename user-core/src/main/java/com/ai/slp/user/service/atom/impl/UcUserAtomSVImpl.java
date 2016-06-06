@@ -71,7 +71,8 @@ public class UcUserAtomSVImpl implements IUcUserAtomSV {
         UcUserCriteria.Criteria criteria = example.createCriteria();
         criteria.andUserEmailEqualTo(email);
         List<UcUser> list = userMapper.selectByExample(example);
-        if(!CollectionUtil.isEmpty(list)){
+        System.out.println(list+"00000000000"+list.size());
+        if(!CollectionUtil.isEmpty(list)&&list.size()>0){
             return list.get(0);
         }
         return null;
