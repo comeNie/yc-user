@@ -20,7 +20,7 @@ public class UcUserSVTest {
     @Test
     public void searchUserTest() {
         SearchUserRequest request = new SearchUserRequest();
-        //request.setTenantId("test111");
+        request.setTenantId("0");
         request.setUserId("000000000000000202");
         //request.setBeginTime("2016-4-27 00:00:00");
        //request.setEndTime("2016-4-30 00:00:00");
