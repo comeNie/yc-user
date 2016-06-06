@@ -115,7 +115,7 @@ public class UcUserSVImpl implements IUcUserSV {
     }
 
     @Override
-    public SearchUserResponse queryBaseInfo(QueryBaseInfoRequest request)
+    public SearchUserResponse queryByBaseInfo(QueryBaseInfoRequest request)
             throws BusinessException, SystemException {
         UcUser gnAcount = new UcUser();
         BeanUtils.copyProperties(request, gnAcount);

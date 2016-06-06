@@ -83,5 +83,5 @@ public interface IUcUserSV {
      * @ApiCode UAC_0016
      */
     
-    SearchUserResponse queryBaseInfo(QueryBaseInfoRequest request) throws BusinessException,SystemException;
+    SearchUserResponse queryByBaseInfo(QueryBaseInfoRequest request) throws BusinessException,SystemException;
 }
