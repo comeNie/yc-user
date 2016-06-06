@@ -69,7 +69,7 @@ public class UcUserSVImpl implements IUcUserSV {
             responseHeader = new ResponseHeader(false, ExceptCodeConstants.NO_RESULT, "数据不存在");
         }
         response.setResponseHeader(responseHeader);
-        System.out.println("++++++++++++++"+response);
+        System.out.println("++++++++++++++"+response.getResponseHeader());
         return response;
     }
 
