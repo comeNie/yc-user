@@ -45,8 +45,6 @@ public class SearchUserResponse  extends BaseResponse{
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
     }
-    public void setResponseHeader(ResponseHeader responseHeader) {
-    }
     public String getUserId() {
         return userId;
     }
