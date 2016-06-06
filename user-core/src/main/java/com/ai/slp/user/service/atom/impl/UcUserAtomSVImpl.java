@@ -70,7 +70,6 @@ public class UcUserAtomSVImpl implements IUcUserAtomSV {
         UcUserCriteria example = new UcUserCriteria();
         UcUserCriteria.Criteria criteria = example.createCriteria();
         criteria.andUserEmailEqualTo(email);
-        criteria.andEmailValidateFlagEqualTo("11");
         List<UcUser> list = userMapper.selectByExample(example);
         if(!CollectionUtil.isEmpty(list)){
             return list.get(0);
