@@ -84,10 +84,10 @@ public class UcUserAtomSVImpl implements IUcUserAtomSV {
         UcUserCriteria.Criteria criteria = conditon.or();
         criteria.andUserIdEqualTo(userId);
         List<UcUser> list = userMapper.selectByExample(conditon);
-        if(!CollectionUtil.isEmpty(list)){
-            return list.get(0);
+        if(CollectionUtil.isEmpty(list)){
+            return null;
         }
-        return null;
+        return list.get(0);
     }
 
     @Override

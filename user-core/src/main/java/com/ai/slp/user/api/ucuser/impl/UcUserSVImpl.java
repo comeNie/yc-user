@@ -77,7 +77,7 @@ public class UcUserSVImpl implements IUcUserSV {
         SearchUserResponse response = new SearchUserResponse();
         ResponseHeader responseHeader = new ResponseHeader();
         if (ucuser != null) {
-            BeanUtils.copyProperties(response, ucuser);
+            BeanUtils.copyProperties(ucuser, response);
             responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "数据查询成功");
         }else{
             responseHeader = new ResponseHeader(true, ExceptCodeConstants.NO_RESULT, "数据不存在");

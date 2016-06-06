@@ -21,10 +21,10 @@ public class UcUserSVTest {
     public void searchUserTest() {
         SearchUserRequest request = new SearchUserRequest();
         //request.setTenantId("test111");
-        request.setUserId("000000000000000204");
+        request.setUserId("000000000000000202");
         //request.setBeginTime("2016-4-27 00:00:00");
        //request.setEndTime("2016-4-30 00:00:00");
         
-        System.out.println(JSON.toJSONString(ucUserListSV.queryBaseInfo(request)));
+        System.out.println(ucUserListSV.queryBaseInfo(request).getUserId());
     }
 }
