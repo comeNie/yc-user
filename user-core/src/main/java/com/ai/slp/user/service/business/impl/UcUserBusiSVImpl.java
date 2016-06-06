@@ -65,6 +65,9 @@ public class UcUserBusiSVImpl implements IUcUserBusiSV {
         if (!StringUtils.isBlank(userListRequest.getUserState())) {
             criteria.andUserStateEqualTo(userListRequest.getUserState());
         }
+        if(!StringUtils.isBlank(userListRequest.getUserType())){
+            criteria.andUserStateEqualTo(userListRequest.getUserType());
+        }
         if ((userListRequest.getBeginTime() != null) && (userListRequest.getEndTime() != null)) {
             criteria.andCreateTimeBetween(
                     DateUtils.getTimestamp(userListRequest.getBeginTime(), "yyyy-MM-dd HH:mm:ss"),
