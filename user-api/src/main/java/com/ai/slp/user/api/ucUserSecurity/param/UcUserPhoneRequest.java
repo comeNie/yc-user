@@ -1,48 +1,48 @@
 package com.ai.slp.user.api.ucUserSecurity.param;
 
-import java.io.Serializable;
+import com.ai.opt.base.vo.BaseInfo;
 
-public class UcUserPhoneRequest implements Serializable{
+public class UcUserPhoneRequest extends BaseInfo {
 
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * 账号ID（必填）
-	 */
-	private Long accountId;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * 手机号码（必填）
-	 */
-	private String phone;
-	
-	/**
-	 * 更新人ID
-	 */
-	private Long updateAccountId;
+    /**
+     * 账号ID（必填）
+     */
+    private String accountId;
 
-	public Long getAccountId() {
-		return accountId;
-	}
+    /**
+     * 手机号码（必填）
+     */
+    private String phone;
 
-	public void setAccountId(Long accountId) {
-		this.accountId = accountId;
-	}
+    /**
+     * 更新人ID
+     */
+    private Long updateAccountId;
 
-	public String getPhone() {
-		return phone;
-	}
+    public String getAccountId() {
+        return accountId;
+    }
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
+    }
 
-	public Long getUpdateAccountId() {
-		return updateAccountId;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public void setUpdateAccountId(Long updateAccountId) {
-		this.updateAccountId = updateAccountId;
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Long getUpdateAccountId() {
+        return updateAccountId;
+    }
+
+    public void setUpdateAccountId(Long updateAccountId) {
+        this.updateAccountId = updateAccountId;
+    }
 
 }

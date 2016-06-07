@@ -55,7 +55,10 @@ public class UcUserSecurityManageSVImpl implements IUcUserSecurityManageSV {
 		//iVoValidateSV.validateSetPhoneTenant(phoneModifyRequest);
 		// 整理数据
 		UcUser gnAccount = new UcUser();
-		BeanUtils.copyProperties(gnAccount, phoneModifyRequest);
+		gnAccount.setTenantId(phoneModifyRequest.getTenantId());
+		gnAccount.setUserMp(phoneModifyRequest.getPhone());
+		gnAccount.setUserId(phoneModifyRequest.getAccountId());
+		gnAccount.setUpdateOperId(phoneModifyRequest.getUpdateAccountId());
 		return updateAccountById(gnAccount,"电话");
 	}
 
