@@ -56,7 +56,7 @@ public class LoginBusiSVImpl implements ILoginBusiSV {
         }
         if (!StringUtil.isBlank(loginRequest.getUserEmail())) {
             criteria.andUserEmailEqualTo(loginRequest.getUserEmail());
-            criteria.andEmailValidateFlagEqualTo("11");
+            criteria.andEmailValidateFlagEqualTo("10");
             userList = userMapper.selectByExample(example);
             if (userList.size() == 0) {
                 throw new BusinessException(UserLoginErrorCode.USER_ERR_002, "邮箱未验证");
