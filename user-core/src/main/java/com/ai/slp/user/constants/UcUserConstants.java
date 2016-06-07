@@ -52,6 +52,8 @@ public final class UcUserConstants {
         /** 初始租户ID值 */
         public static final String INIT_TENANT_ID = "0";
         
+        /** 租户ID值 */
+        public static final String TENANT_ID = "SLP";
         
     }
     
