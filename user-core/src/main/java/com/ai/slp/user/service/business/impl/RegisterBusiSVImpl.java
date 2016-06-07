@@ -12,9 +12,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.opt.sdk.util.StringUtil;
+import com.ai.opt.sdk.util.UUIDUtil;
+import com.ai.slp.balance.api.accountmaintain.interfaces.IAccountMaintainSV;
+import com.ai.slp.balance.api.accountmaintain.param.RegAccReq;
 import com.ai.slp.user.api.register.param.RegisterParamsRequest;
 import com.ai.slp.user.api.register.param.UcBankKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcContactInfoParams;
@@ -22,6 +26,7 @@ import com.ai.slp.user.api.register.param.UcCustKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcGroupKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcUserParams;
 import com.ai.slp.user.constants.ExceptCodeConstants;
+import com.ai.slp.user.constants.UcUserConstants.Account;
 import com.ai.slp.user.dao.mapper.bo.UcBankInfo;
 import com.ai.slp.user.dao.mapper.bo.UcContactsInfo;
 import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfo;
@@ -36,6 +41,7 @@ import com.ai.slp.user.service.atom.interfaces.IUcBankInfoAtomSV;
 import com.ai.slp.user.service.atom.interfaces.IUcContactsInfoAtomSV;
 import com.ai.slp.user.service.business.interfaces.IRegisterBusiSV;
 import com.ai.slp.user.util.SequenceUtil;
+import com.alibaba.fastjson.JSON;
 
 @Service
 @Transactional
@@ -70,7 +76,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
             //插入user主表
             String userId = SequenceUtil.createUserId();
             userParams.setUserId(userId);
-            userParams.setTenantId("0");
+            userParams.setTenantId("SLP");
             userParams.setUserLoginName(userParams.getUserLoginName().toLowerCase());
             //用户信息
             BeanUtils.copyProperties(ucUser, userParams);
@@ -94,6 +100,23 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
             ucUserAgree.setTenantId(userParams.getTenantId());
             ucUserAgree.setAgreeSeqId(agreementId);
             registerAtomSv.InsertUcUserAgreeAtomSv(ucUserAgree);
+         
+            //创建支付密码账户
+            RegAccReq vo = new RegAccReq();
+            vo.setExternalId(UUIDUtil.genId32());// 外部流水号ID
+            vo.setSystemId("SLP-UAC_WEB");// 系统ID
+            vo.setTenantId(Account.TENANT_ID);// 租户ID
+            vo.setRegCustomerId(userId);
+            vo.setAcctName(userParams.getUserLoginName());
+            vo.setAcctType("0");// 账户类型， 0 后付费
+            vo.setRegType("1");//注册方式网站注册
+            vo.setPayType("2");// 支付方式
+            IAccountMaintainSV accountMaintainSV = DubboConsumerFactory.getService(IAccountMaintainSV.class);
+            try {
+               accountMaintainSV.createAccount(vo);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return userId;
             
     }
