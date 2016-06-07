@@ -26,4 +26,7 @@
 
 	<dubbo:reference id="iLoginSV"
 		interface="com.ai.slp.user.api.login.interfaces.ILoginSV" />
+		
+	<dubbo:reference id="iAccountMaintainSV"
+		interface="com.ai.slp.balance.api.accountmaintain.interfaces.IAccountMaintainSV" />
 </beans>
