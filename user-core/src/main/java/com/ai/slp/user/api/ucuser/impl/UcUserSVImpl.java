@@ -116,12 +116,12 @@ public class UcUserSVImpl implements IUcUserSV {
     public SearchUserResponse queryByBaseInfo(QueryBaseInfoRequest request)
             throws BusinessException, SystemException {
         UcUser gnAcount = new UcUser();
-        BeanUtils.copyProperties(request, gnAcount);
+        BeanUtils.copyProperties(gnAcount,request);
         SearchUserResponse response = new SearchUserResponse();
         UcUser ucUser = new UcUser();  
         ucUser = ucUserBusiSV.queryByBaseInfo(gnAcount);
         
-        BeanUtils.copyProperties(ucUser, response);
+        BeanUtils.copyProperties(response, ucUser);
         return response;
     }
 }
