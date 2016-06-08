@@ -61,7 +61,7 @@ public final class SequenceUtil {
 	}
 
 	public static String createTelGroupId() {
-		long seq = SeqUtil.getNewId(SequenceCodeConstants.UserSequenceCode.UC_TEL_GROUP$SEQ$SEQ);
+		long seq = SeqUtil.getNewId(SequenceCodeConstants.UserSequenceCode.UC_TEL_GROUP$TEL_GROUP_ID$SEQ);
 		return String.valueOf(seq);
 	}
 }

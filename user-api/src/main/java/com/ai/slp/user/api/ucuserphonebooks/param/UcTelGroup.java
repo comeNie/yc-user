@@ -4,111 +4,130 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 public class UcTelGroup implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * 租户标识
-     */
-    private String tenantId;
+	/**
+	 * 租户标识
+	 */
+	private String tenantId;
 
-    /**
-     * 用户ID
-     */
-    private String userId;
+	/**
+	 * 用户ID
+	 */
+	private String userId;
 
-    /**
-     * 分组标识
-     */
-    private String telGroupId;
+	/**
+	 * 分组标识
+	 */
+	private String telGroupId;
 
-    /**
-     * 序号
-     */
-    private long seq;
+	/**
+	 * 序号
+	 */
+	private long seq;
 
-    /**
-     * 分组名称
-     */
-    private String telGroupName;
+	/**
+	 * 分组名称
+	 */
+	private String telGroupName;
 
-    /**
-     * 创建时间
-     */
-    private Timestamp createTime;
+	/**
+	 * 创建时间
+	 */
+	private Timestamp createTime;
 
-    /**
-     * 更新时间
-     */
-    private Timestamp updateTime;
+	/**
+	 * 更新时间
+	 */
+	private Timestamp updateTime;
 
-    /**
-     * 联系人数量
-     */
-    private int count;
+	private String createTimeStr;
 
-    public String getTenantId() {
-        return tenantId;
-    }
+	private String updateTimeStr;
 
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId;
-    }
+	/**
+	 * 联系人数量
+	 */
+	private int count;
 
-    public String getUserId() {
-        return userId;
-    }
+	public String getTenantId() {
+		return tenantId;
+	}
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
+	public void setTenantId(String tenantId) {
+		this.tenantId = tenantId;
+	}
 
-    public String getTelGroupId() {
-        return telGroupId;
-    }
+	public String getUserId() {
+		return userId;
+	}
 
-    public void setTelGroupId(String telGroupId) {
-        this.telGroupId = telGroupId;
-    }
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
-    public long getSeq() {
-        return seq;
-    }
+	public String getTelGroupId() {
+		return telGroupId;
+	}
 
-    public void setSeq(long seq) {
-        this.seq = seq;
-    }
+	public void setTelGroupId(String telGroupId) {
+		this.telGroupId = telGroupId;
+	}
 
-    public String getTelGroupName() {
-        return telGroupName;
-    }
+	public long getSeq() {
+		return seq;
+	}
 
-    public void setTelGroupName(String telGroupName) {
-        this.telGroupName = telGroupName;
-    }
+	public void setSeq(long seq) {
+		this.seq = seq;
+	}
 
-    public Timestamp getCreateTime() {
-        return createTime;
-    }
+	public String getTelGroupName() {
+		return telGroupName;
+	}
 
-    public void setCreateTime(Timestamp createTime) {
-        this.createTime = createTime;
-    }
+	public void setTelGroupName(String telGroupName) {
+		this.telGroupName = telGroupName;
+	}
 
-    public Timestamp getUpdateTime() {
-        return updateTime;
-    }
+	public Timestamp getCreateTime() {
+		return createTime;
+	}
 
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
-    }
+	public void setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
+	}
 
-    public int getCount() {
-        return count;
-    }
+	public Timestamp getUpdateTime() {
+		return updateTime;
+	}
 
-    public void setCount(int count) {
-        this.count = count;
-    }
-    
-    
+	public void setUpdateTime(Timestamp updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public String getCreateTimeStr() {
+		return createTimeStr;
+	}
+
+	public void setCreateTimeStr(String createTimeStr) {
+		this.createTimeStr = createTimeStr;
+	}
+
+	public String getUpdateTimeStr() {
+		return updateTimeStr;
+	}
+
+	public void setUpdateTimeStr(String updateTimeStr) {
+		this.updateTimeStr = updateTimeStr;
+	}
+
 }
