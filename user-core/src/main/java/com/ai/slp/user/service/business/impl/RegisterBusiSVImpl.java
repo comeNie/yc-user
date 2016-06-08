@@ -100,7 +100,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
             ucUserAgree.setTenantId(userParams.getTenantId());
             ucUserAgree.setAgreeSeqId(agreementId);
             registerAtomSv.InsertUcUserAgreeAtomSv(ucUserAgree);
-         
+          
             //创建支付密码账户
             RegAccReq vo = new RegAccReq();
             vo.setExternalId(UUIDUtil.genId32());// 外部流水号ID
