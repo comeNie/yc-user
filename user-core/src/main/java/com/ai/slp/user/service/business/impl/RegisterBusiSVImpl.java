@@ -106,7 +106,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
             vo.setExternalId(UUIDUtil.genId32());// 外部流水号ID
             vo.setSystemId("SLP-UAC_WEB");// 系统ID
             vo.setTenantId(Account.TENANT_ID);// 租户ID
-            vo.setRegCustomerId(Long.valueOf(userId).toString());
+            vo.setRegCustomerId(userId);
             vo.setAcctName(userParams.getUserLoginName());
             vo.setAcctType("0");// 账户类型， 0 后付费
             vo.setRegType("1");//注册方式网站注册
