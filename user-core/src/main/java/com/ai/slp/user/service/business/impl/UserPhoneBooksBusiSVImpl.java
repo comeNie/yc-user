@@ -197,6 +197,8 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 		PageInfo<UserPhonebook> pageInfo = new PageInfo<UserPhonebook>();
 		pageInfo.setResult(l);
 		pageInfo.setCount(count);
+		pageInfo.setPageNo(req.getPageNo());
+		pageInfo.setPageSize(req.getPageSize());
 		return pageInfo;
 	}
 }
