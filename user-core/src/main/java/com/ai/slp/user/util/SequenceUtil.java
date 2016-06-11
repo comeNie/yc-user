@@ -64,4 +64,10 @@ public final class SequenceUtil {
 		long seq = SeqUtil.getNewId(SequenceCodeConstants.UserSequenceCode.UC_TEL_GROUP$TEL_GROUP_ID$SEQ);
 		return String.valueOf(seq);
 	}
+
+	public static String createTelNo() {
+		long seq = SeqUtil.getNewId(SequenceCodeConstants.UserSequenceCode.UC_USER_PHONEBOOKS$TEL_NO$SEQ);
+		return String.valueOf(seq);
+	}
+
 }

@@ -44,11 +44,6 @@ public class SequenceCodeConstants {
 		public static final String UC_STATE_CHG$STATE_CHG_ID$SEQ = "UC_STATE_CHG$STATE_CHG_ID$SEQ";
 
 		/**
-		 * uc_tel_group
-		 */
-		public static final String UC_TEL_GROUP$SEQ$SEQ = "UC_TEL_GROUP$SEQ$SEQ";
-
-		/**
 		 * uc_user
 		 */
 		public static final String UC_USER$USER_ID$SEQ = "UC_USER$USER_ID$SEQ";
@@ -89,6 +84,8 @@ public class SequenceCodeConstants {
 		public static final String UC_USER_SUBS$CARD_SEQ_ID$SEQ = "UC_USER_SUBS$CARD_SEQ_ID$SEQ";
 
 		public static final String UC_TEL_GROUP$TEL_GROUP_ID$SEQ = "UC_TEL_GROUP$TEL_GROUP_ID$SEQ";
+
+		public static final String UC_USER_PHONEBOOKS$TEL_NO$SEQ = "UC_USER_PHONEBOOKS$TEL_NO$SEQ";
 
 	}
 }
