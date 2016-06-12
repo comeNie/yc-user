@@ -66,13 +66,13 @@ public class UcUserAtomSVImpl implements IUcUserAtomSV {
     }
 
     @Override
-    public UcUser queryByEmail(String email) throws SystemException {
+    public List<UcUser> queryByEmail(String email) throws SystemException {
         UcUserCriteria example = new UcUserCriteria();
         UcUserCriteria.Criteria criteria = example.createCriteria();
         criteria.andUserEmailEqualTo(email);
         List<UcUser> list = userMapper.selectByExample(example);
         if(!CollectionUtil.isEmpty(list)){
-            return list.get(0);
+            return list;
         }
         return null;
     }
