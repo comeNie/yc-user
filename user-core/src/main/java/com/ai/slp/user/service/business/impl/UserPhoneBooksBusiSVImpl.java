@@ -170,7 +170,7 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 		UcUserPhonebooksCriteria sql = new UcUserPhonebooksCriteria();
 		sql.or().andTelMpEqualTo(telMp).andTelGroupIdEqualTo(telGroupId);
 		List<UcUserPhonebooks> list = ucUserPhonebooksMapper.selectByExample(sql);
-		return CollectionUtil.isEmpty(list);
+		return CollectionUtil.isEmpty(list)?false:true;
 	}
 
 	@Override
