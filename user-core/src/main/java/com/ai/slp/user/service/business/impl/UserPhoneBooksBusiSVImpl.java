@@ -3,6 +3,7 @@ package com.ai.slp.user.service.business.impl;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -128,25 +129,48 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 	}
 
 	@Override
-	public void batchAddUserPhonebooks(List<UcUserPhonebooksBatchData> datas) {
-		if (CollectionUtil.isEmpty(datas)) {
-			return;
+	public List<String> batchAddUserPhonebooks(Map<String, UcUserPhonebooksBatchData> dataMap) {
+		if (dataMap.isEmpty()) {
+			return null;
 		}
+		List<String> errors = new ArrayList<String>();
 		Timestamp time = DateUtil.getSysDate();
-		for (UcUserPhonebooksBatchData d : datas) {
-			UcUserPhonebooks record = new UcUserPhonebooks();
-			record.setTelNo(SequenceUtil.createTelNo());
-			record.setBasicOrgId("1");
-			record.setProvinceCode("11");
-			record.setCityCode("110");
-			record.setTelGroupId(d.getTelGroupId());
-			record.setCreateTime(time);
-			record.setTelMp(d.getTelMp());
-			record.setTelName(d.getTelName());
-			record.setUserId(d.getUserId());
-			record.setTenantId(d.getTenantId());
-			ucUserPhonebooksMapper.insertSelective(record);
+		for (String telMp : dataMap.keySet()) {
+			UcUserPhonebooksBatchData d = dataMap.get(telMp);
+			// 判断号码是否重复在分组里面
+			boolean exists = this.checkTelMpExists(d.getTelMp(), d.getTelGroupId());
+			if (exists) {
+				errors.add("第" + d.getIndexNo() + "条的号码已经存在已有分组中");
+				continue;
+			}
+
+			try {
+				UcUserPhonebooks record = new UcUserPhonebooks();
+				record.setTelNo(SequenceUtil.createTelNo());
+				record.setBasicOrgId("1");
+				record.setProvinceCode("11");
+				record.setCityCode("110");
+				record.setTelGroupId(d.getTelGroupId());
+				record.setCreateTime(time);
+				record.setTelMp(d.getTelMp());
+				record.setTelName(d.getTelName());
+				record.setUserId(d.getUserId());
+				record.setTenantId(d.getTenantId());
+				ucUserPhonebooksMapper.insertSelective(record);
+			} catch (Exception ex) {
+				errors.add("第" + d.getIndexNo() + "条的号码写入数据库失败");
+			}
+
 		}
+		return errors;
+
+	}
+
+	private boolean checkTelMpExists(String telMp, String telGroupId) {
+		UcUserPhonebooksCriteria sql = new UcUserPhonebooksCriteria();
+		sql.or().andTelMpEqualTo(telMp).andTelGroupIdEqualTo(telGroupId);
+		List<UcUserPhonebooks> list = ucUserPhonebooksMapper.selectByExample(sql);
+		return CollectionUtil.isEmpty(list);
 	}
 
 	@Override
