@@ -143,7 +143,7 @@ public class UcUserBusiSVImpl implements IUcUserBusiSV {
         }
         if (!StringUtil.isBlank(gnAcount.getUserEmail())) {
             criteria.andUserEmailEqualTo(gnAcount.getUserEmail());
-            criteria.andEmailValidateFlagEqualTo("11");
+            criteria.andEmailValidateFlagEqualTo("10");
         }
         if (!StringUtil.isBlank(gnAcount.getUserMp())) {
             criteria.andUserMpEqualTo(gnAcount.getUserMp());
