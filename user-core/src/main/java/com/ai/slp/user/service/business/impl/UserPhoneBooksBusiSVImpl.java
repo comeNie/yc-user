@@ -238,7 +238,7 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 			for (UcUserPhonebooks b : list) {
 				UserPhonebook t = new UserPhonebook();
 				BeanUtils.copyProperties(b, t);
-				String basicOrgName = this.getSysParam(b.getTenantId(), "UC_USER_PHONE_BOOKS", "BASIC_ORG_ID",
+				String basicOrgName = this.getSysParam("all", "UC_USER_PHONE_BOOKS", "BASIC_ORG_ID",
 						b.getBasicOrgId());
 				t.setBasicOrgName(basicOrgName);
 				t.setProvinceName(this.getAreaName(b.getProvinceCode()));
