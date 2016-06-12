@@ -1,7 +1,10 @@
 package com.ai.slp.user.api.ucuser.param;
 
+import java.util.List;
+
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
+import com.ai.slp.user.api.register.param.UcUserParams;
 
 public class SearchUserResponse  extends BaseResponse{
     private static final long serialVersionUID = 1L;
@@ -33,6 +36,8 @@ public class SearchUserResponse  extends BaseResponse{
 
     private String userNickname;
 
+    private List<UcUserParams> list;
+    
     public String getUserMp() {
         return userMp;
     }
@@ -117,6 +122,10 @@ public class SearchUserResponse  extends BaseResponse{
     public void setUserNickname(String userNickname) {
         this.userNickname = userNickname;
     }
-    
-    
+    public List<UcUserParams> getList() {
+        return list;
+    }
+    public void setList(List<UcUserParams> list) {
+        this.list = list;
+    }
 }
