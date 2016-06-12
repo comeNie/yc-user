@@ -1,6 +1,7 @@
 package com.ai.slp.user.service.business.interfaces;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.ucuserphonebooks.param.UcTelGroup;
@@ -22,7 +23,7 @@ public interface IUserPhoneBooksBusiSV {
 
 	void batchDeleteUserPhonebooks(List<String> recordIds);
 
-	void batchAddUserPhonebooks(List<UcUserPhonebooksBatchData> datas);
+	List<String> batchAddUserPhonebooks(Map<String, UcUserPhonebooksBatchData> dataMap);
 
 	void modifyUserPhonebook(UcUserPhonebooksModifyReq req);
 

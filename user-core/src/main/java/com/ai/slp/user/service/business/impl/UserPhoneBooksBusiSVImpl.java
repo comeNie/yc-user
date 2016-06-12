@@ -3,6 +3,7 @@ package com.ai.slp.user.service.business.impl;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.PageInfo;
+import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
 import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.opt.sdk.util.DateUtil;
 import com.ai.paas.ipaas.util.StringUtil;
+import com.ai.slp.common.api.cache.interfaces.ICacheSV;
+import com.ai.slp.common.api.cache.param.SysParam;
+import com.ai.slp.common.api.servicenum.interfaces.IServiceNumSV;
+import com.ai.slp.common.api.servicenum.param.ServiceNum;
 import com.ai.slp.user.api.ucuserphonebooks.param.UcTelGroupMantainReq;
 import com.ai.slp.user.api.ucuserphonebooks.param.UcUserPhonebooksBatchData;
 import com.ai.slp.user.api.ucuserphonebooks.param.UcUserPhonebooksModifyReq;
@@ -128,25 +134,66 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 	}
 
 	@Override
-	public void batchAddUserPhonebooks(List<UcUserPhonebooksBatchData> datas) {
-		if (CollectionUtil.isEmpty(datas)) {
-			return;
+	public List<String> batchAddUserPhonebooks(Map<String, UcUserPhonebooksBatchData> dataMap) {
+		if (dataMap.isEmpty()) {
+			return null;
 		}
+		List<String> errors = new ArrayList<String>();
 		Timestamp time = DateUtil.getSysDate();
-		for (UcUserPhonebooksBatchData d : datas) {
-			UcUserPhonebooks record = new UcUserPhonebooks();
-			record.setTelNo(SequenceUtil.createTelNo());
-			record.setBasicOrgId("1");
-			record.setProvinceCode("11");
-			record.setCityCode("110");
-			record.setTelGroupId(d.getTelGroupId());
-			record.setCreateTime(time);
-			record.setTelMp(d.getTelMp());
-			record.setTelName(d.getTelName());
-			record.setUserId(d.getUserId());
-			record.setTenantId(d.getTenantId());
-			ucUserPhonebooksMapper.insertSelective(record);
+		for (String telMp : dataMap.keySet()) {
+			UcUserPhonebooksBatchData d = dataMap.get(telMp);
+			// 判断号码是否重复在分组里面
+			boolean exists = this.checkTelMpExists(d.getTelMp(), d.getTelGroupId());
+			if (exists) {
+				errors.add("第" + d.getIndexNo() + "条的号码已经存在已有分组中");
+				continue;
+			}
+
+			try {
+				ServiceNum serviceNum = this.getServiceNumInfo(telMp);
+				UcUserPhonebooks record = new UcUserPhonebooks();
+				record.setTelNo(SequenceUtil.createTelNo());
+				record.setBasicOrgId(serviceNum.getBasicOrgCode());
+				record.setProvinceCode(serviceNum.getProvinceCode());
+				record.setCityCode(serviceNum.getCityCode());
+				record.setTelGroupId(d.getTelGroupId());
+				record.setCreateTime(time);
+				record.setTelMp(d.getTelMp());
+				record.setTelName(d.getTelName());
+				record.setUserId(d.getUserId());
+				record.setTenantId(d.getTenantId());
+				ucUserPhonebooksMapper.insertSelective(record);
+			} catch (Exception ex) {
+				errors.add("第" + d.getIndexNo() + "条的号码写入数据库失败");
+			}
+
 		}
+		return errors;
+
+	}
+
+	private ServiceNum getServiceNumInfo(String telMp) {
+		ServiceNum sn = DubboConsumerFactory.getService(IServiceNumSV.class).getServiceNumByPhone(telMp);
+		if (sn == null) {
+			throw new BusinessException("100000", "根据号码[" + telMp + "]获取不到号段信息");
+		}
+		return sn;
+	}
+
+	private String getSysParam(String tenantId, String typeCode, String paramCode, String value) {
+		SysParam p = DubboConsumerFactory.getService(ICacheSV.class).getSysParam(tenantId, typeCode, paramCode, value);
+		return p == null ? null : p.getColumnDesc();
+	}
+
+	private String getAreaName(String areaCode) {
+		return DubboConsumerFactory.getService(ICacheSV.class).getAreaName(areaCode);
+	}
+
+	private boolean checkTelMpExists(String telMp, String telGroupId) {
+		UcUserPhonebooksCriteria sql = new UcUserPhonebooksCriteria();
+		sql.or().andTelMpEqualTo(telMp).andTelGroupIdEqualTo(telGroupId);
+		List<UcUserPhonebooks> list = ucUserPhonebooksMapper.selectByExample(sql);
+		return CollectionUtil.isEmpty(list) ? false : true;
 	}
 
 	@Override
@@ -191,6 +238,10 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 			for (UcUserPhonebooks b : list) {
 				UserPhonebook t = new UserPhonebook();
 				BeanUtils.copyProperties(b, t);
+				String basicOrgName = this.getSysParam("all", "UC_USER_PHONE_BOOKS", "BASIC_ORG_ID",
+						b.getBasicOrgId());
+				t.setBasicOrgName(basicOrgName);
+				t.setProvinceName(this.getAreaName(b.getProvinceCode()));
 				l.add(t);
 			}
 		}
