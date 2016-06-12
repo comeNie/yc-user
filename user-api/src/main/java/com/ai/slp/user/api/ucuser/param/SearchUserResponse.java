@@ -115,7 +115,7 @@ public class SearchUserResponse  extends BaseResponse{
     }
     public void setEmailValidateFlag(String emailValidateFlag) {
         this.emailValidateFlag = emailValidateFlag;
-    }
+    } 
     public String getUserNickname() {
         return userNickname;
     }
