@@ -5,13 +5,13 @@ import java.sql.Timestamp;
 import javax.validation.constraints.NotNull;
 
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.slp.user.api.keyinfo.interfaces.IUcGroupKeyInfoSV;
+import com.ai.slp.user.api.keyinfo.interfaces.IUcKeyInfoSV;
 
 public class InsertGroupKeyInfoRequest extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
 
-    @NotNull(message = "用户ID不能为空", groups = { IUcGroupKeyInfoSV.insertGroupKeyInfo.class })
+    @NotNull(message = "用户ID不能为空", groups = { IUcKeyInfoSV.insertGroupKeyInfo.class })
     private String userId;
 
     private String userType;
