@@ -72,6 +72,7 @@ public class UcUserSVImpl implements IUcUserSV {
                 UcUserParams ucUserParams = new UcUserParams();
                 BeanUtils.copyProperties(ucUserParams, ucuser);
                 resultList.add(ucUserParams);
+                responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
             }
         }else{
             responseHeader = new ResponseHeader(false, ExceptCodeConstants.NO_RESULT, "数据不存在");
