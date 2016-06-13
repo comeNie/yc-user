@@ -3,6 +3,7 @@ package com.ai.slp.user.service.business.impl;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,7 @@ import com.ai.slp.user.service.business.interfaces.IUcGroupKeyInfoBusiSV;
 @Transactional
 public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
 
+    @Autowired
     private IUcGroupKeyInfoAtomSV ucGroupKeyInfoAtomSV;
     
     @Override

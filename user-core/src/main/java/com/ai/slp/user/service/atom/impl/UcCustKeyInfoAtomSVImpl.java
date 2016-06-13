@@ -3,14 +3,14 @@ package com.ai.slp.user.service.atom.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfo;
 import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfoCriteria;
 import com.ai.slp.user.dao.mapper.interfaces.UcCustKeyInfoMapper;
 import com.ai.slp.user.service.atom.interfaces.IUcCustKeyInfoAtomSV;
 
-@Repository
+@Component
 public class UcCustKeyInfoAtomSVImpl implements IUcCustKeyInfoAtomSV {
 
     @Autowired

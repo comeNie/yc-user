@@ -22,8 +22,8 @@ import com.ai.slp.user.service.business.interfaces.IUcGroupKeyInfoBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
 
 @Component
-@Service
-public class IUcInfoSVImpl implements IUcKeyInfoSV {
+@Service(validation = "true")
+public class UcKeyInfoSVImpl implements IUcKeyInfoSV {
 
     @Autowired
     private IUcCustKeyInfoBusiSV ucCustKeyInfoBusiSV;
