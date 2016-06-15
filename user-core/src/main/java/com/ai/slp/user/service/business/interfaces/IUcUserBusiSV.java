@@ -17,7 +17,7 @@ import com.ai.slp.user.dao.mapper.bo.UcUserCriteria;
 public interface IUcUserBusiSV {
     SearchUserListResponse searchUserList(SearchUserRequest userListRequest);
     
-    UcUser queryByPhone(String phone)throws SystemException;
+    UcUser queryByPhone(SearchUserRequest request)throws SystemException;
     
     List<UcUser> queryByEmail(String email)throws SystemException;
     

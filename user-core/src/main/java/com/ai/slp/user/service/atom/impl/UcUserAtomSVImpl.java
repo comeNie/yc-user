@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.sdk.util.CollectionUtil;
+import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfo;
 import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfoCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfo;
@@ -52,11 +53,12 @@ public class UcUserAtomSVImpl implements IUcUserAtomSV {
     }
 
     @Override
-    public UcUser queryByPhone(String phone) throws SystemException {
+    public UcUser queryByPhone(SearchUserRequest request) throws SystemException {
         
         UcUserCriteria conditon = new UcUserCriteria();
         UcUserCriteria.Criteria criteria = conditon.or();
-        criteria.andUserMpEqualTo(phone);
+        criteria.andUserMpEqualTo(request.getUserMp());
+        criteria.andUserTypeEqualTo(request.getUserType());
         List<UcUser> list = userMapper.selectByExample(conditon);
         if(!CollectionUtil.isEmpty(list)){
             return list.get(0);
