@@ -69,5 +69,9 @@ public final class SequenceUtil {
 		long seq = SeqUtil.getNewId(SequenceCodeConstants.UserSequenceCode.UC_USER_PHONEBOOKS$TEL_NO$SEQ);
 		return String.valueOf(seq);
 	}
+	public static String createInfoExtId() {
+	    long seq = SeqUtil.getNewId(SequenceCodeConstants.UserSequenceCode.CM_CUST_FILE_EXT$INFO_EXT$ID);
+	    return String.valueOf(seq);
+	}
 
 }

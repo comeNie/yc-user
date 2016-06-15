@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ai.slp.user.api.keyinfo.interfaces.IUcKeyInfoSV;
+import com.ai.slp.user.api.keyinfo.param.InsertCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.InsertGroupKeyInfoRequest;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -16,7 +17,7 @@ public class GroupKeyInfoSVImpl  {
     @Autowired
     private IUcKeyInfoSV sv;
     
-    @Test
+    //@Test
     public void insert(){
         InsertGroupKeyInfoRequest req = new InsertGroupKeyInfoRequest();
         req.setTenantId("SLP");
@@ -24,6 +25,15 @@ public class GroupKeyInfoSVImpl  {
         req.setCertAddr("111");
         req.setCertNum("111");
         sv.insertGroupKeyInfo(req);
+    }
+    @Test
+    public void insertFileExt(){
+        InsertCustFileExtRequest re = new InsertCustFileExtRequest();
+        re.setTenantId("SLP");
+        re.setInfoName("123");
+        re.setUserId("1234");
+        re.setAttrId("1234");
+        sv.insertCustFileExt(re);
     }
 
 }

@@ -9,6 +9,7 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.constants.ExceptCodeConstants;
 import com.ai.slp.user.api.keyinfo.interfaces.IUcKeyInfoSV;
+import com.ai.slp.user.api.keyinfo.param.InsertCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.InsertCustKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.InsertGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchCustKeyInfoRequest;
@@ -121,6 +122,22 @@ public class UcKeyInfoSVImpl implements IUcKeyInfoSV {
         }
         response.setResponseHeader(responseHeader);
         return response;
+    }
+
+    @Override
+    public BaseResponse insertCustFileExt(InsertCustFileExtRequest request)
+            throws SystemException, BusinessException {
+        BaseResponse baseResponse = new BaseResponse();
+        ResponseHeader responseHeader = null;
+        
+        try{
+        ucGroupKeyInfoBusiSV.insertCustFileExt(request);
+        responseHeader = new ResponseHeader(true, ExceptCodeConstants.Special.SUCCESS, "操作成功");
+        }catch(Exception e){
+            responseHeader = new ResponseHeader(false, ExceptCodeConstants.Special.SYSTEM_ERROR, "操作失败");
+        }
+        baseResponse.setResponseHeader(responseHeader);
+        return baseResponse;
     }
 
 }
