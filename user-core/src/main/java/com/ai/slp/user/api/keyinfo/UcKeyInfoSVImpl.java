@@ -7,7 +7,6 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
-import com.ai.opt.sdk.constants.ExceptCodeConstants;
 import com.ai.slp.user.api.keyinfo.interfaces.IUcKeyInfoSV;
 import com.ai.slp.user.api.keyinfo.param.InsertCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.InsertCustKeyInfoRequest;
@@ -18,6 +17,7 @@ import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.UpdateCustKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.UpdateGroupKeyInfoRequest;
+import com.ai.slp.user.constants.ExceptCodeConstants;
 import com.ai.slp.user.service.business.interfaces.IUcCustKeyInfoBusiSV;
 import com.ai.slp.user.service.business.interfaces.IUcGroupKeyInfoBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -39,9 +39,9 @@ public class UcKeyInfoSVImpl implements IUcKeyInfoSV {
         ResponseHeader responseHeader = null;
         try{
         ucCustKeyInfoBusiSV.insertCustKeyInfo(request);
-        responseHeader = new ResponseHeader(true, ExceptCodeConstants.Special.SUCCESS, "操作成功");
+        responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "操作成功");
         }catch(Exception e){
-            responseHeader = new ResponseHeader(false, ExceptCodeConstants.Special.SYSTEM_ERROR, "操作失败");
+            responseHeader = new ResponseHeader(false, ExceptCodeConstants.FAILD, "操作失败");
         }
         response.setResponseHeader(responseHeader);
         return response;
@@ -55,9 +55,9 @@ public class UcKeyInfoSVImpl implements IUcKeyInfoSV {
         ResponseHeader responseHeader =null;
         try{
         ucCustKeyInfoBusiSV.updateCustKeyInfo(request);
-        responseHeader = new ResponseHeader(true, ExceptCodeConstants.Special.SUCCESS, "操作成功");
+        responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "操作成功");
         }catch(Exception e){
-            responseHeader = new ResponseHeader(false, ExceptCodeConstants.Special.SYSTEM_ERROR, "操作失败");
+            responseHeader = new ResponseHeader(false, ExceptCodeConstants.FAILD, "操作失败");
         }
         response.setResponseHeader(responseHeader);
         return response;
@@ -70,9 +70,9 @@ public class UcKeyInfoSVImpl implements IUcKeyInfoSV {
         SearchCustKeyInfoResponse response = new SearchCustKeyInfoResponse();
         try{
             ucCustKeyInfoBusiSV.searchCustKeyInfo(request);
-            responseHeader = new ResponseHeader(true, ExceptCodeConstants.Special.SUCCESS, "操作成功");
+            responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "操作成功");
         }catch(Exception e){
-            responseHeader = new ResponseHeader(false, ExceptCodeConstants.Special.SYSTEM_ERROR, "操作失败");
+            responseHeader = new ResponseHeader(false, ExceptCodeConstants.FAILD, "操作失败");
         }
         response.setResponseHeader(responseHeader);
         return response;
@@ -85,9 +85,9 @@ public class UcKeyInfoSVImpl implements IUcKeyInfoSV {
         ResponseHeader responseHeader = null;
         try{
         ucGroupKeyInfoBusiSV.insertGroupKeyInfo(request);
-        responseHeader = new ResponseHeader(true, ExceptCodeConstants.Special.SUCCESS, "操作成功");
+        responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "操作成功");
         }catch(Exception e){
-            responseHeader = new ResponseHeader(false, ExceptCodeConstants.Special.SYSTEM_ERROR, "操作失败");
+            responseHeader = new ResponseHeader(false, ExceptCodeConstants.FAILD, "操作失败");
         }
         response.setResponseHeader(responseHeader);
         return response;
@@ -101,9 +101,9 @@ public class UcKeyInfoSVImpl implements IUcKeyInfoSV {
         ResponseHeader responseHeader =null;
         try{
         ucGroupKeyInfoBusiSV.updateGroupKeyInfo(request);
-        responseHeader = new ResponseHeader(true, ExceptCodeConstants.Special.SUCCESS, "操作成功");
+        responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "操作成功");
         }catch(Exception e){
-            responseHeader = new ResponseHeader(false, ExceptCodeConstants.Special.SYSTEM_ERROR, "操作失败");
+            responseHeader = new ResponseHeader(false, ExceptCodeConstants.FAILD, "操作失败");
         }
         response.setResponseHeader(responseHeader);
         return response;
@@ -118,13 +118,13 @@ public class UcKeyInfoSVImpl implements IUcKeyInfoSV {
         try{
             response = ucGroupKeyInfoBusiSV.searchGroupKeyInfo(request);
             if(response!=null){
-                responseHeader = new ResponseHeader(true, ExceptCodeConstants.Special.SUCCESS, "数据查询成功");
+                responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "数据查询成功");
             }else{
                 response = new SearchGroupKeyInfoResponse();
-                responseHeader = new ResponseHeader(true, ExceptCodeConstants.Special.NO_RESULT, "数据不存在");
+                responseHeader = new ResponseHeader(true, ExceptCodeConstants.NO_RESULT, "数据不存在");
             }
         }catch(Exception e){
-            responseHeader = new ResponseHeader(false, ExceptCodeConstants.Special.SYSTEM_ERROR, "操作失败");
+            responseHeader = new ResponseHeader(false, ExceptCodeConstants.FAILD, "操作失败");
         }
         response.setResponseHeader(responseHeader);
         return response;
@@ -138,9 +138,9 @@ public class UcKeyInfoSVImpl implements IUcKeyInfoSV {
         
         try{
         ucGroupKeyInfoBusiSV.insertCustFileExt(request);
-        responseHeader = new ResponseHeader(true, ExceptCodeConstants.Special.SUCCESS, "操作成功");
+        responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "操作成功");
         }catch(Exception e){
-            responseHeader = new ResponseHeader(false, ExceptCodeConstants.Special.SYSTEM_ERROR, "操作失败");
+            responseHeader = new ResponseHeader(false, ExceptCodeConstants.FAILD, "操作失败");
         }
         baseResponse.setResponseHeader(responseHeader);
         return baseResponse;
