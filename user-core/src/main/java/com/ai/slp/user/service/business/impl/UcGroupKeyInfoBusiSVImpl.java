@@ -66,8 +66,9 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
         SearchGroupKeyInfoResponse response = new SearchGroupKeyInfoResponse();
         if(!list.isEmpty()){
             BeanUtils.copyProperties(list.get(0), response);
+            return response;
         }
-        return response;
+        return null;
     }
 
     @Override

@@ -115,7 +115,12 @@ public class UcKeyInfoSVImpl implements IUcKeyInfoSV {
         ResponseHeader responseHeader =null;
         SearchGroupKeyInfoResponse response = new SearchGroupKeyInfoResponse();
         try{
-            ucGroupKeyInfoBusiSV.searchGroupKeyInfo(request);
+            response = ucGroupKeyInfoBusiSV.searchGroupKeyInfo(request);
+            if(response!=null){
+                responseHeader = new ResponseHeader(true, ExceptCodeConstants.Special.SUCCESS, "数据查询成功");
+            }else{
+                responseHeader = new ResponseHeader(true, ExceptCodeConstants.Special.NO_RESULT, "数据不存在");
+            }
             responseHeader = new ResponseHeader(true, ExceptCodeConstants.Special.SUCCESS, "操作成功");
         }catch(Exception e){
             responseHeader = new ResponseHeader(false, ExceptCodeConstants.Special.SYSTEM_ERROR, "操作失败");
