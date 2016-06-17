@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.sdk.components.sequence.util.SeqUtil;
+import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.slp.user.api.keyinfo.param.InsertCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.InsertGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
@@ -59,12 +60,11 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
         UcGroupKeyInfoCriteria example = new UcGroupKeyInfoCriteria();
         UcGroupKeyInfoCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(request.getTenantId());
-        criteria.andUserIdEqualTo(request.getCustName());
-        
+        criteria.andCustNameEqualTo(request.getCustName());
         List<UcGroupKeyInfo> list = ucGroupKeyInfoAtomSV.selectByExample(example);
         
         SearchGroupKeyInfoResponse response = new SearchGroupKeyInfoResponse();
-        if(!list.isEmpty()){
+        if(!CollectionUtil.isEmpty(list)){
             BeanUtils.copyProperties(list.get(0), response);
             return response;
         }
