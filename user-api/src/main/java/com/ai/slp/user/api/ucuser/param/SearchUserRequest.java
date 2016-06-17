@@ -43,13 +43,11 @@ public class SearchUserRequest extends BaseInfo {
     /**
      * 户绑定手机号码
      */
-    @MobilePhone(message = "手机号码格式不正确", groups = { IUcUserSV.SearchUserList.class })
     private String userMp;
 
     /**
      * 用户绑定邮箱
      */
-    @Email(message = "邮箱格式不正确", groups = { IUcUserSV.SearchUserList.class })
     private String userEmail;
 
     /**

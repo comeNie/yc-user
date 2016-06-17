@@ -13,8 +13,6 @@ public class UcUserPhonebooksBatchData implements Serializable {
 	/**
 	 * 电话号码
 	 */
-	@NotBlank(message = "手机号码不能为空", groups = { IUserPhoneBooksSV.BatchAddUserPhonebooks.class })
-	@MobilePhone(message = "手机号码格式不正确", groups = { IUserPhoneBooksSV.BatchAddUserPhonebooks.class })
 	private String telMp;
 
 	/**
@@ -25,13 +23,11 @@ public class UcUserPhonebooksBatchData implements Serializable {
 	/**
 	 * 归属用户
 	 */
-	@NotBlank(message = "归属用户不能为空", groups = { IUserPhoneBooksSV.BatchAddUserPhonebooks.class })
 	private String userId;
 
 	/**
 	 * 通讯录分组标识
 	 */
-	@NotBlank(message = "通信录分组标识不能为空", groups = { IUserPhoneBooksSV.BatchAddUserPhonebooks.class })
 	private String telGroupId;
 
 	/**

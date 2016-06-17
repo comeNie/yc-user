@@ -9,7 +9,6 @@ public class UcTelGroupQueryReq extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
 
-    @NotBlank(message = "用户标识不能为空", groups = { IUserPhoneBooksSV.GetUcTelGroups.class })
     private String userId;
 
     public String getUserId() {
