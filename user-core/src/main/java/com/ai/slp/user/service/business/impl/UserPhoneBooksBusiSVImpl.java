@@ -176,12 +176,13 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 	}
 
 	private ServiceNum getServiceNumInfo(String telMp) {
-		ServiceNum sn = DubboConsumerFactory.getService(IServiceNumSV.class).getServiceNumByPhone(telMp);
+		ServiceNum sn = DubboConsumerFactory.getService(IServiceNumSV.class).getServiceNumByPhone(telMp.substring(0, 7));
 		if (sn == null) {
 			throw new BusinessException("100000", "根据号码[" + telMp + "]获取不到号段信息");
 		}
 		return sn;
 	}
+	
 
 	private String getSysParam(String tenantId, String typeCode, String paramCode, String value) {
 		SysParam p = DubboConsumerFactory.getService(ICacheSV.class).getSysParam(tenantId, typeCode, paramCode, value);
