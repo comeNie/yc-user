@@ -34,6 +34,7 @@ import com.ai.slp.user.dao.mapper.interfaces.UcTelGroupMapper;
 import com.ai.slp.user.dao.mapper.interfaces.UcUserPhonebooksMapper;
 import com.ai.slp.user.service.business.interfaces.IUserPhoneBooksBusiSV;
 import com.ai.slp.user.util.SequenceUtil;
+import com.esotericsoftware.minlog.Log;
 
 @Service
 @Transactional
@@ -164,6 +165,8 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 				record.setTenantId(d.getTenantId());
 				ucUserPhonebooksMapper.insertSelective(record);
 			} catch (Exception ex) {
+				ex.printStackTrace();
+				Log.error("处理失败", ex);
 				errors.add("第" + d.getIndexNo() + "条的号码写入数据库失败");
 			}
 
@@ -238,7 +241,7 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 			for (UcUserPhonebooks b : list) {
 				UserPhonebook t = new UserPhonebook();
 				BeanUtils.copyProperties(b, t);
-				String basicOrgName = this.getSysParam("all", "UC_USER_PHONE_BOOKS", "BASIC_ORG_ID",
+				String basicOrgName = this.getSysParam("SLP", "PRODUCT", "BASIC_ORG_ID",
 						b.getBasicOrgId());
 				t.setBasicOrgName(basicOrgName);
 				t.setProvinceName(this.getAreaName(b.getProvinceCode()));
