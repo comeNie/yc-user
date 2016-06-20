@@ -77,7 +77,7 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
         
         CmCustFileExt cmCustFileExt = new CmCustFileExt();
         BeanUtils.copyProperties(request, cmCustFileExt);
-        cmCustFileExt.setInfoExtId(SeqUtil.getNewId("CM_CUST_FILE_EXT$INFO_EXT$ID").toString());
+        cmCustFileExt.setInfoExtId(SeqUtil.getNewId("CM_CUST_FILE_EXT$INFO_EXT$ID", 18));
         
         return custFileAtomSV.insert(cmCustFileExt);
     }

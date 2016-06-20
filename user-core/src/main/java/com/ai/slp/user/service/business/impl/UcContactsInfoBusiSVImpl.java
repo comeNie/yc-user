@@ -40,8 +40,8 @@ public class UcContactsInfoBusiSVImpl implements IUcContactsInfoBusiSV {
     public BaseResponse insertContactsInfo(InsertContactsInfoRequest contactsInfoRequest)
             throws BusinessException, SystemException {
         UcContactsInfo ucContactsInfo = new UcContactsInfo();
-        ucContactsInfo.setContactSeqId(SequenceUtil.createContactSeqId());
         BeanUtils.copyProperties(contactsInfoRequest, ucContactsInfo);
+        ucContactsInfo.setContactSeqId(SequenceUtil.createContactSeqId());
         ucContactsInfo.setCreateTime(DateUtils.currTimeStamp());
 
         BaseResponse response = new BaseResponse();
