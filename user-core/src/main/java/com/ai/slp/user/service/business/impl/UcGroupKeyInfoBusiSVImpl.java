@@ -64,10 +64,10 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
         UcGroupKeyInfoCriteria example = new UcGroupKeyInfoCriteria();
         UcGroupKeyInfoCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(request.getTenantId());
-        if(StringUtil.isBlank(request.getCustName()))
+        if(!StringUtil.isBlank(request.getCustName()))
            criteria.andCustNameEqualTo(request.getCustName());
         
-        if(StringUtil.isBlank(request.getUserId()))
+        if(!StringUtil.isBlank(request.getUserId()))
            criteria.andUserIdEqualTo(request.getUserId());
         List<UcGroupKeyInfo> list = ucGroupKeyInfoAtomSV.selectByExample(example);
         
