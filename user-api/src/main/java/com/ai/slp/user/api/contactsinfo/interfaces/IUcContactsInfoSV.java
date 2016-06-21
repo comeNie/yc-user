@@ -6,6 +6,8 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.slp.user.api.contactsinfo.param.InsertContactsInfoRequest;
 import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoRequest;
 import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoResponse;
+import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoSingleRequest;
+import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoSingleResponse;
 import com.ai.slp.user.api.contactsinfo.param.UpdateContactsInfoRequest;
 
 /**
@@ -62,6 +64,19 @@ public interface IUcContactsInfoSV {
      * @UCUSER
      */
     QueryContactsInfoResponse queryContactsInfo(QueryContactsInfoRequest contactsInfoRequest)
+            throws BusinessException, SystemException;
+    
+    /**
+     * 获取单个用户联系人
+     * 
+     * @param contactsInfoRequest
+     * @return
+     * @throws BusinessException
+     * @throws SystemException
+     * @author zhangqiang7
+     * @UCUSER
+     */
+    QueryContactsInfoSingleResponse queryContactsInfoSingle(QueryContactsInfoSingleRequest contactsInfoRequest)
             throws BusinessException, SystemException;
 
 }

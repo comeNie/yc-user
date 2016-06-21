@@ -6,6 +6,8 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.slp.user.api.contactsinfo.param.InsertContactsInfoRequest;
 import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoRequest;
 import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoResponse;
+import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoSingleRequest;
+import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoSingleResponse;
 import com.ai.slp.user.api.contactsinfo.param.UpdateContactsInfoRequest;
 
 public interface IUcContactsInfoBusiSV {
@@ -16,6 +18,9 @@ public interface IUcContactsInfoBusiSV {
     public BaseResponse updateContactsInfo(UpdateContactsInfoRequest contactsInfoRequest)
             throws BusinessException, SystemException;
 
-    public QueryContactsInfoResponse queryContactsInfo(
-            QueryContactsInfoRequest contactsInfoRequest) throws BusinessException, SystemException;
+    public QueryContactsInfoResponse queryContactsInfo(QueryContactsInfoRequest contactsInfoRequest)
+            throws BusinessException, SystemException;
+
+    public QueryContactsInfoSingleResponse queryContactsInfoSingle(
+            QueryContactsInfoSingleRequest contactsInfoRequest) throws BusinessException, SystemException;
 }

@@ -8,6 +8,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ai.slp.user.api.contactsinfo.interfaces.IUcContactsInfoSV;
 import com.ai.slp.user.api.contactsinfo.param.InsertContactsInfoRequest;
+import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoSingleRequest;
+import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "/context/core-context.xml" })
@@ -15,7 +17,7 @@ public class ContactInfoTest {
 
     @Autowired
     IUcContactsInfoSV iu;
-    @Test
+    //@Test
     public void test()
     {
         InsertContactsInfoRequest re = new InsertContactsInfoRequest();
@@ -23,5 +25,13 @@ public class ContactInfoTest {
         re.setUserId("123");
         re.setContactCertNum("11");
         iu.insertContactsInfo(re);
+    }
+    
+    @Test
+    public void query(){
+        QueryContactsInfoSingleRequest re = new QueryContactsInfoSingleRequest();
+        re.setTenantId("SLP");
+        re.setUserId("000000000000000202");
+        System.out.println(JSON.toJSONString(iu.queryContactsInfoSingle(re)));
     }
 }

@@ -18,6 +18,8 @@ import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.slp.user.api.contactsinfo.param.InsertContactsInfoRequest;
 import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoRequest;
 import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoResponse;
+import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoSingleRequest;
+import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoSingleResponse;
 import com.ai.slp.user.api.contactsinfo.param.UcContactsInfoParams;
 import com.ai.slp.user.api.contactsinfo.param.UpdateContactsInfoRequest;
 import com.ai.slp.user.dao.mapper.bo.UcContactsInfo;
@@ -119,6 +121,22 @@ public class UcContactsInfoBusiSVImpl implements IUcContactsInfoBusiSV {
         pageInfo.setResult(responseList);
         response.setPageInfo(pageInfo);
         response.setResponseHeader(responseHeader);
+        return response;
+    }
+
+    @Override
+    public QueryContactsInfoSingleResponse queryContactsInfoSingle(
+            QueryContactsInfoSingleRequest contactsInfoRequest)
+            throws BusinessException, SystemException {
+        UcContactsInfoCriteria example = new UcContactsInfoCriteria();
+        UcContactsInfoCriteria.Criteria criteria = example.createCriteria();
+        criteria.andTenantIdEqualTo(contactsInfoRequest.getTenantId());
+        criteria.andUserIdEqualTo(contactsInfoRequest.getUserId());
+        List<UcContactsInfo> list = ucContactsInfoAtomSV.selectByExample(example);
+        QueryContactsInfoSingleResponse response = new QueryContactsInfoSingleResponse();
+        if(!list.isEmpty()){
+            BeanUtils.copyProperties(list.get(0), response);
+        }
         return response;
     }
 

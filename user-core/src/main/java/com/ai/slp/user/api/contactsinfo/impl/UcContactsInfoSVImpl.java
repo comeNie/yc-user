@@ -10,6 +10,8 @@ import com.ai.slp.user.api.contactsinfo.interfaces.IUcContactsInfoSV;
 import com.ai.slp.user.api.contactsinfo.param.InsertContactsInfoRequest;
 import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoRequest;
 import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoResponse;
+import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoSingleRequest;
+import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoSingleResponse;
 import com.ai.slp.user.api.contactsinfo.param.UpdateContactsInfoRequest;
 import com.ai.slp.user.service.business.interfaces.IUcContactsInfoBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -38,6 +40,13 @@ public class UcContactsInfoSVImpl implements IUcContactsInfoSV {
             QueryContactsInfoRequest contactsInfoRequest)
                     throws BusinessException, SystemException {
         return ucContactsInfoBusiSV.queryContactsInfo(contactsInfoRequest);
+    }
+
+    @Override
+    public QueryContactsInfoSingleResponse queryContactsInfoSingle(
+            QueryContactsInfoSingleRequest contactsInfoRequest)
+            throws BusinessException, SystemException {
+        return ucContactsInfoBusiSV.queryContactsInfoSingle(contactsInfoRequest);
     }
 
 }
