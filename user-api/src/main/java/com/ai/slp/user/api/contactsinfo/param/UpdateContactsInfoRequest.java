@@ -18,13 +18,13 @@ public class UpdateContactsInfoRequest extends BaseInfo {
     /**
      * 用户Id NOT NULL
      */
-    @NotNull(message = "userId不能为空", groups = { IUcContactsInfoSV.UpdateContactsInfo.class })
+    @NotNull(message = "userId不能为空")
     private String userId;
 
     /**
      * 唯一标识
      */
-    @NotNull(message = "唯一标识不能为空", groups = { IUcContactsInfoSV.UpdateContactsInfo.class })
+    @NotNull(message = "唯一标识不能为空")
     private String contactSeqId;
 
     /**

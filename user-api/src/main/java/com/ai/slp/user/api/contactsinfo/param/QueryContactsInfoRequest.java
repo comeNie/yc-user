@@ -18,7 +18,7 @@ public class QueryContactsInfoRequest extends BaseInfo {
     /**
      * 用户ID NOT NULL
      */
-    @NotNull(message = "userId不能为空", groups = { IUcContactsInfoSV.QueryContactsInfo.class })
+    @NotNull(message = "userId不能为空")
     private String userId;
 
     /**

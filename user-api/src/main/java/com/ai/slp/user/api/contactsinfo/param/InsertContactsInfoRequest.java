@@ -21,7 +21,7 @@ public class InsertContactsInfoRequest extends BaseInfo {
     /**
      * 用户Id NOT NULL
      */
-    @NotNull(message = "userId不能为空", groups = { IUcContactsInfoSV.InsertContactsInfo.class })
+    @NotNull(message = "userId不能为空")
     private String userId;
 
     /**
@@ -57,13 +57,11 @@ public class InsertContactsInfoRequest extends BaseInfo {
     /**
      * 联系人电话
      */
-    @MobilePhone(message = "手机号码格式不正确", groups = { IUcContactsInfoSV.InsertContactsInfo.class})
     private String contactMp;
 
     /**
      * 联系人邮箱
      */
-    @Email(message = "邮箱格式不正确",groups = {IUcContactsInfoSV.InsertContactsInfo.class})
     private String contactEmail;
 
     /**
