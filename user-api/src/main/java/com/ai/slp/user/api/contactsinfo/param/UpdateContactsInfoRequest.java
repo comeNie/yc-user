@@ -3,7 +3,6 @@ package com.ai.slp.user.api.contactsinfo.param;
 import javax.validation.constraints.NotNull;
 
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.slp.user.api.contactsinfo.interfaces.IUcContactsInfoSV;
 
 /**
  * 更新用户联系人入参 Date: 2016年4月29日 <br>

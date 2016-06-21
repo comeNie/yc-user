@@ -2,11 +2,7 @@ package com.ai.slp.user.api.contactsinfo.param;
 
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Email;
-
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.opt.validator.constraints.MobilePhone;
-import com.ai.slp.user.api.contactsinfo.interfaces.IUcContactsInfoSV;
 
 /**
  * 创建用户联系人入参 Date: 2016年4月29日 <br>
