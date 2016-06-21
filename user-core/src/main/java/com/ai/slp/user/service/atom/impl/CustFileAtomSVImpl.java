@@ -1,9 +1,12 @@
 package com.ai.slp.user.service.atom.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ai.slp.user.dao.mapper.bo.CmCustFileExt;
+import com.ai.slp.user.dao.mapper.bo.CmCustFileExtCriteria;
 import com.ai.slp.user.dao.mapper.interfaces.CmCustFileExtMapper;
 import com.ai.slp.user.service.atom.interfaces.ICustFileAtomSV;
 
@@ -21,6 +24,11 @@ public class CustFileAtomSVImpl implements ICustFileAtomSV {
     @Override
     public int updateByPrimaryKeySelective(CmCustFileExt record) {
         return cmCustFileExtMapper.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public List<CmCustFileExt> selectByExample(CmCustFileExtCriteria example) {
+        return cmCustFileExtMapper.selectByExample(example);
     }
 
 }

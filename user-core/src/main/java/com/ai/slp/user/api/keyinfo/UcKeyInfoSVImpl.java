@@ -11,6 +11,8 @@ import com.ai.slp.user.api.keyinfo.interfaces.IUcKeyInfoSV;
 import com.ai.slp.user.api.keyinfo.param.InsertCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.InsertCustKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.InsertGroupKeyInfoRequest;
+import com.ai.slp.user.api.keyinfo.param.QueryCustFileExtRequest;
+import com.ai.slp.user.api.keyinfo.param.QueryCustFileExtResponse;
 import com.ai.slp.user.api.keyinfo.param.SearchCustKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchCustKeyInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
@@ -28,35 +30,35 @@ public class UcKeyInfoSVImpl implements IUcKeyInfoSV {
 
     @Autowired
     private IUcCustKeyInfoBusiSV ucCustKeyInfoBusiSV;
-    
+
     @Autowired
     private IUcGroupKeyInfoBusiSV ucGroupKeyInfoBusiSV;
-    
+
     @Override
     public BaseResponse insertCustKeyInfo(InsertCustKeyInfoRequest request)
             throws SystemException, BusinessException {
         BaseResponse response = new BaseResponse();
         ResponseHeader responseHeader = null;
-        try{
-        ucCustKeyInfoBusiSV.insertCustKeyInfo(request);
-        responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "操作成功");
-        }catch(Exception e){
+        try {
+            ucCustKeyInfoBusiSV.insertCustKeyInfo(request);
+            responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "操作成功");
+        } catch (Exception e) {
             responseHeader = new ResponseHeader(false, ExceptCodeConstants.FAILD, "操作失败");
         }
         response.setResponseHeader(responseHeader);
         return response;
-        
+
     }
 
     @Override
     public BaseResponse updateCustKeyInfo(UpdateCustKeyInfoRequest request)
             throws SystemException, BusinessException {
         BaseResponse response = new BaseResponse();
-        ResponseHeader responseHeader =null;
-        try{
-        ucCustKeyInfoBusiSV.updateCustKeyInfo(request);
-        responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "操作成功");
-        }catch(Exception e){
+        ResponseHeader responseHeader = null;
+        try {
+            ucCustKeyInfoBusiSV.updateCustKeyInfo(request);
+            responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "操作成功");
+        } catch (Exception e) {
             responseHeader = new ResponseHeader(false, ExceptCodeConstants.FAILD, "操作失败");
         }
         response.setResponseHeader(responseHeader);
@@ -66,12 +68,12 @@ public class UcKeyInfoSVImpl implements IUcKeyInfoSV {
     @Override
     public SearchCustKeyInfoResponse searchCustKeyInfo(SearchCustKeyInfoRequest request)
             throws SystemException, BusinessException {
-        ResponseHeader responseHeader =null;
+        ResponseHeader responseHeader = null;
         SearchCustKeyInfoResponse response = new SearchCustKeyInfoResponse();
-        try{
+        try {
             ucCustKeyInfoBusiSV.searchCustKeyInfo(request);
             responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "操作成功");
-        }catch(Exception e){
+        } catch (Exception e) {
             responseHeader = new ResponseHeader(false, ExceptCodeConstants.FAILD, "操作失败");
         }
         response.setResponseHeader(responseHeader);
@@ -83,26 +85,26 @@ public class UcKeyInfoSVImpl implements IUcKeyInfoSV {
             throws SystemException, BusinessException {
         BaseResponse response = new BaseResponse();
         ResponseHeader responseHeader = null;
-        try{
-        ucGroupKeyInfoBusiSV.insertGroupKeyInfo(request);
-        responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "操作成功");
-        }catch(Exception e){
+        try {
+            ucGroupKeyInfoBusiSV.insertGroupKeyInfo(request);
+            responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "操作成功");
+        } catch (Exception e) {
             responseHeader = new ResponseHeader(false, ExceptCodeConstants.FAILD, "操作失败");
         }
         response.setResponseHeader(responseHeader);
         return response;
-        
+
     }
 
     @Override
     public BaseResponse updateGroupKeyInfo(UpdateGroupKeyInfoRequest request)
             throws SystemException, BusinessException {
         BaseResponse response = new BaseResponse();
-        ResponseHeader responseHeader =null;
-        try{
-        ucGroupKeyInfoBusiSV.updateGroupKeyInfo(request);
-        responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "操作成功");
-        }catch(Exception e){
+        ResponseHeader responseHeader = null;
+        try {
+            ucGroupKeyInfoBusiSV.updateGroupKeyInfo(request);
+            responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "操作成功");
+        } catch (Exception e) {
             responseHeader = new ResponseHeader(false, ExceptCodeConstants.FAILD, "操作失败");
         }
         response.setResponseHeader(responseHeader);
@@ -112,18 +114,18 @@ public class UcKeyInfoSVImpl implements IUcKeyInfoSV {
     @Override
     public SearchGroupKeyInfoResponse searchGroupKeyInfo(SearchGroupKeyInfoRequest request)
             throws SystemException, BusinessException {
-        ResponseHeader responseHeader =null;
+        ResponseHeader responseHeader = null;
         SearchGroupKeyInfoResponse response = new SearchGroupKeyInfoResponse();
-        
-        try{
+
+        try {
             response = ucGroupKeyInfoBusiSV.searchGroupKeyInfo(request);
-            if(response!=null){
+            if (response != null) {
                 responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "数据查询成功");
-            }else{
+            } else {
                 response = new SearchGroupKeyInfoResponse();
                 responseHeader = new ResponseHeader(true, ExceptCodeConstants.NO_RESULT, "数据不存在");
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             responseHeader = new ResponseHeader(false, ExceptCodeConstants.FAILD, "操作失败");
         }
         response.setResponseHeader(responseHeader);
@@ -135,15 +137,31 @@ public class UcKeyInfoSVImpl implements IUcKeyInfoSV {
             throws SystemException, BusinessException {
         BaseResponse baseResponse = new BaseResponse();
         ResponseHeader responseHeader = null;
-        
-        try{
-        ucGroupKeyInfoBusiSV.insertCustFileExt(request);
-        responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "操作成功");
-        }catch(Exception e){
+
+        try {
+            ucGroupKeyInfoBusiSV.insertCustFileExt(request);
+            responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "操作成功");
+        } catch (Exception e) {
             responseHeader = new ResponseHeader(false, ExceptCodeConstants.FAILD, "操作失败");
         }
         baseResponse.setResponseHeader(responseHeader);
         return baseResponse;
+    }
+
+    @Override
+    public QueryCustFileExtResponse QueryCustFileExt(QueryCustFileExtRequest request)
+            throws SystemException, BusinessException {
+        ResponseHeader responseHeader = null;
+        QueryCustFileExtResponse response = new QueryCustFileExtResponse();
+        try {
+            response = ucGroupKeyInfoBusiSV.QueryCustFileExt(request);
+            responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "操作成功");
+        } catch (Exception e) {
+            responseHeader = new ResponseHeader(false, ExceptCodeConstants.FAILD, "操作失败");
+        }
+        response.setResponseHeader(responseHeader);
+        return response;
+
     }
 
 }

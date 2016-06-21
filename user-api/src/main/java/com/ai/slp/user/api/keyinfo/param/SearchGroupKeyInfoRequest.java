@@ -12,6 +12,8 @@ public class SearchGroupKeyInfoRequest extends BaseInfo {
     @NotNull(message = "公司名不能为空", groups = { IUcKeyInfoSV.SearchGroupKeyInfo.class })
     private String custName;
 
+    private String userId;
+
     public String getCustName() {
         return custName;
     }
@@ -20,5 +22,12 @@ public class SearchGroupKeyInfoRequest extends BaseInfo {
         this.custName = custName;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
 }

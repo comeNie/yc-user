@@ -6,6 +6,8 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.slp.user.api.keyinfo.param.InsertCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.InsertCustKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.InsertGroupKeyInfoRequest;
+import com.ai.slp.user.api.keyinfo.param.QueryCustFileExtRequest;
+import com.ai.slp.user.api.keyinfo.param.QueryCustFileExtResponse;
 import com.ai.slp.user.api.keyinfo.param.SearchCustKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchCustKeyInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
@@ -123,5 +125,17 @@ public interface IUcKeyInfoSV {
      * @ApiCode USER_100004
      */
     public BaseResponse insertCustFileExt(InsertCustFileExtRequest request)throws SystemException, BusinessException;
+    
+    
+    /**
+     * 查询用户扩展信息
+     * @param request
+     * @return
+     * @throws SystemException
+     * @throws BusinessException
+     * @author zhangqiang7
+     * @ApiCode USER_100005
+     */
+    public QueryCustFileExtResponse QueryCustFileExt(QueryCustFileExtRequest request)throws SystemException, BusinessException;
 
 }

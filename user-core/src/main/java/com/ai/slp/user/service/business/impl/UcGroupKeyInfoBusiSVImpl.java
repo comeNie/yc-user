@@ -11,12 +11,16 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.sdk.components.sequence.util.SeqUtil;
 import com.ai.opt.sdk.util.CollectionUtil;
+import com.ai.opt.sdk.util.StringUtil;
 import com.ai.slp.user.api.keyinfo.param.InsertCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.InsertGroupKeyInfoRequest;
+import com.ai.slp.user.api.keyinfo.param.QueryCustFileExtRequest;
+import com.ai.slp.user.api.keyinfo.param.QueryCustFileExtResponse;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.UpdateGroupKeyInfoRequest;
 import com.ai.slp.user.dao.mapper.bo.CmCustFileExt;
+import com.ai.slp.user.dao.mapper.bo.CmCustFileExtCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfo;
 import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfoCriteria;
 import com.ai.slp.user.service.atom.interfaces.ICustFileAtomSV;
@@ -60,7 +64,11 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
         UcGroupKeyInfoCriteria example = new UcGroupKeyInfoCriteria();
         UcGroupKeyInfoCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(request.getTenantId());
-        criteria.andCustNameEqualTo(request.getCustName());
+        if(StringUtil.isBlank(request.getCustName()))
+           criteria.andCustNameEqualTo(request.getCustName());
+        
+        if(StringUtil.isBlank(request.getUserId()))
+           criteria.andUserIdEqualTo(request.getUserId());
         List<UcGroupKeyInfo> list = ucGroupKeyInfoAtomSV.selectByExample(example);
         
         SearchGroupKeyInfoResponse response = new SearchGroupKeyInfoResponse();
@@ -80,6 +88,21 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
         cmCustFileExt.setInfoExtId(SeqUtil.getNewId("CM_CUST_FILE_EXT$INFO_EXT$ID", 18));
         
         return custFileAtomSV.insert(cmCustFileExt);
+    }
+
+    @Override
+    public QueryCustFileExtResponse QueryCustFileExt(QueryCustFileExtRequest request)
+            throws SystemException, BusinessException {
+        CmCustFileExtCriteria example = new CmCustFileExtCriteria();
+        CmCustFileExtCriteria.Criteria criteria = example.createCriteria();
+        criteria.andTenantIdEqualTo(request.getTenantId());
+        criteria.andUserIdEqualTo(request.getUserId());
+        List<CmCustFileExt> list = custFileAtomSV.selectByExample(example);
+        QueryCustFileExtResponse response = new QueryCustFileExtResponse();
+        if(!list.isEmpty()){
+           BeanUtils.copyProperties(list.get(0), response); 
+        }
+        return response;
     }
 
 }
