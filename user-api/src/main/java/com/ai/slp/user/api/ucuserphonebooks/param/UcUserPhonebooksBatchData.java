@@ -2,11 +2,6 @@ package com.ai.slp.user.api.ucuserphonebooks.param;
 
 import java.io.Serializable;
 
-import org.hibernate.validator.constraints.NotBlank;
-
-import com.ai.opt.validator.constraints.MobilePhone;
-import com.ai.slp.user.api.ucuserphonebooks.interfaces.IUserPhoneBooksSV;
-
 public class UcUserPhonebooksBatchData implements Serializable {
 	private static final long serialVersionUID = 1L;
 

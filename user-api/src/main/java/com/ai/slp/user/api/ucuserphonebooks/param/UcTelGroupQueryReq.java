@@ -1,9 +1,6 @@
 package com.ai.slp.user.api.ucuserphonebooks.param;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.slp.user.api.ucuserphonebooks.interfaces.IUserPhoneBooksSV;
 
 public class UcTelGroupQueryReq extends BaseInfo {
 
