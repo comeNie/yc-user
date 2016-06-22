@@ -8,6 +8,8 @@ import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfo;
 import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfoCriteria;
 
 public interface IUcGroupKeyInfoAtomSV {
+    
+    int countByExample(UcGroupKeyInfoCriteria example);
 
     int insert(UcGroupKeyInfo record);
 

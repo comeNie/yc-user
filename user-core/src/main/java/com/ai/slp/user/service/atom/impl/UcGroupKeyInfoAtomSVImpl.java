@@ -31,4 +31,9 @@ public class UcGroupKeyInfoAtomSVImpl implements IUcGroupKeyInfoAtomSV {
         return ucGroupKeyInfoMapper.updateByExampleSelective(record, example);
     }
 
+    @Override
+    public int countByExample(UcGroupKeyInfoCriteria example) {
+        return ucGroupKeyInfoMapper.countByExample(example);
+    }
+
 }

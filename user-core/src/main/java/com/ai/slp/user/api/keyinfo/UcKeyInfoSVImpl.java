@@ -13,6 +13,8 @@ import com.ai.slp.user.api.keyinfo.param.InsertCustKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.InsertGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.QueryCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.QueryCustFileExtResponse;
+import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoRequest;
+import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.SearchCustKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchCustKeyInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
@@ -162,6 +164,21 @@ public class UcKeyInfoSVImpl implements IUcKeyInfoSV {
         response.setResponseHeader(responseHeader);
         return response;
 
+    }
+
+    @Override
+    public QueryGroupInfoResponse QueryGroupInfo(QueryGroupInfoRequest request)
+            throws SystemException, BusinessException {
+        ResponseHeader responseHeader = null;
+        QueryGroupInfoResponse response = new QueryGroupInfoResponse();
+        try {
+            response = ucGroupKeyInfoBusiSV.QueryGroupInfo(request);
+            responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "操作成功");
+        } catch (Exception e) {
+            responseHeader = new ResponseHeader(false, ExceptCodeConstants.FAILD, "操作失败");
+        }
+        response.setResponseHeader(responseHeader);
+        return response;
     }
 
 }

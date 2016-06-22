@@ -8,6 +8,8 @@ import com.ai.slp.user.api.keyinfo.param.InsertCustKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.InsertGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.QueryCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.QueryCustFileExtResponse;
+import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoRequest;
+import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.SearchCustKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchCustKeyInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
@@ -60,7 +62,7 @@ public interface IUcKeyInfoSV {
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
-     * @ApiCode USER_100002
+     * @ApiCode USER_100003
      */
     public SearchCustKeyInfoResponse searchCustKeyInfo(SearchCustKeyInfoRequest request)
             throws SystemException, BusinessException;
@@ -76,7 +78,7 @@ public interface IUcKeyInfoSV {
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
-     * @ApiCode USER_100001
+     * @ApiCode USER_100004
      */
     public BaseResponse insertGroupKeyInfo(InsertGroupKeyInfoRequest request)
             throws SystemException, BusinessException;
@@ -92,7 +94,7 @@ public interface IUcKeyInfoSV {
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
-     * @ApiCode USER_100002
+     * @ApiCode USER_100005
      */
     public BaseResponse updateGroupKeyInfo(UpdateGroupKeyInfoRequest request)
             throws SystemException, BusinessException;
@@ -108,7 +110,7 @@ public interface IUcKeyInfoSV {
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
-     * @ApiCode USER_100003
+     * @ApiCode USER_100006
      */
     public SearchGroupKeyInfoResponse searchGroupKeyInfo(SearchGroupKeyInfoRequest request)
             throws SystemException, BusinessException;
@@ -122,7 +124,7 @@ public interface IUcKeyInfoSV {
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
-     * @ApiCode USER_100004
+     * @ApiCode USER_100007
      */
     public BaseResponse insertCustFileExt(InsertCustFileExtRequest request)throws SystemException, BusinessException;
     
@@ -134,8 +136,19 @@ public interface IUcKeyInfoSV {
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
-     * @ApiCode USER_100005
+     * @ApiCode USER_100008
      */
     public QueryCustFileExtResponse QueryCustFileExt(QueryCustFileExtRequest request)throws SystemException, BusinessException;
+    
+    /**
+     * 企业关键信息模糊分页查询
+     * @param request
+     * @return
+     * @throws SystemException
+     * @throws BusinessException
+     * @author zhangqiang7
+     * @ApiCode USER_100009
+     */
+    public QueryGroupInfoResponse QueryGroupInfo(QueryGroupInfoRequest request)throws SystemException, BusinessException;
 
 }

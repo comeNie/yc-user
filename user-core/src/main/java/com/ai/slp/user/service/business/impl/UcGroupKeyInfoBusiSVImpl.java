@@ -1,5 +1,6 @@
 package com.ai.slp.user.service.business.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -9,15 +10,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
+import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.sdk.components.sequence.util.SeqUtil;
 import com.ai.opt.sdk.util.CollectionUtil;
+import com.ai.opt.sdk.util.DateUtil;
 import com.ai.opt.sdk.util.StringUtil;
+import com.ai.slp.user.api.keyinfo.param.CmCustFileExtVo;
 import com.ai.slp.user.api.keyinfo.param.InsertCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.InsertGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.QueryCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.QueryCustFileExtResponse;
+import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoRequest;
+import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoResponse;
+import com.ai.slp.user.api.keyinfo.param.UcGroupKeyInfoVo;
 import com.ai.slp.user.api.keyinfo.param.UpdateGroupKeyInfoRequest;
 import com.ai.slp.user.dao.mapper.bo.CmCustFileExt;
 import com.ai.slp.user.dao.mapper.bo.CmCustFileExtCriteria;
@@ -80,14 +87,16 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
     }
 
     @Override
-    public int insertCustFileExt(InsertCustFileExtRequest request)
+    public void insertCustFileExt(InsertCustFileExtRequest request)
             throws SystemException, BusinessException {
         
-        CmCustFileExt cmCustFileExt = new CmCustFileExt();
-        BeanUtils.copyProperties(request, cmCustFileExt);
-        cmCustFileExt.setInfoExtId(SeqUtil.getNewId("CM_CUST_FILE_EXT$INFO_EXT$ID", 18));
-        
-        return custFileAtomSV.insert(cmCustFileExt);
+        for(CmCustFileExtVo cmCustFileExtVo:request.getList()){
+            CmCustFileExt cmCustFileExt = new CmCustFileExt();
+            BeanUtils.copyProperties(cmCustFileExtVo, cmCustFileExt);
+            cmCustFileExt.setInfoExtId(SeqUtil.getNewId("CM_CUST_FILE_EXT$INFO_EXT$ID", 18));
+            cmCustFileExt.setCreateTime(DateUtil.getSysDate());
+            custFileAtomSV.insert(cmCustFileExt);
+        }
     }
 
     @Override
@@ -97,11 +106,47 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
         CmCustFileExtCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(request.getTenantId());
         criteria.andUserIdEqualTo(request.getUserId());
-        List<CmCustFileExt> list = custFileAtomSV.selectByExample(example);
+        
         QueryCustFileExtResponse response = new QueryCustFileExtResponse();
+        List<CmCustFileExt> list = custFileAtomSV.selectByExample(example);
+        List<CmCustFileExtVo> custFileList = new ArrayList<CmCustFileExtVo>();
         if(!list.isEmpty()){
-           BeanUtils.copyProperties(list.get(0), response); 
+            for (CmCustFileExt cmCustFileExt : list) {
+            CmCustFileExtVo cmCustFileExtVo = new CmCustFileExtVo();
+            BeanUtils.copyProperties(cmCustFileExt, cmCustFileExtVo); 
+            custFileList.add(cmCustFileExtVo);
+            }
         }
+        response.setList(custFileList);
+        return response;
+    }
+
+    @Override
+    public QueryGroupInfoResponse QueryGroupInfo(QueryGroupInfoRequest request)
+            throws SystemException, BusinessException {
+        
+        QueryGroupInfoResponse response = new QueryGroupInfoResponse();
+        PageInfo<UcGroupKeyInfoVo> pageInfo = new PageInfo<UcGroupKeyInfoVo>();
+        
+        UcGroupKeyInfoCriteria example = new UcGroupKeyInfoCriteria();
+        UcGroupKeyInfoCriteria.Criteria criteria = example.createCriteria();
+        
+        criteria.andTenantIdEqualTo(request.getTenantId());
+        criteria.andCustNameLike("%"+request.getCustName()+"%");
+        
+        int count = ucGroupKeyInfoAtomSV.countByExample(example);
+        List<UcGroupKeyInfo> list = ucGroupKeyInfoAtomSV.selectByExample(example);
+        List<UcGroupKeyInfoVo> resultList = new ArrayList<UcGroupKeyInfoVo>();
+        for (UcGroupKeyInfo ucGroupKeyInfo : list) {
+            UcGroupKeyInfoVo ucGroupKeyInfoVo = new UcGroupKeyInfoVo();
+            BeanUtils.copyProperties(ucGroupKeyInfo, ucGroupKeyInfoVo);
+            resultList.add(ucGroupKeyInfoVo);
+        }
+        pageInfo.setCount(count);
+        pageInfo.setPageNo(request.getPageNo());
+        pageInfo.setPageSize(request.getPageSize());
+        pageInfo.setResult(resultList);
+        response.setPageInfo(pageInfo);
         return response;
     }
 
