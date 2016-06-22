@@ -132,6 +132,7 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
         UcGroupKeyInfoCriteria.Criteria criteria = example.createCriteria();
         
         criteria.andTenantIdEqualTo(request.getTenantId());
+        criteria.andUserTypeEqualTo(request.getUserType());
         criteria.andCustNameLike("%"+request.getCustName()+"%");
         
         int count = ucGroupKeyInfoAtomSV.countByExample(example);

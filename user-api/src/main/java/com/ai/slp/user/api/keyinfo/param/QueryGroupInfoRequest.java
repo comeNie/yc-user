@@ -8,6 +8,8 @@ public class QueryGroupInfoRequest extends BaseInfo {
 
     private String custName;
 
+    private String userType;
+
     private Integer pageNo;
 
     private Integer pageSize;
@@ -34,6 +36,14 @@ public class QueryGroupInfoRequest extends BaseInfo {
 
     public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
 }
