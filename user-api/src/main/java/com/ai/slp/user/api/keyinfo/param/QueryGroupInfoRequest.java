@@ -5,11 +5,15 @@ import com.ai.opt.base.vo.BaseInfo;
 public class QueryGroupInfoRequest extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
-
+    /**
+     * 企业名称
+     */
     private String custName;
-
+    /**
+     * 用户类型
+     */
     private String userType;
-
+    
     private Integer pageNo;
 
     private Integer pageSize;
