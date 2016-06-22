@@ -3,37 +3,69 @@ package com.ai.slp.user.api.keyinfo.param;
 import java.sql.Timestamp;
 
 public class CmCustFileExtVo {
-
+    /**
+     * 附件ID
+     */
     private String infoExtId;
-
+    /**
+     * 租户Id
+     */
     private String tenantId;
-
+    /**
+     * 用户Id
+     */
     private String userId;
-
+    /**
+     * 属性类型
+     */
     private String infoType;
-
+    /**
+     * 属性子分类
+     */
     private String infoItem;
-
+    /**
+     * 附件名称
+     */
     private String infoName;
-
+    /**
+     * 状态
+     */
     private String state;
-
+    /**
+     * 属性ID
+     */
     private String attrId;
-
+    /**
+     * 属性值
+     */
     private String attrValue;
-
+    /**
+     * 属性可编辑状态
+     */
     private String editState;
-
+    /**
+     * 创建时间
+     */
     private Timestamp createTime;
-
+    /**
+     * 创建渠道
+     */
     private String createChlId;
-
+    /**
+     * 创建员工
+     */
     private Long createOperId;
-
+    /**
+     * 修改时间
+     */
     private Timestamp updateTime;
-
+    /**
+     * 修改渠道
+     */
     private String updateChlId;
-
+    /**
+     * 修改员工
+     */
     private Long updateOperId;
 
     public String getInfoExtId() {
