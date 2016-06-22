@@ -61,7 +61,7 @@ public class GroupKeyInfoSVImpl  {
         QueryCustFileExtRequest re = new QueryCustFileExtRequest();
         re.setTenantId("SLP");
         re.setUserId("000000000000000202");
-        System.out.println(JSON.toJSONString(sv.QueryCustFileExt(re)));
+        System.out.println(JSON.toJSONString(sv.queryCustFileExt(re)));
     }
     
   //@Test
@@ -71,7 +71,7 @@ public class GroupKeyInfoSVImpl  {
         re.setCustName("121212");
         re.setPageNo(1);
         re.setPageSize(1);
-        System.out.println(JSON.toJSONString(sv.QueryGroupInfo(re)));
+        System.out.println(JSON.toJSONString(sv.queryGroupInfo(re)));
     }
     
 }
