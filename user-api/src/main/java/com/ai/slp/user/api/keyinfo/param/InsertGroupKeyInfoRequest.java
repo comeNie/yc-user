@@ -14,60 +14,118 @@ public class InsertGroupKeyInfoRequest extends BaseInfo {
     @NotNull(message = "用户ID不能为空", groups = { IUcKeyInfoSV.insertGroupKeyInfo.class })
     private String userId;
 
+    
+    /**
+     * 用户类型
+     */
     private String userType;
-
+    /**
+     * 营业执照注册号
+     */
     private String certNum;
-
+    /**
+     * 企业名称
+     */
     private String custName;
-
+    /**
+     * 企业注册地址归属省
+     */
     private String provinceCode;
-
+    /**
+     * 企业注册地址归属地
+     */
     private String cityCode;
-
+    /**
+     * 企业注册地址归属区县
+     */
     private String countyCode;
-
+    /**
+     * 企业注册地址详细信息
+     */
     private String certAddr;
-
+    /**
+     * 发证日期（注册时间）
+     */
     private Timestamp certIssueDate;
-
+    /**
+     * 注册资本（万元）
+     */
     private Long registeredCapitals;
-
+    /**
+     * 证件有效期(生效时间)
+     */
     private Timestamp certValidDate;
-
+    /**
+     * 证件有效期(失效时间)
+     */
     private Timestamp certInvalidDate;
-
+    /**
+     * 是否有官网标志
+     */
     private String webFlag;
-
+    /**
+     * 官方网址
+     */
     private String groupWebsite;
-
+    /**
+     * 公司人数
+     */
     private String groupMemberScale;
-
+    /**
+     * 企业性质
+     */
     private String groupType;
-
+    /**
+     * 所属行业
+     */
     private String groupIndustry;
-
+    /**
+     * 经营范围
+     */
     private String groupBusinessScope;
-
+    /**
+     * 主要产品
+     */
     private String groupProduct;
-
+    /**
+     * 法人代表
+     */
     private String legalPerson;
-
-    private String legalCertNum;
-
+    /**
+     * 法人身份证号码
+     */
+    private String legalCertNum;    
+    /**
+     * 组织机构代码
+     */
     private String orgCode;
-
+    /**
+     * 纳税人识别号
+     */
     private String taxpayerCode;
-
+    /**
+     * 纳税人类型
+     */
     private String taxpayerType;
-
+    /**
+     * 纳税类型税码
+     */
     private String taxpayerTypeCode;
-
+    /**
+     * 介绍信息
+     */
     private String groupInfo;
-
+    /**
+     * 创建渠道
+     */
     private String createChlId;
-
+    /**
+     * 创建员工
+     */
     private Long createOperId;
-
+    /**
+     * 合同客户ID
+     */
     private String contractId;
 
     public String getUserId() {
