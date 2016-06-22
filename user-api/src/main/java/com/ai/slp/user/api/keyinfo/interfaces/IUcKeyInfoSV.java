@@ -138,7 +138,7 @@ public interface IUcKeyInfoSV {
      * @author zhangqiang7
      * @ApiCode USER_100008
      */
-    public QueryCustFileExtResponse QueryCustFileExt(QueryCustFileExtRequest request)throws SystemException, BusinessException;
+    public QueryCustFileExtResponse queryCustFileExt(QueryCustFileExtRequest request)throws SystemException, BusinessException;
     
     /**
      * 企业关键信息模糊分页查询
@@ -149,6 +149,6 @@ public interface IUcKeyInfoSV {
      * @author zhangqiang7
      * @ApiCode USER_100009
      */
-    public QueryGroupInfoResponse QueryGroupInfo(QueryGroupInfoRequest request)throws SystemException, BusinessException;
+    public QueryGroupInfoResponse queryGroupInfo(QueryGroupInfoRequest request)throws SystemException, BusinessException;
 
 }

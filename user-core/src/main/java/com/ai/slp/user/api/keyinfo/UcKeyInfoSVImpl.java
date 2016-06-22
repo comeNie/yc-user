@@ -151,7 +151,7 @@ public class UcKeyInfoSVImpl implements IUcKeyInfoSV {
     }
 
     @Override
-    public QueryCustFileExtResponse QueryCustFileExt(QueryCustFileExtRequest request)
+    public QueryCustFileExtResponse queryCustFileExt(QueryCustFileExtRequest request)
             throws SystemException, BusinessException {
         ResponseHeader responseHeader = null;
         QueryCustFileExtResponse response = new QueryCustFileExtResponse();
@@ -167,7 +167,7 @@ public class UcKeyInfoSVImpl implements IUcKeyInfoSV {
     }
 
     @Override
-    public QueryGroupInfoResponse QueryGroupInfo(QueryGroupInfoRequest request)
+    public QueryGroupInfoResponse queryGroupInfo(QueryGroupInfoRequest request)
             throws SystemException, BusinessException {
         ResponseHeader responseHeader = null;
         QueryGroupInfoResponse response = new QueryGroupInfoResponse();
