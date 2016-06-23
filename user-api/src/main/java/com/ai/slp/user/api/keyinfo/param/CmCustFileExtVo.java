@@ -1,8 +1,11 @@
 package com.ai.slp.user.api.keyinfo.param;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class CmCustFileExtVo {
+public class CmCustFileExtVo implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
     /**
      * 附件ID
      */
