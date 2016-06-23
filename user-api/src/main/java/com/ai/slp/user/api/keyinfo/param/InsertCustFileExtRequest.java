@@ -2,11 +2,7 @@ package com.ai.slp.user.api.keyinfo.param;
 
 import java.util.List;
 
-import com.ai.opt.base.vo.BaseInfo;
-
-public class InsertCustFileExtRequest extends BaseInfo {
-
-    private static final long serialVersionUID = 1L;
+public class InsertCustFileExtRequest {
 
     private List<CmCustFileExtVo> list;
 

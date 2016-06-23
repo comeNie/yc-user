@@ -38,7 +38,7 @@ public class GroupKeyInfoSVImpl  {
     public void insertFileExt(){
         InsertCustFileExtRequest re = new InsertCustFileExtRequest();
         CmCustFileExtVo cmCustFileExtVo = new CmCustFileExtVo();
-        re.setTenantId("SLP");
+        //re.setTenantId("SLP");
         List<CmCustFileExtVo> list = new ArrayList<CmCustFileExtVo>();
         cmCustFileExtVo.setInfoName("123");
         cmCustFileExtVo.setUserId("1234");

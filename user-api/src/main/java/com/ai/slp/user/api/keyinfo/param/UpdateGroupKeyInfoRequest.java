@@ -2,63 +2,104 @@ package com.ai.slp.user.api.keyinfo.param;
 
 import java.sql.Timestamp;
 
-import javax.validation.constraints.NotNull;
-
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.slp.user.api.keyinfo.interfaces.IUcKeyInfoSV;
 
 public class UpdateGroupKeyInfoRequest extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
 
-    @NotNull(message = "用户ID不能为空", groups = { IUcKeyInfoSV.UpdateGroupKeyInfo.class })
+    // 用户Id
     private String userId;
 
+    // 用户类型
     private String userType;
 
-    private String custName;
-
-    private String certType;
-
+    // 营业执照注册号
     private String certNum;
 
+    // 公司名称
+    private String custName;
+
+    // 企业注册地址归属省
     private String provinceCode;
 
+    // 企业注册地址归属地市
     private String cityCode;
 
+    // 企业注册地址归属区县
     private String countyCode;
 
+    // 企业注册详细地址
     private String certAddr;
 
+    // 发证日期
     private Timestamp certIssueDate;
 
-    private String certIssueOrg;
+    // 注册资本（万元）
+    private Long registeredCapitals;
 
+    // 证件有效期(生效时间)
     private Timestamp certValidDate;
 
+    // 证件有效期(失效时间)
     private Timestamp certInvalidDate;
 
-    private String custSex;
+    // 是否有官网标志
+    private String webFlag;
 
-    private Timestamp custBirthday;
+    // 官网
+    private String groupWebsite;
 
-    private String custProvinceCode;
+    // 公司人数
+    private String groupMemberScale;
 
-    private String custCityCode;
+    // 企业性质
+    private String groupType;
 
-    private String custCountyCode;
+    // 所属行业
+    private String groupIndustry;
 
-    private String custAddr;
+    // 经营范围
+    private String groupBusinessScope;
 
-    private String incomeLevel;
+    // 主要产品你
+    private String groupProduct;
 
-    private String custIndustry;
+    // 法人代表
+    private String legalPerson;
 
-    private String custEducation;
+    // 法人身份证号
+    private String legalCertNum;
 
+    // 组织机构代码
+    private String orgCode;
+
+    // 纳税类型码
+    private String taxpayerCode;
+
+    // 纳税人类型
+    private String taxpayerType;
+
+    // 纳税类型税码
+    private String taxpayerTypeCode;
+
+    // 介绍信息
+    private String groupInfo;
+
+    // 创建渠道
+    private String createChlId;
+
+    // 创建人
+    private Long createOperId;
+
+    // 更新渠道
     private String updateChlId;
 
+    // 更新人
     private Long updateOperId;
+
+    // 合同客户ID
+    private String contractId;
 
     public String getUserId() {
         return userId;
@@ -76,28 +117,20 @@ public class UpdateGroupKeyInfoRequest extends BaseInfo {
         this.userType = userType;
     }
 
-    public String getCustName() {
-        return custName;
-    }
-
-    public void setCustName(String custName) {
-        this.custName = custName;
-    }
-
-    public String getCertType() {
-        return certType;
-    }
-
-    public void setCertType(String certType) {
-        this.certType = certType;
-    }
-
     public String getCertNum() {
         return certNum;
     }
 
     public void setCertNum(String certNum) {
         this.certNum = certNum;
+    }
+
+    public String getCustName() {
+        return custName;
+    }
+
+    public void setCustName(String custName) {
+        this.custName = custName;
     }
 
     public String getProvinceCode() {
@@ -140,12 +173,12 @@ public class UpdateGroupKeyInfoRequest extends BaseInfo {
         this.certIssueDate = certIssueDate;
     }
 
-    public String getCertIssueOrg() {
-        return certIssueOrg;
+    public Long getRegisteredCapitals() {
+        return registeredCapitals;
     }
 
-    public void setCertIssueOrg(String certIssueOrg) {
-        this.certIssueOrg = certIssueOrg;
+    public void setRegisteredCapitals(Long registeredCapitals) {
+        this.registeredCapitals = registeredCapitals;
     }
 
     public Timestamp getCertValidDate() {
@@ -164,76 +197,132 @@ public class UpdateGroupKeyInfoRequest extends BaseInfo {
         this.certInvalidDate = certInvalidDate;
     }
 
-    public String getCustSex() {
-        return custSex;
+    public String getWebFlag() {
+        return webFlag;
     }
 
-    public void setCustSex(String custSex) {
-        this.custSex = custSex;
+    public void setWebFlag(String webFlag) {
+        this.webFlag = webFlag;
     }
 
-    public Timestamp getCustBirthday() {
-        return custBirthday;
+    public String getGroupWebsite() {
+        return groupWebsite;
     }
 
-    public void setCustBirthday(Timestamp custBirthday) {
-        this.custBirthday = custBirthday;
+    public void setGroupWebsite(String groupWebsite) {
+        this.groupWebsite = groupWebsite;
     }
 
-    public String getCustProvinceCode() {
-        return custProvinceCode;
+    public String getGroupMemberScale() {
+        return groupMemberScale;
     }
 
-    public void setCustProvinceCode(String custProvinceCode) {
-        this.custProvinceCode = custProvinceCode;
+    public void setGroupMemberScale(String groupMemberScale) {
+        this.groupMemberScale = groupMemberScale;
     }
 
-    public String getCustCityCode() {
-        return custCityCode;
+    public String getGroupType() {
+        return groupType;
     }
 
-    public void setCustCityCode(String custCityCode) {
-        this.custCityCode = custCityCode;
+    public void setGroupType(String groupType) {
+        this.groupType = groupType;
     }
 
-    public String getCustCountyCode() {
-        return custCountyCode;
+    public String getGroupIndustry() {
+        return groupIndustry;
     }
 
-    public void setCustCountyCode(String custCountyCode) {
-        this.custCountyCode = custCountyCode;
+    public void setGroupIndustry(String groupIndustry) {
+        this.groupIndustry = groupIndustry;
     }
 
-    public String getCustAddr() {
-        return custAddr;
+    public String getGroupBusinessScope() {
+        return groupBusinessScope;
     }
 
-    public void setCustAddr(String custAddr) {
-        this.custAddr = custAddr;
+    public void setGroupBusinessScope(String groupBusinessScope) {
+        this.groupBusinessScope = groupBusinessScope;
     }
 
-    public String getIncomeLevel() {
-        return incomeLevel;
+    public String getGroupProduct() {
+        return groupProduct;
     }
 
-    public void setIncomeLevel(String incomeLevel) {
-        this.incomeLevel = incomeLevel;
+    public void setGroupProduct(String groupProduct) {
+        this.groupProduct = groupProduct;
     }
 
-    public String getCustIndustry() {
-        return custIndustry;
+    public String getLegalPerson() {
+        return legalPerson;
     }
 
-    public void setCustIndustry(String custIndustry) {
-        this.custIndustry = custIndustry;
+    public void setLegalPerson(String legalPerson) {
+        this.legalPerson = legalPerson;
     }
 
-    public String getCustEducation() {
-        return custEducation;
+    public String getLegalCertNum() {
+        return legalCertNum;
     }
 
-    public void setCustEducation(String custEducation) {
-        this.custEducation = custEducation;
+    public void setLegalCertNum(String legalCertNum) {
+        this.legalCertNum = legalCertNum;
+    }
+
+    public String getOrgCode() {
+        return orgCode;
+    }
+
+    public void setOrgCode(String orgCode) {
+        this.orgCode = orgCode;
+    }
+
+    public String getTaxpayerCode() {
+        return taxpayerCode;
+    }
+
+    public void setTaxpayerCode(String taxpayerCode) {
+        this.taxpayerCode = taxpayerCode;
+    }
+
+    public String getTaxpayerType() {
+        return taxpayerType;
+    }
+
+    public void setTaxpayerType(String taxpayerType) {
+        this.taxpayerType = taxpayerType;
+    }
+
+    public String getTaxpayerTypeCode() {
+        return taxpayerTypeCode;
+    }
+
+    public void setTaxpayerTypeCode(String taxpayerTypeCode) {
+        this.taxpayerTypeCode = taxpayerTypeCode;
+    }
+
+    public String getGroupInfo() {
+        return groupInfo;
+    }
+
+    public void setGroupInfo(String groupInfo) {
+        this.groupInfo = groupInfo;
+    }
+
+    public String getCreateChlId() {
+        return createChlId;
+    }
+
+    public void setCreateChlId(String createChlId) {
+        this.createChlId = createChlId;
+    }
+
+    public Long getCreateOperId() {
+        return createOperId;
+    }
+
+    public void setCreateOperId(Long createOperId) {
+        this.createOperId = createOperId;
     }
 
     public String getUpdateChlId() {
@@ -250,6 +339,14 @@ public class UpdateGroupKeyInfoRequest extends BaseInfo {
 
     public void setUpdateOperId(Long updateOperId) {
         this.updateOperId = updateOperId;
+    }
+
+    public String getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(String contractId) {
+        this.contractId = contractId;
     }
 
 }
