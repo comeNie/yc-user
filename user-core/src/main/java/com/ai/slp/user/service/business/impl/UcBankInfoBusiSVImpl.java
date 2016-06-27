@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
-import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.slp.user.api.bankinfo.param.InsertBankInfoRequest;
@@ -37,27 +36,17 @@ public class UcBankInfoBusiSVImpl implements IUcBankInfoBusiSV {
     private IUcBankInfoAtomSV ucBankInfoAtomSV;
 
     @Override
-    public BaseResponse insertBankInfo(InsertBankInfoRequest bankInfoRequest)
+    public int insertBankInfo(InsertBankInfoRequest bankInfoRequest)
             throws BusinessException, SystemException {
         UcBankInfo ucBankInfo = new UcBankInfo();
         ucBankInfo.setBankSeqId(SequenceUtil.createBankSeqId());
         BeanUtils.copyProperties(bankInfoRequest, ucBankInfo);
         ucBankInfo.setCreateTime(DateUtils.currTimeStamp());
-        BaseResponse response = new BaseResponse();
-        ResponseHeader responseHeader;
-        try {
-            ucBankInfoAtomSV.insert(ucBankInfo);
-            responseHeader = new ResponseHeader(true, "success", "添加成功");
-        } catch (Exception e) {
-            LOG.error("添加失败", e);
-            responseHeader = new ResponseHeader(false, "fail", "添加失败");
-        }
-        response.setResponseHeader(responseHeader);
-        return response;
+        return ucBankInfoAtomSV.insert(ucBankInfo);
     }
 
     @Override
-    public BaseResponse UpdateBankInfo(UpdateBankInfoRequest bankInfoRequest)
+    public int UpdateBankInfo(UpdateBankInfoRequest bankInfoRequest)
             throws BusinessException, SystemException {
         UcBankInfo bankInfo = new UcBankInfo();
         BeanUtils.copyProperties(bankInfoRequest, bankInfo);
@@ -66,17 +55,7 @@ public class UcBankInfoBusiSVImpl implements IUcBankInfoBusiSV {
         criteria.andTenantIdEqualTo(bankInfoRequest.getTenantId());
         criteria.andUserIdEqualTo(bankInfoRequest.getUserId());
         criteria.andBankSeqIdEqualTo(bankInfoRequest.getBankSeqId());
-        BaseResponse response = new BaseResponse();
-        ResponseHeader responseHeader;
-        try {
-            ucBankInfoAtomSV.updateByExampleSelective(bankInfo, example);
-            responseHeader = new ResponseHeader(true, "success", "更新成功");
-        } catch (Exception e) {
-            LOG.error("更新失败");
-            responseHeader = new ResponseHeader(false, "fail", "更新失败");
-        }
-        response.setResponseHeader(responseHeader);
-        return response;
+        return ucBankInfoAtomSV.updateByExampleSelective(bankInfo, example);
     }
 
     @Override
