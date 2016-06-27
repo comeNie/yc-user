@@ -2,11 +2,7 @@ package com.ai.slp.user.api.message.param;
 
 import java.sql.Timestamp;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.slp.user.api.message.interfaces.IUserMessageSV;
 
 /**
  * 用户消息服务创建入参 Date: 2016年4月20日 <br>
@@ -21,15 +17,11 @@ public class InsertUserMessageRequest extends BaseInfo {
     /**
      * 用户ID NOT NULL
      */
-    @NotNull(message = "用户ID不能为空", groups = { IUserMessageSV.InsertUserMessage.class })
-    @Size(min = 18, max = 18, message = "用户Id长度不是18位", groups = { IUserMessageSV.InsertUserMessage.class })
     private String userId;
 
     /**
      * 用户消息ID
      */
-    @NotNull(message = "消息ID不能为空", groups = { IUserMessageSV.InsertUserMessage.class })
-    @Size(min = 18, max = 18, message = "消息Id长度不是18位", groups = { IUserMessageSV.InsertUserMessage.class })
     private String infoSeqId;
 
     /**

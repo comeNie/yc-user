@@ -1,10 +1,6 @@
 package com.ai.slp.user.api.specialinfo.param;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.slp.user.api.specialinfo.interfaces.IUcSpecialInfoSV;
 
 /**
  * 获取个性化信息出参 Date: 2016年4月28日 <br>
@@ -19,15 +15,11 @@ public class QuerySpecialInfoRequest extends BaseInfo {
     /**
      * 用户Id NOT NULL
      */
-    @NotNull(message = "userID不能为空", groups = { IUcSpecialInfoSV.UpdateSpecialInfo.class })
-    @Size(min = 18, max = 18, message = "用户Id长度不是18位", groups = { IUcSpecialInfoSV.UpdateSpecialInfo.class })
     private String userId;
 
     /**
      * 扩展ID
      */
-    @NotNull(message = "specialInfoId不能为空", groups = { IUcSpecialInfoSV.UpdateSpecialInfo.class })
-    @Size(min = 18, max = 18, message = "拓展Id长度不是18位", groups = { IUcSpecialInfoSV.UpdateSpecialInfo.class })
     private Long specialInfoId;
 
     public String getUserId() {

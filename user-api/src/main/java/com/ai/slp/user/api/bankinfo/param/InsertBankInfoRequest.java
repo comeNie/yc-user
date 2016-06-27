@@ -1,10 +1,6 @@
 package com.ai.slp.user.api.bankinfo.param;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.slp.user.api.bankinfo.interfaces.IUcBankInfoSV;
 
 /**
  * 创建用户银行信息入参 Date: 2016年4月28日 <br>
@@ -17,17 +13,9 @@ public class InsertBankInfoRequest extends BaseInfo {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户Id NOT NULL
+     * 用户Id 
      */
-    @NotNull(message = "UserID不能为空", groups = { IUcBankInfoSV.InsertBankInfo.class })
-    @Size(min = 18, max = 18, message = "用户Id长度不是18位", groups = { IUcBankInfoSV.InsertBankInfo.class })
     private String userId;
-
-    /**
-     * 唯一标识
-     */
-    @Size(min = 18, max = 18, message = "唯一标识长度不是18位", groups = { IUcBankInfoSV.InsertBankInfo.class })
-    private String bankSeqId;
 
     /**
      * 状态
@@ -90,14 +78,6 @@ public class InsertBankInfoRequest extends BaseInfo {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public String getBankSeqId() {
-        return bankSeqId;
-    }
-
-    public void setBankSeqId(String bankSeqId) {
-        this.bankSeqId = bankSeqId;
     }
 
     public String getState() {

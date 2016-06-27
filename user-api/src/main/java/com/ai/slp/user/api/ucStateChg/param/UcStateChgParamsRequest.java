@@ -1,10 +1,8 @@
 package com.ai.slp.user.api.ucStateChg.param;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import com.ai.opt.base.vo.BaseInfo;
 import com.ai.slp.user.api.ucStateChg.interfaces.IUcStateChgSV;
@@ -16,8 +14,6 @@ public class UcStateChgParamsRequest extends BaseInfo implements Serializable {
      * 用户ID 
      */
     @NotNull(message = "用户ID不能为空", groups = { IUcStateChgSV.InsertUcStateChgInfo.class,
-            IUcStateChgSV.UpdateUcStateChgInfo.class })
-    @Size(max = 18, groups = { IUcStateChgSV.InsertUcStateChgInfo.class,
             IUcStateChgSV.UpdateUcStateChgInfo.class })
     private String userId;
 

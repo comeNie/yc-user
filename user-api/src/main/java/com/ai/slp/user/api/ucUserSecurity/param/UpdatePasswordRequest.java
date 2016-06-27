@@ -1,9 +1,6 @@
 package com.ai.slp.user.api.ucUserSecurity.param;
 
-import javax.validation.constraints.NotNull;
-
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.slp.user.api.login.interfaces.ILoginSV;
 
 public class UpdatePasswordRequest extends BaseInfo {
 
@@ -12,7 +9,6 @@ public class UpdatePasswordRequest extends BaseInfo {
     /**
      * 用户类型 不能为空
      */
-    @NotNull(message = "用户类型不能为空", groups = { ILoginSV.Login.class })
     private String userType;
 
     /**

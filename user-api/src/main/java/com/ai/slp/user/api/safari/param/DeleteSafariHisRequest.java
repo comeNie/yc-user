@@ -2,11 +2,7 @@ package com.ai.slp.user.api.safari.param;
 
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.slp.user.api.safari.interfaces.IUserSafariSV;
 
 /**
  * 删除浏览历史表入参 Date: 2016年4月27日 <br>
@@ -21,14 +17,11 @@ public class DeleteSafariHisRequest extends BaseInfo {
     /**
      * 用户ID NOT NULL
      */
-    @NotNull(message = "用户Id不能为空", groups = { IUserSafariSV.DeleteUserSafariHis.class })
-    @Size(min = 18, max = 18, message = "用户Id长度不是18位", groups = { IUserSafariSV.DeleteUserSafariHis.class })
     private String userId;
 
     /**
      * 浏览ID列表
      */
-    @NotNull(message = "浏览Id列表不能为空", groups = { IUserSafariSV.DeleteUserSafariHis.class })
     private List<String> safariHisIdList;
 
     public String getUserId() {

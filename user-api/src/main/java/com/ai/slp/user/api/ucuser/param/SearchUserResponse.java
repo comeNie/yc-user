@@ -3,7 +3,6 @@ package com.ai.slp.user.api.ucuser.param;
 import java.util.List;
 
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.slp.user.api.register.param.UcUserParams;
 
 public class SearchUserResponse  extends BaseResponse{

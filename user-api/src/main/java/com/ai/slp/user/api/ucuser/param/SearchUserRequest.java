@@ -2,11 +2,7 @@ package com.ai.slp.user.api.ucuser.param;
 
 import java.sql.Timestamp;
 
-import org.hibernate.validator.constraints.Email;
-
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.opt.validator.constraints.MobilePhone;
-import com.ai.slp.user.api.ucuser.intefaces.IUcUserSV;
 
 /**
  * 查询用户入参 Date: 2016年5月3日 <br>

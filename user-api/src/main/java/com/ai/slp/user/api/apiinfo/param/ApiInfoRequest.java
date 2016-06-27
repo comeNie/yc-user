@@ -1,10 +1,6 @@
 package com.ai.slp.user.api.apiinfo.param;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.slp.user.api.apiinfo.interfaces.IApiInfoSV;
 
 /**
  * API信息查询服务入参 Date: 2016年4月20日 <br>
@@ -18,14 +14,11 @@ public class ApiInfoRequest extends BaseInfo {
     /**
      * ApiID 不能为空
      */
-    @NotNull(message = "ApiId不能为空", groups = { IApiInfoSV.QueryApiInfo.class })
     private String apiReqId;
 
     /**
      * 用户ID 不能为空
      */
-    @NotNull(message = "用户Id不能为空", groups = { IApiInfoSV.QueryApiInfo.class })
-    @Size(min = 18, max = 18, message = "用户Id长度不是18位", groups = { IApiInfoSV.QueryApiInfo.class })
     private String userId;
 
     /**

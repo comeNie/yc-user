@@ -1,7 +1,6 @@
 package com.ai.slp.user.api.specialinfo.param;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import com.ai.opt.base.vo.BaseInfo;
 import com.ai.slp.user.api.specialinfo.interfaces.IUcSpecialInfoSV;
@@ -19,8 +18,6 @@ public class UpdateSepcialInfoRequest extends BaseInfo {
     /**
      * 用户Id NOT NULL
      */
-    @NotNull(message = "userID不能为空", groups = { IUcSpecialInfoSV.QuerySpecialInfo.class })
-    @Size(min = 18, max = 18, message = "用户Id长度不是18位", groups = { IUcSpecialInfoSV.QuerySpecialInfo.class })
     private String userId;
 
     public String getUserId() {
