@@ -66,6 +66,9 @@ public class UcLoginLogParamsRequest extends BaseInfo implements Serializable {
      */
     private String loginWay;
 
+    private Integer pageNo;
+
+    private Integer pageSize;
     
     public String getLoginProvice() {
         return loginProvice;
@@ -153,6 +156,22 @@ public class UcLoginLogParamsRequest extends BaseInfo implements Serializable {
 
     public void setLoginWay(String loginWay) {
         this.loginWay = loginWay;
+    }
+
+    public Integer getPageNo() {
+        return pageNo;
+    }
+
+    public void setPageNo(Integer pageNo) {
+        this.pageNo = pageNo;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
     }
 
 }

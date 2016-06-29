@@ -31,7 +31,7 @@ public class UpdateSepcialInfoRequest extends BaseInfo {
     /**
      * 拓展Id NOT NULL
      */
-    @NotNull(message = "infoSpecialId不能为空", groups = { IUcSpecialInfoSV.QuerySpecialInfo.class })
+    @NotNull(message = "infoSpecialId不能为空")
     private Long infoSpecialId;
 
     /**

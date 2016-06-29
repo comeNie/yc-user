@@ -3,13 +3,12 @@ package com.ai.slp.user.api.ucStateChg.param;
 import javax.validation.constraints.NotNull;
 
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.slp.user.api.ucStateChg.interfaces.IUcStateChgSV;
 
 public class QueryStateChgRequest extends BaseInfo {
 
     private static final long serialVersionUID = 1L; 
 
-    @NotNull(message = "userId不能为空", groups = { IUcStateChgSV.InsertUcStateChgInfo.class })
+    @NotNull(message = "userId不能为空")
     private String userId;
 
     private String stateChgId;

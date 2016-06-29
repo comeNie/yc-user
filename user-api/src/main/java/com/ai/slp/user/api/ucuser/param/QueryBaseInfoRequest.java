@@ -12,7 +12,7 @@ public class QueryBaseInfoRequest extends BaseInfo {
     /**
      * 用户类型 不能为空
      */
-    @NotNull(message = "用户类型不能为空", groups = { ILoginSV.Login.class })
+    @NotNull(message = "用户类型不能为空")
     private String userType;
 
     /**
