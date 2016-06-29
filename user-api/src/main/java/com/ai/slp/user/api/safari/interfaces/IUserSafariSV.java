@@ -1,5 +1,11 @@
 package com.ai.slp.user.api.safari.interfaces;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
@@ -16,11 +22,10 @@ import com.ai.slp.user.api.safari.param.UserSafariInfoResponse;
  * 
  * @author zhangqiang7
  */
-
+@Path("/safariservice")
+@Consumes({ MediaType.APPLICATION_JSON })
+@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_XML })
 public interface IUserSafariSV {
-
-    @interface InsertUserSafari {
-    }
 
     /**
      * 用户浏览商品信息创建
@@ -30,13 +35,13 @@ public interface IUserSafariSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER_010
+     * @ApiCode UCUSER_100047
+     * @RestRelativeURL safariservice/insertUserMessage
      */
+    @POST
+    @Path("/insertUserSafari")
     BaseResponse insertUserSafari(InsertUserSafariRequest safariRequest)
             throws BusinessException, SystemException;
-
-    @interface DeleteUserSafari {
-    }
 
     /**
      * 用户浏览商品信息前端删除
@@ -45,13 +50,13 @@ public interface IUserSafariSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER_011
+     * @ApiCode UCUSER_100048
+     * @RestRelativeURL safariservice/deleteUserSafari
      */
+    @POST
+    @Path("/deleteUserSafari")
     BaseResponse deleteUserSafari(DeleteSafariRequest deletSafariRequest)
             throws BusinessException, SystemException;
-
-    @interface DeleteSafariBack {
-    }
 
     /**
      * 用户浏览商品信息后台删除
@@ -60,13 +65,13 @@ public interface IUserSafariSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER
+     * @ApiCode UCUSER_100049
+     * @RestRelativeURL safariservice/deleteSafariBack
      */
+    @POST
+    @Path("/deleteSafariBack")
     BaseResponse deleteSafariBack(DeleteSafariRequest deleteRequest)
             throws BusinessException, SystemException;
-
-    @interface DeleteUserSafariHis {
-    }
 
     /**
      * 删除浏览商品足迹历史表
@@ -75,13 +80,13 @@ public interface IUserSafariSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER
+     * @ApiCode UCUSER_100050
+     * @RestRelativeURL safariservice/deleteUserSafariHis
      */
+    @POST
+    @Path("/deleteUserSafariHis")
     BaseResponse deleteUserSafariHis(DeleteSafariHisRequest deleteReuqest)
             throws BusinessException, SystemException;
-
-    @interface QueryUserSafari {
-    }
 
     /**
      * 用户浏览商品信息查询
@@ -91,8 +96,11 @@ public interface IUserSafariSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER_012
+     * @ApiCode UCUSER_100051
+     * @RestRelativeURL safariservice/queryUserSafari
      */
+    @POST
+    @Path("/queryUserSafari")
     UserSafariInfoResponse queryUserSafari(UserSafariInfoRequest userSafariInfoRequest)
             throws BusinessException, SystemException;
 }

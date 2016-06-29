@@ -1,5 +1,11 @@
 package com.ai.slp.user.api.keyinfo.interfaces;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
@@ -17,10 +23,10 @@ import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.UpdateCustKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.UpdateGroupKeyInfoRequest;
 
+@Path("/custkeyinfoservice")
+@Consumes({ MediaType.APPLICATION_JSON })
+@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_XML })
 public interface IUcKeyInfoSV {
-
-    @interface insertCustKeyInfo {
-    }
 
     /**
      * 保存个人关键信息
@@ -30,14 +36,14 @@ public interface IUcKeyInfoSV {
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
-     * @ApiCode USER_100001
+     * @ApiCode USER_100013
+     * @RestRelativeURL custkeyinfoservice/insertCustKeyInfo
      */
+    @POST
+    @Path("/insertCustKeyInfo")
     public BaseResponse insertCustKeyInfo(InsertCustKeyInfoRequest request)
             throws SystemException, BusinessException;
 
-    @interface UpdateCustKeyInfo {
-    }
-
     /**
      * 更新个人关键信息
      * 
@@ -46,14 +52,14 @@ public interface IUcKeyInfoSV {
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
-     * @ApiCode USER_100002
+     * @ApiCode USER_100014
+     * @RestRelativeURL custkeyinfoservice/updateCustKeyInfo
      */
+    @POST
+    @Path("/updateCustKeyInfo")
     public BaseResponse updateCustKeyInfo(UpdateCustKeyInfoRequest request)
             throws SystemException, BusinessException;
 
-    @interface SearchCustKeyInfo {
-    }
-
     /**
      * 更新个人关键信息
      * 
@@ -62,13 +68,13 @@ public interface IUcKeyInfoSV {
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
-     * @ApiCode USER_100003
+     * @ApiCode USER_100015
+     * @RestRelativeURL custkeyinfoservice/searchCustKeyInfo
      */
+    @POST
+    @Path("/searchCustKeyInfo")
     public SearchCustKeyInfoResponse searchCustKeyInfo(SearchCustKeyInfoRequest request)
             throws SystemException, BusinessException;
-
-    @interface insertGroupKeyInfo {
-    }
 
     /**
      * 保存企业关键信息
@@ -78,8 +84,11 @@ public interface IUcKeyInfoSV {
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
-     * @ApiCode USER_100004
+     * @ApiCode USER_1000016
+     * @RestRelativeURL custkeyinfoservice/insertGroupKeyInfo
      */
+    @POST
+    @Path("/insertGroupKeyInfo")
     public BaseResponse insertGroupKeyInfo(InsertGroupKeyInfoRequest request)
             throws SystemException, BusinessException;
 
@@ -94,13 +103,13 @@ public interface IUcKeyInfoSV {
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
-     * @ApiCode USER_100005
+     * @ApiCode USER_1000017
+     * @RestRelativeURL custkeyinfoservice/updateGroupKeyInfo
      */
+    @POST
+    @Path("/updateGroupKeyInfo")
     public BaseResponse updateGroupKeyInfo(UpdateGroupKeyInfoRequest request)
             throws SystemException, BusinessException;
-
-    @interface SearchGroupKeyInfo {
-    }
 
     /**
      * 查询企业关键信息
@@ -110,12 +119,13 @@ public interface IUcKeyInfoSV {
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
-     * @ApiCode USER_100006
+     * @ApiCode USER_1000018
+     * @RestRelativeURL custkeyinfoservice/searchGroupKeyInfo
      */
+    @POST
+    @Path("/searchGroupKeyInfo")
     public SearchGroupKeyInfoResponse searchGroupKeyInfo(SearchGroupKeyInfoRequest request)
             throws SystemException, BusinessException;
-    
-    @interface insertCustFileExt{}
     
     /**
      * 保存用户扩展信息
@@ -124,8 +134,11 @@ public interface IUcKeyInfoSV {
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
-     * @ApiCode USER_100007
+     * @ApiCode USER_1000019
+     * @RestRelativeURL custkeyinfoservice/insertCustFileExt
      */
+    @POST
+    @Path("/insertCustFileExt")
     public BaseResponse insertCustFileExt(InsertCustFileExtRequest request)throws SystemException, BusinessException;
     
     
@@ -136,8 +149,11 @@ public interface IUcKeyInfoSV {
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
-     * @ApiCode USER_100008
+     * @ApiCode USER_1000020
+     * @RestRelativeURL custkeyinfoservice/queryCustFileExt
      */
+    @POST
+    @Path("/queryCustFileExt")
     public QueryCustFileExtResponse queryCustFileExt(QueryCustFileExtRequest request)throws SystemException, BusinessException;
     
     /**
@@ -147,8 +163,11 @@ public interface IUcKeyInfoSV {
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
-     * @ApiCode USER_100009
+     * @ApiCode USER_1000021
+     * @RestRelativeURL custkeyinfoservice/queryGroupInfo
      */
+    @POST
+    @Path("/queryGroupInfo")
     public QueryGroupInfoResponse queryGroupInfo(QueryGroupInfoRequest request)throws SystemException, BusinessException;
 
 }

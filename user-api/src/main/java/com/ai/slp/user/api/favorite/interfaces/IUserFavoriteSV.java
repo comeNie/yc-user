@@ -1,5 +1,11 @@
 package com.ai.slp.user.api.favorite.interfaces;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
@@ -16,10 +22,10 @@ import com.ai.slp.user.api.favorite.param.UserFavoriteResponse;
  * 
  * @author zhangqiang7
  */
+@Path("/favoriteservice")
+@Consumes({ MediaType.APPLICATION_JSON })
+@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_XML })
 public interface IUserFavoriteSV {
-
-    @interface InsertUcFavorite {
-    }
 
     /**
      * 用户收藏信息创建
@@ -29,13 +35,13 @@ public interface IUserFavoriteSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER_004
+     * @ApiCode UCUSER_00010
+     * @RestRelativeURL favoriteservice/insertUcFavorite
      */
+    @POST
+    @Path("/insertUcFavorite")
     BaseResponse insertUcFavorite(InsertUserFavoriteRequest favoriteRequest)
             throws BusinessException, SystemException;
-
-    @interface CancelFavorite {
-    }
 
     /**
      * 用户收藏信息更新 
@@ -45,13 +51,13 @@ public interface IUserFavoriteSV {
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
-     * @UCUSER_005
+     * @ApiCode UCUSER_00011
+     * @RestRelativeURL favoriteservice/cancelFavorite
      */
+    @POST
+    @Path("/cancelFavorite")
     BaseResponse cancelFavorite(UpdateFavoriteRequest updateRequest)
             throws SystemException, BusinessException;
-
-    @interface DeleteFavorite {
-    }
 
     /**
      * 用户收藏信息删除
@@ -60,14 +66,13 @@ public interface IUserFavoriteSV {
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
-     * @UCUSER
+     * @ApiCode UCUSER_00012
+     * @RestRelativeURL favoriteservice/deleteFavorite
      */
-
+    @POST
+    @Path("/deleteFavorite")
     BaseResponse deleteFavorite(DeleteFavoriteListRequest deleteListRequest)
             throws SystemException, BusinessException;
-
-    @interface QueryFavorite {
-    }
 
     /**
      * 用户收藏信息查询
@@ -77,8 +82,11 @@ public interface IUserFavoriteSV {
      * @throws SystemException
      * @throws BusinessException
      * @author zhangqiang7
-     * @UCUSER_006
+     * @ApiCode UCUSER_00013
+     * @RestRelativeURL favoriteservice/queryFavorite
      */
+    @POST
+    @Path("/queryFavorite")
    UserFavoriteResponse queryFavorite(UserFavoriteRequest userFavoriteRequest)
             throws SystemException, BusinessException;
 }

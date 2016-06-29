@@ -2,11 +2,7 @@ package com.ai.slp.user.api.login.param;
 
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Email;
-
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.opt.validator.constraints.MobilePhone;
-import com.ai.slp.user.api.login.interfaces.ILoginSV;
 
 /**
  * 登录服务入参 Date: 2016年4月20日 <br>
@@ -21,7 +17,7 @@ public class LoginRequest extends BaseInfo {
     /**
      * 用户类型 不能为空
      */
-    @NotNull(message = "用户类型不能为空", groups = { ILoginSV.Login.class })
+    @NotNull(message = "用户类型不能为空")
     private String userType;
 
     /**

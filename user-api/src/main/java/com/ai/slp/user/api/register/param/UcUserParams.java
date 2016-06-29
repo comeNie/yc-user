@@ -1,11 +1,7 @@
 package com.ai.slp.user.api.register.param;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import com.ai.opt.base.vo.BaseInfo;
 import com.ai.opt.validator.constraints.MobilePhone;
-import com.ai.slp.user.api.register.interfaces.IRegisterSV;
 
 /**
  * 用户信息 <br>
@@ -20,7 +16,6 @@ public class UcUserParams extends BaseInfo {
 
     private String userId;
 
-    @NotNull(message = "用户类型不能为空", groups = { IRegisterSV.InsertUcUser.class })
     private String userType;
 
     private String userFlag;

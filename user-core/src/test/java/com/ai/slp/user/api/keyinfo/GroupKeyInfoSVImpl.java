@@ -34,7 +34,7 @@ public class GroupKeyInfoSVImpl  {
         req.setCertNum("111");
         sv.insertGroupKeyInfo(req);
     }
-    @Test
+    //@Test
     public void insertFileExt(){
         InsertCustFileExtRequest re = new InsertCustFileExtRequest();
         CmCustFileExtVo cmCustFileExtVo = new CmCustFileExtVo();
@@ -66,14 +66,14 @@ public class GroupKeyInfoSVImpl  {
         System.out.println(JSON.toJSONString(sv.queryCustFileExt(re)));
     }
     
-  //@Test
+  @Test
     public void queryGroup(){
         QueryGroupInfoRequest re = new QueryGroupInfoRequest();
         re.setTenantId("SLP");
-        re.setCustName("121212");
+        re.setCustName("国际");
         re.setPageNo(1);
         re.setPageSize(1);
-        System.out.println(JSON.toJSONString(sv.queryGroupInfo(re)));
+        System.out.println(JSON.toJSONString(sv.queryGroupInfo(re).getPageInfo().getResult()));
     }
     
 }

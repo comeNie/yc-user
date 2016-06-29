@@ -1,5 +1,11 @@
 package com.ai.slp.user.api.bankinfo.interfaces;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
@@ -14,10 +20,10 @@ import com.ai.slp.user.api.bankinfo.param.UpdateBankInfoRequest;
  * 
  * @author zhangqiang7
  */
+@Path("/bankinfoservice")
+@Consumes({ MediaType.APPLICATION_JSON })
+@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_XML })
 public interface IUcBankInfoSV {
-
-    @interface InsertBankInfo {
-    }
 
     /**
      * 创建用户银行信息
@@ -27,13 +33,13 @@ public interface IUcBankInfoSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER
+     * @ApiCode UCUSER_004
+     * @RestRelativeURL bankinfoservice/insertBankInfo
      */
+    @POST
+    @Path("/insertBankInfo")
     BaseResponse insertBankInfo(InsertBankInfoRequest bankInfoRequest)
             throws BusinessException, SystemException;
-
-    @interface UpdateBankInfo {
-    }
 
     /**
      * 更新用户银行信息
@@ -42,8 +48,11 @@ public interface IUcBankInfoSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER
+     * @ApiCode UCUSER_005
+     * @RestRelativeURL bankinfoservice/updateBankInfo
      */
+    @POST
+    @Path("/updateBankInfo")
     BaseResponse updateBankInfo(UpdateBankInfoRequest bankInfoRequest)
             throws BusinessException, SystemException;
 
@@ -56,8 +65,11 @@ public interface IUcBankInfoSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER
+     * @ApiCode UCUSER_006
+     * @RestRelativeURL bankinfoservice/queryBankInfo
      */
+    @POST
+    @Path("/queryBankInfo")
     QueryBankInfoResponse queryBankInfo(QueryBankInfoRequest bankInfoRequest)
             throws BusinessException, SystemException;
 }

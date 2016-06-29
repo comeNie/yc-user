@@ -25,7 +25,6 @@ public class UserBankInfoSVImplTest {
         request.setTenantId("test111");
         request.setAcctName("111");
         request.setBankName("123");
-        request.setBankSeqId("111");
         request.setBankNo("111");
         request.setAcctNo("111");
         userBankInfoBusiSV.insertBankInfo(request);

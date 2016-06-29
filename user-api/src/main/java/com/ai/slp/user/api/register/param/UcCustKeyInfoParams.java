@@ -2,11 +2,7 @@ package com.ai.slp.user.api.register.param;
 
 import java.sql.Timestamp;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.slp.user.api.message.interfaces.IUserMessageSV;
 
 /**
  * 用户信息 <br>
@@ -17,10 +13,10 @@ import com.ai.slp.user.api.message.interfaces.IUserMessageSV;
  */
 public class UcCustKeyInfoParams extends BaseInfo {
 
-    @Size(min = 18, max = 18, message = "用户Id长度不是18位", groups = { IUserMessageSV.InsertUserMessage.class })
+    private static final long serialVersionUID = 1L;
+
     private String userId;
 
-    @NotNull(message = "用户类型不能为空", groups = { IUserMessageSV.InsertUserMessage.class })
     private String userType;
 
     private String custName;

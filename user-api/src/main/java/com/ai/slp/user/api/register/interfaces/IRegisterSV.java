@@ -1,14 +1,18 @@
 package com.ai.slp.user.api.register.interfaces;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.slp.user.api.register.param.RegisterParamsRequest;
-import com.ai.slp.user.api.register.param.RegisterParamsResponse;
 import com.ai.slp.user.api.register.param.RegisterResponse;
 import com.ai.slp.user.api.register.param.UcBankKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcContactInfoParams;
 import com.ai.slp.user.api.register.param.UcCustKeyInfoParams;
 import com.ai.slp.user.api.register.param.UcGroupKeyInfoParams;
-import com.ai.slp.user.api.register.param.UcUserAgreeParams;
 import com.ai.slp.user.api.register.param.UcUserFileExtParams;
 import com.ai.slp.user.api.register.param.UcUserParams;
 
@@ -19,17 +23,21 @@ import com.ai.slp.user.api.register.param.UcUserParams;
  * 
  * @author zhaogw
  */
+@Path("/registerservice")
+@Consumes({ MediaType.APPLICATION_JSON })
+@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_XML })
 public interface IRegisterSV {
     
-    @interface InsertUcUser{}
-
     /**
      * 注册用户账户 
      * @param registerParamsRequest
      * @return
      * @author zhangqiang7
-     * @ApiCode USER_0001
+     * @ApiCode UCUSER_100027
+     * @RestRelativeURL registerservice/insertUcUser
      */
+    @POST
+    @Path("/insertUcUser")
     RegisterResponse insertUcUser( RegisterParamsRequest registerParamsRequest);
     
     /**
@@ -38,8 +46,11 @@ public interface IRegisterSV {
      * Copyright (c) 2016 asiainfo.com <br>
      * 
      * @author zhaogw
-     * @REG_0002
+     * @ApiCode UCUSER_100028
+     * @RestRelativeURL registerservice/updateUserInfo
      */
+    //@POST
+    //@Path("/updateUserInfo")
     //BaseResponse updateUserInfo(UpdateUserParams updateUserParams);
     
     /**
@@ -48,8 +59,11 @@ public interface IRegisterSV {
      * @param ucUser
      * @return
      * @author zhaogw
-     * @REG_0003
+     * @ApiCode UCUSER_100029
+     * @RestRelativeURL registerservice/searchUserInfo
      */
+    @POST
+    @Path("/searchUserInfo")
     BaseResponse searchUserInfo(UcUserParams ucUser);
     
     /** 
@@ -58,8 +72,11 @@ public interface IRegisterSV {
      * @param ucUser
      * @return
      * @author zhaogw
-     * @REG_0004
+     * @ApiCode UCUSER_100030
+     * @RestRelativeURL registerservice/searchUserIList
      */
+    @POST
+    @Path("/searchUserIList")
     BaseResponse searchUserIList(UcUserParams ucUser);
    
     /**
@@ -68,8 +85,11 @@ public interface IRegisterSV {
      * @param ucCust
      * @return
      * @author zhaogw
-     * @REG_0005
+     * @ApiCode UCUSER_100031
+     * @RestRelativeURL registerservice/insertUcCustInfo
      */
+    @POST
+    @Path("/insertUcCustInfo")
     BaseResponse insertUcCustInfo(UcCustKeyInfoParams ucCust);
     
     /**
@@ -78,8 +98,11 @@ public interface IRegisterSV {
      * @param ucCust
      * @return
      * @author zhaogw
-     * @REG_0006
+     * @ApiCode UCUSER_100032
+     * @RestRelativeURL registerservice/searchUcCustInfo
      */
+    @POST
+    @Path("/searchUcCustInfo")
     BaseResponse searchUcCustInfo(UcCustKeyInfoParams ucCust);
     
     /**
@@ -88,8 +111,11 @@ public interface IRegisterSV {
      * @param ucCust
      * @return
      * @author zhaogw
-     * @REG_0007
+     * @ApiCode UCUSER_100033
+     * @RestRelativeURL registerservice/updateUcCustInfo
      */
+    @POST
+    @Path("/updateUcCustInfo")
     BaseResponse updateUcCustInfo(UcCustKeyInfoParams ucCust);
     
     /**
@@ -98,8 +124,11 @@ public interface IRegisterSV {
      * @param ucGroup
      * @return
      * @author zhaogw
-     * @REG_0008
+     * @ApiCode UCUSER_100034
+     * @RestRelativeURL registerservice/insertUcGroupInfo
      */
+    @POST
+    @Path("/insertUcGroupInfo")
     BaseResponse insertUcGroupInfo(UcGroupKeyInfoParams ucGroup);
     
     /**
@@ -108,8 +137,11 @@ public interface IRegisterSV {
      * @param ucGroup
      * @return
      * @author zhaogw
-     * @REG_0009
+     * @ApiCode UCUSER_100035
+     * @RestRelativeURL registerservice/searchUcGroupInfo
      */
+    @POST
+    @Path("/searchUcGroupInfo")
     BaseResponse searchUcGroupInfo(UcGroupKeyInfoParams ucGroup);
     
     /**
@@ -118,8 +150,11 @@ public interface IRegisterSV {
      * @param ucGroup
      * @return
      * @author zhaogw
-     * @REG_0010
+     * @ApiCode UCUSER_100036
+     * @RestRelativeURL registerservice/updateUcGroupInfo
      */
+    @POST
+    @Path("/updateUcGroupInfo")
     BaseResponse updateUcGroupInfo(UcGroupKeyInfoParams ucGroup);
     
     /**
@@ -128,8 +163,11 @@ public interface IRegisterSV {
      * @param ucContact
      * @return
      * @author zhaogw
-     * @ApiDocMethod
+     * @ApiCode UCUSER_100037
+     * @RestRelativeURL registerservice/insertUcContactInfo
      */
+    @POST
+    @Path("/insertUcContactInfo")
     BaseResponse insertUcContactInfo(UcContactInfoParams ucContact);
     
     /**
@@ -139,7 +177,11 @@ public interface IRegisterSV {
      * @return
      * @author zhaogw
      * @ApiDocMethod
+     * @ApiCode UCUSER_100038
+     * @RestRelativeURL registerservice/searchUcContactInfo
      */
+    @POST
+    @Path("/searchUcContactInfo")
     BaseResponse searchUcContactInfo(UcContactInfoParams ucContact);
     
     /**
@@ -149,7 +191,11 @@ public interface IRegisterSV {
      * @return
      * @author zhaogw
      * @ApiDocMethod
+     * @ApiCode UCUSER_100039
+     * @RestRelativeURL registerservice/updateUcContactInfo
      */
+    @POST
+    @Path("/updateUcContactInfo")
     BaseResponse updateUcContactInfo(UcContactInfoParams ucContact);
     
     /**
@@ -159,7 +205,11 @@ public interface IRegisterSV {
      * @return
      * @author zhaogw
      * @ApiDocMethod
+     * @ApiCode UCUSER_100040
+     * @RestRelativeURL registerservice/insertUcBankInfo
      */
+    @POST
+    @Path("/insertUcBankInfo")
     BaseResponse insertUcBankInfo(UcBankKeyInfoParams ucBank);
     
     /**
@@ -169,7 +219,11 @@ public interface IRegisterSV {
      * @return
      * @author zhaogw
      * @ApiDocMethod
+     * @ApiCode UCUSER_100041
+     * @RestRelativeURL registerservice/searchUcBankInfo
      */
+    @POST
+    @Path("/searchUcBankInfo")
     BaseResponse searchUcBankInfo(UcBankKeyInfoParams ucBank);
     /**
      * 
@@ -178,7 +232,11 @@ public interface IRegisterSV {
      * @return
      * @author zhaogw
      * @ApiDocMethod
+     * @ApiCode UCUSER_100042
+     * @RestRelativeURL registerservice/updateUcBankInfo
      */
+    @POST
+    @Path("/updateUcBankInfo")
     BaseResponse updateUcBankInfo(UcBankKeyInfoParams ucBank);
     
     /**
@@ -188,7 +246,11 @@ public interface IRegisterSV {
      * @return
      * @author zhaogw
      * @ApiDocMethod
+     * @ApiCode UCUSER_100044
+     * @RestRelativeURL registerservice/insertUcUserFileExtInfo
      */
+    @POST
+    @Path("/insertUcUserFileExtInfo")
     BaseResponse insertUcUserFileExtInfo(UcUserFileExtParams ucUserFileExt);
     
     /**
@@ -198,7 +260,11 @@ public interface IRegisterSV {
      * @return
      * @author zhaogw
      * @ApiDocMethod
+     * @ApiCode UCUSER_100045
+     * @RestRelativeURL registerservice/searchUcUserFileExtInfo
      */
+    @POST
+    @Path("/searchUcUserFileExtInfo")
     BaseResponse searchUcUserFileExtInfo(UcUserFileExtParams ucUserFileExt);
     
     /**
@@ -208,7 +274,11 @@ public interface IRegisterSV {
      * @return
      * @author zhaogw
      * @ApiDocMethod
+     * @ApiCode UCUSER_100046
+     * @RestRelativeURL registerservice/updateUcUserFileExtInfo
      */
+    @POST
+    @Path("/updateUcUserFileExtInfo")
     BaseResponse updateUcUserFileExtInfo(UcUserFileExtParams ucUserFileExt);
     
     

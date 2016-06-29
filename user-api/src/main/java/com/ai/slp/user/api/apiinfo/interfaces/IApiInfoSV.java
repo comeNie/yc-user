@@ -1,5 +1,11 @@
 package com.ai.slp.user.api.apiinfo.interfaces;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
@@ -15,10 +21,10 @@ import com.ai.slp.user.api.apiinfo.param.UcApiInfoParams;
  * 
  * @author zhangqiang7
  */
+@Path("/apiservice")
+@Consumes({ MediaType.APPLICATION_JSON })
+@Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_XML })
 public interface IApiInfoSV {
-
-    @interface InsertApiInfo {
-    }
 
     /**
      * 企业、代理商申请API信息创建
@@ -28,13 +34,13 @@ public interface IApiInfoSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER_001
+     * @ApiCode UCUSER_001
+     * @RestRelativeURL apiservice/insertApiInfo
      */
+    @POST
+    @Path("/insertApiInfo")
     BaseResponse insertApiInfo(InsertApiInfoRequest infoRequest)
             throws BusinessException, SystemException;
-
-    @interface UpdateApiInfo {
-    }
 
     /**
      * 企业、代理商申请API信息更新
@@ -44,13 +50,13 @@ public interface IApiInfoSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER_002
+     * @ApiCode UCUSER_002
+     * @RestRelativeURL apiservice/updateApiInfo
      */
+    @POST
+    @Path("/updateApiInfo")
     BaseResponse updateApiInfo(UcApiInfoParams ucApiInfoParams)
             throws BusinessException, SystemException;
-
-    @interface QueryApiInfo {
-    }
 
     /**
      * 企业、代理商申请API信息查询
@@ -60,8 +66,11 @@ public interface IApiInfoSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
-     * @UCUSER_003
+     * @ApiCode UCUSER_003
+     @RestRelativeURL apiservice/queryApiInfo
      */
+    @POST
+    @Path("/queryApiInfo")
     ApiInfoResponse queryApiInfo(ApiInfoRequest apiInfoRequest)
             throws BusinessException, SystemException;
 }

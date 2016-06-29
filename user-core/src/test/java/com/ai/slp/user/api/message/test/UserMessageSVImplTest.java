@@ -45,18 +45,18 @@ public class UserMessageSVImplTest {
         userMessageSV.updateUserMessage(request);
     }
     
-    //@Test
+    @Test
     public void queryMessageTest(){
         QueryMessageRequest request = new QueryMessageRequest();
         request.setPageNo(11);
         request.setPageSize(11);
         request.setReadFlag("10");
-        request.setTenantId("test111");
+        request.setTenantId("SLP");
         request.setUserId("111");
         System.out.println(userMessageSV.queryUserMessage(request).getPageInfo().getResult().size());
     }
     
-    @Test
+    //@Test
     public void deleteMessageTest(){
         DeleteMessageRequest request = new DeleteMessageRequest();
         request.setTenantId("test111");

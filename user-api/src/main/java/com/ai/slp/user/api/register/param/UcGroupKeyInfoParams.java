@@ -1,9 +1,6 @@
 package com.ai.slp.user.api.register.param;
 
-import javax.validation.constraints.Size;
-
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.slp.user.api.register.interfaces.IRegisterSV;
 
 /**
  * 用户信息 <br>
@@ -14,7 +11,8 @@ import com.ai.slp.user.api.register.interfaces.IRegisterSV;
  */
 public class UcGroupKeyInfoParams extends BaseInfo {
 
-    @Size(min = 18, max = 18, message = "用户Id长度不是18位", groups = { IRegisterSV.InsertUcUser.class })
+    private static final long serialVersionUID = 1L;
+
     private String userId;
 
     private String userType;
