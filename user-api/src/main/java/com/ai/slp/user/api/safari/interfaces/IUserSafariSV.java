@@ -42,7 +42,7 @@ public interface IUserSafariSV {
     @Path("/insertUserSafari")
     BaseResponse insertUserSafari(InsertUserSafariRequest safariRequest)
             throws BusinessException, SystemException;
-
+ 
     /**
      * 用户浏览商品信息前端删除
      * 
