@@ -7,125 +7,157 @@ import com.ai.opt.base.vo.BaseResponse;
 public class SearchCustKeyInfoResponse extends BaseResponse {
 
     private static final long serialVersionUID = 1L;
+
     /**
      * 租户Id
      */
     private String tenantId;
-    
+
     /**
      * 用户Id
      */
     private String userId;
-    
+
     /**
      * 用户类型
      */
     private String userType;
+
     /**
      * 企业名称
      */
     private String custName;
+
     /**
      * 证件类型
      */
     private String certType;
+
     /**
      * 证件号码
      */
     private String certNum;
+
     /**
      * 证件地址归属省
      */
     private String provinceCode;
+
     /**
      * 证件地址归属地市
      */
     private String cityCode;
+
     /**
      * 证件地址归属区县
      */
     private String countyCode;
+
     /**
      * 证件地址详细信息
      */
     private String certAddr;
+
     /**
      * 发证日期
      */
     private Timestamp certIssueDate;
+
     /**
      * 发证机关
      */
     private String certIssueOrg;
+
     /**
      * 证件有效期(生效时间)
      */
     private Timestamp certValidDate;
+
     /**
      * 证件有效期(失效时间)
      */
     private Timestamp certInvalidDate;
+
     /**
      * 性别
      */
     private String custSex;
+
+    /**
+     * 个人介绍
+     */
+    private String personalRemark;
+
     /**
      * 生日
      */
     private Timestamp custBirthday;
+
     /**
      * 居住（联系）地址归属省
      */
     private String custProvinceCode;
+
     /**
      * 居住（联系）地址归属地市
      */
     private String custCityCode;
+
     /**
      * 居住（联系）地址归
      */
     private String custCountyCode;
+
     /**
      * 居住（联系）地址
      */
     private String custAddr;
+
     /**
      * 收入水平
      */
     private String incomeLevel;
+
     /**
      * 所属行业
      */
     private String custIndustry;
+
     /**
      * 学历
      */
     private String custEducation;
+
     /**
      * 创建渠道
      */
     private String createChlId;
+
     /**
      * 创建员工
      */
     private Long createOperId;
+
     /**
      * 创建时间
      */
     private Timestamp createTime;
+
     /**
      * 修改时间
      */
     private Timestamp updateTime;
+
     /**
      * 修改渠道
      */
     private String updateChlId;
+
     /**
      * 修改员工
      */
     private Long updateOperId;
-    
+
     public String getTenantId() {
         return tenantId;
     }
@@ -356,6 +388,14 @@ public class SearchCustKeyInfoResponse extends BaseResponse {
 
     public void setUpdateOperId(Long updateOperId) {
         this.updateOperId = updateOperId;
+    }
+
+    public String getPersonalRemark() {
+        return personalRemark;
+    }
+
+    public void setPersonalRemark(String personalRemark) {
+        this.personalRemark = personalRemark;
     }
 
 }

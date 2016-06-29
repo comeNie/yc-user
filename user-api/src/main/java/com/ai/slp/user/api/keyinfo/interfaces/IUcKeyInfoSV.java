@@ -92,9 +92,6 @@ public interface IUcKeyInfoSV {
     public BaseResponse insertGroupKeyInfo(InsertGroupKeyInfoRequest request)
             throws SystemException, BusinessException;
 
-    @interface UpdateGroupKeyInfo {
-    }
-
     /**
      * 更新企业关键信息
      * 
