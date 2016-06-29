@@ -9,94 +9,122 @@ public class InsertCustKeyInfoRequest extends BaseInfo {
     private static final long serialVersionUID = 1L;
 
     private String userId;
+
     /**
      * 用户类型
      */
     private String userType;
+
     /**
      * 企业名称
      */
     private String custName;
+
     /**
      * 证件类型
      */
     private String certType;
+
     /**
      * 证件号码
      */
     private String certNum;
+
     /**
      * 证件地址归属省
      */
     private String provinceCode;
+
     /**
      * 证件地址归属地市
      */
     private String cityCode;
+
     /**
      * 证件地址归属区县
      */
     private String countyCode;
+
     /**
      * 证件地址详细信息
      */
     private String certAddr;
+
     /**
      * 发证日期
      */
     private Timestamp certIssueDate;
+
     /**
      * 发证机关
      */
     private String certIssueOrg;
+
     /**
      * 证件有效期(生效时间)
      */
     private Timestamp certValidDate;
+
     /**
      * 证件有效期(失效时间)
      */
     private Timestamp certInvalidDate;
+
     /**
      * 性别
      */
     private String custSex;
+
     /**
      * 生日
      */
     private Timestamp custBirthday;
+
     /**
      * 居住（联系）地址归属省
      */
     private String custProvinceCode;
+
     /**
      * 居住（联系）地址归属地市
      */
     private String custCityCode;
+
+    /**
+     * 个人介绍
+     */
+    private String personalRemark;
+
     /**
      * 居住（联系）地址归
      */
     private String custCountyCode;
+
     /**
      * 居住（联系）地址
      */
     private String custAddr;
+
     /**
      * 收入水平
      */
     private String incomeLevel;
+
     /**
      * 所属行业
      */
     private String custIndustry;
+
     /**
      * 学历
      */
     private String custEducation;
+
     /**
      * 创建渠道
      */
     private String createChlId;
+
     /**
      * 创建员工
      */
@@ -292,6 +320,14 @@ public class InsertCustKeyInfoRequest extends BaseInfo {
 
     public void setCreateOperId(Long createOperId) {
         this.createOperId = createOperId;
+    }
+
+    public String getPersonalRemark() {
+        return personalRemark;
+    }
+
+    public void setPersonalRemark(String personalRemark) {
+        this.personalRemark = personalRemark;
     }
 
 }

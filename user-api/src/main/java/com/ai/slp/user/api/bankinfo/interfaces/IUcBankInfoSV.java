@@ -56,7 +56,6 @@ public interface IUcBankInfoSV {
     BaseResponse updateBankInfo(UpdateBankInfoRequest bankInfoRequest)
             throws BusinessException, SystemException;
 
-    @interface QueryBankInfo{}
     /**
      * 查询用户银行信息
      * 

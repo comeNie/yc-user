@@ -43,9 +43,6 @@ public interface IUcContactsInfoSV {
     BaseResponse insertContactsInfo(InsertContactsInfoRequest contactsInfoRequest)
             throws BusinessException, SystemException;
 
-    @interface UpdateContactsInfo {
-    }
-
     /**
      * 更新用户联系人
      * 
@@ -61,9 +58,6 @@ public interface IUcContactsInfoSV {
     @Path("/updateContactsInfo")
     BaseResponse updateContactsInfo(UpdateContactsInfoRequest contactsInfoRequest)
             throws BusinessException, SystemException;
-
-    @interface QueryContactsInfo {
-    }
 
     /**
      * 获取用户联系人

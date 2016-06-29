@@ -25,6 +25,7 @@
     <result column="INCOME_LEVEL" property="incomeLevel" jdbcType="VARCHAR" />
     <result column="CUST_INDUSTRY" property="custIndustry" jdbcType="VARCHAR" />
     <result column="CUST_EDUCATION" property="custEducation" jdbcType="VARCHAR" />
+    <result column="PERSONAL_REMARK" property="personalRemark" jdbcType="VARCHAR" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
     <result column="CREATE_CHL_ID" property="createChlId" jdbcType="VARCHAR" />
     <result column="CREATE_OPER_ID" property="createOperId" jdbcType="BIGINT" />
@@ -94,8 +95,8 @@
     TENANT_ID, USER_ID, USER_TYPE, CUST_NAME, CERT_TYPE, CERT_NUM, PROVINCE_CODE, CITY_CODE, 
     COUNTY_CODE, CERT_ADDR, CERT_ISSUE_DATE, CERT_ISSUE_ORG, CERT_VALID_DATE, CERT_INVALID_DATE, 
     CUST_SEX, CUST_BIRTHDAY, CUST_PROVINCE_CODE, CUST_CITY_CODE, CUST_COUNTY_CODE, CUST_ADDR, 
-    INCOME_LEVEL, CUST_INDUSTRY, CUST_EDUCATION, CREATE_TIME, CREATE_CHL_ID, CREATE_OPER_ID, 
-    UPDATE_TIME, UPDATE_CHL_ID, UPDATE_OPER_ID
+    INCOME_LEVEL, CUST_INDUSTRY, CUST_EDUCATION, PERSONAL_REMARK, CREATE_TIME, CREATE_CHL_ID, 
+    CREATE_OPER_ID, UPDATE_TIME, UPDATE_CHL_ID, UPDATE_OPER_ID
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.user.dao.mapper.bo.UcCustKeyInfoCriteria" >
     select
@@ -129,9 +130,10 @@
       CERT_VALID_DATE, CERT_INVALID_DATE, CUST_SEX, 
       CUST_BIRTHDAY, CUST_PROVINCE_CODE, CUST_CITY_CODE, 
       CUST_COUNTY_CODE, CUST_ADDR, INCOME_LEVEL, 
-      CUST_INDUSTRY, CUST_EDUCATION, CREATE_TIME, 
-      CREATE_CHL_ID, CREATE_OPER_ID, UPDATE_TIME, 
-      UPDATE_CHL_ID, UPDATE_OPER_ID)
+      CUST_INDUSTRY, CUST_EDUCATION, PERSONAL_REMARK, 
+      CREATE_TIME, CREATE_CHL_ID, CREATE_OPER_ID, 
+      UPDATE_TIME, UPDATE_CHL_ID, UPDATE_OPER_ID
+      )
     values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, 
       #{custName,jdbcType=VARCHAR}, #{certType,jdbcType=VARCHAR}, #{certNum,jdbcType=VARCHAR}, 
       #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{countyCode,jdbcType=VARCHAR}, 
@@ -139,9 +141,10 @@
       #{certValidDate,jdbcType=TIMESTAMP}, #{certInvalidDate,jdbcType=TIMESTAMP}, #{custSex,jdbcType=VARCHAR}, 
       #{custBirthday,jdbcType=TIMESTAMP}, #{custProvinceCode,jdbcType=VARCHAR}, #{custCityCode,jdbcType=VARCHAR}, 
       #{custCountyCode,jdbcType=VARCHAR}, #{custAddr,jdbcType=VARCHAR}, #{incomeLevel,jdbcType=VARCHAR}, 
-      #{custIndustry,jdbcType=VARCHAR}, #{custEducation,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{createChlId,jdbcType=VARCHAR}, #{createOperId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{updateChlId,jdbcType=VARCHAR}, #{updateOperId,jdbcType=BIGINT})
+      #{custIndustry,jdbcType=VARCHAR}, #{custEducation,jdbcType=VARCHAR}, #{personalRemark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createChlId,jdbcType=VARCHAR}, #{createOperId,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateChlId,jdbcType=VARCHAR}, #{updateOperId,jdbcType=BIGINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ai.slp.user.dao.mapper.bo.UcCustKeyInfo" >
     insert into uc_cust_key_info
@@ -214,6 +217,9 @@
       </if>
       <if test="custEducation != null" >
         CUST_EDUCATION,
+      </if>
+      <if test="personalRemark != null" >
+        PERSONAL_REMARK,
       </if>
       <if test="createTime != null" >
         CREATE_TIME,
@@ -303,6 +309,9 @@
       </if>
       <if test="custEducation != null" >
         #{custEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="personalRemark != null" >
+        #{personalRemark,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
@@ -402,6 +411,9 @@
       <if test="record.custEducation != null" >
         CUST_EDUCATION = #{record.custEducation,jdbcType=VARCHAR},
       </if>
+      <if test="record.personalRemark != null" >
+        PERSONAL_REMARK = #{record.personalRemark,jdbcType=VARCHAR},
+      </if>
       <if test="record.createTime != null" >
         CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
@@ -450,6 +462,7 @@
       INCOME_LEVEL = #{record.incomeLevel,jdbcType=VARCHAR},
       CUST_INDUSTRY = #{record.custIndustry,jdbcType=VARCHAR},
       CUST_EDUCATION = #{record.custEducation,jdbcType=VARCHAR},
+      PERSONAL_REMARK = #{record.personalRemark,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       CREATE_CHL_ID = #{record.createChlId,jdbcType=VARCHAR},
       CREATE_OPER_ID = #{record.createOperId,jdbcType=BIGINT},

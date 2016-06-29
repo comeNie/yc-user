@@ -49,6 +49,8 @@ public class UcCustKeyInfo {
 
     private String custEducation;
 
+    private String personalRemark;
+
     private Timestamp createTime;
 
     private String createChlId;
@@ -243,6 +245,14 @@ public class UcCustKeyInfo {
 
     public void setCustEducation(String custEducation) {
         this.custEducation = custEducation == null ? null : custEducation.trim();
+    }
+
+    public String getPersonalRemark() {
+        return personalRemark;
+    }
+
+    public void setPersonalRemark(String personalRemark) {
+        this.personalRemark = personalRemark == null ? null : personalRemark.trim();
     }
 
     public Timestamp getCreateTime() {
