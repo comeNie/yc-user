@@ -17,6 +17,7 @@ import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.slp.user.api.ucLoginLog.param.UcLoginLogParamsRequest;
+import com.ai.slp.user.api.ucLoginLog.param.UcLoginLogQueryResponse;
 import com.ai.slp.user.api.ucLoginLog.param.UcLoginLogResponse;
 import com.ai.slp.user.dao.mapper.bo.UcLoginLog;
 import com.ai.slp.user.dao.mapper.bo.UcLoginLogCriteria;
@@ -53,26 +54,27 @@ public class UcLoginLogBusiSVImpl implements IUcLoginLogBusiSV {
     }
 
     @Override
-    public PageInfo<UcLoginLogResponse> getUcLoginLogInfo(UcLoginLogParamsRequest ucLoginLogParam,int limitStart,int limitEnd) {
-       
+    public UcLoginLogQueryResponse getUcLoginLogInfo(UcLoginLogParamsRequest ucLoginLogParam) {
+        UcLoginLogQueryResponse response = new UcLoginLogQueryResponse();
         UcLoginLogCriteria criteria = new UcLoginLogCriteria();
         int count = ucLoginLogAtomSV.countUcTelGroupInfo(criteria);
-        criteria.setLimitStart(limitStart);
-        criteria.setLimitEnd(limitEnd);
         List<UcLoginLog> list = ucLoginLogAtomSV.selectUcTelGroupInfo(criteria);
-        PageInfo<UcLoginLogResponse> pageInfo = getUserPhoneBooksList(list);
+        PageInfo<UcLoginLogResponse> pageInfo = getUserLoginLogList(list);
         pageInfo.setCount(count);
-        return null;
+        pageInfo.setPageNo(ucLoginLogParam.getPageNo());
+        pageInfo.setPageSize(ucLoginLogParam.getPageSize());
+        response.setPageInfo(pageInfo);
+        return response;
         
     }
 
-    public PageInfo<UcLoginLogResponse> getUserPhoneBooksList(List<UcLoginLog> list)throws BusinessException, SystemException{
+    public PageInfo<UcLoginLogResponse> getUserLoginLogList(List<UcLoginLog> list)throws BusinessException, SystemException{
         
         List<UcLoginLogResponse> loginLogList = new ArrayList<UcLoginLogResponse>();
         if(!CollectionUtil.isEmpty(list)){
-            for(UcLoginLog phoneBooks :list){
+            for(UcLoginLog ucLoginLog :list){
                 UcLoginLogResponse loginLogResponse=new UcLoginLogResponse();
-                BeanUtils.copyProperties(loginLogResponse,phoneBooks);
+                BeanUtils.copyProperties(loginLogResponse,ucLoginLog);
                 loginLogList.add(loginLogResponse);
             }
         }

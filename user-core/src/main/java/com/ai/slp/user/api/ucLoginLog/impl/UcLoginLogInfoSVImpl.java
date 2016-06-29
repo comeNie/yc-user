@@ -7,6 +7,7 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.slp.user.api.ucLoginLog.interfaces.IUcLoginLogInfoSV;
 import com.ai.slp.user.api.ucLoginLog.param.UcLoginLogParamsRequest;
+import com.ai.slp.user.api.ucLoginLog.param.UcLoginLogQueryResponse;
 import com.ai.slp.user.api.ucLoginLog.param.UcLoginLogResponse;
 import com.ai.slp.user.service.business.interfaces.IUcLoginLogBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -23,9 +24,8 @@ public class UcLoginLogInfoSVImpl implements IUcLoginLogInfoSV{
         return ucLoginLogBusiSv.insertUcLoginLogInfo(userLoginParam);
     }
     @Override
-    public PageInfo<UcLoginLogResponse> getUcLoginLogInfo(UcLoginLogParamsRequest ucLoginLogParam,
-            int limitStart, int limitEnd) {
-        return ucLoginLogBusiSv.getUcLoginLogInfo(ucLoginLogParam, limitStart, limitEnd);
+    public UcLoginLogQueryResponse getUcLoginLogInfo(UcLoginLogParamsRequest ucLoginLogParam) {
+        return ucLoginLogBusiSv.getUcLoginLogInfo(ucLoginLogParam);
     }
 
 }
