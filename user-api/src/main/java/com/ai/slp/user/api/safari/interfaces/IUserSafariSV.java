@@ -36,7 +36,7 @@ public interface IUserSafariSV {
      * @throws SystemException
      * @author zhangqiang7
      * @ApiCode UCUSER_100047
-     * @RestRelativeURL safariservice/insertUserMessage
+     * @RestRelativeURL safariservice/insertUserSafari
      */
     @POST
     @Path("/insertUserSafari")
