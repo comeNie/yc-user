@@ -60,24 +60,20 @@ public class UcUserSVImpl implements IUcUserSV {
     public SearchUserResponse queryByEmail(SearchUserRequest request) throws BusinessException,
             SystemException {
         
-        List<UcUser> ucUserList = ucUserBusiSV.queryByEmail(request.getUserEmail());
-        
+        UcUser ucUser = ucUserBusiSV.queryByEmail(request.getUserEmail());
+        SearchUserResponse searchResponse = new SearchUserResponse();
         List<UcUserParams> resultList = new ArrayList<UcUserParams>();
         // 整理返回对象
         SearchUserResponse response = new SearchUserResponse();
         ResponseHeader responseHeader = new ResponseHeader();
-        if(!CollectionUtil.isEmpty(ucUserList)){
-            for(int i=0;i<ucUserList.size();i++){
-                UcUser ucuser = ucUserList.get(i);
-                UcUserParams ucUserParams = new UcUserParams();
-                BeanUtils.copyProperties(ucUserParams, ucuser);
-                resultList.add(ucUserParams);
-                responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
-            }
+        if(ucUser!=null){
+            UcUserParams ucUserParams = new UcUserParams();
+            BeanUtils.copyProperties(searchResponse, ucUser);
+            resultList.add(ucUserParams);
+            responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
         }else{
             responseHeader = new ResponseHeader(false, ExceptCodeConstants.NO_RESULT, "数据不存在");
         }
-        response.setList(resultList);
         response.setResponseHeader(responseHeader);
         return response;
     }
