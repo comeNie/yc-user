@@ -35,7 +35,6 @@ public class SearchUserResponse  extends BaseResponse{
 
     private String userNickname;
 
-    private List<UcUserParams> list;
     
     public String getUserMp() {
         return userMp;
@@ -120,11 +119,5 @@ public class SearchUserResponse  extends BaseResponse{
     }
     public void setUserNickname(String userNickname) {
         this.userNickname = userNickname;
-    }
-    public List<UcUserParams> getList() {
-        return list;
-    }
-    public void setList(List<UcUserParams> list) {
-        this.list = list;
     }
 }
