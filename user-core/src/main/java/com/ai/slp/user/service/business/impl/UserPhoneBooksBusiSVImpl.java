@@ -1,15 +1,5 @@
 package com.ai.slp.user.service.business.impl;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
@@ -18,13 +8,10 @@ import com.ai.opt.sdk.util.DateUtil;
 import com.ai.paas.ipaas.util.StringUtil;
 import com.ai.slp.common.api.cache.interfaces.ICacheSV;
 import com.ai.slp.common.api.cache.param.SysParam;
+import com.ai.slp.common.api.cache.param.SysParamSingleCond;
 import com.ai.slp.common.api.servicenum.interfaces.IServiceNumSV;
 import com.ai.slp.common.api.servicenum.param.ServiceNum;
-import com.ai.slp.user.api.ucuserphonebooks.param.UcTelGroupMantainReq;
-import com.ai.slp.user.api.ucuserphonebooks.param.UcUserPhonebooksBatchData;
-import com.ai.slp.user.api.ucuserphonebooks.param.UcUserPhonebooksModifyReq;
-import com.ai.slp.user.api.ucuserphonebooks.param.UcUserPhonebooksQueryReq;
-import com.ai.slp.user.api.ucuserphonebooks.param.UserPhonebook;
+import com.ai.slp.user.api.ucuserphonebooks.param.*;
 import com.ai.slp.user.dao.mapper.bo.UcTelGroup;
 import com.ai.slp.user.dao.mapper.bo.UcTelGroupCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcUserPhonebooks;
@@ -35,6 +22,15 @@ import com.ai.slp.user.dao.mapper.interfaces.UcUserPhonebooksMapper;
 import com.ai.slp.user.service.business.interfaces.IUserPhoneBooksBusiSV;
 import com.ai.slp.user.util.SequenceUtil;
 import com.esotericsoftware.minlog.Log;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
@@ -185,7 +181,8 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 	
 
 	private String getSysParam(String tenantId, String typeCode, String paramCode, String value) {
-		SysParam p = DubboConsumerFactory.getService(ICacheSV.class).getSysParam(tenantId, typeCode, paramCode, value);
+		SysParamSingleCond singleCond = new SysParamSingleCond(tenantId, typeCode, paramCode, value);
+		SysParam p = DubboConsumerFactory.getService(ICacheSV.class).getSysParamSingle(singleCond);
 		return p == null ? null : p.getColumnDesc();
 	}
 
