@@ -62,20 +62,16 @@ public class UcUserSVImpl implements IUcUserSV {
         
         UcUser ucUser = ucUserBusiSV.queryByEmail(request.getUserEmail());
         SearchUserResponse searchResponse = new SearchUserResponse();
-        List<UcUserParams> resultList = new ArrayList<UcUserParams>();
         // 整理返回对象
-        SearchUserResponse response = new SearchUserResponse();
         ResponseHeader responseHeader = new ResponseHeader();
         if(ucUser!=null){
-            UcUserParams ucUserParams = new UcUserParams();
             BeanUtils.copyProperties(searchResponse, ucUser);
-            resultList.add(ucUserParams);
             responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
         }else{
             responseHeader = new ResponseHeader(false, ExceptCodeConstants.NO_RESULT, "数据不存在");
         }
-        response.setResponseHeader(responseHeader);
-        return response;
+        searchResponse.setResponseHeader(responseHeader);
+        return searchResponse;
     }
 
     @Override
