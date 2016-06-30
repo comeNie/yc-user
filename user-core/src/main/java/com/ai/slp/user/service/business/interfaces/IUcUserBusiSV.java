@@ -19,7 +19,7 @@ public interface IUcUserBusiSV {
     
     UcUser queryByPhone(SearchUserRequest request)throws SystemException;
     
-    List<UcUser> queryByEmail(String email)throws SystemException;
+    UcUser queryByEmail(String email)throws SystemException;
     
     UcUser queryBaseInfo(String userId) throws SystemException;
     
