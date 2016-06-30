@@ -135,6 +135,9 @@ public class UserPhoneBooksSVImpl implements IUserPhoneBooksSV {
 		UcUserPhonebooksBatchAddResp r = new UcUserPhonebooksBatchAddResp();
 		r.setResponseHeader(responseHeader);
 		r.setErrors(repeatErrors);
+		r.setTotalCount(total);
+		r.setSuccessCount(repeatErrors.size());
+		r.setFailCount(total - repeatErrors.size());
 		r.setResult("一共提交[" + total + "]条，处理失败的[" + repeatErrors.size() + "]条,处理成功[" + (total - repeatErrors.size())
 				+ "]条");
 		return r;
