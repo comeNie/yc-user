@@ -23,7 +23,7 @@ public interface IUcUserAtomSV {
     
     UcUser queryByPhone(SearchUserRequest request)throws SystemException;
     
-    List<UcUser> queryByEmail(String email)throws SystemException;
+    UcUser queryByEmail(String email)throws SystemException;
     
     UcUser queryByUserId(String userId) throws SystemException;
     
