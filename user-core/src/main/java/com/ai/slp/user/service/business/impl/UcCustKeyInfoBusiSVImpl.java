@@ -17,6 +17,7 @@ import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfo;
 import com.ai.slp.user.dao.mapper.bo.UcCustKeyInfoCriteria;
 import com.ai.slp.user.service.atom.interfaces.IUcCustKeyInfoAtomSV;
 import com.ai.slp.user.service.business.interfaces.IUcCustKeyInfoBusiSV;
+import com.ai.slp.user.util.DateUtils;
 
 @Component
 @Transactional
@@ -30,6 +31,7 @@ public class UcCustKeyInfoBusiSVImpl implements IUcCustKeyInfoBusiSV {
             throws SystemException, BusinessException {
         UcCustKeyInfo record = new UcCustKeyInfo();
         BeanUtils.copyProperties(request, record);
+        record.setCreateTime(DateUtils.currTimeStamp());
         return ucCustKeyInfoAtomSV.insert(record);
     }
 
@@ -43,6 +45,7 @@ public class UcCustKeyInfoBusiSVImpl implements IUcCustKeyInfoBusiSV {
         
         UcCustKeyInfo record = new UcCustKeyInfo();
         BeanUtils.copyProperties(request, record);
+        record.setUpdateTime(DateUtils.currTimeStamp());
         return ucCustKeyInfoAtomSV.updateByExampleSelective(record, example);
     }
 

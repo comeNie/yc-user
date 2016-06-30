@@ -25,6 +25,7 @@ import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.UcGroupKeyInfoVo;
+import com.ai.slp.user.api.keyinfo.param.UpdateCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.UpdateGroupKeyInfoRequest;
 import com.ai.slp.user.dao.mapper.bo.CmCustFileExt;
 import com.ai.slp.user.dao.mapper.bo.CmCustFileExtCriteria;
@@ -33,6 +34,7 @@ import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfoCriteria;
 import com.ai.slp.user.service.atom.interfaces.ICustFileAtomSV;
 import com.ai.slp.user.service.atom.interfaces.IUcGroupKeyInfoAtomSV;
 import com.ai.slp.user.service.business.interfaces.IUcGroupKeyInfoBusiSV;
+import com.ai.slp.user.util.DateUtils;
 
 @Service
 @Transactional
@@ -49,6 +51,7 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
             throws SystemException, BusinessException {
         UcGroupKeyInfo record = new UcGroupKeyInfo();
         BeanUtils.copyProperties(request, record);
+        record.setCreateTime(DateUtils.currTimeStamp());
         return ucGroupKeyInfoAtomSV.insert(record);
     }
 
@@ -62,6 +65,7 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
         
         UcGroupKeyInfo record = new UcGroupKeyInfo();
         BeanUtils.copyProperties(request, record);
+        record.setUpdateTime(DateUtils.currTimeStamp());
         return ucGroupKeyInfoAtomSV.updateByExampleSelective(record, example);
     }
 
@@ -154,5 +158,26 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
         response.setPageInfo(pageInfo);
         return response;
     }
+
+    @Override
+    public void updateCustFileExt(UpdateCustFileExtRequest request)
+            throws SystemException, BusinessException {
+        CmCustFileExt cmCustFileExt = new CmCustFileExt();
+        
+        for (CmCustFileExtVo cmCustFileExtVo : request.getList()) {
+            CmCustFileExtCriteria example = new CmCustFileExtCriteria();
+            CmCustFileExtCriteria.Criteria criteria = example.createCriteria();
+            
+            criteria.andTenantIdEqualTo(cmCustFileExtVo.getTenantId());
+            criteria.andUserIdEqualTo(cmCustFileExtVo.getUserId());
+            criteria.andInfoNameEqualTo(cmCustFileExtVo.getInfoName());
+            BeanUtils.copyProperties(cmCustFileExtVo, cmCustFileExt);
+            cmCustFileExt.setUpdateTime(DateUtils.currTimeStamp());
+            custFileAtomSV.updateByExampleSelective(cmCustFileExt, example);
+        }
+    }
+    
+    
+    
 
 }

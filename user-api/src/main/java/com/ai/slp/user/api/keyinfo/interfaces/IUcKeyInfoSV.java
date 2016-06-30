@@ -20,6 +20,7 @@ import com.ai.slp.user.api.keyinfo.param.SearchCustKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchCustKeyInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoResponse;
+import com.ai.slp.user.api.keyinfo.param.UpdateCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.UpdateCustKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.UpdateGroupKeyInfoRequest;
 
@@ -167,4 +168,19 @@ public interface IUcKeyInfoSV {
     @Path("/queryGroupInfo")
     public QueryGroupInfoResponse queryGroupInfo(QueryGroupInfoRequest request)throws SystemException, BusinessException;
 
+    
+    /**
+     * 更新用户扩展信息
+     * @param request
+     * @return
+     * @throws SystemException
+     * @throws BusinessException
+     * @author zhangqiang7
+     * @ApiCode USER_110000
+     * @RestRelativeURL custkeyinfoservice/updateCustFileExt
+     */
+    @POST
+    @Path("/updateCustFileExt")
+    public BaseResponse updateCustFileExt(UpdateCustFileExtRequest request)throws SystemException, BusinessException;
+    
 }

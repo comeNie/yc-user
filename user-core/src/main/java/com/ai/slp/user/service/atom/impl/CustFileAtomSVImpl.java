@@ -22,13 +22,13 @@ public class CustFileAtomSVImpl implements ICustFileAtomSV {
     }
 
     @Override
-    public int updateByPrimaryKeySelective(CmCustFileExt record) {
-        return cmCustFileExtMapper.updateByPrimaryKeySelective(record);
+    public List<CmCustFileExt> selectByExample(CmCustFileExtCriteria example) {
+        return cmCustFileExtMapper.selectByExample(example);
     }
 
     @Override
-    public List<CmCustFileExt> selectByExample(CmCustFileExtCriteria example) {
-        return cmCustFileExtMapper.selectByExample(example);
+    public int updateByExampleSelective(CmCustFileExt record, CmCustFileExtCriteria example) {
+        return cmCustFileExtMapper.updateByExampleSelective(record, example);
     }
 
 }

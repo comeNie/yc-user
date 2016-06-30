@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.ai.slp.user.api.keyinfo.interfaces.IUcKeyInfoSV;
 import com.ai.slp.user.api.keyinfo.param.CmCustFileExtVo;
 import com.ai.slp.user.api.keyinfo.param.InsertCustFileExtRequest;
+import com.ai.slp.user.api.keyinfo.param.InsertCustKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.InsertGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.QueryCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoRequest;
@@ -66,7 +67,7 @@ public class GroupKeyInfoSVImpl  {
         System.out.println(JSON.toJSONString(sv.queryCustFileExt(re)));
     }
     
-  @Test
+  //@Test
     public void queryGroup(){
         QueryGroupInfoRequest re = new QueryGroupInfoRequest();
         re.setTenantId("SLP");
@@ -76,4 +77,19 @@ public class GroupKeyInfoSVImpl  {
         System.out.println(JSON.toJSONString(sv.queryGroupInfo(re).getPageInfo().getResult()));
     }
     
+    
+    @Test
+    public void testCust(){
+        InsertCustKeyInfoRequest re = new InsertCustKeyInfoRequest();
+        re.setTenantId("SLP");
+        re.setCustName("fsdfgdgdfg");
+        re.setUserId("000000000000000842");
+        re.setCustProvinceCode("10");
+        re.setCustCityCode("102");
+        re.setCustCountyCode("102");
+        re.setCustSex("0");
+        re.setUserType("10");
+        re.setIncomeLevel("8000");
+        sv.insertCustKeyInfo(re);
+    }
 }

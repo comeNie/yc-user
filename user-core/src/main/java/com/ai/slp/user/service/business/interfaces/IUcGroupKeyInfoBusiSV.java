@@ -10,6 +10,7 @@ import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoResponse;
+import com.ai.slp.user.api.keyinfo.param.UpdateCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.UpdateGroupKeyInfoRequest;
 
 public interface IUcGroupKeyInfoBusiSV {
@@ -30,5 +31,8 @@ public interface IUcGroupKeyInfoBusiSV {
             throws SystemException, BusinessException;
 
     public QueryGroupInfoResponse QueryGroupInfo(QueryGroupInfoRequest request)
+            throws SystemException, BusinessException;
+
+    public void updateCustFileExt(UpdateCustFileExtRequest request)
             throws SystemException, BusinessException;
 }
