@@ -12,7 +12,7 @@
     <result column="COUNTY_CODE" property="countyCode" jdbcType="VARCHAR" />
     <result column="CERT_ADDR" property="certAddr" jdbcType="VARCHAR" />
     <result column="CERT_ISSUE_DATE" property="certIssueDate" jdbcType="TIMESTAMP" />
-    <result column="REGISTERED_CAPITAlS" property="registeredCapitals" jdbcType="DECIMAL" />
+    <result column="REGISTERED_CAPITALS" property="registeredCapitals" jdbcType="DECIMAL" />
     <result column="CERT_VALID_DATE" property="certValidDate" jdbcType="TIMESTAMP" />
     <result column="CERT_INVALID_DATE" property="certInvalidDate" jdbcType="TIMESTAMP" />
     <result column="WEB_FLAG" property="webFlag" jdbcType="VARCHAR" />
@@ -35,7 +35,8 @@
     <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="UPDATE_CHL_ID" property="updateChlId" jdbcType="VARCHAR" />
     <result column="UPDATE_OPER_ID" property="updateOperId" jdbcType="BIGINT" />
-    <result column="CONTRACT_ID" property="contractId" jdbcType="VARCHAR" />
+    <result column="CONTRACT_CUST_ID" property="contractCustId" jdbcType="VARCHAR" />
+    <result column="COLUMN_35" property="column35" jdbcType="CHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -97,11 +98,11 @@
   </sql>
   <sql id="Base_Column_List" >
     TENANT_ID, USER_ID, USER_TYPE, CERT_NUM, CUST_NAME, PROVINCE_CODE, CITY_CODE, COUNTY_CODE, 
-    CERT_ADDR, CERT_ISSUE_DATE, REGISTERED_CAPITAlS, CERT_VALID_DATE, CERT_INVALID_DATE, 
+    CERT_ADDR, CERT_ISSUE_DATE, REGISTERED_CAPITALS, CERT_VALID_DATE, CERT_INVALID_DATE, 
     WEB_FLAG, GROUP_WEBSITE, GROUP_MEMBER_SCALE, GROUP_TYPE, GROUP_INDUSTRY, GROUP_BUSINESS_SCOPE, 
     GROUP_PRODUCT, LEGAL_PERSON, LEGAL_CERT_NUM, ORG_CODE, TAXPAYER_CODE, TAXPAYER_TYPE, 
     TAXPAYER_TYPE_CODE, GROUP_INFO, CREATE_TIME, CREATE_CHL_ID, CREATE_OPER_ID, UPDATE_TIME, 
-    UPDATE_CHL_ID, UPDATE_OPER_ID, CONTRACT_ID
+    UPDATE_CHL_ID, UPDATE_OPER_ID, CONTRACT_CUST_ID, COLUMN_35
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfoCriteria" >
     select
@@ -131,7 +132,7 @@
     insert into uc_group_key_info (TENANT_ID, USER_ID, USER_TYPE, 
       CERT_NUM, CUST_NAME, PROVINCE_CODE, 
       CITY_CODE, COUNTY_CODE, CERT_ADDR, 
-      CERT_ISSUE_DATE, REGISTERED_CAPITAlS, CERT_VALID_DATE, 
+      CERT_ISSUE_DATE, REGISTERED_CAPITALS, CERT_VALID_DATE, 
       CERT_INVALID_DATE, WEB_FLAG, GROUP_WEBSITE, 
       GROUP_MEMBER_SCALE, GROUP_TYPE, GROUP_INDUSTRY, 
       GROUP_BUSINESS_SCOPE, GROUP_PRODUCT, LEGAL_PERSON, 
@@ -139,7 +140,7 @@
       TAXPAYER_TYPE, TAXPAYER_TYPE_CODE, GROUP_INFO, 
       CREATE_TIME, CREATE_CHL_ID, CREATE_OPER_ID, 
       UPDATE_TIME, UPDATE_CHL_ID, UPDATE_OPER_ID, 
-      CONTRACT_ID)
+      CONTRACT_CUST_ID, COLUMN_35)
     values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, 
       #{certNum,jdbcType=VARCHAR}, #{custName,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, 
       #{cityCode,jdbcType=VARCHAR}, #{countyCode,jdbcType=VARCHAR}, #{certAddr,jdbcType=VARCHAR}, 
@@ -151,7 +152,7 @@
       #{taxpayerType,jdbcType=VARCHAR}, #{taxpayerTypeCode,jdbcType=VARCHAR}, #{groupInfo,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{createChlId,jdbcType=VARCHAR}, #{createOperId,jdbcType=BIGINT}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{updateChlId,jdbcType=VARCHAR}, #{updateOperId,jdbcType=BIGINT}, 
-      #{contractId,jdbcType=VARCHAR})
+      #{contractCustId,jdbcType=VARCHAR}, #{column35,jdbcType=CHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfo" >
     insert into uc_group_key_info
@@ -187,7 +188,7 @@
         CERT_ISSUE_DATE,
       </if>
       <if test="registeredCapitals != null" >
-        REGISTERED_CAPITAlS,
+        REGISTERED_CAPITALS,
       </if>
       <if test="certValidDate != null" >
         CERT_VALID_DATE,
@@ -255,8 +256,11 @@
       <if test="updateOperId != null" >
         UPDATE_OPER_ID,
       </if>
-      <if test="contractId != null" >
-        CONTRACT_ID,
+      <if test="contractCustId != null" >
+        CONTRACT_CUST_ID,
+      </if>
+      <if test="column35 != null" >
+        COLUMN_35,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -359,8 +363,11 @@
       <if test="updateOperId != null" >
         #{updateOperId,jdbcType=BIGINT},
       </if>
-      <if test="contractId != null" >
-        #{contractId,jdbcType=VARCHAR},
+      <if test="contractCustId != null" >
+        #{contractCustId,jdbcType=VARCHAR},
+      </if>
+      <if test="column35 != null" >
+        #{column35,jdbcType=CHAR},
       </if>
     </trim>
   </insert>
@@ -404,7 +411,7 @@
         CERT_ISSUE_DATE = #{record.certIssueDate,jdbcType=TIMESTAMP},
       </if>
       <if test="record.registeredCapitals != null" >
-        REGISTERED_CAPITAlS = #{record.registeredCapitals,jdbcType=DECIMAL},
+        REGISTERED_CAPITALS = #{record.registeredCapitals,jdbcType=DECIMAL},
       </if>
       <if test="record.certValidDate != null" >
         CERT_VALID_DATE = #{record.certValidDate,jdbcType=TIMESTAMP},
@@ -472,8 +479,11 @@
       <if test="record.updateOperId != null" >
         UPDATE_OPER_ID = #{record.updateOperId,jdbcType=BIGINT},
       </if>
-      <if test="record.contractId != null" >
-        CONTRACT_ID = #{record.contractId,jdbcType=VARCHAR},
+      <if test="record.contractCustId != null" >
+        CONTRACT_CUST_ID = #{record.contractCustId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.column35 != null" >
+        COLUMN_35 = #{record.column35,jdbcType=CHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -492,7 +502,7 @@
       COUNTY_CODE = #{record.countyCode,jdbcType=VARCHAR},
       CERT_ADDR = #{record.certAddr,jdbcType=VARCHAR},
       CERT_ISSUE_DATE = #{record.certIssueDate,jdbcType=TIMESTAMP},
-      REGISTERED_CAPITAlS = #{record.registeredCapitals,jdbcType=DECIMAL},
+      REGISTERED_CAPITALS = #{record.registeredCapitals,jdbcType=DECIMAL},
       CERT_VALID_DATE = #{record.certValidDate,jdbcType=TIMESTAMP},
       CERT_INVALID_DATE = #{record.certInvalidDate,jdbcType=TIMESTAMP},
       WEB_FLAG = #{record.webFlag,jdbcType=VARCHAR},
@@ -515,7 +525,8 @@
       UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
       UPDATE_CHL_ID = #{record.updateChlId,jdbcType=VARCHAR},
       UPDATE_OPER_ID = #{record.updateOperId,jdbcType=BIGINT},
-      CONTRACT_ID = #{record.contractId,jdbcType=VARCHAR}
+      CONTRACT_CUST_ID = #{record.contractCustId,jdbcType=VARCHAR},
+      COLUMN_35 = #{record.column35,jdbcType=CHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

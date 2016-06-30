@@ -816,62 +816,62 @@ public class UcGroupKeyInfoCriteria {
         }
 
         public Criteria andRegisteredCapitalsIsNull() {
-            addCriterion("REGISTERED_CAPITAlS is null");
+            addCriterion("REGISTERED_CAPITALS is null");
             return (Criteria) this;
         }
 
         public Criteria andRegisteredCapitalsIsNotNull() {
-            addCriterion("REGISTERED_CAPITAlS is not null");
+            addCriterion("REGISTERED_CAPITALS is not null");
             return (Criteria) this;
         }
 
         public Criteria andRegisteredCapitalsEqualTo(Long value) {
-            addCriterion("REGISTERED_CAPITAlS =", value, "registeredCapitals");
+            addCriterion("REGISTERED_CAPITALS =", value, "registeredCapitals");
             return (Criteria) this;
         }
 
         public Criteria andRegisteredCapitalsNotEqualTo(Long value) {
-            addCriterion("REGISTERED_CAPITAlS <>", value, "registeredCapitals");
+            addCriterion("REGISTERED_CAPITALS <>", value, "registeredCapitals");
             return (Criteria) this;
         }
 
         public Criteria andRegisteredCapitalsGreaterThan(Long value) {
-            addCriterion("REGISTERED_CAPITAlS >", value, "registeredCapitals");
+            addCriterion("REGISTERED_CAPITALS >", value, "registeredCapitals");
             return (Criteria) this;
         }
 
         public Criteria andRegisteredCapitalsGreaterThanOrEqualTo(Long value) {
-            addCriterion("REGISTERED_CAPITAlS >=", value, "registeredCapitals");
+            addCriterion("REGISTERED_CAPITALS >=", value, "registeredCapitals");
             return (Criteria) this;
         }
 
         public Criteria andRegisteredCapitalsLessThan(Long value) {
-            addCriterion("REGISTERED_CAPITAlS <", value, "registeredCapitals");
+            addCriterion("REGISTERED_CAPITALS <", value, "registeredCapitals");
             return (Criteria) this;
         }
 
         public Criteria andRegisteredCapitalsLessThanOrEqualTo(Long value) {
-            addCriterion("REGISTERED_CAPITAlS <=", value, "registeredCapitals");
+            addCriterion("REGISTERED_CAPITALS <=", value, "registeredCapitals");
             return (Criteria) this;
         }
 
         public Criteria andRegisteredCapitalsIn(List<Long> values) {
-            addCriterion("REGISTERED_CAPITAlS in", values, "registeredCapitals");
+            addCriterion("REGISTERED_CAPITALS in", values, "registeredCapitals");
             return (Criteria) this;
         }
 
         public Criteria andRegisteredCapitalsNotIn(List<Long> values) {
-            addCriterion("REGISTERED_CAPITAlS not in", values, "registeredCapitals");
+            addCriterion("REGISTERED_CAPITALS not in", values, "registeredCapitals");
             return (Criteria) this;
         }
 
         public Criteria andRegisteredCapitalsBetween(Long value1, Long value2) {
-            addCriterion("REGISTERED_CAPITAlS between", value1, value2, "registeredCapitals");
+            addCriterion("REGISTERED_CAPITALS between", value1, value2, "registeredCapitals");
             return (Criteria) this;
         }
 
         public Criteria andRegisteredCapitalsNotBetween(Long value1, Long value2) {
-            addCriterion("REGISTERED_CAPITAlS not between", value1, value2, "registeredCapitals");
+            addCriterion("REGISTERED_CAPITALS not between", value1, value2, "registeredCapitals");
             return (Criteria) this;
         }
 
@@ -2355,73 +2355,143 @@ public class UcGroupKeyInfoCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andContractIdIsNull() {
-            addCriterion("CONTRACT_ID is null");
+        public Criteria andContractCustIdIsNull() {
+            addCriterion("CONTRACT_CUST_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andContractIdIsNotNull() {
-            addCriterion("CONTRACT_ID is not null");
+        public Criteria andContractCustIdIsNotNull() {
+            addCriterion("CONTRACT_CUST_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andContractIdEqualTo(String value) {
-            addCriterion("CONTRACT_ID =", value, "contractId");
+        public Criteria andContractCustIdEqualTo(String value) {
+            addCriterion("CONTRACT_CUST_ID =", value, "contractCustId");
             return (Criteria) this;
         }
 
-        public Criteria andContractIdNotEqualTo(String value) {
-            addCriterion("CONTRACT_ID <>", value, "contractId");
+        public Criteria andContractCustIdNotEqualTo(String value) {
+            addCriterion("CONTRACT_CUST_ID <>", value, "contractCustId");
             return (Criteria) this;
         }
 
-        public Criteria andContractIdGreaterThan(String value) {
-            addCriterion("CONTRACT_ID >", value, "contractId");
+        public Criteria andContractCustIdGreaterThan(String value) {
+            addCriterion("CONTRACT_CUST_ID >", value, "contractCustId");
             return (Criteria) this;
         }
 
-        public Criteria andContractIdGreaterThanOrEqualTo(String value) {
-            addCriterion("CONTRACT_ID >=", value, "contractId");
+        public Criteria andContractCustIdGreaterThanOrEqualTo(String value) {
+            addCriterion("CONTRACT_CUST_ID >=", value, "contractCustId");
             return (Criteria) this;
         }
 
-        public Criteria andContractIdLessThan(String value) {
-            addCriterion("CONTRACT_ID <", value, "contractId");
+        public Criteria andContractCustIdLessThan(String value) {
+            addCriterion("CONTRACT_CUST_ID <", value, "contractCustId");
             return (Criteria) this;
         }
 
-        public Criteria andContractIdLessThanOrEqualTo(String value) {
-            addCriterion("CONTRACT_ID <=", value, "contractId");
+        public Criteria andContractCustIdLessThanOrEqualTo(String value) {
+            addCriterion("CONTRACT_CUST_ID <=", value, "contractCustId");
             return (Criteria) this;
         }
 
-        public Criteria andContractIdLike(String value) {
-            addCriterion("CONTRACT_ID like", value, "contractId");
+        public Criteria andContractCustIdLike(String value) {
+            addCriterion("CONTRACT_CUST_ID like", value, "contractCustId");
             return (Criteria) this;
         }
 
-        public Criteria andContractIdNotLike(String value) {
-            addCriterion("CONTRACT_ID not like", value, "contractId");
+        public Criteria andContractCustIdNotLike(String value) {
+            addCriterion("CONTRACT_CUST_ID not like", value, "contractCustId");
             return (Criteria) this;
         }
 
-        public Criteria andContractIdIn(List<String> values) {
-            addCriterion("CONTRACT_ID in", values, "contractId");
+        public Criteria andContractCustIdIn(List<String> values) {
+            addCriterion("CONTRACT_CUST_ID in", values, "contractCustId");
             return (Criteria) this;
         }
 
-        public Criteria andContractIdNotIn(List<String> values) {
-            addCriterion("CONTRACT_ID not in", values, "contractId");
+        public Criteria andContractCustIdNotIn(List<String> values) {
+            addCriterion("CONTRACT_CUST_ID not in", values, "contractCustId");
             return (Criteria) this;
         }
 
-        public Criteria andContractIdBetween(String value1, String value2) {
-            addCriterion("CONTRACT_ID between", value1, value2, "contractId");
+        public Criteria andContractCustIdBetween(String value1, String value2) {
+            addCriterion("CONTRACT_CUST_ID between", value1, value2, "contractCustId");
             return (Criteria) this;
         }
 
-        public Criteria andContractIdNotBetween(String value1, String value2) {
-            addCriterion("CONTRACT_ID not between", value1, value2, "contractId");
+        public Criteria andContractCustIdNotBetween(String value1, String value2) {
+            addCriterion("CONTRACT_CUST_ID not between", value1, value2, "contractCustId");
+            return (Criteria) this;
+        }
+
+        public Criteria andColumn35IsNull() {
+            addCriterion("COLUMN_35 is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andColumn35IsNotNull() {
+            addCriterion("COLUMN_35 is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andColumn35EqualTo(String value) {
+            addCriterion("COLUMN_35 =", value, "column35");
+            return (Criteria) this;
+        }
+
+        public Criteria andColumn35NotEqualTo(String value) {
+            addCriterion("COLUMN_35 <>", value, "column35");
+            return (Criteria) this;
+        }
+
+        public Criteria andColumn35GreaterThan(String value) {
+            addCriterion("COLUMN_35 >", value, "column35");
+            return (Criteria) this;
+        }
+
+        public Criteria andColumn35GreaterThanOrEqualTo(String value) {
+            addCriterion("COLUMN_35 >=", value, "column35");
+            return (Criteria) this;
+        }
+
+        public Criteria andColumn35LessThan(String value) {
+            addCriterion("COLUMN_35 <", value, "column35");
+            return (Criteria) this;
+        }
+
+        public Criteria andColumn35LessThanOrEqualTo(String value) {
+            addCriterion("COLUMN_35 <=", value, "column35");
+            return (Criteria) this;
+        }
+
+        public Criteria andColumn35Like(String value) {
+            addCriterion("COLUMN_35 like", value, "column35");
+            return (Criteria) this;
+        }
+
+        public Criteria andColumn35NotLike(String value) {
+            addCriterion("COLUMN_35 not like", value, "column35");
+            return (Criteria) this;
+        }
+
+        public Criteria andColumn35In(List<String> values) {
+            addCriterion("COLUMN_35 in", values, "column35");
+            return (Criteria) this;
+        }
+
+        public Criteria andColumn35NotIn(List<String> values) {
+            addCriterion("COLUMN_35 not in", values, "column35");
+            return (Criteria) this;
+        }
+
+        public Criteria andColumn35Between(String value1, String value2) {
+            addCriterion("COLUMN_35 between", value1, value2, "column35");
+            return (Criteria) this;
+        }
+
+        public Criteria andColumn35NotBetween(String value1, String value2) {
+            addCriterion("COLUMN_35 not between", value1, value2, "column35");
             return (Criteria) this;
         }
     }

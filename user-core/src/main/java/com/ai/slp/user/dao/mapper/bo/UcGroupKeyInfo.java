@@ -69,7 +69,9 @@ public class UcGroupKeyInfo {
 
     private Long updateOperId;
 
-    private String contractId;
+    private String contractCustId;
+
+    private String column35;
 
     public String getTenantId() {
         return tenantId;
@@ -335,11 +337,19 @@ public class UcGroupKeyInfo {
         this.updateOperId = updateOperId;
     }
 
-    public String getContractId() {
-        return contractId;
+    public String getContractCustId() {
+        return contractCustId;
     }
 
-    public void setContractId(String contractId) {
-        this.contractId = contractId == null ? null : contractId.trim();
+    public void setContractCustId(String contractCustId) {
+        this.contractCustId = contractCustId == null ? null : contractCustId.trim();
+    }
+
+    public String getColumn35() {
+        return column35;
+    }
+
+    public void setColumn35(String column35) {
+        this.column35 = column35 == null ? null : column35.trim();
     }
 }
