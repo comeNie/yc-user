@@ -10,13 +10,21 @@ public interface UcBankInfoMapper {
 
     int deleteByExample(UcBankInfoCriteria example);
 
+    int deleteByPrimaryKey(String bankSeqId);
+
     int insert(UcBankInfo record);
 
     int insertSelective(UcBankInfo record);
 
     List<UcBankInfo> selectByExample(UcBankInfoCriteria example);
 
+    UcBankInfo selectByPrimaryKey(String bankSeqId);
+
     int updateByExampleSelective(@Param("record") UcBankInfo record, @Param("example") UcBankInfoCriteria example);
 
     int updateByExample(@Param("record") UcBankInfo record, @Param("example") UcBankInfoCriteria example);
+
+    int updateByPrimaryKeySelective(UcBankInfo record);
+
+    int updateByPrimaryKey(UcBankInfo record);
 }

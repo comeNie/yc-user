@@ -3,27 +3,31 @@ package com.ai.slp.user.dao.mapper.bo;
 import java.sql.Timestamp;
 
 public class UcBankInfo {
+    private String bankSeqId;
+
     private String tenantId;
 
     private String userId;
 
-    private String bankSeqId;
-
     private String state;
-
-    private String licenseNo;
-
-    private String bankNo;
 
     private String provinceCode;
 
     private String cityCode;
+
+    private String licenseNo;
+
+    private String bankNo;
 
     private String bankName;
 
     private String acctName;
 
     private String acctNo;
+
+    private String subBranchCode;
+
+    private String subBranchName;
 
     private String remark;
 
@@ -38,6 +42,14 @@ public class UcBankInfo {
     private String updateChlId;
 
     private Long updateOperId;
+
+    public String getBankSeqId() {
+        return bankSeqId;
+    }
+
+    public void setBankSeqId(String bankSeqId) {
+        this.bankSeqId = bankSeqId == null ? null : bankSeqId.trim();
+    }
 
     public String getTenantId() {
         return tenantId;
@@ -55,36 +67,12 @@ public class UcBankInfo {
         this.userId = userId == null ? null : userId.trim();
     }
 
-    public String getBankSeqId() {
-        return bankSeqId;
-    }
-
-    public void setBankSeqId(String bankSeqId) {
-        this.bankSeqId = bankSeqId == null ? null : bankSeqId.trim();
-    }
-
     public String getState() {
         return state;
     }
 
     public void setState(String state) {
         this.state = state == null ? null : state.trim();
-    }
-
-    public String getLicenseNo() {
-        return licenseNo;
-    }
-
-    public void setLicenseNo(String licenseNo) {
-        this.licenseNo = licenseNo == null ? null : licenseNo.trim();
-    }
-
-    public String getBankNo() {
-        return bankNo;
-    }
-
-    public void setBankNo(String bankNo) {
-        this.bankNo = bankNo == null ? null : bankNo.trim();
     }
 
     public String getProvinceCode() {
@@ -101,6 +89,22 @@ public class UcBankInfo {
 
     public void setCityCode(String cityCode) {
         this.cityCode = cityCode == null ? null : cityCode.trim();
+    }
+
+    public String getLicenseNo() {
+        return licenseNo;
+    }
+
+    public void setLicenseNo(String licenseNo) {
+        this.licenseNo = licenseNo == null ? null : licenseNo.trim();
+    }
+
+    public String getBankNo() {
+        return bankNo;
+    }
+
+    public void setBankNo(String bankNo) {
+        this.bankNo = bankNo == null ? null : bankNo.trim();
     }
 
     public String getBankName() {
@@ -125,6 +129,22 @@ public class UcBankInfo {
 
     public void setAcctNo(String acctNo) {
         this.acctNo = acctNo == null ? null : acctNo.trim();
+    }
+
+    public String getSubBranchCode() {
+        return subBranchCode;
+    }
+
+    public void setSubBranchCode(String subBranchCode) {
+        this.subBranchCode = subBranchCode == null ? null : subBranchCode.trim();
+    }
+
+    public String getSubBranchName() {
+        return subBranchName;
+    }
+
+    public void setSubBranchName(String subBranchName) {
+        this.subBranchName = subBranchName == null ? null : subBranchName.trim();
     }
 
     public String getRemark() {

@@ -7,19 +7,29 @@ public class UpdateBankInfoRequest extends BaseInfo {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户Id
-     */
-    private String userId;
-
-    /**
-     * 唯一标识
+     * 唯一ID
      */
     private String bankSeqId;
+
+    /**
+     * 用户ID
+     */
+    private String userId;
 
     /**
      * 状态
      */
     private String state;
+
+    /**
+     * 开户省
+     */
+    private String provinceCode;
+
+    /**
+     * 开户市
+     */
+    private String cityCode;
 
     /**
      * 开户许可证号
@@ -32,29 +42,29 @@ public class UpdateBankInfoRequest extends BaseInfo {
     private String bankNo;
 
     /**
-     * 开户省
-     */
-    private String provinceCode;
-
-    /**
-     * 开户地市
-     */
-    private String cityCode;
-
-    /**
-     * 开户银行网点名称
+     * 开户银行名称
      */
     private String bankName;
 
     /**
-     * 开户账户名称
+     * 账户名称
      */
     private String acctName;
 
     /**
-     * 开户账户密码
+     * 开户账户
      */
     private String acctNo;
+
+    /**
+     * 开户支行编码
+     */
+    private String subBranchCode;
+
+    /**
+     * 开户支行名称
+     */
+    private String subBranchName;
 
     /**
      * 备注
@@ -173,6 +183,22 @@ public class UpdateBankInfoRequest extends BaseInfo {
 
     public void setUpdateOperId(Long updateOperId) {
         this.updateOperId = updateOperId;
+    }
+
+    public String getSubBranchCode() {
+        return subBranchCode;
+    }
+
+    public void setSubBranchCode(String subBranchCode) {
+        this.subBranchCode = subBranchCode;
+    }
+
+    public String getSubBranchName() {
+        return subBranchName;
+    }
+
+    public void setSubBranchName(String subBranchName) {
+        this.subBranchName = subBranchName;
     }
 
 }

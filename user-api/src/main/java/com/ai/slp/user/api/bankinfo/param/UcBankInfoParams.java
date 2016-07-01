@@ -13,94 +13,44 @@ public class UcBankInfoParams implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 租户Id
-     */
-    private String tenantId;
-
-    /**
-     * 用户Id
-     */
-    private String userId;
-
-    /**
-     * 唯一标识
-     */
     private String bankSeqId;
 
-    /**
-     * 状态
-     */
+    private String tenantId;
+
+    private String userId;
+
     private String state;
 
-    /**
-     * 开户许可证号
-     */
-    private String licenseNo;
-
-    /**
-     * 开户银行编码
-     */
-    private String bankNo;
-
-    /**
-     * 开户省
-     */
     private String provinceCode;
 
-    /**
-     * 开户地市
-     */
     private String cityCode;
 
-    /**
-     * 开户银行网点名称
-     */
+    private String licenseNo;
+
+    private String bankNo;
+
     private String bankName;
 
-    /**
-     * 开户账户名称
-     */
     private String acctName;
 
-    /**
-     * 开户账户密码
-     */
     private String acctNo;
 
-    /**
-     * 备注
-     */
+    private String subBranchCode;
+
+    private String subBranchName;
+
     private String remark;
 
-    /**
-     * 创建时间
-     */
     private Timestamp createTime;
 
-    /**
-     * 创建渠道
-     */
     private String createChlId;
 
-    /**
-     * 创建员工
-     */
     private Long createOperId;
 
-    /**
-     * 更新时间
-     */
     private Timestamp updateTime;
 
-    /**
-     * 更新渠道
-     */
     private String updateChlId;
 
-    /**
-     * 更新员工
-     */
     private Long updateOperId;
 
     public String getTenantId() {
@@ -245,6 +195,22 @@ public class UcBankInfoParams implements Serializable {
 
     public void setUpdateOperId(Long updateOperId) {
         this.updateOperId = updateOperId;
+    }
+
+    public String getSubBranchCode() {
+        return subBranchCode;
+    }
+
+    public void setSubBranchCode(String subBranchCode) {
+        this.subBranchCode = subBranchCode;
+    }
+
+    public String getSubBranchName() {
+        return subBranchName;
+    }
+
+    public void setSubBranchName(String subBranchName) {
+        this.subBranchName = subBranchName;
     }
 
 }
