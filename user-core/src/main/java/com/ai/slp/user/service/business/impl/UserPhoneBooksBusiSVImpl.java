@@ -65,6 +65,10 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 
 	@Override
 	public void modifyUcTelGroup(UcTelGroupMantainReq req) {
+		int exists = this.getTelGroupsByName(req.getUserId(), req.getTelGroupName());
+		if (exists > 0) {
+			throw new BusinessException("1000", "该用户下已经存在同名分组，请更换分组名称");
+		}
 		UcTelGroup record = new UcTelGroup();
 		record.setTelGroupName(req.getTelGroupName());
 		record.setUpdateTime(DateUtil.getSysDate());
