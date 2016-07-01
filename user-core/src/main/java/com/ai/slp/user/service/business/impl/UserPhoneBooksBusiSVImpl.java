@@ -45,7 +45,7 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 	@Override
 	public void addUcTelGroup(UcTelGroupMantainReq req) {
 		int count = this.getTelGroupsCount(req.getUserId());
-		if (count > 10) {
+		if (count >= 10) {
 			throw new BusinessException("1000", "您最多只能添加10个通讯录组");
 		}
 		int exists = this.getTelGroupsByName(req.getUserId(), req.getTelGroupName());
