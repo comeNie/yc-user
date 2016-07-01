@@ -71,8 +71,6 @@ public class UcGroupKeyInfo {
 
     private String contractCustId;
 
-    private String column35;
-
     public String getTenantId() {
         return tenantId;
     }
@@ -343,13 +341,5 @@ public class UcGroupKeyInfo {
 
     public void setContractCustId(String contractCustId) {
         this.contractCustId = contractCustId == null ? null : contractCustId.trim();
-    }
-
-    public String getColumn35() {
-        return column35;
-    }
-
-    public void setColumn35(String column35) {
-        this.column35 = column35 == null ? null : column35.trim();
     }
 }

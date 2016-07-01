@@ -18,15 +18,15 @@ public class UserBankInfoSVImplTest {
     @Autowired
     private IUcBankInfoBusiSV userBankInfoBusiSV;
     
-    //@Test
+    @Test
     public void insertBankInfoTest(){
         InsertBankInfoRequest request = new InsertBankInfoRequest();
-        request.setUserId("111");
-        request.setTenantId("test111");
-        request.setAcctName("111");
-        request.setBankName("123");
-        request.setBankNo("111");
-        request.setAcctNo("111");
+        request.setUserId("");
+        request.setTenantId("");
+        request.setAcctName("");
+        request.setBankName("");
+        request.setBankNo("");
+        request.setAcctNo("");
         userBankInfoBusiSV.insertBankInfo(request);
     }
     
@@ -40,7 +40,7 @@ public class UserBankInfoSVImplTest {
         userBankInfoBusiSV.UpdateBankInfo(request);
     }
 
-    @Test
+    //@Test
     public void queryBankInfoTest(){
         QueryBankInfoRequest request = new QueryBankInfoRequest();
         request.setTenantId("test111");

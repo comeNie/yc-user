@@ -99,7 +99,7 @@ public class UpdateGroupKeyInfoRequest extends BaseInfo {
     private Long updateOperId;
 
     // 合同客户ID
-    private String contractId;
+    private String contractCustId;
 
     public String getUserId() {
         return userId;
@@ -341,12 +341,12 @@ public class UpdateGroupKeyInfoRequest extends BaseInfo {
         this.updateOperId = updateOperId;
     }
 
-    public String getContractId() {
-        return contractId;
+    public String getContractCustId() {
+        return contractCustId;
     }
 
-    public void setContractId(String contractId) {
-        this.contractId = contractId;
+    public void setContractCustId(String contractCustId) {
+        this.contractCustId = contractCustId;
     }
 
 }
