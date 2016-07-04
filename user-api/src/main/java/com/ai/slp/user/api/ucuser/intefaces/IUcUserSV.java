@@ -9,10 +9,11 @@ import javax.ws.rs.core.MediaType;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.api.ucuser.param.QueryBaseInfoRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserListResponse;
+import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserResponse;
+import com.ai.slp.user.api.ucuser.param.UpdateUserInfoRequest;
 
 @Path("/ucUserservice")
 @Consumes({ MediaType.APPLICATION_JSON })
@@ -88,7 +89,7 @@ public interface IUcUserSV {
      */
     @POST
     @Path("/updateBaseInfo")
-    BaseResponse updateBaseInfo(SearchUserRequest accountQueryRequest) throws BusinessException,SystemException;
+    BaseResponse updateBaseInfo(UpdateUserInfoRequest request) throws BusinessException,SystemException;
     
     /**
      * 根据用户类型查询信息

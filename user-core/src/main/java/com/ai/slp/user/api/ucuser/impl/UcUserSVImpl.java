@@ -1,8 +1,5 @@
 package com.ai.slp.user.api.ucuser.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,14 +8,13 @@ import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
-import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.opt.sdk.util.DateUtil;
-import com.ai.slp.user.api.register.param.UcUserParams;
 import com.ai.slp.user.api.ucuser.intefaces.IUcUserSV;
 import com.ai.slp.user.api.ucuser.param.QueryBaseInfoRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserListResponse;
 import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserResponse;
+import com.ai.slp.user.api.ucuser.param.UpdateUserInfoRequest;
 import com.ai.slp.user.constants.ExceptCodeConstants;
 import com.ai.slp.user.dao.mapper.bo.UcUser;
 import com.ai.slp.user.dao.mapper.bo.UcUserCriteria;
@@ -92,13 +88,13 @@ public class UcUserSVImpl implements IUcUserSV {
     }
 
     @Override
-    public BaseResponse updateBaseInfo(SearchUserRequest accountQueryRequest)
+    public BaseResponse updateBaseInfo(UpdateUserInfoRequest request)
             throws BusinessException, SystemException {
             UcUserCriteria criteria = new UcUserCriteria();
-            criteria.or().andUserIdEqualTo(accountQueryRequest.getUserId());
+            criteria.or().andUserIdEqualTo(request.getUserId());
             // 数据库操作
             UcUser gnAccount = new UcUser();
-            BeanUtils.copyProperties(gnAccount, accountQueryRequest);
+            BeanUtils.copyProperties(gnAccount, request);
             gnAccount.setUpdateTime(DateUtil.getSysDate());
             int updateCount = ucUserBusiSV.updateByAccountId(gnAccount,criteria);
             // 整理返回对象

@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.ai.slp.user.api.ucuser.intefaces.IUcUserSV;
 import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserResponse;
+import com.ai.slp.user.api.ucuser.param.UpdateUserInfoRequest;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,5 +25,14 @@ public class UcUserTest {
         quest.setUserEmail("178070754@qq.com");
         SearchUserResponse response = ucUsersv.queryByEmail(quest);
         System.out.println("--------------"+JSON.toJSONString(response));
+    }
+    
+    @Test
+    public void updateTest(){
+        UpdateUserInfoRequest re = new UpdateUserInfoRequest();
+        re.setTenantId("SLP");
+        re.setUserId("000000000000000161");
+        re.setVerifyFlag("1");
+        ucUsersv.updateBaseInfo(re);
     }
 }
