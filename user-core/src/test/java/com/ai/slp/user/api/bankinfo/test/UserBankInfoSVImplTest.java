@@ -47,4 +47,16 @@ public class UserBankInfoSVImplTest {
         request.setUserId("111");
         System.out.println(userBankInfoBusiSV.queryBankInfo(request).getResponseHeader().getResultMessage());
     }
+    
+    @Test
+    public  void insertTest(){
+        InsertBankInfoRequest re = new InsertBankInfoRequest();
+        re.setTenantId("SLP");
+        re.setAcctNo("234325345");
+        re.setBankName("vfxvgx");
+        re.setSubBranchName("dfhgfdfsd");;
+        re.setUserId("000000000000000202");
+        System.out.println(userBankInfoBusiSV.insertBankInfo(re));
+    }
+    
 }
