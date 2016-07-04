@@ -178,7 +178,8 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 	private ServiceNum getServiceNumInfo(String telMp) {
 		ServiceNum sn = DubboConsumerFactory.getService(IServiceNumSV.class).getServiceNumByPhone(telMp.substring(0, 7));
 		if (sn == null) {
-			//throw new BusinessException("100000", "根据号码[" + telMp + "]获取不到号段信息");
+			// throw new BusinessException("100000", "根据号码[" + telMp +
+			// "]获取不到号段信息");
 			sn = new ServiceNum();
 			sn.setBasicOrgCode(" ");
 			sn.setProvinceCode(" ");
@@ -186,7 +187,6 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 		}
 		return sn;
 	}
-	
 
 	private String getSysParam(String tenantId, String typeCode, String paramCode, String value) {
 		SysParamSingleCond singleCond = new SysParamSingleCond(tenantId, typeCode, paramCode, value);
@@ -195,8 +195,11 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 	}
 
 	private String getAreaName(String areaCode) {
-		String areaName = DubboConsumerFactory.getService(ICacheSV.class).getAreaName(areaCode);
-		return areaName == null ? "未知" : areaName;
+		if (StringUtil.isBlank(areaCode)) {
+			return "未知";
+		} else {
+			return DubboConsumerFactory.getService(ICacheSV.class).getAreaName(areaCode);
+		}
 	}
 
 	private boolean checkTelMpExists(String telMp, String telGroupId) {
@@ -252,11 +255,10 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 			for (UcUserPhonebooks b : list) {
 				UserPhonebook t = new UserPhonebook();
 				BeanUtils.copyProperties(b, t);
-				String basicOrgName = this.getSysParam("SLP", "PRODUCT", "BASIC_ORG_ID",
-						b.getBasicOrgId());
-				if(StringUtil.isBlank(basicOrgName)){
+				String basicOrgName = this.getSysParam("SLP", "PRODUCT", "BASIC_ORG_ID", b.getBasicOrgId());
+				if (StringUtil.isBlank(basicOrgName)) {
 					t.setBasicOrgName("未知");
-				}else{
+				} else {
 					t.setBasicOrgName(basicOrgName);
 				}
 				t.setProvinceName(this.getAreaName(b.getProvinceCode()));
