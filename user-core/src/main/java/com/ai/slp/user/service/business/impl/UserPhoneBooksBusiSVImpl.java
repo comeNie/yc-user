@@ -45,7 +45,7 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 	@Override
 	public void addUcTelGroup(UcTelGroupMantainReq req) {
 		int count = this.getTelGroupsCount(req.getUserId());
-		if (count > 10) {
+		if (count >= 10) {
 			throw new BusinessException("1000", "您最多只能添加10个通讯录组");
 		}
 		int exists = this.getTelGroupsByName(req.getUserId(), req.getTelGroupName());
@@ -65,6 +65,10 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 
 	@Override
 	public void modifyUcTelGroup(UcTelGroupMantainReq req) {
+		int exists = this.getTelGroupsByName(req.getUserId(), req.getTelGroupName());
+		if (exists > 0) {
+			throw new BusinessException("1000", "该用户下已经存在同名分组，请更换分组名称");
+		}
 		UcTelGroup record = new UcTelGroup();
 		record.setTelGroupName(req.getTelGroupName());
 		record.setUpdateTime(DateUtil.getSysDate());
@@ -174,7 +178,11 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 	private ServiceNum getServiceNumInfo(String telMp) {
 		ServiceNum sn = DubboConsumerFactory.getService(IServiceNumSV.class).getServiceNumByPhone(telMp.substring(0, 7));
 		if (sn == null) {
-			throw new BusinessException("100000", "根据号码[" + telMp + "]获取不到号段信息");
+			//throw new BusinessException("100000", "根据号码[" + telMp + "]获取不到号段信息");
+			sn = new ServiceNum();
+			sn.setBasicOrgCode(" ");
+			sn.setProvinceCode(" ");
+			sn.setCityCode(" ");
 		}
 		return sn;
 	}
@@ -187,7 +195,8 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 	}
 
 	private String getAreaName(String areaCode) {
-		return DubboConsumerFactory.getService(ICacheSV.class).getAreaName(areaCode);
+		String areaName = DubboConsumerFactory.getService(ICacheSV.class).getAreaName(areaCode);
+		return areaName == null ? "未知" : areaName;
 	}
 
 	private boolean checkTelMpExists(String telMp, String telGroupId) {
@@ -200,6 +209,10 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 	@Override
 	public void modifyUserPhonebook(UcUserPhonebooksModifyReq req) {
 		UcUserPhonebooks record = new UcUserPhonebooks();
+		ServiceNum serviceNum = this.getServiceNumInfo(req.getTelMp());
+		record.setBasicOrgId(serviceNum.getBasicOrgCode());
+		record.setProvinceCode(serviceNum.getProvinceCode());
+		record.setCityCode(serviceNum.getCityCode());
 		record.setTelGroupId(req.getTelGroupId());
 		record.setTelName(req.getTelName());
 		record.setTelMp(req.getTelMp());
@@ -241,7 +254,11 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 				BeanUtils.copyProperties(b, t);
 				String basicOrgName = this.getSysParam("SLP", "PRODUCT", "BASIC_ORG_ID",
 						b.getBasicOrgId());
-				t.setBasicOrgName(basicOrgName);
+				if(StringUtil.isBlank(basicOrgName)){
+					t.setBasicOrgName("未知");
+				}else{
+					t.setBasicOrgName(basicOrgName);
+				}
 				t.setProvinceName(this.getAreaName(b.getProvinceCode()));
 				l.add(t);
 			}
