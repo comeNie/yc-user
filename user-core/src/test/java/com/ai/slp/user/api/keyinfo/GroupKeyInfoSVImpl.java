@@ -92,4 +92,11 @@ public class GroupKeyInfoSVImpl  {
         re.setIncomeLevel("8000");
         sv.insertCustKeyInfo(re);
     }
+    
+    @Test
+    public void testGroupKeyInfo(){
+        SearchGroupKeyInfoRequest re = new SearchGroupKeyInfoRequest();
+        re.setCustName("123");
+        sv.searchGroupKeyInfo(re);
+}
 }

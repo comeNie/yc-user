@@ -39,8 +39,8 @@ public class UcBankInfoBusiSVImpl implements IUcBankInfoBusiSV {
     public int insertBankInfo(InsertBankInfoRequest bankInfoRequest)
             throws BusinessException, SystemException {
         UcBankInfo ucBankInfo = new UcBankInfo();
-        ucBankInfo.setBankSeqId(SequenceUtil.createBankSeqId());
         BeanUtils.copyProperties(bankInfoRequest, ucBankInfo);
+        ucBankInfo.setBankSeqId(SequenceUtil.createBankSeqId());
         ucBankInfo.setCreateTime(DateUtils.currTimeStamp());
         return ucBankInfoAtomSV.insert(ucBankInfo);
     }
