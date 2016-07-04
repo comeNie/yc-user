@@ -233,13 +233,13 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 			sql.andBasicOrgIdEqualTo(req.getBasicOrgId());
 		}
 		if (!StringUtil.isBlank(req.getTelMp())) {
-			sql.andTelMpEqualTo(req.getTelMp());
+			sql.andTelMpLike("%"+req.getTelMp()+"%");
 		}
 		if (!StringUtil.isBlank(req.getProvinceCode())) {
 			sql.andProvinceCodeEqualTo(req.getProvinceCode());
 		}
 		if (!StringUtil.isBlank(req.getTelName())) {
-			sql.andTelNameLike(req.getTelName());
+			sql.andTelNameLike("%"+req.getTelName()+"%");
 		}
 		if (!StringUtil.isBlank(req.getTelGroupId())) {
 			sql.andTelGroupIdEqualTo(req.getTelGroupId());
