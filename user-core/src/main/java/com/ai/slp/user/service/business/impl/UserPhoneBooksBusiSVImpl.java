@@ -180,6 +180,9 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 		if (sn == null) {
 			//throw new BusinessException("100000", "根据号码[" + telMp + "]获取不到号段信息");
 			sn = new ServiceNum();
+			sn.setBasicOrgCode(" ");
+			sn.setProvinceCode(" ");
+			sn.setCityCode(" ");
 		}
 		return sn;
 	}
