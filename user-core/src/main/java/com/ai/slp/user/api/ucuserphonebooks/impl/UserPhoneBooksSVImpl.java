@@ -150,7 +150,7 @@ public class UserPhoneBooksSVImpl implements IUserPhoneBooksSV {
 		for (UcUserPhonebooksBatchData p : req.getDatas()) {
 			int indexNo = req.getDatas().indexOf(p)+1;
 			if(phonebooksCount >= maxCount){
-				repeatErrors.add("第" + indexNo + "条数据添加失败，通讯录组下最多添加1000个联系人");
+				repeatErrors.add("第[" + indexNo + "]条数据添加失败，通讯录组下最多添加1000个联系人");
 				continue;
 			}
 			p.setIndexNo(indexNo);
@@ -159,26 +159,26 @@ public class UserPhoneBooksSVImpl implements IUserPhoneBooksSV {
 			String telName = p.getTelName();
 			if(!StringUtil.isBlank(telName) && telName.length()>24){
 				isSuccess = false;
-				repeatErrors.add("第" + indexNo + "条数据的姓名长度超过了24");
+				repeatErrors.add("第[" + indexNo + "]条数据的姓名长度超过了24");
 			}
 			//检查手机号码
 			String telMp = p.getTelMp();
 			if(StringUtil.isBlank(telMp)){
 				isSuccess = false;
-				repeatErrors.add("第" + indexNo + "条数据的号码为空");
+				repeatErrors.add("第[" + indexNo + "]条数据的号码为空");
 			}else{
 				Pattern pattern = Pattern.compile("^1\\d{10}$");
 				Matcher matcher = pattern.matcher(telMp);
 				if(!matcher.matches()){
 					isSuccess = false;
-					repeatErrors.add("第" + indexNo + "条数据的号码格式不正确");
+					repeatErrors.add("第[" + indexNo + "]条数据的号码格式不正确");
 				}
 			}
 			//检查是否重复
 			if (dataMap.containsKey(p.getTelMp())) {
 				UcUserPhonebooksBatchData r = dataMap.get(p.getTelMp());
 				isSuccess = false;
-				repeatErrors.add("第" + indexNo + "条数据的号码与第[" + r.getIndexNo() + "]条重复");
+				repeatErrors.add("第[" + indexNo + "]条数据的号码与第[" + r.getIndexNo() + "]条重复");
 			}
 			if(isSuccess){
 				dataMap.put(p.getTelMp(), p);
