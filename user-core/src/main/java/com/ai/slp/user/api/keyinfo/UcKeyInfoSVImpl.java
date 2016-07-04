@@ -74,7 +74,7 @@ public class UcKeyInfoSVImpl implements IUcKeyInfoSV {
         ResponseHeader responseHeader = null;
         SearchCustKeyInfoResponse response = new SearchCustKeyInfoResponse();
         try {
-            ucCustKeyInfoBusiSV.searchCustKeyInfo(request);
+            response = ucCustKeyInfoBusiSV.searchCustKeyInfo(request);
             responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "操作成功");
         } catch (Exception e) {
             responseHeader = new ResponseHeader(false, ExceptCodeConstants.FAILD, "操作失败");
