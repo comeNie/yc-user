@@ -91,6 +91,7 @@ public class UcUserSVImpl implements IUcUserSV {
     public BaseResponse updateBaseInfo(UpdateUserInfoRequest request)
             throws BusinessException, SystemException {
             UcUserCriteria criteria = new UcUserCriteria();
+            criteria.or().andTenantIdEqualTo(request.getTenantId());
             criteria.or().andUserIdEqualTo(request.getUserId());
             // 数据库操作
             UcUser gnAccount = new UcUser();
