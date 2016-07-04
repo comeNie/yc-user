@@ -191,7 +191,8 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 	}
 
 	private String getAreaName(String areaCode) {
-		return DubboConsumerFactory.getService(ICacheSV.class).getAreaName(areaCode);
+		String areaName = DubboConsumerFactory.getService(ICacheSV.class).getAreaName(areaCode);
+		return areaName == null ? "未知" : areaName;
 	}
 
 	private boolean checkTelMpExists(String telMp, String telGroupId) {
@@ -204,6 +205,10 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 	@Override
 	public void modifyUserPhonebook(UcUserPhonebooksModifyReq req) {
 		UcUserPhonebooks record = new UcUserPhonebooks();
+		ServiceNum serviceNum = this.getServiceNumInfo(req.getTelMp());
+		record.setBasicOrgId(serviceNum.getBasicOrgCode());
+		record.setProvinceCode(serviceNum.getProvinceCode());
+		record.setCityCode(serviceNum.getCityCode());
 		record.setTelGroupId(req.getTelGroupId());
 		record.setTelName(req.getTelName());
 		record.setTelMp(req.getTelMp());
@@ -245,7 +250,11 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 				BeanUtils.copyProperties(b, t);
 				String basicOrgName = this.getSysParam("SLP", "PRODUCT", "BASIC_ORG_ID",
 						b.getBasicOrgId());
-				t.setBasicOrgName(basicOrgName);
+				if(StringUtil.isBlank(basicOrgName)){
+					t.setBasicOrgName("未知");
+				}else{
+					t.setBasicOrgName(basicOrgName);
+				}
 				t.setProvinceName(this.getAreaName(b.getProvinceCode()));
 				l.add(t);
 			}
