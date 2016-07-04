@@ -28,5 +28,7 @@ public interface IUserPhoneBooksBusiSV {
 	void modifyUserPhonebook(UcUserPhonebooksModifyReq req);
 
 	PageInfo<UserPhonebook> queryUserPhonebooks(UcUserPhonebooksQueryReq req);
+	
+	Integer queryGroupPhonebooksCount(String telGroupId);
 
 }

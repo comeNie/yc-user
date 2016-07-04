@@ -22,6 +22,7 @@ import com.ai.slp.user.dao.mapper.interfaces.UcUserPhonebooksMapper;
 import com.ai.slp.user.service.business.interfaces.IUserPhoneBooksBusiSV;
 import com.ai.slp.user.util.SequenceUtil;
 import com.esotericsoftware.minlog.Log;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -271,5 +272,13 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 		pageInfo.setPageNo(req.getPageNo());
 		pageInfo.setPageSize(req.getPageSize());
 		return pageInfo;
+	}
+
+	@Override
+	public Integer queryGroupPhonebooksCount(String telGroupId) {
+		UcUserPhonebooksCriteria ucUserPhonebooksCriteria = new UcUserPhonebooksCriteria();
+		Criteria sql = ucUserPhonebooksCriteria.or();
+		sql.andTelGroupIdEqualTo(telGroupId);
+		return ucUserPhonebooksMapper.countByExample(ucUserPhonebooksCriteria);
 	}
 }
