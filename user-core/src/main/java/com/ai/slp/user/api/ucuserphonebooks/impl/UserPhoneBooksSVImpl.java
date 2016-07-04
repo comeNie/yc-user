@@ -145,7 +145,7 @@ public class UserPhoneBooksSVImpl implements IUserPhoneBooksSV {
 	 */
 	private Map<String, UcUserPhonebooksBatchData> getAddPhoneBooksData(UcUserPhonebooksBatchAddReq req, List<String> repeatErrors) {
 		Map<String, UcUserPhonebooksBatchData> dataMap = new HashMap<String, UcUserPhonebooksBatchData>();
-		int maxCount = 10;
+		int maxCount = 1000;
 		Integer phonebooksCount = userPhoneBooksBusiSV.queryGroupPhonebooksCount(req.getDatas().get(0).getTelGroupId());
 		for (UcUserPhonebooksBatchData p : req.getDatas()) {
 			int indexNo = req.getDatas().indexOf(p)+1;
