@@ -85,7 +85,7 @@ public interface IUcBankInfoSV {
      * @author zhangqiang7
      * @ApiCode UCUSER_1000
      * @RestRelativeURL bankinfoservice/queryBankInfoSingle
-     */
+     */ 
     @POST
     @Path("/queryBankInfoSingle")
     QueryBankInfoSingleResponse queryBankInfoSingle(QueryBankInfoSingleRequest bankInfoRequest)
