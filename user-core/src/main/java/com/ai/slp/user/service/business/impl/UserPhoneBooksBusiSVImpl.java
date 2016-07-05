@@ -49,7 +49,7 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 		if (count >= 10) {
 			throw new BusinessException("1000", "您最多只能添加10个通讯录组");
 		}
-		int exists = this.getTelGroupsByName(req.getUserId(), req.getTelGroupName());
+		int exists = this.getTelGroupsByName(req.getUserId(), req.getTelGroupName(), null);
 		if (exists > 0) {
 			throw new BusinessException("1000", "该用户下已经存在同名分组，请更换分组名称");
 		}
@@ -66,7 +66,7 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 
 	@Override
 	public void modifyUcTelGroup(UcTelGroupMantainReq req) {
-		int exists = this.getTelGroupsByName(req.getUserId(), req.getTelGroupName());
+		int exists = this.getTelGroupsByName(req.getUserId(), req.getTelGroupName(), req.getTelGroupId());
 		if (exists > 0) {
 			throw new BusinessException("1000", "该用户下已经存在同名分组，请更换分组名称");
 		}
@@ -116,9 +116,13 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 		return ucTelGroupMapper.countByExample(sql);
 	}
 
-	private int getTelGroupsByName(String userId, String telGroupName) {
+	private int getTelGroupsByName(String userId, String telGroupName, String TelGroupId) {
 		UcTelGroupCriteria sql = new UcTelGroupCriteria();
-		sql.or().andUserIdEqualTo(userId).andTelGroupNameEqualTo(telGroupName);
+		UcTelGroupCriteria.Criteria groupsCriteria = sql.or();
+		groupsCriteria.andUserIdEqualTo(userId).andTelGroupNameEqualTo(telGroupName);
+		if(TelGroupId != null){
+			groupsCriteria.andTelGroupIdNotEqualTo(TelGroupId);
+		}
 		return ucTelGroupMapper.countByExample(sql);
 	}
 
@@ -146,12 +150,11 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 		for (String telMp : dataMap.keySet()) {
 			UcUserPhonebooksBatchData d = dataMap.get(telMp);
 			// 判断号码是否重复在分组里面
-			boolean exists = this.checkTelMpExists(d.getTelMp(), d.getTelGroupId());
+			boolean exists = this.checkTelMpExists(d.getTelMp(), d.getTelGroupId(), null);
 			if (exists) {
-				errors.add("第" + d.getIndexNo() + "条的号码已经存在已有分组中");
+				errors.add("第" + d.getIndexNo() + "条的号码已经存在该分组中");
 				continue;
 			}
-
 			try {
 				ServiceNum serviceNum = this.getServiceNumInfo(telMp);
 				UcUserPhonebooks record = new UcUserPhonebooks();
@@ -204,15 +207,24 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 		}
 	}
 
-	private boolean checkTelMpExists(String telMp, String telGroupId) {
+	private boolean checkTelMpExists(String telMp, String telGroupId, String telNo) {
 		UcUserPhonebooksCriteria sql = new UcUserPhonebooksCriteria();
-		sql.or().andTelMpEqualTo(telMp).andTelGroupIdEqualTo(telGroupId);
-		List<UcUserPhonebooks> list = ucUserPhonebooksMapper.selectByExample(sql);
-		return CollectionUtil.isEmpty(list) ? false : true;
+		Criteria countCriteria = sql.or();
+		countCriteria.andTelMpEqualTo(telMp).andTelGroupIdEqualTo(telGroupId);
+		if(telNo != null){
+			countCriteria.andTelNoNotEqualTo(telNo);
+		}
+		int count = ucUserPhonebooksMapper.countByExample(sql);
+		return count>0 ? true : false;
 	}
 
 	@Override
 	public void modifyUserPhonebook(UcUserPhonebooksModifyReq req) {
+		
+		boolean checkTelMpExists = checkTelMpExists(req.getTelMp(),req.getTelGroupId(),req.getTelNo());
+		if(checkTelMpExists){
+			throw new BusinessException("1000", "此号码已经存在该分组中");
+		}
 		UcUserPhonebooks record = new UcUserPhonebooks();
 		ServiceNum serviceNum = this.getServiceNumInfo(req.getTelMp());
 		record.setBasicOrgId(serviceNum.getBasicOrgCode());
