@@ -49,7 +49,7 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 		if (count >= 10) {
 			throw new BusinessException("1000", "您最多只能添加10个通讯录组");
 		}
-		int exists = this.getTelGroupsByName(req.getUserId(), req.getTelGroupName());
+		int exists = this.getTelGroupsByName(req.getUserId(), req.getTelGroupName(), null);
 		if (exists > 0) {
 			throw new BusinessException("1000", "该用户下已经存在同名分组，请更换分组名称");
 		}
@@ -66,7 +66,7 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 
 	@Override
 	public void modifyUcTelGroup(UcTelGroupMantainReq req) {
-		int exists = this.getTelGroupsByName(req.getUserId(), req.getTelGroupName());
+		int exists = this.getTelGroupsByName(req.getUserId(), req.getTelGroupName(), req.getTelGroupId());
 		if (exists > 0) {
 			throw new BusinessException("1000", "该用户下已经存在同名分组，请更换分组名称");
 		}
@@ -116,9 +116,13 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 		return ucTelGroupMapper.countByExample(sql);
 	}
 
-	private int getTelGroupsByName(String userId, String telGroupName) {
+	private int getTelGroupsByName(String userId, String telGroupName, String TelGroupId) {
 		UcTelGroupCriteria sql = new UcTelGroupCriteria();
-		sql.or().andUserIdEqualTo(userId).andTelGroupNameEqualTo(telGroupName);
+		UcTelGroupCriteria.Criteria groupsCriteria = sql.or();
+		groupsCriteria.andUserIdEqualTo(userId).andTelGroupNameEqualTo(telGroupName);
+		if(TelGroupId != null){
+			groupsCriteria.andTelGroupIdNotEqualTo(TelGroupId);
+		}
 		return ucTelGroupMapper.countByExample(sql);
 	}
 
