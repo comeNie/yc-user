@@ -2104,6 +2104,146 @@ public class UcUserCriteria {
             addCriterion("REMARK not between", value1, value2, "remark");
             return (Criteria) this;
         }
+
+        public Criteria andUserEmailTokenIsNull() {
+            addCriterion("USER_EMAIL_TOKEN is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserEmailTokenIsNotNull() {
+            addCriterion("USER_EMAIL_TOKEN is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserEmailTokenEqualTo(String value) {
+            addCriterion("USER_EMAIL_TOKEN =", value, "userEmailToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserEmailTokenNotEqualTo(String value) {
+            addCriterion("USER_EMAIL_TOKEN <>", value, "userEmailToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserEmailTokenGreaterThan(String value) {
+            addCriterion("USER_EMAIL_TOKEN >", value, "userEmailToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserEmailTokenGreaterThanOrEqualTo(String value) {
+            addCriterion("USER_EMAIL_TOKEN >=", value, "userEmailToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserEmailTokenLessThan(String value) {
+            addCriterion("USER_EMAIL_TOKEN <", value, "userEmailToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserEmailTokenLessThanOrEqualTo(String value) {
+            addCriterion("USER_EMAIL_TOKEN <=", value, "userEmailToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserEmailTokenLike(String value) {
+            addCriterion("USER_EMAIL_TOKEN like", value, "userEmailToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserEmailTokenNotLike(String value) {
+            addCriterion("USER_EMAIL_TOKEN not like", value, "userEmailToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserEmailTokenIn(List<String> values) {
+            addCriterion("USER_EMAIL_TOKEN in", values, "userEmailToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserEmailTokenNotIn(List<String> values) {
+            addCriterion("USER_EMAIL_TOKEN not in", values, "userEmailToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserEmailTokenBetween(String value1, String value2) {
+            addCriterion("USER_EMAIL_TOKEN between", value1, value2, "userEmailToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserEmailTokenNotBetween(String value1, String value2) {
+            addCriterion("USER_EMAIL_TOKEN not between", value1, value2, "userEmailToken");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateIsNull() {
+            addCriterion("AUDIT_STATE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateIsNotNull() {
+            addCriterion("AUDIT_STATE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateEqualTo(String value) {
+            addCriterion("AUDIT_STATE =", value, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateNotEqualTo(String value) {
+            addCriterion("AUDIT_STATE <>", value, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateGreaterThan(String value) {
+            addCriterion("AUDIT_STATE >", value, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateGreaterThanOrEqualTo(String value) {
+            addCriterion("AUDIT_STATE >=", value, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateLessThan(String value) {
+            addCriterion("AUDIT_STATE <", value, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateLessThanOrEqualTo(String value) {
+            addCriterion("AUDIT_STATE <=", value, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateLike(String value) {
+            addCriterion("AUDIT_STATE like", value, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateNotLike(String value) {
+            addCriterion("AUDIT_STATE not like", value, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateIn(List<String> values) {
+            addCriterion("AUDIT_STATE in", values, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateNotIn(List<String> values) {
+            addCriterion("AUDIT_STATE not in", values, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateBetween(String value1, String value2) {
+            addCriterion("AUDIT_STATE between", value1, value2, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateNotBetween(String value1, String value2) {
+            addCriterion("AUDIT_STATE not between", value1, value2, "auditState");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

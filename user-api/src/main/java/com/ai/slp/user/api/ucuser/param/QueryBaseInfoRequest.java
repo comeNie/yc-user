@@ -3,7 +3,6 @@ package com.ai.slp.user.api.ucuser.param;
 import javax.validation.constraints.NotNull;
 
 import com.ai.opt.base.vo.BaseInfo;
-import com.ai.slp.user.api.login.interfaces.ILoginSV;
 
 public class QueryBaseInfoRequest extends BaseInfo {
 

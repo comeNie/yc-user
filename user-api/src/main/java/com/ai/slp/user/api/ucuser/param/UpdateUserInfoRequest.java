@@ -104,6 +104,11 @@ public class UpdateUserInfoRequest extends BaseInfo {
     private String creditFlag;
 
     /**
+     * 审核状态
+     */
+    private String auditState;
+
+    /**
      * 客户状态变更时间
      */
     private Timestamp stateChgTime;
@@ -305,6 +310,14 @@ public class UpdateUserInfoRequest extends BaseInfo {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getAuditState() {
+        return auditState;
+    }
+
+    public void setAuditState(String auditState) {
+        this.auditState = auditState;
     }
 
 }

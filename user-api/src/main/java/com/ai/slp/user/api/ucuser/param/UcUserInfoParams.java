@@ -153,6 +153,11 @@ public class UcUserInfoParams implements Serializable {
      */
     private String remark;
 
+    /**
+     * 审核状态
+     */
+    private String auditState;
+
     public String getTenantId() {
         return tenantId;
     }
@@ -375,6 +380,14 @@ public class UcUserInfoParams implements Serializable {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getAuditState() {
+        return auditState;
+    }
+
+    public void setAuditState(String auditState) {
+        this.auditState = auditState;
     }
 
 }
