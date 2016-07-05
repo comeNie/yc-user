@@ -17,6 +17,8 @@ import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.slp.user.api.bankinfo.param.InsertBankInfoRequest;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoRequest;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoResponse;
+import com.ai.slp.user.api.bankinfo.param.QueryBankInfoSingleRequest;
+import com.ai.slp.user.api.bankinfo.param.QueryBankInfoSingleResponse;
 import com.ai.slp.user.api.bankinfo.param.UcBankInfoParams;
 import com.ai.slp.user.api.bankinfo.param.UpdateBankInfoRequest;
 import com.ai.slp.user.dao.mapper.bo.UcBankInfo;
@@ -92,6 +94,22 @@ public class UcBankInfoBusiSVImpl implements IUcBankInfoBusiSV {
         pageInfo.setResult(responseList);
         response.setPageInfo(pageInfo);
         response.setResponseHeader(responseHeader);
+        return response;
+    }
+
+    @Override
+    public QueryBankInfoSingleResponse queryBankInfoSingle(QueryBankInfoSingleRequest bankInfoRequest)
+            throws BusinessException, SystemException {
+        UcBankInfoCriteria example = new UcBankInfoCriteria();
+        UcBankInfoCriteria.Criteria criteria =example.createCriteria();
+        criteria.andTenantIdEqualTo(bankInfoRequest.getTenantId());
+        criteria.andUserIdEqualTo(bankInfoRequest.getUserId());
+        
+        List<UcBankInfo> list= ucBankInfoAtomSV.selectByExample(example);
+        QueryBankInfoSingleResponse response = new QueryBankInfoSingleResponse();
+        if(!list.isEmpty()){
+            BeanUtils.copyProperties(list.get(0), response);
+        }
         return response;
     }
 

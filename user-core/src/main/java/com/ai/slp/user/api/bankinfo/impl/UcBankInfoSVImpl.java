@@ -13,6 +13,8 @@ import com.ai.slp.user.api.bankinfo.interfaces.IUcBankInfoSV;
 import com.ai.slp.user.api.bankinfo.param.InsertBankInfoRequest;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoRequest;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoResponse;
+import com.ai.slp.user.api.bankinfo.param.QueryBankInfoSingleRequest;
+import com.ai.slp.user.api.bankinfo.param.QueryBankInfoSingleResponse;
 import com.ai.slp.user.api.bankinfo.param.UpdateBankInfoRequest;
 import com.ai.slp.user.service.business.interfaces.IUcBankInfoBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -62,6 +64,22 @@ public class UcBankInfoSVImpl implements IUcBankInfoSV {
         }
         baseResponse.setResponseHeader(responseHeader);
         return baseResponse;
+    }
+
+    @Override
+    public QueryBankInfoSingleResponse queryBankInfoSingle(QueryBankInfoSingleRequest bankInfoRequest)
+            throws BusinessException, SystemException {
+        QueryBankInfoSingleResponse response=new QueryBankInfoSingleResponse();
+        ResponseHeader responseHeader =null;
+        try{
+           ucBankInfoBusiSV.queryBankInfoSingle(bankInfoRequest);
+           responseHeader = new ResponseHeader(true, "success", "操作成功");
+        }catch(Exception e){
+            LOG.error("添加失败", e);
+            responseHeader = new ResponseHeader(false, "fail", "操作失败");
+        }
+        response.setResponseHeader(responseHeader);
+        return response;
     }
 
 }

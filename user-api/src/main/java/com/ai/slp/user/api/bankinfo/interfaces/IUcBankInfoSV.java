@@ -12,6 +12,8 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.slp.user.api.bankinfo.param.InsertBankInfoRequest;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoRequest;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoResponse;
+import com.ai.slp.user.api.bankinfo.param.QueryBankInfoSingleRequest;
+import com.ai.slp.user.api.bankinfo.param.QueryBankInfoSingleResponse;
 import com.ai.slp.user.api.bankinfo.param.UpdateBankInfoRequest;
 
 /**
@@ -70,5 +72,22 @@ public interface IUcBankInfoSV {
     @POST
     @Path("/queryBankInfo")
     QueryBankInfoResponse queryBankInfo(QueryBankInfoRequest bankInfoRequest)
+            throws BusinessException, SystemException;
+    
+    
+    /**
+     * 查询单个用户银行信息
+     * 
+     * @param bankInfoRequest
+     * @return
+     * @throws BusinessException
+     * @throws SystemException
+     * @author zhangqiang7
+     * @ApiCode UCUSER_1000
+     * @RestRelativeURL bankinfoservice/queryBankInfo
+     */
+    @POST
+    @Path("/queryBankInfo")
+    QueryBankInfoSingleResponse queryBankInfoSingle(QueryBankInfoSingleRequest bankInfoRequest)
             throws BusinessException, SystemException;
 }

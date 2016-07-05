@@ -5,6 +5,8 @@ import com.ai.opt.base.exception.SystemException;
 import com.ai.slp.user.api.bankinfo.param.InsertBankInfoRequest;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoRequest;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoResponse;
+import com.ai.slp.user.api.bankinfo.param.QueryBankInfoSingleRequest;
+import com.ai.slp.user.api.bankinfo.param.QueryBankInfoSingleResponse;
 import com.ai.slp.user.api.bankinfo.param.UpdateBankInfoRequest;
 
 public interface IUcBankInfoBusiSV {
@@ -16,5 +18,8 @@ public interface IUcBankInfoBusiSV {
             throws BusinessException, SystemException;
 
     QueryBankInfoResponse queryBankInfo(QueryBankInfoRequest bankInfoRequest)
+            throws BusinessException, SystemException;
+    
+    QueryBankInfoSingleResponse queryBankInfoSingle(QueryBankInfoSingleRequest bankInfoRequest)
             throws BusinessException, SystemException;
 }

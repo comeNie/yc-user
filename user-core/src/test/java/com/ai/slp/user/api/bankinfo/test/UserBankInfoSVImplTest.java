@@ -7,9 +7,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ai.slp.user.api.bankinfo.param.InsertBankInfoRequest;
-import com.ai.slp.user.api.bankinfo.param.QueryBankInfoRequest;
+import com.ai.slp.user.api.bankinfo.param.QueryBankInfoSingleRequest;
 import com.ai.slp.user.api.bankinfo.param.UpdateBankInfoRequest;
 import com.ai.slp.user.service.business.interfaces.IUcBankInfoBusiSV;
+import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "/context/core-context.xml" })
@@ -40,12 +41,12 @@ public class UserBankInfoSVImplTest {
         userBankInfoBusiSV.UpdateBankInfo(request);
     }
 
-    //@Test
+    @Test
     public void queryBankInfoTest(){
-        QueryBankInfoRequest request = new QueryBankInfoRequest();
-        request.setTenantId("test111");
-        request.setUserId("111");
-        System.out.println(userBankInfoBusiSV.queryBankInfo(request).getResponseHeader().getResultMessage());
+        QueryBankInfoSingleRequest request = new QueryBankInfoSingleRequest();
+        request.setTenantId("SLP");
+        request.setUserId("000000000000000202");
+        System.out.println(JSON.toJSONString(userBankInfoBusiSV.queryBankInfoSingle(request)));
     }
     
     @Test
