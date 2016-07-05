@@ -90,14 +90,15 @@ public class UcUserSVImpl implements IUcUserSV {
     @Override
     public BaseResponse updateBaseInfo(UpdateUserInfoRequest request)
             throws BusinessException, SystemException {
-            UcUserCriteria criteria = new UcUserCriteria();
-            criteria.or().andTenantIdEqualTo(request.getTenantId());
-            criteria.or().andUserIdEqualTo(request.getUserId());
+            UcUserCriteria example = new UcUserCriteria();
+            UcUserCriteria.Criteria criteria = example.createCriteria();
+            criteria.andTenantIdEqualTo(request.getTenantId());
+            criteria.andUserIdEqualTo(request.getUserId());
             // 数据库操作
             UcUser gnAccount = new UcUser();
             BeanUtils.copyProperties(gnAccount, request);
             gnAccount.setUpdateTime(DateUtil.getSysDate());
-            int updateCount = ucUserBusiSV.updateByAccountId(gnAccount,criteria);
+            int updateCount = ucUserBusiSV.updateByAccountId(gnAccount,example);
             // 整理返回对象
             ResponseHeader responseHeader = new ResponseHeader();
             if (updateCount > 0) {
