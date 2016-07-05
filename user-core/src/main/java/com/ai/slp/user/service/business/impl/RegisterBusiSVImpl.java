@@ -82,6 +82,7 @@ public class RegisterBusiSVImpl implements IRegisterBusiSV {
             BeanUtils.copyProperties(ucUser, userParams);
            
             ucUser.setUserState(ExceptCodeConstants.Account.REGISTER_STATE);
+            ucUser.setVerifyFlag("0");
             registerAtomSv.insertUserInfo(ucUser);
              
             //用户状态变更
