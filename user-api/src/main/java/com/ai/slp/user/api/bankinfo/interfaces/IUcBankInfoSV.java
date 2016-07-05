@@ -84,10 +84,10 @@ public interface IUcBankInfoSV {
      * @throws SystemException
      * @author zhangqiang7
      * @ApiCode UCUSER_1000
-     * @RestRelativeURL bankinfoservice/queryBankInfo
+     * @RestRelativeURL bankinfoservice/queryBankInfoSingle
      */
     @POST
-    @Path("/queryBankInfo")
+    @Path("/queryBankInfoSingle")
     QueryBankInfoSingleResponse queryBankInfoSingle(QueryBankInfoSingleRequest bankInfoRequest)
             throws BusinessException, SystemException;
 }
