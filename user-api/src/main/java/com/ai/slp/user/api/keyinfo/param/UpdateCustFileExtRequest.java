@@ -1,14 +1,12 @@
 package com.ai.slp.user.api.keyinfo.param;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ai.opt.base.vo.BaseInfo;
-
-public class UpdateCustFileExtRequest extends BaseInfo {
+public class UpdateCustFileExtRequest implements Serializable{
 
     private static final long serialVersionUID = 1L;
-
     List<CmCustFileExtVo> list = new ArrayList<CmCustFileExtVo>();
 
     public List<CmCustFileExtVo> getList() {
