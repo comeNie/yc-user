@@ -80,13 +80,14 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 
 	@Override
 	public void deleteUcTelGroup(UcTelGroupMantainReq req) {
-		int count = this.getTelGroupPhoneBookCount(req.getTelGroupId());
-		if (count > 0) {
-			throw new BusinessException("1000", "该分组下存在通信录记录，不能删除");
-		}
+		//int count = this.getTelGroupPhoneBookCount(req.getTelGroupId());
 		UcTelGroupCriteria sql = new UcTelGroupCriteria();
 		sql.or().andTelGroupIdEqualTo(req.getTelGroupId());
 		ucTelGroupMapper.deleteByExample(sql);
+		UcUserPhonebooksCriteria example=new UcUserPhonebooksCriteria();
+		Criteria phoneBooksCriteria = example.or();
+		phoneBooksCriteria.andTelGroupIdEqualTo(req.getTelGroupId());
+		ucUserPhonebooksMapper.deleteByExample(example);
 	}
 
 	@Override
