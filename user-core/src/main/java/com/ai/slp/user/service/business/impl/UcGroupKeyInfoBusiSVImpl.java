@@ -12,6 +12,7 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.sdk.components.sequence.util.SeqUtil;
+import com.ai.opt.sdk.constants.ExceptCodeConstants;
 import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.opt.sdk.util.DateUtil;
 import com.ai.opt.sdk.util.StringUtil;
@@ -135,7 +136,11 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
         UcGroupKeyInfoCriteria example = new UcGroupKeyInfoCriteria();
         UcGroupKeyInfoCriteria.Criteria criteria = example.createCriteria();
         
+        if (StringUtil.isBlank(request.getTenantId())) {
+            throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:租户ID不能为空");
+        }
         criteria.andTenantIdEqualTo(request.getTenantId());
+        criteria.andAuditStateEqualTo("11");
         if(!StringUtil.isBlank(request.getUserType())){
             criteria.andUserTypeEqualTo(request.getUserType());
         }
