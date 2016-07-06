@@ -231,10 +231,6 @@
   </insert>
   
   <insert id="insertList" parameterType="java.util.List" >
-  	<selectKey resultType="long" keyProperty="id" order="AFTER">  
-        SELECT  
-        LAST_INSERT_ID()  
-    </selectKey> 
      insert into uc_user_phonebooks (TEL_NO, TENANT_ID, USER_ID, 
       TEL_GROUP_ID, SEQ, TEL_NAME, 
       TEL_MP, PROVINCE_CODE, CITY_CODE, 
@@ -243,12 +239,12 @@
       UPDATE_OPER_ID)
     values 
     <foreach collection="list" item="item" index="index" separator="," >  
-    (#{telNo,jdbcType=VARCHAR}, #{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
-      #{telGroupId,jdbcType=VARCHAR}, #{seq,jdbcType=BIGINT}, #{telName,jdbcType=VARCHAR}, 
-      #{telMp,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
-      #{basicOrgId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createChlId,jdbcType=VARCHAR}, 
-      #{createOperId,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updateChlId,jdbcType=VARCHAR}, 
-      #{updateOperId,jdbcType=VARCHAR})
+    (#{item.telNo,jdbcType=VARCHAR}, #{item.tenantId,jdbcType=VARCHAR}, #{item.userId,jdbcType=VARCHAR}, 
+      #{item.telGroupId,jdbcType=VARCHAR}, #{item.seq,jdbcType=BIGINT}, #{item.telName,jdbcType=VARCHAR}, 
+      #{item.telMp,jdbcType=VARCHAR}, #{item.provinceCode,jdbcType=VARCHAR}, #{item.cityCode,jdbcType=VARCHAR}, 
+      #{item.basicOrgId,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.createChlId,jdbcType=VARCHAR}, 
+      #{item.createOperId,jdbcType=VARCHAR}, #{item.updateTime,jdbcType=TIMESTAMP}, #{item.updateChlId,jdbcType=VARCHAR}, 
+      #{item.updateOperId,jdbcType=VARCHAR})
     </foreach>
   </insert>
   

@@ -87,11 +87,11 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 
 	@Override
 	public void deleteUcTelGroup(UcTelGroupMantainReq req) {
-		//int count = this.getTelGroupPhoneBookCount(req.getTelGroupId());
+		// int count = this.getTelGroupPhoneBookCount(req.getTelGroupId());
 		UcTelGroupCriteria sql = new UcTelGroupCriteria();
 		sql.or().andTelGroupIdEqualTo(req.getTelGroupId());
 		ucTelGroupMapper.deleteByExample(sql);
-		UcUserPhonebooksCriteria example=new UcUserPhonebooksCriteria();
+		UcUserPhonebooksCriteria example = new UcUserPhonebooksCriteria();
 		Criteria phoneBooksCriteria = example.or();
 		phoneBooksCriteria.andTelGroupIdEqualTo(req.getTelGroupId());
 		ucUserPhonebooksMapper.deleteByExample(example);
@@ -127,7 +127,7 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 		UcTelGroupCriteria sql = new UcTelGroupCriteria();
 		UcTelGroupCriteria.Criteria groupsCriteria = sql.or();
 		groupsCriteria.andUserIdEqualTo(userId).andTelGroupNameEqualTo(telGroupName);
-		if(TelGroupId != null){
+		if (TelGroupId != null) {
 			groupsCriteria.andTelGroupIdNotEqualTo(TelGroupId);
 		}
 		return ucTelGroupMapper.countByExample(sql);
@@ -153,85 +153,83 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 			return null;
 		}
 		List<String> errors = new ArrayList<String>();
-		
-		
-		UcUserPhonebooksCriteria phoneBookeEample=new UcUserPhonebooksCriteria();
+
+		UcUserPhonebooksCriteria phoneBookeEample = new UcUserPhonebooksCriteria();
 		Criteria checkBookCriteria = phoneBookeEample.createCriteria();
 		String telGroupId = dataMap.values().iterator().next().getTelGroupId();
 		checkBookCriteria.andTelGroupIdEqualTo(telGroupId);
 		Set<Entry<String, UcUserPhonebooksBatchData>> phoneBookesSet = dataMap.entrySet();
 		List<String> telMpList = new LinkedList<String>();
-		for(Entry<String, UcUserPhonebooksBatchData> phoneBookData:phoneBookesSet){
+		for (Entry<String, UcUserPhonebooksBatchData> phoneBookData : phoneBookesSet) {
 			UcUserPhonebooksBatchData value = phoneBookData.getValue();
 			String telMp = value.getTelMp();
 			telMpList.add(telMp);
 		}
 		checkBookCriteria.andTelMpIn(telMpList);
 		List<UcUserPhonebooks> existsPhoneBooks = ucUserPhonebooksMapper.selectByExample(phoneBookeEample);
-		
+
 		List<UcUserPhonebooks> addPhoneBookesList = new LinkedList<UcUserPhonebooks>();
-		if(existsPhoneBooks != null && existsPhoneBooks.size()>0){
+		if (existsPhoneBooks != null && existsPhoneBooks.size() > 0) {
 			Set<String> existsTelMpSet = new HashSet<String>();
-			for(UcUserPhonebooks phoneBookData : existsPhoneBooks){
+			for (UcUserPhonebooks phoneBookData : existsPhoneBooks) {
 				existsTelMpSet.add(phoneBookData.getTelMp());
 			}
 			Set<String> telMpSet = dataMap.keySet();
-			for(String telMp : telMpSet){
-				if(!existsTelMpSet.contains(telMp)){
+			for (String telMp : telMpSet) {
+				if (!existsTelMpSet.contains(telMp)) {
 					UcUserPhonebooks addPhonebooksData = getAddPhonebooksData(dataMap.get(telMp));
 					addPhoneBookesList.add(addPhonebooksData);
-				}else{
+				} else {
 					errors.add("第" + dataMap.get(telMp).getIndexNo() + "条的号码已经存在该分组中");
 				}
 			}
-		}else{
+		} else {
 			Set<String> telMpSet = dataMap.keySet();
-			for(String telMp : telMpSet){
+			for (String telMp : telMpSet) {
 				UcUserPhonebooks addPhonebooksData = getAddPhonebooksData(dataMap.get(telMp));
 				addPhoneBookesList.add(addPhonebooksData);
 			}
 		}
-		
-		ucUserPhonebooksMapper.insertList(addPhoneBookesList);
-		
-		
-		
-		
-//		for (String telMp : dataMap.keySet()) {
-//			UcUserPhonebooksBatchData d = dataMap.get(telMp);
-//			// 判断号码是否重复在分组里面
-//			boolean exists = this.checkTelMpExists(d.getTelMp(), d.getTelGroupId(), null);
-//			if (exists) {
-//				errors.add("第" + d.getIndexNo() + "条的号码已经存在该分组中");
-//				continue;
-//			}
-//			try {
-//				ServiceNum serviceNum = this.getServiceNumInfo(telMp);
-//				UcUserPhonebooks record = new UcUserPhonebooks();
-//				record.setTelNo(SequenceUtil.createTelNo());
-//				record.setBasicOrgId(serviceNum.getBasicOrgCode());
-//				record.setProvinceCode(serviceNum.getProvinceCode());
-//				record.setCityCode(serviceNum.getCityCode());
-//				record.setTelGroupId(d.getTelGroupId());
-//				Timestamp time = DateUtil.getSysDate();
-//				record.setCreateTime(time);
-//				record.setTelMp(d.getTelMp());
-//				record.setTelName(d.getTelName());
-//				record.setUserId(d.getUserId());
-//				record.setTenantId(d.getTenantId());
-//				ucUserPhonebooksMapper.insertSelective(record);
-//			} catch (Exception ex) {
-//				ex.printStackTrace();
-//				Log.error("处理失败", ex);
-//				errors.add("第" + d.getIndexNo() + "条的号码写入数据库失败");
-//			}
-//
-//		}
+		if (addPhoneBookesList.size() > 0) {
+			ucUserPhonebooksMapper.insertList(addPhoneBookesList);
+		}
+
+		// for (String telMp : dataMap.keySet()) {
+		// UcUserPhonebooksBatchData d = dataMap.get(telMp);
+		// // 判断号码是否重复在分组里面
+		// boolean exists = this.checkTelMpExists(d.getTelMp(),
+		// d.getTelGroupId(), null);
+		// if (exists) {
+		// errors.add("第" + d.getIndexNo() + "条的号码已经存在该分组中");
+		// continue;
+		// }
+		// try {
+		// ServiceNum serviceNum = this.getServiceNumInfo(telMp);
+		// UcUserPhonebooks record = new UcUserPhonebooks();
+		// record.setTelNo(SequenceUtil.createTelNo());
+		// record.setBasicOrgId(serviceNum.getBasicOrgCode());
+		// record.setProvinceCode(serviceNum.getProvinceCode());
+		// record.setCityCode(serviceNum.getCityCode());
+		// record.setTelGroupId(d.getTelGroupId());
+		// Timestamp time = DateUtil.getSysDate();
+		// record.setCreateTime(time);
+		// record.setTelMp(d.getTelMp());
+		// record.setTelName(d.getTelName());
+		// record.setUserId(d.getUserId());
+		// record.setTenantId(d.getTenantId());
+		// ucUserPhonebooksMapper.insertSelective(record);
+		// } catch (Exception ex) {
+		// ex.printStackTrace();
+		// Log.error("处理失败", ex);
+		// errors.add("第" + d.getIndexNo() + "条的号码写入数据库失败");
+		// }
+		//
+		// }
 		return errors;
 
 	}
-	
-	private UcUserPhonebooks getAddPhonebooksData(UcUserPhonebooksBatchData data){
+
+	private UcUserPhonebooks getAddPhonebooksData(UcUserPhonebooksBatchData data) {
 		ServiceNum serviceNum = this.getServiceNumInfo(data.getTelMp());
 		UcUserPhonebooks record = new UcUserPhonebooks();
 		record.setTelNo(SequenceUtil.createTelNo());
@@ -279,18 +277,18 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 		UcUserPhonebooksCriteria sql = new UcUserPhonebooksCriteria();
 		Criteria countCriteria = sql.or();
 		countCriteria.andTelMpEqualTo(telMp).andTelGroupIdEqualTo(telGroupId);
-		if(telNo != null){
+		if (telNo != null) {
 			countCriteria.andTelNoNotEqualTo(telNo);
 		}
 		int count = ucUserPhonebooksMapper.countByExample(sql);
-		return count>0 ? true : false;
+		return count > 0 ? true : false;
 	}
 
 	@Override
 	public void modifyUserPhonebook(UcUserPhonebooksModifyReq req) {
-		
-		boolean checkTelMpExists = checkTelMpExists(req.getTelMp(),req.getTelGroupId(),req.getTelNo());
-		if(checkTelMpExists){
+
+		boolean checkTelMpExists = checkTelMpExists(req.getTelMp(), req.getTelGroupId(), req.getTelNo());
+		if (checkTelMpExists) {
 			throw new BusinessException("1000", "此号码已经存在该分组中");
 		}
 		UcUserPhonebooks record = new UcUserPhonebooks();
@@ -315,13 +313,13 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 			sql.andBasicOrgIdEqualTo(req.getBasicOrgId());
 		}
 		if (!StringUtil.isBlank(req.getTelMp())) {
-			sql.andTelMpLike("%"+req.getTelMp()+"%");
+			sql.andTelMpLike("%" + req.getTelMp() + "%");
 		}
 		if (!StringUtil.isBlank(req.getProvinceCode())) {
 			sql.andProvinceCodeEqualTo(req.getProvinceCode());
 		}
 		if (!StringUtil.isBlank(req.getTelName())) {
-			sql.andTelNameLike("%"+req.getTelName()+"%");
+			sql.andTelNameLike("%" + req.getTelName() + "%");
 		}
 		if (!StringUtil.isBlank(req.getTelGroupId())) {
 			sql.andTelGroupIdEqualTo(req.getTelGroupId());

@@ -33,14 +33,14 @@ public class PhoneBookSVTest {
         List<UcUserPhonebooksBatchData> datas=new LinkedList<UcUserPhonebooksBatchData>();
         UcUserPhonebooksBatchData phonebooksBatchData = new UcUserPhonebooksBatchData();
         phonebooksBatchData.setTelGroupId("62");
-        phonebooksBatchData.setTelMp("18701179658");
+        phonebooksBatchData.setTelMp("18401179658");
         phonebooksBatchData.setTelName("张bbb");
         phonebooksBatchData.setUserId("000000000000000480");
         phonebooksBatchData.setTenantId("SLP");
         datas.add(phonebooksBatchData);
         UcUserPhonebooksBatchData phonebooksBatchData2 = new UcUserPhonebooksBatchData();
         phonebooksBatchData2.setTelGroupId("62");
-        phonebooksBatchData2.setTelMp("18701176559");
+        phonebooksBatchData2.setTelMp("18401176559");
         phonebooksBatchData2.setTelName("张aaa");
         phonebooksBatchData2.setUserId("000000000000000480");
         phonebooksBatchData2.setTenantId("SLP");
