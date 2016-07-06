@@ -1,5 +1,19 @@
 package com.ai.slp.user.service.business.impl;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
@@ -11,7 +25,11 @@ import com.ai.slp.common.api.cache.param.SysParam;
 import com.ai.slp.common.api.cache.param.SysParamSingleCond;
 import com.ai.slp.common.api.servicenum.interfaces.IServiceNumSV;
 import com.ai.slp.common.api.servicenum.param.ServiceNum;
-import com.ai.slp.user.api.ucuserphonebooks.param.*;
+import com.ai.slp.user.api.ucuserphonebooks.param.UcTelGroupMantainReq;
+import com.ai.slp.user.api.ucuserphonebooks.param.UcUserPhonebooksBatchData;
+import com.ai.slp.user.api.ucuserphonebooks.param.UcUserPhonebooksModifyReq;
+import com.ai.slp.user.api.ucuserphonebooks.param.UcUserPhonebooksQueryReq;
+import com.ai.slp.user.api.ucuserphonebooks.param.UserPhonebook;
 import com.ai.slp.user.dao.mapper.bo.UcTelGroup;
 import com.ai.slp.user.dao.mapper.bo.UcTelGroupCriteria;
 import com.ai.slp.user.dao.mapper.bo.UcUserPhonebooks;
@@ -21,17 +39,6 @@ import com.ai.slp.user.dao.mapper.interfaces.UcTelGroupMapper;
 import com.ai.slp.user.dao.mapper.interfaces.UcUserPhonebooksMapper;
 import com.ai.slp.user.service.business.interfaces.IUserPhoneBooksBusiSV;
 import com.ai.slp.user.util.SequenceUtil;
-import com.esotericsoftware.minlog.Log;
-
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 @Service
 @Transactional
@@ -146,38 +153,99 @@ public class UserPhoneBooksBusiSVImpl implements IUserPhoneBooksBusiSV {
 			return null;
 		}
 		List<String> errors = new ArrayList<String>();
-		Timestamp time = DateUtil.getSysDate();
-		for (String telMp : dataMap.keySet()) {
-			UcUserPhonebooksBatchData d = dataMap.get(telMp);
-			// 判断号码是否重复在分组里面
-			boolean exists = this.checkTelMpExists(d.getTelMp(), d.getTelGroupId(), null);
-			if (exists) {
-				errors.add("第" + d.getIndexNo() + "条的号码已经存在该分组中");
-				continue;
-			}
-			try {
-				ServiceNum serviceNum = this.getServiceNumInfo(telMp);
-				UcUserPhonebooks record = new UcUserPhonebooks();
-				record.setTelNo(SequenceUtil.createTelNo());
-				record.setBasicOrgId(serviceNum.getBasicOrgCode());
-				record.setProvinceCode(serviceNum.getProvinceCode());
-				record.setCityCode(serviceNum.getCityCode());
-				record.setTelGroupId(d.getTelGroupId());
-				record.setCreateTime(time);
-				record.setTelMp(d.getTelMp());
-				record.setTelName(d.getTelName());
-				record.setUserId(d.getUserId());
-				record.setTenantId(d.getTenantId());
-				ucUserPhonebooksMapper.insertSelective(record);
-			} catch (Exception ex) {
-				ex.printStackTrace();
-				Log.error("处理失败", ex);
-				errors.add("第" + d.getIndexNo() + "条的号码写入数据库失败");
-			}
-
+		
+		
+		UcUserPhonebooksCriteria phoneBookeEample=new UcUserPhonebooksCriteria();
+		Criteria checkBookCriteria = phoneBookeEample.createCriteria();
+		String telGroupId = dataMap.values().iterator().next().getTelGroupId();
+		checkBookCriteria.andTelGroupIdEqualTo(telGroupId);
+		Set<Entry<String, UcUserPhonebooksBatchData>> phoneBookesSet = dataMap.entrySet();
+		List<String> telMpList = new LinkedList<String>();
+		for(Entry<String, UcUserPhonebooksBatchData> phoneBookData:phoneBookesSet){
+			UcUserPhonebooksBatchData value = phoneBookData.getValue();
+			String telMp = value.getTelMp();
+			telMpList.add(telMp);
 		}
+		checkBookCriteria.andTelMpIn(telMpList);
+		List<UcUserPhonebooks> existsPhoneBooks = ucUserPhonebooksMapper.selectByExample(phoneBookeEample);
+		
+		List<UcUserPhonebooks> addPhoneBookesList = new LinkedList<UcUserPhonebooks>();
+		if(existsPhoneBooks != null && existsPhoneBooks.size()>0){
+			Set<String> existsTelMpSet = new HashSet<String>();
+			for(UcUserPhonebooks phoneBookData : existsPhoneBooks){
+				existsTelMpSet.add(phoneBookData.getTelMp());
+			}
+			Set<String> telMpSet = dataMap.keySet();
+			for(String telMp : telMpSet){
+				if(!existsTelMpSet.contains(telMp)){
+					UcUserPhonebooks addPhonebooksData = getAddPhonebooksData(dataMap.get(telMp));
+					addPhoneBookesList.add(addPhonebooksData);
+				}else{
+					errors.add("第" + dataMap.get(telMp).getIndexNo() + "条的号码已经存在该分组中");
+				}
+			}
+		}else{
+			Set<String> telMpSet = dataMap.keySet();
+			for(String telMp : telMpSet){
+				UcUserPhonebooks addPhonebooksData = getAddPhonebooksData(dataMap.get(telMp));
+				addPhoneBookesList.add(addPhonebooksData);
+			}
+		}
+		
+		ucUserPhonebooksMapper.insertList(addPhoneBookesList);
+		
+		
+		
+		
+//		for (String telMp : dataMap.keySet()) {
+//			UcUserPhonebooksBatchData d = dataMap.get(telMp);
+//			// 判断号码是否重复在分组里面
+//			boolean exists = this.checkTelMpExists(d.getTelMp(), d.getTelGroupId(), null);
+//			if (exists) {
+//				errors.add("第" + d.getIndexNo() + "条的号码已经存在该分组中");
+//				continue;
+//			}
+//			try {
+//				ServiceNum serviceNum = this.getServiceNumInfo(telMp);
+//				UcUserPhonebooks record = new UcUserPhonebooks();
+//				record.setTelNo(SequenceUtil.createTelNo());
+//				record.setBasicOrgId(serviceNum.getBasicOrgCode());
+//				record.setProvinceCode(serviceNum.getProvinceCode());
+//				record.setCityCode(serviceNum.getCityCode());
+//				record.setTelGroupId(d.getTelGroupId());
+//				Timestamp time = DateUtil.getSysDate();
+//				record.setCreateTime(time);
+//				record.setTelMp(d.getTelMp());
+//				record.setTelName(d.getTelName());
+//				record.setUserId(d.getUserId());
+//				record.setTenantId(d.getTenantId());
+//				ucUserPhonebooksMapper.insertSelective(record);
+//			} catch (Exception ex) {
+//				ex.printStackTrace();
+//				Log.error("处理失败", ex);
+//				errors.add("第" + d.getIndexNo() + "条的号码写入数据库失败");
+//			}
+//
+//		}
 		return errors;
 
+	}
+	
+	private UcUserPhonebooks getAddPhonebooksData(UcUserPhonebooksBatchData data){
+		ServiceNum serviceNum = this.getServiceNumInfo(data.getTelMp());
+		UcUserPhonebooks record = new UcUserPhonebooks();
+		record.setTelNo(SequenceUtil.createTelNo());
+		record.setBasicOrgId(serviceNum.getBasicOrgCode());
+		record.setProvinceCode(serviceNum.getProvinceCode());
+		record.setCityCode(serviceNum.getCityCode());
+		record.setTelGroupId(data.getTelGroupId());
+		Timestamp time = DateUtil.getSysDate();
+		record.setCreateTime(time);
+		record.setTelMp(data.getTelMp());
+		record.setTelName(data.getTelName());
+		record.setUserId(data.getUserId());
+		record.setTenantId(data.getTenantId());
+		return record;
 	}
 
 	private ServiceNum getServiceNumInfo(String telMp) {

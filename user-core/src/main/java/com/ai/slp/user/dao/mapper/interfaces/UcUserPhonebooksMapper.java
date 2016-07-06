@@ -15,6 +15,8 @@ public interface UcUserPhonebooksMapper {
     int insert(UcUserPhonebooks record);
 
     int insertSelective(UcUserPhonebooks record);
+    
+    int insertList(List<UcUserPhonebooks> record);
 
     List<UcUserPhonebooks> selectByExample(UcUserPhonebooksCriteria example);
 

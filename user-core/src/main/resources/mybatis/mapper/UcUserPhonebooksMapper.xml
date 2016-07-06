@@ -229,6 +229,29 @@
       </if>
     </trim>
   </insert>
+  
+  <insert id="insertList" parameterType="java.util.List" >
+  	<selectKey resultType="long" keyProperty="id" order="AFTER">  
+        SELECT  
+        LAST_INSERT_ID()  
+    </selectKey> 
+     insert into uc_user_phonebooks (TEL_NO, TENANT_ID, USER_ID, 
+      TEL_GROUP_ID, SEQ, TEL_NAME, 
+      TEL_MP, PROVINCE_CODE, CITY_CODE, 
+      BASIC_ORG_ID, CREATE_TIME, CREATE_CHL_ID, 
+      CREATE_OPER_ID, UPDATE_TIME, UPDATE_CHL_ID, 
+      UPDATE_OPER_ID)
+    values 
+    <foreach collection="list" item="item" index="index" separator="," >  
+    (#{telNo,jdbcType=VARCHAR}, #{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{telGroupId,jdbcType=VARCHAR}, #{seq,jdbcType=BIGINT}, #{telName,jdbcType=VARCHAR}, 
+      #{telMp,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+      #{basicOrgId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createChlId,jdbcType=VARCHAR}, 
+      #{createOperId,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updateChlId,jdbcType=VARCHAR}, 
+      #{updateOperId,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  
   <select id="countByExample" parameterType="com.ai.slp.user.dao.mapper.bo.UcUserPhonebooksCriteria" resultType="java.lang.Integer" >
     select count(*) from uc_user_phonebooks
     <if test="_parameter != null" >
