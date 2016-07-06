@@ -41,8 +41,6 @@ public class UcUser {
 
     private String registerSource;
 
-    private String verifyFlag;
-
     private String creditFlag;
 
     private Timestamp stateChgTime;
@@ -62,8 +60,6 @@ public class UcUser {
     private String remark;
 
     private String userEmailToken;
-
-    private String auditState;
 
     public String getTenantId() {
         return tenantId;
@@ -217,14 +213,6 @@ public class UcUser {
         this.registerSource = registerSource == null ? null : registerSource.trim();
     }
 
-    public String getVerifyFlag() {
-        return verifyFlag;
-    }
-
-    public void setVerifyFlag(String verifyFlag) {
-        this.verifyFlag = verifyFlag == null ? null : verifyFlag.trim();
-    }
-
     public String getCreditFlag() {
         return creditFlag;
     }
@@ -303,13 +291,5 @@ public class UcUser {
 
     public void setUserEmailToken(String userEmailToken) {
         this.userEmailToken = userEmailToken == null ? null : userEmailToken.trim();
-    }
-
-    public String getAuditState() {
-        return auditState;
-    }
-
-    public void setAuditState(String auditState) {
-        this.auditState = auditState == null ? null : auditState.trim();
     }
 }
