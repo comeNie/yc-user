@@ -21,7 +21,6 @@
     <result column="CITY_CODE" property="cityCode" jdbcType="VARCHAR" />
     <result column="REGISTER_WAY" property="registerWay" jdbcType="VARCHAR" />
     <result column="REGISTER_SOURCE" property="registerSource" jdbcType="VARCHAR" />
-    <result column="VERIFY_FLAG" property="verifyFlag" jdbcType="VARCHAR" />
     <result column="CREDIT_FLAG" property="creditFlag" jdbcType="VARCHAR" />
     <result column="STATE_CHG_TIME" property="stateChgTime" jdbcType="TIMESTAMP" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
@@ -32,7 +31,6 @@
     <result column="UPDATE_OPER_ID" property="updateOperId" jdbcType="BIGINT" />
     <result column="REMARK" property="remark" jdbcType="VARCHAR" />
     <result column="USER_EMAIL_TOKEN" property="userEmailToken" jdbcType="VARCHAR" />
-    <result column="AUDIT_STATE" property="auditState" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -95,9 +93,9 @@
   <sql id="Base_Column_List" >
     TENANT_ID, USER_ID, USER_TYPE, USER_FLAG, USER_STATE, VIP_LEVEL, SAFETY_LEVEL, USER_LOGIN_NAME, 
     USER_LOGIN_PWD, PWD_SAFETY_LEVEL, USER_MP, USER_EMAIL, EMAIL_VALIDATE_FLAG, USER_NICKNAME, 
-    ORTRAIT_FILE_ID, PROVINCE_CODE, CITY_CODE, REGISTER_WAY, REGISTER_SOURCE, VERIFY_FLAG, 
-    CREDIT_FLAG, STATE_CHG_TIME, CREATE_TIME, CREATE_CHL_ID, CREATE_OPER_ID, UPDATE_TIME, 
-    UPDATE_CHL_ID, UPDATE_OPER_ID, REMARK, USER_EMAIL_TOKEN, AUDIT_STATE
+    ORTRAIT_FILE_ID, PROVINCE_CODE, CITY_CODE, REGISTER_WAY, REGISTER_SOURCE, CREDIT_FLAG, 
+    STATE_CHG_TIME, CREATE_TIME, CREATE_CHL_ID, CREATE_OPER_ID, UPDATE_TIME, UPDATE_CHL_ID, 
+    UPDATE_OPER_ID, REMARK, USER_EMAIL_TOKEN
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.user.dao.mapper.bo.UcUserCriteria" >
     select
@@ -130,22 +128,20 @@
       PWD_SAFETY_LEVEL, USER_MP, USER_EMAIL, 
       EMAIL_VALIDATE_FLAG, USER_NICKNAME, ORTRAIT_FILE_ID, 
       PROVINCE_CODE, CITY_CODE, REGISTER_WAY, 
-      REGISTER_SOURCE, VERIFY_FLAG, CREDIT_FLAG, 
-      STATE_CHG_TIME, CREATE_TIME, CREATE_CHL_ID, 
-      CREATE_OPER_ID, UPDATE_TIME, UPDATE_CHL_ID, 
-      UPDATE_OPER_ID, REMARK, USER_EMAIL_TOKEN, 
-      AUDIT_STATE)
+      REGISTER_SOURCE, CREDIT_FLAG, STATE_CHG_TIME, 
+      CREATE_TIME, CREATE_CHL_ID, CREATE_OPER_ID, 
+      UPDATE_TIME, UPDATE_CHL_ID, UPDATE_OPER_ID, 
+      REMARK, USER_EMAIL_TOKEN)
     values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, 
       #{userFlag,jdbcType=VARCHAR}, #{userState,jdbcType=VARCHAR}, #{vipLevel,jdbcType=VARCHAR}, 
       #{safetyLevel,jdbcType=VARCHAR}, #{userLoginName,jdbcType=VARCHAR}, #{userLoginPwd,jdbcType=VARCHAR}, 
       #{pwdSafetyLevel,jdbcType=VARCHAR}, #{userMp,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, 
       #{emailValidateFlag,jdbcType=VARCHAR}, #{userNickname,jdbcType=VARCHAR}, #{ortraitFileId,jdbcType=VARCHAR}, 
       #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{registerWay,jdbcType=VARCHAR}, 
-      #{registerSource,jdbcType=VARCHAR}, #{verifyFlag,jdbcType=VARCHAR}, #{creditFlag,jdbcType=VARCHAR}, 
-      #{stateChgTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{createChlId,jdbcType=VARCHAR}, 
-      #{createOperId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{updateChlId,jdbcType=VARCHAR}, 
-      #{updateOperId,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}, #{userEmailToken,jdbcType=VARCHAR}, 
-      #{auditState,jdbcType=VARCHAR})
+      #{registerSource,jdbcType=VARCHAR}, #{creditFlag,jdbcType=VARCHAR}, #{stateChgTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createChlId,jdbcType=VARCHAR}, #{createOperId,jdbcType=BIGINT}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateChlId,jdbcType=VARCHAR}, #{updateOperId,jdbcType=BIGINT}, 
+      #{remark,jdbcType=VARCHAR}, #{userEmailToken,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ai.slp.user.dao.mapper.bo.UcUser" >
     insert into uc_user
@@ -207,9 +203,6 @@
       <if test="registerSource != null" >
         REGISTER_SOURCE,
       </if>
-      <if test="verifyFlag != null" >
-        VERIFY_FLAG,
-      </if>
       <if test="creditFlag != null" >
         CREDIT_FLAG,
       </if>
@@ -239,9 +232,6 @@
       </if>
       <if test="userEmailToken != null" >
         USER_EMAIL_TOKEN,
-      </if>
-      <if test="auditState != null" >
-        AUDIT_STATE,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -302,9 +292,6 @@
       <if test="registerSource != null" >
         #{registerSource,jdbcType=VARCHAR},
       </if>
-      <if test="verifyFlag != null" >
-        #{verifyFlag,jdbcType=VARCHAR},
-      </if>
       <if test="creditFlag != null" >
         #{creditFlag,jdbcType=VARCHAR},
       </if>
@@ -334,9 +321,6 @@
       </if>
       <if test="userEmailToken != null" >
         #{userEmailToken,jdbcType=VARCHAR},
-      </if>
-      <if test="auditState != null" >
-        #{auditState,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -406,9 +390,6 @@
       <if test="record.registerSource != null" >
         REGISTER_SOURCE = #{record.registerSource,jdbcType=VARCHAR},
       </if>
-      <if test="record.verifyFlag != null" >
-        VERIFY_FLAG = #{record.verifyFlag,jdbcType=VARCHAR},
-      </if>
       <if test="record.creditFlag != null" >
         CREDIT_FLAG = #{record.creditFlag,jdbcType=VARCHAR},
       </if>
@@ -439,9 +420,6 @@
       <if test="record.userEmailToken != null" >
         USER_EMAIL_TOKEN = #{record.userEmailToken,jdbcType=VARCHAR},
       </if>
-      <if test="record.auditState != null" >
-        AUDIT_STATE = #{record.auditState,jdbcType=VARCHAR},
-      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -468,7 +446,6 @@
       CITY_CODE = #{record.cityCode,jdbcType=VARCHAR},
       REGISTER_WAY = #{record.registerWay,jdbcType=VARCHAR},
       REGISTER_SOURCE = #{record.registerSource,jdbcType=VARCHAR},
-      VERIFY_FLAG = #{record.verifyFlag,jdbcType=VARCHAR},
       CREDIT_FLAG = #{record.creditFlag,jdbcType=VARCHAR},
       STATE_CHG_TIME = #{record.stateChgTime,jdbcType=TIMESTAMP},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
@@ -478,8 +455,7 @@
       UPDATE_CHL_ID = #{record.updateChlId,jdbcType=VARCHAR},
       UPDATE_OPER_ID = #{record.updateOperId,jdbcType=BIGINT},
       REMARK = #{record.remark,jdbcType=VARCHAR},
-      USER_EMAIL_TOKEN = #{record.userEmailToken,jdbcType=VARCHAR},
-      AUDIT_STATE = #{record.auditState,jdbcType=VARCHAR}
+      USER_EMAIL_TOKEN = #{record.userEmailToken,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
