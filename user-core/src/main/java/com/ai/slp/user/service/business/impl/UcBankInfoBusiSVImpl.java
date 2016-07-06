@@ -56,7 +56,6 @@ public class UcBankInfoBusiSVImpl implements IUcBankInfoBusiSV {
         UcBankInfoCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(bankInfoRequest.getTenantId());
         criteria.andUserIdEqualTo(bankInfoRequest.getUserId());
-        criteria.andBankSeqIdEqualTo(bankInfoRequest.getBankSeqId());
         return ucBankInfoAtomSV.updateByExampleSelective(bankInfo, example);
     }
 

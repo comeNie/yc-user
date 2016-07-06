@@ -31,12 +31,11 @@ public class UserBankInfoSVImplTest {
         userBankInfoBusiSV.insertBankInfo(request);
     }
     
-    //@Test
+    @Test
     public void updateBankInfoTest(){
         UpdateBankInfoRequest request = new UpdateBankInfoRequest();
-        request.setTenantId("test111");
-        request.setBankSeqId("111");
-        request.setUserId("111");
+        request.setTenantId("SLP");
+        request.setUserId("000000000000000202");
         request.setLicenseNo("666");
         userBankInfoBusiSV.UpdateBankInfo(request);
     }
