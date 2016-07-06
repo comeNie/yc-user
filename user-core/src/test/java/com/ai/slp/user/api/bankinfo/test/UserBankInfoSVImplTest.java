@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.ai.slp.user.api.bankinfo.interfaces.IUcBankInfoSV;
 import com.ai.slp.user.api.bankinfo.param.InsertBankInfoRequest;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoSingleRequest;
-import com.ai.slp.user.api.bankinfo.param.UpdateBankInfoRequest;
-import com.ai.slp.user.service.business.interfaces.IUcBankInfoBusiSV;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -17,7 +16,7 @@ import com.alibaba.fastjson.JSON;
 public class UserBankInfoSVImplTest {
 
     @Autowired
-    private IUcBankInfoBusiSV userBankInfoBusiSV;
+    private IUcBankInfoSV userBankInfoBusiSV;
     
     @Test
     public void insertBankInfoTest(){
@@ -31,14 +30,6 @@ public class UserBankInfoSVImplTest {
         userBankInfoBusiSV.insertBankInfo(request);
     }
     
-    @Test
-    public void updateBankInfoTest(){
-        UpdateBankInfoRequest request = new UpdateBankInfoRequest();
-        request.setTenantId("SLP");
-        request.setUserId("000000000000000202");
-        request.setLicenseNo("666");
-        userBankInfoBusiSV.UpdateBankInfo(request);
-    }
 
     @Test
     public void queryBankInfoTest(){

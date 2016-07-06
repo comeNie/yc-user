@@ -69,10 +69,10 @@ public class UcBankInfoSVImpl implements IUcBankInfoSV {
     @Override
     public QueryBankInfoSingleResponse queryBankInfoSingle(QueryBankInfoSingleRequest bankInfoRequest)
             throws BusinessException, SystemException {
-        QueryBankInfoSingleResponse response=new QueryBankInfoSingleResponse();
         ResponseHeader responseHeader =null;
+        QueryBankInfoSingleResponse response=null;
         try{
-           ucBankInfoBusiSV.queryBankInfoSingle(bankInfoRequest);
+           response = ucBankInfoBusiSV.queryBankInfoSingle(bankInfoRequest);
            responseHeader = new ResponseHeader(true, "success", "操作成功");
         }catch(Exception e){
             LOG.error("添加失败", e);
