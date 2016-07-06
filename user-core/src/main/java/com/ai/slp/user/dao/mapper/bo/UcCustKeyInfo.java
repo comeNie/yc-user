@@ -49,8 +49,6 @@ public class UcCustKeyInfo {
 
     private String custEducation;
 
-    private String personalRemark;
-
     private Timestamp createTime;
 
     private String createChlId;
@@ -62,6 +60,10 @@ public class UcCustKeyInfo {
     private String updateChlId;
 
     private Long updateOperId;
+
+    private String personalRemark;
+
+    private String verifyFlag;
 
     public String getTenantId() {
         return tenantId;
@@ -247,14 +249,6 @@ public class UcCustKeyInfo {
         this.custEducation = custEducation == null ? null : custEducation.trim();
     }
 
-    public String getPersonalRemark() {
-        return personalRemark;
-    }
-
-    public void setPersonalRemark(String personalRemark) {
-        this.personalRemark = personalRemark == null ? null : personalRemark.trim();
-    }
-
     public Timestamp getCreateTime() {
         return createTime;
     }
@@ -301,5 +295,21 @@ public class UcCustKeyInfo {
 
     public void setUpdateOperId(Long updateOperId) {
         this.updateOperId = updateOperId;
+    }
+
+    public String getPersonalRemark() {
+        return personalRemark;
+    }
+
+    public void setPersonalRemark(String personalRemark) {
+        this.personalRemark = personalRemark == null ? null : personalRemark.trim();
+    }
+
+    public String getVerifyFlag() {
+        return verifyFlag;
+    }
+
+    public void setVerifyFlag(String verifyFlag) {
+        this.verifyFlag = verifyFlag == null ? null : verifyFlag.trim();
     }
 }

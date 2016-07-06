@@ -25,13 +25,14 @@
     <result column="INCOME_LEVEL" property="incomeLevel" jdbcType="VARCHAR" />
     <result column="CUST_INDUSTRY" property="custIndustry" jdbcType="VARCHAR" />
     <result column="CUST_EDUCATION" property="custEducation" jdbcType="VARCHAR" />
-    <result column="PERSONAL_REMARK" property="personalRemark" jdbcType="VARCHAR" />
     <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
     <result column="CREATE_CHL_ID" property="createChlId" jdbcType="VARCHAR" />
     <result column="CREATE_OPER_ID" property="createOperId" jdbcType="BIGINT" />
     <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
     <result column="UPDATE_CHL_ID" property="updateChlId" jdbcType="VARCHAR" />
     <result column="UPDATE_OPER_ID" property="updateOperId" jdbcType="BIGINT" />
+    <result column="PERSONAL_REMARK" property="personalRemark" jdbcType="VARCHAR" />
+    <result column="VERIFY_FLAG" property="verifyFlag" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -95,8 +96,8 @@
     TENANT_ID, USER_ID, USER_TYPE, CUST_NAME, CERT_TYPE, CERT_NUM, PROVINCE_CODE, CITY_CODE, 
     COUNTY_CODE, CERT_ADDR, CERT_ISSUE_DATE, CERT_ISSUE_ORG, CERT_VALID_DATE, CERT_INVALID_DATE, 
     CUST_SEX, CUST_BIRTHDAY, CUST_PROVINCE_CODE, CUST_CITY_CODE, CUST_COUNTY_CODE, CUST_ADDR, 
-    INCOME_LEVEL, CUST_INDUSTRY, CUST_EDUCATION, PERSONAL_REMARK, CREATE_TIME, CREATE_CHL_ID, 
-    CREATE_OPER_ID, UPDATE_TIME, UPDATE_CHL_ID, UPDATE_OPER_ID
+    INCOME_LEVEL, CUST_INDUSTRY, CUST_EDUCATION, CREATE_TIME, CREATE_CHL_ID, CREATE_OPER_ID, 
+    UPDATE_TIME, UPDATE_CHL_ID, UPDATE_OPER_ID, PERSONAL_REMARK, VERIFY_FLAG
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.user.dao.mapper.bo.UcCustKeyInfoCriteria" >
     select
@@ -130,10 +131,10 @@
       CERT_VALID_DATE, CERT_INVALID_DATE, CUST_SEX, 
       CUST_BIRTHDAY, CUST_PROVINCE_CODE, CUST_CITY_CODE, 
       CUST_COUNTY_CODE, CUST_ADDR, INCOME_LEVEL, 
-      CUST_INDUSTRY, CUST_EDUCATION, PERSONAL_REMARK, 
-      CREATE_TIME, CREATE_CHL_ID, CREATE_OPER_ID, 
-      UPDATE_TIME, UPDATE_CHL_ID, UPDATE_OPER_ID
-      )
+      CUST_INDUSTRY, CUST_EDUCATION, CREATE_TIME, 
+      CREATE_CHL_ID, CREATE_OPER_ID, UPDATE_TIME, 
+      UPDATE_CHL_ID, UPDATE_OPER_ID, PERSONAL_REMARK, 
+      VERIFY_FLAG)
     values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, 
       #{custName,jdbcType=VARCHAR}, #{certType,jdbcType=VARCHAR}, #{certNum,jdbcType=VARCHAR}, 
       #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{countyCode,jdbcType=VARCHAR}, 
@@ -141,10 +142,10 @@
       #{certValidDate,jdbcType=TIMESTAMP}, #{certInvalidDate,jdbcType=TIMESTAMP}, #{custSex,jdbcType=VARCHAR}, 
       #{custBirthday,jdbcType=TIMESTAMP}, #{custProvinceCode,jdbcType=VARCHAR}, #{custCityCode,jdbcType=VARCHAR}, 
       #{custCountyCode,jdbcType=VARCHAR}, #{custAddr,jdbcType=VARCHAR}, #{incomeLevel,jdbcType=VARCHAR}, 
-      #{custIndustry,jdbcType=VARCHAR}, #{custEducation,jdbcType=VARCHAR}, #{personalRemark,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{createChlId,jdbcType=VARCHAR}, #{createOperId,jdbcType=BIGINT}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{updateChlId,jdbcType=VARCHAR}, #{updateOperId,jdbcType=BIGINT}
-      )
+      #{custIndustry,jdbcType=VARCHAR}, #{custEducation,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createChlId,jdbcType=VARCHAR}, #{createOperId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateChlId,jdbcType=VARCHAR}, #{updateOperId,jdbcType=BIGINT}, #{personalRemark,jdbcType=VARCHAR}, 
+      #{verifyFlag,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ai.slp.user.dao.mapper.bo.UcCustKeyInfo" >
     insert into uc_cust_key_info
@@ -218,9 +219,6 @@
       <if test="custEducation != null" >
         CUST_EDUCATION,
       </if>
-      <if test="personalRemark != null" >
-        PERSONAL_REMARK,
-      </if>
       <if test="createTime != null" >
         CREATE_TIME,
       </if>
@@ -238,6 +236,12 @@
       </if>
       <if test="updateOperId != null" >
         UPDATE_OPER_ID,
+      </if>
+      <if test="personalRemark != null" >
+        PERSONAL_REMARK,
+      </if>
+      <if test="verifyFlag != null" >
+        VERIFY_FLAG,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -310,9 +314,6 @@
       <if test="custEducation != null" >
         #{custEducation,jdbcType=VARCHAR},
       </if>
-      <if test="personalRemark != null" >
-        #{personalRemark,jdbcType=VARCHAR},
-      </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -330,6 +331,12 @@
       </if>
       <if test="updateOperId != null" >
         #{updateOperId,jdbcType=BIGINT},
+      </if>
+      <if test="personalRemark != null" >
+        #{personalRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="verifyFlag != null" >
+        #{verifyFlag,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -411,9 +418,6 @@
       <if test="record.custEducation != null" >
         CUST_EDUCATION = #{record.custEducation,jdbcType=VARCHAR},
       </if>
-      <if test="record.personalRemark != null" >
-        PERSONAL_REMARK = #{record.personalRemark,jdbcType=VARCHAR},
-      </if>
       <if test="record.createTime != null" >
         CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
@@ -431,6 +435,12 @@
       </if>
       <if test="record.updateOperId != null" >
         UPDATE_OPER_ID = #{record.updateOperId,jdbcType=BIGINT},
+      </if>
+      <if test="record.personalRemark != null" >
+        PERSONAL_REMARK = #{record.personalRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verifyFlag != null" >
+        VERIFY_FLAG = #{record.verifyFlag,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -462,13 +472,14 @@
       INCOME_LEVEL = #{record.incomeLevel,jdbcType=VARCHAR},
       CUST_INDUSTRY = #{record.custIndustry,jdbcType=VARCHAR},
       CUST_EDUCATION = #{record.custEducation,jdbcType=VARCHAR},
-      PERSONAL_REMARK = #{record.personalRemark,jdbcType=VARCHAR},
       CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
       CREATE_CHL_ID = #{record.createChlId,jdbcType=VARCHAR},
       CREATE_OPER_ID = #{record.createOperId,jdbcType=BIGINT},
       UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
       UPDATE_CHL_ID = #{record.updateChlId,jdbcType=VARCHAR},
-      UPDATE_OPER_ID = #{record.updateOperId,jdbcType=BIGINT}
+      UPDATE_OPER_ID = #{record.updateOperId,jdbcType=BIGINT},
+      PERSONAL_REMARK = #{record.personalRemark,jdbcType=VARCHAR},
+      VERIFY_FLAG = #{record.verifyFlag,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

@@ -1695,76 +1695,6 @@ public class UcCustKeyInfoCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andPersonalRemarkIsNull() {
-            addCriterion("PERSONAL_REMARK is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPersonalRemarkIsNotNull() {
-            addCriterion("PERSONAL_REMARK is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPersonalRemarkEqualTo(String value) {
-            addCriterion("PERSONAL_REMARK =", value, "personalRemark");
-            return (Criteria) this;
-        }
-
-        public Criteria andPersonalRemarkNotEqualTo(String value) {
-            addCriterion("PERSONAL_REMARK <>", value, "personalRemark");
-            return (Criteria) this;
-        }
-
-        public Criteria andPersonalRemarkGreaterThan(String value) {
-            addCriterion("PERSONAL_REMARK >", value, "personalRemark");
-            return (Criteria) this;
-        }
-
-        public Criteria andPersonalRemarkGreaterThanOrEqualTo(String value) {
-            addCriterion("PERSONAL_REMARK >=", value, "personalRemark");
-            return (Criteria) this;
-        }
-
-        public Criteria andPersonalRemarkLessThan(String value) {
-            addCriterion("PERSONAL_REMARK <", value, "personalRemark");
-            return (Criteria) this;
-        }
-
-        public Criteria andPersonalRemarkLessThanOrEqualTo(String value) {
-            addCriterion("PERSONAL_REMARK <=", value, "personalRemark");
-            return (Criteria) this;
-        }
-
-        public Criteria andPersonalRemarkLike(String value) {
-            addCriterion("PERSONAL_REMARK like", value, "personalRemark");
-            return (Criteria) this;
-        }
-
-        public Criteria andPersonalRemarkNotLike(String value) {
-            addCriterion("PERSONAL_REMARK not like", value, "personalRemark");
-            return (Criteria) this;
-        }
-
-        public Criteria andPersonalRemarkIn(List<String> values) {
-            addCriterion("PERSONAL_REMARK in", values, "personalRemark");
-            return (Criteria) this;
-        }
-
-        public Criteria andPersonalRemarkNotIn(List<String> values) {
-            addCriterion("PERSONAL_REMARK not in", values, "personalRemark");
-            return (Criteria) this;
-        }
-
-        public Criteria andPersonalRemarkBetween(String value1, String value2) {
-            addCriterion("PERSONAL_REMARK between", value1, value2, "personalRemark");
-            return (Criteria) this;
-        }
-
-        public Criteria andPersonalRemarkNotBetween(String value1, String value2) {
-            addCriterion("PERSONAL_REMARK not between", value1, value2, "personalRemark");
-            return (Criteria) this;
-        }
-
         public Criteria andCreateTimeIsNull() {
             addCriterion("CREATE_TIME is null");
             return (Criteria) this;
@@ -2142,6 +2072,146 @@ public class UcCustKeyInfoCriteria {
 
         public Criteria andUpdateOperIdNotBetween(Long value1, Long value2) {
             addCriterion("UPDATE_OPER_ID not between", value1, value2, "updateOperId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonalRemarkIsNull() {
+            addCriterion("PERSONAL_REMARK is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonalRemarkIsNotNull() {
+            addCriterion("PERSONAL_REMARK is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonalRemarkEqualTo(String value) {
+            addCriterion("PERSONAL_REMARK =", value, "personalRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonalRemarkNotEqualTo(String value) {
+            addCriterion("PERSONAL_REMARK <>", value, "personalRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonalRemarkGreaterThan(String value) {
+            addCriterion("PERSONAL_REMARK >", value, "personalRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonalRemarkGreaterThanOrEqualTo(String value) {
+            addCriterion("PERSONAL_REMARK >=", value, "personalRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonalRemarkLessThan(String value) {
+            addCriterion("PERSONAL_REMARK <", value, "personalRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonalRemarkLessThanOrEqualTo(String value) {
+            addCriterion("PERSONAL_REMARK <=", value, "personalRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonalRemarkLike(String value) {
+            addCriterion("PERSONAL_REMARK like", value, "personalRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonalRemarkNotLike(String value) {
+            addCriterion("PERSONAL_REMARK not like", value, "personalRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonalRemarkIn(List<String> values) {
+            addCriterion("PERSONAL_REMARK in", values, "personalRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonalRemarkNotIn(List<String> values) {
+            addCriterion("PERSONAL_REMARK not in", values, "personalRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonalRemarkBetween(String value1, String value2) {
+            addCriterion("PERSONAL_REMARK between", value1, value2, "personalRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andPersonalRemarkNotBetween(String value1, String value2) {
+            addCriterion("PERSONAL_REMARK not between", value1, value2, "personalRemark");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyFlagIsNull() {
+            addCriterion("VERIFY_FLAG is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyFlagIsNotNull() {
+            addCriterion("VERIFY_FLAG is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyFlagEqualTo(String value) {
+            addCriterion("VERIFY_FLAG =", value, "verifyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyFlagNotEqualTo(String value) {
+            addCriterion("VERIFY_FLAG <>", value, "verifyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyFlagGreaterThan(String value) {
+            addCriterion("VERIFY_FLAG >", value, "verifyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyFlagGreaterThanOrEqualTo(String value) {
+            addCriterion("VERIFY_FLAG >=", value, "verifyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyFlagLessThan(String value) {
+            addCriterion("VERIFY_FLAG <", value, "verifyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyFlagLessThanOrEqualTo(String value) {
+            addCriterion("VERIFY_FLAG <=", value, "verifyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyFlagLike(String value) {
+            addCriterion("VERIFY_FLAG like", value, "verifyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyFlagNotLike(String value) {
+            addCriterion("VERIFY_FLAG not like", value, "verifyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyFlagIn(List<String> values) {
+            addCriterion("VERIFY_FLAG in", values, "verifyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyFlagNotIn(List<String> values) {
+            addCriterion("VERIFY_FLAG not in", values, "verifyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyFlagBetween(String value1, String value2) {
+            addCriterion("VERIFY_FLAG between", value1, value2, "verifyFlag");
+            return (Criteria) this;
+        }
+
+        public Criteria andVerifyFlagNotBetween(String value1, String value2) {
+            addCriterion("VERIFY_FLAG not between", value1, value2, "verifyFlag");
             return (Criteria) this;
         }
     }
