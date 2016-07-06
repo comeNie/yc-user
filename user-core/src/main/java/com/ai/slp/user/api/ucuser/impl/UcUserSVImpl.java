@@ -73,7 +73,9 @@ public class UcUserSVImpl implements IUcUserSV {
     @Override
     public SearchUserResponse queryBaseInfo(SearchUserRequest accountQueryRequest)
             throws BusinessException, SystemException {
-        UcUser ucuser = ucUserBusiSV.queryBaseInfo(accountQueryRequest.getUserId());
+        UcUserCriteria criteria = new UcUserCriteria();
+        criteria.or().andUserIdEqualTo(accountQueryRequest.getUserId());
+        UcUser ucuser = ucUserBusiSV.queryBaseInfo(criteria);
         // 整理返回对象
         SearchUserResponse response = new SearchUserResponse();
         ResponseHeader responseHeader = new ResponseHeader();
