@@ -21,7 +21,7 @@ public interface IUcUserBusiSV {
     
     UcUser queryByEmail(String email)throws SystemException;
     
-    UcUser queryBaseInfo(String userId) throws SystemException;
+    UcUser queryBaseInfo(UcUserCriteria criteria) throws SystemException;
     
     int updateByAccountId(UcUser gnAccount,UcUserCriteria example) throws SystemException;
     
