@@ -108,7 +108,7 @@ public class UcUserSVImpl implements IUcUserSV {
             } else {
                 responseHeader.setIsSuccess(false);
                 responseHeader.setResultCode(ExceptCodeConstants.FAILD);
-                responseHeader.setResultMessage("数据库查询失败");
+                responseHeader.setResultMessage("数据更新失败");
             }
             BaseResponse baseResponse = new BaseResponse();
             baseResponse.setResponseHeader(responseHeader);

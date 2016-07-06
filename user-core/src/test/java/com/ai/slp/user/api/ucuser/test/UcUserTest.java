@@ -31,8 +31,8 @@ public class UcUserTest {
     public void updateTest(){
         UpdateUserInfoRequest re = new UpdateUserInfoRequest();
         re.setTenantId("SLP");
-        re.setUserId("000000000000000161");
-        re.setVerifyFlag("1");
+        re.setUserId("000000000000000101");
+        re.setAuditState("10");
         ucUsersv.updateBaseInfo(re);
     }
 }
