@@ -70,7 +70,6 @@ public class UcContactsInfoBusiSVImpl implements IUcContactsInfoBusiSV {
         UcContactsInfoCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(contactsInfoRequest.getTenantId());
         criteria.andUserIdEqualTo(contactsInfoRequest.getUserId());
-        criteria.andContactSeqIdEqualTo(contactsInfoRequest.getContactSeqId());
         BaseResponse response = new BaseResponse();
         ResponseHeader responseHeader;
         try {
