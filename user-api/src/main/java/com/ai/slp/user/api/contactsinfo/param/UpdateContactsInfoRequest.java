@@ -20,10 +20,6 @@ public class UpdateContactsInfoRequest extends BaseInfo {
     @NotNull(message = "userId不能为空")
     private String userId;
 
-    /**
-     * 唯一标识
-     */
-    @NotNull(message = "唯一标识不能为空")
     private String contactSeqId;
 
     /**
