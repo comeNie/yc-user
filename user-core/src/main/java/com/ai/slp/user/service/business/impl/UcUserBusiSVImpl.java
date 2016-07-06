@@ -116,8 +116,8 @@ public class UcUserBusiSVImpl implements IUcUserBusiSV {
     }
 
     @Override
-    public UcUser queryBaseInfo(String userId) throws SystemException {
-        return  ucUserAtomSV.queryByUserId(userId);
+    public UcUser queryBaseInfo(UcUserCriteria criteria) throws SystemException {
+        return  ucUserAtomSV.queryByBaseInfo(criteria);
     }
 
     @Override
