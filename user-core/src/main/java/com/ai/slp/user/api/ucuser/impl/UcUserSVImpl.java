@@ -9,6 +9,7 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.DateUtil;
+import com.ai.opt.sdk.util.StringUtil;
 import com.ai.slp.user.api.ucuser.intefaces.IUcUserSV;
 import com.ai.slp.user.api.ucuser.param.QueryBaseInfoRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserListResponse;
@@ -73,9 +74,18 @@ public class UcUserSVImpl implements IUcUserSV {
     @Override
     public SearchUserResponse queryBaseInfo(SearchUserRequest accountQueryRequest)
             throws BusinessException, SystemException {
-        UcUserCriteria criteria = new UcUserCriteria();
-        criteria.or().andUserIdEqualTo(accountQueryRequest.getUserId());
-        UcUser ucuser = ucUserBusiSV.queryBaseInfo(criteria);
+        UcUserCriteria example = new UcUserCriteria();
+        UcUserCriteria.Criteria criteria = example.or();
+        if(!StringUtil.isBlank(accountQueryRequest.getUserId())){
+            criteria.andUserIdEqualTo(accountQueryRequest.getUserId());
+        }
+        if(!StringUtil.isBlank(accountQueryRequest.getUserLoginName())){
+            criteria.andUserLoginNameEqualTo(accountQueryRequest.getUserLoginName());
+        }
+        if(!StringUtil.isBlank(accountQueryRequest.getUserType())){
+            criteria.andUserTypeEqualTo(accountQueryRequest.getUserType());
+        }
+        UcUser ucuser = ucUserBusiSV.queryBaseInfo(example);
         // 整理返回对象
         SearchUserResponse response = new SearchUserResponse();
         ResponseHeader responseHeader = new ResponseHeader();
