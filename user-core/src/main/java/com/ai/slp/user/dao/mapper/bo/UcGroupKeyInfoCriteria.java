@@ -2424,6 +2424,76 @@ public class UcGroupKeyInfoCriteria {
             addCriterion("CONTRACT_CUST_ID not between", value1, value2, "contractCustId");
             return (Criteria) this;
         }
+
+        public Criteria andAuditStateIsNull() {
+            addCriterion("AUDIT_STATE is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateIsNotNull() {
+            addCriterion("AUDIT_STATE is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateEqualTo(String value) {
+            addCriterion("AUDIT_STATE =", value, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateNotEqualTo(String value) {
+            addCriterion("AUDIT_STATE <>", value, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateGreaterThan(String value) {
+            addCriterion("AUDIT_STATE >", value, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateGreaterThanOrEqualTo(String value) {
+            addCriterion("AUDIT_STATE >=", value, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateLessThan(String value) {
+            addCriterion("AUDIT_STATE <", value, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateLessThanOrEqualTo(String value) {
+            addCriterion("AUDIT_STATE <=", value, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateLike(String value) {
+            addCriterion("AUDIT_STATE like", value, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateNotLike(String value) {
+            addCriterion("AUDIT_STATE not like", value, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateIn(List<String> values) {
+            addCriterion("AUDIT_STATE in", values, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateNotIn(List<String> values) {
+            addCriterion("AUDIT_STATE not in", values, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateBetween(String value1, String value2) {
+            addCriterion("AUDIT_STATE between", value1, value2, "auditState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuditStateNotBetween(String value1, String value2) {
+            addCriterion("AUDIT_STATE not between", value1, value2, "auditState");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -71,6 +71,8 @@ public class UcGroupKeyInfo {
 
     private String contractCustId;
 
+    private String auditState;
+
     public String getTenantId() {
         return tenantId;
     }
@@ -341,5 +343,13 @@ public class UcGroupKeyInfo {
 
     public void setContractCustId(String contractCustId) {
         this.contractCustId = contractCustId == null ? null : contractCustId.trim();
+    }
+
+    public String getAuditState() {
+        return auditState;
+    }
+
+    public void setAuditState(String auditState) {
+        this.auditState = auditState == null ? null : auditState.trim();
     }
 }
