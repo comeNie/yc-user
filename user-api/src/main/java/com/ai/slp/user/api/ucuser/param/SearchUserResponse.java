@@ -4,36 +4,59 @@ import com.ai.opt.base.vo.BaseResponse;
 
 public class SearchUserResponse extends BaseResponse {
     private static final long serialVersionUID = 1L;
-
+    /**
+     * 租户ID
+     */
     private String tenantId;
-
+    /**
+     * 用户Id
+     */
     private String userId;
-
+    /**
+     * 用户类型
+     */
     private String userType;
 
     private String userFlag;
-
+    /**
+     * 用户状态
+     */
     private String userState;
-
+    
     private String vipLevel;
-
+    /**
+     * 安全级别
+     */
     private String safetyLevel;
-
+    /**
+     * 用户名称
+     */
     private String userLoginName;
-
+    /**
+     * 用户密码
+     */
     private String userLoginPwd;
-
+    /**
+     * 密码安全级别
+     */
     private String pwdSafetyLevel;
-
+    /**
+     * 手机号
+     */
     private String userMp;
-
+    /**
+     * 用户邮件
+     */
     private String userEmail;
-
+    /**
+     * 邮件验证标志
+     */
     private String emailValidateFlag;
-
+    /**
+     * 昵称
+     */
     private String userNickname;
 
-    private String auditState;
 
     public String getUserMp() {
         return userMp;
@@ -147,12 +170,5 @@ public class SearchUserResponse extends BaseResponse {
         this.userNickname = userNickname;
     }
 
-    public String getAuditState() {
-        return auditState;
-    }
-
-    public void setAuditState(String auditState) {
-        this.auditState = auditState;
-    }
 
 }
