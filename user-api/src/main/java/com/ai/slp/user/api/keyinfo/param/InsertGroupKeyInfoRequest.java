@@ -150,6 +150,8 @@ public class InsertGroupKeyInfoRequest extends BaseInfo {
      */
     private String contractCustId;
 
+    private String auditState;
+    
     public String getUserId() {
         return userId;
     }
@@ -380,6 +382,14 @@ public class InsertGroupKeyInfoRequest extends BaseInfo {
 
     public void setContractCustId(String contractCustId) {
         this.contractCustId = contractCustId;
+    }
+
+    public String getAuditState() {
+        return auditState;
+    }
+
+    public void setAuditState(String auditState) {
+        this.auditState = auditState;
     }
 
 }
