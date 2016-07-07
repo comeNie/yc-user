@@ -135,6 +135,17 @@ public class InsertCustKeyInfoRequest extends BaseInfo {
      */
     private String verifyFlag;
 
+    // 审核状态
+    private String auditState;
+
+    public String getAuditState() {
+        return auditState;
+    }
+
+    public void setAuditState(String auditState) {
+        this.auditState = auditState;
+    }
+
     public String getUserId() {
         return userId;
     }
