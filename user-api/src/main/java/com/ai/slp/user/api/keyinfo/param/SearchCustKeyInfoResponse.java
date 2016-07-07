@@ -157,6 +157,14 @@ public class SearchCustKeyInfoResponse extends BaseResponse {
      * 修改员工
      */
     private Long updateOperId;
+    /**
+     * 认证状态
+     */
+    private String verifyFlag;
+    /**
+     * 审核状态
+     */
+    private String auditState;
 
     public String getTenantId() {
         return tenantId;
@@ -396,6 +404,22 @@ public class SearchCustKeyInfoResponse extends BaseResponse {
 
     public void setPersonalRemark(String personalRemark) {
         this.personalRemark = personalRemark;
+    }
+
+    public String getVerifyFlag() {
+        return verifyFlag;
+    }
+
+    public void setVerifyFlag(String verifyFlag) {
+        this.verifyFlag = verifyFlag;
+    }
+
+    public String getAuditState() {
+        return auditState;
+    }
+
+    public void setAuditState(String auditState) {
+        this.auditState = auditState;
     }
 
 }

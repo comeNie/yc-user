@@ -178,6 +178,11 @@ public class SearchGroupKeyInfoResponse extends BaseResponse {
      */
     private String contractCustId;
 
+    /**
+     * 审核状态
+     */
+    private String auditState;
+    
     public String getTenantId() {
         return tenantId;
     }
@@ -449,5 +454,14 @@ public class SearchGroupKeyInfoResponse extends BaseResponse {
     public void setContractCustId(String contractCustId) {
         this.contractCustId = contractCustId;
     }
+
+    public String getAuditState() {
+        return auditState;
+    }
+
+    public void setAuditState(String auditState) {
+        this.auditState = auditState;
+    }
+    
 
 }
