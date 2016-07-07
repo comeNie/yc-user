@@ -130,6 +130,11 @@ public class InsertCustKeyInfoRequest extends BaseInfo {
      */
     private Long createOperId;
 
+    /**
+     * 账户状态
+     */
+    private String verifyFlag;
+
     public String getUserId() {
         return userId;
     }
@@ -328,6 +333,14 @@ public class InsertCustKeyInfoRequest extends BaseInfo {
 
     public void setPersonalRemark(String personalRemark) {
         this.personalRemark = personalRemark;
+    }
+
+    public String getVerifyFlag() {
+        return verifyFlag;
+    }
+
+    public void setVerifyFlag(String verifyFlag) {
+        this.verifyFlag = verifyFlag;
     }
 
 }

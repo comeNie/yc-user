@@ -176,6 +176,19 @@ public class UcGroupKeyInfoVo implements Serializable {
      */
     private String contractCustId;
 
+    /**
+     * 审核状态
+     */
+    private String auditState;
+
+    public String getAuditState() {
+        return auditState;
+    }
+
+    public void setAuditState(String auditState) {
+        this.auditState = auditState;
+    }
+
     public String getTenantId() {
         return tenantId;
     }

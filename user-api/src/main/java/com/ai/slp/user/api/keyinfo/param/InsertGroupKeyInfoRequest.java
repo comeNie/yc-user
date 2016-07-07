@@ -149,9 +149,10 @@ public class InsertGroupKeyInfoRequest extends BaseInfo {
      * 合同客户ID
      */
     private String contractCustId;
-
-    private String auditState;
     
+    // 审核状态
+    private String auditState;
+
     public String getUserId() {
         return userId;
     }
