@@ -91,7 +91,7 @@ public class SearchCustKeyInfoResponse extends BaseResponse {
     /**
      * 生日
      */
-    private String custBirthday;
+    private Timestamp custBirthday;
 
     /**
      * 居住（联系）地址归属省
@@ -278,12 +278,11 @@ public class SearchCustKeyInfoResponse extends BaseResponse {
         this.custSex = custSex;
     }
 
-
-    public String getCustBirthday() {
+    public Timestamp getCustBirthday() {
         return custBirthday;
     }
 
-    public void setCustBirthday(String custBirthday) {
+    public void setCustBirthday(Timestamp custBirthday) {
         this.custBirthday = custBirthday;
     }
 
