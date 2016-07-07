@@ -65,6 +65,8 @@ public class UcCustKeyInfo {
 
     private String verifyFlag;
 
+    private String auditState;
+
     public String getTenantId() {
         return tenantId;
     }
@@ -311,5 +313,13 @@ public class UcCustKeyInfo {
 
     public void setVerifyFlag(String verifyFlag) {
         this.verifyFlag = verifyFlag == null ? null : verifyFlag.trim();
+    }
+
+    public String getAuditState() {
+        return auditState;
+    }
+
+    public void setAuditState(String auditState) {
+        this.auditState = auditState == null ? null : auditState.trim();
     }
 }

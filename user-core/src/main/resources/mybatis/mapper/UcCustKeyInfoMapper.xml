@@ -33,6 +33,7 @@
     <result column="UPDATE_OPER_ID" property="updateOperId" jdbcType="BIGINT" />
     <result column="PERSONAL_REMARK" property="personalRemark" jdbcType="VARCHAR" />
     <result column="VERIFY_FLAG" property="verifyFlag" jdbcType="VARCHAR" />
+    <result column="AUDIT_STATE" property="auditState" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -97,7 +98,7 @@
     COUNTY_CODE, CERT_ADDR, CERT_ISSUE_DATE, CERT_ISSUE_ORG, CERT_VALID_DATE, CERT_INVALID_DATE, 
     CUST_SEX, CUST_BIRTHDAY, CUST_PROVINCE_CODE, CUST_CITY_CODE, CUST_COUNTY_CODE, CUST_ADDR, 
     INCOME_LEVEL, CUST_INDUSTRY, CUST_EDUCATION, CREATE_TIME, CREATE_CHL_ID, CREATE_OPER_ID, 
-    UPDATE_TIME, UPDATE_CHL_ID, UPDATE_OPER_ID, PERSONAL_REMARK, VERIFY_FLAG
+    UPDATE_TIME, UPDATE_CHL_ID, UPDATE_OPER_ID, PERSONAL_REMARK, VERIFY_FLAG, AUDIT_STATE
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.user.dao.mapper.bo.UcCustKeyInfoCriteria" >
     select
@@ -134,7 +135,7 @@
       CUST_INDUSTRY, CUST_EDUCATION, CREATE_TIME, 
       CREATE_CHL_ID, CREATE_OPER_ID, UPDATE_TIME, 
       UPDATE_CHL_ID, UPDATE_OPER_ID, PERSONAL_REMARK, 
-      VERIFY_FLAG)
+      VERIFY_FLAG, AUDIT_STATE)
     values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, 
       #{custName,jdbcType=VARCHAR}, #{certType,jdbcType=VARCHAR}, #{certNum,jdbcType=VARCHAR}, 
       #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, #{countyCode,jdbcType=VARCHAR}, 
@@ -145,7 +146,7 @@
       #{custIndustry,jdbcType=VARCHAR}, #{custEducation,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{createChlId,jdbcType=VARCHAR}, #{createOperId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{updateChlId,jdbcType=VARCHAR}, #{updateOperId,jdbcType=BIGINT}, #{personalRemark,jdbcType=VARCHAR}, 
-      #{verifyFlag,jdbcType=VARCHAR})
+      #{verifyFlag,jdbcType=VARCHAR}, #{auditState,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ai.slp.user.dao.mapper.bo.UcCustKeyInfo" >
     insert into uc_cust_key_info
@@ -243,6 +244,9 @@
       <if test="verifyFlag != null" >
         VERIFY_FLAG,
       </if>
+      <if test="auditState != null" >
+        AUDIT_STATE,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="tenantId != null" >
@@ -337,6 +341,9 @@
       </if>
       <if test="verifyFlag != null" >
         #{verifyFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="auditState != null" >
+        #{auditState,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -442,6 +449,9 @@
       <if test="record.verifyFlag != null" >
         VERIFY_FLAG = #{record.verifyFlag,jdbcType=VARCHAR},
       </if>
+      <if test="record.auditState != null" >
+        AUDIT_STATE = #{record.auditState,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -479,7 +489,8 @@
       UPDATE_CHL_ID = #{record.updateChlId,jdbcType=VARCHAR},
       UPDATE_OPER_ID = #{record.updateOperId,jdbcType=BIGINT},
       PERSONAL_REMARK = #{record.personalRemark,jdbcType=VARCHAR},
-      VERIFY_FLAG = #{record.verifyFlag,jdbcType=VARCHAR}
+      VERIFY_FLAG = #{record.verifyFlag,jdbcType=VARCHAR},
+      AUDIT_STATE = #{record.auditState,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
