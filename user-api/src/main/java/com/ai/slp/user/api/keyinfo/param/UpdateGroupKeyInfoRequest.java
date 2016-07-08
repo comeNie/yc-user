@@ -104,6 +104,39 @@ public class UpdateGroupKeyInfoRequest extends BaseInfo {
     // 审核状态
     private String auditState;
 
+    // 供应商品信息
+    private String productCat;
+
+    // 品牌名称(中文)
+    private String brandName;
+
+    // 品牌名称(英文)
+    private String brandNameEng;
+
+    public String getProductCat() {
+        return productCat;
+    }
+
+    public void setProductCat(String productCat) {
+        this.productCat = productCat;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
+    }
+
+    public String getBrandNameEng() {
+        return brandNameEng;
+    }
+
+    public void setBrandNameEng(String brandNameEng) {
+        this.brandNameEng = brandNameEng;
+    }
+
     public String getUserId() {
         return userId;
     }
