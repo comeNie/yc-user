@@ -15,7 +15,7 @@ public class UpdateCustKeyInfoRequest extends BaseInfo {
      */
     private String userType;
 
-    /**
+    /*
      * 企业名称
      */
     private String custName;
@@ -129,6 +129,20 @@ public class UpdateCustKeyInfoRequest extends BaseInfo {
      * 修改员工
      */
     private Long updateOperId;
+
+    // 认证状态
+    private String verifyFlag;
+
+    // 审核状态
+    private String auditState;
+
+    public String getAuditState() {
+        return auditState;
+    }
+
+    public void setAuditState(String auditState) {
+        this.auditState = auditState;
+    }
 
     public String getUserId() {
         return userId;
@@ -328,6 +342,14 @@ public class UpdateCustKeyInfoRequest extends BaseInfo {
 
     public void setPersonalRemark(String personalRemark) {
         this.personalRemark = personalRemark;
+    }
+
+    public String getVerifyFlag() {
+        return verifyFlag;
+    }
+
+    public void setVerifyFlag(String verifyFlag) {
+        this.verifyFlag = verifyFlag;
     }
 
 }

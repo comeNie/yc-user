@@ -101,6 +101,9 @@ public class UpdateGroupKeyInfoRequest extends BaseInfo {
     // 合同客户ID
     private String contractCustId;
 
+    // 审核状态
+    private String auditState;
+
     public String getUserId() {
         return userId;
     }
@@ -347,6 +350,14 @@ public class UpdateGroupKeyInfoRequest extends BaseInfo {
 
     public void setContractCustId(String contractCustId) {
         this.contractCustId = contractCustId;
+    }
+
+    public String getAuditState() {
+        return auditState;
+    }
+
+    public void setAuditState(String auditState) {
+        this.auditState = auditState;
     }
 
 }
