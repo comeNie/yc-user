@@ -107,7 +107,7 @@
     TAXPAYER_TYPE_CODE, GROUP_INFO, CREATE_TIME, CREATE_CHL_ID, CREATE_OPER_ID, UPDATE_TIME, 
     UPDATE_CHL_ID, UPDATE_OPER_ID, CONTRACT_CUST_ID, AUDIT_STATE, PRODUCT_CAT, BRAND_NAME, 
     BRAND_NAME_ENG
-  </sql>
+  </sql> 
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfoCriteria" >
     select
     <if test="distinct" >

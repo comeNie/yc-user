@@ -78,7 +78,7 @@ public class UcGroupKeyInfo {
     private String brandName;
 
     private String brandNameEng;
-
+ 
     public String getTenantId() {
         return tenantId;
     }

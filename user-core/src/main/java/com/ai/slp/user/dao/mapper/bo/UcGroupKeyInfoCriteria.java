@@ -2499,7 +2499,7 @@ public class UcGroupKeyInfoCriteria {
             addCriterion("PRODUCT_CAT is null");
             return (Criteria) this;
         }
-
+ 
         public Criteria andProductCatIsNotNull() {
             addCriterion("PRODUCT_CAT is not null");
             return (Criteria) this;
