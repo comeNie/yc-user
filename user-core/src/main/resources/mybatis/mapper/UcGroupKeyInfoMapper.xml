@@ -37,6 +37,9 @@
     <result column="UPDATE_OPER_ID" property="updateOperId" jdbcType="BIGINT" />
     <result column="CONTRACT_CUST_ID" property="contractCustId" jdbcType="VARCHAR" />
     <result column="AUDIT_STATE" property="auditState" jdbcType="VARCHAR" />
+    <result column="PRODUCT_CAT" property="productCat" jdbcType="VARCHAR" />
+    <result column="BRAND_NAME" property="brandName" jdbcType="VARCHAR" />
+    <result column="BRAND_NAME_ENG" property="brandNameEng" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -102,7 +105,8 @@
     WEB_FLAG, GROUP_WEBSITE, GROUP_MEMBER_SCALE, GROUP_TYPE, GROUP_INDUSTRY, GROUP_BUSINESS_SCOPE, 
     GROUP_PRODUCT, LEGAL_PERSON, LEGAL_CERT_NUM, ORG_CODE, TAXPAYER_CODE, TAXPAYER_TYPE, 
     TAXPAYER_TYPE_CODE, GROUP_INFO, CREATE_TIME, CREATE_CHL_ID, CREATE_OPER_ID, UPDATE_TIME, 
-    UPDATE_CHL_ID, UPDATE_OPER_ID, CONTRACT_CUST_ID, AUDIT_STATE
+    UPDATE_CHL_ID, UPDATE_OPER_ID, CONTRACT_CUST_ID, AUDIT_STATE, PRODUCT_CAT, BRAND_NAME, 
+    BRAND_NAME_ENG
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfoCriteria" >
     select
@@ -140,7 +144,8 @@
       TAXPAYER_TYPE, TAXPAYER_TYPE_CODE, GROUP_INFO, 
       CREATE_TIME, CREATE_CHL_ID, CREATE_OPER_ID, 
       UPDATE_TIME, UPDATE_CHL_ID, UPDATE_OPER_ID, 
-      CONTRACT_CUST_ID, AUDIT_STATE)
+      CONTRACT_CUST_ID, AUDIT_STATE, PRODUCT_CAT, 
+      BRAND_NAME, BRAND_NAME_ENG)
     values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, 
       #{certNum,jdbcType=VARCHAR}, #{custName,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, 
       #{cityCode,jdbcType=VARCHAR}, #{countyCode,jdbcType=VARCHAR}, #{certAddr,jdbcType=VARCHAR}, 
@@ -152,7 +157,8 @@
       #{taxpayerType,jdbcType=VARCHAR}, #{taxpayerTypeCode,jdbcType=VARCHAR}, #{groupInfo,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{createChlId,jdbcType=VARCHAR}, #{createOperId,jdbcType=BIGINT}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{updateChlId,jdbcType=VARCHAR}, #{updateOperId,jdbcType=BIGINT}, 
-      #{contractCustId,jdbcType=VARCHAR}, #{auditState,jdbcType=VARCHAR})
+      #{contractCustId,jdbcType=VARCHAR}, #{auditState,jdbcType=VARCHAR}, #{productCat,jdbcType=VARCHAR}, 
+      #{brandName,jdbcType=VARCHAR}, #{brandNameEng,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfo" >
     insert into uc_group_key_info
@@ -262,6 +268,15 @@
       <if test="auditState != null" >
         AUDIT_STATE,
       </if>
+      <if test="productCat != null" >
+        PRODUCT_CAT,
+      </if>
+      <if test="brandName != null" >
+        BRAND_NAME,
+      </if>
+      <if test="brandNameEng != null" >
+        BRAND_NAME_ENG,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="tenantId != null" >
@@ -368,6 +383,15 @@
       </if>
       <if test="auditState != null" >
         #{auditState,jdbcType=VARCHAR},
+      </if>
+      <if test="productCat != null" >
+        #{productCat,jdbcType=VARCHAR},
+      </if>
+      <if test="brandName != null" >
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandNameEng != null" >
+        #{brandNameEng,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -485,6 +509,15 @@
       <if test="record.auditState != null" >
         AUDIT_STATE = #{record.auditState,jdbcType=VARCHAR},
       </if>
+      <if test="record.productCat != null" >
+        PRODUCT_CAT = #{record.productCat,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brandName != null" >
+        BRAND_NAME = #{record.brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brandNameEng != null" >
+        BRAND_NAME_ENG = #{record.brandNameEng,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -526,7 +559,10 @@
       UPDATE_CHL_ID = #{record.updateChlId,jdbcType=VARCHAR},
       UPDATE_OPER_ID = #{record.updateOperId,jdbcType=BIGINT},
       CONTRACT_CUST_ID = #{record.contractCustId,jdbcType=VARCHAR},
-      AUDIT_STATE = #{record.auditState,jdbcType=VARCHAR}
+      AUDIT_STATE = #{record.auditState,jdbcType=VARCHAR},
+      PRODUCT_CAT = #{record.productCat,jdbcType=VARCHAR},
+      BRAND_NAME = #{record.brandName,jdbcType=VARCHAR},
+      BRAND_NAME_ENG = #{record.brandNameEng,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>

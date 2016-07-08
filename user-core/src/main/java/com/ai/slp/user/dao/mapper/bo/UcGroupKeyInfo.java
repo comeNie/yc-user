@@ -73,6 +73,12 @@ public class UcGroupKeyInfo {
 
     private String auditState;
 
+    private String productCat;
+
+    private String brandName;
+
+    private String brandNameEng;
+
     public String getTenantId() {
         return tenantId;
     }
@@ -351,5 +357,29 @@ public class UcGroupKeyInfo {
 
     public void setAuditState(String auditState) {
         this.auditState = auditState == null ? null : auditState.trim();
+    }
+
+    public String getProductCat() {
+        return productCat;
+    }
+
+    public void setProductCat(String productCat) {
+        this.productCat = productCat == null ? null : productCat.trim();
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName == null ? null : brandName.trim();
+    }
+
+    public String getBrandNameEng() {
+        return brandNameEng;
+    }
+
+    public void setBrandNameEng(String brandNameEng) {
+        this.brandNameEng = brandNameEng == null ? null : brandNameEng.trim();
     }
 }
