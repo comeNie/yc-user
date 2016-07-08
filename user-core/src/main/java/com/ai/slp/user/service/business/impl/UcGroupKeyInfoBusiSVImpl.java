@@ -175,7 +175,7 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
             
             criteria.andTenantIdEqualTo(cmCustFileExtVo.getTenantId());
             criteria.andUserIdEqualTo(cmCustFileExtVo.getUserId());
-            criteria.andInfoNameEqualTo(cmCustFileExtVo.getInfoName());
+            criteria.andInfoItemEqualTo(cmCustFileExtVo.getInfoItem());
             BeanUtils.copyProperties(cmCustFileExtVo, cmCustFileExt);
             cmCustFileExt.setUpdateTime(DateUtils.currTimeStamp());
             custFileAtomSV.updateByExampleSelective(cmCustFileExt, example);
