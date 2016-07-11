@@ -117,5 +117,7 @@ public interface IUcUserSV {
      * @ApiCode UAC_0017
      * RestRelativeURL ucStateChgservice/queryAgentUserInfo
      */
+    @POST
+    @Path("/queryAgentUserInfo")
     AgentUserResponse queryAgentUserInfo(UcUserInfoParams ucUserInfo) throws BusinessException,SystemException;
 }
