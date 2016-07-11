@@ -55,6 +55,11 @@ public final class UcUserConstants {
         /** 租户ID值 */
         public static final String TENANT_ID = "SLP";
         
+        /**
+         * agent类型值
+         */
+        public static final String USER_TYPE_AGENG="12";
+        
     }
     
     public final static class Tenant {
