@@ -9,10 +9,12 @@ import javax.ws.rs.core.MediaType;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
+import com.ai.slp.user.api.ucuser.param.AgentUserResponse;
 import com.ai.slp.user.api.ucuser.param.QueryBaseInfoRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserListResponse;
 import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserResponse;
+import com.ai.slp.user.api.ucuser.param.UcUserInfoParams;
 import com.ai.slp.user.api.ucuser.param.UpdateUserInfoRequest;
 
 @Path("/ucUserservice")
@@ -104,4 +106,16 @@ public interface IUcUserSV {
     @POST
     @Path("/queryByBaseInfo")
     SearchUserResponse queryByBaseInfo(QueryBaseInfoRequest request) throws BusinessException,SystemException;
+    /**
+     * 为乐视提供的代理商信息服务
+     * @param ucUserInfo
+     * @return
+     * @throws BusinessException
+     * @throws SystemException
+     * @author zhangyh7
+     * @ApiDocMethod
+     * @ApiCode UAC_0017
+     * RestRelativeURL ucStateChgservice/queryAgentUserInfo
+     */
+    AgentUserResponse queryAgentUserInfo(UcUserInfoParams ucUserInfo) throws BusinessException,SystemException;
 }
