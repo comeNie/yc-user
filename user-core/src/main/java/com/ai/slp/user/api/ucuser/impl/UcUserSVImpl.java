@@ -172,6 +172,7 @@ public class UcUserSVImpl implements IUcUserSV {
          */
         UcUser ucuser = null;
         ResponseHeader responseHeader = null;
+        AgentUserResponse response = new AgentUserResponse();
         try{
              ucuser = ucUserBusiSV.queryBaseInfo(example);
         }catch(Exception e){
@@ -180,11 +181,12 @@ public class UcUserSVImpl implements IUcUserSV {
        
         if(ucuser!=null&&!ExceptCodeConstants.Account.REGISTER_NORMAL.equals(ucuser.getUserState())){
             responseHeader = new ResponseHeader(false,ExceptCodeConstants.USER_NOT_NORMAL,"用户状态非正常");
+            response.setResponseHeader(responseHeader);
+            return response;
         }else{
             responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"查询成功");
         }
-        // 整理返回对象
-        AgentUserResponse response = new AgentUserResponse();
+       
         if (ucuser != null) {
             BeanUtils.copyProperties(response, ucuser);
         }
