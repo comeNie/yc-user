@@ -30,7 +30,7 @@ public interface IUcUserSV {
      * @return
      * @author zhangqiang7
      * @UCUSER
-     * @RestRelativeURL ucStateChgservice/searchUserList
+     * @RestRelativeURL ucUserservice/searchUserList
      */
     @POST
     @Path("/searchUserList")
@@ -45,7 +45,7 @@ public interface IUcUserSV {
      * @throws SystemException
      * @author zhangyh7
      * @ApiCode 
-     * @RestRelativeURL ucStateChgservice/queryByPhone
+     * @RestRelativeURL ucUserservice/queryByPhone
      */
     @POST
     @Path("/queryByPhone")
@@ -59,7 +59,7 @@ public interface IUcUserSV {
      * @throws SystemException
      * @author zhangyh7
      * @ApiCode 
-     * @RestRelativeURL ucStateChgservice/queryByEmail
+     * @RestRelativeURL ucUserservice/queryByEmail
      */
     @POST
     @Path("/queryByEmail")
@@ -73,7 +73,7 @@ public interface IUcUserSV {
      * @throws SystemException
      * @author zhangyh7
      * @ApiCode 
-     * RestRelativeURL ucStateChgservice/queryBaseInfo
+     * RestRelativeURL ucUserservice/queryBaseInfo
      */
     @POST
     @Path("/queryBaseInfo")
@@ -87,7 +87,7 @@ public interface IUcUserSV {
      * @throws SystemException
      * @author zhangyh7
      * @ApiCode UAC_0015
-     * RestRelativeURL ucStateChgservice/updateBaseInfo
+     * RestRelativeURL ucUserservice/updateBaseInfo
      */
     @POST
     @Path("/updateBaseInfo")
@@ -101,7 +101,7 @@ public interface IUcUserSV {
      * @throws SystemException
      * @author zhangqiang7
      * @ApiCode UAC_0016
-     * RestRelativeURL ucStateChgservice/queryByBaseInfo
+     * RestRelativeURL ucUserservice/queryByBaseInfo
      */
     @POST
     @Path("/queryByBaseInfo")
@@ -115,7 +115,7 @@ public interface IUcUserSV {
      * @author zhangyh7
      * @ApiDocMethod
      * @ApiCode UAC_0017
-     * RestRelativeURL ucStateChgservice/queryAgentUserInfo
+     * RestRelativeURL ucUserservice/queryAgentUserInfo
      */
     @POST
     @Path("/queryAgentUserInfo")
