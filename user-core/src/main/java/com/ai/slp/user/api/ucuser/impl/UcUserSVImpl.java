@@ -1,5 +1,7 @@
 package com.ai.slp.user.api.ucuser.impl;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,12 +13,15 @@ import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.DateUtil;
 import com.ai.opt.sdk.util.StringUtil;
 import com.ai.slp.user.api.ucuser.intefaces.IUcUserSV;
+import com.ai.slp.user.api.ucuser.param.AgentUserResponse;
 import com.ai.slp.user.api.ucuser.param.QueryBaseInfoRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserListResponse;
 import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserResponse;
+import com.ai.slp.user.api.ucuser.param.UcUserInfoParams;
 import com.ai.slp.user.api.ucuser.param.UpdateUserInfoRequest;
 import com.ai.slp.user.constants.ExceptCodeConstants;
+import com.ai.slp.user.constants.UcUserConstants.Account;
 import com.ai.slp.user.dao.mapper.bo.UcUser;
 import com.ai.slp.user.dao.mapper.bo.UcUserCriteria;
 import com.ai.slp.user.service.business.interfaces.IUcUserBusiSV;
@@ -29,6 +34,8 @@ public class UcUserSVImpl implements IUcUserSV {
     @Autowired
     private IUcUserBusiSV ucUserBusiSV;
 
+    private static final Logger log = LogManager.getLogger(UcUserSVImpl.class);
+    
     @Override
     public SearchUserListResponse searchUserList(SearchUserRequest userListRequest)
             throws BusinessException, SystemException {
@@ -137,6 +144,52 @@ public class UcUserSVImpl implements IUcUserSV {
         ucUser = ucUserBusiSV.queryByBaseInfo(gnAcount);
         
         BeanUtils.copyProperties(response, ucUser);
+        return response;
+    }
+
+    @Override
+    public AgentUserResponse queryAgentUserInfo(UcUserInfoParams ucUserInfo)
+            throws BusinessException, SystemException {
+        /**
+         * 检查必填参数是不是为空
+         */
+        if(StringUtil.isBlank(ucUserInfo.getTenantId())){
+            throw new BusinessException(ExceptCodeConstants.PARAM_IS_NULL, "租户ID不能为空");
+        }
+        if (StringUtil.isBlank(ucUserInfo.getUserId())) {
+            throw new BusinessException(ExceptCodeConstants.PARAM_IS_NULL, "账户ID不能为空");
+        }
+        /**
+         * 组装条件
+         */
+        UcUserCriteria example = new UcUserCriteria();
+        UcUserCriteria.Criteria criteria = example.or();
+        criteria.andUserIdEqualTo(ucUserInfo.getUserId());
+        criteria.andTenantIdEqualTo(ucUserInfo.getTenantId());
+        criteria.andUserTypeEqualTo(Account.USER_TYPE_AGENG);
+        /**
+         * 数据查询
+         */
+        UcUser ucuser = null;
+        ResponseHeader responseHeader = null;
+        try{
+             ucuser = ucUserBusiSV.queryBaseInfo(example);
+        }catch(Exception e){
+            throw new BusinessException(ExceptCodeConstants.SYSTEM_ERROR, "系统异常");
+        }
+       
+        if(ucuser!=null&&!ExceptCodeConstants.Account.REGISTER_NORMAL.equals(ucuser.getUserState())){
+            responseHeader = new ResponseHeader(false,ExceptCodeConstants.USER_NOT_NORMAL,"用户状态非正常");
+        }else{
+            responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"查询成功");
+        }
+        // 整理返回对象
+        AgentUserResponse response = new AgentUserResponse();
+        if (ucuser != null) {
+            BeanUtils.copyProperties(response, ucuser);
+        }
+        response.setResponseHeader(responseHeader);
+        log.debug("代理用户查询结束");
         return response;
     }
 }
