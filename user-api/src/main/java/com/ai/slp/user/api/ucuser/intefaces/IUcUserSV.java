@@ -29,6 +29,8 @@ public interface IUcUserSV {
      * @param userInfoRequest
      * @return
      * @author zhangqiang7
+     * @ApiDocMethod
+     * @ApiCode 
      * @UCUSER
      * @RestRelativeURL ucUserservice/searchUserList
      */
@@ -44,6 +46,7 @@ public interface IUcUserSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangyh7
+     * @ApiDocMethod
      * @ApiCode 
      * @RestRelativeURL ucUserservice/queryByPhone
      */
@@ -58,6 +61,7 @@ public interface IUcUserSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangyh7
+     * @ApiDocMethod
      * @ApiCode 
      * @RestRelativeURL ucUserservice/queryByEmail
      */
@@ -72,6 +76,7 @@ public interface IUcUserSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangyh7
+     * @ApiDocMethod
      * @ApiCode 
      * RestRelativeURL ucUserservice/queryBaseInfo
      */
@@ -86,6 +91,7 @@ public interface IUcUserSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangyh7
+     * @ApiDocMethod
      * @ApiCode UAC_0015
      * RestRelativeURL ucUserservice/updateBaseInfo
      */
@@ -100,6 +106,7 @@ public interface IUcUserSV {
      * @throws BusinessException
      * @throws SystemException
      * @author zhangqiang7
+     * @ApiDocMethod
      * @ApiCode UAC_0016
      * RestRelativeURL ucUserservice/queryByBaseInfo
      */
