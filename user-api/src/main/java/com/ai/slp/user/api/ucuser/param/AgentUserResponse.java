@@ -15,7 +15,7 @@ public class AgentUserResponse extends BaseResponse {
      */
     private String userId;
     /**
-     * 用户类型
+     * 用户类型 
      */
     private String userType;
     /**
