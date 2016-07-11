@@ -30,7 +30,7 @@ public interface IUcUserSV {
      * @return
      * @author zhangqiang7
      * @ApiDocMethod
-     * @ApiCode 
+     * @ApiCode UAC_0012
      * @UCUSER
      * @RestRelativeURL ucUserservice/searchUserList
      */
@@ -47,7 +47,7 @@ public interface IUcUserSV {
      * @throws SystemException
      * @author zhangyh7
      * @ApiDocMethod
-     * @ApiCode 
+     * @ApiCode UAC_0013
      * @RestRelativeURL ucUserservice/queryByPhone
      */
     @POST
@@ -62,7 +62,7 @@ public interface IUcUserSV {
      * @throws SystemException
      * @author zhangyh7
      * @ApiDocMethod
-     * @ApiCode 
+     * @ApiCode UAC_0014
      * @RestRelativeURL ucUserservice/queryByEmail
      */
     @POST
