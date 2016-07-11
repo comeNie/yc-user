@@ -78,7 +78,7 @@ public interface IUcUserSV {
      * @author zhangyh7
      * @ApiDocMethod
      * @ApiCode 
-     * RestRelativeURL ucUserservice/queryBaseInfo
+     * @RestRelativeURL ucUserservice/queryBaseInfo
      */
     @POST
     @Path("/queryBaseInfo")
@@ -93,7 +93,7 @@ public interface IUcUserSV {
      * @author zhangyh7
      * @ApiDocMethod
      * @ApiCode UAC_0015
-     * RestRelativeURL ucUserservice/updateBaseInfo
+     * @RestRelativeURL ucUserservice/updateBaseInfo
      */
     @POST
     @Path("/updateBaseInfo")
@@ -108,7 +108,7 @@ public interface IUcUserSV {
      * @author zhangqiang7
      * @ApiDocMethod
      * @ApiCode UAC_0016
-     * RestRelativeURL ucUserservice/queryByBaseInfo
+     * @RestRelativeURL ucUserservice/queryByBaseInfo
      */
     @POST
     @Path("/queryByBaseInfo")
@@ -122,7 +122,7 @@ public interface IUcUserSV {
      * @author zhangyh7
      * @ApiDocMethod
      * @ApiCode UAC_0017
-     * RestRelativeURL ucUserservice/queryAgentUserInfo
+     * @RestRelativeURL ucUserservice/queryAgentUserInfo
      */
     @POST
     @Path("/queryAgentUserInfo")
