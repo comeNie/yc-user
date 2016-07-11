@@ -7,8 +7,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ai.slp.user.api.ucuser.intefaces.IUcUserSV;
+import com.ai.slp.user.api.ucuser.param.AgentUserResponse;
 import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
 import com.ai.slp.user.api.ucuser.param.SearchUserResponse;
+import com.ai.slp.user.api.ucuser.param.UcUserInfoParams;
 import com.ai.slp.user.api.ucuser.param.UpdateUserInfoRequest;
 import com.alibaba.fastjson.JSON;
 
@@ -34,5 +36,14 @@ public class UcUserTest {
         re.setUserId("000000000000000101");
         re.setAuditState("10");
         ucUsersv.updateBaseInfo(re);
+    }
+    
+    @Test
+    public void testQueryAgentUserInfo(){
+        UcUserInfoParams userInfoParams = new UcUserInfoParams();
+        userInfoParams.setTenantId("SLP");
+        userInfoParams.setUserId("000000000000000320");
+        AgentUserResponse respose = ucUsersv.queryAgentUserInfo(userInfoParams);
+        System.out.println(JSON.toJSONString(respose));
     }
 }
