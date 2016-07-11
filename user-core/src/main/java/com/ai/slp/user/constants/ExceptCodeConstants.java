@@ -36,6 +36,14 @@ public class ExceptCodeConstants {
      * 未配置系统参数或未刷新缓存
      */
     public static final String NO_DATA_OR_CACAE_ERROR = "000003";
+    /**
+     * 系统异常
+     */
+    public static final String SYSTEM_ERROR="999999";
+    /**
+     * 用户状态非正常
+     */
+    public static final String USER_NOT_NORMAL="100001";
     
     public static final class Account {
         private Account() {
