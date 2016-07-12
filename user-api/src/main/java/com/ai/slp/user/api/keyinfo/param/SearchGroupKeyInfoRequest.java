@@ -13,6 +13,8 @@ public class SearchGroupKeyInfoRequest extends BaseInfo {
      * 用户ID
      */
     private String userId;
+    
+    private String auditState;
 
     public String getCustName() {
         return custName;
@@ -28,6 +30,14 @@ public class SearchGroupKeyInfoRequest extends BaseInfo {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getAuditState() {
+        return auditState;
+    }
+
+    public void setAuditState(String auditState) {
+        this.auditState = auditState;
     }
 
 }
