@@ -25,6 +25,7 @@ import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoResponse;
+import com.ai.slp.user.api.keyinfo.param.SearchGroupUserInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.UcGroupKeyInfoVo;
 import com.ai.slp.user.api.keyinfo.param.UpdateCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.UpdateGroupKeyInfoRequest;
@@ -81,6 +82,7 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
         
         if(!StringUtil.isBlank(request.getUserId()))
            criteria.andUserIdEqualTo(request.getUserId());
+        
         List<UcGroupKeyInfo> list = ucGroupKeyInfoAtomSV.selectByExample(example);
         
         SearchGroupKeyInfoResponse response = new SearchGroupKeyInfoResponse();
@@ -181,8 +183,21 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
             custFileAtomSV.updateByExampleSelective(cmCustFileExt, example);
         }
     }
-    
-    
-    
 
+    @Override
+    public SearchGroupUserInfoResponse searchGroupUserInfo(SearchGroupKeyInfoRequest groupKeyInfo)
+            throws SystemException, BusinessException {
+        
+        if(StringUtil.isBlank(groupKeyInfo.getTenantId())){
+            throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "租户ID不能为空");
+        }
+        
+        if (StringUtil.isBlank(groupKeyInfo.getUserId())) {
+            throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "账户ID不能为空");
+        }
+        
+        SearchGroupUserInfoResponse response = ucGroupKeyInfoAtomSV.searchGroupUserInfo(groupKeyInfo);
+        
+        return response;
+    }
 }
