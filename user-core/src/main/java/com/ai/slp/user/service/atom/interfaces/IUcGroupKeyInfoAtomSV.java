@@ -23,4 +23,6 @@ public interface IUcGroupKeyInfoAtomSV {
     SearchGroupUserInfoResponse searchGroupUserInfo(SearchGroupKeyInfoRequest groupKeyInfo);
     
     List<SearchGroupUserInfoResponse> searchGroupKeyInfo(QueryGroupInfoRequest groupKeyInfo,int startPage,int endPage);
+    
+    int selectCountGroupKeyInfo (QueryGroupInfoRequest groupKeyInfo);
 }
