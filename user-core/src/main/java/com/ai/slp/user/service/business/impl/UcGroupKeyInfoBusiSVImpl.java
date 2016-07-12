@@ -196,6 +196,11 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
             throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "账户ID不能为空");
         }
         
+        if (StringUtil.isBlank(groupKeyInfo.getAuditState())) {
+            throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "审核状态不能为空");
+        }
+        
+        
         SearchGroupUserInfoResponse response = ucGroupKeyInfoAtomSV.searchGroupUserInfo(groupKeyInfo);
         
         return response;
