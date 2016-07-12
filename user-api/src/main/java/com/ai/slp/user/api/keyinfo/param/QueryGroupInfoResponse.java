@@ -7,13 +7,13 @@ public class QueryGroupInfoResponse extends BaseResponse {
 
     private static final long serialVersionUID = 1L;
 
-    PageInfo<UcGroupKeyInfoVo> pageInfo;
+    PageInfo<SearchGroupUserInfoResponse> pageInfo;
 
-    public PageInfo<UcGroupKeyInfoVo> getPageInfo() {
+    public PageInfo<SearchGroupUserInfoResponse> getPageInfo() {
         return pageInfo;
     }
 
-    public void setPageInfo(PageInfo<UcGroupKeyInfoVo> pageInfo) {
+    public void setPageInfo(PageInfo<SearchGroupUserInfoResponse> pageInfo) {
         this.pageInfo = pageInfo;
     }
 
