@@ -127,4 +127,7 @@ public interface UcGroupKeyInfoAttrAttachMapper {
             "from uc_group_key_info groupInfo,uc_user userInfo where groupInfo.user_id = userInfo.user_id and groupInfo.cust_name like #{custName} and  groupInfo.tenant_id=#{tenantId} limit #{startPage},#{endPage}")
     List<SearchGroupUserInfoResponse> selectGroupKeyInfo(@Param("tenantId")String tenantId,@Param("custName")String custName,@Param("startPage")int startPage,@Param("endPage")int endPage);
     
+    @Select("select count(groupInfo.user_id) from uc_group_key_info groupInfo,uc_user userInfo  " +
+            " where groupInfo.user_id = userInfo.user_id and groupInfo.cust_name like #{custName} and  groupInfo.tenant_id=#{tenantId}")
+    int selectCountGroupKeyInfo(@Param("tenantId")String tenantId,@Param("custName")String custName);
 }
