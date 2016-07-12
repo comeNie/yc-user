@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
+import com.ai.slp.user.api.keyinfo.param.SearchGroupUserInfoResponse;
+import com.ai.slp.user.dao.mapper.attach.UcGroupKeyInfoAttrAttachMapper;
 import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfo;
 import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfoCriteria;
 import com.ai.slp.user.dao.mapper.interfaces.UcGroupKeyInfoMapper;
@@ -15,6 +18,9 @@ public class UcGroupKeyInfoAtomSVImpl implements IUcGroupKeyInfoAtomSV {
 
     @Autowired
     private UcGroupKeyInfoMapper ucGroupKeyInfoMapper;
+    
+    @Autowired
+    private UcGroupKeyInfoAttrAttachMapper groupKeyInfoAttachMapper;
     
     @Override
     public int insert(UcGroupKeyInfo record) {
@@ -36,4 +42,9 @@ public class UcGroupKeyInfoAtomSVImpl implements IUcGroupKeyInfoAtomSV {
         return ucGroupKeyInfoMapper.countByExample(example);
     }
 
+    @Override
+    public SearchGroupUserInfoResponse searchGroupUserInfo(SearchGroupKeyInfoRequest groupKeyInfo) {
+        return groupKeyInfoAttachMapper.selectGroupUserInfo(groupKeyInfo.getTenantId(), groupKeyInfo.getUserId(), groupKeyInfo.getAuditState());
+    }
+    
 }
