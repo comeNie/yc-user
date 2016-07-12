@@ -17,6 +17,10 @@ public class QueryGroupInfoRequest extends BaseInfo {
     private Integer pageNo;
 
     private Integer pageSize;
+    /**
+     * 审核状态
+     */
+    private String auditState;
 
     public String getCustName() {
         return custName;
@@ -48,6 +52,14 @@ public class QueryGroupInfoRequest extends BaseInfo {
 
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    public String getAuditState() {
+        return auditState;
+    }
+
+    public void setAuditState(String auditState) {
+        this.auditState = auditState;
     }
 
 }
