@@ -146,25 +146,21 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
         if (StringUtil.isBlank(request.getCustName())) {
             throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:企业名称不能为空");
         }
-        criteria.andTenantIdEqualTo(request.getTenantId());
         
-        if(!StringUtil.isBlank(request.getUserType())){
-            criteria.andUserTypeEqualTo(request.getUserType());
-        }
-        if(!StringUtil.isBlank(request.getCustName())){
-            criteria.andCustNameLike("%"+request.getCustName()+"%");
-        }
+        criteria.andTenantIdEqualTo(request.getTenantId());
+        request.setCustName("%"+request.getCustName()+"%");
+       
         /**
          * 设置总页数
          */
-        int count = ucGroupKeyInfoAtomSV.countByExample(example);
+        int count = ucGroupKeyInfoAtomSV.selectCountGroupKeyInfo(request);
         pageInfo.setCount(count);
         
         int pageNo = request.getPageNo();
         int pageSize = request.getPageSize();
         int startPage = (pageNo-1)*pageSize;
         int endPage = pageSize;
-        request.setCustName("%"+request.getCustName()+"%");
+        
         List<SearchGroupUserInfoResponse> list = ucGroupKeyInfoAtomSV.searchGroupKeyInfo(request,startPage,endPage);
         /**
         * 设置页数和每页条数
