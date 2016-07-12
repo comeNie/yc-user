@@ -133,35 +133,54 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
             throws SystemException, BusinessException {
         
         QueryGroupInfoResponse response = new QueryGroupInfoResponse();
-        PageInfo<UcGroupKeyInfoVo> pageInfo = new PageInfo<UcGroupKeyInfoVo>();
+        PageInfo<SearchGroupUserInfoResponse> pageInfo = new PageInfo<SearchGroupUserInfoResponse>();
         
         UcGroupKeyInfoCriteria example = new UcGroupKeyInfoCriteria();
+        
         UcGroupKeyInfoCriteria.Criteria criteria = example.createCriteria();
         
         if (StringUtil.isBlank(request.getTenantId())) {
             throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:租户ID不能为空");
         }
+        
+        if (StringUtil.isBlank(request.getCustName())) {
+            throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:企业名称不能为空");
+        }
         criteria.andTenantIdEqualTo(request.getTenantId());
-        criteria.andAuditStateEqualTo("11");
+        
         if(!StringUtil.isBlank(request.getUserType())){
             criteria.andUserTypeEqualTo(request.getUserType());
         }
         if(!StringUtil.isBlank(request.getCustName())){
             criteria.andCustNameLike("%"+request.getCustName()+"%");
         }
-        
+        /**
+         * 设置总页数
+         */
         int count = ucGroupKeyInfoAtomSV.countByExample(example);
-        List<UcGroupKeyInfo> list = ucGroupKeyInfoAtomSV.selectByExample(example);
-        List<UcGroupKeyInfoVo> resultList = new ArrayList<UcGroupKeyInfoVo>();
-        for (UcGroupKeyInfo ucGroupKeyInfo : list) {
-            UcGroupKeyInfoVo ucGroupKeyInfoVo = new UcGroupKeyInfoVo();
-            BeanUtils.copyProperties(ucGroupKeyInfo, ucGroupKeyInfoVo);
-            resultList.add(ucGroupKeyInfoVo);
-        }
         pageInfo.setCount(count);
+        
+        int pageNo = request.getPageNo();
+        int pageSize = request.getPageSize();
+        int startPage = (pageNo-1)*pageSize;
+        int endPage = pageSize;
+        request.setCustName("%"+request.getCustName()+"%");
+        List<SearchGroupUserInfoResponse> list = ucGroupKeyInfoAtomSV.searchGroupKeyInfo(request,startPage,endPage);
+        /**
+        * 设置页数和每页条数
+        */
         pageInfo.setPageNo(request.getPageNo());
         pageInfo.setPageSize(request.getPageSize());
-        pageInfo.setResult(resultList);
+        /**
+         * 设置结果集
+         */
+        pageInfo.setResult(list);
+        /**
+         * 设置总页数
+         */
+        int pageCount = count/pageSize+(count%pageSize>0 ? 1 : 0);
+        pageInfo.setPageCount(pageCount);
+        
         response.setPageInfo(pageInfo);
         return response;
     }
@@ -195,11 +214,6 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
         if (StringUtil.isBlank(groupKeyInfo.getUserId())) {
             throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "账户ID不能为空");
         }
-        
-        if (StringUtil.isBlank(groupKeyInfo.getAuditState())) {
-            throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "审核状态不能为空");
-        }
-        
         
         SearchGroupUserInfoResponse response = ucGroupKeyInfoAtomSV.searchGroupUserInfo(groupKeyInfo);
         
