@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupUserInfoResponse;
 import com.ai.slp.user.dao.mapper.attach.UcGroupKeyInfoAttrAttachMapper;
@@ -46,5 +47,12 @@ public class UcGroupKeyInfoAtomSVImpl implements IUcGroupKeyInfoAtomSV {
     public SearchGroupUserInfoResponse searchGroupUserInfo(SearchGroupKeyInfoRequest groupKeyInfo) {
         return groupKeyInfoAttachMapper.selectGroupUserInfo(groupKeyInfo.getTenantId(), groupKeyInfo.getUserId(), groupKeyInfo.getAuditState());
     }
+
+    @Override
+    public List<SearchGroupUserInfoResponse> searchGroupKeyInfo(
+            QueryGroupInfoRequest groupKeyInfo,int startPage,int endPage) {
+        return groupKeyInfoAttachMapper.selectGroupKeyInfo(groupKeyInfo.getTenantId(), groupKeyInfo.getCustName(),startPage,endPage);
+    }
+    
     
 }
