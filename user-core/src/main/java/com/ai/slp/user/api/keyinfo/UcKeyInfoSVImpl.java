@@ -19,6 +19,7 @@ import com.ai.slp.user.api.keyinfo.param.SearchCustKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchCustKeyInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoResponse;
+import com.ai.slp.user.api.keyinfo.param.SearchGroupUserInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.UpdateCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.UpdateCustKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.UpdateGroupKeyInfoRequest;
@@ -195,6 +196,29 @@ public class UcKeyInfoSVImpl implements IUcKeyInfoSV {
         }
         response.setResponseHeader(responseHeader);
         return response;
+    }
+
+    @Override
+    public SearchGroupUserInfoResponse searchGroupUserInfo(SearchGroupKeyInfoRequest request)
+            throws SystemException, BusinessException {
+        
+        ResponseHeader responseHeader = null;
+        SearchGroupUserInfoResponse response = new SearchGroupUserInfoResponse();
+
+        try {
+            response = ucGroupKeyInfoBusiSV.searchGroupUserInfo(request);
+            if (response != null) {
+                responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "数据查询成功");
+            } else {
+                response = new SearchGroupUserInfoResponse();
+                responseHeader = new ResponseHeader(true, ExceptCodeConstants.NO_RESULT, "数据不存在");
+            }
+        } catch (Exception e) {
+            responseHeader = new ResponseHeader(false, ExceptCodeConstants.FAILD, "操作失败");
+        }
+        response.setResponseHeader(responseHeader);
+        return response;
+        
     }
 
 }
