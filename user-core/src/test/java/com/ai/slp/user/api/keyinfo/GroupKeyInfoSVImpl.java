@@ -17,6 +17,7 @@ import com.ai.slp.user.api.keyinfo.param.InsertGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.QueryCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
+import com.ai.slp.user.api.keyinfo.param.SearchGroupUserInfoResponse;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -98,5 +99,16 @@ public class GroupKeyInfoSVImpl  {
         SearchGroupKeyInfoRequest re = new SearchGroupKeyInfoRequest();
         re.setCustName("123");
         sv.searchGroupKeyInfo(re);
-}
+    }
+    
+    @Test
+    public void searchGroupUserInfo(){
+        SearchGroupKeyInfoRequest re = new SearchGroupKeyInfoRequest();
+        re.setTenantId("SLP");
+        re.setCustName("11");
+        re.setAuditState("10");
+        re.setUserId("000000000000002001");
+        SearchGroupUserInfoResponse response = sv.searchGroupUserInfo(re);
+        System.out.println(JSON.toJSONString(response));
+    }
 }
