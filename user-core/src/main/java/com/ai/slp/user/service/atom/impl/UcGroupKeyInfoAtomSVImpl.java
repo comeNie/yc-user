@@ -53,6 +53,13 @@ public class UcGroupKeyInfoAtomSVImpl implements IUcGroupKeyInfoAtomSV {
             QueryGroupInfoRequest groupKeyInfo,int startPage,int endPage) {
         return groupKeyInfoAttachMapper.selectGroupKeyInfo(groupKeyInfo.getTenantId(), groupKeyInfo.getCustName(),startPage,endPage);
     }
+
+    @Override
+    public int selectCountGroupKeyInfo(QueryGroupInfoRequest groupKeyInfo) {
+        return groupKeyInfoAttachMapper.selectCountGroupKeyInfo(groupKeyInfo.getTenantId(), groupKeyInfo.getCustName());
+    }
+    
+    
     
     
 }
