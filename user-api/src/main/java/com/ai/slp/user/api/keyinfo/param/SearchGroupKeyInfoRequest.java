@@ -10,14 +10,15 @@ public class SearchGroupKeyInfoRequest extends BaseInfo {
      */
     private String custName;
     /**
-     * 用户ID
+     * 用户ID必填
      */
     private String userId;
     /**
-     * 审核状态
+     * 可选
+     * 审核状态 
      * 10：待审核
-       11：审核已通过
-       12：审核未通过
+     * 11：审核已通过
+     * 12：审核未通过
      */
     private String auditState;
 
