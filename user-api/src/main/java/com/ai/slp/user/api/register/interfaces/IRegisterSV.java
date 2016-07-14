@@ -6,6 +6,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.slp.user.api.register.param.RegisterParamsRequest;
 import com.ai.slp.user.api.register.param.RegisterResponse;
@@ -38,7 +40,8 @@ public interface IRegisterSV {
      */
     @POST
     @Path("/insertUcUser")
-    RegisterResponse insertUcUser( RegisterParamsRequest registerParamsRequest);
+    RegisterResponse insertUcUser( RegisterParamsRequest registerParamsRequest) 
+            throws BusinessException, SystemException;
     
     /**
      * 更新用户信息
@@ -64,7 +67,8 @@ public interface IRegisterSV {
      */
     @POST
     @Path("/searchUserInfo")
-    BaseResponse searchUserInfo(UcUserParams ucUser);
+    BaseResponse searchUserInfo(UcUserParams ucUser)
+            throws BusinessException, SystemException;
     
     /** 
      * 
@@ -77,7 +81,8 @@ public interface IRegisterSV {
      */
     @POST
     @Path("/searchUserIList")
-    BaseResponse searchUserIList(UcUserParams ucUser);
+    BaseResponse searchUserIList(UcUserParams ucUser)
+            throws BusinessException, SystemException;
    
     /**
      * 
@@ -90,8 +95,8 @@ public interface IRegisterSV {
      */
     @POST
     @Path("/insertUcCustInfo")
-    BaseResponse insertUcCustInfo(UcCustKeyInfoParams ucCust);
-    
+    BaseResponse insertUcCustInfo(UcCustKeyInfoParams ucCust)
+            throws BusinessException, SystemException;
     /**
      * 
      *  查询用户详细信息</br> 
@@ -103,7 +108,8 @@ public interface IRegisterSV {
      */
     @POST
     @Path("/searchUcCustInfo")
-    BaseResponse searchUcCustInfo(UcCustKeyInfoParams ucCust);
+    BaseResponse searchUcCustInfo(UcCustKeyInfoParams ucCust)
+            throws BusinessException, SystemException;
     
     /**
      * 
@@ -116,7 +122,8 @@ public interface IRegisterSV {
      */
     @POST
     @Path("/updateUcCustInfo")
-    BaseResponse updateUcCustInfo(UcCustKeyInfoParams ucCust);
+    BaseResponse updateUcCustInfo(UcCustKeyInfoParams ucCust)
+            throws BusinessException, SystemException;
     
     /**
      * 
@@ -129,7 +136,8 @@ public interface IRegisterSV {
      */
     @POST
     @Path("/insertUcGroupInfo")
-    BaseResponse insertUcGroupInfo(UcGroupKeyInfoParams ucGroup);
+    BaseResponse insertUcGroupInfo(UcGroupKeyInfoParams ucGroup)
+            throws BusinessException, SystemException;
     
     /**
      * 
@@ -142,7 +150,8 @@ public interface IRegisterSV {
      */
     @POST
     @Path("/searchUcGroupInfo")
-    BaseResponse searchUcGroupInfo(UcGroupKeyInfoParams ucGroup);
+    BaseResponse searchUcGroupInfo(UcGroupKeyInfoParams ucGroup)
+            throws BusinessException, SystemException;
     
     /**
      * 
@@ -155,7 +164,8 @@ public interface IRegisterSV {
      */
     @POST
     @Path("/updateUcGroupInfo")
-    BaseResponse updateUcGroupInfo(UcGroupKeyInfoParams ucGroup);
+    BaseResponse updateUcGroupInfo(UcGroupKeyInfoParams ucGroup)
+            throws BusinessException, SystemException;
     
     /**
      * 
@@ -168,7 +178,8 @@ public interface IRegisterSV {
      */
     @POST
     @Path("/insertUcContactInfo")
-    BaseResponse insertUcContactInfo(UcContactInfoParams ucContact);
+    BaseResponse insertUcContactInfo(UcContactInfoParams ucContact)
+            throws BusinessException, SystemException;
     
     /**
      * 
@@ -182,7 +193,8 @@ public interface IRegisterSV {
      */
     @POST
     @Path("/searchUcContactInfo")
-    BaseResponse searchUcContactInfo(UcContactInfoParams ucContact);
+    BaseResponse searchUcContactInfo(UcContactInfoParams ucContact)
+            throws BusinessException, SystemException;
     
     /**
      * 
@@ -196,7 +208,8 @@ public interface IRegisterSV {
      */
     @POST
     @Path("/updateUcContactInfo")
-    BaseResponse updateUcContactInfo(UcContactInfoParams ucContact);
+    BaseResponse updateUcContactInfo(UcContactInfoParams ucContact)
+            throws BusinessException, SystemException;
     
     /**
      * 
@@ -210,7 +223,8 @@ public interface IRegisterSV {
      */
     @POST
     @Path("/insertUcBankInfo")
-    BaseResponse insertUcBankInfo(UcBankKeyInfoParams ucBank);
+    BaseResponse insertUcBankInfo(UcBankKeyInfoParams ucBank)
+            throws BusinessException, SystemException;
     
     /**
      * 
@@ -224,7 +238,8 @@ public interface IRegisterSV {
      */
     @POST
     @Path("/searchUcBankInfo")
-    BaseResponse searchUcBankInfo(UcBankKeyInfoParams ucBank);
+    BaseResponse searchUcBankInfo(UcBankKeyInfoParams ucBank)
+            throws BusinessException, SystemException;
     /**
      * 
      *   修改用户银行卡信息</br> 
@@ -237,7 +252,8 @@ public interface IRegisterSV {
      */
     @POST
     @Path("/updateUcBankInfo")
-    BaseResponse updateUcBankInfo(UcBankKeyInfoParams ucBank);
+    BaseResponse updateUcBankInfo(UcBankKeyInfoParams ucBank)
+            throws BusinessException, SystemException;
     
     /**
      * 
@@ -251,7 +267,8 @@ public interface IRegisterSV {
      */
     @POST
     @Path("/insertUcUserFileExtInfo")
-    BaseResponse insertUcUserFileExtInfo(UcUserFileExtParams ucUserFileExt);
+    BaseResponse insertUcUserFileExtInfo(UcUserFileExtParams ucUserFileExt)
+            throws BusinessException, SystemException;
     
     /**
      * 
@@ -265,7 +282,8 @@ public interface IRegisterSV {
      */
     @POST
     @Path("/searchUcUserFileExtInfo")
-    BaseResponse searchUcUserFileExtInfo(UcUserFileExtParams ucUserFileExt);
+    BaseResponse searchUcUserFileExtInfo(UcUserFileExtParams ucUserFileExt)
+            throws BusinessException, SystemException;
     
     /**
      * 
@@ -279,7 +297,8 @@ public interface IRegisterSV {
      */
     @POST
     @Path("/updateUcUserFileExtInfo")
-    BaseResponse updateUcUserFileExtInfo(UcUserFileExtParams ucUserFileExt);
+    BaseResponse updateUcUserFileExtInfo(UcUserFileExtParams ucUserFileExt)
+            throws BusinessException, SystemException;
     
     
     
