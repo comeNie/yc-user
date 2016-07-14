@@ -179,7 +179,7 @@ public class UcUserSVImpl implements IUcUserSV {
             throw new BusinessException(ExceptCodeConstants.SYSTEM_ERROR, "系统异常");
         }
        
-        if(ucuser!=null&&!ExceptCodeConstants.Account.REGISTER_NORMAL.equals(ucuser.getUserState())){
+        if(ucuser.getUserId()!=null&&!ExceptCodeConstants.Account.REGISTER_NORMAL.equals(ucuser.getUserState())){
             responseHeader = new ResponseHeader(false,ExceptCodeConstants.USER_NOT_NORMAL,"用户状态非正常");
             response.setResponseHeader(responseHeader);
             return response;
