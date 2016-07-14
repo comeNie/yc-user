@@ -70,7 +70,7 @@ public class AgentUserResponse extends BaseResponse {
     /**
      * 客户状态变更时间
      */
-    private Timestamp updateTime;
+    private Timestamp stateChgTime;
     
     public String getUserMp() {
         return userMp;
@@ -193,12 +193,12 @@ public class AgentUserResponse extends BaseResponse {
         this.cityCode = cityCode;
     }
 
-    public Timestamp getUpdateTime() {
-        return updateTime;
+    public Timestamp getStateChgTime() {
+        return stateChgTime;
     }
 
-    public void setUpdateTime(Timestamp updateTime) {
-        this.updateTime = updateTime;
+    public void setStateChgTime(Timestamp stateChgTime) {
+        this.stateChgTime = stateChgTime;
     }
 
 
