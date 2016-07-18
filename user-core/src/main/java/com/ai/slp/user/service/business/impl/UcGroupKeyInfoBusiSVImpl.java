@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.PageInfo;
+import com.ai.opt.base.vo.PageInfoResponse;
 import com.ai.opt.sdk.components.sequence.util.SeqUtil;
 import com.ai.opt.sdk.constants.ExceptCodeConstants;
 import com.ai.opt.sdk.util.CollectionUtil;
@@ -129,11 +130,10 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
     }
 
     @Override
-    public QueryGroupInfoResponse QueryGroupInfo(QueryGroupInfoRequest request)
+    public PageInfoResponse<UcGroupKeyInfoVo> QueryGroupInfo(QueryGroupInfoRequest request)
             throws SystemException, BusinessException {
         
-        QueryGroupInfoResponse response = new QueryGroupInfoResponse();
-        PageInfo<SearchGroupUserInfoResponse> pageInfo = new PageInfo<SearchGroupUserInfoResponse>();
+        PageInfoResponse<UcGroupKeyInfoVo> pageInfo = new PageInfoResponse<UcGroupKeyInfoVo>();
         
         UcGroupKeyInfoCriteria example = new UcGroupKeyInfoCriteria();
         
@@ -161,7 +161,7 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
         int startPage = (pageNo-1)*pageSize;
         int endPage = pageSize;
         
-        List<SearchGroupUserInfoResponse> list = ucGroupKeyInfoAtomSV.searchGroupKeyInfo(request,startPage,endPage);
+        List<UcGroupKeyInfoVo> list = ucGroupKeyInfoAtomSV.searchGroupKeyInfo(request,startPage,endPage);
         /**
         * 设置页数和每页条数
         */
@@ -176,9 +176,7 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
          */
         int pageCount = count/pageSize+(count%pageSize>0 ? 1 : 0);
         pageInfo.setPageCount(pageCount);
-        
-        response.setPageInfo(pageInfo);
-        return response;
+        return pageInfo;
     }
 
     @Override
