@@ -9,18 +9,19 @@ import javax.ws.rs.core.MediaType;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
+import com.ai.opt.base.vo.PageInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.InsertCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.InsertCustKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.InsertGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.QueryCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.QueryCustFileExtResponse;
 import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoRequest;
-import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.SearchCustKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchCustKeyInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupUserInfoResponse;
+import com.ai.slp.user.api.keyinfo.param.UcGroupKeyInfoVo;
 import com.ai.slp.user.api.keyinfo.param.UpdateCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.UpdateCustKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.UpdateGroupKeyInfoRequest;
@@ -167,7 +168,7 @@ public interface IUcKeyInfoSV {
      */
     @POST
     @Path("/queryGroupInfo")
-    public QueryGroupInfoResponse queryGroupInfo(QueryGroupInfoRequest request)throws SystemException, BusinessException;
+    public PageInfoResponse<UcGroupKeyInfoVo> queryGroupInfo(QueryGroupInfoRequest request)throws SystemException, BusinessException;
 
     
     /**
