@@ -52,12 +52,12 @@ public class UcGroupKeyInfoAtomSVImpl implements IUcGroupKeyInfoAtomSV {
     @Override
     public List<UcGroupKeyInfoVo> searchGroupKeyInfo(
             QueryGroupInfoRequest groupKeyInfo,int startPage,int endPage) {
-        return groupKeyInfoAttachMapper.selectGroupKeyInfo(groupKeyInfo.getTenantId(), groupKeyInfo.getCustName(),groupKeyInfo.getUserType(),startPage,endPage);
+        return groupKeyInfoAttachMapper.selectGroupKeyInfo(groupKeyInfo.getTenantId(), groupKeyInfo.getCustName(),groupKeyInfo.getUserType(),groupKeyInfo.getAuditState(),startPage,endPage);
     }
 
     @Override
     public int selectCountGroupKeyInfo(QueryGroupInfoRequest groupKeyInfo) {
-        return groupKeyInfoAttachMapper.selectCountGroupKeyInfo(groupKeyInfo.getTenantId(), groupKeyInfo.getCustName(),groupKeyInfo.getUserType());
+        return groupKeyInfoAttachMapper.selectCountGroupKeyInfo(groupKeyInfo.getTenantId(), groupKeyInfo.getCustName(),groupKeyInfo.getAuditState(),groupKeyInfo.getUserType());
     }
     
     
