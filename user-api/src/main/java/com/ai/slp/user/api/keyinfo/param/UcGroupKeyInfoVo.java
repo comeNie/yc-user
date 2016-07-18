@@ -190,6 +190,27 @@ public class UcGroupKeyInfoVo implements Serializable {
     // 品牌名称(英文)
     private String brandNameEng;
 
+    /**
+     * 用户名称
+     */
+    private String userLoginName;
+    /**
+     * 用户状态
+     */
+    private String userState;
+    /**
+     * 用户手机号
+     */
+    private String userMp;
+    /**
+     * 绑定邮箱
+     */
+    private String userEmail;
+    /**
+     * 邮件认证标志
+     */
+    private String emailValidateFlag;
+    
     public String getProductCat() {
         return productCat;
     }
@@ -492,6 +513,46 @@ public class UcGroupKeyInfoVo implements Serializable {
 
     public void setContractCustId(String contractCustId) {
         this.contractCustId = contractCustId;
+    }
+
+    public String getUserLoginName() {
+        return userLoginName;
+    }
+
+    public void setUserLoginName(String userLoginName) {
+        this.userLoginName = userLoginName;
+    }
+
+    public String getUserState() {
+        return userState;
+    }
+
+    public void setUserState(String userState) {
+        this.userState = userState;
+    }
+
+    public String getUserMp() {
+        return userMp;
+    }
+
+    public void setUserMp(String userMp) {
+        this.userMp = userMp;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public String getEmailValidateFlag() {
+        return emailValidateFlag;
+    }
+
+    public void setEmailValidateFlag(String emailValidateFlag) {
+        this.emailValidateFlag = emailValidateFlag;
     }
 
 }
