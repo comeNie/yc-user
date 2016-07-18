@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.type.JdbcType;
 
 import com.ai.slp.user.api.keyinfo.param.SearchGroupUserInfoResponse;
+import com.ai.slp.user.api.keyinfo.param.UcGroupKeyInfoVo;
 
 
 /**
@@ -125,7 +126,7 @@ public interface UcGroupKeyInfoAttrAttachMapper {
     
     @Select("select groupInfo.*,userInfo.user_state,userInfo.user_login_name,userInfo.user_mp,userInfo.user_email,userInfo.email_validate_flag " +
             "from uc_group_key_info groupInfo,uc_user userInfo where groupInfo.user_id = userInfo.user_id and groupInfo.cust_name like #{custName} and  groupInfo.tenant_id=#{tenantId} limit #{startPage},#{endPage}")
-    List<SearchGroupUserInfoResponse> selectGroupKeyInfo(@Param("tenantId")String tenantId,@Param("custName")String custName,@Param("startPage")int startPage,@Param("endPage")int endPage);
+    List<UcGroupKeyInfoVo> selectGroupKeyInfo(@Param("tenantId")String tenantId,@Param("custName")String custName,@Param("startPage")int startPage,@Param("endPage")int endPage);
     
     @Select("select count(groupInfo.user_id) from uc_group_key_info groupInfo,uc_user userInfo  " +
             " where groupInfo.user_id = userInfo.user_id and groupInfo.cust_name like #{custName} and  groupInfo.tenant_id=#{tenantId}")
