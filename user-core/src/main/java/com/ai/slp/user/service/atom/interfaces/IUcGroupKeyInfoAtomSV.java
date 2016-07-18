@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupUserInfoResponse;
+import com.ai.slp.user.api.keyinfo.param.UcGroupKeyInfoVo;
 import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfo;
 import com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfoCriteria;
 
@@ -22,7 +23,7 @@ public interface IUcGroupKeyInfoAtomSV {
     
     SearchGroupUserInfoResponse searchGroupUserInfo(SearchGroupKeyInfoRequest groupKeyInfo);
     
-    List<SearchGroupUserInfoResponse> searchGroupKeyInfo(QueryGroupInfoRequest groupKeyInfo,int startPage,int endPage);
+    List<UcGroupKeyInfoVo> searchGroupKeyInfo(QueryGroupInfoRequest groupKeyInfo,int startPage,int endPage);
     
     int selectCountGroupKeyInfo (QueryGroupInfoRequest groupKeyInfo);
 }
