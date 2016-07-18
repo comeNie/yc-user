@@ -125,10 +125,10 @@ public interface UcGroupKeyInfoAttrAttachMapper {
     })
     
     @Select("select groupInfo.*,userInfo.user_state,userInfo.user_login_name,userInfo.user_mp,userInfo.user_email,userInfo.email_validate_flag " +
-            "from uc_group_key_info groupInfo,uc_user userInfo where groupInfo.user_id = userInfo.user_id and groupInfo.cust_name like #{custName} and  groupInfo.tenant_id=#{tenantId} and groupInfo.user_type=#{userType} and groupInfo.audit_state=#{auditState}  limit #{startPage},#{endPage}")
+            "from uc_group_key_info groupInfo,uc_user userInfo where groupInfo.user_id = userInfo.user_id and groupInfo.cust_name like #{custName} and  groupInfo.tenant_id=#{tenantId} and groupInfo.user_type=#{userType} and groupInfo.audit_state=11  limit #{startPage},#{endPage}")
     List<UcGroupKeyInfoVo> selectGroupKeyInfo(@Param("tenantId")String tenantId,@Param("custName")String custName,@Param("userType")String userType,@Param("auditState")String auditState,@Param("startPage")int startPage,@Param("endPage")int endPage);
     
     @Select("select count(groupInfo.user_id) from uc_group_key_info groupInfo,uc_user userInfo  " +
-            " where groupInfo.user_id = userInfo.user_id and groupInfo.cust_name like #{custName} and  groupInfo.tenant_id=#{tenantId} and groupInfo.user_type=#{userType} and groupInfo.audit_state=#{auditState}")
+            " where groupInfo.user_id = userInfo.user_id and groupInfo.cust_name like #{custName} and  groupInfo.tenant_id=#{tenantId} and groupInfo.user_type=#{userType} and groupInfo.audit_state=11")
     int selectCountGroupKeyInfo(@Param("tenantId")String tenantId,@Param("custName")String custName,@Param("userType")String userType,@Param("auditState")String auditState);
 }
