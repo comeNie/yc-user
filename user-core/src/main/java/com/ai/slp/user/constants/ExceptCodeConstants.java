@@ -55,9 +55,9 @@ public class ExceptCodeConstants {
         12：冻结
          */
         
-        public static final String REGISTER_STATE="10";
+        public static final String REGISTER_STATE="11";
         
-        public static final String REGISTER_NORMAL="11";
+        public static final String REGISTER_NORMAL="10";
         
         public static final String REGISTER_FREEZE="12";
         
