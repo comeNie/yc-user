@@ -75,7 +75,7 @@ public class GroupKeyInfoSVImpl  {
         re.setCustName("国际");
         re.setPageNo(1);
         re.setPageSize(1);
-        System.out.println(JSON.toJSONString(sv.queryGroupInfo(re).getPageInfo().getResult()));
+        System.out.println(JSON.toJSONString(sv.queryGroupInfo(re)));
     }
     
     
