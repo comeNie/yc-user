@@ -18,6 +18,7 @@ import com.ai.slp.user.api.keyinfo.param.QueryCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupUserInfoResponse;
+import com.ai.slp.user.api.keyinfo.param.UpdateGroupKeyInfoRequest;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,16 +28,25 @@ public class GroupKeyInfoSVImpl  {
     @Autowired
     private IUcKeyInfoSV sv;
     
-    //@Test
+    @Test
     public void insert(){
         InsertGroupKeyInfoRequest req = new InsertGroupKeyInfoRequest();
         req.setTenantId("SLP");
         req.setUserId("000000000000000167");
         req.setCertAddr("111");
         req.setCertNum("111");
-        sv.insertGroupKeyInfo(req);
+        System.out.println(JSON.toJSONString(req));
+        //sv.insertGroupKeyInfo(req);
     }
-    //@Test
+    
+    @Test
+    public void updateGroup(){
+    	UpdateGroupKeyInfoRequest re = new UpdateGroupKeyInfoRequest();
+    	re.setTenantId("SLP");
+    	re.setUserId("000000000000000202");
+    	System.out.println(JSON.toJSONString(re));
+    }
+    @Test
     public void insertFileExt(){
         InsertCustFileExtRequest re = new InsertCustFileExtRequest();
         CmCustFileExtVo cmCustFileExtVo = new CmCustFileExtVo();
@@ -52,7 +62,7 @@ public class GroupKeyInfoSVImpl  {
         sv.insertCustFileExt(re);
     }
 
-    //@Test
+    @Test
     public void query(){
         SearchGroupKeyInfoRequest re = new SearchGroupKeyInfoRequest();
         re.setTenantId("SLP");
@@ -60,7 +70,7 @@ public class GroupKeyInfoSVImpl  {
         System.out.println(JSON.toJSONString(sv.searchGroupKeyInfo(re)));
     }
     
-    //@Test
+    @Test
     public void queryCustFile(){
         QueryCustFileExtRequest re = new QueryCustFileExtRequest();
         re.setTenantId("SLP");
@@ -68,7 +78,7 @@ public class GroupKeyInfoSVImpl  {
         System.out.println(JSON.toJSONString(sv.queryCustFileExt(re)));
     }
     
-  //@Test
+    @Test
     public void queryGroup(){
         QueryGroupInfoRequest re = new QueryGroupInfoRequest();
         re.setTenantId("SLP");
