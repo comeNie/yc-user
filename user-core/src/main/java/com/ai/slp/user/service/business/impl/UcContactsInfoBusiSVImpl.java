@@ -15,6 +15,7 @@ import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
+import com.ai.opt.sdk.util.StringUtil;
 import com.ai.slp.user.api.contactsinfo.param.InsertContactsInfoRequest;
 import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoRequest;
 import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoResponse;
@@ -130,7 +131,12 @@ public class UcContactsInfoBusiSVImpl implements IUcContactsInfoBusiSV {
         UcContactsInfoCriteria example = new UcContactsInfoCriteria();
         UcContactsInfoCriteria.Criteria criteria = example.createCriteria();
         criteria.andTenantIdEqualTo(contactsInfoRequest.getTenantId());
-        criteria.andUserIdEqualTo(contactsInfoRequest.getUserId());
+        if(!StringUtil.isBlank(contactsInfoRequest.getUserId())){
+            criteria.andUserIdEqualTo(contactsInfoRequest.getUserId());
+        }
+        if(!StringUtil.isBlank(contactsInfoRequest.getContactMp())){
+            criteria.andContactMpEqualTo(contactsInfoRequest.getContactMp());
+        }
         List<UcContactsInfo> list = ucContactsInfoAtomSV.selectByExample(example);
         QueryContactsInfoSingleResponse response = new QueryContactsInfoSingleResponse();
         if(!list.isEmpty()){
