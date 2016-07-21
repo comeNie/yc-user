@@ -18,6 +18,7 @@ import com.ai.slp.user.api.keyinfo.param.QueryCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupUserInfoResponse;
+import com.ai.slp.user.api.keyinfo.param.UcGroupKeyInfoVo;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,13 +28,16 @@ public class GroupKeyInfoSVImpl  {
     @Autowired
     private IUcKeyInfoSV sv;
     
-    //@Test
+    @Test
     public void insert(){
         InsertGroupKeyInfoRequest req = new InsertGroupKeyInfoRequest();
         req.setTenantId("SLP");
-        req.setUserId("000000000000000167");
-        req.setCertAddr("111");
-        req.setCertNum("111");
+        req.setUserId("000000000000002002");
+        req.setCertAddr("tt");
+        req.setCertNum("ttt");
+        req.setCustName("tt");
+        req.setUserType("11");
+        req.setAuditState("10");
         sv.insertGroupKeyInfo(req);
     }
     //@Test
@@ -68,14 +72,20 @@ public class GroupKeyInfoSVImpl  {
         System.out.println(JSON.toJSONString(sv.queryCustFileExt(re)));
     }
     
-  //@Test
+    @Test
     public void queryGroup(){
         QueryGroupInfoRequest re = new QueryGroupInfoRequest();
         re.setTenantId("SLP");
-        re.setCustName("国际");
+        re.setCustName("TTT");
+        re.setUserType("11");
+        re.setAuditState("10");
         re.setPageNo(1);
-        re.setPageSize(1);
-        System.out.println(JSON.toJSONString(sv.queryGroupInfo(re).getPageInfo().getResult()));
+        re.setPageSize(10);
+        List<UcGroupKeyInfoVo> list = sv.queryGroupInfo(re).getResult();
+        for(int i=0;i<list.size();i++){
+            System.out.println(JSON.toJSONString(list.get(i)));
+        }
+        
     }
     
     
@@ -105,8 +115,6 @@ public class GroupKeyInfoSVImpl  {
     public void searchGroupUserInfo(){
         SearchGroupKeyInfoRequest re = new SearchGroupKeyInfoRequest();
         re.setTenantId("SLP");
-        re.setCustName("11");
-        re.setAuditState("10");
         re.setUserId("000000000000002001");
         SearchGroupUserInfoResponse response = sv.searchGroupUserInfo(re);
         System.out.println(JSON.toJSONString(response));
