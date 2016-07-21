@@ -12,7 +12,7 @@ public class QueryContactsInfoSingleRequest extends BaseInfo {
     private String userId;
     
     /**
-     * 联系人手机号 
+     * 联系人手机号
      */
     private String contactMp;
 
