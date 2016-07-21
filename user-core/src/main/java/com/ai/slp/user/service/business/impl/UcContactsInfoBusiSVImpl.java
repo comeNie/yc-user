@@ -15,6 +15,7 @@ import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
+import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.opt.sdk.util.StringUtil;
 import com.ai.slp.user.api.contactsinfo.param.InsertContactsInfoRequest;
 import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoRequest;
@@ -23,6 +24,7 @@ import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoSingleRequest;
 import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoSingleResponse;
 import com.ai.slp.user.api.contactsinfo.param.UcContactsInfoParams;
 import com.ai.slp.user.api.contactsinfo.param.UpdateContactsInfoRequest;
+import com.ai.slp.user.constants.ExceptCodeConstants;
 import com.ai.slp.user.dao.mapper.bo.UcContactsInfo;
 import com.ai.slp.user.dao.mapper.bo.UcContactsInfoCriteria;
 import com.ai.slp.user.service.atom.interfaces.IUcContactsInfoAtomSV;
@@ -139,9 +141,14 @@ public class UcContactsInfoBusiSVImpl implements IUcContactsInfoBusiSV {
         }
         List<UcContactsInfo> list = ucContactsInfoAtomSV.selectByExample(example);
         QueryContactsInfoSingleResponse response = new QueryContactsInfoSingleResponse();
-        if(!list.isEmpty()){
+        ResponseHeader responseHeader = new ResponseHeader();
+        if (!CollectionUtil.isEmpty(list)) {
             BeanUtils.copyProperties(list.get(0), response);
+            responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "数据查询成功");
+        }else{
+            responseHeader = new ResponseHeader(true, ExceptCodeConstants.NO_RESULT, "数据不存在");
         }
+        response.setResponseHeader(responseHeader);
         return response;
     }
 
