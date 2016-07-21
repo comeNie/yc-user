@@ -10,6 +10,11 @@ public class QueryContactsInfoSingleRequest extends BaseInfo {
      * 用户ID
      */
     private String userId;
+    
+    /**
+     * 联系人手机号
+     */
+    private String contactMp;
 
     public String getUserId() {
         return userId;
@@ -18,5 +23,15 @@ public class QueryContactsInfoSingleRequest extends BaseInfo {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+
+    public String getContactMp() {
+        return contactMp;
+    }
+
+    public void setContactMp(String contactMp) {
+        this.contactMp = contactMp;
+    }
+    
+    
 
 }
