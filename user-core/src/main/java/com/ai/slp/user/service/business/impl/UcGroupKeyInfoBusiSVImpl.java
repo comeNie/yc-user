@@ -193,7 +193,7 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
             criteria.andInfoItemEqualTo(cmCustFileExtVo.getInfoItem());
             BeanUtils.copyProperties(cmCustFileExtVo, cmCustFileExt);
             cmCustFileExt.setUpdateTime(DateUtils.currTimeStamp());
-            custFileAtomSV.updateByExampleSelective(cmCustFileExt, example);
+            custFileAtomSV.updateByExample(cmCustFileExt, example);
         }
     }
 

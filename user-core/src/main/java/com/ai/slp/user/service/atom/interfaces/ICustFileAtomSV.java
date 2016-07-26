@@ -15,4 +15,6 @@ public interface ICustFileAtomSV {
     
     List<CmCustFileExt> selectByExample(CmCustFileExtCriteria example);
     
+    int updateByExample(@Param("record") CmCustFileExt record, @Param("example") CmCustFileExtCriteria example);
+    
 }

@@ -31,4 +31,10 @@ public class CustFileAtomSVImpl implements ICustFileAtomSV {
         return cmCustFileExtMapper.updateByExampleSelective(record, example);
     }
 
+	@Override
+	public int updateByExample(CmCustFileExt record, CmCustFileExtCriteria example) {
+		// TODO Auto-generated method stub
+		return cmCustFileExtMapper.updateByExample(record, example);
+	}
+
 }

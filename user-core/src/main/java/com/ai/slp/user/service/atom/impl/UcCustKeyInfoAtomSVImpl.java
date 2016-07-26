@@ -31,4 +31,10 @@ public class UcCustKeyInfoAtomSVImpl implements IUcCustKeyInfoAtomSV {
         return ucCustKeyInfoMapper.updateByExampleSelective(record, example);
     }
 
+	@Override
+	public int updateByExample(UcCustKeyInfo record, UcCustKeyInfoCriteria example) {
+		// TODO Auto-generated method stub
+		return ucCustKeyInfoMapper.updateByExample(record, example);
+	}
+
 }

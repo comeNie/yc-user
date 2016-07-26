@@ -46,7 +46,7 @@ public class UcCustKeyInfoBusiSVImpl implements IUcCustKeyInfoBusiSV {
         UcCustKeyInfo record = new UcCustKeyInfo();
         BeanUtils.copyProperties(request, record);
         record.setUpdateTime(DateUtils.currTimeStamp());
-        return ucCustKeyInfoAtomSV.updateByExampleSelective(record, example);
+        return ucCustKeyInfoAtomSV.updateByExample(record, example);
     }
 
     @Override

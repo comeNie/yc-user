@@ -14,4 +14,6 @@ public interface IUcCustKeyInfoAtomSV {
     List<UcCustKeyInfo> selectByExample(UcCustKeyInfoCriteria example);
 
     int updateByExampleSelective(@Param("record") UcCustKeyInfo record, @Param("example") UcCustKeyInfoCriteria example);
+    
+    int updateByExample(@Param("record") UcCustKeyInfo record, @Param("example") UcCustKeyInfoCriteria example);
 }
