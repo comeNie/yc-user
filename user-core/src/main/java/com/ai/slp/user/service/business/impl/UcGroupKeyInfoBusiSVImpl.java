@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
-import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.PageInfoResponse;
 import com.ai.opt.sdk.components.sequence.util.SeqUtil;
 import com.ai.opt.sdk.constants.ExceptCodeConstants;
@@ -23,7 +22,6 @@ import com.ai.slp.user.api.keyinfo.param.InsertGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.QueryCustFileExtRequest;
 import com.ai.slp.user.api.keyinfo.param.QueryCustFileExtResponse;
 import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoRequest;
-import com.ai.slp.user.api.keyinfo.param.QueryGroupInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoResponse;
 import com.ai.slp.user.api.keyinfo.param.SearchGroupUserInfoResponse;
@@ -193,6 +191,7 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
             criteria.andInfoItemEqualTo(cmCustFileExtVo.getInfoItem());
             BeanUtils.copyProperties(cmCustFileExtVo, cmCustFileExt);
             cmCustFileExt.setUpdateTime(DateUtils.currTimeStamp());
+            cmCustFileExt.setInfoExtId(custFileAtomSV.selectByExample(example).get(0).getInfoExtId());
             custFileAtomSV.updateByExample(cmCustFileExt, example);
         }
     }
