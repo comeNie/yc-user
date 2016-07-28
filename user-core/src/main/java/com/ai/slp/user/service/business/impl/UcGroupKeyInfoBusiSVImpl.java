@@ -78,7 +78,8 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
         criteria.andTenantIdEqualTo(request.getTenantId());
         if(!StringUtil.isBlank(request.getCustName()))
            criteria.andCustNameEqualTo(request.getCustName());
-        
+        if(!StringUtil.isBlank(request.getUserType()))
+        	criteria.andUserTypeEqualTo(request.getUserType());
         if(!StringUtil.isBlank(request.getUserId()))
            criteria.andUserIdEqualTo(request.getUserId());
         
