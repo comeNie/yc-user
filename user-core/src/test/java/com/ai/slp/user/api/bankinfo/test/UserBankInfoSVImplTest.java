@@ -9,6 +9,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.ai.slp.user.api.bankinfo.interfaces.IUcBankInfoSV;
 import com.ai.slp.user.api.bankinfo.param.InsertBankInfoRequest;
 import com.ai.slp.user.api.bankinfo.param.QueryBankInfoSingleRequest;
+import com.ai.slp.user.api.keyinfo.interfaces.IUcKeyInfoSV;
+import com.ai.slp.user.api.keyinfo.param.SearchGroupKeyInfoRequest;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -17,6 +19,8 @@ public class UserBankInfoSVImplTest {
 
     @Autowired
     private IUcBankInfoSV userBankInfoBusiSV;
+    @Autowired
+    private IUcKeyInfoSV u;
     
     @Test
     public void insertBankInfoTest(){
@@ -50,4 +54,14 @@ public class UserBankInfoSVImplTest {
         System.out.println(userBankInfoBusiSV.insertBankInfo(re));
     }
     
+    
+    @Test
+    public void searchGroup(){
+    	SearchGroupKeyInfoRequest re = new SearchGroupKeyInfoRequest();
+    	re.setTenantId("SLP");
+    	re.setAuditState("11");
+    	re.setCustName("wwwq11");
+    	re.setUserType("11");
+    	System.out.println(JSON.toJSONString(u.searchGroupKeyInfo(re)));
+    }
 }

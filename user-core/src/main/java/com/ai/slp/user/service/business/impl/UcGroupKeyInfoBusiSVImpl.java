@@ -83,7 +83,7 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
         if(!StringUtil.isBlank(request.getUserId()))
            criteria.andUserIdEqualTo(request.getUserId());
         if(!StringUtil.isBlank(request.getAuditState()))
-        	criteria.andUserIdEqualTo(request.getAuditState());
+        	criteria.andAuditStateEqualTo(request.getAuditState());
         
         List<UcGroupKeyInfo> list = ucGroupKeyInfoAtomSV.selectByExample(example);
         
