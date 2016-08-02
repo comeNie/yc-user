@@ -8,6 +8,9 @@ public class QueryCustFileExtResponse extends BaseResponse {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 附件列表入参
+     */
     private List<CmCustFileExtVo> list;
 
     public List<CmCustFileExtVo> getList() {

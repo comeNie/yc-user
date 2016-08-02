@@ -8,6 +8,9 @@ public class InsertCustKeyInfoRequest extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 用户ID
+     */
     private String userId;
 
     /**
@@ -135,7 +138,9 @@ public class InsertCustKeyInfoRequest extends BaseInfo {
      */
     private String verifyFlag;
 
-    // 审核状态
+    /**
+     *  审核状态
+     */
     private String auditState;
 
     public String getAuditState() {

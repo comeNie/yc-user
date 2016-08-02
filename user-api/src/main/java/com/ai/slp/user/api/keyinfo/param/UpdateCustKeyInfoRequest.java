@@ -15,7 +15,7 @@ public class UpdateCustKeyInfoRequest extends BaseInfo {
      */
     private String userType;
 
-    /*
+    /**
      * 企业名称
      */
     private String custName;
@@ -130,10 +130,14 @@ public class UpdateCustKeyInfoRequest extends BaseInfo {
      */
     private Long updateOperId;
 
-    // 认证状态
+    /**
+     *  认证状态
+     */
     private String verifyFlag;
 
-    // 审核状态
+    /**
+     *  审核状态
+     */
     private String auditState;
 
     public String getAuditState() {

@@ -7,6 +7,9 @@ public class QueryGroupInfoResponse extends BaseResponse {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 分页查询结果
+     */
     PageInfo<SearchGroupUserInfoResponse> pageInfo;
 
     public PageInfo<SearchGroupUserInfoResponse> getPageInfo() {

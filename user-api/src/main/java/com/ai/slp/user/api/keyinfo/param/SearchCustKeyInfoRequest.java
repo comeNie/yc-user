@@ -6,6 +6,9 @@ public class SearchCustKeyInfoRequest extends BaseInfo {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 用户ID
+     */
     private String userId;
 
     public String getUserId() {

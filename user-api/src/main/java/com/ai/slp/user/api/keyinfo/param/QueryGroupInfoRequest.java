@@ -13,9 +13,14 @@ public class QueryGroupInfoRequest extends BaseInfo {
      * 用户类型
      */
     private String userType;
-    
+    /**
+     * 当前页数
+     */
     private Integer pageNo;
 
+    /**
+     * 总页数
+     */
     private Integer pageSize;
     /**
      * 审核状态

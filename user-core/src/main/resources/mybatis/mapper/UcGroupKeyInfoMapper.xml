@@ -40,6 +40,15 @@
     <result column="PRODUCT_CAT" property="productCat" jdbcType="VARCHAR" />
     <result column="BRAND_NAME" property="brandName" jdbcType="VARCHAR" />
     <result column="BRAND_NAME_ENG" property="brandNameEng" jdbcType="VARCHAR" />
+    <result column="STATION_PROVINCE_CODE" property="stationProvinceCode" jdbcType="VARCHAR" />
+    <result column="STATION_CITY_CODE" property="stationCityCode" jdbcType="VARCHAR" />
+    <result column="STATION_COUNTY_CODE" property="stationCountyCode" jdbcType="VARCHAR" />
+    <result column="STATION_CERT_ADDR" property="stationCertAddr" jdbcType="VARCHAR" />
+    <result column="ANNUAL_INCOME" property="annualIncome" jdbcType="DECIMAL" />
+    <result column="FLOOR_SPACE" property="floorSpace" jdbcType="DECIMAL" />
+    <result column="FAX" property="fax" jdbcType="VARCHAR" />
+    <result column="E_MAIL" property="eMail" jdbcType="VARCHAR" />
+    <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -106,8 +115,9 @@
     GROUP_PRODUCT, LEGAL_PERSON, LEGAL_CERT_NUM, ORG_CODE, TAXPAYER_CODE, TAXPAYER_TYPE, 
     TAXPAYER_TYPE_CODE, GROUP_INFO, CREATE_TIME, CREATE_CHL_ID, CREATE_OPER_ID, UPDATE_TIME, 
     UPDATE_CHL_ID, UPDATE_OPER_ID, CONTRACT_CUST_ID, AUDIT_STATE, PRODUCT_CAT, BRAND_NAME, 
-    BRAND_NAME_ENG
-  </sql> 
+    BRAND_NAME_ENG, STATION_PROVINCE_CODE, STATION_CITY_CODE, STATION_COUNTY_CODE, STATION_CERT_ADDR, 
+    ANNUAL_INCOME, FLOOR_SPACE, FAX, E_MAIL, TELEPHONE
+  </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfoCriteria" >
     select
     <if test="distinct" >
@@ -145,7 +155,10 @@
       CREATE_TIME, CREATE_CHL_ID, CREATE_OPER_ID, 
       UPDATE_TIME, UPDATE_CHL_ID, UPDATE_OPER_ID, 
       CONTRACT_CUST_ID, AUDIT_STATE, PRODUCT_CAT, 
-      BRAND_NAME, BRAND_NAME_ENG)
+      BRAND_NAME, BRAND_NAME_ENG, STATION_PROVINCE_CODE, 
+      STATION_CITY_CODE, STATION_COUNTY_CODE, STATION_CERT_ADDR, 
+      ANNUAL_INCOME, FLOOR_SPACE, FAX, 
+      E_MAIL, TELEPHONE)
     values (#{tenantId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, 
       #{certNum,jdbcType=VARCHAR}, #{custName,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, 
       #{cityCode,jdbcType=VARCHAR}, #{countyCode,jdbcType=VARCHAR}, #{certAddr,jdbcType=VARCHAR}, 
@@ -158,7 +171,10 @@
       #{createTime,jdbcType=TIMESTAMP}, #{createChlId,jdbcType=VARCHAR}, #{createOperId,jdbcType=BIGINT}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{updateChlId,jdbcType=VARCHAR}, #{updateOperId,jdbcType=BIGINT}, 
       #{contractCustId,jdbcType=VARCHAR}, #{auditState,jdbcType=VARCHAR}, #{productCat,jdbcType=VARCHAR}, 
-      #{brandName,jdbcType=VARCHAR}, #{brandNameEng,jdbcType=VARCHAR})
+      #{brandName,jdbcType=VARCHAR}, #{brandNameEng,jdbcType=VARCHAR}, #{stationProvinceCode,jdbcType=VARCHAR}, 
+      #{stationCityCode,jdbcType=VARCHAR}, #{stationCountyCode,jdbcType=VARCHAR}, #{stationCertAddr,jdbcType=VARCHAR}, 
+      #{annualIncome,jdbcType=DECIMAL}, #{floorSpace,jdbcType=DECIMAL}, #{fax,jdbcType=VARCHAR}, 
+      #{eMail,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ai.slp.user.dao.mapper.bo.UcGroupKeyInfo" >
     insert into uc_group_key_info
@@ -277,6 +293,33 @@
       <if test="brandNameEng != null" >
         BRAND_NAME_ENG,
       </if>
+      <if test="stationProvinceCode != null" >
+        STATION_PROVINCE_CODE,
+      </if>
+      <if test="stationCityCode != null" >
+        STATION_CITY_CODE,
+      </if>
+      <if test="stationCountyCode != null" >
+        STATION_COUNTY_CODE,
+      </if>
+      <if test="stationCertAddr != null" >
+        STATION_CERT_ADDR,
+      </if>
+      <if test="annualIncome != null" >
+        ANNUAL_INCOME,
+      </if>
+      <if test="floorSpace != null" >
+        FLOOR_SPACE,
+      </if>
+      <if test="fax != null" >
+        FAX,
+      </if>
+      <if test="eMail != null" >
+        E_MAIL,
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="tenantId != null" >
@@ -392,6 +435,33 @@
       </if>
       <if test="brandNameEng != null" >
         #{brandNameEng,jdbcType=VARCHAR},
+      </if>
+      <if test="stationProvinceCode != null" >
+        #{stationProvinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stationCityCode != null" >
+        #{stationCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stationCountyCode != null" >
+        #{stationCountyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="stationCertAddr != null" >
+        #{stationCertAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="annualIncome != null" >
+        #{annualIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="floorSpace != null" >
+        #{floorSpace,jdbcType=DECIMAL},
+      </if>
+      <if test="fax != null" >
+        #{fax,jdbcType=VARCHAR},
+      </if>
+      <if test="eMail != null" >
+        #{eMail,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -518,6 +588,33 @@
       <if test="record.brandNameEng != null" >
         BRAND_NAME_ENG = #{record.brandNameEng,jdbcType=VARCHAR},
       </if>
+      <if test="record.stationProvinceCode != null" >
+        STATION_PROVINCE_CODE = #{record.stationProvinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stationCityCode != null" >
+        STATION_CITY_CODE = #{record.stationCityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stationCountyCode != null" >
+        STATION_COUNTY_CODE = #{record.stationCountyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stationCertAddr != null" >
+        STATION_CERT_ADDR = #{record.stationCertAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.annualIncome != null" >
+        ANNUAL_INCOME = #{record.annualIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="record.floorSpace != null" >
+        FLOOR_SPACE = #{record.floorSpace,jdbcType=DECIMAL},
+      </if>
+      <if test="record.fax != null" >
+        FAX = #{record.fax,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eMail != null" >
+        E_MAIL = #{record.eMail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.telephone != null" >
+        TELEPHONE = #{record.telephone,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -562,7 +659,16 @@
       AUDIT_STATE = #{record.auditState,jdbcType=VARCHAR},
       PRODUCT_CAT = #{record.productCat,jdbcType=VARCHAR},
       BRAND_NAME = #{record.brandName,jdbcType=VARCHAR},
-      BRAND_NAME_ENG = #{record.brandNameEng,jdbcType=VARCHAR}
+      BRAND_NAME_ENG = #{record.brandNameEng,jdbcType=VARCHAR},
+      STATION_PROVINCE_CODE = #{record.stationProvinceCode,jdbcType=VARCHAR},
+      STATION_CITY_CODE = #{record.stationCityCode,jdbcType=VARCHAR},
+      STATION_COUNTY_CODE = #{record.stationCountyCode,jdbcType=VARCHAR},
+      STATION_CERT_ADDR = #{record.stationCertAddr,jdbcType=VARCHAR},
+      ANNUAL_INCOME = #{record.annualIncome,jdbcType=DECIMAL},
+      FLOOR_SPACE = #{record.floorSpace,jdbcType=DECIMAL},
+      FAX = #{record.fax,jdbcType=VARCHAR},
+      E_MAIL = #{record.eMail,jdbcType=VARCHAR},
+      TELEPHONE = #{record.telephone,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
