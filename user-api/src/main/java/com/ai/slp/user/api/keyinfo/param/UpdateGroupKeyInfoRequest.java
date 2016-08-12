@@ -6,391 +6,481 @@ import com.ai.opt.base.vo.BaseInfo;
 
 public class UpdateGroupKeyInfoRequest extends BaseInfo {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    // 用户Id
-    private String userId;
+	// 用户Id
+	private String userId;
 
-    // 用户类型
-    private String userType;
+	// 用户类型
+	private String userType;
 
-    // 营业执照注册号
-    private String certNum;
+	// 营业执照注册号
+	private String certNum;
 
-    // 公司名称
-    private String custName;
+	// 公司名称
+	private String custName;
 
-    // 企业注册地址归属省
-    private String provinceCode;
+	// 企业注册地址归属省
+	private String provinceCode;
 
-    // 企业注册地址归属地市
-    private String cityCode;
+	// 企业注册地址归属地市
+	private String cityCode;
 
-    // 企业注册地址归属区县
-    private String countyCode;
+	// 企业注册地址归属区县
+	private String countyCode;
 
-    // 企业注册详细地址
-    private String certAddr;
+	// 企业注册详细地址
+	private String certAddr;
 
-    // 发证日期
-    private Timestamp certIssueDate;
+	// 发证日期
+	private Timestamp certIssueDate;
 
-    // 注册资本（万元）
-    private Long registeredCapitals;
+	// 注册资本（万元）
+	private Long registeredCapitals;
 
-    // 证件有效期(生效时间)
-    private Timestamp certValidDate;
+	// 证件有效期(生效时间)
+	private Timestamp certValidDate;
 
-    // 证件有效期(失效时间)
-    private Timestamp certInvalidDate;
+	// 证件有效期(失效时间)
+	private Timestamp certInvalidDate;
 
-    // 是否有官网标志
-    private String webFlag;
+	// 是否有官网标志
+	private String webFlag;
 
-    // 官网
-    private String groupWebsite;
+	// 官网
+	private String groupWebsite;
 
-    // 公司人数
-    private String groupMemberScale;
+	// 公司人数
+	private String groupMemberScale;
 
-    // 企业性质
-    private String groupType;
+	// 企业性质
+	private String groupType;
 
-    // 所属行业
-    private String groupIndustry;
+	// 所属行业
+	private String groupIndustry;
 
-    // 经营范围
-    private String groupBusinessScope;
+	// 经营范围
+	private String groupBusinessScope;
 
-    // 主要产品你
-    private String groupProduct;
+	// 主要产品你
+	private String groupProduct;
 
-    // 法人代表
-    private String legalPerson;
+	// 法人代表
+	private String legalPerson;
 
-    // 法人身份证号
-    private String legalCertNum;
+	// 法人身份证号
+	private String legalCertNum;
 
-    // 组织机构代码
-    private String orgCode;
+	// 组织机构代码
+	private String orgCode;
 
-    // 纳税类型码
-    private String taxpayerCode;
+	// 纳税类型码
+	private String taxpayerCode;
 
-    // 纳税人类型
-    private String taxpayerType;
+	// 纳税人类型
+	private String taxpayerType;
 
-    // 纳税类型税码
-    private String taxpayerTypeCode;
+	// 纳税类型税码
+	private String taxpayerTypeCode;
 
-    // 介绍信息
-    private String groupInfo;
+	// 介绍信息
+	private String groupInfo;
 
-    // 创建渠道
-    private String createChlId;
+	// 创建渠道
+	private String createChlId;
 
-    // 创建人
-    private Long createOperId;
+	// 创建人
+	private Long createOperId;
 
-    // 更新渠道
-    private String updateChlId;
+	// 更新渠道
+	private String updateChlId;
 
-    // 更新人
-    private Long updateOperId;
+	// 更新人
+	private Long updateOperId;
 
-    // 合同客户ID
-    private String contractCustId;
+	// 合同客户ID
+	private String contractCustId;
 
-    // 审核状态
-    private String auditState;
+	// 审核状态
+	private String auditState;
 
-    // 供应商品信息
-    private String productCat;
+	// 供应商品信息
+	private String productCat;
 
-    // 品牌名称(中文)
-    private String brandName;
+	// 品牌名称(中文)
+	private String brandName;
 
-    // 品牌名称(英文)
-    private String brandNameEng;
+	// 品牌名称(英文)
+	private String brandNameEng;
 
-    public String getProductCat() {
-        return productCat;
-    }
+	private String stationProvinceCode;
 
-    public void setProductCat(String productCat) {
-        this.productCat = productCat;
-    }
+	private String stationCityCode;
 
-    public String getBrandName() {
-        return brandName;
-    }
+	private String stationCountyCode;
 
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
-    }
+	private String stationCertAddr;
 
-    public String getBrandNameEng() {
-        return brandNameEng;
-    }
+	private Long annualIncome;
 
-    public void setBrandNameEng(String brandNameEng) {
-        this.brandNameEng = brandNameEng;
-    }
+	private Long floorSpace;
 
-    public String getUserId() {
-        return userId;
-    }
+	private String fax;
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
+	private String eMail;
 
-    public String getUserType() {
-        return userType;
-    }
+	private String telephone;
 
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
+	public String getStationProvinceCode() {
+		return stationProvinceCode;
+	}
 
-    public String getCertNum() {
-        return certNum;
-    }
+	public void setStationProvinceCode(String stationProvinceCode) {
+		this.stationProvinceCode = stationProvinceCode;
+	}
 
-    public void setCertNum(String certNum) {
-        this.certNum = certNum;
-    }
+	public String getStationCityCode() {
+		return stationCityCode;
+	}
 
-    public String getCustName() {
-        return custName;
-    }
+	public void setStationCityCode(String stationCityCode) {
+		this.stationCityCode = stationCityCode;
+	}
 
-    public void setCustName(String custName) {
-        this.custName = custName;
-    }
+	public String getStationCountyCode() {
+		return stationCountyCode;
+	}
 
-    public String getProvinceCode() {
-        return provinceCode;
-    }
+	public void setStationCountyCode(String stationCountyCode) {
+		this.stationCountyCode = stationCountyCode;
+	}
 
-    public void setProvinceCode(String provinceCode) {
-        this.provinceCode = provinceCode;
-    }
+	public String getStationCertAddr() {
+		return stationCertAddr;
+	}
 
-    public String getCityCode() {
-        return cityCode;
-    }
+	public void setStationCertAddr(String stationCertAddr) {
+		this.stationCertAddr = stationCertAddr;
+	}
 
-    public void setCityCode(String cityCode) {
-        this.cityCode = cityCode;
-    }
+	public Long getAnnualIncome() {
+		return annualIncome;
+	}
 
-    public String getCountyCode() {
-        return countyCode;
-    }
+	public void setAnnualIncome(Long annualIncome) {
+		this.annualIncome = annualIncome;
+	}
 
-    public void setCountyCode(String countyCode) {
-        this.countyCode = countyCode;
-    }
+	public Long getFloorSpace() {
+		return floorSpace;
+	}
 
-    public String getCertAddr() {
-        return certAddr;
-    }
+	public void setFloorSpace(Long floorSpace) {
+		this.floorSpace = floorSpace;
+	}
 
-    public void setCertAddr(String certAddr) {
-        this.certAddr = certAddr;
-    }
+	public String getFax() {
+		return fax;
+	}
 
-    public Timestamp getCertIssueDate() {
-        return certIssueDate;
-    }
+	public void setFax(String fax) {
+		this.fax = fax;
+	}
 
-    public void setCertIssueDate(Timestamp certIssueDate) {
-        this.certIssueDate = certIssueDate;
-    }
+	public String geteMail() {
+		return eMail;
+	}
 
-    public Long getRegisteredCapitals() {
-        return registeredCapitals;
-    }
+	public void seteMail(String eMail) {
+		this.eMail = eMail;
+	}
 
-    public void setRegisteredCapitals(Long registeredCapitals) {
-        this.registeredCapitals = registeredCapitals;
-    }
+	public String getTelephone() {
+		return telephone;
+	}
 
-    public Timestamp getCertValidDate() {
-        return certValidDate;
-    }
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
 
-    public void setCertValidDate(Timestamp certValidDate) {
-        this.certValidDate = certValidDate;
-    }
+	public String getProductCat() {
+		return productCat;
+	}
 
-    public Timestamp getCertInvalidDate() {
-        return certInvalidDate;
-    }
+	public void setProductCat(String productCat) {
+		this.productCat = productCat;
+	}
 
-    public void setCertInvalidDate(Timestamp certInvalidDate) {
-        this.certInvalidDate = certInvalidDate;
-    }
+	public String getBrandName() {
+		return brandName;
+	}
 
-    public String getWebFlag() {
-        return webFlag;
-    }
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
+	}
 
-    public void setWebFlag(String webFlag) {
-        this.webFlag = webFlag;
-    }
+	public String getBrandNameEng() {
+		return brandNameEng;
+	}
 
-    public String getGroupWebsite() {
-        return groupWebsite;
-    }
+	public void setBrandNameEng(String brandNameEng) {
+		this.brandNameEng = brandNameEng;
+	}
 
-    public void setGroupWebsite(String groupWebsite) {
-        this.groupWebsite = groupWebsite;
-    }
+	public String getUserId() {
+		return userId;
+	}
 
-    public String getGroupMemberScale() {
-        return groupMemberScale;
-    }
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
-    public void setGroupMemberScale(String groupMemberScale) {
-        this.groupMemberScale = groupMemberScale;
-    }
+	public String getUserType() {
+		return userType;
+	}
 
-    public String getGroupType() {
-        return groupType;
-    }
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
 
-    public void setGroupType(String groupType) {
-        this.groupType = groupType;
-    }
+	public String getCertNum() {
+		return certNum;
+	}
 
-    public String getGroupIndustry() {
-        return groupIndustry;
-    }
+	public void setCertNum(String certNum) {
+		this.certNum = certNum;
+	}
 
-    public void setGroupIndustry(String groupIndustry) {
-        this.groupIndustry = groupIndustry;
-    }
+	public String getCustName() {
+		return custName;
+	}
 
-    public String getGroupBusinessScope() {
-        return groupBusinessScope;
-    }
+	public void setCustName(String custName) {
+		this.custName = custName;
+	}
 
-    public void setGroupBusinessScope(String groupBusinessScope) {
-        this.groupBusinessScope = groupBusinessScope;
-    }
+	public String getProvinceCode() {
+		return provinceCode;
+	}
 
-    public String getGroupProduct() {
-        return groupProduct;
-    }
+	public void setProvinceCode(String provinceCode) {
+		this.provinceCode = provinceCode;
+	}
 
-    public void setGroupProduct(String groupProduct) {
-        this.groupProduct = groupProduct;
-    }
+	public String getCityCode() {
+		return cityCode;
+	}
 
-    public String getLegalPerson() {
-        return legalPerson;
-    }
+	public void setCityCode(String cityCode) {
+		this.cityCode = cityCode;
+	}
 
-    public void setLegalPerson(String legalPerson) {
-        this.legalPerson = legalPerson;
-    }
+	public String getCountyCode() {
+		return countyCode;
+	}
 
-    public String getLegalCertNum() {
-        return legalCertNum;
-    }
+	public void setCountyCode(String countyCode) {
+		this.countyCode = countyCode;
+	}
 
-    public void setLegalCertNum(String legalCertNum) {
-        this.legalCertNum = legalCertNum;
-    }
+	public String getCertAddr() {
+		return certAddr;
+	}
 
-    public String getOrgCode() {
-        return orgCode;
-    }
+	public void setCertAddr(String certAddr) {
+		this.certAddr = certAddr;
+	}
 
-    public void setOrgCode(String orgCode) {
-        this.orgCode = orgCode;
-    }
+	public Timestamp getCertIssueDate() {
+		return certIssueDate;
+	}
 
-    public String getTaxpayerCode() {
-        return taxpayerCode;
-    }
+	public void setCertIssueDate(Timestamp certIssueDate) {
+		this.certIssueDate = certIssueDate;
+	}
 
-    public void setTaxpayerCode(String taxpayerCode) {
-        this.taxpayerCode = taxpayerCode;
-    }
+	public Long getRegisteredCapitals() {
+		return registeredCapitals;
+	}
 
-    public String getTaxpayerType() {
-        return taxpayerType;
-    }
+	public void setRegisteredCapitals(Long registeredCapitals) {
+		this.registeredCapitals = registeredCapitals;
+	}
 
-    public void setTaxpayerType(String taxpayerType) {
-        this.taxpayerType = taxpayerType;
-    }
+	public Timestamp getCertValidDate() {
+		return certValidDate;
+	}
 
-    public String getTaxpayerTypeCode() {
-        return taxpayerTypeCode;
-    }
+	public void setCertValidDate(Timestamp certValidDate) {
+		this.certValidDate = certValidDate;
+	}
 
-    public void setTaxpayerTypeCode(String taxpayerTypeCode) {
-        this.taxpayerTypeCode = taxpayerTypeCode;
-    }
+	public Timestamp getCertInvalidDate() {
+		return certInvalidDate;
+	}
 
-    public String getGroupInfo() {
-        return groupInfo;
-    }
+	public void setCertInvalidDate(Timestamp certInvalidDate) {
+		this.certInvalidDate = certInvalidDate;
+	}
 
-    public void setGroupInfo(String groupInfo) {
-        this.groupInfo = groupInfo;
-    }
+	public String getWebFlag() {
+		return webFlag;
+	}
 
-    public String getCreateChlId() {
-        return createChlId;
-    }
+	public void setWebFlag(String webFlag) {
+		this.webFlag = webFlag;
+	}
 
-    public void setCreateChlId(String createChlId) {
-        this.createChlId = createChlId;
-    }
+	public String getGroupWebsite() {
+		return groupWebsite;
+	}
 
-    public Long getCreateOperId() {
-        return createOperId;
-    }
+	public void setGroupWebsite(String groupWebsite) {
+		this.groupWebsite = groupWebsite;
+	}
 
-    public void setCreateOperId(Long createOperId) {
-        this.createOperId = createOperId;
-    }
+	public String getGroupMemberScale() {
+		return groupMemberScale;
+	}
 
-    public String getUpdateChlId() {
-        return updateChlId;
-    }
+	public void setGroupMemberScale(String groupMemberScale) {
+		this.groupMemberScale = groupMemberScale;
+	}
 
-    public void setUpdateChlId(String updateChlId) {
-        this.updateChlId = updateChlId;
-    }
+	public String getGroupType() {
+		return groupType;
+	}
 
-    public Long getUpdateOperId() {
-        return updateOperId;
-    }
+	public void setGroupType(String groupType) {
+		this.groupType = groupType;
+	}
 
-    public void setUpdateOperId(Long updateOperId) {
-        this.updateOperId = updateOperId;
-    }
+	public String getGroupIndustry() {
+		return groupIndustry;
+	}
 
-    public String getContractCustId() {
-        return contractCustId;
-    }
+	public void setGroupIndustry(String groupIndustry) {
+		this.groupIndustry = groupIndustry;
+	}
 
-    public void setContractCustId(String contractCustId) {
-        this.contractCustId = contractCustId;
-    }
+	public String getGroupBusinessScope() {
+		return groupBusinessScope;
+	}
 
-    public String getAuditState() {
-        return auditState;
-    }
+	public void setGroupBusinessScope(String groupBusinessScope) {
+		this.groupBusinessScope = groupBusinessScope;
+	}
 
-    public void setAuditState(String auditState) {
-        this.auditState = auditState;
-    }
+	public String getGroupProduct() {
+		return groupProduct;
+	}
+
+	public void setGroupProduct(String groupProduct) {
+		this.groupProduct = groupProduct;
+	}
+
+	public String getLegalPerson() {
+		return legalPerson;
+	}
+
+	public void setLegalPerson(String legalPerson) {
+		this.legalPerson = legalPerson;
+	}
+
+	public String getLegalCertNum() {
+		return legalCertNum;
+	}
+
+	public void setLegalCertNum(String legalCertNum) {
+		this.legalCertNum = legalCertNum;
+	}
+
+	public String getOrgCode() {
+		return orgCode;
+	}
+
+	public void setOrgCode(String orgCode) {
+		this.orgCode = orgCode;
+	}
+
+	public String getTaxpayerCode() {
+		return taxpayerCode;
+	}
+
+	public void setTaxpayerCode(String taxpayerCode) {
+		this.taxpayerCode = taxpayerCode;
+	}
+
+	public String getTaxpayerType() {
+		return taxpayerType;
+	}
+
+	public void setTaxpayerType(String taxpayerType) {
+		this.taxpayerType = taxpayerType;
+	}
+
+	public String getTaxpayerTypeCode() {
+		return taxpayerTypeCode;
+	}
+
+	public void setTaxpayerTypeCode(String taxpayerTypeCode) {
+		this.taxpayerTypeCode = taxpayerTypeCode;
+	}
+
+	public String getGroupInfo() {
+		return groupInfo;
+	}
+
+	public void setGroupInfo(String groupInfo) {
+		this.groupInfo = groupInfo;
+	}
+
+	public String getCreateChlId() {
+		return createChlId;
+	}
+
+	public void setCreateChlId(String createChlId) {
+		this.createChlId = createChlId;
+	}
+
+	public Long getCreateOperId() {
+		return createOperId;
+	}
+
+	public void setCreateOperId(Long createOperId) {
+		this.createOperId = createOperId;
+	}
+
+	public String getUpdateChlId() {
+		return updateChlId;
+	}
+
+	public void setUpdateChlId(String updateChlId) {
+		this.updateChlId = updateChlId;
+	}
+
+	public Long getUpdateOperId() {
+		return updateOperId;
+	}
+
+	public void setUpdateOperId(Long updateOperId) {
+		this.updateOperId = updateOperId;
+	}
+
+	public String getContractCustId() {
+		return contractCustId;
+	}
+
+	public void setContractCustId(String contractCustId) {
+		this.contractCustId = contractCustId;
+	}
+
+	public String getAuditState() {
+		return auditState;
+	}
+
+	public void setAuditState(String auditState) {
+		this.auditState = auditState;
+	}
 
 }

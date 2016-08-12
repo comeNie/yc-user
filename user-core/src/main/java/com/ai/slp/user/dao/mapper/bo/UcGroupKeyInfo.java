@@ -78,7 +78,25 @@ public class UcGroupKeyInfo {
     private String brandName;
 
     private String brandNameEng;
- 
+
+    private String stationProvinceCode;
+
+    private String stationCityCode;
+
+    private String stationCountyCode;
+
+    private String stationCertAddr;
+
+    private Long annualIncome;
+
+    private Long floorSpace;
+
+    private String fax;
+
+    private String eMail;
+
+    private String telephone;
+
     public String getTenantId() {
         return tenantId;
     }
@@ -381,5 +399,77 @@ public class UcGroupKeyInfo {
 
     public void setBrandNameEng(String brandNameEng) {
         this.brandNameEng = brandNameEng == null ? null : brandNameEng.trim();
+    }
+
+    public String getStationProvinceCode() {
+        return stationProvinceCode;
+    }
+
+    public void setStationProvinceCode(String stationProvinceCode) {
+        this.stationProvinceCode = stationProvinceCode == null ? null : stationProvinceCode.trim();
+    }
+
+    public String getStationCityCode() {
+        return stationCityCode;
+    }
+
+    public void setStationCityCode(String stationCityCode) {
+        this.stationCityCode = stationCityCode == null ? null : stationCityCode.trim();
+    }
+
+    public String getStationCountyCode() {
+        return stationCountyCode;
+    }
+
+    public void setStationCountyCode(String stationCountyCode) {
+        this.stationCountyCode = stationCountyCode == null ? null : stationCountyCode.trim();
+    }
+
+    public String getStationCertAddr() {
+        return stationCertAddr;
+    }
+
+    public void setStationCertAddr(String stationCertAddr) {
+        this.stationCertAddr = stationCertAddr == null ? null : stationCertAddr.trim();
+    }
+
+    public Long getAnnualIncome() {
+        return annualIncome;
+    }
+
+    public void setAnnualIncome(Long annualIncome) {
+        this.annualIncome = annualIncome;
+    }
+
+    public Long getFloorSpace() {
+        return floorSpace;
+    }
+
+    public void setFloorSpace(Long floorSpace) {
+        this.floorSpace = floorSpace;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax == null ? null : fax.trim();
+    }
+
+    public String geteMail() {
+        return eMail;
+    }
+
+    public void seteMail(String eMail) {
+        this.eMail = eMail == null ? null : eMail.trim();
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone == null ? null : telephone.trim();
     }
 }
