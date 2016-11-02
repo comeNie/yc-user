@@ -5,8 +5,6 @@ import java.sql.Timestamp;
 public class CmCustFileExt {
     private String infoExtId;
 
-    private String tenantId;
-
     private String userId;
 
     private String infoType;
@@ -41,14 +39,6 @@ public class CmCustFileExt {
 
     public void setInfoExtId(String infoExtId) {
         this.infoExtId = infoExtId == null ? null : infoExtId.trim();
-    }
-
-    public String getTenantId() {
-        return tenantId;
-    }
-
-    public void setTenantId(String tenantId) {
-        this.tenantId = tenantId == null ? null : tenantId.trim();
     }
 
     public String getUserId() {

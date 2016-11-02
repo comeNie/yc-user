@@ -111,7 +111,7 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
             throws SystemException, BusinessException {
         CmCustFileExtCriteria example = new CmCustFileExtCriteria();
         CmCustFileExtCriteria.Criteria criteria = example.createCriteria();
-        criteria.andTenantIdEqualTo(request.getTenantId());
+//        criteria.andTenantIdEqualTo(request.getTenantId());
         criteria.andUserIdEqualTo(request.getUserId());
         
         QueryCustFileExtResponse response = new QueryCustFileExtResponse();
@@ -187,7 +187,7 @@ public class UcGroupKeyInfoBusiSVImpl implements IUcGroupKeyInfoBusiSV{
             CmCustFileExtCriteria example = new CmCustFileExtCriteria();
             CmCustFileExtCriteria.Criteria criteria = example.createCriteria();
             
-            criteria.andTenantIdEqualTo(cmCustFileExtVo.getTenantId());
+//            criteria.andTenantIdEqualTo(cmCustFileExtVo.getTenantId());
             criteria.andUserIdEqualTo(cmCustFileExtVo.getUserId());
             criteria.andInfoItemEqualTo(cmCustFileExtVo.getInfoItem());
             BeanUtils.copyProperties(cmCustFileExtVo, cmCustFileExt);

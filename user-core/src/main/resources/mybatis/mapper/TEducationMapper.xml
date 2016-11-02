@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ai.cy.user.dao.mapper.interfaces.TEducationMapper" >
+  <resultMap id="BaseResultMap" type="com.ai.yc.user.dao.mapper.bo.TEducation" >
+    <id column="EDUCATION_ID" property="educationId" jdbcType="BIGINT" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="SCHOOL" property="school" jdbcType="VARCHAR" />
+    <result column="PROFESSION" property="profession" jdbcType="VARCHAR" />
+    <result column="STUDY_START_TIME" property="studyStartTime" jdbcType="VARCHAR" />
+    <result column="STUDY_END_TIME" property="studyEndTime" jdbcType="VARCHAR" />
+    <result column="EDU_BACKGROUND" property="eduBackground" jdbcType="VARCHAR" />
+    <result column="COUNTRY" property="country" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    EDUCATION_ID, USER_ID, SCHOOL, PROFESSION, STUDY_START_TIME, STUDY_END_TIME, EDU_BACKGROUND, 
+    COUNTRY, CREATE_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.yc.user.dao.mapper.bo.TEducationCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_education
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart>=0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_education
+    where EDUCATION_ID = #{educationId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="Long" >
+    delete from t_education
+    where EDUCATION_ID = #{educationId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ai.yc.user.dao.mapper.bo.TEducationCriteria" >
+    delete from t_education
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ai.yc.user.dao.mapper.bo.TEducation" >
+    insert into t_education (EDUCATION_ID, USER_ID, SCHOOL, 
+      PROFESSION, STUDY_START_TIME, STUDY_END_TIME, 
+      EDU_BACKGROUND, COUNTRY, CREATE_TIME
+      )
+    values (#{educationId,jdbcType=BIGINT}, #{userId,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, 
+      #{profession,jdbcType=VARCHAR}, #{studyStartTime,jdbcType=VARCHAR}, #{studyEndTime,jdbcType=VARCHAR}, 
+      #{eduBackground,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ai.yc.user.dao.mapper.bo.TEducation" >
+    insert into t_education
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="educationId != null" >
+        EDUCATION_ID,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="school != null" >
+        SCHOOL,
+      </if>
+      <if test="profession != null" >
+        PROFESSION,
+      </if>
+      <if test="studyStartTime != null" >
+        STUDY_START_TIME,
+      </if>
+      <if test="studyEndTime != null" >
+        STUDY_END_TIME,
+      </if>
+      <if test="eduBackground != null" >
+        EDU_BACKGROUND,
+      </if>
+      <if test="country != null" >
+        COUNTRY,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="educationId != null" >
+        #{educationId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null" >
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null" >
+        #{profession,jdbcType=VARCHAR},
+      </if>
+      <if test="studyStartTime != null" >
+        #{studyStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="studyEndTime != null" >
+        #{studyEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="eduBackground != null" >
+        #{eduBackground,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ai.yc.user.dao.mapper.bo.TEducationCriteria" resultType="java.lang.Integer" >
+    select count(*) from t_education
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_education
+    <set >
+      <if test="record.educationId != null" >
+        EDUCATION_ID = #{record.educationId,jdbcType=BIGINT},
+      </if>
+      <if test="record.userId != null" >
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.school != null" >
+        SCHOOL = #{record.school,jdbcType=VARCHAR},
+      </if>
+      <if test="record.profession != null" >
+        PROFESSION = #{record.profession,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studyStartTime != null" >
+        STUDY_START_TIME = #{record.studyStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studyEndTime != null" >
+        STUDY_END_TIME = #{record.studyEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eduBackground != null" >
+        EDU_BACKGROUND = #{record.eduBackground,jdbcType=VARCHAR},
+      </if>
+      <if test="record.country != null" >
+        COUNTRY = #{record.country,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_education
+    set EDUCATION_ID = #{record.educationId,jdbcType=BIGINT},
+      USER_ID = #{record.userId,jdbcType=VARCHAR},
+      SCHOOL = #{record.school,jdbcType=VARCHAR},
+      PROFESSION = #{record.profession,jdbcType=VARCHAR},
+      STUDY_START_TIME = #{record.studyStartTime,jdbcType=VARCHAR},
+      STUDY_END_TIME = #{record.studyEndTime,jdbcType=VARCHAR},
+      EDU_BACKGROUND = #{record.eduBackground,jdbcType=VARCHAR},
+      COUNTRY = #{record.country,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ai.yc.user.dao.mapper.bo.TEducation" >
+    update t_education
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null" >
+        SCHOOL = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="profession != null" >
+        PROFESSION = #{profession,jdbcType=VARCHAR},
+      </if>
+      <if test="studyStartTime != null" >
+        STUDY_START_TIME = #{studyStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="studyEndTime != null" >
+        STUDY_END_TIME = #{studyEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="eduBackground != null" >
+        EDU_BACKGROUND = #{eduBackground,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        COUNTRY = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where EDUCATION_ID = #{educationId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ai.yc.user.dao.mapper.bo.TEducation" >
+    update t_education
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      SCHOOL = #{school,jdbcType=VARCHAR},
+      PROFESSION = #{profession,jdbcType=VARCHAR},
+      STUDY_START_TIME = #{studyStartTime,jdbcType=VARCHAR},
+      STUDY_END_TIME = #{studyEndTime,jdbcType=VARCHAR},
+      EDU_BACKGROUND = #{eduBackground,jdbcType=VARCHAR},
+      COUNTRY = #{country,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where EDUCATION_ID = #{educationId,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ai.cy.user.dao.mapper.interfaces.TEnterpriseAdminChangeMapper" >
+  <resultMap id="BaseResultMap" type="com.ai.yc.user.dao.mapper.bo.TEnterpriseAdminChange" >
+    <id column="ADMIN_CHANGE_ID" property="adminChangeId" jdbcType="VARCHAR" />
+    <result column="SOURCE_ADMIN_ID" property="sourceAdminId" jdbcType="VARCHAR" />
+    <result column="SOURCE_ADMIN_NAME" property="sourceAdminName" jdbcType="VARCHAR" />
+    <result column="TARGET_ADMIN_ID" property="targetAdminId" jdbcType="VARCHAR" />
+    <result column="TARGET_ADMIN_NAME" property="targetAdminName" jdbcType="VARCHAR" />
+    <result column="IS_ACCESS" property="isAccess" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="ACCESS_REJECT_TIME" property="accessRejectTime" jdbcType="TIMESTAMP" />
+    <result column="CUST_NAME" property="custName" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ai.yc.user.dao.mapper.bo.TEnterpriseAdminChange" extends="BaseResultMap" >
+    <result column="CUST_ID" property="custId" jdbcType="VARBINARY" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ADMIN_CHANGE_ID, SOURCE_ADMIN_ID, SOURCE_ADMIN_NAME, TARGET_ADMIN_ID, TARGET_ADMIN_NAME, 
+    IS_ACCESS, CREATE_TIME, ACCESS_REJECT_TIME, CUST_NAME
+  </sql>
+  <sql id="Blob_Column_List" >
+    CUST_ID
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.ai.yc.user.dao.mapper.bo.TEnterpriseAdminChangeCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_enterprise_admin_change
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.yc.user.dao.mapper.bo.TEnterpriseAdminChangeCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_enterprise_admin_change
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart>=0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_enterprise_admin_change
+    where ADMIN_CHANGE_ID = #{adminChangeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_enterprise_admin_change
+    where ADMIN_CHANGE_ID = #{adminChangeId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ai.yc.user.dao.mapper.bo.TEnterpriseAdminChangeCriteria" >
+    delete from t_enterprise_admin_change
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ai.yc.user.dao.mapper.bo.TEnterpriseAdminChange" >
+    insert into t_enterprise_admin_change (ADMIN_CHANGE_ID, SOURCE_ADMIN_ID, SOURCE_ADMIN_NAME, 
+      TARGET_ADMIN_ID, TARGET_ADMIN_NAME, IS_ACCESS, 
+      CREATE_TIME, ACCESS_REJECT_TIME, CUST_NAME, 
+      CUST_ID)
+    values (#{adminChangeId,jdbcType=VARCHAR}, #{sourceAdminId,jdbcType=VARCHAR}, #{sourceAdminName,jdbcType=VARCHAR}, 
+      #{targetAdminId,jdbcType=VARCHAR}, #{targetAdminName,jdbcType=VARCHAR}, #{isAccess,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{accessRejectTime,jdbcType=TIMESTAMP}, #{custName,jdbcType=VARCHAR}, 
+      #{custId,jdbcType=VARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ai.yc.user.dao.mapper.bo.TEnterpriseAdminChange" >
+    insert into t_enterprise_admin_change
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adminChangeId != null" >
+        ADMIN_CHANGE_ID,
+      </if>
+      <if test="sourceAdminId != null" >
+        SOURCE_ADMIN_ID,
+      </if>
+      <if test="sourceAdminName != null" >
+        SOURCE_ADMIN_NAME,
+      </if>
+      <if test="targetAdminId != null" >
+        TARGET_ADMIN_ID,
+      </if>
+      <if test="targetAdminName != null" >
+        TARGET_ADMIN_NAME,
+      </if>
+      <if test="isAccess != null" >
+        IS_ACCESS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="accessRejectTime != null" >
+        ACCESS_REJECT_TIME,
+      </if>
+      <if test="custName != null" >
+        CUST_NAME,
+      </if>
+      <if test="custId != null" >
+        CUST_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adminChangeId != null" >
+        #{adminChangeId,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceAdminId != null" >
+        #{sourceAdminId,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceAdminName != null" >
+        #{sourceAdminName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetAdminId != null" >
+        #{targetAdminId,jdbcType=VARCHAR},
+      </if>
+      <if test="targetAdminName != null" >
+        #{targetAdminName,jdbcType=VARCHAR},
+      </if>
+      <if test="isAccess != null" >
+        #{isAccess,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accessRejectTime != null" >
+        #{accessRejectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="custName != null" >
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null" >
+        #{custId,jdbcType=VARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ai.yc.user.dao.mapper.bo.TEnterpriseAdminChangeCriteria" resultType="java.lang.Integer" >
+    select count(*) from t_enterprise_admin_change
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_enterprise_admin_change
+    <set >
+      <if test="record.adminChangeId != null" >
+        ADMIN_CHANGE_ID = #{record.adminChangeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourceAdminId != null" >
+        SOURCE_ADMIN_ID = #{record.sourceAdminId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sourceAdminName != null" >
+        SOURCE_ADMIN_NAME = #{record.sourceAdminName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetAdminId != null" >
+        TARGET_ADMIN_ID = #{record.targetAdminId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.targetAdminName != null" >
+        TARGET_ADMIN_NAME = #{record.targetAdminName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isAccess != null" >
+        IS_ACCESS = #{record.isAccess,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.accessRejectTime != null" >
+        ACCESS_REJECT_TIME = #{record.accessRejectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.custName != null" >
+        CUST_NAME = #{record.custName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custId != null" >
+        CUST_ID = #{record.custId,jdbcType=VARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update t_enterprise_admin_change
+    set ADMIN_CHANGE_ID = #{record.adminChangeId,jdbcType=VARCHAR},
+      SOURCE_ADMIN_ID = #{record.sourceAdminId,jdbcType=VARCHAR},
+      SOURCE_ADMIN_NAME = #{record.sourceAdminName,jdbcType=VARCHAR},
+      TARGET_ADMIN_ID = #{record.targetAdminId,jdbcType=VARCHAR},
+      TARGET_ADMIN_NAME = #{record.targetAdminName,jdbcType=VARCHAR},
+      IS_ACCESS = #{record.isAccess,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      ACCESS_REJECT_TIME = #{record.accessRejectTime,jdbcType=TIMESTAMP},
+      CUST_NAME = #{record.custName,jdbcType=VARCHAR},
+      CUST_ID = #{record.custId,jdbcType=VARBINARY}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_enterprise_admin_change
+    set ADMIN_CHANGE_ID = #{record.adminChangeId,jdbcType=VARCHAR},
+      SOURCE_ADMIN_ID = #{record.sourceAdminId,jdbcType=VARCHAR},
+      SOURCE_ADMIN_NAME = #{record.sourceAdminName,jdbcType=VARCHAR},
+      TARGET_ADMIN_ID = #{record.targetAdminId,jdbcType=VARCHAR},
+      TARGET_ADMIN_NAME = #{record.targetAdminName,jdbcType=VARCHAR},
+      IS_ACCESS = #{record.isAccess,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      ACCESS_REJECT_TIME = #{record.accessRejectTime,jdbcType=TIMESTAMP},
+      CUST_NAME = #{record.custName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ai.yc.user.dao.mapper.bo.TEnterpriseAdminChange" >
+    update t_enterprise_admin_change
+    <set >
+      <if test="sourceAdminId != null" >
+        SOURCE_ADMIN_ID = #{sourceAdminId,jdbcType=VARCHAR},
+      </if>
+      <if test="sourceAdminName != null" >
+        SOURCE_ADMIN_NAME = #{sourceAdminName,jdbcType=VARCHAR},
+      </if>
+      <if test="targetAdminId != null" >
+        TARGET_ADMIN_ID = #{targetAdminId,jdbcType=VARCHAR},
+      </if>
+      <if test="targetAdminName != null" >
+        TARGET_ADMIN_NAME = #{targetAdminName,jdbcType=VARCHAR},
+      </if>
+      <if test="isAccess != null" >
+        IS_ACCESS = #{isAccess,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="accessRejectTime != null" >
+        ACCESS_REJECT_TIME = #{accessRejectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="custName != null" >
+        CUST_NAME = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="custId != null" >
+        CUST_ID = #{custId,jdbcType=VARBINARY},
+      </if>
+    </set>
+    where ADMIN_CHANGE_ID = #{adminChangeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ai.yc.user.dao.mapper.bo.TEnterpriseAdminChange" >
+    update t_enterprise_admin_change
+    set SOURCE_ADMIN_ID = #{sourceAdminId,jdbcType=VARCHAR},
+      SOURCE_ADMIN_NAME = #{sourceAdminName,jdbcType=VARCHAR},
+      TARGET_ADMIN_ID = #{targetAdminId,jdbcType=VARCHAR},
+      TARGET_ADMIN_NAME = #{targetAdminName,jdbcType=VARCHAR},
+      IS_ACCESS = #{isAccess,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      ACCESS_REJECT_TIME = #{accessRejectTime,jdbcType=TIMESTAMP},
+      CUST_NAME = #{custName,jdbcType=VARCHAR},
+      CUST_ID = #{custId,jdbcType=VARBINARY}
+    where ADMIN_CHANGE_ID = #{adminChangeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ai.yc.user.dao.mapper.bo.TEnterpriseAdminChange" >
+    update t_enterprise_admin_change
+    set SOURCE_ADMIN_ID = #{sourceAdminId,jdbcType=VARCHAR},
+      SOURCE_ADMIN_NAME = #{sourceAdminName,jdbcType=VARCHAR},
+      TARGET_ADMIN_ID = #{targetAdminId,jdbcType=VARCHAR},
+      TARGET_ADMIN_NAME = #{targetAdminName,jdbcType=VARCHAR},
+      IS_ACCESS = #{isAccess,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      ACCESS_REJECT_TIME = #{accessRejectTime,jdbcType=TIMESTAMP},
+      CUST_NAME = #{custName,jdbcType=VARCHAR}
+    where ADMIN_CHANGE_ID = #{adminChangeId,jdbcType=VARCHAR}
+  </update>
+</mapper>
