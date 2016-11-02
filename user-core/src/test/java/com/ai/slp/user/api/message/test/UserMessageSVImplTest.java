@@ -9,11 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ai.slp.user.api.message.interfaces.IUserMessageSV;
-import com.ai.slp.user.api.message.param.DeleteMessageRequest;
-import com.ai.slp.user.api.message.param.InsertUserMessageRequest;
-import com.ai.slp.user.api.message.param.QueryMessageRequest;
-import com.ai.slp.user.api.message.param.UpdateMessageRequest;
+import com.ai.yc.user.api.message.interfaces.IUserMessageSV;
+import com.ai.yc.user.api.message.param.DeleteMessageRequest;
+import com.ai.yc.user.api.message.param.InsertUserMessageRequest;
+import com.ai.yc.user.api.message.param.QueryMessageRequest;
+import com.ai.yc.user.api.message.param.UpdateMessageRequest;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "/context/core-context.xml" })

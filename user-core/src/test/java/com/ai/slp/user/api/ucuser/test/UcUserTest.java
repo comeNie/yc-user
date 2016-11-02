@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ai.slp.user.api.ucuser.intefaces.IUcUserSV;
-import com.ai.slp.user.api.ucuser.param.AgentUserResponse;
-import com.ai.slp.user.api.ucuser.param.SearchUserRequest;
-import com.ai.slp.user.api.ucuser.param.SearchUserResponse;
-import com.ai.slp.user.api.ucuser.param.UcUserInfoParams;
-import com.ai.slp.user.api.ucuser.param.UpdateUserInfoRequest;
+import com.ai.yc.user.api.ucuser.intefaces.IUcUserSV;
+import com.ai.yc.user.api.ucuser.param.AgentUserResponse;
+import com.ai.yc.user.api.ucuser.param.SearchUserRequest;
+import com.ai.yc.user.api.ucuser.param.SearchUserResponse;
+import com.ai.yc.user.api.ucuser.param.UcUserInfoParams;
+import com.ai.yc.user.api.ucuser.param.UpdateUserInfoRequest;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)

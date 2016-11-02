@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ai.slp.user.api.ucUserSecurity.interfaces.IUcUserSecurityManageSV;
-import com.ai.slp.user.api.ucUserSecurity.param.UcUserPhoneRequest;
+import com.ai.yc.user.api.ucUserSecurity.interfaces.IUcUserSecurityManageSV;
+import com.ai.yc.user.api.ucUserSecurity.param.UcUserPhoneRequest;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "/context/core-context.xml" })

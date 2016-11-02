@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ai.slp.user.api.contactsinfo.interfaces.IUcContactsInfoSV;
-import com.ai.slp.user.api.contactsinfo.param.InsertContactsInfoRequest;
-import com.ai.slp.user.api.contactsinfo.param.QueryContactsInfoSingleRequest;
-import com.ai.slp.user.api.contactsinfo.param.UpdateContactsInfoRequest;
+import com.ai.yc.user.api.contactsinfo.interfaces.IUcContactsInfoSV;
+import com.ai.yc.user.api.contactsinfo.param.InsertContactsInfoRequest;
+import com.ai.yc.user.api.contactsinfo.param.QueryContactsInfoSingleRequest;
+import com.ai.yc.user.api.contactsinfo.param.UpdateContactsInfoRequest;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
