@@ -22,53 +22,6 @@ import com.ai.yc.user.api.ucuser.param.UpdateUserInfoRequest;
 @Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_XML })
 public interface IUcUserSV {
 
-
-    /**
-     * 查询用户信息
-     * 
-     * @param userInfoRequest
-     * @return
-     * @author zhangqiang7
-     * @ApiDocMethod
-     * @ApiCode UAC_0012
-     * @UCUSER
-     * @RestRelativeURL ucUserservice/searchUserList
-     */
-    @POST
-    @Path("/searchUserList")
-    public SearchUserListResponse searchUserList(SearchUserRequest userListRequest)
-            throws BusinessException, SystemException;
-    
-    /**
-     * 根据手机号码进行查询（不加状态）
-     * @param request
-     * @return
-     * @throws BusinessException
-     * @throws SystemException
-     * @author zhangyh7
-     * @ApiDocMethod
-     * @ApiCode UAC_0013
-     * @RestRelativeURL ucUserservice/queryByPhone
-     */
-    @POST
-    @Path("/queryByPhone")
-    SearchUserResponse queryByPhone(SearchUserRequest request) throws BusinessException,SystemException;
-    
-    /**
-     * 根据email进行查询
-     * @param request
-     * @return
-     * @throws BusinessException
-     * @throws SystemException
-     * @author zhangyh7
-     * @ApiDocMethod
-     * @ApiCode UAC_0014
-     * @RestRelativeURL ucUserservice/queryByEmail
-     */
-    @POST
-    @Path("/queryByEmail")
-    SearchUserResponse queryByEmail(SearchUserRequest request) throws BusinessException,SystemException;
-    
     /**
      * 根据UserId进行查询
      * @param request
