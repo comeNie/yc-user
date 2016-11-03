@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ContributionValueCriteria {
+public class UsrGriwthValueCriteria {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -15,7 +15,7 @@ public class ContributionValueCriteria {
 
     protected Integer limitEnd;
 
-    public ContributionValueCriteria() {
+    public UsrGriwthValueCriteria() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -195,213 +195,203 @@ public class ContributionValueCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andTranslatorIdIsNull() {
-            addCriterion("TRANSLATOR_ID is null");
+        public Criteria andUserIdIsNull() {
+            addCriterion("USER_ID is null");
             return (Criteria) this;
         }
 
-        public Criteria andTranslatorIdIsNotNull() {
-            addCriterion("TRANSLATOR_ID is not null");
+        public Criteria andUserIdIsNotNull() {
+            addCriterion("USER_ID is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTranslatorIdEqualTo(String value) {
-            addCriterion("TRANSLATOR_ID =", value, "translatorId");
+        public Criteria andUserIdEqualTo(String value) {
+            addCriterion("USER_ID =", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andTranslatorIdNotEqualTo(String value) {
-            addCriterion("TRANSLATOR_ID <>", value, "translatorId");
+        public Criteria andUserIdNotEqualTo(String value) {
+            addCriterion("USER_ID <>", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andTranslatorIdGreaterThan(String value) {
-            addCriterion("TRANSLATOR_ID >", value, "translatorId");
+        public Criteria andUserIdGreaterThan(String value) {
+            addCriterion("USER_ID >", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andTranslatorIdGreaterThanOrEqualTo(String value) {
-            addCriterion("TRANSLATOR_ID >=", value, "translatorId");
+        public Criteria andUserIdGreaterThanOrEqualTo(String value) {
+            addCriterion("USER_ID >=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andTranslatorIdLessThan(String value) {
-            addCriterion("TRANSLATOR_ID <", value, "translatorId");
+        public Criteria andUserIdLessThan(String value) {
+            addCriterion("USER_ID <", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andTranslatorIdLessThanOrEqualTo(String value) {
-            addCriterion("TRANSLATOR_ID <=", value, "translatorId");
+        public Criteria andUserIdLessThanOrEqualTo(String value) {
+            addCriterion("USER_ID <=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andTranslatorIdLike(String value) {
-            addCriterion("TRANSLATOR_ID like", value, "translatorId");
+        public Criteria andUserIdLike(String value) {
+            addCriterion("USER_ID like", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andTranslatorIdNotLike(String value) {
-            addCriterion("TRANSLATOR_ID not like", value, "translatorId");
+        public Criteria andUserIdNotLike(String value) {
+            addCriterion("USER_ID not like", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andTranslatorIdIn(List<String> values) {
-            addCriterion("TRANSLATOR_ID in", values, "translatorId");
+        public Criteria andUserIdIn(List<String> values) {
+            addCriterion("USER_ID in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andTranslatorIdNotIn(List<String> values) {
-            addCriterion("TRANSLATOR_ID not in", values, "translatorId");
+        public Criteria andUserIdNotIn(List<String> values) {
+            addCriterion("USER_ID not in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andTranslatorIdBetween(String value1, String value2) {
-            addCriterion("TRANSLATOR_ID between", value1, value2, "translatorId");
+        public Criteria andUserIdBetween(String value1, String value2) {
+            addCriterion("USER_ID between", value1, value2, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andTranslatorIdNotBetween(String value1, String value2) {
-            addCriterion("TRANSLATOR_ID not between", value1, value2, "translatorId");
+        public Criteria andUserIdNotBetween(String value1, String value2) {
+            addCriterion("USER_ID not between", value1, value2, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andContributionIsNull() {
-            addCriterion("contribution is null");
+        public Criteria andGriwthValueIsNull() {
+            addCriterion("griwth_value is null");
             return (Criteria) this;
         }
 
-        public Criteria andContributionIsNotNull() {
-            addCriterion("contribution is not null");
+        public Criteria andGriwthValueIsNotNull() {
+            addCriterion("griwth_value is not null");
             return (Criteria) this;
         }
 
-        public Criteria andContributionEqualTo(String value) {
-            addCriterion("contribution =", value, "contribution");
+        public Criteria andGriwthValueEqualTo(Integer value) {
+            addCriterion("griwth_value =", value, "griwthValue");
             return (Criteria) this;
         }
 
-        public Criteria andContributionNotEqualTo(String value) {
-            addCriterion("contribution <>", value, "contribution");
+        public Criteria andGriwthValueNotEqualTo(Integer value) {
+            addCriterion("griwth_value <>", value, "griwthValue");
             return (Criteria) this;
         }
 
-        public Criteria andContributionGreaterThan(String value) {
-            addCriterion("contribution >", value, "contribution");
+        public Criteria andGriwthValueGreaterThan(Integer value) {
+            addCriterion("griwth_value >", value, "griwthValue");
             return (Criteria) this;
         }
 
-        public Criteria andContributionGreaterThanOrEqualTo(String value) {
-            addCriterion("contribution >=", value, "contribution");
+        public Criteria andGriwthValueGreaterThanOrEqualTo(Integer value) {
+            addCriterion("griwth_value >=", value, "griwthValue");
             return (Criteria) this;
         }
 
-        public Criteria andContributionLessThan(String value) {
-            addCriterion("contribution <", value, "contribution");
+        public Criteria andGriwthValueLessThan(Integer value) {
+            addCriterion("griwth_value <", value, "griwthValue");
             return (Criteria) this;
         }
 
-        public Criteria andContributionLessThanOrEqualTo(String value) {
-            addCriterion("contribution <=", value, "contribution");
+        public Criteria andGriwthValueLessThanOrEqualTo(Integer value) {
+            addCriterion("griwth_value <=", value, "griwthValue");
             return (Criteria) this;
         }
 
-        public Criteria andContributionLike(String value) {
-            addCriterion("contribution like", value, "contribution");
+        public Criteria andGriwthValueIn(List<Integer> values) {
+            addCriterion("griwth_value in", values, "griwthValue");
             return (Criteria) this;
         }
 
-        public Criteria andContributionNotLike(String value) {
-            addCriterion("contribution not like", value, "contribution");
+        public Criteria andGriwthValueNotIn(List<Integer> values) {
+            addCriterion("griwth_value not in", values, "griwthValue");
             return (Criteria) this;
         }
 
-        public Criteria andContributionIn(List<String> values) {
-            addCriterion("contribution in", values, "contribution");
+        public Criteria andGriwthValueBetween(Integer value1, Integer value2) {
+            addCriterion("griwth_value between", value1, value2, "griwthValue");
             return (Criteria) this;
         }
 
-        public Criteria andContributionNotIn(List<String> values) {
-            addCriterion("contribution not in", values, "contribution");
+        public Criteria andGriwthValueNotBetween(Integer value1, Integer value2) {
+            addCriterion("griwth_value not between", value1, value2, "griwthValue");
             return (Criteria) this;
         }
 
-        public Criteria andContributionBetween(String value1, String value2) {
-            addCriterion("contribution between", value1, value2, "contribution");
+        public Criteria andGriwthResourceIsNull() {
+            addCriterion("griwth_resource is null");
             return (Criteria) this;
         }
 
-        public Criteria andContributionNotBetween(String value1, String value2) {
-            addCriterion("contribution not between", value1, value2, "contribution");
+        public Criteria andGriwthResourceIsNotNull() {
+            addCriterion("griwth_resource is not null");
             return (Criteria) this;
         }
 
-        public Criteria andContributionResourceIsNull() {
-            addCriterion("contribution_resource is null");
+        public Criteria andGriwthResourceEqualTo(String value) {
+            addCriterion("griwth_resource =", value, "griwthResource");
             return (Criteria) this;
         }
 
-        public Criteria andContributionResourceIsNotNull() {
-            addCriterion("contribution_resource is not null");
+        public Criteria andGriwthResourceNotEqualTo(String value) {
+            addCriterion("griwth_resource <>", value, "griwthResource");
             return (Criteria) this;
         }
 
-        public Criteria andContributionResourceEqualTo(String value) {
-            addCriterion("contribution_resource =", value, "contributionResource");
+        public Criteria andGriwthResourceGreaterThan(String value) {
+            addCriterion("griwth_resource >", value, "griwthResource");
             return (Criteria) this;
         }
 
-        public Criteria andContributionResourceNotEqualTo(String value) {
-            addCriterion("contribution_resource <>", value, "contributionResource");
+        public Criteria andGriwthResourceGreaterThanOrEqualTo(String value) {
+            addCriterion("griwth_resource >=", value, "griwthResource");
             return (Criteria) this;
         }
 
-        public Criteria andContributionResourceGreaterThan(String value) {
-            addCriterion("contribution_resource >", value, "contributionResource");
+        public Criteria andGriwthResourceLessThan(String value) {
+            addCriterion("griwth_resource <", value, "griwthResource");
             return (Criteria) this;
         }
 
-        public Criteria andContributionResourceGreaterThanOrEqualTo(String value) {
-            addCriterion("contribution_resource >=", value, "contributionResource");
+        public Criteria andGriwthResourceLessThanOrEqualTo(String value) {
+            addCriterion("griwth_resource <=", value, "griwthResource");
             return (Criteria) this;
         }
 
-        public Criteria andContributionResourceLessThan(String value) {
-            addCriterion("contribution_resource <", value, "contributionResource");
+        public Criteria andGriwthResourceLike(String value) {
+            addCriterion("griwth_resource like", value, "griwthResource");
             return (Criteria) this;
         }
 
-        public Criteria andContributionResourceLessThanOrEqualTo(String value) {
-            addCriterion("contribution_resource <=", value, "contributionResource");
+        public Criteria andGriwthResourceNotLike(String value) {
+            addCriterion("griwth_resource not like", value, "griwthResource");
             return (Criteria) this;
         }
 
-        public Criteria andContributionResourceLike(String value) {
-            addCriterion("contribution_resource like", value, "contributionResource");
+        public Criteria andGriwthResourceIn(List<String> values) {
+            addCriterion("griwth_resource in", values, "griwthResource");
             return (Criteria) this;
         }
 
-        public Criteria andContributionResourceNotLike(String value) {
-            addCriterion("contribution_resource not like", value, "contributionResource");
+        public Criteria andGriwthResourceNotIn(List<String> values) {
+            addCriterion("griwth_resource not in", values, "griwthResource");
             return (Criteria) this;
         }
 
-        public Criteria andContributionResourceIn(List<String> values) {
-            addCriterion("contribution_resource in", values, "contributionResource");
+        public Criteria andGriwthResourceBetween(String value1, String value2) {
+            addCriterion("griwth_resource between", value1, value2, "griwthResource");
             return (Criteria) this;
         }
 
-        public Criteria andContributionResourceNotIn(List<String> values) {
-            addCriterion("contribution_resource not in", values, "contributionResource");
-            return (Criteria) this;
-        }
-
-        public Criteria andContributionResourceBetween(String value1, String value2) {
-            addCriterion("contribution_resource between", value1, value2, "contributionResource");
-            return (Criteria) this;
-        }
-
-        public Criteria andContributionResourceNotBetween(String value1, String value2) {
-            addCriterion("contribution_resource not between", value1, value2, "contributionResource");
+        public Criteria andGriwthResourceNotBetween(String value1, String value2) {
+            addCriterion("griwth_resource not between", value1, value2, "griwthResource");
             return (Criteria) this;
         }
 

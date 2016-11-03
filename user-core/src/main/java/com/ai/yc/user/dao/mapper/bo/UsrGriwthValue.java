@@ -2,14 +2,14 @@ package com.ai.yc.user.dao.mapper.bo;
 
 import java.sql.Timestamp;
 
-public class ContributionValue {
+public class UsrGriwthValue {
     private String recordId;
 
-    private String translatorId;
+    private String userId;
 
-    private String contribution;
+    private Integer griwthValue;
 
-    private String contributionResource;
+    private String griwthResource;
 
     private String resourceDetail;
 
@@ -25,28 +25,28 @@ public class ContributionValue {
         this.recordId = recordId == null ? null : recordId.trim();
     }
 
-    public String getTranslatorId() {
-        return translatorId;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setTranslatorId(String translatorId) {
-        this.translatorId = translatorId == null ? null : translatorId.trim();
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
     }
 
-    public String getContribution() {
-        return contribution;
+    public Integer getGriwthValue() {
+        return griwthValue;
     }
 
-    public void setContribution(String contribution) {
-        this.contribution = contribution == null ? null : contribution.trim();
+    public void setGriwthValue(Integer griwthValue) {
+        this.griwthValue = griwthValue;
     }
 
-    public String getContributionResource() {
-        return contributionResource;
+    public String getGriwthResource() {
+        return griwthResource;
     }
 
-    public void setContributionResource(String contributionResource) {
-        this.contributionResource = contributionResource == null ? null : contributionResource.trim();
+    public void setGriwthResource(String griwthResource) {
+        this.griwthResource = griwthResource == null ? null : griwthResource.trim();
     }
 
     public String getResourceDetail() {

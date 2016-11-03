@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ai.yc.user.dao.mapper.interfaces.ContributionValueMapper" >
-  <resultMap id="BaseResultMap" type="com.ai.yc.user.dao.mapper.bo.ContributionValue" >
+<mapper namespace="com.ai.yc.user.dao.mapper.interfaces.UsrGriwthValueMapper" >
+  <resultMap id="BaseResultMap" type="com.ai.yc.user.dao.mapper.bo.UsrGriwthValue" >
     <id column="record_id" property="recordId" jdbcType="VARCHAR" />
-    <result column="TRANSLATOR_ID" property="translatorId" jdbcType="VARCHAR" />
-    <result column="contribution" property="contribution" jdbcType="VARCHAR" />
-    <result column="contribution_resource" property="contributionResource" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="griwth_value" property="griwthValue" jdbcType="INTEGER" />
+    <result column="griwth_resource" property="griwthResource" jdbcType="VARCHAR" />
     <result column="resource_detail" property="resourceDetail" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="resource_time" property="resourceTime" jdbcType="TIMESTAMP" />
@@ -69,17 +69,17 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    record_id, TRANSLATOR_ID, contribution, contribution_resource, resource_detail, create_time, 
+    record_id, USER_ID, griwth_value, griwth_resource, resource_detail, create_time, 
     resource_time
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.yc.user.dao.mapper.bo.ContributionValueCriteria" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.yc.user.dao.mapper.bo.UsrGriwthValueCriteria" >
     select
     <if test="distinct" >
       distinct
     </if>
     'false' as QUERYID,
     <include refid="Base_Column_List" />
-    from contribution_value
+    from usr_griwth_value
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -93,41 +93,41 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from contribution_value
+    from usr_griwth_value
     where record_id = #{recordId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from contribution_value
+    delete from usr_griwth_value
     where record_id = #{recordId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.ai.yc.user.dao.mapper.bo.ContributionValueCriteria" >
-    delete from contribution_value
+  <delete id="deleteByExample" parameterType="com.ai.yc.user.dao.mapper.bo.UsrGriwthValueCriteria" >
+    delete from usr_griwth_value
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.ai.yc.user.dao.mapper.bo.ContributionValue" >
-    insert into contribution_value (record_id, TRANSLATOR_ID, contribution, 
-      contribution_resource, resource_detail, create_time, 
+  <insert id="insert" parameterType="com.ai.yc.user.dao.mapper.bo.UsrGriwthValue" >
+    insert into usr_griwth_value (record_id, USER_ID, griwth_value, 
+      griwth_resource, resource_detail, create_time, 
       resource_time)
-    values (#{recordId,jdbcType=VARCHAR}, #{translatorId,jdbcType=VARCHAR}, #{contribution,jdbcType=VARCHAR}, 
-      #{contributionResource,jdbcType=VARCHAR}, #{resourceDetail,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+    values (#{recordId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{griwthValue,jdbcType=INTEGER}, 
+      #{griwthResource,jdbcType=VARCHAR}, #{resourceDetail,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{resourceTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.ai.yc.user.dao.mapper.bo.ContributionValue" >
-    insert into contribution_value
+  <insert id="insertSelective" parameterType="com.ai.yc.user.dao.mapper.bo.UsrGriwthValue" >
+    insert into usr_griwth_value
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="recordId != null" >
         record_id,
       </if>
-      <if test="translatorId != null" >
-        TRANSLATOR_ID,
+      <if test="userId != null" >
+        USER_ID,
       </if>
-      <if test="contribution != null" >
-        contribution,
+      <if test="griwthValue != null" >
+        griwth_value,
       </if>
-      <if test="contributionResource != null" >
-        contribution_resource,
+      <if test="griwthResource != null" >
+        griwth_resource,
       </if>
       <if test="resourceDetail != null" >
         resource_detail,
@@ -143,14 +143,14 @@
       <if test="recordId != null" >
         #{recordId,jdbcType=VARCHAR},
       </if>
-      <if test="translatorId != null" >
-        #{translatorId,jdbcType=VARCHAR},
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="contribution != null" >
-        #{contribution,jdbcType=VARCHAR},
+      <if test="griwthValue != null" >
+        #{griwthValue,jdbcType=INTEGER},
       </if>
-      <if test="contributionResource != null" >
-        #{contributionResource,jdbcType=VARCHAR},
+      <if test="griwthResource != null" >
+        #{griwthResource,jdbcType=VARCHAR},
       </if>
       <if test="resourceDetail != null" >
         #{resourceDetail,jdbcType=VARCHAR},
@@ -163,26 +163,26 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.ai.yc.user.dao.mapper.bo.ContributionValueCriteria" resultType="java.lang.Integer" >
-    select count(*) from contribution_value
+  <select id="countByExample" parameterType="com.ai.yc.user.dao.mapper.bo.UsrGriwthValueCriteria" resultType="java.lang.Integer" >
+    select count(*) from usr_griwth_value
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update contribution_value
+    update usr_griwth_value
     <set >
       <if test="record.recordId != null" >
         record_id = #{record.recordId,jdbcType=VARCHAR},
       </if>
-      <if test="record.translatorId != null" >
-        TRANSLATOR_ID = #{record.translatorId,jdbcType=VARCHAR},
+      <if test="record.userId != null" >
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
       </if>
-      <if test="record.contribution != null" >
-        contribution = #{record.contribution,jdbcType=VARCHAR},
+      <if test="record.griwthValue != null" >
+        griwth_value = #{record.griwthValue,jdbcType=INTEGER},
       </if>
-      <if test="record.contributionResource != null" >
-        contribution_resource = #{record.contributionResource,jdbcType=VARCHAR},
+      <if test="record.griwthResource != null" >
+        griwth_resource = #{record.griwthResource,jdbcType=VARCHAR},
       </if>
       <if test="record.resourceDetail != null" >
         resource_detail = #{record.resourceDetail,jdbcType=VARCHAR},
@@ -199,11 +199,11 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update contribution_value
+    update usr_griwth_value
     set record_id = #{record.recordId,jdbcType=VARCHAR},
-      TRANSLATOR_ID = #{record.translatorId,jdbcType=VARCHAR},
-      contribution = #{record.contribution,jdbcType=VARCHAR},
-      contribution_resource = #{record.contributionResource,jdbcType=VARCHAR},
+      USER_ID = #{record.userId,jdbcType=VARCHAR},
+      griwth_value = #{record.griwthValue,jdbcType=INTEGER},
+      griwth_resource = #{record.griwthResource,jdbcType=VARCHAR},
       resource_detail = #{record.resourceDetail,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       resource_time = #{record.resourceTime,jdbcType=TIMESTAMP}
@@ -211,17 +211,17 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.ai.yc.user.dao.mapper.bo.ContributionValue" >
-    update contribution_value
+  <update id="updateByPrimaryKeySelective" parameterType="com.ai.yc.user.dao.mapper.bo.UsrGriwthValue" >
+    update usr_griwth_value
     <set >
-      <if test="translatorId != null" >
-        TRANSLATOR_ID = #{translatorId,jdbcType=VARCHAR},
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
       </if>
-      <if test="contribution != null" >
-        contribution = #{contribution,jdbcType=VARCHAR},
+      <if test="griwthValue != null" >
+        griwth_value = #{griwthValue,jdbcType=INTEGER},
       </if>
-      <if test="contributionResource != null" >
-        contribution_resource = #{contributionResource,jdbcType=VARCHAR},
+      <if test="griwthResource != null" >
+        griwth_resource = #{griwthResource,jdbcType=VARCHAR},
       </if>
       <if test="resourceDetail != null" >
         resource_detail = #{resourceDetail,jdbcType=VARCHAR},
@@ -235,11 +235,11 @@
     </set>
     where record_id = #{recordId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.ai.yc.user.dao.mapper.bo.ContributionValue" >
-    update contribution_value
-    set TRANSLATOR_ID = #{translatorId,jdbcType=VARCHAR},
-      contribution = #{contribution,jdbcType=VARCHAR},
-      contribution_resource = #{contributionResource,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.ai.yc.user.dao.mapper.bo.UsrGriwthValue" >
+    update usr_griwth_value
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      griwth_value = #{griwthValue,jdbcType=INTEGER},
+      griwth_resource = #{griwthResource,jdbcType=VARCHAR},
       resource_detail = #{resourceDetail,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       resource_time = #{resourceTime,jdbcType=TIMESTAMP}
