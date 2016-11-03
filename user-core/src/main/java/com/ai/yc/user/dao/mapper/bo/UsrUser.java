@@ -129,25 +129,45 @@ public class UsrUser {
 		this.isAdmin = isAdmin;
 	}
 
-	public static UsrUser getUsrUserByInsertReq(InsertYCUserRequest insertinfo) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-		Class usrUserClass = Class.forName(UsrUser.class.getName());
-		Object usrUserObj = usrUserClass.newInstance();
-		Object insertInfoObj = insertinfo;
-//		UsrUser usrUser = new UsrUser();
-		Field[] usrFields = UsrUser.class.getFields();
-		Field[] insertfields = InsertYCUserRequest.class.getFields();
-		for(int i = 0; i < insertfields.length; i++){
-			for(int j = 0; j < usrFields.length; j++){
-				if(insertfields[i].equals(usrFields[j])){
-					usrFields[j].setAccessible(true);
-					
-					usrFields[j].set(usrUserObj, usrFields[j]);
+	@Override
+	public String toString() {
+		return "UsrUser [userId=" + userId + ", nickname=" + nickname + ", state=" + state + ", lastname=" + lastname
+				+ ", firstname=" + firstname + ", sex=" + sex + ", birthday=" + birthday + ", telephone=" + telephone
+				+ ", mobilePhone=" + mobilePhone + ", qq=" + qq + ", address=" + address + ", safetyLevel="
+				+ safetyLevel + ", cnCity=" + cnCity + ", province=" + province + ", country=" + country + ", timeZone="
+				+ timeZone + ", isRanslator=" + isRanslator + ", registTime=" + registTime + ", lastModifyTime="
+				+ lastModifyTime + ", occupation=" + occupation + ", title=" + title + ", usersource=" + usersource
+				+ ", thirduid=" + thirduid + ", personsign=" + personsign + ", zipCode=" + zipCode + ", isAdmin="
+				+ isAdmin + "]";
+	}
+
+	public static UsrUser getUsrUserByInsertReq(InsertYCUserRequest insertinfo){
+		try{
+			Class<?> usrUserClass = Class.forName(UsrUser.class.getName());
+			Object usrUserObj = usrUserClass.newInstance();
+			Object insertInfoObj = insertinfo;
+			Field[] usrFields = UsrUser.class.getDeclaredFields();
+			Field[] insertfields = InsertYCUserRequest.class.getDeclaredFields();
+			for(int i = 0; i < insertfields.length; i++){
+				for(int j = 0; j < usrFields.length; j++){
+					if(insertfields[i].getName().equals(usrFields[j].getName())){
+						usrFields[j].setAccessible(true);
+						insertfields[i].setAccessible(true);
+						if(usrFields[j].getGenericType() == insertfields[i].getGenericType())
+							usrFields[j].set(usrUserObj, insertfields[i].get(insertInfoObj));
+						System.out.println(usrUserObj);
+					}
 				}
 			}
+			UsrUser usrUser = (UsrUser) usrUserObj;
+			return usrUser;
+		} catch ( InstantiationException| IllegalAccessException| ClassNotFoundException  e){
+			e.printStackTrace();
 		}
-		
 		return null;
 	}
+	
+	
 
 	public String getUserId() {
         return userId;

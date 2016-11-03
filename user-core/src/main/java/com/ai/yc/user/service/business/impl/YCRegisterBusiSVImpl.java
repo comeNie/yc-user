@@ -50,7 +50,7 @@ public class YCRegisterBusiSVImpl implements IYCRegisterBusiSV {
     public IYCRegisterAtomSV ycRegisterAtomSV;
     
 	@Override
-	public String insertUserInfo(InsertYCUserRequest insertinfo) {
+	public String insertUserInfo(InsertYCUserRequest insertinfo)  {
 		// 孟博接口
 		
 		// 插入数据
