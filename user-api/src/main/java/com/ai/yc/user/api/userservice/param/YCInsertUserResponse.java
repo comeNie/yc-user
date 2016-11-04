@@ -14,17 +14,10 @@ public class YCInsertUserResponse extends BaseResponse {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String userId;
-	private String responseCode;
 	public String getUserId() {
 		return userId;
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
-	}
-	public String getResponseCode() {
-		return responseCode;
-	}
-	public void setResponseCode(String responseCode) {
-		this.responseCode = responseCode;
 	}
 }

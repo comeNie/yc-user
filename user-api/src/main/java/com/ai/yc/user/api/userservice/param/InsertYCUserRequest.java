@@ -1,7 +1,5 @@
 package com.ai.yc.user.api.userservice.param;
 
-import java.sql.Timestamp;
-
 /** 
  * @author  作者 “WTF” E-mail: 1031248990@qq.com
  * @date 创建时间：2016年11月2日 上午11:17:36 
@@ -9,56 +7,77 @@ import java.sql.Timestamp;
  * @since  
  */
 public class InsertYCUserRequest {
-
-	private String phone; // 电话
 	
-	private String email; // 邮箱
+	/**
+	 * 用户名 默认手机号或者是邮箱地址 +随机数
+	 * 必填
+	 */
+	private String userName;
+	/**
+	 * 座机电话
+	 */
+	private String telephone; 
+	/**
+	 * 邮箱地址
+	 */
+	private String email; 
+	/**
+	 * 密码
+	 */
+	private String password; 
 	
-	private String password; // 密码
+	/**
+	 * 昵称 注册默认译粉+随机数
+	 * 必填
+	 */
+	private String nickname; 
 	
-	// ......
-	
-	private String nickname; // 昵称
-
     private String lastname;
 
     private String firstname;
-
+    /**
+     * 性别 0、女， 1、男
+     */
     private Integer sex;
-
+    /**
+     * 手机号
+     */
     private String mobilePhone;
-
+    /**
+     * QQ
+     */
     private String qq;
-
+    /**
+     * 地址
+     */
     private String address;
     
+    /**
+     * 国家
+     */
+    private String country;
+    /**
+     * 城市
+     */
+    private String cnCity;
+    /**
+     * 省份
+     */
+    private String province;
+    /**
+     * 姓名
+     */
+    private String fullName;
     
-    
-	public InsertYCUserRequest(String phone, String email, String password, String nickname, String lastname,
-			String firstname, Integer sex, String mobilePhone, String qq, String address) {
-		super();
-		this.phone = phone;
-		this.email = email;
-		this.password = password;
-		this.nickname = nickname;
-		this.lastname = lastname;
-		this.firstname = firstname;
-		this.sex = sex;
-		this.mobilePhone = mobilePhone;
-		this.qq = qq;
-		this.address = address;
+
+	public String getTelephone() {
+		return telephone;
 	}
 
 
 
-	public String getPhone() {
-		return phone;
-	}
-
-
-
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 
 
@@ -170,19 +189,59 @@ public class InsertYCUserRequest {
 	}
 
 
-
-	@Override
-	public String toString() {
-		return "InsertYCUserRequest [phone=" + phone + ", email=" + email + ", password=" + password + ", nickname="
-				+ nickname + ", lastname=" + lastname + ", firstname=" + firstname + ", sex=" + sex + ", mobilePhone="
-				+ mobilePhone + ", qq=" + qq + ", address=" + address + "]";
+	public String getCountry() {
+		return country;
 	}
 
 
 
-	public InsertYCUserRequest() {
-		super();
+	public void setCountry(String country) {
+		this.country = country;
 	}
-	
-    
+
+
+
+	public String getCnCity() {
+		return cnCity;
+	}
+
+
+
+	public void setCnCity(String cnCity) {
+		this.cnCity = cnCity;
+	}
+
+
+
+	public String getProvince() {
+		return province;
+	}
+
+
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+
+
+	public String getUserName() {
+		return userName;
+	}
+
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 }

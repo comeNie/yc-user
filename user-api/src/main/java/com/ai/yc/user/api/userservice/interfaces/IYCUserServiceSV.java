@@ -18,55 +18,60 @@ import com.ai.yc.user.api.userservice.param.YCUpdateUserResponse;
 import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
 
 
-@Path("/ycservice")
+@Path("/ycuserservice")
 @Consumes({ MediaType.APPLICATION_JSON })
 @Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_XML })
 public interface IYCUserServiceSV {
 
 
 	/**
+	 * 新增用户信息基本数据
 	 * @param 
 	 * @return
 	 * @ApiCode USR_0001
-     * @RestRelativeURL ycservice/register/user
+     * @RestRelativeURL ycuserservice/insertYCUser
 	 */
 	@POST
-	@Path("/register/user")
+	@Path("/insertYCUser")
 	YCInsertUserResponse insertYCUser(InsertYCUserRequest registerParamsRequest);
 	/**
+	 * 修改用户基本信息数据
 	 * @param 
 	 * @return
 	 * @ApiCode USR_0003
-     * @RestRelativeURL ycservice/updateUserBaseInfo
+     * @RestRelativeURL ycuserservice/updateUserBaseInfo
 	 */
 	@POST
-	@Path("/updateUserBaseInfo")
+	@Path("/updateYCUserInfo")
 	YCUpdateUserResponse updateYCUserInfo(UpdateYCUserRequest updateUserParams) ;
 	/**
+	 * 查询用户基本信息数据
 	 * @param 
 	 * @return
 	 * @ApiCode USR_0002
-     * @RestRelativeURL ycservice/searchYCUserInfo
+     * @RestRelativeURL ycuserservice/searchYCUserInfo
 	 */
 	@POST
 	@Path("/searchYCUserInfo")
 	YCUserInfoResponse searchYCUserInfo(SearchYCUserRequest ucUser) ;
 
 	/**
+	 * 查询译员基本信息数据
 	 * @param 
 	 * @return
 	 * @ApiCode USR_0004
-     * @RestRelativeURL ycservice/searchYCTranslatorInfo
+     * @RestRelativeURL ycuserservice/searchYCTranslatorInfo
 	 */
 	@POST
 	@Path("/searchYCTranslatorInfo")
 	YCTranslatorInfoResponse searchYCTranslatorInfo(SearchYCTranslatorRequest tUsrId);
 	
 	/**
+	 * 新增联系人基本信息
 	 * @param 
 	 * @return
 	 * @ApiCode USR_0005
-     * @RestRelativeURL ycservice/searchYCContactInfo
+     * @RestRelativeURL ycuserservice/searchYCContactInfo
 	 */
 	@POST
 	@Path("/searchYCContactInfo")
