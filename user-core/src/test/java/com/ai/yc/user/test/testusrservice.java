@@ -25,7 +25,8 @@ public class testusrservice {
 	
 	@Test
 	public void test() {
-		InsertYCUserRequest insertu = new InsertYCUserRequest("13007420476","1031248990@qq.com","123456","tom","h","b",1,"13007420476","1031248990","BJ");
+		InsertYCUserRequest insertu = new InsertYCUserRequest();
+		insertu.setAddress("sss");
 		YCInsertUserResponse User =  usSV.insertYCUser(insertu);
 		String UserID = User.getUserId();
 		System.out.println("UserID : " + UserID);
