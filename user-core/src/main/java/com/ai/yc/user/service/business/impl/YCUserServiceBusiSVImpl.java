@@ -11,6 +11,7 @@ import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.constants.SequenceCodeConstants.UserSequenceCode;
+import com.ai.yc.user.dao.mapper.bo.UsrTranslator;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
 import com.ai.yc.user.service.atom.interfaces.IYCUserServiceAtomSV;
@@ -63,6 +64,12 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	public UsrUser searchUserInfo(String userID) {
 		UsrUser usrUser = ycUSAtomSV.getUserInfo(userID);
 		return usrUser;
+	}
+
+	@Override
+	public UsrTranslator searchYCUsrTranslatorInfo(String userId) {
+		UsrTranslator utr = ycUSAtomSV.getUsrTranslatorInfo(userId);
+		return null;
 	}
 
 }

@@ -72,11 +72,4 @@ public interface IYCUserServiceSV {
 	@Path("/getcontactinfobyuserid")
 	YCContactInfoResponse searchYCContactInfoById(SearchYCContactRequest cUsrId);
 	
-//	@POST
-//	@Path("/searchYCUserList")
-//	YCUserInfoList searchYCUserList(SearchYCUserListParams ucUser) throws BusinessException, SystemException;
-//
-//	@POST
-//	@Path("/deleteYCUser")
-//	YCDeleteUserResponse deleteYCUser(DeleteYCUserParams ucUser) throws BusinessException, SystemException;
 }

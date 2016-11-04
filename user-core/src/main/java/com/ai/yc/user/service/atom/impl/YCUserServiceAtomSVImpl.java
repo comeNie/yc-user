@@ -6,8 +6,10 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ai.yc.user.dao.mapper.bo.UsrTranslator;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
+import com.ai.yc.user.dao.mapper.interfaces.UsrTranslatorMapper;
 import com.ai.yc.user.dao.mapper.interfaces.UsrUserMapper;
 import com.ai.yc.user.service.atom.interfaces.IYCUserServiceAtomSV;
 
@@ -17,12 +19,10 @@ public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 
 	@Autowired
 	private transient UsrUserMapper tUserMapper;
+	
+	@Autowired
+	private transient UsrTranslatorMapper uTranslatorMapper;
 
-	@Override
-	public List<UsrUser> getUserInfo(UsrUserCriteria criteria) {
-		
-		return null;
-	}
 
 	@Override
 	public int updateUserInfo(UsrUser record, UsrUserCriteria example) {
@@ -37,6 +37,11 @@ public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 	@Override
 	public int insertUserInfo(UsrUser user) {
 		return tUserMapper.insert(user);
+	}
+
+	@Override
+	public UsrTranslator getUsrTranslatorInfo(String userId) {
+		return uTranslatorMapper.selectByPrimaryKey(userId);
 	}
 
 //    @Autowired

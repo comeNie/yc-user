@@ -1,5 +1,6 @@
 package com.ai.yc.user.api.userservice.param;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 import com.ai.opt.base.vo.BaseResponse;
@@ -16,7 +17,27 @@ public class YCTranslatorInfoResponse extends BaseResponse {
 	 */
 	private static final long serialVersionUID = -9068009364796285584L;
 	
-	
+	private String userId;
+
+    private String lspId;
+
+    private String lspRole;
+
+    private Integer workingLife;
+
+    private String motherTongue;
+
+    private String translationType;
+
+    private BigDecimal interpretPrice;
+
+    private String introduction;
+
+    private Integer isLsp;
+
+    private String vipLevel;
+
+    private String legalCertNum;
 	
 	
 	

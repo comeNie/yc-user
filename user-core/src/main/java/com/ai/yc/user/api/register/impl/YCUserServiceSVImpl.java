@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.vo.ResponseHeader;
+import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCContactRequest;
@@ -18,6 +19,7 @@ import com.ai.yc.user.api.userservice.param.YCTranslatorInfoResponse;
 import com.ai.yc.user.api.userservice.param.YCUpdateUserResponse;
 import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
 import com.ai.yc.user.constants.ExceptCodeConstants;
+import com.ai.yc.user.dao.mapper.bo.UsrTranslator;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.service.business.interfaces.IYCUserServiceBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -27,12 +29,12 @@ import com.alibaba.dubbo.config.annotation.Service;
 public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
     @Autowired
-    public IYCUserServiceBusiSV ycRegisterBusiSv;
+    public IYCUserServiceBusiSV ycUsrServiceBusiSv;
 
 	@Override
 	public YCInsertUserResponse insertYCUser(InsertYCUserRequest insertInfo){
 		insertInfo.setMobilePhone(insertInfo.getMobilePhone());
-		String userId = ycRegisterBusiSv.insertUserInfo(insertInfo);
+		String userId = ycUsrServiceBusiSv.insertUserInfo(insertInfo);
 		YCInsertUserResponse result = new YCInsertUserResponse();
 		ResponseHeader responseHeader = new ResponseHeader(true, "1", "更新成功");
 		result.setResponseHeader(responseHeader);
@@ -43,7 +45,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCUpdateUserResponse updateYCUserInfo(UpdateYCUserRequest updateUserParams){
-		boolean flag = ycRegisterBusiSv.updateUserInfo(updateUserParams);
+		boolean flag = ycUsrServiceBusiSv.updateUserInfo(updateUserParams);
 		YCUpdateUserResponse result = new YCUpdateUserResponse();
 		ResponseHeader responseHeader = new ResponseHeader(true, "1", "更新成功");
 		result.setResponseHeader(responseHeader);
@@ -53,9 +55,10 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCUserInfoResponse searchYCUserInfo(SearchYCUserRequest userId){
-		UsrUser usrUser = ycRegisterBusiSv.searchUserInfo(userId.getUserId());
-		YCUserInfoResponse result = GetUsrInfoByUsrUser(usrUser);
-		
+		UsrUser usrUser = ycUsrServiceBusiSv.searchUserInfo(userId.getUserId());
+//		YCUserInfoResponse result = GetUsrInfoByUsrUser(usrUser);
+		YCUserInfoResponse result = new YCUserInfoResponse();
+		BeanUtils.copyProperties(result, usrUser);
 		ResponseHeader responseHeader = new ResponseHeader(true, "1", "更新成功");
 		result.setResponseHeader(responseHeader);
         result.setResponseCode(ExceptCodeConstants.SUCCESS);
@@ -65,12 +68,18 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCTranslatorInfoResponse searchYCTranslatorInfoById(SearchYCTranslatorRequest tUsrId) {
-		return null;
+		UsrTranslator usrTranslator = ycUsrServiceBusiSv.searchYCUsrTranslatorInfo(tUsrId.getUserId());
+		YCTranslatorInfoResponse result = new YCTranslatorInfoResponse();
+		BeanUtils.copyProperties(result, usrTranslator);
+		ResponseHeader responseHeader = new ResponseHeader(true, "1", "更新成功");
+		result.setResponseHeader(responseHeader);
+        result.setResponseCode(ExceptCodeConstants.SUCCESS);
+		return result;
 	}
 
 	@Override
 	public YCContactInfoResponse searchYCContactInfoById(SearchYCContactRequest cUsrId) {
-//		UsrUser usrUser = ycRegisterBusiSv.(cUsrId.getUserId());
+//		UsrUser usrUser = ycUsrServiceBusiSv.(cUsrId.getUserId());
 //		YCUserInfo result = GetUsrInfoByUsrUser(usrUser);
 //		
 //		ResponseHeader responseHeader = new ResponseHeader(true, "1", "更新成功");
