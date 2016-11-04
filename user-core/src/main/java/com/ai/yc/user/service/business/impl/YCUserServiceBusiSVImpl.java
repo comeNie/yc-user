@@ -9,8 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.sdk.components.sequence.util.SeqUtil;
 import com.ai.opt.sdk.constants.ExceptCodeConstants;
+import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.StringUtil;
+import com.ai.yc.ucenter.api.members.interfaces.IUcMembersSV;
+import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.constants.SequenceCodeConstants.UserSequenceCode;
@@ -20,6 +23,7 @@ import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
 import com.ai.yc.user.service.atom.interfaces.IYCUserServiceAtomSV;
 import com.ai.yc.user.service.business.interfaces.IYCUserServiceBusiSV;
+import com.ai.yc.user.util.UCDateUtils;
 
 @Service
 @Transactional
@@ -37,6 +41,24 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
      */
 	@Override
 	public String insertUserInfo(InsertYCUserRequest insertinfo)  {
+		if(StringUtil.isBlank(insertinfo.getRegip())){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户ip不能为空");
+		}
+		
+		if(StringUtil.isBlank(insertinfo.getLoginway())){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户名不能为空");
+		} else {
+			if(insertinfo.getLoginway().equals("1")){
+				if(StringUtil.isBlank(insertinfo.getEmail())){
+					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户名不能为空");
+				}
+			}
+			if(insertinfo.getLoginway().equals("2")){
+				if(StringUtil.isBlank(insertinfo.getEmail())){
+					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户名不能为空");
+				}
+			}
+		}
 		
 		if(StringUtil.isBlank(insertinfo.getUserName())){
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户名不能为空");
@@ -47,6 +69,18 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		}
 		
 		// 孟博注册接口
+		IUcMembersSV iUcMembersSV = DubboConsumerFactory.getService(IUcMembersSV.class);
+		UcMembersRegisterRequest umrr = new UcMembersRegisterRequest();
+		umrr.setRegip(insertinfo.getRegip());
+		umrr.setOperationcode(insertinfo.getOperationcode());
+		umrr.setUsername(insertinfo.getUserName());
+		umrr.setEmail(insertinfo.getEmail());
+		umrr.setPassword(insertinfo.getPassword());
+		umrr.setUsersource("gtcom");
+		umrr.setLoginmode("0");
+		umrr.setLoginway(insertinfo.getLoginway());
+		umrr.setCreatetime(UCDateUtils.getSystime() + "");
+		iUcMembersSV.ucRegisterMember(umrr);
 		
 		// 插入数据
 		UsrUser tUser = new UsrUser();

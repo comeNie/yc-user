@@ -9,6 +9,25 @@ package com.ai.yc.user.api.userservice.param;
 public class InsertYCUserRequest {
 	
 	/**
+	 * 手机激活码
+	 * 手机+密码方式有值
+	 */
+	private String operationcode;
+	/**
+	 * 必填
+	 * 注册方式
+	 * 1：邮箱密码
+	 * 2：手机密码
+	 * 3：手机动态密码
+	 * 4：用户名密码
+	 */
+	private String loginway;
+	/**
+	 * 必填
+	 * 注册ip
+	 */
+	private String regip;
+	/**
 	 * 用户名 默认手机号或者是邮箱地址 +随机数
 	 * 必填
 	 */
@@ -243,5 +262,41 @@ public class InsertYCUserRequest {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+
+
+	public String getRegip() {
+		return regip;
+	}
+
+
+
+	public void setRegip(String regip) {
+		this.regip = regip;
+	}
+
+
+
+	public String getLoginway() {
+		return loginway;
+	}
+
+
+
+	public void setLoginway(String loginway) {
+		this.loginway = loginway;
+	}
+
+
+
+	public String getOperationcode() {
+		return operationcode;
+	}
+
+
+
+	public void setOperationcode(String operationcode) {
+		this.operationcode = operationcode;
 	}
 }
