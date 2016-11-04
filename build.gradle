@@ -18,7 +18,7 @@ allprojects {
     sourceCompatibility = 1.7
 
     configurations.all { resolutionStrategy.cacheChangingModulesFor 0, 'seconds' }
-    group="com.ai.slp.user"
+    group="com.ai.yc.user"
 }
 
 subprojects {
@@ -56,7 +56,7 @@ subprojects {
 project("user-api") {
     project.ext {
         appName = "user-api"
-        apiDir =  "src/main/java/com/ai/slp/user/api/"
+        apiDir =  "src/main/java/com/ai/yc/user/api/"
     }
 
     jar {
@@ -75,7 +75,7 @@ project("user-core") {
     jar {
         baseName appName
         version moduleVersion
-        include "com/ai/slp/user/*/**"
+        include "com/ai/yc/user/*/**"
         manifest {
             attributes 'packageName': appName, 'Built-By': builtBy, 'create-date': new Date().format('yyyy-MM-dd HH:mm:ss')
         }
