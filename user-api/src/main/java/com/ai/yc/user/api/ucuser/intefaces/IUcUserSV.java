@@ -9,12 +9,8 @@ import javax.ws.rs.core.MediaType;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.yc.user.api.ucuser.param.AgentUserResponse;
-import com.ai.yc.user.api.ucuser.param.QueryBaseInfoRequest;
-import com.ai.yc.user.api.ucuser.param.SearchUserListResponse;
 import com.ai.yc.user.api.ucuser.param.SearchUserRequest;
 import com.ai.yc.user.api.ucuser.param.SearchUserResponse;
-import com.ai.yc.user.api.ucuser.param.UcUserInfoParams;
 import com.ai.yc.user.api.ucuser.param.UpdateUserInfoRequest;
 
 @Path("/ucUserservice")
@@ -51,33 +47,4 @@ public interface IUcUserSV {
     @POST
     @Path("/updateBaseInfo")
     BaseResponse updateBaseInfo(UpdateUserInfoRequest request) throws BusinessException,SystemException;
-    
-    /**
-     * 根据用户类型查询信息
-     * @param request
-     * @return
-     * @throws BusinessException
-     * @throws SystemException
-     * @author zhangqiang7
-     * @ApiDocMethod
-     * @ApiCode UAC_0016
-     * @RestRelativeURL ucUserservice/queryByBaseInfo
-     */
-    @POST
-    @Path("/queryByBaseInfo")
-    SearchUserResponse queryByBaseInfo(QueryBaseInfoRequest request) throws BusinessException,SystemException;
-    /**
-     * 为乐视提供的代理商信息服务
-     * @param ucUserInfo
-     * @return
-     * @throws BusinessException
-     * @throws SystemException
-     * @author zhangyh7
-     * @ApiDocMethod
-     * @ApiCode UAC_0017
-     * @RestRelativeURL ucUserservice/queryAgentUserInfo
-     */
-    @POST
-    @Path("/queryAgentUserInfo")
-    AgentUserResponse queryAgentUserInfo(UcUserInfoParams ucUserInfo) throws BusinessException,SystemException;
 }
