@@ -37,39 +37,39 @@ public interface IYCUserServiceSV {
 	 * @param 
 	 * @return
 	 * @ApiCode USR_0003
-     * @RestRelativeURL ycservice/adduserbaseinfo
+     * @RestRelativeURL ycservice/updateUserBaseInfo
 	 */
 	@POST
-	@Path("/adduserbaseinfo")
+	@Path("/updateUserBaseInfo")
 	YCUpdateUserResponse updateYCUserInfo(UpdateYCUserRequest updateUserParams) ;
 	/**
 	 * @param 
 	 * @return
 	 * @ApiCode USR_0002
-     * @RestRelativeURL ycservice/getusercenterbaseinfo
+     * @RestRelativeURL ycservice/searchYCUserInfo
 	 */
 	@POST
-	@Path("/getusercenterbaseinfo")
+	@Path("/searchYCUserInfo")
 	YCUserInfoResponse searchYCUserInfo(SearchYCUserRequest ucUser) ;
 
 	/**
 	 * @param 
 	 * @return
 	 * @ApiCode USR_0004
-     * @RestRelativeURL ycservice/gettranslatorinfobyuserid
+     * @RestRelativeURL ycservice/searchYCTranslatorInfo
 	 */
 	@POST
-	@Path("/gettranslatorinfobyuserid")
+	@Path("/searchYCTranslatorInfo")
 	YCTranslatorInfoResponse searchYCTranslatorInfo(SearchYCTranslatorRequest tUsrId);
 	
 	/**
 	 * @param 
 	 * @return
 	 * @ApiCode USR_0005
-     * @RestRelativeURL ycservice/getcontactinfobyuserid
+     * @RestRelativeURL ycservice/searchYCContactInfo
 	 */
 	@POST
-	@Path("/getcontactinfobyuserid")
+	@Path("/searchYCContactInfo")
 	YCContactInfoResponse searchYCContactInfo(SearchYCContactRequest cUsrId);
 	
 }
