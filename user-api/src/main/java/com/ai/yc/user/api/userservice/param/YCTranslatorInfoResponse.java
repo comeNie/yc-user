@@ -1,4 +1,4 @@
-package com.ai.yc.user.api.register.param;
+package com.ai.yc.user.api.userservice.param;
 
 import java.sql.Timestamp;
 
@@ -10,7 +10,7 @@ import com.ai.opt.base.vo.BaseResponse;
  * @version 
  * @since  
  */
-public class YCTranslatorInfo extends BaseResponse {
+public class YCTranslatorInfoResponse extends BaseResponse {
 	/**
 	 * 
 	 */

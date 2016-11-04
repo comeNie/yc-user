@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 import org.junit.Test;
 
-import com.ai.yc.user.api.register.param.InsertYCUserRequest;
+import com.ai.yc.user.api.userservice.param.InsertYCUserParams;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 
 /** 

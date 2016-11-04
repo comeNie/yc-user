@@ -6,17 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.vo.ResponseHeader;
-import com.ai.yc.user.api.register.interfaces.IYCUserServiceSV;
-import com.ai.yc.user.api.register.param.InsertYCUserRequest;
-import com.ai.yc.user.api.register.param.SearchYCContactUserId;
-import com.ai.yc.user.api.register.param.SearchYCTranslatorUserId;
-import com.ai.yc.user.api.register.param.SearchYCUserParams;
-import com.ai.yc.user.api.register.param.UpdateYCUserParams;
-import com.ai.yc.user.api.register.param.YCContactInfo;
-import com.ai.yc.user.api.register.param.YCInsertUserResponse;
-import com.ai.yc.user.api.register.param.YCTranslatorInfo;
-import com.ai.yc.user.api.register.param.YCUpdateUserResponse;
-import com.ai.yc.user.api.register.param.YCUserInfo;
+import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
+import com.ai.yc.user.api.userservice.param.InsertYCUserParams;
+import com.ai.yc.user.api.userservice.param.SearchYCContactParams;
+import com.ai.yc.user.api.userservice.param.SearchYCTranslatorParams;
+import com.ai.yc.user.api.userservice.param.SearchYCUserParams;
+import com.ai.yc.user.api.userservice.param.UpdateYCUserParams;
+import com.ai.yc.user.api.userservice.param.YCContactInfoResponse;
+import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
+import com.ai.yc.user.api.userservice.param.YCTranslatorInfoResponse;
+import com.ai.yc.user.api.userservice.param.YCUpdateUserResponse;
+import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
 import com.ai.yc.user.constants.ExceptCodeConstants;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.service.business.interfaces.IYCUserServiceBusiSV;
@@ -30,8 +30,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
     public IYCUserServiceBusiSV ycRegisterBusiSv;
 
 	@Override
-	public YCInsertUserResponse insertYCUser(InsertYCUserRequest insertInfo){
-		System.out.println("$$$$$$$$$$$"+insertInfo);
+	public YCInsertUserResponse insertYCUser(InsertYCUserParams insertInfo){
 		insertInfo.setMobilePhone(insertInfo.getMobilePhone());
 		String userId = ycRegisterBusiSv.insertUserInfo(insertInfo);
 		YCInsertUserResponse result = new YCInsertUserResponse();
@@ -53,9 +52,9 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 	}
 
 	@Override
-	public YCUserInfo searchYCUserInfo(SearchYCUserParams userId){
+	public YCUserInfoResponse searchYCUserInfo(SearchYCUserParams userId){
 		UsrUser usrUser = ycRegisterBusiSv.searchUserInfo(userId.getUserId());
-		YCUserInfo result = GetUsrInfoByUsrUser(usrUser);
+		YCUserInfoResponse result = GetUsrInfoByUsrUser(usrUser);
 		
 		ResponseHeader responseHeader = new ResponseHeader(true, "1", "更新成功");
 		result.setResponseHeader(responseHeader);
@@ -65,12 +64,12 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 	
 
 	@Override
-	public YCTranslatorInfo searchYCTranslatorInfoById(SearchYCTranslatorUserId tUsrId) {
+	public YCTranslatorInfoResponse searchYCTranslatorInfoById(SearchYCTranslatorParams tUsrId) {
 		return null;
 	}
 
 	@Override
-	public YCContactInfo searchYCContactInfoById(SearchYCContactUserId cUsrId) {
+	public YCContactInfoResponse searchYCContactInfoById(SearchYCContactParams cUsrId) {
 //		UsrUser usrUser = ycRegisterBusiSv.(cUsrId.getUserId());
 //		YCUserInfo result = GetUsrInfoByUsrUser(usrUser);
 //		
@@ -80,12 +79,12 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
         return null;
 	}
     
-	public YCUserInfo GetUsrInfoByUsrUser(UsrUser userparam) {
+	public YCUserInfoResponse GetUsrInfoByUsrUser(UsrUser userparam) {
 		try{
-			Class<?> usrUserClass = Class.forName(YCUserInfo.class.getName());
+			Class<?> usrUserClass = Class.forName(YCUserInfoResponse.class.getName());
 			Object usrUserObj = usrUserClass.newInstance();
 			Object insertInfoObj = userparam;
-			Field[] usrFields = YCUserInfo.class.getDeclaredFields();
+			Field[] usrFields = YCUserInfoResponse.class.getDeclaredFields();
 			Field[] insertfields = UsrUser.class.getDeclaredFields();
 			for(int i = 0; i < insertfields.length; i++){
 				for(int j = 0; j < usrFields.length; j++){
@@ -97,7 +96,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 					}
 				}
 			}
-			YCUserInfo usrInfo = (YCUserInfo) usrUserObj;
+			YCUserInfoResponse usrInfo = (YCUserInfoResponse) usrUserObj;
 			return usrInfo;
 		} catch ( InstantiationException| IllegalAccessException| ClassNotFoundException  e){
 			e.printStackTrace();

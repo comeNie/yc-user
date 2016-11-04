@@ -1,4 +1,4 @@
-package com.ai.yc.user.api.register.interfaces;
+package com.ai.yc.user.api.userservice.interfaces;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -6,16 +6,16 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.ai.yc.user.api.register.param.InsertYCUserRequest;
-import com.ai.yc.user.api.register.param.SearchYCContactUserId;
-import com.ai.yc.user.api.register.param.SearchYCTranslatorUserId;
-import com.ai.yc.user.api.register.param.SearchYCUserParams;
-import com.ai.yc.user.api.register.param.UpdateYCUserParams;
-import com.ai.yc.user.api.register.param.YCContactInfo;
-import com.ai.yc.user.api.register.param.YCInsertUserResponse;
-import com.ai.yc.user.api.register.param.YCTranslatorInfo;
-import com.ai.yc.user.api.register.param.YCUpdateUserResponse;
-import com.ai.yc.user.api.register.param.YCUserInfo;
+import com.ai.yc.user.api.userservice.param.InsertYCUserParams;
+import com.ai.yc.user.api.userservice.param.SearchYCContactParams;
+import com.ai.yc.user.api.userservice.param.SearchYCTranslatorParams;
+import com.ai.yc.user.api.userservice.param.SearchYCUserParams;
+import com.ai.yc.user.api.userservice.param.UpdateYCUserParams;
+import com.ai.yc.user.api.userservice.param.YCContactInfoResponse;
+import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
+import com.ai.yc.user.api.userservice.param.YCTranslatorInfoResponse;
+import com.ai.yc.user.api.userservice.param.YCUpdateUserResponse;
+import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
 
 
 @Path("/ycservice")
@@ -32,7 +32,7 @@ public interface IYCUserServiceSV {
 	 */
 	@POST
 	@Path("/register/user")
-	YCInsertUserResponse insertYCUser(InsertYCUserRequest registerParamsRequest);
+	YCInsertUserResponse insertYCUser(InsertYCUserParams registerParamsRequest);
 	/**
 	 * @param 
 	 * @return
@@ -50,7 +50,7 @@ public interface IYCUserServiceSV {
 	 */
 	@POST
 	@Path("/getusercenterbaseinfo")
-	YCUserInfo searchYCUserInfo(SearchYCUserParams ucUser) ;
+	YCUserInfoResponse searchYCUserInfo(SearchYCUserParams ucUser) ;
 
 	/**
 	 * @param 
@@ -60,7 +60,7 @@ public interface IYCUserServiceSV {
 	 */
 	@POST
 	@Path("/gettranslatorinfobyuserid")
-	YCTranslatorInfo searchYCTranslatorInfoById(SearchYCTranslatorUserId tUsrId);
+	YCTranslatorInfoResponse searchYCTranslatorInfoById(SearchYCTranslatorParams tUsrId);
 	
 	/**
 	 * @param 
@@ -70,7 +70,7 @@ public interface IYCUserServiceSV {
 	 */
 	@POST
 	@Path("/getcontactinfobyuserid")
-	YCContactInfo searchYCContactInfoById(SearchYCContactUserId cUsrId);
+	YCContactInfoResponse searchYCContactInfoById(SearchYCContactParams cUsrId);
 	
 //	@POST
 //	@Path("/searchYCUserList")

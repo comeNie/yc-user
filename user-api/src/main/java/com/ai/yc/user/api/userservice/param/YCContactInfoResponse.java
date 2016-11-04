@@ -1,4 +1,4 @@
-package com.ai.yc.user.api.register.param;
+package com.ai.yc.user.api.userservice.param;
 
 import java.sql.Timestamp;
 
@@ -10,7 +10,7 @@ import com.ai.opt.base.vo.BaseResponse;
  * @version 
  * @since  
  */
-public class YCContactInfo extends BaseResponse {
+public class YCContactInfoResponse extends BaseResponse {
 
     private String userName;
 
@@ -92,11 +92,11 @@ public class YCContactInfo extends BaseResponse {
 		this.isDefault = isDefault;
 	}
 
-	public YCContactInfo() {
+	public YCContactInfoResponse() {
 		super();
 	}
 
-	public YCContactInfo(String userName, String phone, String mobile, String email, String qq, String address,
+	public YCContactInfoResponse(String userName, String phone, String mobile, String email, String qq, String address,
 			String zipCode, Integer isDefault) {
 		super();
 		this.userName = userName;

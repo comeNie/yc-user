@@ -1,4 +1,4 @@
-package com.ai.yc.user.api.register.param;
+package com.ai.yc.user.api.userservice.param;
 
 import com.ai.opt.base.vo.BaseResponse;
 

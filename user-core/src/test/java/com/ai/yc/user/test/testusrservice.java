@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ai.yc.user.api.register.interfaces.IYCUserServiceSV;
-import com.ai.yc.user.api.register.param.InsertYCUserRequest;
-import com.ai.yc.user.api.register.param.YCInsertUserResponse;
+import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
+import com.ai.yc.user.api.userservice.param.InsertYCUserParams;
+import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 
 /** 
  * @author  作者 “WTF” E-mail: 1031248990@qq.com
@@ -25,7 +25,7 @@ public class testusrservice {
 	
 	@Test
 	public void test() {
-		InsertYCUserRequest insertu = new InsertYCUserRequest("13007420476","1031248990@qq.com","123456","tom","h","b",1,"13007420476","1031248990","BJ");
+		InsertYCUserParams insertu = new InsertYCUserParams("13007420476","1031248990@qq.com","123456","tom","h","b",1,"13007420476","1031248990","BJ");
 		YCInsertUserResponse User =  usSV.insertYCUser(insertu);
 		String UserID = User.getUserId();
 		System.out.println("UserID : " + UserID);

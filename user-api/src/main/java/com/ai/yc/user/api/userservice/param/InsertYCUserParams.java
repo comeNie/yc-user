@@ -1,4 +1,4 @@
-package com.ai.yc.user.api.register.param;
+package com.ai.yc.user.api.userservice.param;
 
 import java.sql.Timestamp;
 
@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * @version 
  * @since  
  */
-public class InsertYCUserRequest {
+public class InsertYCUserParams {
 
 	private String phone; // 电话
 	
@@ -34,7 +34,7 @@ public class InsertYCUserRequest {
     
     
     
-	public InsertYCUserRequest(String phone, String email, String password, String nickname, String lastname,
+	public InsertYCUserParams(String phone, String email, String password, String nickname, String lastname,
 			String firstname, Integer sex, String mobilePhone, String qq, String address) {
 		super();
 		this.phone = phone;
@@ -180,7 +180,7 @@ public class InsertYCUserRequest {
 
 
 
-	public InsertYCUserRequest() {
+	public InsertYCUserParams() {
 		super();
 	}
 	
