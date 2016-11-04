@@ -1,4 +1,4 @@
-package com.ai.yc.user.api.register.impl;
+package com.ai.yc.user.api.userservice.impl;
 
 import java.lang.reflect.Field;
 
