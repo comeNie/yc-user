@@ -34,8 +34,27 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCInsertUserResponse insertYCUser(InsertYCUserRequest insertInfo){
-		insertInfo.setMobilePhone(insertInfo.getMobilePhone());
+		if((null == insertInfo.getPhone() && null == insertInfo.getEmail()) || (null == insertInfo.getPassword())){
+			YCInsertUserResponse result = new YCInsertUserResponse();
+			ResponseHeader responseHeader = new ResponseHeader(false, "0", "创建失败");
+			result.setResponseHeader(responseHeader);
+	        result.setUserId("-1");
+	        result.setResponseCode(ExceptCodeConstants.FAILD);
+	        return result;
+		}
+		if(null == insertInfo.getMobilePhone())
+		{insertInfo.setMobilePhone(insertInfo.getPhone());}
 		String userId = ycUsrServiceBusiSv.insertUserInfo(insertInfo);
+		
+		if(userId == null){
+			YCInsertUserResponse result = new YCInsertUserResponse();
+			ResponseHeader responseHeader = new ResponseHeader(false, "0", "创建失败");
+			result.setResponseHeader(responseHeader);
+	        result.setUserId("-1");
+	        result.setResponseCode(ExceptCodeConstants.FAILD);
+	        return result;
+		}
+		
 		YCInsertUserResponse result = new YCInsertUserResponse();
 		ResponseHeader responseHeader = new ResponseHeader(true, "1", "更新成功");
 		result.setResponseHeader(responseHeader);
@@ -46,13 +65,32 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCUpdateUserResponse updateYCUserInfo(UpdateYCUserRequest updateUserParams){
+		if(!CheckFields(updateUserParams)){
+			YCUpdateUserResponse result = new YCUpdateUserResponse();
+			ResponseHeader responseHeader = new ResponseHeader(false, "0", "更新失败");
+			result.setResponseHeader(responseHeader);
+	        result.setResponseCode(ExceptCodeConstants.FAILD);
+	        return result;
+		}
+		
 		boolean flag = ycUsrServiceBusiSv.updateUserInfo(updateUserParams);
+		
+		if(!flag){
+			YCUpdateUserResponse result = new YCUpdateUserResponse();
+			ResponseHeader responseHeader = new ResponseHeader(false, "0", "更新失败");
+			result.setResponseHeader(responseHeader);
+	        result.setResponseCode(ExceptCodeConstants.FAILD);
+	        return result;
+		}
+		
 		YCUpdateUserResponse result = new YCUpdateUserResponse();
 		ResponseHeader responseHeader = new ResponseHeader(true, "1", "更新成功");
 		result.setResponseHeader(responseHeader);
         result.setResponseCode(ExceptCodeConstants.SUCCESS);
         return result;
 	}
+
+	
 
 	@Override
 	public YCUserInfoResponse searchYCUserInfo(SearchYCUserRequest userId){
@@ -90,6 +128,9 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 //		return null;
 	}
     
+	
+	
+	
 	public YCUserInfoResponse GetUsrInfoByUsrUser(UsrUser userparam) {
 		try{
 			Class<?> usrUserClass = Class.forName(YCUserInfoResponse.class.getName());
@@ -115,4 +156,19 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		return null;
 	}
 
+	private boolean CheckFields(UpdateYCUserRequest updateUserParams) {
+		Field[] fields = updateUserParams.getClass().getFields();
+		for(int i = 0; i < fields.length; i++){
+			try {
+				if(fields[i].get(updateUserParams) == null){
+					return false;
+				}
+			} catch (IllegalArgumentException | IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return false;
+			}
+		}
+		return true;
+	}
 }

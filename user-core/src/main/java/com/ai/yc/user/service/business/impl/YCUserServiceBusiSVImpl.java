@@ -58,7 +58,10 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
         criteria.andUserIdEqualTo(user.getUserId());
         int result = ycUSAtomSV.updateUserInfo(user, example);
 		
-		return true;
+        if(result > 0)
+			return true;
+		else
+			return false;
 	}
 
 	@Override
