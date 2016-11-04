@@ -19,6 +19,7 @@ import com.ai.yc.user.api.userservice.param.YCTranslatorInfoResponse;
 import com.ai.yc.user.api.userservice.param.YCUpdateUserResponse;
 import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
 import com.ai.yc.user.constants.ExceptCodeConstants;
+import com.ai.yc.user.dao.mapper.bo.UsrContact;
 import com.ai.yc.user.dao.mapper.bo.UsrTranslator;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.service.business.interfaces.IYCUserServiceBusiSV;
@@ -67,7 +68,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 	
 
 	@Override
-	public YCTranslatorInfoResponse searchYCTranslatorInfoById(SearchYCTranslatorRequest tUsrId) {
+	public YCTranslatorInfoResponse searchYCTranslatorInfo(SearchYCTranslatorRequest tUsrId) {
 		UsrTranslator usrTranslator = ycUsrServiceBusiSv.searchYCUsrTranslatorInfo(tUsrId.getUserId());
 		YCTranslatorInfoResponse result = new YCTranslatorInfoResponse();
 		BeanUtils.copyProperties(result, usrTranslator);
@@ -78,14 +79,15 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 	}
 
 	@Override
-	public YCContactInfoResponse searchYCContactInfoById(SearchYCContactRequest cUsrId) {
-//		UsrUser usrUser = ycUsrServiceBusiSv.(cUsrId.getUserId());
-//		YCUserInfo result = GetUsrInfoByUsrUser(usrUser);
-//		
-//		ResponseHeader responseHeader = new ResponseHeader(true, "1", "更新成功");
-//		result.setResponseHeader(responseHeader);
-//        result.setResponseCode(ExceptCodeConstants.SUCCESS);
-        return null;
+	public YCContactInfoResponse searchYCContactInfo(SearchYCContactRequest cUsrId) {
+		UsrContact usrContact = ycUsrServiceBusiSv.searchUsrContactInfo(cUsrId.getUserId());
+		YCContactInfoResponse result = new YCContactInfoResponse();
+		BeanUtils.copyProperties(result, usrContact);
+		ResponseHeader responseHeader = new ResponseHeader(true, "1", "更新成功");
+		result.setResponseHeader(responseHeader);
+        result.setResponseCode(ExceptCodeConstants.SUCCESS);
+		return result;
+//		return null;
 	}
     
 	public YCUserInfoResponse GetUsrInfoByUsrUser(UsrUser userparam) {

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.ai.yc.user.dao.mapper.bo.UsrContact;
 import com.ai.yc.user.dao.mapper.bo.UsrTranslator;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
@@ -19,6 +20,8 @@ public interface IYCUserServiceAtomSV {
     public UsrUser getUserInfo(String userId);
 
 	public UsrTranslator getUsrTranslatorInfo(String userId);
+
+	public UsrContact getUsrContactInfo(String userId);
 
 
 }

@@ -11,6 +11,8 @@ import com.ai.opt.base.vo.BaseResponse;
  * @since  
  */
 public class YCContactInfoResponse extends BaseResponse {
+	
+	private String responseCode;
 
     private String userName;
 
@@ -113,6 +115,14 @@ public class YCContactInfoResponse extends BaseResponse {
 	public String toString() {
 		return "YCContactInfo [userName=" + userName + ", phone=" + phone + ", mobile=" + mobile + ", email=" + email
 				+ ", qq=" + qq + ", address=" + address + ", zipCode=" + zipCode + ", isDefault=" + isDefault + "]";
+	}
+
+	public String getResponseCode() {
+		return responseCode;
+	}
+
+	public void setResponseCode(String responseCode) {
+		this.responseCode = responseCode;
 	}
 
     

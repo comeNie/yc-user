@@ -60,7 +60,7 @@ public interface IYCUserServiceSV {
 	 */
 	@POST
 	@Path("/gettranslatorinfobyuserid")
-	YCTranslatorInfoResponse searchYCTranslatorInfoById(SearchYCTranslatorRequest tUsrId);
+	YCTranslatorInfoResponse searchYCTranslatorInfo(SearchYCTranslatorRequest tUsrId);
 	
 	/**
 	 * @param 
@@ -70,6 +70,6 @@ public interface IYCUserServiceSV {
 	 */
 	@POST
 	@Path("/getcontactinfobyuserid")
-	YCContactInfoResponse searchYCContactInfoById(SearchYCContactRequest cUsrId);
+	YCContactInfoResponse searchYCContactInfo(SearchYCContactRequest cUsrId);
 	
 }
