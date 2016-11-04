@@ -2,7 +2,7 @@ package com.ai.yc.user.util;
 
 import java.lang.reflect.Field;
 
-import com.ai.yc.user.api.userservice.param.InsertYCUserParams;
+import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 
 /** 
@@ -29,7 +29,7 @@ public class CpObjUnionAttribute {
 		Object uObj = uClass.newInstance();
 		Object iObj = info;
 		Field[] uFields = UsrUser.class.getDeclaredFields();
-		Field[] infofields = InsertYCUserParams.class.getDeclaredFields();
+		Field[] infofields = InsertYCUserRequest.class.getDeclaredFields();
 		for(int i = 0; i < infofields.length; i++){
 			for(int j = 0; j < uFields.length; j++){
 				if(infofields[i].getName().equals(uFields[j].getName())){

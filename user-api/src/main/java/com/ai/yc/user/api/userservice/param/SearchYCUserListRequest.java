@@ -5,6 +5,6 @@ package com.ai.yc.user.api.userservice.param;
  * @version 
  * @since  
  */
-public class SearchYCUserListParams {
+public class SearchYCUserListRequest {
 
 }

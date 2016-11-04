@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * @version 
  * @since  
  */
-public class InsertYCUserParams {
+public class InsertYCUserRequest {
 
 	private String phone; // 电话
 	
@@ -34,7 +34,7 @@ public class InsertYCUserParams {
     
     
     
-	public InsertYCUserParams(String phone, String email, String password, String nickname, String lastname,
+	public InsertYCUserRequest(String phone, String email, String password, String nickname, String lastname,
 			String firstname, Integer sex, String mobilePhone, String qq, String address) {
 		super();
 		this.phone = phone;
@@ -180,7 +180,7 @@ public class InsertYCUserParams {
 
 
 
-	public InsertYCUserParams() {
+	public InsertYCUserRequest() {
 		super();
 	}
 	

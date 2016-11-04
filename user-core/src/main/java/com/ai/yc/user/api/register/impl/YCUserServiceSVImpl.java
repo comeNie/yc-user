@@ -7,11 +7,11 @@ import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
-import com.ai.yc.user.api.userservice.param.InsertYCUserParams;
-import com.ai.yc.user.api.userservice.param.SearchYCContactParams;
-import com.ai.yc.user.api.userservice.param.SearchYCTranslatorParams;
-import com.ai.yc.user.api.userservice.param.SearchYCUserParams;
-import com.ai.yc.user.api.userservice.param.UpdateYCUserParams;
+import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
+import com.ai.yc.user.api.userservice.param.SearchYCContactRequest;
+import com.ai.yc.user.api.userservice.param.SearchYCTranslatorRequest;
+import com.ai.yc.user.api.userservice.param.SearchYCUserRequest;
+import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.YCContactInfoResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 import com.ai.yc.user.api.userservice.param.YCTranslatorInfoResponse;
@@ -30,7 +30,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
     public IYCUserServiceBusiSV ycRegisterBusiSv;
 
 	@Override
-	public YCInsertUserResponse insertYCUser(InsertYCUserParams insertInfo){
+	public YCInsertUserResponse insertYCUser(InsertYCUserRequest insertInfo){
 		insertInfo.setMobilePhone(insertInfo.getMobilePhone());
 		String userId = ycRegisterBusiSv.insertUserInfo(insertInfo);
 		YCInsertUserResponse result = new YCInsertUserResponse();
@@ -42,7 +42,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 	}
 
 	@Override
-	public YCUpdateUserResponse updateYCUserInfo(UpdateYCUserParams updateUserParams){
+	public YCUpdateUserResponse updateYCUserInfo(UpdateYCUserRequest updateUserParams){
 		boolean flag = ycRegisterBusiSv.updateUserInfo(updateUserParams);
 		YCUpdateUserResponse result = new YCUpdateUserResponse();
 		ResponseHeader responseHeader = new ResponseHeader(true, "1", "更新成功");
@@ -52,7 +52,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 	}
 
 	@Override
-	public YCUserInfoResponse searchYCUserInfo(SearchYCUserParams userId){
+	public YCUserInfoResponse searchYCUserInfo(SearchYCUserRequest userId){
 		UsrUser usrUser = ycRegisterBusiSv.searchUserInfo(userId.getUserId());
 		YCUserInfoResponse result = GetUsrInfoByUsrUser(usrUser);
 		
@@ -64,12 +64,12 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 	
 
 	@Override
-	public YCTranslatorInfoResponse searchYCTranslatorInfoById(SearchYCTranslatorParams tUsrId) {
+	public YCTranslatorInfoResponse searchYCTranslatorInfoById(SearchYCTranslatorRequest tUsrId) {
 		return null;
 	}
 
 	@Override
-	public YCContactInfoResponse searchYCContactInfoById(SearchYCContactParams cUsrId) {
+	public YCContactInfoResponse searchYCContactInfoById(SearchYCContactRequest cUsrId) {
 //		UsrUser usrUser = ycRegisterBusiSv.(cUsrId.getUserId());
 //		YCUserInfo result = GetUsrInfoByUsrUser(usrUser);
 //		

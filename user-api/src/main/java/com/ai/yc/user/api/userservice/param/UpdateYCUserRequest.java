@@ -8,7 +8,7 @@ import java.sql.Timestamp;
  * @version 
  * @since  
  */
-public class UpdateYCUserParams {
+public class UpdateYCUserRequest {
 	private String userId;
 
     private String nickname;

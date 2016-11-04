@@ -5,7 +5,7 @@ package com.ai.yc.user.api.userservice.param;
  * @version 
  * @since  
  */
-public class SearchYCUserParams {
+public class SearchYCUserRequest {
 	private String userId;
 
 	public String getUserId() {

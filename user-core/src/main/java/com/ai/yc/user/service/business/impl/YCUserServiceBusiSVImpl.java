@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.sdk.components.sequence.util.SeqUtil;
 import com.ai.opt.sdk.util.BeanUtils;
-import com.ai.yc.user.api.userservice.param.InsertYCUserParams;
-import com.ai.yc.user.api.userservice.param.UpdateYCUserParams;
+import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
+import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.constants.SequenceCodeConstants.UserSequenceCode;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
@@ -31,7 +31,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
      * 1 success
      */
 	@Override
-	public String insertUserInfo(InsertYCUserParams insertinfo)  {
+	public String insertUserInfo(InsertYCUserRequest insertinfo)  {
 		// 孟博接口
 		
 		// 插入数据
@@ -49,7 +49,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	}
 
 	@Override
-	public boolean updateUserInfo(UpdateYCUserParams userparam) {
+	public boolean updateUserInfo(UpdateYCUserRequest userparam) {
 		UsrUser user = UsrUser.getUsrUserByUpparam(userparam);
 		UsrUserCriteria example = new UsrUserCriteria();
 		UsrUserCriteria.Criteria criteria = example.createCriteria();
