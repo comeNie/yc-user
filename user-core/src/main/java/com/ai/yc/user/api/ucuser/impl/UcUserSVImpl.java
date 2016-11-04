@@ -35,47 +35,47 @@ public class UcUserSVImpl implements IUcUserSV {
 
     private static final Logger log = LogManager.getLogger(UcUserSVImpl.class);
     
-    @Override
-    public SearchUserListResponse searchUserList(SearchUserRequest userListRequest)
-            throws BusinessException, SystemException {
-        return ucUserBusiSV.searchUserList(userListRequest);
-    }
-
-    @Override
-    public SearchUserResponse queryByPhone(SearchUserRequest request) throws BusinessException,
-            SystemException {
-        
-        UcUser ucuser = ucUserBusiSV.queryByPhone(request);
-        // 整理返回对象
-        SearchUserResponse response = new SearchUserResponse();
-        ResponseHeader responseHeader = new ResponseHeader();
-        if (ucuser != null) {
-            BeanUtils.copyProperties(response, ucuser);
-            responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "数据查询成功");
-        }else{
-            responseHeader = new ResponseHeader(true, ExceptCodeConstants.NO_RESULT, "数据不存在");
-        }
-        response.setResponseHeader(responseHeader);
-        return response;
-    }
-
-    @Override
-    public SearchUserResponse queryByEmail(SearchUserRequest request) throws BusinessException,
-            SystemException {
-        
-        UcUser ucUser = ucUserBusiSV.queryByEmail(request.getUserEmail());
-        SearchUserResponse searchResponse = new SearchUserResponse();
-        // 整理返回对象
-        ResponseHeader responseHeader = new ResponseHeader();
-        if(ucUser!=null){
-            BeanUtils.copyProperties(searchResponse, ucUser);
-            responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
-        }else{
-            responseHeader = new ResponseHeader(false, ExceptCodeConstants.NO_RESULT, "数据不存在");
-        }
-        searchResponse.setResponseHeader(responseHeader);
-        return searchResponse;
-    }
+//    @Override
+//    public SearchUserListResponse searchUserList(SearchUserRequest userListRequest)
+//            throws BusinessException, SystemException {
+//        return ucUserBusiSV.searchUserList(userListRequest);
+//    }
+//
+//    @Override
+//    public SearchUserResponse queryByPhone(SearchUserRequest request) throws BusinessException,
+//            SystemException {
+//        
+//        UcUser ucuser = ucUserBusiSV.queryByPhone(request);
+//        // 整理返回对象
+//        SearchUserResponse response = new SearchUserResponse();
+//        ResponseHeader responseHeader = new ResponseHeader();
+//        if (ucuser != null) {
+//            BeanUtils.copyProperties(response, ucuser);
+//            responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "数据查询成功");
+//        }else{
+//            responseHeader = new ResponseHeader(true, ExceptCodeConstants.NO_RESULT, "数据不存在");
+//        }
+//        response.setResponseHeader(responseHeader);
+//        return response;
+//    }
+//
+//    @Override
+//    public SearchUserResponse queryByEmail(SearchUserRequest request) throws BusinessException,
+//            SystemException {
+//        
+//        UcUser ucUser = ucUserBusiSV.queryByEmail(request.getUserEmail());
+//        SearchUserResponse searchResponse = new SearchUserResponse();
+//        // 整理返回对象
+//        ResponseHeader responseHeader = new ResponseHeader();
+//        if(ucUser!=null){
+//            BeanUtils.copyProperties(searchResponse, ucUser);
+//            responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
+//        }else{
+//            responseHeader = new ResponseHeader(false, ExceptCodeConstants.NO_RESULT, "数据不存在");
+//        }
+//        searchResponse.setResponseHeader(responseHeader);
+//        return searchResponse;
+//    }
 
     @Override
     public SearchUserResponse queryBaseInfo(SearchUserRequest accountQueryRequest)

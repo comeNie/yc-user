@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.base.vo.BaseResponse;
+import com.ai.opt.base.vo.ResponseHeader;
+import com.ai.opt.sdk.components.sequence.util.SeqUtil;
 import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.CollectionUtil;
@@ -24,57 +27,67 @@ import com.ai.yc.user.api.register.param.RegisterParamsRequest;
 import com.ai.yc.user.api.register.param.UcContactInfoParams;
 import com.ai.yc.user.api.register.param.UcGroupKeyInfoParams;
 import com.ai.yc.user.api.register.param.UcUserParams;
+import com.ai.yc.user.api.register.param.UpdateYCUserParams;
 import com.ai.yc.user.constants.ExceptCodeConstants;
+import com.ai.yc.user.constants.SequenceCodeConstants.UserSequenceCode;
 import com.ai.yc.user.constants.UcUserConstants.Account;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
+import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
 import com.ai.yc.user.dao.mapper.bo.UcContactsInfo;
+import com.ai.yc.user.dao.mapper.bo.UcContactsInfoCriteria;
 import com.ai.yc.user.dao.mapper.bo.UcGroupKeyInfo;
 import com.ai.yc.user.dao.mapper.bo.UcGroupKeyInfoCriteria;
 import com.ai.yc.user.dao.mapper.bo.UcUser;
 import com.ai.yc.user.dao.mapper.bo.UcUserCriteria;
 import com.ai.yc.user.service.atom.interfaces.IRegisterAtomSV;
 import com.ai.yc.user.service.atom.interfaces.IUcContactsInfoAtomSV;
-import com.ai.yc.user.service.atom.interfaces.IYCRegisterAtomSV;
-import com.ai.yc.user.service.business.interfaces.IRegisterBusiSV;
-import com.ai.yc.user.service.business.interfaces.IYCRegisterBusiSV;
-import com.ai.yc.user.util.SequenceUtil;
-import com.alibaba.fastjson.JSON;
+import com.ai.yc.user.service.atom.interfaces.IYCUserServiceAtomSV;
+import com.ai.yc.user.service.business.interfaces.IYCUserServiceBusiSV;
 
 @Service
 @Transactional
-public class YCRegisterBusiSVImpl implements IYCRegisterBusiSV {
+public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 
-    private static final Log LOG = LogFactory.getLog(YCRegisterBusiSVImpl.class);
+    private static final Log LOG = LogFactory.getLog(YCUserServiceBusiSVImpl.class);
 
     @Autowired
-    public IYCRegisterAtomSV ycRegisterAtomSV;
+    public IYCUserServiceAtomSV ycUSAtomSV;
     
+    /**
+     * resultCode
+     * 0 fail
+     * 1 success
+     */
 	@Override
 	public String insertUserInfo(InsertYCUserRequest insertinfo)  {
 		// 孟博接口
 		
 		// 插入数据
 		UsrUser tUser =  UsrUser.getUsrUserByInsertReq(insertinfo);
-		ycRegisterAtomSV.insertUserInfo(tUser);
+		String UserId = SeqUtil.getNewId(UserSequenceCode.CM_CUST_FILE_EXT$INFO_EXT$ID,18);
+		tUser.setUserId(UserId);
+		ycUSAtomSV.insertUserInfo(tUser);
 		// 支付信息
 		
 		
-		return null;
+		return UserId;
 	}
 
 	@Override
-	public boolean checkUserExist(String userID) {
-		return false;
-	}
-
-	@Override
-	public boolean updateUserInfo(UsrUser user) {
-		return false;
+	public boolean updateUserInfo(UpdateYCUserParams userparam) {
+		UsrUser user = UsrUser.getUsrUserByUpparam(userparam);
+		UsrUserCriteria example = new UsrUserCriteria();
+		UsrUserCriteria.Criteria criteria = example.createCriteria();
+        criteria.andUserIdEqualTo(user.getUserId());
+        int result = ycUSAtomSV.updateUserInfo(user, example);
+		
+		return true;
 	}
 
 	@Override
 	public UsrUser searchUserInfo(String userID) {
-		return null;
+		UsrUser usrUser = ycUSAtomSV.getUserInfo(userID);
+		return usrUser;
 	}
 
 }

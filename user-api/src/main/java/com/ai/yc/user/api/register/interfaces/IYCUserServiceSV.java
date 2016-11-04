@@ -10,50 +10,74 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.yc.user.api.register.param.DeleteYCUserParams;
 import com.ai.yc.user.api.register.param.InsertYCUserRequest;
+import com.ai.yc.user.api.register.param.SearchYCContactUserId;
+import com.ai.yc.user.api.register.param.SearchYCTranslatorUserId;
 import com.ai.yc.user.api.register.param.SearchYCUserListParams;
 import com.ai.yc.user.api.register.param.SearchYCUserParams;
 import com.ai.yc.user.api.register.param.UpdateYCUserParams;
+import com.ai.yc.user.api.register.param.YCContactInfo;
 import com.ai.yc.user.api.register.param.YCDeleteUserResponse;
 import com.ai.yc.user.api.register.param.YCInsertUserResponse;
+import com.ai.yc.user.api.register.param.YCTranslatorInfo;
 import com.ai.yc.user.api.register.param.YCUpdateUserResponse;
 import com.ai.yc.user.api.register.param.YCUserInfo;
 import com.ai.yc.user.api.register.param.YCUserInfoList;
 
 
-@Path("/registerservice")
+@Path("/ycservice")
 @Consumes({ MediaType.APPLICATION_JSON })
 @Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_XML })
-public interface IYCRegisterSV {
+public interface IYCUserServiceSV {
 
 
 	/**
-	 * @param registerParamsRequest
+	 * @param 
 	 * @return
-	 * @ApiCode 
-     * @RestRelativeURL registerservice/insertYCUser
+	 * @ApiCode USR_0001
+     * @RestRelativeURL ycservice/register/user
 	 */
 	@POST
-	@Path("/insertYCUser")
+	@Path("/register/user")
 	YCInsertUserResponse insertYCUser(InsertYCUserRequest registerParamsRequest);
 	/**
-	 * @param registerParamsRequest
+	 * @param 
 	 * @return
-	 * @ApiCode 
-     * @RestRelativeURL registerservice/updateYCUserInfo
+	 * @ApiCode USR_0003
+     * @RestRelativeURL ycservice/adduserbaseinfo
 	 */
 	@POST
-	@Path("/updateYCUserInfo")
+	@Path("/adduserbaseinfo")
 	YCUpdateUserResponse updateYCUserInfo(UpdateYCUserParams updateUserParams) ;
 	/**
-	 * @param registerParamsRequest
+	 * @param 
 	 * @return
-	 * @ApiCode 
-     * @RestRelativeURL registerservice/searchYCUserInfo
+	 * @ApiCode USR_0002
+     * @RestRelativeURL ycservice/getusercenterbaseinfo
 	 */
 	@POST
-	@Path("/searchYCUserInfo")
+	@Path("/getusercenterbaseinfo")
 	YCUserInfo searchYCUserInfo(SearchYCUserParams ucUser) ;
 
+	/**
+	 * @param 
+	 * @return
+	 * @ApiCode USR_0004
+     * @RestRelativeURL ycservice/gettranslatorinfobyuserid
+	 */
+	@POST
+	@Path("/gettranslatorinfobyuserid")
+	YCTranslatorInfo searchYCTranslatorInfoById(SearchYCTranslatorUserId tUsrId);
+	
+	/**
+	 * @param 
+	 * @return
+	 * @ApiCode USR_0005
+     * @RestRelativeURL ycservice/getcontactinfobyuserid
+	 */
+	@POST
+	@Path("/getcontactinfobyuserid")
+	YCContactInfo searchYCContactInfoById(SearchYCContactUserId cUsrId);
+	
 //	@POST
 //	@Path("/searchYCUserList")
 //	YCUserInfoList searchYCUserList(SearchYCUserListParams ucUser) throws BusinessException, SystemException;

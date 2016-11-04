@@ -9,11 +9,11 @@ import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
 import com.ai.yc.user.dao.mapper.bo.UcUserCriteria;
 
 
-public interface IYCRegisterAtomSV {
+public interface IYCUserServiceAtomSV {
     // 用户
     public int insertUserInfo(UsrUser user);
 
-    public List<UsrUser> getUserInfo(UcUserCriteria criteria);
+    public List<UsrUser> getUserInfo(UsrUserCriteria criteria);
 
     int updateUserInfo(@Param("record") UsrUser record,
             @Param("example") UsrUserCriteria example);

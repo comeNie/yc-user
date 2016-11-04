@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.sql.Timestamp;
 
 import com.ai.yc.user.api.register.param.InsertYCUserRequest;
+import com.ai.yc.user.api.register.param.UpdateYCUserParams;
 
 public class UsrUser {
     private String userId;
@@ -140,7 +141,31 @@ public class UsrUser {
 				+ ", thirduid=" + thirduid + ", personsign=" + personsign + ", zipCode=" + zipCode + ", isAdmin="
 				+ isAdmin + "]";
 	}
-
+	public static UsrUser getUsrUserByUpparam(UpdateYCUserParams userparam) {
+		try{
+			Class<?> usrUserClass = Class.forName(UsrUser.class.getName());
+			Object usrUserObj = usrUserClass.newInstance();
+			Object insertInfoObj = userparam;
+			Field[] usrFields = UsrUser.class.getDeclaredFields();
+			Field[] insertfields = InsertYCUserRequest.class.getDeclaredFields();
+			for(int i = 0; i < insertfields.length; i++){
+				for(int j = 0; j < usrFields.length; j++){
+					if(insertfields[i].getName().equals(usrFields[j].getName())){
+						usrFields[j].setAccessible(true);
+						insertfields[i].setAccessible(true);
+						if(usrFields[j].getGenericType() == insertfields[i].getGenericType())
+							usrFields[j].set(usrUserObj, insertfields[i].get(insertInfoObj));
+						System.out.println(usrUserObj);
+					}
+				}
+			}
+			UsrUser usrUser = (UsrUser) usrUserObj;
+			return usrUser;
+		} catch ( InstantiationException| IllegalAccessException| ClassNotFoundException  e){
+			e.printStackTrace();
+		}
+		return null;
+	}
 	public static UsrUser getUsrUserByInsertReq(InsertYCUserRequest insertinfo){
 		try{
 			Class<?> usrUserClass = Class.forName(UsrUser.class.getName());

@@ -21,37 +21,34 @@ import com.ai.yc.user.dao.mapper.interfaces.UcCustKeyInfoMapper;
 import com.ai.yc.user.dao.mapper.interfaces.UcUserMapper;
 import com.ai.yc.user.dao.mapper.interfaces.UsrUserMapper;
 import com.ai.yc.user.service.atom.interfaces.IRegisterAtomSV;
-import com.ai.yc.user.service.atom.interfaces.IYCRegisterAtomSV;
+import com.ai.yc.user.service.atom.interfaces.IYCUserServiceAtomSV;
 
 
 @Component
-public class YCRegisterAtomSVImpl implements IYCRegisterAtomSV {
+public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 
 	@Autowired
 	private transient UsrUserMapper tUserMapper;
 
 	@Override
-	public List<UsrUser> getUserInfo(UcUserCriteria criteria) {
-		// TODO Auto-generated method stub
+	public List<UsrUser> getUserInfo(UsrUserCriteria criteria) {
+		
 		return null;
 	}
 
 	@Override
 	public int updateUserInfo(UsrUser record, UsrUserCriteria example) {
-		// TODO Auto-generated method stub
-		return 0;
+		return tUserMapper.updateByExampleSelective(record, example);
 	}
 
 	@Override
 	public UsrUser getUserInfo(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return tUserMapper.selectByPrimaryKey(userId);
 	}
 
 	@Override
 	public int insertUserInfo(UsrUser user) {
-		// TODO Auto-generated method stub
-		return 0;
+		return tUserMapper.insert(user);
 	}
 
 //    @Autowired

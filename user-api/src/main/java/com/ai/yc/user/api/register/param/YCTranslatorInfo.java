@@ -1,20 +1,25 @@
 package com.ai.yc.user.api.register.param;
 
+import java.sql.Timestamp;
+
 import com.ai.opt.base.vo.BaseResponse;
 
 /** 
  * @author  作者 “WTF” E-mail: 1031248990@qq.com
- * @date 创建时间：2016年11月2日 上午11:33:28 
+ * @date 创建时间：2016年11月3日 下午7:06:04 
  * @version 
  * @since  
  */
-public class YCUpdateUserResponse extends BaseResponse {
-
-	
+public class YCTranslatorInfo extends BaseResponse {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5599793763844076165L;
+	private static final long serialVersionUID = -9068009364796285584L;
+	
+	
+	
+	
+	
 	private String responseCode;
 	public String getResponseCode() {
 		return responseCode;
@@ -22,5 +27,4 @@ public class YCUpdateUserResponse extends BaseResponse {
 	public void setResponseCode(String responseCode) {
 		this.responseCode = responseCode;
 	}
-
 }
