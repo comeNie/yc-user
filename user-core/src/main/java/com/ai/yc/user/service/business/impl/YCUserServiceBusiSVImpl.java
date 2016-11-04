@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.sdk.components.sequence.util.SeqUtil;
+import com.ai.opt.sdk.constants.ExceptCodeConstants;
 import com.ai.opt.sdk.util.BeanUtils;
+import com.ai.opt.sdk.util.StringUtil;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.constants.SequenceCodeConstants.UserSequenceCode;
@@ -34,34 +37,39 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
      */
 	@Override
 	public String insertUserInfo(InsertYCUserRequest insertinfo)  {
-		// 孟博接口
+		
+		if(StringUtil.isBlank(insertinfo.getUserName())){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户名不能为空");
+		}
+		
+		if(StringUtil.isBlank(insertinfo.getNickname())){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:昵称不能为空");
+		}
+		
+		// 孟博注册接口
 		
 		// 插入数据
 		UsrUser tUser = new UsrUser();
-//		UsrUser tUser =  UsrUser.getUsrUserByInsertReq(insertinfo);
 		// 从右到左
 		BeanUtils.copyProperties(tUser, insertinfo);
 		String UserId = SeqUtil.getNewId(UserSequenceCode.CM_CUST_FILE_EXT$INFO_EXT$ID,18);
 		tUser.setUserId(UserId);
 		ycUSAtomSV.insertUserInfo(tUser);
-		// 支付信息
-		
-		
+		// 支付账户信息
 		return UserId;
 	}
 
 	@Override
-	public boolean updateUserInfo(UpdateYCUserRequest userparam) {
+	public int updateUserInfo(UpdateYCUserRequest userparam) {
+		if(StringUtil.isBlank(userparam.getUserId())){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户Id不能为空");
+		}
 		UsrUser user = UsrUser.getUsrUserByUpparam(userparam);
 		UsrUserCriteria example = new UsrUserCriteria();
 		UsrUserCriteria.Criteria criteria = example.createCriteria();
         criteria.andUserIdEqualTo(user.getUserId());
-        int result = ycUSAtomSV.updateUserInfo(user, example);
-		
-        if(result > 0)
-			return true;
-		else
-			return false;
+        return  ycUSAtomSV.updateUserInfo(user, example);
+        
 	}
 
 	@Override

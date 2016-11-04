@@ -2,6 +2,8 @@ package com.ai.yc.user.api.userservice.impl;
 
 import java.lang.reflect.Field;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,65 +31,40 @@ import com.alibaba.dubbo.config.annotation.Service;
 @Component
 public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(YCUserServiceSVImpl.class);
     @Autowired
     public IYCUserServiceBusiSV ycUsrServiceBusiSv;
 
 	@Override
 	public YCInsertUserResponse insertYCUser(InsertYCUserRequest insertInfo){
-		if((null == insertInfo.getPhone() && null == insertInfo.getEmail()) || (null == insertInfo.getPassword())){
-			YCInsertUserResponse result = new YCInsertUserResponse();
-			ResponseHeader responseHeader = new ResponseHeader(false, "0", "创建失败");
-			result.setResponseHeader(responseHeader);
-	        result.setUserId("-1");
-	        result.setResponseCode(ExceptCodeConstants.FAILD);
-	        return result;
+		ResponseHeader responseHeader = null;
+		YCInsertUserResponse response = new YCInsertUserResponse();
+		String userId = "";
+		try{
+			userId = ycUsrServiceBusiSv.insertUserInfo(insertInfo);
+			responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"插入成功");
+		}catch(Exception e){
+			LOGGER.error("插入失败",e);
+			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,"插入失败");
 		}
-		if(null == insertInfo.getMobilePhone())
-		{insertInfo.setMobilePhone(insertInfo.getPhone());}
-		String userId = ycUsrServiceBusiSv.insertUserInfo(insertInfo);
-		
-		if(userId == null){
-			YCInsertUserResponse result = new YCInsertUserResponse();
-			ResponseHeader responseHeader = new ResponseHeader(false, "0", "创建失败");
-			result.setResponseHeader(responseHeader);
-	        result.setUserId("-1");
-	        result.setResponseCode(ExceptCodeConstants.FAILD);
-	        return result;
-		}
-		
-		YCInsertUserResponse result = new YCInsertUserResponse();
-		ResponseHeader responseHeader = new ResponseHeader(true, "1", "更新成功");
-		result.setResponseHeader(responseHeader);
-        result.setUserId(userId);
-        result.setResponseCode(ExceptCodeConstants.SUCCESS);
-        return result;
+		response.setUserId(userId);
+		response.setResponseHeader(responseHeader);
+        return response;
 	}
 
 	@Override
 	public YCUpdateUserResponse updateYCUserInfo(UpdateYCUserRequest updateUserParams){
-		if(!CheckFields(updateUserParams)){
-			YCUpdateUserResponse result = new YCUpdateUserResponse();
-			ResponseHeader responseHeader = new ResponseHeader(false, "0", "更新失败");
-			result.setResponseHeader(responseHeader);
-	        result.setResponseCode(ExceptCodeConstants.FAILD);
-	        return result;
+		ResponseHeader responseHeader = null;
+		YCUpdateUserResponse response = new YCUpdateUserResponse();
+		try{
+			ycUsrServiceBusiSv.updateUserInfo(updateUserParams);
+		}catch(Exception e){
+			LOGGER.error("修改失败",e);
+			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,"修改失败");
 		}
-		
-		boolean flag = ycUsrServiceBusiSv.updateUserInfo(updateUserParams);
-		
-		if(!flag){
-			YCUpdateUserResponse result = new YCUpdateUserResponse();
-			ResponseHeader responseHeader = new ResponseHeader(false, "0", "更新失败");
-			result.setResponseHeader(responseHeader);
-	        result.setResponseCode(ExceptCodeConstants.FAILD);
-	        return result;
-		}
-		
-		YCUpdateUserResponse result = new YCUpdateUserResponse();
-		ResponseHeader responseHeader = new ResponseHeader(true, "1", "更新成功");
-		result.setResponseHeader(responseHeader);
-        result.setResponseCode(ExceptCodeConstants.SUCCESS);
-        return result;
+		response.setResponseHeader(responseHeader);
+		response.setResponseCode(ExceptCodeConstants.SUCCESS);
+        return response;
 	}
 
 	
@@ -98,7 +75,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 //		YCUserInfoResponse result = GetUsrInfoByUsrUser(usrUser);
 		YCUserInfoResponse result = new YCUserInfoResponse();
 		BeanUtils.copyProperties(result, usrUser);
-		ResponseHeader responseHeader = new ResponseHeader(true, "1", "更新成功");
+		ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "更新成功");
 		result.setResponseHeader(responseHeader);
         result.setResponseCode(ExceptCodeConstants.SUCCESS);
         return result;
@@ -110,7 +87,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		UsrTranslator usrTranslator = ycUsrServiceBusiSv.searchYCUsrTranslatorInfo(tUsrId.getUserId());
 		YCTranslatorInfoResponse result = new YCTranslatorInfoResponse();
 		BeanUtils.copyProperties(result, usrTranslator);
-		ResponseHeader responseHeader = new ResponseHeader(true, "1", "更新成功");
+		ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "更新成功");
 		result.setResponseHeader(responseHeader);
         result.setResponseCode(ExceptCodeConstants.SUCCESS);
 		return result;
@@ -121,54 +98,10 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		UsrContact usrContact = ycUsrServiceBusiSv.searchUsrContactInfo(cUsrId.getUserId());
 		YCContactInfoResponse result = new YCContactInfoResponse();
 		BeanUtils.copyProperties(result, usrContact);
-		ResponseHeader responseHeader = new ResponseHeader(true, "1", "更新成功");
+		ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "更新成功");
 		result.setResponseHeader(responseHeader);
         result.setResponseCode(ExceptCodeConstants.SUCCESS);
 		return result;
-//		return null;
-	}
-    
-	
-	
-	
-	public YCUserInfoResponse GetUsrInfoByUsrUser(UsrUser userparam) {
-		try{
-			Class<?> usrUserClass = Class.forName(YCUserInfoResponse.class.getName());
-			Object usrUserObj = usrUserClass.newInstance();
-			Object insertInfoObj = userparam;
-			Field[] usrFields = YCUserInfoResponse.class.getDeclaredFields();
-			Field[] insertfields = UsrUser.class.getDeclaredFields();
-			for(int i = 0; i < insertfields.length; i++){
-				for(int j = 0; j < usrFields.length; j++){
-					if(insertfields[i].getName().equals(usrFields[j].getName())){
-						usrFields[j].setAccessible(true);
-						insertfields[i].setAccessible(true);
-						if(usrFields[j].getGenericType() == insertfields[i].getGenericType())
-							usrFields[j].set(usrUserObj, insertfields[i].get(insertInfoObj));
-					}
-				}
-			}
-			YCUserInfoResponse usrInfo = (YCUserInfoResponse) usrUserObj;
-			return usrInfo;
-		} catch ( InstantiationException| IllegalAccessException| ClassNotFoundException  e){
-			e.printStackTrace();
-		}
-		return null;
 	}
 
-	private boolean CheckFields(UpdateYCUserRequest updateUserParams) {
-		Field[] fields = updateUserParams.getClass().getFields();
-		for(int i = 0; i < fields.length; i++){
-			try {
-				if(fields[i].get(updateUserParams) == null){
-					return false;
-				}
-			} catch (IllegalArgumentException | IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				return false;
-			}
-		}
-		return true;
-	}
 }

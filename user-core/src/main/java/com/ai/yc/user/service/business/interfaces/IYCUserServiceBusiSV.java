@@ -11,7 +11,7 @@ public interface IYCUserServiceBusiSV {
     
     public String insertUserInfo(InsertYCUserRequest user);
     
-    public boolean updateUserInfo(UpdateYCUserRequest updateUserParams);
+    public int updateUserInfo(UpdateYCUserRequest updateUserParams);
 
     public UsrUser searchUserInfo(String userID);
 
