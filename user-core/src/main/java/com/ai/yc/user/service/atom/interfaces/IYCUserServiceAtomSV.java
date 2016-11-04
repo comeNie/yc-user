@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Param;
 
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
-import com.ai.yc.user.dao.mapper.bo.UcUserCriteria;
 
 
 public interface IYCUserServiceAtomSV {

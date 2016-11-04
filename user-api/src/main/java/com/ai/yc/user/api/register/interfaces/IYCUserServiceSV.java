@@ -6,22 +6,16 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.ai.opt.base.exception.BusinessException;
-import com.ai.opt.base.exception.SystemException;
-import com.ai.yc.user.api.register.param.DeleteYCUserParams;
 import com.ai.yc.user.api.register.param.InsertYCUserRequest;
 import com.ai.yc.user.api.register.param.SearchYCContactUserId;
 import com.ai.yc.user.api.register.param.SearchYCTranslatorUserId;
-import com.ai.yc.user.api.register.param.SearchYCUserListParams;
 import com.ai.yc.user.api.register.param.SearchYCUserParams;
 import com.ai.yc.user.api.register.param.UpdateYCUserParams;
 import com.ai.yc.user.api.register.param.YCContactInfo;
-import com.ai.yc.user.api.register.param.YCDeleteUserResponse;
 import com.ai.yc.user.api.register.param.YCInsertUserResponse;
 import com.ai.yc.user.api.register.param.YCTranslatorInfo;
 import com.ai.yc.user.api.register.param.YCUpdateUserResponse;
 import com.ai.yc.user.api.register.param.YCUserInfo;
-import com.ai.yc.user.api.register.param.YCUserInfoList;
 
 
 @Path("/ycservice")

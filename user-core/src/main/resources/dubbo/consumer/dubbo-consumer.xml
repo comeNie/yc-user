@@ -24,6 +24,7 @@
 
 	<!-- <dubbo:consumer timeout="${dubbo.consoumer.timeout}" /> -->
 
+<!-- 
 	<dubbo:reference id="iLoginSV"
 		interface="com.ai.slp.user.api.login.interfaces.ILoginSV" />
 
@@ -35,4 +36,5 @@
 
 	<dubbo:reference id="iServiceNumSV"
 		interface="com.ai.slp.common.api.servicenum.interfaces.IServiceNumSV" />
+		 -->
 </beans>

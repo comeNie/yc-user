@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ai.yc.user.dao.mapper.interfaces.UsrCertificateMapper" >
+  <resultMap id="BaseResultMap" type="com.ai.yc.user.dao.mapper.bo.UsrCertificate" >
+    <id column="CERTIFICATE_ID" property="certificateId" jdbcType="VARCHAR" />
+    <result column="TRANSLATOR_ID" property="translatorId" jdbcType="VARCHAR" />
+    <result column="CERTIFICATE_TYPE" property="certificateType" jdbcType="VARCHAR" />
+    <result column="CERTIFICATE_LEVEL" property="certificateLevel" jdbcType="VARCHAR" />
+    <result column="CERTIFICATE_NAME" property="certificateName" jdbcType="VARCHAR" />
+    <result column="GRANTING_INSTITUTION" property="grantingInstitution" jdbcType="VARCHAR" />
+    <result column="AWARDED_TIME" property="awardedTime" jdbcType="VARCHAR" />
+    <result column="CERTIFICATES_DESCRIBE" property="certificatesDescribe" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    CERTIFICATE_ID, TRANSLATOR_ID, CERTIFICATE_TYPE, CERTIFICATE_LEVEL, CERTIFICATE_NAME, 
+    GRANTING_INSTITUTION, AWARDED_TIME, CERTIFICATES_DESCRIBE, CREATE_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.yc.user.dao.mapper.bo.UsrCertificateCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from usr_certificate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart>=0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from usr_certificate
+    where CERTIFICATE_ID = #{certificateId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from usr_certificate
+    where CERTIFICATE_ID = #{certificateId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ai.yc.user.dao.mapper.bo.UsrCertificateCriteria" >
+    delete from usr_certificate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ai.yc.user.dao.mapper.bo.UsrCertificate" >
+    insert into usr_certificate (CERTIFICATE_ID, TRANSLATOR_ID, CERTIFICATE_TYPE, 
+      CERTIFICATE_LEVEL, CERTIFICATE_NAME, GRANTING_INSTITUTION, 
+      AWARDED_TIME, CERTIFICATES_DESCRIBE, CREATE_TIME
+      )
+    values (#{certificateId,jdbcType=VARCHAR}, #{translatorId,jdbcType=VARCHAR}, #{certificateType,jdbcType=VARCHAR}, 
+      #{certificateLevel,jdbcType=VARCHAR}, #{certificateName,jdbcType=VARCHAR}, #{grantingInstitution,jdbcType=VARCHAR}, 
+      #{awardedTime,jdbcType=VARCHAR}, #{certificatesDescribe,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ai.yc.user.dao.mapper.bo.UsrCertificate" >
+    insert into usr_certificate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="certificateId != null" >
+        CERTIFICATE_ID,
+      </if>
+      <if test="translatorId != null" >
+        TRANSLATOR_ID,
+      </if>
+      <if test="certificateType != null" >
+        CERTIFICATE_TYPE,
+      </if>
+      <if test="certificateLevel != null" >
+        CERTIFICATE_LEVEL,
+      </if>
+      <if test="certificateName != null" >
+        CERTIFICATE_NAME,
+      </if>
+      <if test="grantingInstitution != null" >
+        GRANTING_INSTITUTION,
+      </if>
+      <if test="awardedTime != null" >
+        AWARDED_TIME,
+      </if>
+      <if test="certificatesDescribe != null" >
+        CERTIFICATES_DESCRIBE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="certificateId != null" >
+        #{certificateId,jdbcType=VARCHAR},
+      </if>
+      <if test="translatorId != null" >
+        #{translatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateType != null" >
+        #{certificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateLevel != null" >
+        #{certificateLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateName != null" >
+        #{certificateName,jdbcType=VARCHAR},
+      </if>
+      <if test="grantingInstitution != null" >
+        #{grantingInstitution,jdbcType=VARCHAR},
+      </if>
+      <if test="awardedTime != null" >
+        #{awardedTime,jdbcType=VARCHAR},
+      </if>
+      <if test="certificatesDescribe != null" >
+        #{certificatesDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ai.yc.user.dao.mapper.bo.UsrCertificateCriteria" resultType="java.lang.Integer" >
+    select count(*) from usr_certificate
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update usr_certificate
+    <set >
+      <if test="record.certificateId != null" >
+        CERTIFICATE_ID = #{record.certificateId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.translatorId != null" >
+        TRANSLATOR_ID = #{record.translatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certificateType != null" >
+        CERTIFICATE_TYPE = #{record.certificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certificateLevel != null" >
+        CERTIFICATE_LEVEL = #{record.certificateLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certificateName != null" >
+        CERTIFICATE_NAME = #{record.certificateName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.grantingInstitution != null" >
+        GRANTING_INSTITUTION = #{record.grantingInstitution,jdbcType=VARCHAR},
+      </if>
+      <if test="record.awardedTime != null" >
+        AWARDED_TIME = #{record.awardedTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.certificatesDescribe != null" >
+        CERTIFICATES_DESCRIBE = #{record.certificatesDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update usr_certificate
+    set CERTIFICATE_ID = #{record.certificateId,jdbcType=VARCHAR},
+      TRANSLATOR_ID = #{record.translatorId,jdbcType=VARCHAR},
+      CERTIFICATE_TYPE = #{record.certificateType,jdbcType=VARCHAR},
+      CERTIFICATE_LEVEL = #{record.certificateLevel,jdbcType=VARCHAR},
+      CERTIFICATE_NAME = #{record.certificateName,jdbcType=VARCHAR},
+      GRANTING_INSTITUTION = #{record.grantingInstitution,jdbcType=VARCHAR},
+      AWARDED_TIME = #{record.awardedTime,jdbcType=VARCHAR},
+      CERTIFICATES_DESCRIBE = #{record.certificatesDescribe,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ai.yc.user.dao.mapper.bo.UsrCertificate" >
+    update usr_certificate
+    <set >
+      <if test="translatorId != null" >
+        TRANSLATOR_ID = #{translatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateType != null" >
+        CERTIFICATE_TYPE = #{certificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateLevel != null" >
+        CERTIFICATE_LEVEL = #{certificateLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="certificateName != null" >
+        CERTIFICATE_NAME = #{certificateName,jdbcType=VARCHAR},
+      </if>
+      <if test="grantingInstitution != null" >
+        GRANTING_INSTITUTION = #{grantingInstitution,jdbcType=VARCHAR},
+      </if>
+      <if test="awardedTime != null" >
+        AWARDED_TIME = #{awardedTime,jdbcType=VARCHAR},
+      </if>
+      <if test="certificatesDescribe != null" >
+        CERTIFICATES_DESCRIBE = #{certificatesDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where CERTIFICATE_ID = #{certificateId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ai.yc.user.dao.mapper.bo.UsrCertificate" >
+    update usr_certificate
+    set TRANSLATOR_ID = #{translatorId,jdbcType=VARCHAR},
+      CERTIFICATE_TYPE = #{certificateType,jdbcType=VARCHAR},
+      CERTIFICATE_LEVEL = #{certificateLevel,jdbcType=VARCHAR},
+      CERTIFICATE_NAME = #{certificateName,jdbcType=VARCHAR},
+      GRANTING_INSTITUTION = #{grantingInstitution,jdbcType=VARCHAR},
+      AWARDED_TIME = #{awardedTime,jdbcType=VARCHAR},
+      CERTIFICATES_DESCRIBE = #{certificatesDescribe,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where CERTIFICATE_ID = #{certificateId,jdbcType=VARCHAR}
+  </update>
+</mapper>

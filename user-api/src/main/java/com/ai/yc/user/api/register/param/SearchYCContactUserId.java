@@ -7,4 +7,13 @@ package com.ai.yc.user.api.register.param;
  */
 public class SearchYCContactUserId {
 
+	private String userId;
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 }

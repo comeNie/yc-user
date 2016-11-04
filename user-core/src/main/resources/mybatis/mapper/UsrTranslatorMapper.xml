@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ai.yc.user.dao.mapper.interfaces.UsrTranslatorMapper" >
+  <resultMap id="BaseResultMap" type="com.ai.yc.user.dao.mapper.bo.UsrTranslator" >
+    <id column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="LSP_ID" property="lspId" jdbcType="VARCHAR" />
+    <result column="LSP_ROLE" property="lspRole" jdbcType="VARCHAR" />
+    <result column="WORKING_LIFE" property="workingLife" jdbcType="INTEGER" />
+    <result column="MOTHER_TONGUE" property="motherTongue" jdbcType="VARCHAR" />
+    <result column="STATE" property="state" jdbcType="INTEGER" />
+    <result column="TRANSLATION_TYPE" property="translationType" jdbcType="VARCHAR" />
+    <result column="INTERPRET_PRICE" property="interpretPrice" jdbcType="DECIMAL" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_MODIFY_TIME" property="lastModifyTime" jdbcType="TIMESTAMP" />
+    <result column="INTRODUCTION" property="introduction" jdbcType="VARCHAR" />
+    <result column="IS_LSP" property="isLsp" jdbcType="INTEGER" />
+    <result column="VIP_LEVEL" property="vipLevel" jdbcType="VARCHAR" />
+    <result column="LEGAL_CERT_NUM" property="legalCertNum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    USER_ID, LSP_ID, LSP_ROLE, WORKING_LIFE, MOTHER_TONGUE, STATE, TRANSLATION_TYPE, 
+    INTERPRET_PRICE, CREATE_TIME, LAST_MODIFY_TIME, INTRODUCTION, IS_LSP, VIP_LEVEL, 
+    LEGAL_CERT_NUM
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.yc.user.dao.mapper.bo.UsrTranslatorCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from usr_translator
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitStart != null and limitStart>=0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from usr_translator
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from usr_translator
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ai.yc.user.dao.mapper.bo.UsrTranslatorCriteria" >
+    delete from usr_translator
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ai.yc.user.dao.mapper.bo.UsrTranslator" >
+    insert into usr_translator (USER_ID, LSP_ID, LSP_ROLE, 
+      WORKING_LIFE, MOTHER_TONGUE, STATE, 
+      TRANSLATION_TYPE, INTERPRET_PRICE, CREATE_TIME, 
+      LAST_MODIFY_TIME, INTRODUCTION, IS_LSP, 
+      VIP_LEVEL, LEGAL_CERT_NUM)
+    values (#{userId,jdbcType=VARCHAR}, #{lspId,jdbcType=VARCHAR}, #{lspRole,jdbcType=VARCHAR}, 
+      #{workingLife,jdbcType=INTEGER}, #{motherTongue,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
+      #{translationType,jdbcType=VARCHAR}, #{interpretPrice,jdbcType=DECIMAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{lastModifyTime,jdbcType=TIMESTAMP}, #{introduction,jdbcType=VARCHAR}, #{isLsp,jdbcType=INTEGER}, 
+      #{vipLevel,jdbcType=VARCHAR}, #{legalCertNum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ai.yc.user.dao.mapper.bo.UsrTranslator" >
+    insert into usr_translator
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="lspId != null" >
+        LSP_ID,
+      </if>
+      <if test="lspRole != null" >
+        LSP_ROLE,
+      </if>
+      <if test="workingLife != null" >
+        WORKING_LIFE,
+      </if>
+      <if test="motherTongue != null" >
+        MOTHER_TONGUE,
+      </if>
+      <if test="state != null" >
+        STATE,
+      </if>
+      <if test="translationType != null" >
+        TRANSLATION_TYPE,
+      </if>
+      <if test="interpretPrice != null" >
+        INTERPRET_PRICE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="lastModifyTime != null" >
+        LAST_MODIFY_TIME,
+      </if>
+      <if test="introduction != null" >
+        INTRODUCTION,
+      </if>
+      <if test="isLsp != null" >
+        IS_LSP,
+      </if>
+      <if test="vipLevel != null" >
+        VIP_LEVEL,
+      </if>
+      <if test="legalCertNum != null" >
+        LEGAL_CERT_NUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="lspId != null" >
+        #{lspId,jdbcType=VARCHAR},
+      </if>
+      <if test="lspRole != null" >
+        #{lspRole,jdbcType=VARCHAR},
+      </if>
+      <if test="workingLife != null" >
+        #{workingLife,jdbcType=INTEGER},
+      </if>
+      <if test="motherTongue != null" >
+        #{motherTongue,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="translationType != null" >
+        #{translationType,jdbcType=VARCHAR},
+      </if>
+      <if test="interpretPrice != null" >
+        #{interpretPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyTime != null" >
+        #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="isLsp != null" >
+        #{isLsp,jdbcType=INTEGER},
+      </if>
+      <if test="vipLevel != null" >
+        #{vipLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCertNum != null" >
+        #{legalCertNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ai.yc.user.dao.mapper.bo.UsrTranslatorCriteria" resultType="java.lang.Integer" >
+    select count(*) from usr_translator
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update usr_translator
+    <set >
+      <if test="record.userId != null" >
+        USER_ID = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lspId != null" >
+        LSP_ID = #{record.lspId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lspRole != null" >
+        LSP_ROLE = #{record.lspRole,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workingLife != null" >
+        WORKING_LIFE = #{record.workingLife,jdbcType=INTEGER},
+      </if>
+      <if test="record.motherTongue != null" >
+        MOTHER_TONGUE = #{record.motherTongue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        STATE = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.translationType != null" >
+        TRANSLATION_TYPE = #{record.translationType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.interpretPrice != null" >
+        INTERPRET_PRICE = #{record.interpretPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastModifyTime != null" >
+        LAST_MODIFY_TIME = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.introduction != null" >
+        INTRODUCTION = #{record.introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isLsp != null" >
+        IS_LSP = #{record.isLsp,jdbcType=INTEGER},
+      </if>
+      <if test="record.vipLevel != null" >
+        VIP_LEVEL = #{record.vipLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalCertNum != null" >
+        LEGAL_CERT_NUM = #{record.legalCertNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update usr_translator
+    set USER_ID = #{record.userId,jdbcType=VARCHAR},
+      LSP_ID = #{record.lspId,jdbcType=VARCHAR},
+      LSP_ROLE = #{record.lspRole,jdbcType=VARCHAR},
+      WORKING_LIFE = #{record.workingLife,jdbcType=INTEGER},
+      MOTHER_TONGUE = #{record.motherTongue,jdbcType=VARCHAR},
+      STATE = #{record.state,jdbcType=INTEGER},
+      TRANSLATION_TYPE = #{record.translationType,jdbcType=VARCHAR},
+      INTERPRET_PRICE = #{record.interpretPrice,jdbcType=DECIMAL},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      LAST_MODIFY_TIME = #{record.lastModifyTime,jdbcType=TIMESTAMP},
+      INTRODUCTION = #{record.introduction,jdbcType=VARCHAR},
+      IS_LSP = #{record.isLsp,jdbcType=INTEGER},
+      VIP_LEVEL = #{record.vipLevel,jdbcType=VARCHAR},
+      LEGAL_CERT_NUM = #{record.legalCertNum,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ai.yc.user.dao.mapper.bo.UsrTranslator" >
+    update usr_translator
+    <set >
+      <if test="lspId != null" >
+        LSP_ID = #{lspId,jdbcType=VARCHAR},
+      </if>
+      <if test="lspRole != null" >
+        LSP_ROLE = #{lspRole,jdbcType=VARCHAR},
+      </if>
+      <if test="workingLife != null" >
+        WORKING_LIFE = #{workingLife,jdbcType=INTEGER},
+      </if>
+      <if test="motherTongue != null" >
+        MOTHER_TONGUE = #{motherTongue,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        STATE = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="translationType != null" >
+        TRANSLATION_TYPE = #{translationType,jdbcType=VARCHAR},
+      </if>
+      <if test="interpretPrice != null" >
+        INTERPRET_PRICE = #{interpretPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastModifyTime != null" >
+        LAST_MODIFY_TIME = #{lastModifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="introduction != null" >
+        INTRODUCTION = #{introduction,jdbcType=VARCHAR},
+      </if>
+      <if test="isLsp != null" >
+        IS_LSP = #{isLsp,jdbcType=INTEGER},
+      </if>
+      <if test="vipLevel != null" >
+        VIP_LEVEL = #{vipLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCertNum != null" >
+        LEGAL_CERT_NUM = #{legalCertNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ai.yc.user.dao.mapper.bo.UsrTranslator" >
+    update usr_translator
+    set LSP_ID = #{lspId,jdbcType=VARCHAR},
+      LSP_ROLE = #{lspRole,jdbcType=VARCHAR},
+      WORKING_LIFE = #{workingLife,jdbcType=INTEGER},
+      MOTHER_TONGUE = #{motherTongue,jdbcType=VARCHAR},
+      STATE = #{state,jdbcType=INTEGER},
+      TRANSLATION_TYPE = #{translationType,jdbcType=VARCHAR},
+      INTERPRET_PRICE = #{interpretPrice,jdbcType=DECIMAL},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      LAST_MODIFY_TIME = #{lastModifyTime,jdbcType=TIMESTAMP},
+      INTRODUCTION = #{introduction,jdbcType=VARCHAR},
+      IS_LSP = #{isLsp,jdbcType=INTEGER},
+      VIP_LEVEL = #{vipLevel,jdbcType=VARCHAR},
+      LEGAL_CERT_NUM = #{legalCertNum,jdbcType=VARCHAR}
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>

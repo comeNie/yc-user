@@ -5,24 +5,12 @@ import java.lang.reflect.Field;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ai.opt.base.exception.BusinessException;
-import com.ai.opt.base.exception.SystemException;
-import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
-import com.ai.yc.user.api.register.interfaces.IRegisterSV;
 import com.ai.yc.user.api.register.interfaces.IYCUserServiceSV;
 import com.ai.yc.user.api.register.param.InsertYCUserRequest;
-import com.ai.yc.user.api.register.param.RegisterParamsRequest;
-import com.ai.yc.user.api.register.param.RegisterResponse;
 import com.ai.yc.user.api.register.param.SearchYCContactUserId;
 import com.ai.yc.user.api.register.param.SearchYCTranslatorUserId;
 import com.ai.yc.user.api.register.param.SearchYCUserParams;
-import com.ai.yc.user.api.register.param.UcBankKeyInfoParams;
-import com.ai.yc.user.api.register.param.UcContactInfoParams;
-import com.ai.yc.user.api.register.param.UcCustKeyInfoParams;
-import com.ai.yc.user.api.register.param.UcGroupKeyInfoParams;
-import com.ai.yc.user.api.register.param.UcUserFileExtParams;
-import com.ai.yc.user.api.register.param.UcUserParams;
 import com.ai.yc.user.api.register.param.UpdateYCUserParams;
 import com.ai.yc.user.api.register.param.YCContactInfo;
 import com.ai.yc.user.api.register.param.YCInsertUserResponse;
@@ -30,9 +18,7 @@ import com.ai.yc.user.api.register.param.YCTranslatorInfo;
 import com.ai.yc.user.api.register.param.YCUpdateUserResponse;
 import com.ai.yc.user.api.register.param.YCUserInfo;
 import com.ai.yc.user.constants.ExceptCodeConstants;
-import com.ai.yc.user.constants.UserRegisterErrorCode;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
-import com.ai.yc.user.service.business.interfaces.IRegisterBusiSV;
 import com.ai.yc.user.service.business.interfaces.IYCUserServiceBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
 
@@ -45,6 +31,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCInsertUserResponse insertYCUser(InsertYCUserRequest insertInfo){
+		System.out.println("$$$$$$$$$$$"+insertInfo);
 		insertInfo.setMobilePhone(insertInfo.getMobilePhone());
 		String userId = ycRegisterBusiSv.insertUserInfo(insertInfo);
 		YCInsertUserResponse result = new YCInsertUserResponse();
@@ -79,14 +66,18 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCTranslatorInfo searchYCTranslatorInfoById(SearchYCTranslatorUserId tUsrId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public YCContactInfo searchYCContactInfoById(SearchYCContactUserId cUsrId) {
-		// TODO Auto-generated method stub
-		return null;
+//		UsrUser usrUser = ycRegisterBusiSv.(cUsrId.getUserId());
+//		YCUserInfo result = GetUsrInfoByUsrUser(usrUser);
+//		
+//		ResponseHeader responseHeader = new ResponseHeader(true, "1", "更新成功");
+//		result.setResponseHeader(responseHeader);
+//        result.setResponseCode(ExceptCodeConstants.SUCCESS);
+        return null;
 	}
     
 	public YCUserInfo GetUsrInfoByUsrUser(UsrUser userparam) {
@@ -103,7 +94,6 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 						insertfields[i].setAccessible(true);
 						if(usrFields[j].getGenericType() == insertfields[i].getGenericType())
 							usrFields[j].set(usrUserObj, insertfields[i].get(insertInfoObj));
-						System.out.println(usrUserObj);
 					}
 				}
 			}

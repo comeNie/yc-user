@@ -33,14 +33,6 @@ import com.ai.yc.user.constants.SequenceCodeConstants.UserSequenceCode;
 import com.ai.yc.user.constants.UcUserConstants.Account;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
-import com.ai.yc.user.dao.mapper.bo.UcContactsInfo;
-import com.ai.yc.user.dao.mapper.bo.UcContactsInfoCriteria;
-import com.ai.yc.user.dao.mapper.bo.UcGroupKeyInfo;
-import com.ai.yc.user.dao.mapper.bo.UcGroupKeyInfoCriteria;
-import com.ai.yc.user.dao.mapper.bo.UcUser;
-import com.ai.yc.user.dao.mapper.bo.UcUserCriteria;
-import com.ai.yc.user.service.atom.interfaces.IRegisterAtomSV;
-import com.ai.yc.user.service.atom.interfaces.IUcContactsInfoAtomSV;
 import com.ai.yc.user.service.atom.interfaces.IYCUserServiceAtomSV;
 import com.ai.yc.user.service.business.interfaces.IYCUserServiceBusiSV;
 
@@ -63,7 +55,12 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		// 孟博接口
 		
 		// 插入数据
-		UsrUser tUser =  UsrUser.getUsrUserByInsertReq(insertinfo);
+		System.out.println("$$$$$$$$$$$"+insertinfo);
+		UsrUser tUser = new UsrUser();
+//		UsrUser tUser =  UsrUser.getUsrUserByInsertReq(insertinfo);
+		// 从右到左
+		BeanUtils.copyProperties(tUser, insertinfo);
+		System.out.println("$$$$$$$$$$$"+tUser);
 		String UserId = SeqUtil.getNewId(UserSequenceCode.CM_CUST_FILE_EXT$INFO_EXT$ID,18);
 		tUser.setUserId(UserId);
 		ycUSAtomSV.insertUserInfo(tUser);

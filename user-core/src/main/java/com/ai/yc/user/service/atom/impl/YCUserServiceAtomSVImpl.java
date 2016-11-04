@@ -6,21 +6,9 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.ai.yc.user.dao.mapper.bo.UcContactsInfo;
-import com.ai.yc.user.dao.mapper.bo.UcContactsInfoCriteria;
-import com.ai.yc.user.dao.mapper.bo.UcCustKeyInfo;
-import com.ai.yc.user.dao.mapper.bo.UcCustKeyInfoCriteria;
-import com.ai.yc.user.dao.mapper.bo.UcGroupKeyInfo;
-import com.ai.yc.user.dao.mapper.bo.UcGroupKeyInfoCriteria;
-import com.ai.yc.user.dao.mapper.bo.UcUser;
-import com.ai.yc.user.dao.mapper.bo.UcUserCriteria;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
-import com.ai.yc.user.dao.mapper.interfaces.UcContactsInfoMapper;
-import com.ai.yc.user.dao.mapper.interfaces.UcCustKeyInfoMapper;
-import com.ai.yc.user.dao.mapper.interfaces.UcUserMapper;
 import com.ai.yc.user.dao.mapper.interfaces.UsrUserMapper;
-import com.ai.yc.user.service.atom.interfaces.IRegisterAtomSV;
 import com.ai.yc.user.service.atom.interfaces.IYCUserServiceAtomSV;
 
 
