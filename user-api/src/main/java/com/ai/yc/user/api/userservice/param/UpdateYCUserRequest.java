@@ -2,13 +2,19 @@ package com.ai.yc.user.api.userservice.param;
 
 import java.sql.Timestamp;
 
+import com.ai.opt.base.vo.BaseInfo;
+
 /** 
  * @author  作者 “WTF” E-mail: 1031248990@qq.com
  * @date 创建时间：2016年11月2日 上午11:18:47 
  * @version 
  * @since  
  */
-public class UpdateYCUserRequest {
+public class UpdateYCUserRequest extends BaseInfo{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * 必填
 	 * 用户ID
