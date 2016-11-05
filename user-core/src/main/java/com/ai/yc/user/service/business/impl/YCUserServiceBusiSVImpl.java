@@ -88,7 +88,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		
 		// 插入数据
 		UsrUser tUser = new UsrUser();
-		// 从右到左
+		// 从右到左,把相同类型且属性名相同的复制到右边
 		BeanUtils.copyProperties(tUser, insertinfo);
 		String UserId = SeqUtil.getNewId(UserSequenceCode.CM_CUST_FILE_EXT$INFO_EXT$ID,18);
 		tUser.setUserId(UserId);
@@ -132,8 +132,15 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		if(StringUtil.isBlank(userparam.getCountry())){
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:国家不能为空");
 		}
+		if(StringUtil.isBlank(userparam.getUserName())){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户名不能为空");
+		}
+		if(StringUtil.isBlank(userparam.getFullName())){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户名不能为空");
+		}
 		
-		UsrUser user = UsrUser.getUsrUserByUpparam(userparam);
+		UsrUser user = new UsrUser();
+		BeanUtils.copyProperties(user, userparam);
 		UsrUserCriteria example = new UsrUserCriteria();
 		UsrUserCriteria.Criteria criteria = example.createCriteria();
         criteria.andUserIdEqualTo(user.getUserId());
@@ -146,7 +153,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		if(StringUtil.isBlank(userID)){
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户Id不能为空");
 		}
-		
+		System.out.println("searchUserInfo-userId" + userID);
 		UsrUser usrUser = ycUSAtomSV.getUserInfo(userID);
 		return usrUser;
 	}

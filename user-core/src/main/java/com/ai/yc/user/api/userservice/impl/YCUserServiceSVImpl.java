@@ -70,6 +70,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCUserInfoResponse searchYCUserInfo(SearchYCUserRequest userId){
+		System.out.println("searchYCUserInfo-userId" + userId);
 		UsrUser usrUser = ycUsrServiceBusiSv.searchUserInfo(userId.getUserId());
 //		YCUserInfoResponse result = GetUsrInfoByUsrUser(usrUser);
 		YCUserInfoResponse result = new YCUserInfoResponse();

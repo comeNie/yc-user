@@ -88,9 +88,12 @@ public class InsertYCUserRequest {
      */
     private String fullName;
     
+    
+
 	public InsertYCUserRequest() {
 		super();
 	}
+
 	public InsertYCUserRequest(String operationcode, String loginway, String regip, String userName, String telephone,
 			String email, String password, String nickname, String lastname, String firstname, Integer sex,
 			String mobilePhone, String qq, String address, String country, String cnCity, String province,

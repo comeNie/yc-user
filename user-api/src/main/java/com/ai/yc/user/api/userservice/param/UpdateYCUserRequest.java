@@ -59,6 +59,44 @@ public class UpdateYCUserRequest {
 	 * 国家
 	 */
     private String country;
+    
+    /**
+     * 全名
+     */
+    private String fullName;
+    /**
+	 * 用户名 默认手机号或者是邮箱地址 +随机数
+	 * 必填
+	 */
+	private String userName;
+    
+
+	public UpdateYCUserRequest() {
+		super();
+	}
+
+	
+
+	public UpdateYCUserRequest(String userId, String nickname, String lastname, String firstname, Integer sex,
+			Timestamp birthday, String qq, String address, String cnCity, String province, String country,
+			String fullName, String userName) {
+		super();
+		this.userId = userId;
+		this.nickname = nickname;
+		this.lastname = lastname;
+		this.firstname = firstname;
+		this.sex = sex;
+		this.birthday = birthday;
+		this.qq = qq;
+		this.address = address;
+		this.cnCity = cnCity;
+		this.province = province;
+		this.country = country;
+		this.fullName = fullName;
+		this.userName = userName;
+	}
+
+
 
 	public String getUserId() {
 		return userId;
@@ -146,6 +184,22 @@ public class UpdateYCUserRequest {
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
     
 

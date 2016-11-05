@@ -14,6 +14,14 @@ import com.ai.opt.base.vo.BaseResponse;
 public class YCUserInfoResponse extends BaseResponse {
 
 
+	@Override
+	public String toString() {
+		return "YCUserInfoResponse [responseCode=" + responseCode + ", userId=" + userId + ", nickname=" + nickname
+				+ ", sex=" + sex + ", birthday=" + birthday + ", mobilePhone=" + mobilePhone + ", qq=" + qq
+				+ ", address=" + address + ", cnCity=" + cnCity + ", province=" + province + ", country=" + country
+				+ ", isRanslator=" + isRanslator + ", isAdmin=" + isAdmin + "]";
+	}
+
 	/**
 	 * 
 	 */

@@ -28,6 +28,7 @@
     <result column="PERSONSIGN" property="personsign" jdbcType="VARCHAR" />
     <result column="zip_code" property="zipCode" jdbcType="VARCHAR" />
     <result column="IS_ADMIN" property="isAdmin" jdbcType="INTEGER" />
+    <result column="full_name" property="fullName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -91,7 +92,7 @@
     USER_ID, NICKNAME, STATE, LASTNAME, FIRSTNAME, SEX, BIRTHDAY, TELEPHONE, MOBILE_PHONE, 
     QQ, ADDRESS, SAFETY_LEVEL, CN_CITY, PROVINCE, COUNTRY, TIME_ZONE, IS_RANSLATOR, REGIST_TIME, 
     LAST_MODIFY_TIME, OCCUPATION, TITLE, USERSOURCE, THIRDUID, PERSONSIGN, zip_code, 
-    IS_ADMIN
+    IS_ADMIN, full_name
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.yc.user.dao.mapper.bo.UsrUserCriteria" >
     select
@@ -136,7 +137,8 @@
       TIME_ZONE, IS_RANSLATOR, REGIST_TIME, 
       LAST_MODIFY_TIME, OCCUPATION, TITLE, 
       USERSOURCE, THIRDUID, PERSONSIGN, 
-      zip_code, IS_ADMIN)
+      zip_code, IS_ADMIN, full_name
+      )
     values (#{userId,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
       #{lastname,jdbcType=VARCHAR}, #{firstname,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
       #{birthday,jdbcType=TIMESTAMP}, #{telephone,jdbcType=VARCHAR}, #{mobilePhone,jdbcType=VARCHAR}, 
@@ -145,7 +147,8 @@
       #{timeZone,jdbcType=VARCHAR}, #{isRanslator,jdbcType=INTEGER}, #{registTime,jdbcType=TIMESTAMP}, 
       #{lastModifyTime,jdbcType=TIMESTAMP}, #{occupation,jdbcType=INTEGER}, #{title,jdbcType=INTEGER}, 
       #{usersource,jdbcType=VARCHAR}, #{thirduid,jdbcType=VARCHAR}, #{personsign,jdbcType=VARCHAR}, 
-      #{zipCode,jdbcType=VARCHAR}, #{isAdmin,jdbcType=INTEGER})
+      #{zipCode,jdbcType=VARCHAR}, #{isAdmin,jdbcType=INTEGER}, #{fullName,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ai.yc.user.dao.mapper.bo.UsrUser" >
     insert into usr_user
@@ -228,6 +231,9 @@
       <if test="isAdmin != null" >
         IS_ADMIN,
       </if>
+      <if test="fullName != null" >
+        full_name,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
@@ -307,6 +313,9 @@
       </if>
       <if test="isAdmin != null" >
         #{isAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="fullName != null" >
+        #{fullName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -397,6 +406,9 @@
       <if test="record.isAdmin != null" >
         IS_ADMIN = #{record.isAdmin,jdbcType=INTEGER},
       </if>
+      <if test="record.fullName != null" >
+        full_name = #{record.fullName,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -429,7 +441,8 @@
       THIRDUID = #{record.thirduid,jdbcType=VARCHAR},
       PERSONSIGN = #{record.personsign,jdbcType=VARCHAR},
       zip_code = #{record.zipCode,jdbcType=VARCHAR},
-      IS_ADMIN = #{record.isAdmin,jdbcType=INTEGER}
+      IS_ADMIN = #{record.isAdmin,jdbcType=INTEGER},
+      full_name = #{record.fullName,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -512,6 +525,9 @@
       <if test="isAdmin != null" >
         IS_ADMIN = #{isAdmin,jdbcType=INTEGER},
       </if>
+      <if test="fullName != null" >
+        full_name = #{fullName,jdbcType=VARCHAR},
+      </if>
     </set>
     where USER_ID = #{userId,jdbcType=VARCHAR}
   </update>
@@ -541,7 +557,8 @@
       THIRDUID = #{thirduid,jdbcType=VARCHAR},
       PERSONSIGN = #{personsign,jdbcType=VARCHAR},
       zip_code = #{zipCode,jdbcType=VARCHAR},
-      IS_ADMIN = #{isAdmin,jdbcType=INTEGER}
+      IS_ADMIN = #{isAdmin,jdbcType=INTEGER},
+      full_name = #{fullName,jdbcType=VARCHAR}
     where USER_ID = #{userId,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -1,10 +1,6 @@
 package com.ai.yc.user.dao.mapper.bo;
 
-import java.lang.reflect.Field;
 import java.sql.Timestamp;
-
-import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
-import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 
 public class UsrUser {
     private String userId;
@@ -59,142 +55,9 @@ public class UsrUser {
 
     private Integer isAdmin;
 
-    public UsrUser() {
-		super();
-	}
+    private String fullName;
 
-	public UsrUser(String userId, String nickname, Integer state, String lastname, String firstname, Integer sex,
-			Timestamp birthday, String telephone, String mobilePhone, String qq, String address, String safetyLevel,
-			String cnCity, String province, String country, String timeZone, Integer isRanslator, Timestamp registTime,
-			Timestamp lastModifyTime, Integer occupation, Integer title, String usersource, String thirduid,
-			String personsign, String zipCode, Integer isAdmin) {
-		super();
-		this.userId = userId;
-		this.nickname = nickname;
-		this.state = state;
-		this.lastname = lastname;
-		this.firstname = firstname;
-		this.sex = sex;
-		this.birthday = birthday;
-		this.telephone = telephone;
-		this.mobilePhone = mobilePhone;
-		this.qq = qq;
-		this.address = address;
-		this.safetyLevel = safetyLevel;
-		this.cnCity = cnCity;
-		this.province = province;
-		this.country = country;
-		this.timeZone = timeZone;
-		this.isRanslator = isRanslator;
-		this.registTime = registTime;
-		this.lastModifyTime = lastModifyTime;
-		this.occupation = occupation;
-		this.title = title;
-		this.usersource = usersource;
-		this.thirduid = thirduid;
-		this.personsign = personsign;
-		this.zipCode = zipCode;
-		this.isAdmin = isAdmin;
-	}
-
-	public UsrUser(String nickname, Integer state, String lastname, String firstname, Integer sex, Timestamp birthday,
-			String telephone, String mobilePhone, String qq, String address, String safetyLevel, String cnCity,
-			String province, String country, String timeZone, Integer isRanslator, Timestamp registTime,
-			Timestamp lastModifyTime, Integer occupation, Integer title, String usersource, String thirduid,
-			String personsign, String zipCode, Integer isAdmin) {
-		super();
-		this.nickname = nickname;
-		this.state = state;
-		this.lastname = lastname;
-		this.firstname = firstname;
-		this.sex = sex;
-		this.birthday = birthday;
-		this.telephone = telephone;
-		this.mobilePhone = mobilePhone;
-		this.qq = qq;
-		this.address = address;
-		this.safetyLevel = safetyLevel;
-		this.cnCity = cnCity;
-		this.province = province;
-		this.country = country;
-		this.timeZone = timeZone;
-		this.isRanslator = isRanslator;
-		this.registTime = registTime;
-		this.lastModifyTime = lastModifyTime;
-		this.occupation = occupation;
-		this.title = title;
-		this.usersource = usersource;
-		this.thirduid = thirduid;
-		this.personsign = personsign;
-		this.zipCode = zipCode;
-		this.isAdmin = isAdmin;
-	}
-
-	@Override
-	public String toString() {
-		return "UsrUser [userId=" + userId + ", nickname=" + nickname + ", state=" + state + ", lastname=" + lastname
-				+ ", firstname=" + firstname + ", sex=" + sex + ", birthday=" + birthday + ", telephone=" + telephone
-				+ ", mobilePhone=" + mobilePhone + ", qq=" + qq + ", address=" + address + ", safetyLevel="
-				+ safetyLevel + ", cnCity=" + cnCity + ", province=" + province + ", country=" + country + ", timeZone="
-				+ timeZone + ", isRanslator=" + isRanslator + ", registTime=" + registTime + ", lastModifyTime="
-				+ lastModifyTime + ", occupation=" + occupation + ", title=" + title + ", usersource=" + usersource
-				+ ", thirduid=" + thirduid + ", personsign=" + personsign + ", zipCode=" + zipCode + ", isAdmin="
-				+ isAdmin + "]";
-	}
-	public static UsrUser getUsrUserByUpparam(UpdateYCUserRequest userparam) {
-		try{
-			Class<?> usrUserClass = Class.forName(UsrUser.class.getName());
-			Object usrUserObj = usrUserClass.newInstance();
-			Object insertInfoObj = userparam;
-			Field[] usrFields = UsrUser.class.getDeclaredFields();
-			Field[] insertfields = InsertYCUserRequest.class.getDeclaredFields();
-			for(int i = 0; i < insertfields.length; i++){
-				for(int j = 0; j < usrFields.length; j++){
-					if(insertfields[i].getName().equals(usrFields[j].getName())){
-						usrFields[j].setAccessible(true);
-						insertfields[i].setAccessible(true);
-						if(usrFields[j].getGenericType() == insertfields[i].getGenericType())
-							usrFields[j].set(usrUserObj, insertfields[i].get(insertInfoObj));
-						System.out.println(usrUserObj);
-					}
-				}
-			}
-			UsrUser usrUser = (UsrUser) usrUserObj;
-			return usrUser;
-		} catch ( InstantiationException| IllegalAccessException| ClassNotFoundException  e){
-			e.printStackTrace();
-		}
-		return null;
-	}
-	public static UsrUser getUsrUserByInsertReq(InsertYCUserRequest insertinfo){
-		try{
-			Class<?> usrUserClass = Class.forName(UsrUser.class.getName());
-			Object usrUserObj = usrUserClass.newInstance();
-			Object insertInfoObj = insertinfo;
-			Field[] usrFields = UsrUser.class.getDeclaredFields();
-			Field[] insertfields = InsertYCUserRequest.class.getDeclaredFields();
-			for(int i = 0; i < insertfields.length; i++){
-				for(int j = 0; j < usrFields.length; j++){
-					if(insertfields[i].getName().equals(usrFields[j].getName())){
-						usrFields[j].setAccessible(true);
-						insertfields[i].setAccessible(true);
-						if(usrFields[j].getGenericType() == insertfields[i].getGenericType())
-							usrFields[j].set(usrUserObj, insertfields[i].get(insertInfoObj));
-						System.out.println(usrUserObj);
-					}
-				}
-			}
-			UsrUser usrUser = (UsrUser) usrUserObj;
-			return usrUser;
-		} catch ( InstantiationException| IllegalAccessException| ClassNotFoundException  e){
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	
-
-	public String getUserId() {
+    public String getUserId() {
         return userId;
     }
 
@@ -400,5 +263,13 @@ public class UsrUser {
 
     public void setIsAdmin(Integer isAdmin) {
         this.isAdmin = isAdmin;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName == null ? null : fullName.trim();
     }
 }
