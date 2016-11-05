@@ -43,6 +43,8 @@ public class YCUserInfoResponse extends BaseResponse {
     private Integer isRanslator;
 
     private Integer isAdmin;
+    
+    private String fullName;
 
 	public String getResponseCode() {
 		return responseCode;
@@ -147,12 +149,12 @@ public class YCUserInfoResponse extends BaseResponse {
 	public void setIsAdmin(Integer isAdmin) {
 		this.isAdmin = isAdmin;
 	}
-	
-	@Override
-	public String toString() {
-		return "YCUserInfoResponse [responseCode=" + responseCode + ", userId=" + userId + ", nickname=" + nickname
-				+ ", sex=" + sex + ", birthday=" + birthday + ", mobilePhone=" + mobilePhone + ", qq=" + qq
-				+ ", address=" + address + ", cnCity=" + cnCity + ", province=" + province + ", country=" + country
-				+ ", isRanslator=" + isRanslator + ", isAdmin=" + isAdmin + "]";
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 }
