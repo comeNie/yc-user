@@ -12,6 +12,11 @@ import com.ai.opt.base.vo.BaseResponse;
  */
 public class YCContactInfoResponse extends BaseResponse {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8328389164342159315L;
+
 	private String responseCode;
 
     private String userName;

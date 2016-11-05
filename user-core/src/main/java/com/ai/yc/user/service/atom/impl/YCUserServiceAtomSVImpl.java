@@ -35,7 +35,6 @@ public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 
 	@Override
 	public UsrUser getUserInfo(String userId) {
-		System.out.println("getUserInfo-userId" + userId);
 		return tUserMapper.selectByPrimaryKey(userId);
 	}
 

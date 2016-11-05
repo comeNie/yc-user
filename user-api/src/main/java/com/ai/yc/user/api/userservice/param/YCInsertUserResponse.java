@@ -12,7 +12,9 @@ public class YCInsertUserResponse extends BaseResponse {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1664750013408382459L;
+
+	
 	private String userId;
 	public String getUserId() {
 		return userId;

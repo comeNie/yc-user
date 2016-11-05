@@ -70,11 +70,9 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCUserInfoResponse searchYCUserInfo(SearchYCUserRequest userId){
-		System.out.println("searchYCUserInfo-userId" + userId);
 		UsrUser usrUser = ycUsrServiceBusiSv.searchUserInfo(userId.getUserId());
-//		YCUserInfoResponse result = GetUsrInfoByUsrUser(usrUser);
 		YCUserInfoResponse result = new YCUserInfoResponse();
-		BeanUtils.copyProperties(result, usrUser);
+		BeanUtils.copyProperties(result,usrUser);
 		ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "更新成功");
 		result.setResponseHeader(responseHeader);
         result.setResponseCode(ExceptCodeConstants.SUCCESS);

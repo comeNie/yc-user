@@ -1,5 +1,6 @@
 package com.ai.yc.user.api.userservice.param;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 /** 
@@ -8,7 +9,11 @@ import java.sql.Timestamp;
  * @version 
  * @since  
  */
-public class UpdateYCUserRequest {
+public class UpdateYCUserRequest implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7763797307997837392L;
 	/**
 	 * 必填
 	 * 用户ID

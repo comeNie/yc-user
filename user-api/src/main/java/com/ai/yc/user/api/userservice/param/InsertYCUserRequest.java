@@ -1,13 +1,19 @@
 package com.ai.yc.user.api.userservice.param;
 
+import java.io.Serializable;
+
 /** 
  * @author  作者 “WTF” E-mail: 1031248990@qq.com
  * @date 创建时间：2016年11月2日 上午11:17:36 
  * @version 
  * @since  
  */
-public class InsertYCUserRequest {
+public class InsertYCUserRequest implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6684903649163120222L;
 	/**
 	 * 手机激活码
 	 * 手机+密码方式有值

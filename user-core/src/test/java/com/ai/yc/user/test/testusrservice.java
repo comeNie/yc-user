@@ -40,7 +40,7 @@ public class testusrservice {
 		sr1.setUserId(UserID);
 		YCUserInfoResponse uir1 = usSV.searchYCUserInfo(sr1);
 		System.out.println(uir1);
-		UpdateYCUserRequest updateu = new UpdateYCUserRequest(UserID, "hb", "hou", "bin", 0, timestamp, "1031248990", "BJ", "BJ", "BJ", "CN","houbin","hb-X");
+		UpdateYCUserRequest updateu = new UpdateYCUserRequest(UserID, "hb", "hou", "bin", 0, timestamp, "1031248990", "BJ", "BJ", "BJ", "CN","houbin","fff");
 		usSV.updateYCUserInfo(updateu);
 		SearchYCUserRequest sr2 = new SearchYCUserRequest();
 		sr2.setUserId(UserID);

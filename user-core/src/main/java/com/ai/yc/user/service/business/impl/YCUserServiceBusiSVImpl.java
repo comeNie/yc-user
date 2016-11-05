@@ -153,7 +153,6 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		if(StringUtil.isBlank(userID)){
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户Id不能为空");
 		}
-		System.out.println("searchUserInfo-userId" + userID);
 		UsrUser usrUser = ycUSAtomSV.getUserInfo(userID);
 		return usrUser;
 	}
