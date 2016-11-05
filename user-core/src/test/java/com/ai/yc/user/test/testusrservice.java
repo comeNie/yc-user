@@ -14,6 +14,7 @@ import com.ai.yc.user.api.userservice.param.SearchYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
+import com.alibaba.fastjson.JSON;
 
 /** 
  * @author  作者 “WTF” E-mail: 1031248990@qq.com
@@ -48,4 +49,10 @@ public class testusrservice {
 		System.out.println(uir2);
 	}
 
+	@Test
+	public void testSearchNickName() {
+		String nickName = "tom";
+		YCUserInfoResponse response = usSV.searchUserInfoByNickName(nickName);
+		System.out.println(JSON.toJSONString(response));
+	}
 }

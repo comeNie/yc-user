@@ -22,6 +22,8 @@ public interface IYCUserServiceAtomSV {
 	public UsrTranslator getUsrTranslatorInfo(String userId);
 
 	public UsrContact getUsrContactInfo(String userId);
+	
+	public UsrUser getUserInfoByNickName(UsrUserCriteria example);
 
 
 }

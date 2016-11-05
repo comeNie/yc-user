@@ -1,6 +1,9 @@
 package com.ai.yc.user.api.userservice.impl;
 
 
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,6 +103,23 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "更新成功");
 		result.setResponseHeader(responseHeader);
         result.setResponseCode(ExceptCodeConstants.SUCCESS);
+		return result;
+	}
+
+	@Override
+	@POST
+	@Path("/searchUserInfoByNickName")
+	public YCUserInfoResponse searchUserInfoByNickName(String nickName) {
+		ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "更新成功");
+		YCUserInfoResponse result = new YCUserInfoResponse();
+		try{
+			UsrUser usruser = ycUsrServiceBusiSv.searchuserInfoByNickName(nickName);
+			BeanUtils.copyProperties(result, usruser);
+			responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
+		}catch(Exception e){
+			responseHeader = new ResponseHeader(false, ExceptCodeConstants.SUCCESS, "查询失败");
+		}
+		result.setResponseHeader(responseHeader);
 		return result;
 	}
 
