@@ -109,33 +109,8 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:昵称不能为空");
 		}
 		
-		if(StringUtil.isBlank(userparam.getBirthday().toString())){
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:生日不能为空");
-		}
 		
-		if(StringUtil.isBlank(userparam.getQq())){
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:qq不能为空");
-		}
-		
-		if(StringUtil.isBlank(userparam.getAddress())){
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:地址不能为空");
-		}
-		
-		if(StringUtil.isBlank(userparam.getCnCity())){
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:市不能为空");
-		}
-		
-		if(StringUtil.isBlank(userparam.getProvince())){
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:省不能为空");
-		}
-		
-		if(StringUtil.isBlank(userparam.getCountry())){
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:国家不能为空");
-		}
 		if(StringUtil.isBlank(userparam.getUserName())){
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户名不能为空");
-		}
-		if(StringUtil.isBlank(userparam.getFullName())){
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户名不能为空");
 		}
 		
