@@ -55,7 +55,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 				}
 			}
 			if(insertinfo.getLoginway().equals("2")){
-				if(StringUtil.isBlank(insertinfo.getEmail())){
+				if(StringUtil.isBlank(insertinfo.getMobilePhone())){
 					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户名不能为空");
 				}
 			}
@@ -83,7 +83,6 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		umrr.setCreatetime(UCDateUtils.getSystime() + "");
 		UcMembersRegisterResponse umrResponse = iUcMembersSV.ucRegisterMember(umrr);
 		// TODO code和message找不到，data可以找到 
-		// WARING!
 		
 		
 		
