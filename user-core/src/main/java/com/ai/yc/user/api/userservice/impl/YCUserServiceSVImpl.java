@@ -61,6 +61,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		YCUpdateUserResponse response = new YCUpdateUserResponse();
 		try{
 			ycUsrServiceBusiSv.updateUserInfo(updateUserParams);
+			responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"插入成功");
 		}catch(BusinessException e){
 			LOGGER.error("修改失败",e);
 			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
@@ -74,10 +75,17 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCUserInfoResponse searchYCUserInfo(SearchYCUserRequest userId){
-		UsrUser usrUser = ycUsrServiceBusiSv.searchUserInfo(userId.getUserId());
+		ResponseHeader responseHeader = null;
+		UsrUser usrUser = null ;
+		try{
+			usrUser = ycUsrServiceBusiSv.searchUserInfo(userId.getUserId());
+			responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"查询成功");
+		}catch(BusinessException e){
+			LOGGER.error("修改失败",e);
+			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
+		}
 		YCUserInfoResponse result = new YCUserInfoResponse();
 		BeanUtils.copyProperties(result,usrUser);
-		ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "更新成功");
 		result.setResponseHeader(responseHeader);
         result.setResponseCode(ExceptCodeConstants.SUCCESS);
         return result;
@@ -86,10 +94,18 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCTranslatorInfoResponse searchYCTranslatorInfo(SearchYCTranslatorRequest tUsrId) {
-		UsrTranslator usrTranslator = ycUsrServiceBusiSv.searchYCUsrTranslatorInfo(tUsrId.getUserId());
+		ResponseHeader responseHeader = null;
+		UsrTranslator usrTranslator = null;
 		YCTranslatorInfoResponse result = new YCTranslatorInfoResponse();
+		try{
+			usrTranslator = ycUsrServiceBusiSv.searchYCUsrTranslatorInfo(tUsrId.getUserId());
+			responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"查询成功");
+		}catch(BusinessException e){
+			LOGGER.error("修改失败",e);
+			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
+		}
 		BeanUtils.copyProperties(result, usrTranslator);
-		ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "更新成功");
+		
 		result.setResponseHeader(responseHeader);
         result.setResponseCode(ExceptCodeConstants.SUCCESS);
 		return result;
@@ -97,10 +113,18 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCContactInfoResponse searchYCContactInfo(SearchYCContactRequest cUsrId) {
-		UsrContact usrContact = ycUsrServiceBusiSv.searchUsrContactInfo(cUsrId.getUserId());
+		UsrContact usrContact = null;
+		ResponseHeader responseHeader = null;
+		try{
+			usrContact = ycUsrServiceBusiSv.searchUsrContactInfo(cUsrId.getUserId());
+			responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
+		}catch(BusinessException e){
+			LOGGER.error("修改失败",e);
+			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
+		}
 		YCContactInfoResponse result = new YCContactInfoResponse();
 		BeanUtils.copyProperties(result, usrContact);
-		ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "更新成功");
+		
 		result.setResponseHeader(responseHeader);
         result.setResponseCode(ExceptCodeConstants.SUCCESS);
 		return result;
