@@ -60,6 +60,102 @@ public class YCUserInfoResponse extends BaseResponse {
 	public void setResponseCode(String responseCode) {
 		this.responseCode = responseCode;
 	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
+	public Integer getSex() {
+		return sex;
+	}
+
+	public void setSex(Integer sex) {
+		this.sex = sex;
+	}
+
+	public Timestamp getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Timestamp birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getMobilePhone() {
+		return mobilePhone;
+	}
+
+	public void setMobilePhone(String mobilePhone) {
+		this.mobilePhone = mobilePhone;
+	}
+
+	public String getQq() {
+		return qq;
+	}
+
+	public void setQq(String qq) {
+		this.qq = qq;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getCnCity() {
+		return cnCity;
+	}
+
+	public void setCnCity(String cnCity) {
+		this.cnCity = cnCity;
+	}
+
+	public String getProvince() {
+		return province;
+	}
+
+	public void setProvince(String province) {
+		this.province = province;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public Integer getIsRanslator() {
+		return isRanslator;
+	}
+
+	public void setIsRanslator(Integer isRanslator) {
+		this.isRanslator = isRanslator;
+	}
+
+	public Integer getIsAdmin() {
+		return isAdmin;
+	}
+
+	public void setIsAdmin(Integer isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 	
 	
 }
