@@ -9,27 +9,55 @@ import java.sql.Timestamp;
  * @since  
  */
 public class UpdateYCUserRequest {
-	private String userId;
-
+	/**
+	 * 必填
+	 * 用户ID
+	 */
+	private String userId; 
+	/**
+	 * 必填
+	 * 昵称
+	 */
     private String nickname;
 
-
     private String lastname;
-
+	
     private String firstname;
-
+	/**
+	 * 必填
+	 * 性别
+	 * 0、女，1、男
+	 */
     private Integer sex;
-
+	/**
+	 * 必填
+	 * 生日
+	 */
     private Timestamp birthday;
-
+	/**
+	 * 必填
+	 * QQ
+	 */
     private String qq;
-
+	/**
+	 * 必填
+	 * 地址
+	 */
     private String address;
-
+	/**
+	 * 必填
+	 * 市
+	 */
     private String cnCity;
-
+	/**
+	 * 必填
+	 * 省
+	 */
     private String province;
-
+	/**
+	 * 必填
+	 * 国家
+	 */
     private String country;
 
 	public String getUserId() {

@@ -14,6 +14,7 @@ import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.StringUtil;
 import com.ai.yc.ucenter.api.members.interfaces.IUcMembersSV;
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterRequest;
+import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterResponse;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.constants.SequenceCodeConstants.UserSequenceCode;
@@ -80,7 +81,11 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		umrr.setLoginmode("0");
 		umrr.setLoginway(insertinfo.getLoginway());
 		umrr.setCreatetime(UCDateUtils.getSystime() + "");
-		iUcMembersSV.ucRegisterMember(umrr);
+		UcMembersRegisterResponse umrResponse = iUcMembersSV.ucRegisterMember(umrr);
+		// TODO code和message找不到，data可以找到 
+		// WARING!
+		
+		
 		
 		// 插入数据
 		UsrUser tUser = new UsrUser();
@@ -90,6 +95,8 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		tUser.setUserId(UserId);
 		ycUSAtomSV.insertUserInfo(tUser);
 		// 支付账户信息
+		
+		
 		return UserId;
 	}
 
@@ -98,6 +105,35 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		if(StringUtil.isBlank(userparam.getUserId())){
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户Id不能为空");
 		}
+		
+		if(StringUtil.isBlank(userparam.getNickname())){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:昵称不能为空");
+		}
+		
+		if(StringUtil.isBlank(userparam.getBirthday().toString())){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:生日不能为空");
+		}
+		
+		if(StringUtil.isBlank(userparam.getQq())){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:qq不能为空");
+		}
+		
+		if(StringUtil.isBlank(userparam.getAddress())){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:地址不能为空");
+		}
+		
+		if(StringUtil.isBlank(userparam.getCnCity())){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:市不能为空");
+		}
+		
+		if(StringUtil.isBlank(userparam.getProvince())){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:省不能为空");
+		}
+		
+		if(StringUtil.isBlank(userparam.getCountry())){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:国家不能为空");
+		}
+		
 		UsrUser user = UsrUser.getUsrUserByUpparam(userparam);
 		UsrUserCriteria example = new UsrUserCriteria();
 		UsrUserCriteria.Criteria criteria = example.createCriteria();
@@ -108,18 +144,31 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 
 	@Override
 	public UsrUser searchUserInfo(String userID) {
+		if(StringUtil.isBlank(userID)){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户Id不能为空");
+		}
+		
 		UsrUser usrUser = ycUSAtomSV.getUserInfo(userID);
 		return usrUser;
 	}
 
 	@Override
 	public UsrTranslator searchYCUsrTranslatorInfo(String userId) {
+		if(StringUtil.isBlank(userId)){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户Id不能为空");
+		}
+		
 		UsrTranslator utr = ycUSAtomSV.getUsrTranslatorInfo(userId);
 		return utr;
 	}
 
 	@Override
 	public UsrContact searchUsrContactInfo(String userId) {
+		
+		if(StringUtil.isBlank(userId)){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户Id不能为空");
+		}
+		
 		UsrContact usrC = ycUSAtomSV.getUsrContactInfo(userId);
 		return usrC;
 	}
