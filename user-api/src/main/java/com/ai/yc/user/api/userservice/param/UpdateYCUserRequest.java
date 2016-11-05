@@ -5,17 +5,21 @@ import java.sql.Timestamp;
 
 import com.ai.opt.base.vo.BaseResponse;
 
+import com.ai.opt.base.vo.BaseInfo;
+
 /** 
  * @author  作者 “WTF” E-mail: 1031248990@qq.com
  * @date 创建时间：2016年11月2日 上午11:18:47 
  * @version 
  * @since  
  */
+
 public class UpdateYCUserRequest extends BaseResponse {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7763797307997837392L;
+
 	/**
 	 * 必填
 	 * 用户ID
