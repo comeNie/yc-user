@@ -18,4 +18,6 @@ public interface IYCUserServiceBusiSV {
 	public UsrTranslator searchYCUsrTranslatorInfo(String userId);
 
 	public UsrContact searchUsrContactInfo(String userId);
+	
+	public UsrUser searchuserInfoByNickName(String userId);
 }

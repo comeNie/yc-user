@@ -77,4 +77,15 @@ public interface IYCUserServiceSV {
 	@Path("/searchYCContactInfo")
 	YCContactInfoResponse searchYCContactInfo(SearchYCContactRequest cUsrId);
 	
+	/**
+	 * 通过昵称查询基本信息
+	 * @param 
+	 * @return
+	 * @ApiCode USR_0008
+     * @RestRelativeURL ycuserservice/searchUserInfoByNickName
+	 */
+	@POST
+	@Path("/searchUserInfoByNickName")
+	public YCUserInfoResponse searchUserInfoByNickName(String nickName);
+	
 }

@@ -57,6 +57,8 @@ public class UsrUser {
 
     private String fullName;
 
+    private String portraitId;
+
     public String getUserId() {
         return userId;
     }
@@ -271,5 +273,13 @@ public class UsrUser {
 
     public void setFullName(String fullName) {
         this.fullName = fullName == null ? null : fullName.trim();
+    }
+
+    public String getPortraitId() {
+        return portraitId;
+    }
+
+    public void setPortraitId(String portraitId) {
+        this.portraitId = portraitId == null ? null : portraitId.trim();
     }
 }

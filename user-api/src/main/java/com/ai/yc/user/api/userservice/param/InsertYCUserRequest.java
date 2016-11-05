@@ -96,8 +96,11 @@ public class InsertYCUserRequest extends BaseResponse{
      */
     private String fullName;
     
+    /**
+     * 个人头像id
+     */
+    private String portraitId;
     
-
 	public InsertYCUserRequest() {
 		super();
 	}
@@ -339,4 +342,14 @@ public class InsertYCUserRequest extends BaseResponse{
 	public void setOperationcode(String operationcode) {
 		this.operationcode = operationcode;
 	}
+
+	public String getPortraitId() {
+		return portraitId;
+	}
+
+	public void setPortraitId(String portraitId) {
+		this.portraitId = portraitId;
+	}
+	
+	
 }

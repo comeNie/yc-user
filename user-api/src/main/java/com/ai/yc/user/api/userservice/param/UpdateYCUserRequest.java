@@ -81,6 +81,10 @@ public class UpdateYCUserRequest extends BaseResponse {
 	 */
 	private String userName;
     
+	 /**
+     * 个人头像id
+     */
+    private String portraitId;
 
 	public UpdateYCUserRequest() {
 		super();
@@ -211,6 +215,18 @@ public class UpdateYCUserRequest extends BaseResponse {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+
+
+	public String getPortraitId() {
+		return portraitId;
+	}
+
+
+
+	public void setPortraitId(String portraitId) {
+		this.portraitId = portraitId;
 	}
     
 

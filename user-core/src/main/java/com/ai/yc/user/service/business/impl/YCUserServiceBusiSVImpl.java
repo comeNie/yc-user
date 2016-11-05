@@ -153,4 +153,15 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		return usrC;
 	}
 
+	@Override
+	public UsrUser searchuserInfoByNickName(String nickName) {
+		if(StringUtil.isBlank(nickName)){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:昵称不能为空");
+		}
+		UsrUserCriteria example = new UsrUserCriteria();
+		UsrUserCriteria.Criteria criteria = example.createCriteria();
+		criteria.andNicknameEqualTo(nickName);
+		return ycUSAtomSV.getUserInfoByNickName(example);
+	}
+
 }
