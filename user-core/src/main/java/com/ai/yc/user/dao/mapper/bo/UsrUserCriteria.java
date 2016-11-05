@@ -1924,6 +1924,76 @@ public class UsrUserCriteria {
             addCriterion("full_name not between", value1, value2, "fullName");
             return (Criteria) this;
         }
+
+        public Criteria andPortraitIdIsNull() {
+            addCriterion("portrait_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitIdIsNotNull() {
+            addCriterion("portrait_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitIdEqualTo(String value) {
+            addCriterion("portrait_id =", value, "portraitId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitIdNotEqualTo(String value) {
+            addCriterion("portrait_id <>", value, "portraitId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitIdGreaterThan(String value) {
+            addCriterion("portrait_id >", value, "portraitId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitIdGreaterThanOrEqualTo(String value) {
+            addCriterion("portrait_id >=", value, "portraitId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitIdLessThan(String value) {
+            addCriterion("portrait_id <", value, "portraitId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitIdLessThanOrEqualTo(String value) {
+            addCriterion("portrait_id <=", value, "portraitId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitIdLike(String value) {
+            addCriterion("portrait_id like", value, "portraitId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitIdNotLike(String value) {
+            addCriterion("portrait_id not like", value, "portraitId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitIdIn(List<String> values) {
+            addCriterion("portrait_id in", values, "portraitId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitIdNotIn(List<String> values) {
+            addCriterion("portrait_id not in", values, "portraitId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitIdBetween(String value1, String value2) {
+            addCriterion("portrait_id between", value1, value2, "portraitId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPortraitIdNotBetween(String value1, String value2) {
+            addCriterion("portrait_id not between", value1, value2, "portraitId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
