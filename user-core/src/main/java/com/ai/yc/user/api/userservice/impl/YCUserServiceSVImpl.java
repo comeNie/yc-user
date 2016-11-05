@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
@@ -42,9 +43,9 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		try{
 			userId = ycUsrServiceBusiSv.insertUserInfo(insertInfo);
 			responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"插入成功");
-		}catch(Exception e){
+		}catch(BusinessException e){
 			LOGGER.error("插入失败",e);
-			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,"插入失败");
+			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
 		}
 		response.setUserId(userId);
 		response.setResponseHeader(responseHeader);
@@ -57,9 +58,9 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		YCUpdateUserResponse response = new YCUpdateUserResponse();
 		try{
 			ycUsrServiceBusiSv.updateUserInfo(updateUserParams);
-		}catch(Exception e){
+		}catch(BusinessException e){
 			LOGGER.error("修改失败",e);
-			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,"修改失败");
+			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
 		}
 		response.setResponseHeader(responseHeader);
 		response.setResponseCode(ExceptCodeConstants.SUCCESS);
