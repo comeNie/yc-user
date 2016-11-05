@@ -2,13 +2,15 @@ package com.ai.yc.user.api.userservice.param;
 
 import java.io.Serializable;
 
+import com.ai.opt.base.vo.BaseResponse;
+
 /** 
  * @author  作者 “WTF” E-mail: 1031248990@qq.com
  * @date 创建时间：2016年11月2日 上午11:17:36 
  * @version 
  * @since  
  */
-public class InsertYCUserRequest implements Serializable{
+public class InsertYCUserRequest extends BaseResponse{
 	
 	/**
 	 * 

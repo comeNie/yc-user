@@ -3,13 +3,15 @@ package com.ai.yc.user.api.userservice.param;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import com.ai.opt.base.vo.BaseResponse;
+
 /** 
  * @author  作者 “WTF” E-mail: 1031248990@qq.com
  * @date 创建时间：2016年11月2日 上午11:18:47 
  * @version 
  * @since  
  */
-public class UpdateYCUserRequest implements Serializable {
+public class UpdateYCUserRequest extends BaseResponse {
 	/**
 	 * 
 	 */
