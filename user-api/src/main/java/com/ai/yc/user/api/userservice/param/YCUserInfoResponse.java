@@ -44,6 +44,8 @@ public class YCUserInfoResponse extends BaseResponse {
 
     private Integer isAdmin;
 
+    private String portraitId;
+    
 	public String getResponseCode() {
 		return responseCode;
 	}
@@ -155,4 +157,13 @@ public class YCUserInfoResponse extends BaseResponse {
 				+ ", address=" + address + ", cnCity=" + cnCity + ", province=" + province + ", country=" + country
 				+ ", isRanslator=" + isRanslator + ", isAdmin=" + isAdmin + "]";
 	}
+
+	public String getPortraitId() {
+		return portraitId;
+	}
+
+	public void setPortraitId(String portraitId) {
+		this.portraitId = portraitId;
+	}
+	
 }
