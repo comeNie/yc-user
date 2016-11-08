@@ -16,10 +16,12 @@ import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.YCContactInfoResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertTranslatorResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
+import com.ai.yc.user.api.userservice.param.YCLSPInfoReponse;
 import com.ai.yc.user.api.userservice.param.YCTranslatorInfoResponse;
 import com.ai.yc.user.api.userservice.param.YCTranslatorSkillListResponse;
 import com.ai.yc.user.api.userservice.param.YCUpdateUserResponse;
 import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
+import com.ai.yc.user.api.userservice.param.searchYCLSPInfoRequest;
 
 
 @Path("/ycuserservice")
@@ -108,5 +110,9 @@ public interface IYCUserServiceSV {
 	@POST
 	@Path("/SearchTranslatorSkillList")
 	YCTranslatorSkillListResponse getTranslatorSkillList(SearchYCTranslatorSkillListRequest getSkillList);
+	
+	@POST
+	@Path("/searchLSPInfo")
+	YCLSPInfoReponse searchLSPInfo(searchYCLSPInfoRequest searchLSPParams);
 	
 }

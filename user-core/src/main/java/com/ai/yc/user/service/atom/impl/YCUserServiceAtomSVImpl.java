@@ -9,11 +9,14 @@ import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.yc.user.dao.mapper.bo.UsrContact;
 import com.ai.yc.user.dao.mapper.bo.UsrLanguage;
 import com.ai.yc.user.dao.mapper.bo.UsrLanguageCriteria;
+import com.ai.yc.user.dao.mapper.bo.UsrLsp;
+import com.ai.yc.user.dao.mapper.bo.UsrLspCriteria;
 import com.ai.yc.user.dao.mapper.bo.UsrTranslator;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
 import com.ai.yc.user.dao.mapper.interfaces.UsrContactMapper;
 import com.ai.yc.user.dao.mapper.interfaces.UsrLanguageMapper;
+import com.ai.yc.user.dao.mapper.interfaces.UsrLspMapper;
 import com.ai.yc.user.dao.mapper.interfaces.UsrTranslatorMapper;
 import com.ai.yc.user.dao.mapper.interfaces.UsrUserMapper;
 import com.ai.yc.user.service.atom.interfaces.IYCUserServiceAtomSV;
@@ -33,6 +36,9 @@ public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 	
 	@Autowired
 	private transient UsrLanguageMapper uLanguageMapper;
+	
+	@Autowired
+	private transient UsrLspMapper uLspMapper;
 	
 	@Override
 	public int updateUserInfo(UsrUser record, UsrUserCriteria example) {
@@ -71,5 +77,15 @@ public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 	@Override
 	public List<UsrLanguage> getUsrLanguageList(UsrLanguageCriteria userIdCri) {
 		return uLanguageMapper.selectByExample(userIdCri);
+	}
+
+	@Override
+	public UsrLsp searchLspById(String lspId) {
+		return uLspMapper.selectByPrimaryKey(lspId);
+	}
+
+	@Override
+	public List<UsrLsp> searchLspByName(UsrLspCriteria example) {
+		return uLspMapper.selectByExample(example);
 	}
 }

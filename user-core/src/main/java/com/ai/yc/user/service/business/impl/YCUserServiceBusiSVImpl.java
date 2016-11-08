@@ -21,11 +21,16 @@ import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterResponse;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UsrLanguageMessage;
+import com.ai.yc.user.api.userservice.param.UsrLspMessage;
+import com.ai.yc.user.api.userservice.param.YCLSPInfoReponse;
 import com.ai.yc.user.api.userservice.param.YCTranslatorSkillListResponse;
+import com.ai.yc.user.api.userservice.param.searchYCLSPInfoRequest;
 import com.ai.yc.user.constants.SequenceCodeConstants.UserSequenceCode;
 import com.ai.yc.user.dao.mapper.bo.UsrContact;
 import com.ai.yc.user.dao.mapper.bo.UsrLanguage;
 import com.ai.yc.user.dao.mapper.bo.UsrLanguageCriteria;
+import com.ai.yc.user.dao.mapper.bo.UsrLsp;
+import com.ai.yc.user.dao.mapper.bo.UsrLspCriteria;
 import com.ai.yc.user.dao.mapper.bo.UsrTranslator;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
@@ -214,5 +219,41 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		return ulmList;
 	}
 
+	@Override
+	public YCLSPInfoReponse searchLSPInfoBussiness(searchYCLSPInfoRequest params) {
+		UsrLsp usrLsp = null;
+		YCLSPInfoReponse yclspRep = new YCLSPInfoReponse();
+		yclspRep.setLspId(params.getLspId());
+		yclspRep.setLspName(params.getLspName());
+		List<UsrLsp> usrLspList = new ArrayList<UsrLsp>();
+		if(!StringUtil.isBlank(params.getLspId()) && StringUtil.isBlank(params.getLspName())){
+			usrLsp = ycUSAtomSV.searchLspById(params.getLspId());
+			usrLspList.add(usrLsp);
+			yclspRep.setUsrLspList(changUsrLspToUsrLspMessage(usrLspList));
+		}
+		if(StringUtil.isBlank(params.getLspId()) && !StringUtil.isBlank(params.getLspName())){
+			UsrLspCriteria example = new UsrLspCriteria();
+			UsrLspCriteria.Criteria criteria = example.createCriteria();
+	        criteria.andLspNameLike(params.getLspName());
+			usrLspList = ycUSAtomSV.searchLspByName(example);
+			yclspRep.setUsrLspList(changUsrLspToUsrLspMessage(usrLspList));
+		}
+		if(StringUtil.isBlank(params.getLspId()) && StringUtil.isBlank(params.getLspName())){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:参数不能同时为空");
+		}
+		if(!StringUtil.isBlank(params.getLspId()) && !StringUtil.isBlank(params.getLspName())){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:参数不能同时有值");
+		}
+		return yclspRep;
+	}
+	private List<UsrLspMessage> changUsrLspToUsrLspMessage(List<UsrLsp> usrLspList) {
+		List<UsrLspMessage> ulmList = new ArrayList<UsrLspMessage>();
+		for(UsrLsp ul : usrLspList){
+			UsrLspMessage ulm = new UsrLspMessage();
+			BeanUtils.copyProperties(ulm, ul);
+			ulmList.add(ulm);
+		}
+		return ulmList;
+	}
 
 }

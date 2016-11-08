@@ -10,10 +10,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
+import com.ai.yc.user.api.userservice.param.SearchYCTranslatorSkillListRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
+import com.ai.yc.user.api.userservice.param.YCLSPInfoReponse;
+import com.ai.yc.user.api.userservice.param.YCTranslatorSkillListResponse;
 import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
+import com.ai.yc.user.api.userservice.param.searchYCLSPInfoRequest;
 import com.alibaba.fastjson.JSON;
 
 /** 
@@ -33,7 +37,7 @@ public class testusrservice {
 	public void test() {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis()); 
 		
-		InsertYCUserRequest insertu = new InsertYCUserRequest(null, "1", "172.205.192.168", "zzk1", null, "10312489901@qq.com", "hbhb123", "shit", "b", "h", 0, "13088888881", "1031248991", "BJ", "CN", "BJ", "BJ", "FULLNAME");
+		InsertYCUserRequest insertu = new InsertYCUserRequest(null, "1", "172.205.192.168", "zz3411312", null, "1034242248993@qq.com", "hb81233", "sh9t", "b", "h", 0, "13073878883", "10312994", "BJ", "CN", "BJ", "BJ", "FULLNAME");
 		YCInsertUserResponse User =  usSV.insertYCUser(insertu);
 		String UserID = User.getUserId();
 		System.out.println("UserID : " + UserID);
@@ -54,6 +58,22 @@ public class testusrservice {
 	public void testSearchNickName() {
 		String nickName = "tom";
 		YCUserInfoResponse response = usSV.searchUserInfoByNickName(nickName);
+		System.out.println(JSON.toJSONString(response));
+	}
+	@Test
+	public void testSearchSkill() {
+		SearchYCTranslatorSkillListRequest a = new SearchYCTranslatorSkillListRequest();
+		a.setUserId("000000000000003161");
+		YCTranslatorSkillListResponse response = usSV.getTranslatorSkillList(a);
+		System.out.println(JSON.toJSONString(response));
+	}
+	@Test
+	public void testSearchLsp() {
+		searchYCLSPInfoRequest a = new searchYCLSPInfoRequest();
+//		a.setUserId("000000000000003161");
+//		a.setLspId("2");
+		a.setLspName("am"); 
+		YCLSPInfoReponse response = usSV.searchLSPInfo(a);
 		System.out.println(JSON.toJSONString(response));
 	}
 }

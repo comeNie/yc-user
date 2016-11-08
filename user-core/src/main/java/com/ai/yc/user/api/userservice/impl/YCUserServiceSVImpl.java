@@ -23,10 +23,12 @@ import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.YCContactInfoResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertTranslatorResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
+import com.ai.yc.user.api.userservice.param.YCLSPInfoReponse;
 import com.ai.yc.user.api.userservice.param.YCTranslatorInfoResponse;
 import com.ai.yc.user.api.userservice.param.YCTranslatorSkillListResponse;
 import com.ai.yc.user.api.userservice.param.YCUpdateUserResponse;
 import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
+import com.ai.yc.user.api.userservice.param.searchYCLSPInfoRequest;
 import com.ai.yc.user.constants.ExceptCodeConstants;
 import com.ai.yc.user.dao.mapper.bo.UsrContact;
 import com.ai.yc.user.dao.mapper.bo.UsrTranslator;
@@ -157,10 +159,24 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "更新成功");
 		YCTranslatorSkillListResponse result = new YCTranslatorSkillListResponse();
 		try{
-			YCTranslatorSkillListResponse info = ycUsrServiceBusiSv.getTranslatorSkillList(getSkillList.getUserId());
+			result = ycUsrServiceBusiSv.getTranslatorSkillList(getSkillList.getUserId());
 			responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
 		}catch(Exception e){
-			responseHeader = new ResponseHeader(false, ExceptCodeConstants.SUCCESS, "查询失败");
+			responseHeader = new ResponseHeader(false, ExceptCodeConstants.SUCCESS, e.getMessage());
+		}
+		result.setResponseHeader(responseHeader);
+		return result;
+	}
+
+	@Override
+	public YCLSPInfoReponse searchLSPInfo(searchYCLSPInfoRequest searchLSPParams) {
+		ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "更新成功");
+		YCLSPInfoReponse result = new YCLSPInfoReponse();
+		try{
+			result = ycUsrServiceBusiSv.searchLSPInfoBussiness(searchLSPParams);
+			responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
+		}catch(Exception e){
+			responseHeader = new ResponseHeader(false, ExceptCodeConstants.SUCCESS, e.getMessage());
 		}
 		result.setResponseHeader(responseHeader);
 		return result;
