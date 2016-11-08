@@ -1,5 +1,8 @@
 package com.ai.yc.user.service.business.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +20,12 @@ import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterRequest;
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterResponse;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
+import com.ai.yc.user.api.userservice.param.UsrLanguageMessage;
 import com.ai.yc.user.api.userservice.param.YCTranslatorSkillListResponse;
 import com.ai.yc.user.constants.SequenceCodeConstants.UserSequenceCode;
 import com.ai.yc.user.dao.mapper.bo.UsrContact;
+import com.ai.yc.user.dao.mapper.bo.UsrLanguage;
+import com.ai.yc.user.dao.mapper.bo.UsrLanguageCriteria;
 import com.ai.yc.user.dao.mapper.bo.UsrTranslator;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
@@ -177,8 +183,36 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 
 	@Override
 	public YCTranslatorSkillListResponse getTranslatorSkillList(String userId) throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		if(StringUtil.isBlank(userId)){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户ID不能为空");
+		}
+		YCTranslatorSkillListResponse translatorSkillList = new YCTranslatorSkillListResponse();
+		// UsrUser验证译员信息
+		UsrUser userinfo = searchUserInfo(userId);
+		if(userinfo.getIsRanslator() != 1){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "查询失败: 用户非译员身份");
+		}
+		// 获取译员信息
+		UsrTranslator utr = searchYCUsrTranslatorInfo(userId);
+		BeanUtils.copyProperties(translatorSkillList, utr);
+		// 获取技能列表
+		UsrLanguageCriteria example = new UsrLanguageCriteria();
+		UsrLanguageCriteria.Criteria criteria = example.createCriteria();
+        criteria.andTranslatorIdEqualTo(userId);
+		List<UsrLanguage> usrLanguageList = ycUSAtomSV.getUsrLanguageList(example);
+		translatorSkillList.setUsrLanguageList(changUsrLanguageToUsrLanguageMessage(usrLanguageList));
+		return translatorSkillList;
 	}
+
+	private List<UsrLanguageMessage> changUsrLanguageToUsrLanguageMessage(List<UsrLanguage> usrLanguageList) {
+		List<UsrLanguageMessage> ulmList = new ArrayList<UsrLanguageMessage>();
+		for(UsrLanguage ul : usrLanguageList){
+			UsrLanguageMessage ulm = new UsrLanguageMessage();
+			BeanUtils.copyProperties(ulm, ul);
+			ulmList.add(ulm);
+		}
+		return ulmList;
+	}
+
 
 }
