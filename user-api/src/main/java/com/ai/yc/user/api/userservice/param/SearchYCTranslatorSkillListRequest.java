@@ -15,4 +15,13 @@ public class SearchYCTranslatorSkillListRequest extends BaseResponse {
 	 */
 	private static final long serialVersionUID = -8529021939899100513L;
 
+	private String userId;
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 }

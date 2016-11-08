@@ -1,23 +1,27 @@
 package com.ai.yc.user.service.business.interfaces;
 
 
+import com.ai.opt.base.exception.BusinessException;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
+import com.ai.yc.user.api.userservice.param.YCTranslatorSkillListResponse;
 import com.ai.yc.user.dao.mapper.bo.UsrContact;
 import com.ai.yc.user.dao.mapper.bo.UsrTranslator;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 
 public interface IYCUserServiceBusiSV {
     
-    public String insertUserInfo(InsertYCUserRequest user);
+    public String insertUserInfo(InsertYCUserRequest user) throws BusinessException;
     
-    public int updateUserInfo(UpdateYCUserRequest updateUserParams);
+    public int updateUserInfo(UpdateYCUserRequest updateUserParams) throws BusinessException;
 
-    public UsrUser searchUserInfo(String userID);
+    public UsrUser searchUserInfo(String userID) throws BusinessException;
 
-	public UsrTranslator searchYCUsrTranslatorInfo(String userId);
+	public UsrTranslator searchYCUsrTranslatorInfo(String userId) throws BusinessException;
 
-	public UsrContact searchUsrContactInfo(String userId);
+	public UsrContact searchUsrContactInfo(String userId) throws BusinessException;
 	
-	public UsrUser searchuserInfoByNickName(String userId);
+	public UsrUser searchuserInfoByNickName(String userId) throws BusinessException;
+
+	public YCTranslatorSkillListResponse getTranslatorSkillList(String userId) throws BusinessException;
 }

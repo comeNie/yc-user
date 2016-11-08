@@ -154,7 +154,16 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCTranslatorSkillListResponse getTranslatorSkillList(SearchYCTranslatorSkillListRequest getSkillList) {
-		return null;
+		ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "更新成功");
+		YCTranslatorSkillListResponse result = new YCTranslatorSkillListResponse();
+		try{
+			YCTranslatorSkillListResponse info = ycUsrServiceBusiSv.getTranslatorSkillList(getSkillList.getUserId());
+			responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
+		}catch(Exception e){
+			responseHeader = new ResponseHeader(false, ExceptCodeConstants.SUCCESS, "查询失败");
+		}
+		result.setResponseHeader(responseHeader);
+		return result;
 	}
 
 	

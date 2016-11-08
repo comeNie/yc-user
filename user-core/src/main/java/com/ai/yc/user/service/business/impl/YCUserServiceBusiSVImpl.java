@@ -17,6 +17,7 @@ import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterRequest;
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterResponse;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
+import com.ai.yc.user.api.userservice.param.YCTranslatorSkillListResponse;
 import com.ai.yc.user.constants.SequenceCodeConstants.UserSequenceCode;
 import com.ai.yc.user.dao.mapper.bo.UsrContact;
 import com.ai.yc.user.dao.mapper.bo.UsrTranslator;
@@ -41,7 +42,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
      * 1 success
      */
 	@Override
-	public String insertUserInfo(InsertYCUserRequest insertinfo)  {
+	public String insertUserInfo(InsertYCUserRequest insertinfo) throws BusinessException {
 		if(StringUtil.isBlank(insertinfo.getRegip())){
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户ip不能为空");
 		}
@@ -90,8 +91,8 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		if(!umrResponse.getMessage().isSuccess()){
 			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 : 内部错误" );
 		}
-		if(!umrResponse.getCode().getCode().equals("1")){
-			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值 : " + umrResponse.getCode().getCode());
+		if(!umrResponse.getMessage().getCode().equals("1")){
+			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值 : " + umrResponse.getMessage().getCode());
 		}
 		
 		
@@ -110,7 +111,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	}
 
 	@Override
-	public int updateUserInfo(UpdateYCUserRequest userparam) {
+	public int updateUserInfo(UpdateYCUserRequest userparam)  throws BusinessException{
 		if(StringUtil.isBlank(userparam.getUserId())){
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户Id不能为空");
 		}
@@ -134,7 +135,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	}
 
 	@Override
-	public UsrUser searchUserInfo(String userID) {
+	public UsrUser searchUserInfo(String userID)  throws BusinessException{
 		if(StringUtil.isBlank(userID)){
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户Id不能为空");
 		}
@@ -143,7 +144,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	}
 
 	@Override
-	public UsrTranslator searchYCUsrTranslatorInfo(String userId) {
+	public UsrTranslator searchYCUsrTranslatorInfo(String userId)  throws BusinessException{
 		if(StringUtil.isBlank(userId)){
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户Id不能为空");
 		}
@@ -153,7 +154,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	}
 
 	@Override
-	public UsrContact searchUsrContactInfo(String userId) {
+	public UsrContact searchUsrContactInfo(String userId) throws BusinessException {
 		
 		if(StringUtil.isBlank(userId)){
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户Id不能为空");
@@ -164,7 +165,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	}
 
 	@Override
-	public UsrUser searchuserInfoByNickName(String nickName) {
+	public UsrUser searchuserInfoByNickName(String nickName) throws BusinessException {
 		if(StringUtil.isBlank(nickName)){
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:昵称不能为空");
 		}
@@ -172,6 +173,12 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		UsrUserCriteria.Criteria criteria = example.createCriteria();
 		criteria.andNicknameEqualTo(nickName);
 		return ycUSAtomSV.getUserInfoByNickName(example);
+	}
+
+	@Override
+	public YCTranslatorSkillListResponse getTranslatorSkillList(String userId) throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
