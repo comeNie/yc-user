@@ -6,12 +6,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.ai.yc.user.api.userservice.param.InsertYCTranslatorRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCContactRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCTranslatorRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.YCContactInfoResponse;
+import com.ai.yc.user.api.userservice.param.YCInsertTranslatorResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 import com.ai.yc.user.api.userservice.param.YCTranslatorInfoResponse;
 import com.ai.yc.user.api.userservice.param.YCUpdateUserResponse;
@@ -56,6 +58,29 @@ public interface IYCUserServiceSV {
 	YCUserInfoResponse searchYCUserInfo(SearchYCUserRequest ucUser) ;
 
 	/**
+	 * 通过昵称查询基本信息
+	 * @param 
+	 * @return
+	 * @ApiCode USR_0008
+     * @RestRelativeURL ycuserservice/searchUserInfoByNickName
+	 */
+	@POST
+	@Path("/searchUserInfoByNickName")
+	public YCUserInfoResponse searchUserInfoByNickName(String nickName);
+	
+//	/**
+//	 * 通过昵称查询基本信息
+//	 * @param 
+//	 * @return
+//	 * @ApiCode USR_000
+//     * @RestRelativeURL ycuserservice/insertYCTranslatorInfo
+//	 */
+//	@POST
+//	@Path("insertYCTranslatorInfo")
+//	public YCInsertTranslatorResponse insertYCTranslatorInfo(InsertYCTranslatorRequest translatorInfo);
+	
+	
+	/**
 	 * 查询译员基本信息数据
 	 * @param 
 	 * @return
@@ -77,15 +102,6 @@ public interface IYCUserServiceSV {
 	@Path("/searchYCContactInfo")
 	YCContactInfoResponse searchYCContactInfo(SearchYCContactRequest cUsrId);
 	
-	/**
-	 * 通过昵称查询基本信息
-	 * @param 
-	 * @return
-	 * @ApiCode USR_0008
-     * @RestRelativeURL ycuserservice/searchUserInfoByNickName
-	 */
-	@POST
-	@Path("/searchUserInfoByNickName")
-	public YCUserInfoResponse searchUserInfoByNickName(String nickName);
+
 	
 }

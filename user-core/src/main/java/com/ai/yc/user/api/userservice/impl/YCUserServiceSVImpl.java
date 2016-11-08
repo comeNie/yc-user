@@ -13,12 +13,14 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
+import com.ai.yc.user.api.userservice.param.InsertYCTranslatorRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCContactRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCTranslatorRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.YCContactInfoResponse;
+import com.ai.yc.user.api.userservice.param.YCInsertTranslatorResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 import com.ai.yc.user.api.userservice.param.YCTranslatorInfoResponse;
 import com.ai.yc.user.api.userservice.param.YCUpdateUserResponse;
@@ -91,6 +93,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
         return result;
 	}
 	
+	
 
 	@Override
 	public YCTranslatorInfoResponse searchYCTranslatorInfo(SearchYCTranslatorRequest tUsrId) {
@@ -146,5 +149,22 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		result.setResponseHeader(responseHeader);
 		return result;
 	}
+
+//	@Override
+//	public YCInsertTranslatorResponse insertYCTranslatorInfo(InsertYCTranslatorRequest translatorInfo) {
+//		ResponseHeader responseHeader = null;
+//		YCInsertTranslatorResponse response = new YCInsertTranslatorResponse();
+//		String userId = "";
+//		try{
+//			userId = ycUsrServiceBusiSv.insertTranslatorInfo(translatorInfo);
+//			responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"插入成功");
+//		}catch(BusinessException e){
+//			LOGGER.error("插入失败",e);
+//			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
+//		}
+//		response.setUserId(userId);
+//		response.setResponseHeader(responseHeader);
+//        return response;
+//	}
 
 }

@@ -76,13 +76,20 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		umrr.setOperationcode(insertinfo.getOperationcode());
 		umrr.setUsername(insertinfo.getUserName());
 		umrr.setEmail(insertinfo.getEmail());
+		umrr.setMobilephone(insertinfo.getMobilePhone());
 		umrr.setPassword(insertinfo.getPassword());
 		umrr.setUsersource("gtcom");
 		umrr.setLoginmode("0");
 		umrr.setLoginway(insertinfo.getLoginway());
 		umrr.setCreatetime(UCDateUtils.getSystime() + "");
 		UcMembersRegisterResponse umrResponse = iUcMembersSV.ucRegisterMember(umrr);
-		// TODO code和message找不到，data可以找到 
+		System.out.println( "umrResponse : " + umrResponse);
+		if(umrResponse == null){
+			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 : 返回值为NULL");
+		}
+		if(!umrResponse.getResponseHeader().getIsSuccess()){
+			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 : " + umrResponse.getResponseHeader().getResultMessage());
+		}
 		
 		
 		
