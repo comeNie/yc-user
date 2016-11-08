@@ -17,12 +17,14 @@ import com.ai.yc.user.api.userservice.param.InsertYCTranslatorRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCContactRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCTranslatorRequest;
+import com.ai.yc.user.api.userservice.param.SearchYCTranslatorSkillListRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.YCContactInfoResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertTranslatorResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 import com.ai.yc.user.api.userservice.param.YCTranslatorInfoResponse;
+import com.ai.yc.user.api.userservice.param.YCTranslatorSkillListResponse;
 import com.ai.yc.user.api.userservice.param.YCUpdateUserResponse;
 import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
 import com.ai.yc.user.constants.ExceptCodeConstants;
@@ -150,6 +152,13 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		return result;
 	}
 
+	@Override
+	public YCTranslatorSkillListResponse getTranslatorSkillList(SearchYCTranslatorSkillListRequest getSkillList) {
+		return null;
+	}
+
+	
+	
 //	@Override
 //	public YCInsertTranslatorResponse insertYCTranslatorInfo(InsertYCTranslatorRequest translatorInfo) {
 //		ResponseHeader responseHeader = null;
