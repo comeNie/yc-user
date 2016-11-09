@@ -2,7 +2,7 @@ package com.ai.yc.user.api.userservice.param;
 
 import java.sql.Timestamp;
 
-import com.ai.opt.base.vo.BaseResponse;
+import com.ai.opt.base.vo.BaseInfo;
 
 
 /** 
@@ -12,7 +12,7 @@ import com.ai.opt.base.vo.BaseResponse;
  * @since  
  */
 
-public class UpdateYCUserRequest extends BaseResponse {
+public class UpdateYCUserRequest extends BaseInfo {
 	/**
 	 * 
 	 */

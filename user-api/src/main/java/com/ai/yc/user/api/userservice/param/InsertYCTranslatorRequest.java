@@ -3,7 +3,7 @@ package com.ai.yc.user.api.userservice.param;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-import com.ai.opt.base.vo.BaseResponse;
+import com.ai.opt.base.vo.BaseInfo;
 
 /** 
  * @author  作者 “WTF” E-mail: 1031248990@qq.com
@@ -11,7 +11,7 @@ import com.ai.opt.base.vo.BaseResponse;
  * @version 
  * @since  
  */
-public class InsertYCTranslatorRequest extends BaseResponse {
+public class InsertYCTranslatorRequest extends BaseInfo {
 
 	/**
 	 * 

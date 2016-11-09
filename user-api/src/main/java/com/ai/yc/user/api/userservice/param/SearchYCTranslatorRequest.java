@@ -1,7 +1,7 @@
 package com.ai.yc.user.api.userservice.param;
 
 
-import com.ai.opt.base.vo.BaseResponse;
+import com.ai.opt.base.vo.BaseInfo;
 
 /** 
  * @author  作者 “WTF” E-mail: 1031248990@qq.com
@@ -9,7 +9,7 @@ import com.ai.opt.base.vo.BaseResponse;
  * @version 
  * @since  
  */
-public class SearchYCTranslatorRequest extends BaseResponse{
+public class SearchYCTranslatorRequest extends BaseInfo{
 	/**
 	 * 
 	 */
