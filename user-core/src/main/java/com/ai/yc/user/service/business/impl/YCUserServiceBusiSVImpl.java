@@ -105,8 +105,11 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		if(!umrResponse.getMessage().isSuccess()){
 			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 : 内部错误" );
 		}
-		if(!umrResponse.getMessage().getCode().equals("1")){
-			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值 : " + umrResponse.getMessage().getCode() + " --- " + umrResponse.getMessage().getMessage());
+		if(!umrResponse.getCode().getCode().equals("1")){
+			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值 : " + umrResponse.getCode().getCode() + " --- " + umrResponse.getCode().getMessage());
+		}
+		if(StringUtil.isBlank(umrResponse.getDate().getUid())){
+			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值缺少uid");
 		}
 		
 		
@@ -115,7 +118,8 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		UsrUser tUser = new UsrUser();
 		// 从右到左,把相同类型且属性名相同的复制到右边
 		BeanUtils.copyProperties(tUser, insertinfo);
-		String UserId = SeqUtil.getNewId(UserSequenceCode.CM_CUST_FILE_EXT$INFO_EXT$ID,18);
+//		String UserId = SeqUtil.getNewId(UserSequenceCode.CM_CUST_FILE_EXT$INFO_EXT$ID,18);
+		String UserId = umrResponse.getDate().getUid();
 		tUser.setUserId(UserId);
 		ycUSAtomSV.insertUserInfo(tUser);
 		// 支付账户信息
