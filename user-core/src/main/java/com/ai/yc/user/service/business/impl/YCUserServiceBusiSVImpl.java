@@ -102,8 +102,8 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		if(!umrResponse.getMessage().isSuccess()){
 			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 : 内部错误" );
 		}
-		if(!umrResponse.getCode().getCode().equals("1")){
-			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值 : " + umrResponse.getCode().getCode() + " --- " + umrResponse.getCode().getMessage());
+		if(!umrResponse.getMessage().getCode().equals("1")){
+			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值 : " + umrResponse.getMessage().getCode() + " --- " + umrResponse.getCode().getMessage());
 		}
 		
 		

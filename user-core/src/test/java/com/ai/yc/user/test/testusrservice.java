@@ -37,7 +37,7 @@ public class testusrservice {
 	public void test() {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis()); 
 		
-		InsertYCUserRequest insertu = new InsertYCUserRequest(null, "1", "172.205.192.168", "zz3411312", null, "1034242248993@qq.com", "hb81233", "sh9t", "b", "h", 0, "13073878883", "10312994", "BJ", "CN", "BJ", "BJ", "FULLNAME");
+		InsertYCUserRequest insertu = new InsertYCUserRequest(null, "1", "172.205.192.168", "eee3411312", null, "101234242248993@qq.com", "hb81233", "sh9t", "b", "h", 0, "13673878883", "10312994", "BJ", "CN", "BJ", "BJ", "FULLNAME");
 		YCInsertUserResponse User =  usSV.insertYCUser(insertu);
 		String UserID = User.getUserId();
 		System.out.println("UserID : " + UserID);
