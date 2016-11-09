@@ -70,6 +70,9 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 				if(StringUtil.isBlank(insertinfo.getMobilePhone())){
 					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户名不能为空");
 				}
+				if(StringUtil.isBlank(insertinfo.getOperationcode())){
+					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:手机验证码不能为空");
+				}
 			}
 		}
 		
@@ -103,7 +106,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 : 内部错误" );
 		}
 		if(!umrResponse.getMessage().getCode().equals("1")){
-			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值 : " + umrResponse.getMessage().getCode() + " --- " + umrResponse.getCode().getMessage());
+			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值 : " + umrResponse.getMessage().getCode() + " --- " + umrResponse.getMessage().getMessage());
 		}
 		
 		

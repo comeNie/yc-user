@@ -36,8 +36,9 @@ public class testusrservice {
 	@Test
 	public void test() {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis()); 
-		
-		InsertYCUserRequest insertu = new InsertYCUserRequest(null, "1", "172.205.192.168", "eee3411312", null, "101234242248993@qq.com", "hb81233", "sh9t", "b", "h", 0, "13673878883", "10312994", "BJ", "CN", "BJ", "BJ", "FULLNAME");
+//		String UserID = "000000000000003121";
+//		
+		InsertYCUserRequest insertu = new InsertYCUserRequest(null, "1", "172.245.12.168", "ee77711312", null, "234322489093@qq.com", "h83233", "sh33", "b", "h", 0, "13622223883", "1031329334", "BJ", "CN", "BJ", "BJ", "FULLNAME");
 		YCInsertUserResponse User =  usSV.insertYCUser(insertu);
 		String UserID = User.getUserId();
 		System.out.println("UserID : " + UserID);
@@ -46,7 +47,7 @@ public class testusrservice {
 		sr1.setUserId(UserID);
 		YCUserInfoResponse uir1 = usSV.searchYCUserInfo(sr1);
 		System.out.println(uir1);
-		UpdateYCUserRequest updateu = new UpdateYCUserRequest(UserID, "hb", "hou", "bin", 0, timestamp, "1031248990", "BJ", "BJ", "BJ", "CN","houbin","fff");
+		UpdateYCUserRequest updateu = new UpdateYCUserRequest(UserID, "hb", "hhhhhh", "bbbbbb", 0, timestamp, "1031248990", "BJ", "BJ", "BJ", "CN","houbin","fff");
 		usSV.updateYCUserInfo(updateu);
 		SearchYCUserRequest sr2 = new SearchYCUserRequest();
 		sr2.setUserId(UserID);
