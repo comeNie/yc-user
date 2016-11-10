@@ -128,7 +128,10 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		
 		YCInsertUserResponse insertResp = new YCInsertUserResponse();
 		insertResp.setUserId(tUser.getUserId());
-		insertResp.setOperationcode(umrResponse.getDate().get("operationcode").toString());
+		if(umrResponse.getDate().get("operationcode") != null)
+		{
+			insertResp.setOperationcode(umrResponse.getDate().get("operationcode").toString());
+		}
 		return insertResp;
 	}
 
