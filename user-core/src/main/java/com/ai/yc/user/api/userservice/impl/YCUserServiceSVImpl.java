@@ -48,15 +48,13 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 	public YCInsertUserResponse insertYCUser(InsertYCUserRequest insertInfo){
 		ResponseHeader responseHeader = null;
 		YCInsertUserResponse response = new YCInsertUserResponse();
-		String userId = "";
 		try{
-			userId = ycUsrServiceBusiSv.insertUserInfo(insertInfo);
+			response = ycUsrServiceBusiSv.insertUserInfo(insertInfo);
 			responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"插入成功");
 		}catch(BusinessException e){
 			LOGGER.error("插入失败",e);
 			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
 		}
-		response.setUserId(userId);
 		response.setResponseHeader(responseHeader);
         return response;
 	}

@@ -2,6 +2,7 @@ package com.ai.yc.user.service.business.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,12 +17,14 @@ import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.StringUtil;
 import com.ai.yc.ucenter.api.members.interfaces.IUcMembersSV;
+import com.ai.yc.ucenter.api.members.param.UcMembersVo;
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterRequest;
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterResponse;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UsrLanguageMessage;
 import com.ai.yc.user.api.userservice.param.UsrLspMessage;
+import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 import com.ai.yc.user.api.userservice.param.YCLSPInfoReponse;
 import com.ai.yc.user.api.userservice.param.YCTranslatorSkillListResponse;
 import com.ai.yc.user.api.userservice.param.searchYCLSPInfoRequest;
@@ -53,7 +56,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
      * 1 success
      */
 	@Override
-	public String insertUserInfo(InsertYCUserRequest insertinfo) throws BusinessException {
+	public YCInsertUserResponse insertUserInfo(InsertYCUserRequest insertinfo) throws BusinessException {
 		if(StringUtil.isBlank(insertinfo.getRegip())){
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户ip不能为空");
 		}
@@ -105,27 +108,28 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		if(!umrResponse.getMessage().isSuccess()){
 			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 : 内部错误" );
 		}
-		if(!umrResponse.getCode().getCode().equals("1")){
-			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值 : " + umrResponse.getCode().getCode() + " --- " + umrResponse.getCode().getMessage());
+		if(umrResponse.getCode().getCodeNumber().intValue() != 1){
+			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值 : " + umrResponse.getCode().getCodeNumber() + " --- " + umrResponse.getCode().getCodeMessage());
 		}
-		if(StringUtil.isBlank(umrResponse.getDate().getUid())){
+		if(StringUtil.isBlank(umrResponse.getDate().get("uid").toString())){
 			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值缺少uid");
 		}
-		
-		
 		
 		// 插入数据
 		UsrUser tUser = new UsrUser();
 		// 从右到左,把相同类型且属性名相同的复制到右边
 		BeanUtils.copyProperties(tUser, insertinfo);
 //		String UserId = SeqUtil.getNewId(UserSequenceCode.CM_CUST_FILE_EXT$INFO_EXT$ID,18);
-		String UserId = umrResponse.getDate().getUid();
-		tUser.setUserId(UserId);
+//		Map respMap = umrResponse.getDate();
+//		UcMembersVo vo = new UcMembersVo(respMap);
+		tUser.setUserId(umrResponse.getDate().get("uid").toString());
 		ycUSAtomSV.insertUserInfo(tUser);
 		// 支付账户信息
 		
-		
-		return UserId;
+		YCInsertUserResponse insertResp = new YCInsertUserResponse();
+		insertResp.setUserId(tUser.getUserId());
+		insertResp.setOperationcode(umrResponse.getDate().get("operationcode").toString());
+		return insertResp;
 	}
 
 	@Override

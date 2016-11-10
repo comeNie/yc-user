@@ -16,10 +16,18 @@ public class YCInsertUserResponse extends BaseResponse {
 
 	
 	private String userId;
+	
+	private String operationcode;
 	public String getUserId() {
 		return userId;
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	public String getOperationcode() {
+		return operationcode;
+	}
+	public void setOperationcode(String operationcode) {
+		this.operationcode = operationcode;
 	}
 }
