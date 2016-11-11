@@ -48,6 +48,10 @@ public class YCUserInfoResponse extends BaseResponse {
 
     private String portraitId;
     
+    private String url;
+    
+    private long userAccountId;
+    
 	public String getResponseCode() {
 		return responseCode;
 	}
@@ -166,6 +170,26 @@ public class YCUserInfoResponse extends BaseResponse {
 
 	public void setPortraitId(String portraitId) {
 		this.portraitId = portraitId;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public long getUserAccountId() {
+		return userAccountId;
+	}
+
+	public void setUserAccountId(long userAccountId) {
+		this.userAccountId = userAccountId;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 }
