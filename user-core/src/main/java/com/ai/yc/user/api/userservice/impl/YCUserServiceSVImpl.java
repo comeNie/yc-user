@@ -98,7 +98,6 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 			result.setUrl(url);
 		}
 		result.setResponseHeader(responseHeader);
-        result.setResponseCode(ExceptCodeConstants.SUCCESS);
         return result;
 	}
 	
