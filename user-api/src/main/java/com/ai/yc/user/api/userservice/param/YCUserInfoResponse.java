@@ -18,43 +18,69 @@ public class YCUserInfoResponse extends BaseResponse {
 	 */
 	private static final long serialVersionUID = -2997865058532181384L;
 
-	private String responseCode;
-	
+	/**
+	 * 用户Id
+	 */
     private String userId;
-
+    /**
+     * 昵称
+     */
     private String nickname;
-
+    /**
+     * 性别
+     */
     private Integer sex;
-
+    /**
+     * 生日
+     */
     private Timestamp birthday;
-
+    /**
+     * 手机
+     */
     private String mobilePhone;
-
+    /**
+     * qq 
+     */
     private String qq;
-
+    /**
+     * 地址
+     */
     private String address;
-
+    /**
+     * 市
+     */
     private String cnCity;
-
+    /**
+     * 省
+     */
     private String province;
-
+    /**
+     * 国家
+     */
     private String country;
-
+    /**
+     * 是否译员
+     */
     private Integer isRanslator;
-
+    
     private Integer isAdmin;
-    
+    /**
+     * 姓名
+     */
     private String fullName;
-
+    /**
+     * 头像id
+     */
     private String portraitId;
+    /**
+     * 头像url
+     */
+    private String url;
+    /**
+     * 个人账户id
+     */
+    private long userAccountId;
     
-	public String getResponseCode() {
-		return responseCode;
-	}
-
-	public void setResponseCode(String responseCode) {
-		this.responseCode = responseCode;
-	}
 
 	public String getUserId() {
 		return userId;
@@ -166,6 +192,26 @@ public class YCUserInfoResponse extends BaseResponse {
 
 	public void setPortraitId(String portraitId) {
 		this.portraitId = portraitId;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public long getUserAccountId() {
+		return userAccountId;
+	}
+
+	public void setUserAccountId(long userAccountId) {
+		this.userAccountId = userAccountId;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 	
 }

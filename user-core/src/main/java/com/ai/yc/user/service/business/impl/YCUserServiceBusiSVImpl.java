@@ -11,17 +11,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
-import com.ai.opt.sdk.components.sequence.util.SeqUtil;
 import com.ai.opt.sdk.constants.ExceptCodeConstants;
 import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.StringUtil;
 import com.ai.yc.ucenter.api.members.interfaces.IUcMembersOperationSV;
 import com.ai.yc.ucenter.api.members.interfaces.IUcMembersSV;
+ 
 import com.ai.yc.ucenter.api.members.param.UcMembersVo;
 import com.ai.yc.ucenter.api.members.param.editpass.UcMembersEditPassRequest;
 import com.ai.yc.ucenter.api.members.param.opera.UcMembersGetOperationcodeRequest;
 import com.ai.yc.ucenter.api.members.param.opera.UcMembersGetOperationcodeResponse;
+ 
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterRequest;
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterResponse;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
@@ -32,7 +33,6 @@ import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 import com.ai.yc.user.api.userservice.param.YCLSPInfoReponse;
 import com.ai.yc.user.api.userservice.param.YCTranslatorSkillListResponse;
 import com.ai.yc.user.api.userservice.param.searchYCLSPInfoRequest;
-import com.ai.yc.user.constants.SequenceCodeConstants.UserSequenceCode;
 import com.ai.yc.user.dao.mapper.bo.UsrContact;
 import com.ai.yc.user.dao.mapper.bo.UsrLanguage;
 import com.ai.yc.user.dao.mapper.bo.UsrLanguageCriteria;
@@ -144,16 +144,16 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			
 			return insertResp;
 		}else if (insertinfo.getLoginway().equals("2")){
-			@SuppressWarnings(value = { "无法刷到孟博的包，无法调用其接口！！！！！！" })
-			
-			IUcMembersOperationSV iUcMembersOperationSV = DubboConsumerFactory.getService(IUcMembersOperationSV.class);
-			UcMembersGetOperationcodeRequest ucMembersGetOperationcodeRequest = new UcMembersGetOperationcodeRequest();
-			ucMembersGetOperationcodeRequest.setUserinfo(insertinfo.getMobilePhone());
-			ucMembersGetOperationcodeRequest.setOperationtype("1");
-			
-			UcMembersGetOperationcodeResponse umgor = iUcMembersOperationSV.ucGetOperationcode(ucMembersGetOperationcodeRequest);
-			
-			UcMembersEditPassRequest umepr = new UcMembersEditPassRequest();
+//			@SuppressWarnings(value = { "无法刷到孟博的包，无法调用其接口！！！！！！" })
+//			
+//			IUcMembersOperationSV iUcMembersOperationSV = DubboConsumerFactory.getService(IUcMembersOperationSV.class);
+//			UcMembersGetOperationcodeRequest ucMembersGetOperationcodeRequest = new UcMembersGetOperationcodeRequest();
+//			ucMembersGetOperationcodeRequest.setUserinfo(insertinfo.getMobilePhone());
+//			ucMembersGetOperationcodeRequest.setOperationtype("1");
+//			
+//			UcMembersGetOperationcodeResponse umgor = iUcMembersOperationSV.ucGetOperationcode(ucMembersGetOperationcodeRequest);
+//			
+//			UcMembersEditPassRequest umepr = new UcMembersEditPassRequest();
 //			umepr.setUid(Integer.valueOf(insertinfo.getUserId()));
 //			umepr.setChecke_code(insertinfo.getOperationcode());
 //			umepr.setUid(umgor.getCode().getUid());

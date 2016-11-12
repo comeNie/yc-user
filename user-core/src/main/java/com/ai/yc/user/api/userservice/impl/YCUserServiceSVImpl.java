@@ -11,7 +11,9 @@ import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.ResponseHeader;
+import com.ai.opt.sdk.components.idps.IDPSClientFactory;
 import com.ai.opt.sdk.util.BeanUtils;
+import com.ai.paas.ipaas.image.IImageClient;
 import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
 import com.ai.yc.user.api.userservice.param.InsertYCTranslatorRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
@@ -21,7 +23,6 @@ import com.ai.yc.user.api.userservice.param.SearchYCTranslatorSkillListRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.YCContactInfoResponse;
-import com.ai.yc.user.api.userservice.param.YCInsertTranslatorResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 import com.ai.yc.user.api.userservice.param.YCLSPInfoReponse;
 import com.ai.yc.user.api.userservice.param.YCTranslatorInfoResponse;
@@ -90,8 +91,13 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		}
 		YCUserInfoResponse result = new YCUserInfoResponse();
 		BeanUtils.copyProperties(result,usrUser);
+		String idpsns = "yc-portal-web";
+		IImageClient im = IDPSClientFactory.getImageClient(idpsns);
+		if(usrUser.getPortraitId()!=null&&!"".equals(usrUser.getPortraitId())){
+			String url = im.getImageUrl(usrUser.getPortraitId(), ".jpg", "100x100");
+			result.setUrl(url);
+		}
 		result.setResponseHeader(responseHeader);
-        result.setResponseCode(ExceptCodeConstants.SUCCESS);
         return result;
 	}
 	

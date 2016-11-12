@@ -59,6 +59,8 @@ public class UsrUser {
 
     private String portraitId;
 
+    private Long accountId;
+
     public String getUserId() {
         return userId;
     }
@@ -281,5 +283,13 @@ public class UsrUser {
 
     public void setPortraitId(String portraitId) {
         this.portraitId = portraitId == null ? null : portraitId.trim();
+    }
+
+    public Long getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 }
