@@ -108,11 +108,12 @@ public class InsertYCUserRequest extends BaseInfo{
 		super();
 	}
 
-	public InsertYCUserRequest(String operationcode, String loginway, String regip, String userName, String telephone,
-			String email, String password, String nickname, String lastname, String firstname, Integer sex,
-			String mobilePhone, String qq, String address, String country, String cnCity, String province,
-			String fullName) {
+	public InsertYCUserRequest(String userId, String operationcode, String loginway, String regip, String userName,
+			String telephone, String email, String password, String nickname, String lastname, String firstname,
+			Integer sex, String mobilePhone, String qq, String address, String country, String cnCity, String province,
+			String fullName, String portraitId) {
 		super();
+		this.userId = userId;
 		this.operationcode = operationcode;
 		this.loginway = loginway;
 		this.regip = regip;
@@ -131,9 +132,8 @@ public class InsertYCUserRequest extends BaseInfo{
 		this.cnCity = cnCity;
 		this.province = province;
 		this.fullName = fullName;
+		this.portraitId = portraitId;
 	}
-
-
 
 	public String getTelephone() {
 		return telephone;
