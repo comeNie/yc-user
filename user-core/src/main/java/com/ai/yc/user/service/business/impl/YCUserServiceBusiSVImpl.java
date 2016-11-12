@@ -16,8 +16,12 @@ import com.ai.opt.sdk.constants.ExceptCodeConstants;
 import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.StringUtil;
+import com.ai.yc.ucenter.api.members.interfaces.IUcMembersOperationSV;
 import com.ai.yc.ucenter.api.members.interfaces.IUcMembersSV;
 import com.ai.yc.ucenter.api.members.param.UcMembersVo;
+import com.ai.yc.ucenter.api.members.param.editpass.UcMembersEditPassRequest;
+import com.ai.yc.ucenter.api.members.param.opera.UcMembersGetOperationcodeRequest;
+import com.ai.yc.ucenter.api.members.param.opera.UcMembersGetOperationcodeResponse;
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterRequest;
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterResponse;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
@@ -71,11 +75,14 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			}
 			if(insertinfo.getLoginway().equals("2")){
 				if(StringUtil.isBlank(insertinfo.getMobilePhone())){
-					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户名不能为空");
+					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:手机号不能为空");
 				}
-				if(StringUtil.isBlank(insertinfo.getOperationcode())){
-					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:手机验证码不能为空");
+				if(StringUtil.isBlank(insertinfo.getUserId())){
+					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:手机验证码注册时用户ID不能为空");
 				}
+//				if(StringUtil.isBlank(insertinfo.getOperationcode())){
+//					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:手机验证码不能为空");
+//				}
 			}
 		}
 		
@@ -87,52 +94,84 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:昵称不能为空");
 		}
 		
-		// 孟博注册接口
 		IUcMembersSV iUcMembersSV = DubboConsumerFactory.getService(IUcMembersSV.class);
-		UcMembersRegisterRequest umrr = new UcMembersRegisterRequest();
-		umrr.setRegip(insertinfo.getRegip());
-		umrr.setOperationcode(insertinfo.getOperationcode());
-		umrr.setUsername(insertinfo.getUserName());
-		umrr.setEmail(insertinfo.getEmail());
-		umrr.setMobilephone(insertinfo.getMobilePhone());
-		umrr.setPassword(insertinfo.getPassword());
-		umrr.setUsersource("gtcom");
-		umrr.setLoginmode("0");
-		umrr.setLoginway(insertinfo.getLoginway());
-		umrr.setCreatetime(UCDateUtils.getSystime() + "");
-		UcMembersRegisterResponse umrResponse = iUcMembersSV.ucRegisterMember(umrr);
-		System.out.println( "umrResponse : " + umrResponse);
-		if(umrResponse == null){
-			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 : 返回值为NULL");
-		}
-		if(!umrResponse.getMessage().isSuccess()){
-			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 : 内部错误" );
-		}
-		if(umrResponse.getCode().getCodeNumber().intValue() != 1){
-			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值 : " + umrResponse.getCode().getCodeNumber() + " --- " + umrResponse.getCode().getCodeMessage());
-		}
-		if(StringUtil.isBlank(umrResponse.getDate().get("uid").toString())){
-			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值缺少uid");
+		if(insertinfo.getLoginway().equals("1")){
+			// 孟博注册接口
+			
+			UcMembersRegisterRequest umrr = new UcMembersRegisterRequest();
+			umrr.setRegip(insertinfo.getRegip());
+			umrr.setOperationcode(insertinfo.getOperationcode());
+			umrr.setUsername(insertinfo.getUserName());
+			umrr.setEmail(insertinfo.getEmail());
+			umrr.setMobilephone(insertinfo.getMobilePhone());
+			umrr.setPassword(insertinfo.getPassword());
+			umrr.setUsersource("gtcom");
+			umrr.setLoginmode("0");
+			umrr.setLoginway(insertinfo.getLoginway());
+			umrr.setCreatetime(UCDateUtils.getSystime() + "");
+			UcMembersRegisterResponse umrResponse =  null;
+			umrResponse = iUcMembersSV.ucRegisterMember(umrr);
+			if(umrResponse == null){
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 : 返回值为NULL");
+			}
+			if(!umrResponse.getMessage().isSuccess()){
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 : 内部错误" );
+			}
+			if(umrResponse.getCode().getCodeNumber().intValue() != 1){
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值 : " + umrResponse.getCode().getCodeNumber() + " --- " + umrResponse.getCode().getCodeMessage());
+			}
+			if(StringUtil.isBlank(umrResponse.getDate().get("uid").toString())){
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值缺少uid");
+			}
+			
+			// 插入数据
+			UsrUser tUser = new UsrUser();
+			// 从右到左,把相同类型且属性名相同的复制到右边
+			BeanUtils.copyProperties(tUser, insertinfo);
+//			String UserId = SeqUtil.getNewId(UserSequenceCode.CM_CUST_FILE_EXT$INFO_EXT$ID,18);
+//			Map respMap = umrResponse.getDate();
+//			UcMembersVo vo = new UcMembersVo(respMap);
+			tUser.setUserId(umrResponse.getDate().get("uid").toString());
+			ycUSAtomSV.insertUserInfo(tUser);
+			// 支付账户信息
+			
+			YCInsertUserResponse insertResp = new YCInsertUserResponse();
+			insertResp.setUserId(tUser.getUserId());
+			if(umrResponse.getDate().get("operationcode") != null)
+			{
+				insertResp.setOperationcode(umrResponse.getDate().get("operationcode").toString());
+			}
+			
+			return insertResp;
+		}else if (insertinfo.getLoginway().equals("2")){
+			@SuppressWarnings(value = { "无法刷到孟博的包，无法调用其接口！！！！！！" })
+			
+			IUcMembersOperationSV iUcMembersOperationSV = DubboConsumerFactory.getService(IUcMembersOperationSV.class);
+			UcMembersGetOperationcodeRequest ucMembersGetOperationcodeRequest = new UcMembersGetOperationcodeRequest();
+			ucMembersGetOperationcodeRequest.setUserinfo(insertinfo.getMobilePhone());
+			ucMembersGetOperationcodeRequest.setOperationtype("1");
+			
+			UcMembersGetOperationcodeResponse umgor = iUcMembersOperationSV.ucGetOperationcode(ucMembersGetOperationcodeRequest);
+			
+			UcMembersEditPassRequest umepr = new UcMembersEditPassRequest();
+//			umepr.setUid(Integer.valueOf(insertinfo.getUserId()));
+//			umepr.setChecke_code(insertinfo.getOperationcode());
+//			umepr.setUid(umgor.getCode().getUid());
+//			umepr.setChecke_code(umgor.getCode().getOperationcode());
+//			umepr.setChecke_mode("2");
+//			umepr.setNewpw(insertinfo.getPassword());
+//			iUcMembersSV.ucEditPassword(umepr);
+			
+			
+			return null;
+			
+		} else {
+			return null;
 		}
 		
-		// 插入数据
-		UsrUser tUser = new UsrUser();
-		// 从右到左,把相同类型且属性名相同的复制到右边
-		BeanUtils.copyProperties(tUser, insertinfo);
-//		String UserId = SeqUtil.getNewId(UserSequenceCode.CM_CUST_FILE_EXT$INFO_EXT$ID,18);
-//		Map respMap = umrResponse.getDate();
-//		UcMembersVo vo = new UcMembersVo(respMap);
-		tUser.setUserId(umrResponse.getDate().get("uid").toString());
-		ycUSAtomSV.insertUserInfo(tUser);
-		// 支付账户信息
 		
-		YCInsertUserResponse insertResp = new YCInsertUserResponse();
-		insertResp.setUserId(tUser.getUserId());
-		if(umrResponse.getDate().get("operationcode") != null)
-		{
-			insertResp.setOperationcode(umrResponse.getDate().get("operationcode").toString());
-		}
-		return insertResp;
+		
+		
 	}
 
 	@Override

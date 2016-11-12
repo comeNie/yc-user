@@ -15,6 +15,11 @@ public class InsertYCUserRequest extends BaseInfo{
 	 */
 	private static final long serialVersionUID = -6684903649163120222L;
 	/**
+	 * 手机注册时userId需要有值
+	 */
+	private String userId;
+	
+	/**
 	 * 手机激活码
 	 * 手机+密码方式有值
 	 */
@@ -347,6 +352,14 @@ public class InsertYCUserRequest extends BaseInfo{
 
 	public void setPortraitId(String portraitId) {
 		this.portraitId = portraitId;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
 	
