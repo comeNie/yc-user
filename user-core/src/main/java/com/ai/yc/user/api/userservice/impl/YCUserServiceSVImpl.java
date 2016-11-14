@@ -48,16 +48,25 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 	@Override
 	public YCInsertUserResponse insertYCUser(InsertYCUserRequest insertInfo){
 		ResponseHeader responseHeader = null;
-		YCInsertUserResponse response = new YCInsertUserResponse();
 		try{
-			response = ycUsrServiceBusiSv.insertUserInfo(insertInfo);
-			responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"插入成功");
+			YCInsertUserResponse response = ycUsrServiceBusiSv.insertUserInfo(insertInfo);
+			if(response != null){
+				responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"插入成功");
+				response.setResponseHeader(responseHeader);
+		        return response;
+			} else {
+				response = new YCInsertUserResponse();
+				responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,"传入不支持注册类型，注册失败");
+				response.setResponseHeader(responseHeader);
+		        return response;
+			}
 		}catch(BusinessException e){
 			LOGGER.error("插入失败",e);
+			YCInsertUserResponse response = new YCInsertUserResponse();
 			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
+			response.setResponseHeader(responseHeader);
+	        return response;
 		}
-		response.setResponseHeader(responseHeader);
-        return response;
 	}
 
 	@Override
