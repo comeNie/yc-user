@@ -13,11 +13,15 @@ import com.ai.opt.base.vo.BaseResponse;
 public class YCUserInfoResponse extends BaseResponse {
 
 
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2997865058532181384L;
-
+	/**
+	 * ucenter获取的用户名
+	 */
+	private String username;
 	/**
 	 * 用户Id
 	 */
@@ -212,6 +216,14 @@ public class YCUserInfoResponse extends BaseResponse {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 }

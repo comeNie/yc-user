@@ -89,23 +89,36 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCUserInfoResponse searchYCUserInfo(SearchYCUserRequest userId){
+//		ResponseHeader responseHeader = null;
+//		UsrUser usrUser = null ;
+//		try{
+//			usrUser = ycUsrServiceBusiSv.searchUserInfo(userId.getUserId());
+//			responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"查询成功");
+//		}catch(BusinessException e){
+//			LOGGER.error("修改失败",e);
+//			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
+//		}
+//		YCUserInfoResponse result = new YCUserInfoResponse();
+//		BeanUtils.copyProperties(result,usrUser);
+//		String idpsns = "yc-portal-web";
+//		IImageClient im = IDPSClientFactory.getImageClient(idpsns);
+//		if(usrUser.getPortraitId()!=null&&!"".equals(usrUser.getPortraitId())){
+//			String url = im.getImageUrl(usrUser.getPortraitId(), ".jpg", "100x100");
+//			result.setUrl(url);
+//		}
+//		result.setResponseHeader(responseHeader);
+//        return result;
+		
 		ResponseHeader responseHeader = null;
-		UsrUser usrUser = null ;
+		YCUserInfoResponse result = null ;
 		try{
-			usrUser = ycUsrServiceBusiSv.searchUserInfo(userId.getUserId());
+			result = ycUsrServiceBusiSv.searchUserInfo(userId.getUserId());
 			responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"查询成功");
 		}catch(BusinessException e){
 			LOGGER.error("修改失败",e);
 			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
 		}
-		YCUserInfoResponse result = new YCUserInfoResponse();
-		BeanUtils.copyProperties(result,usrUser);
-		String idpsns = "yc-portal-web";
-		IImageClient im = IDPSClientFactory.getImageClient(idpsns);
-		if(usrUser.getPortraitId()!=null&&!"".equals(usrUser.getPortraitId())){
-			String url = im.getImageUrl(usrUser.getPortraitId(), ".jpg", "100x100");
-			result.setUrl(url);
-		}
+
 		result.setResponseHeader(responseHeader);
         return result;
 	}

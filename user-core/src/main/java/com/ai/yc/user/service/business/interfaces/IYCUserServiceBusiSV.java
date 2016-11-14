@@ -7,6 +7,7 @@ import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 import com.ai.yc.user.api.userservice.param.YCLSPInfoReponse;
 import com.ai.yc.user.api.userservice.param.YCTranslatorSkillListResponse;
+import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
 import com.ai.yc.user.api.userservice.param.searchYCLSPInfoRequest;
 import com.ai.yc.user.dao.mapper.bo.UsrContact;
 import com.ai.yc.user.dao.mapper.bo.UsrTranslator;
@@ -18,7 +19,7 @@ public interface IYCUserServiceBusiSV {
     
     public int updateUserInfo(UpdateYCUserRequest updateUserParams) throws BusinessException;
 
-    public UsrUser searchUserInfo(String userID) throws BusinessException;
+    public YCUserInfoResponse searchUserInfo(String userID) throws BusinessException;
 
 	public UsrTranslator searchYCUsrTranslatorInfo(String userId) throws BusinessException;
 
