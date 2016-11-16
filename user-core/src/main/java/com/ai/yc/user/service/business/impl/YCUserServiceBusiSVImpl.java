@@ -146,8 +146,8 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			vo.setSystemId("Cloud-UAC_WEB");// 系统ID
 			vo.setTenantId("yeecloud");// 租户ID
 			vo.setRegCustomerId(umrResponse.getDate().get("uid").toString());
-			vo.setAcctName(umrResponse.getDate().get("username").toString());
-//			vo.setAcctName("13000000000");
+//			vo.setAcctName(umrResponse.getDate().get("username").toString());
+			vo.setAcctName("13000000000");
 			vo.setAcctType("1");
 			long accountId = iAccountMaintainSV.createAccount(vo);
 
@@ -165,16 +165,16 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			return insertResp;
 		} else if (insertinfo.getLoginway().equals("2")) {// 思路：前台调用ucGetOperationcode接口，然后这里调用UcMembersEditPassRequest接口修改密码，与邮箱注册不同的是前台必须要传uid和Operationcod过来
 			//---------------------- 
-			IUcMembersOperationSV iUcMembersOperationSV =
-			 DubboConsumerFactory.getService(IUcMembersOperationSV.class);
-			 UcMembersGetOperationcodeRequest ucMembersGetOperationcodeRequest
-			 = new UcMembersGetOperationcodeRequest();
-			 ucMembersGetOperationcodeRequest.setUserinfo(insertinfo.getMobilePhone());
-			 ucMembersGetOperationcodeRequest.setOperationtype("1");
-			 UcMembersGetOperationcodeResponse umgor =
-			 iUcMembersOperationSV.ucGetOperationcode(ucMembersGetOperationcodeRequest);
-			 umgor.getDate().get("uid");
-			 umgor.getDate().get("operationcode");
+//			IUcMembersOperationSV iUcMembersOperationSV =
+//			 DubboConsumerFactory.getService(IUcMembersOperationSV.class);
+//			 UcMembersGetOperationcodeRequest ucMembersGetOperationcodeRequest
+//			 = new UcMembersGetOperationcodeRequest();
+//			 ucMembersGetOperationcodeRequest.setUserinfo(insertinfo.getMobilePhone());
+//			 ucMembersGetOperationcodeRequest.setOperationtype("1");
+//			 UcMembersGetOperationcodeResponse umgor =
+//			 iUcMembersOperationSV.ucGetOperationcode(ucMembersGetOperationcodeRequest);
+//			 umgor.getDate().get("uid");
+//			 umgor.getDate().get("operationcode");
 			//----------------------
 
 			UcMembersEditPassRequest umepr = new UcMembersEditPassRequest();
@@ -183,10 +183,10 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			umepr.setChecke_mode("2");
 			umepr.setNewpw(insertinfo.getPassword());
 			
-			//----------------------
-			umepr.setChecke_code(umgor.getDate().get("operationcode").toString());
-			umepr.setUid(Integer.valueOf(umgor.getDate().get("uid").toString()));
-			//----------------------
+//			//----------------------
+//			umepr.setChecke_code(umgor.getDate().get("operationcode").toString());
+//			umepr.setUid(Integer.valueOf(umgor.getDate().get("uid").toString()));
+//			//----------------------
 
 			UcMembersResponse umr = iUcMembersSV.ucEditPassword(umepr);
 			if (umr == null) {
