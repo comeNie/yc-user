@@ -83,7 +83,7 @@ public class YCUserInfoResponse extends BaseResponse {
     /**
      * 个人账户id
      */
-    private long userAccountId;
+    private Long accountId;
     
 
 	public String getUserId() {
@@ -206,14 +206,6 @@ public class YCUserInfoResponse extends BaseResponse {
 		this.url = url;
 	}
 
-	public long getUserAccountId() {
-		return userAccountId;
-	}
-
-	public void setUserAccountId(long userAccountId) {
-		this.userAccountId = userAccountId;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -224,6 +216,14 @@ public class YCUserInfoResponse extends BaseResponse {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public Long getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
 	}
 	
 }

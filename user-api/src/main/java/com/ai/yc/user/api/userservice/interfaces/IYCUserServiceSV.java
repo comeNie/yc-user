@@ -96,7 +96,7 @@ public interface IYCUserServiceSV {
 	YCTranslatorInfoResponse searchYCTranslatorInfo(SearchYCTranslatorRequest tUsrId);
 	
 	/**
-	 * 新增联系人基本信息
+	 * 查询译员通讯录
 	 * @param 
 	 * @return
 	 * @ApiCode USR_0005
@@ -107,10 +107,24 @@ public interface IYCUserServiceSV {
 	YCContactInfoResponse searchYCContactInfo(SearchYCContactRequest cUsrId);
 	
 
+	/**
+	 * 查询译员语言技能列表
+	 * @param 
+	 * @return
+	 * @ApiCode USR_0009
+     * @RestRelativeURL ycuserservice/SearchTranslatorSkillList
+	 */
 	@POST
 	@Path("/SearchTranslatorSkillList")
 	YCTranslatorSkillListResponse getTranslatorSkillList(SearchYCTranslatorSkillListRequest getSkillList);
 	
+	/**
+	 * 查询LSP信息
+	 * @param 
+	 * @return
+	 * @ApiCode USR_0010
+     * @RestRelativeURL ycuserservice/searchLSPInfo
+	 */
 	@POST
 	@Path("/searchLSPInfo")
 	YCLSPInfoReponse searchLSPInfo(searchYCLSPInfoRequest searchLSPParams);
