@@ -8,6 +8,11 @@ public class UsrTranslator {
 
     private String lspId;
 
+    /**
+     * 10、译员
+     * 11、项目经理
+     * 12、超级管理员
+     */
     private String lspRole;
 
     private Integer workingLife;

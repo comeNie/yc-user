@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.sdk.components.idps.IDPSClientFactory;
+import com.ai.opt.sdk.components.sequence.util.SeqUtil;
 import com.ai.opt.sdk.constants.ExceptCodeConstants;
 import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
 import com.ai.opt.sdk.util.BeanUtils;
@@ -68,36 +69,28 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	@Override
 	public YCInsertUserResponse insertUserInfo(InsertYCUserRequest insertinfo) throws BusinessException {
 		if (StringUtil.isBlank(insertinfo.getRegip())) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户ip不能为空");
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户ip不能为空");
 		}
 
 		if (StringUtil.isBlank(insertinfo.getLoginway())) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户名不能为空");
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "登录方式不能为空");
 		} else {
 			if (insertinfo.getLoginway().equals("1")) {
 				if (StringUtil.isBlank(insertinfo.getEmail())) {
-					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户名不能为空");
+					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "邮箱不能为空");
 				}
 			}
 			if (insertinfo.getLoginway().equals("2")) {
 				if (StringUtil.isBlank(insertinfo.getMobilePhone())) {
-					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:手机号不能为空");
+					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "手机号不能为空");
 				}
 				if (StringUtil.isBlank(insertinfo.getUserId())) {
-					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:手机验证码注册时用户ID不能为空");
+					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "手机验证码注册时用户ID不能为空");
 				}
 				if (StringUtil.isBlank(insertinfo.getOperationcode())) {
-					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:手机验证码注册时operationcode不能为空");
+					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "手机验证码注册时operationcode不能为空");
 				}
 			}
-		}
-
-		if (StringUtil.isBlank(insertinfo.getUserName())) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户名不能为空");
-		}
-
-		if (StringUtil.isBlank(insertinfo.getNickname())) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:昵称不能为空");
 		}
 
 		IUcMembersSV iUcMembersSV = DubboConsumerFactory.getService(IUcMembersSV.class);
@@ -118,25 +111,25 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			UcMembersRegisterResponse umrResponse = null;
 			umrResponse = iUcMembersSV.ucRegisterMember(umrr);
 			if (umrResponse == null) {
-				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 : 返回值为NULL");
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "返回值为空");
 			}
 			if (!umrResponse.getMessage().isSuccess()) {
-				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 : 内部错误");
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "内部错误 : ");
 			}
 			if (umrResponse.getCode().getCodeNumber().intValue() != 1) {
-				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值 : "
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "ucenter返回值 : "
 						+ umrResponse.getCode().getCodeNumber() + " --- " + umrResponse.getCode().getCodeMessage());
 			}
 			if (StringUtil.isBlank(umrResponse.getDate().get("uid").toString())) {
-				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值缺少uid");
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "ucenter返回值缺少uid");
 			}
 			if (StringUtil.isBlank(umrResponse.getDate().get("username").toString())) { // 邮箱注册必有值
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT,
-						"用户中心请求失败 ucenter返回值缺少username");
+						"ucenter返回值缺少username");
 			}
 			if (StringUtil.isBlank(umrResponse.getDate().get("operationcode").toString())) { // 邮箱注册必有值
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT,
-						"用户中心请求失败 ucenter返回值缺少operationcode");
+						"ucenter返回值缺少operationcode");
 			}
 
 			// 支付账户信息
@@ -146,8 +139,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			vo.setSystemId("Cloud-UAC_WEB");// 系统ID
 			vo.setTenantId("yeecloud");// 租户ID
 			vo.setRegCustomerId(umrResponse.getDate().get("uid").toString());
-//			vo.setAcctName(umrResponse.getDate().get("username").toString());
-			vo.setAcctName("13000000000");
+			vo.setAcctName(umrResponse.getDate().get("username").toString());
 			vo.setAcctType("1");
 			long accountId = iAccountMaintainSV.createAccount(vo);
 
@@ -156,6 +148,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			// 从右到左,把相同类型且属性名相同的复制到右边
 			BeanUtils.copyProperties(tUser, insertinfo);
 			tUser.setUserId(umrResponse.getDate().get("uid").toString());
+			tUser.setNickname("译粉"+SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8));
 			tUser.setAccountId(accountId);
 			ycUSAtomSV.insertUserInfo(tUser);
 
@@ -186,6 +179,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 //			//----------------------
 //			umepr.setChecke_code(umgor.getDate().get("operationcode").toString());
 //			umepr.setUid(Integer.valueOf(umgor.getDate().get("uid").toString()));
+//			insertinfo.setUserId(umgor.getDate().get("uid").toString());
 //			//----------------------
 
 			UcMembersResponse umr = iUcMembersSV.ucEditPassword(umepr);
@@ -211,8 +205,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			vo.setSystemId("Cloud-UAC_WEB");// 系统ID
 			vo.setTenantId("yeecloud");// 租户ID
 			vo.setRegCustomerId(insertinfo.getUserId());
-//			vo.setAcctName(umr.getDate().get("username").toString());
-			vo.setAcctName("13000000000");
+			vo.setAcctName(umr.getDate().get("username").toString());
 			vo.setAcctType("1");//1预付费
 			long accountId = iAccountMaintainSV.createAccount(vo);
 			
@@ -221,6 +214,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			// 从右到左,把相同类型且属性名相同的复制到右边
 			BeanUtils.copyProperties(tUser, insertinfo);
 			tUser.setAccountId(accountId);
+			tUser.setNickname("译粉"+SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8));
 			ycUSAtomSV.insertUserInfo(tUser);
 
 			YCInsertUserResponse insertResp = new YCInsertUserResponse();
@@ -259,11 +253,15 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	@Override
 	public YCUserInfoResponse searchUserInfo(String userID) throws BusinessException {
 		if (StringUtil.isBlank(userID)) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户Id不能为空");
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户Id不能为空");
 		}
 		UsrUser usrUser = ycUSAtomSV.getUserInfo(userID);
-
+		
 		YCUserInfoResponse result = new YCUserInfoResponse();
+		if(null == usrUser){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户中心不存在此用户");
+		}
+		
 		BeanUtils.copyProperties(result, usrUser);
 		String idpsns = "yc-portal-web";
 		IImageClient im = IDPSClientFactory.getImageClient(idpsns);
