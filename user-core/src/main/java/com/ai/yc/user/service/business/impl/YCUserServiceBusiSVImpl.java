@@ -193,10 +193,10 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值 : "
 						+ umr.getCode().getCodeNumber() + " --- " + umr.getCode().getCodeMessage());
 			}
-//			if (StringUtil.isBlank(umr.getDate().get("username").toString())) { // 邮箱注册必有值
-//				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT,
-//						"用户中心请求失败 ucenter返回值缺少username");
-//			}
+			if (StringUtil.isBlank(umr.getDate().get("username").toString())) { // 邮箱注册必有值
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT,
+						"用户中心请求失败 ucenter返回值缺少username");
+			}
 
 			// 支付账户信息
 			IAccountMaintainSV iAccountMaintainSV = DubboConsumerFactory.getService(IAccountMaintainSV.class);
@@ -288,10 +288,14 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	@Override
 	public UsrTranslator searchYCUsrTranslatorInfo(String userId) throws BusinessException {
 		if (StringUtil.isBlank(userId)) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户Id不能为空");
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户Id不能为空");
 		}
 
 		UsrTranslator utr = ycUSAtomSV.getUsrTranslatorInfo(userId);
+		if (null == utr) {
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户不存在！");
+		}
+		
 		return utr;
 	}
 
@@ -299,10 +303,13 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	public UsrContact searchUsrContactInfo(String userId) throws BusinessException {
 
 		if (StringUtil.isBlank(userId)) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户Id不能为空");
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户Id不能为空");
 		}
 
 		UsrContact usrC = ycUSAtomSV.getUsrContactInfo(userId);
+		if (null == usrC) {
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户不存在！");
+		}
 		return usrC;
 	}
 
@@ -314,7 +321,11 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		UsrUserCriteria example = new UsrUserCriteria();
 		UsrUserCriteria.Criteria criteria = example.createCriteria();
 		criteria.andNicknameEqualTo(nickName);
-		return ycUSAtomSV.getUserInfoByNickName(example);
+		UsrUser user = ycUSAtomSV.getUserInfoByNickName(example);
+		if (null == user) {
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户不存在！");
+		}
+		return user;
 	}
 
 	@Override
