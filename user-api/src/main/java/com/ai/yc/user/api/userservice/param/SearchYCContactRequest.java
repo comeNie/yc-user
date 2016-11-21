@@ -1,5 +1,7 @@
 package com.ai.yc.user.api.userservice.param;
 
+import java.io.Serializable;
+
 import com.ai.opt.base.vo.BaseInfo;
 
 /** 
@@ -8,7 +10,7 @@ import com.ai.opt.base.vo.BaseInfo;
  * @version 
  * @since  
  */
-public class SearchYCContactRequest extends BaseInfo {
+public class SearchYCContactRequest  implements Serializable {
 
 	/**
 	 * 

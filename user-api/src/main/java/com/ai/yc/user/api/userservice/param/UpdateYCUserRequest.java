@@ -1,5 +1,6 @@
 package com.ai.yc.user.api.userservice.param;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
 import com.ai.opt.base.vo.BaseInfo;
@@ -12,7 +13,7 @@ import com.ai.opt.base.vo.BaseInfo;
  * @since  
  */
 
-public class UpdateYCUserRequest extends BaseInfo {
+public class UpdateYCUserRequest implements Serializable{
 	/**
 	 * 
 	 */

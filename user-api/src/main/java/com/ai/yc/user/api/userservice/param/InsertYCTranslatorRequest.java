@@ -1,5 +1,6 @@
 package com.ai.yc.user.api.userservice.param;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
@@ -11,7 +12,7 @@ import com.ai.opt.base.vo.BaseInfo;
  * @version 
  * @since  
  */
-public class InsertYCTranslatorRequest extends BaseInfo {
+public class InsertYCTranslatorRequest implements Serializable {
 
 	/**
 	 * 
