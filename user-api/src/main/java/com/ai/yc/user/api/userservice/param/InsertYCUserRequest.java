@@ -11,7 +11,17 @@ import com.ai.opt.base.vo.BaseInfo;
  * @since  
  */
 public class InsertYCUserRequest implements Serializable{
-	
+	/**
+	 * 租户Id，必填
+	 */
+	private String tenantId;
+	public String getTenantId() {
+		return tenantId;
+	}
+
+	public void setTenantId(String tenantId) {
+		this.tenantId = tenantId;
+	}
 	/**
 	 * 
 	 */

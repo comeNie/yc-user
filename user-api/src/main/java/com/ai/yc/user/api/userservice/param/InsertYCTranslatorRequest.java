@@ -12,12 +12,24 @@ import com.ai.opt.base.vo.BaseInfo;
  * @version 
  * @since  
  */
-public class InsertYCTranslatorRequest implements Serializable {
+public class InsertYCTranslatorRequest  implements Serializable {
 
+	/**
+	 * 租户Id，必填
+	 */
+	private String tenantId;
+	public String getTenantId() {
+		return tenantId;
+	}
+
+	public void setTenantId(String tenantId) {
+		this.tenantId = tenantId;
+	}
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1192887801222567330L;
+	
 	
 	private String userId;
 
@@ -158,7 +170,6 @@ public class InsertYCTranslatorRequest implements Serializable {
 	public void setLegalCertNum(String legalCertNum) {
 		this.legalCertNum = legalCertNum;
 	}
-    
-    
+
 
 }

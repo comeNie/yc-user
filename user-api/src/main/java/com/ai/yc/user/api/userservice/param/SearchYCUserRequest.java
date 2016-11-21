@@ -12,6 +12,17 @@ import com.ai.opt.base.vo.BaseInfo;
  */
 public class SearchYCUserRequest  implements Serializable{
 	/**
+	 * 租户Id，必填
+	 */
+	private String tenantId;
+	public String getTenantId() {
+		return tenantId;
+	}
+
+	public void setTenantId(String tenantId) {
+		this.tenantId = tenantId;
+	}
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4314651793756447401L;
