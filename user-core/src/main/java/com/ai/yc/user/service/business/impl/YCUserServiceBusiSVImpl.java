@@ -184,10 +184,10 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 
 			UcMembersResponse umr = iUcMembersSV.ucEditPassword(umepr);
 			if (umr == null) {
-				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 : 返回值为NULL");
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "返回值为NULL");
 			}
 			if (!umr.getMessage().isSuccess()) {
-				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 : 内部错误");
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "内部错误");
 			}
 			if (umr.getCode().getCodeNumber().intValue() != 1) {
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值 : "
@@ -230,15 +230,15 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	@Override
 	public int updateUserInfo(UpdateYCUserRequest userparam) throws BusinessException {
 		if (StringUtil.isBlank(userparam.getUserId())) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户Id不能为空");
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户Id不能为空");
 		}
 
 		if (StringUtil.isBlank(userparam.getNickname())) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:昵称不能为空");
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "昵称不能为空");
 		}
 
 		if (StringUtil.isBlank(userparam.getUserName())) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户名不能为空");
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户名不能为空");
 		}
 
 		UsrUser user = new UsrUser();
@@ -316,7 +316,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	@Override
 	public UsrUser searchuserInfoByNickName(String nickName) throws BusinessException {
 		if (StringUtil.isBlank(nickName)) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:昵称不能为空");
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "昵称不能为空");
 		}
 		UsrUserCriteria example = new UsrUserCriteria();
 		UsrUserCriteria.Criteria criteria = example.createCriteria();
@@ -331,16 +331,20 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	@Override
 	public YCTranslatorSkillListResponse getTranslatorSkillList(String userId) throws BusinessException {
 		if (StringUtil.isBlank(userId)) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:用户ID不能为空");
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户ID不能为空");
 		}
 		YCTranslatorSkillListResponse translatorSkillList = new YCTranslatorSkillListResponse();
 		// UsrUser验证译员信息
 		UsrUser userinfo = ycUSAtomSV.getUserInfo(userId);
 		if (userinfo.getIsRanslator() != 1) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "查询失败: 用户非译员身份");
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户非译员身份");
 		}
 		// 获取译员信息
 		UsrTranslator utr = searchYCUsrTranslatorInfo(userId);
+		if (null == utr) {
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户不存在！");
+		}
+		
 		BeanUtils.copyProperties(translatorSkillList, utr);
 		// 获取技能列表
 		UsrLanguageCriteria example = new UsrLanguageCriteria();
@@ -370,6 +374,9 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		List<UsrLsp> usrLspList = new ArrayList<UsrLsp>();
 		if (!StringUtil.isBlank(params.getLspId()) && StringUtil.isBlank(params.getLspName())) {
 			usrLsp = ycUSAtomSV.searchLspById(params.getLspId());
+			if (null == usrLsp) {
+				throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "LSP不存在！");
+			}
 			usrLspList.add(usrLsp);
 			yclspRep.setUsrLspList(changUsrLspToUsrLspMessage(usrLspList));
 		}
@@ -378,13 +385,19 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			UsrLspCriteria.Criteria criteria = example.createCriteria();
 			criteria.andLspNameLike(params.getLspName());
 			usrLspList = ycUSAtomSV.searchLspByName(example);
+			if (null == usrLspList) {
+				throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "LSP不存在！");
+			}
+			if (null == usrLspList.get(0)){
+				throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "LSP不存在！");
+			}
 			yclspRep.setUsrLspList(changUsrLspToUsrLspMessage(usrLspList));
 		}
 		if (StringUtil.isBlank(params.getLspId()) && StringUtil.isBlank(params.getLspName())) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:参数不能同时为空");
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "参数不能同时为空");
 		}
 		if (!StringUtil.isBlank(params.getLspId()) && !StringUtil.isBlank(params.getLspName())) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "获取参数失败:参数不能同时有值");
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "参数不能同时有值");
 		}
 		return yclspRep;
 	}
