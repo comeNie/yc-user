@@ -5,9 +5,11 @@ public class UsrLanguage {
 
     private String extendId;
 
-    private String userType;
+    private String translationType;
 
     private Integer referencePrice;
+
+    private String state;
 
     public String getTranslatorId() {
         return translatorId;
@@ -25,12 +27,12 @@ public class UsrLanguage {
         this.extendId = extendId == null ? null : extendId.trim();
     }
 
-    public String getUserType() {
-        return userType;
+    public String getTranslationType() {
+        return translationType;
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType == null ? null : userType.trim();
+    public void setTranslationType(String translationType) {
+        this.translationType = translationType == null ? null : translationType.trim();
     }
 
     public Integer getReferencePrice() {
@@ -39,5 +41,13 @@ public class UsrLanguage {
 
     public void setReferencePrice(Integer referencePrice) {
         this.referencePrice = referencePrice;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state == null ? null : state.trim();
     }
 }

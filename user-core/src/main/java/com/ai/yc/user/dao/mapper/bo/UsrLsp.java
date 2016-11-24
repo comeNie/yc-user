@@ -1,5 +1,7 @@
 package com.ai.yc.user.dao.mapper.bo;
 
+import java.sql.Timestamp;
+
 public class UsrLsp {
     private String lspId;
 
@@ -7,15 +9,23 @@ public class UsrLsp {
 
     private String contact;
 
-    private String phoneNum;
-
     private String companyAddress;
 
     private String companyIntroduction;
 
-    private String companyLogoPath;
+    private String companyLogoId;
 
     private String email;
+
+    private Integer billingCycle;
+
+    private Timestamp statementDate;
+
+    private Timestamp createTime;
+
+    private String telephone;
+
+    private String mobilePhone;
 
     public String getLspId() {
         return lspId;
@@ -41,14 +51,6 @@ public class UsrLsp {
         this.contact = contact == null ? null : contact.trim();
     }
 
-    public String getPhoneNum() {
-        return phoneNum;
-    }
-
-    public void setPhoneNum(String phoneNum) {
-        this.phoneNum = phoneNum == null ? null : phoneNum.trim();
-    }
-
     public String getCompanyAddress() {
         return companyAddress;
     }
@@ -65,12 +67,12 @@ public class UsrLsp {
         this.companyIntroduction = companyIntroduction == null ? null : companyIntroduction.trim();
     }
 
-    public String getCompanyLogoPath() {
-        return companyLogoPath;
+    public String getCompanyLogoId() {
+        return companyLogoId;
     }
 
-    public void setCompanyLogoPath(String companyLogoPath) {
-        this.companyLogoPath = companyLogoPath == null ? null : companyLogoPath.trim();
+    public void setCompanyLogoId(String companyLogoId) {
+        this.companyLogoId = companyLogoId == null ? null : companyLogoId.trim();
     }
 
     public String getEmail() {
@@ -79,5 +81,45 @@ public class UsrLsp {
 
     public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
+    }
+
+    public Integer getBillingCycle() {
+        return billingCycle;
+    }
+
+    public void setBillingCycle(Integer billingCycle) {
+        this.billingCycle = billingCycle;
+    }
+
+    public Timestamp getStatementDate() {
+        return statementDate;
+    }
+
+    public void setStatementDate(Timestamp statementDate) {
+        this.statementDate = statementDate;
+    }
+
+    public Timestamp getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Timestamp createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone == null ? null : telephone.trim();
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone == null ? null : mobilePhone.trim();
     }
 }

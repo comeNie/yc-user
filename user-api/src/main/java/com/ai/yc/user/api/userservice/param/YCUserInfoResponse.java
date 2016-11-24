@@ -65,7 +65,7 @@ public class YCUserInfoResponse extends BaseResponse {
     /**
      * 是否译员
      */
-    private Integer isRanslator;
+    private Integer isTranslator;
     
     private Integer isAdmin;
     /**
@@ -166,14 +166,6 @@ public class YCUserInfoResponse extends BaseResponse {
 		this.country = country;
 	}
 
-	public Integer getIsRanslator() {
-		return isRanslator;
-	}
-
-	public void setIsRanslator(Integer isRanslator) {
-		this.isRanslator = isRanslator;
-	}
-
 	public Integer getIsAdmin() {
 		return isAdmin;
 	}
@@ -224,6 +216,14 @@ public class YCUserInfoResponse extends BaseResponse {
 
 	public void setAccountId(Long accountId) {
 		this.accountId = accountId;
+	}
+
+	public Integer getIsTranslator() {
+		return isTranslator;
+	}
+
+	public void setIsTranslator(Integer isTranslator) {
+		this.isTranslator = isTranslator;
 	}
 	
 }

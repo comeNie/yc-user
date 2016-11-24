@@ -336,7 +336,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		YCTranslatorSkillListResponse translatorSkillList = new YCTranslatorSkillListResponse();
 		// UsrUser验证译员信息
 		UsrUser userinfo = ycUSAtomSV.getUserInfo(userId);
-		if (userinfo.getIsRanslator() != 1) {
+		if (userinfo.getIsTranslator() != 1) {
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户非译员身份");
 		}
 		// 获取译员信息
@@ -349,7 +349,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		// 获取技能列表
 		UsrLanguageCriteria example = new UsrLanguageCriteria();
 		UsrLanguageCriteria.Criteria criteria = example.createCriteria();
-		criteria.andTranslatorIdEqualTo(userId);
+		criteria.andTranslatorIdEqualTo(utr.getTranslatorId());
 		List<UsrLanguage> usrLanguageList = ycUSAtomSV.getUsrLanguageList(example);
 		translatorSkillList.setUsrLanguageList(changUsrLanguageToUsrLanguageMessage(usrLanguageList));
 		return translatorSkillList;

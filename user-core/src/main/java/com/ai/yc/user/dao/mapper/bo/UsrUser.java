@@ -7,8 +7,6 @@ public class UsrUser {
 
     private String nickname;
 
-    private Integer state;
-
     private String lastname;
 
     private String firstname;
@@ -21,11 +19,11 @@ public class UsrUser {
 
     private String mobilePhone;
 
+    private String fixPhone;
+
     private String qq;
 
     private String address;
-
-    private String safetyLevel;
 
     private String cnCity;
 
@@ -33,33 +31,37 @@ public class UsrUser {
 
     private String country;
 
-    private String timeZone;
-
-    private Integer isRanslator;
-
-    private Timestamp registTime;
-
-    private Timestamp lastModifyTime;
+    private String tZone;
 
     private Integer occupation;
 
     private Integer title;
 
+    private String safetyLevel;
+
+    private Timestamp registTime;
+
+    private Timestamp lastModifyTime;
+
     private String usersource;
 
-    private String thirduid;
+    private Integer state;
 
     private String personsign;
 
     private String zipCode;
 
-    private Integer isAdmin;
-
-    private String fullName;
-
     private String portraitId;
 
+    private String isChange;
+
+    private Integer isTranslator;
+
     private Long accountId;
+
+    private String griwthLevel;
+
+    private Integer griwthValue;
 
     public String getUserId() {
         return userId;
@@ -75,14 +77,6 @@ public class UsrUser {
 
     public void setNickname(String nickname) {
         this.nickname = nickname == null ? null : nickname.trim();
-    }
-
-    public Integer getState() {
-        return state;
-    }
-
-    public void setState(Integer state) {
-        this.state = state;
     }
 
     public String getLastname() {
@@ -133,6 +127,14 @@ public class UsrUser {
         this.mobilePhone = mobilePhone == null ? null : mobilePhone.trim();
     }
 
+    public String getFixPhone() {
+        return fixPhone;
+    }
+
+    public void setFixPhone(String fixPhone) {
+        this.fixPhone = fixPhone == null ? null : fixPhone.trim();
+    }
+
     public String getQq() {
         return qq;
     }
@@ -147,14 +149,6 @@ public class UsrUser {
 
     public void setAddress(String address) {
         this.address = address == null ? null : address.trim();
-    }
-
-    public String getSafetyLevel() {
-        return safetyLevel;
-    }
-
-    public void setSafetyLevel(String safetyLevel) {
-        this.safetyLevel = safetyLevel == null ? null : safetyLevel.trim();
     }
 
     public String getCnCity() {
@@ -181,36 +175,12 @@ public class UsrUser {
         this.country = country == null ? null : country.trim();
     }
 
-    public String getTimeZone() {
-        return timeZone;
+    public String gettZone() {
+        return tZone;
     }
 
-    public void setTimeZone(String timeZone) {
-        this.timeZone = timeZone == null ? null : timeZone.trim();
-    }
-
-    public Integer getIsRanslator() {
-        return isRanslator;
-    }
-
-    public void setIsRanslator(Integer isRanslator) {
-        this.isRanslator = isRanslator;
-    }
-
-    public Timestamp getRegistTime() {
-        return registTime;
-    }
-
-    public void setRegistTime(Timestamp registTime) {
-        this.registTime = registTime;
-    }
-
-    public Timestamp getLastModifyTime() {
-        return lastModifyTime;
-    }
-
-    public void setLastModifyTime(Timestamp lastModifyTime) {
-        this.lastModifyTime = lastModifyTime;
+    public void settZone(String tZone) {
+        this.tZone = tZone == null ? null : tZone.trim();
     }
 
     public Integer getOccupation() {
@@ -229,6 +199,30 @@ public class UsrUser {
         this.title = title;
     }
 
+    public String getSafetyLevel() {
+        return safetyLevel;
+    }
+
+    public void setSafetyLevel(String safetyLevel) {
+        this.safetyLevel = safetyLevel == null ? null : safetyLevel.trim();
+    }
+
+    public Timestamp getRegistTime() {
+        return registTime;
+    }
+
+    public void setRegistTime(Timestamp registTime) {
+        this.registTime = registTime;
+    }
+
+    public Timestamp getLastModifyTime() {
+        return lastModifyTime;
+    }
+
+    public void setLastModifyTime(Timestamp lastModifyTime) {
+        this.lastModifyTime = lastModifyTime;
+    }
+
     public String getUsersource() {
         return usersource;
     }
@@ -237,12 +231,12 @@ public class UsrUser {
         this.usersource = usersource == null ? null : usersource.trim();
     }
 
-    public String getThirduid() {
-        return thirduid;
+    public Integer getState() {
+        return state;
     }
 
-    public void setThirduid(String thirduid) {
-        this.thirduid = thirduid == null ? null : thirduid.trim();
+    public void setState(Integer state) {
+        this.state = state;
     }
 
     public String getPersonsign() {
@@ -261,22 +255,6 @@ public class UsrUser {
         this.zipCode = zipCode == null ? null : zipCode.trim();
     }
 
-    public Integer getIsAdmin() {
-        return isAdmin;
-    }
-
-    public void setIsAdmin(Integer isAdmin) {
-        this.isAdmin = isAdmin;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName == null ? null : fullName.trim();
-    }
-
     public String getPortraitId() {
         return portraitId;
     }
@@ -285,11 +263,43 @@ public class UsrUser {
         this.portraitId = portraitId == null ? null : portraitId.trim();
     }
 
+    public String getIsChange() {
+        return isChange;
+    }
+
+    public void setIsChange(String isChange) {
+        this.isChange = isChange == null ? null : isChange.trim();
+    }
+
+    public Integer getIsTranslator() {
+        return isTranslator;
+    }
+
+    public void setIsTranslator(Integer isTranslator) {
+        this.isTranslator = isTranslator;
+    }
+
     public Long getAccountId() {
         return accountId;
     }
 
     public void setAccountId(Long accountId) {
         this.accountId = accountId;
+    }
+
+    public String getGriwthLevel() {
+        return griwthLevel;
+    }
+
+    public void setGriwthLevel(String griwthLevel) {
+        this.griwthLevel = griwthLevel == null ? null : griwthLevel.trim();
+    }
+
+    public Integer getGriwthValue() {
+        return griwthValue;
+    }
+
+    public void setGriwthValue(Integer griwthValue) {
+        this.griwthValue = griwthValue;
     }
 }

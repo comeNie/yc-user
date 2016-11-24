@@ -5,13 +5,13 @@ public class UsrCustFileExt {
 
     private String userId;
 
-    private String infoType;
-
-    private String infoItem;
+    private String userType;
 
     private String infoName;
 
-    private String state;
+    private String infoType;
+
+    private String infoItem;
 
     private String attrId;
 
@@ -19,7 +19,7 @@ public class UsrCustFileExt {
 
     private String editState;
 
-    private String userType;
+    private String state;
 
     public String getInfoExtId() {
         return infoExtId;
@@ -37,6 +37,22 @@ public class UsrCustFileExt {
         this.userId = userId == null ? null : userId.trim();
     }
 
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType == null ? null : userType.trim();
+    }
+
+    public String getInfoName() {
+        return infoName;
+    }
+
+    public void setInfoName(String infoName) {
+        this.infoName = infoName == null ? null : infoName.trim();
+    }
+
     public String getInfoType() {
         return infoType;
     }
@@ -51,22 +67,6 @@ public class UsrCustFileExt {
 
     public void setInfoItem(String infoItem) {
         this.infoItem = infoItem == null ? null : infoItem.trim();
-    }
-
-    public String getInfoName() {
-        return infoName;
-    }
-
-    public void setInfoName(String infoName) {
-        this.infoName = infoName == null ? null : infoName.trim();
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state == null ? null : state.trim();
     }
 
     public String getAttrId() {
@@ -93,11 +93,11 @@ public class UsrCustFileExt {
         this.editState = editState == null ? null : editState.trim();
     }
 
-    public String getUserType() {
-        return userType;
+    public String getState() {
+        return state;
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType == null ? null : userType.trim();
+    public void setState(String state) {
+        this.state = state == null ? null : state.trim();
     }
 }

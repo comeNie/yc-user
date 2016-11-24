@@ -2,14 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ai.yc.user.dao.mapper.interfaces.UsrLspMapper" >
   <resultMap id="BaseResultMap" type="com.ai.yc.user.dao.mapper.bo.UsrLsp" >
-    <id column="LSP_ID" property="lspId" jdbcType="VARCHAR" />
-    <result column="LSP_NAME" property="lspName" jdbcType="VARCHAR" />
-    <result column="CONTACT" property="contact" jdbcType="VARCHAR" />
-    <result column="PHONE_NUM" property="phoneNum" jdbcType="VARCHAR" />
-    <result column="COMPANY_ADDRESS" property="companyAddress" jdbcType="VARCHAR" />
-    <result column="COMPANY_INTRODUCTION" property="companyIntroduction" jdbcType="VARCHAR" />
-    <result column="COMPANY_LOGO_PATH" property="companyLogoPath" jdbcType="VARCHAR" />
-    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <id column="lsp_id" property="lspId" jdbcType="VARCHAR" />
+    <result column="lsp_name" property="lspName" jdbcType="VARCHAR" />
+    <result column="contact" property="contact" jdbcType="VARCHAR" />
+    <result column="company_address" property="companyAddress" jdbcType="VARCHAR" />
+    <result column="company_introduction" property="companyIntroduction" jdbcType="VARCHAR" />
+    <result column="company_logo_id" property="companyLogoId" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="billing_cycle" property="billingCycle" jdbcType="INTEGER" />
+    <result column="statement_date" property="statementDate" jdbcType="DATE" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="mobile_phone" property="mobilePhone" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    LSP_ID, LSP_NAME, CONTACT, PHONE_NUM, COMPANY_ADDRESS, COMPANY_INTRODUCTION, COMPANY_LOGO_PATH, 
-    EMAIL
+    lsp_id, lsp_name, contact, company_address, company_introduction, company_logo_id, 
+    email, billing_cycle, statement_date, create_time, telephone, mobile_phone
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.yc.user.dao.mapper.bo.UsrLspCriteria" >
     select
@@ -95,11 +99,11 @@
     select 
     <include refid="Base_Column_List" />
     from usr_lsp
-    where LSP_ID = #{lspId,jdbcType=VARCHAR}
+    where lsp_id = #{lspId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from usr_lsp
-    where LSP_ID = #{lspId,jdbcType=VARCHAR}
+    where lsp_id = #{lspId,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.ai.yc.user.dao.mapper.bo.UsrLspCriteria" >
     delete from usr_lsp
@@ -108,39 +112,55 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.ai.yc.user.dao.mapper.bo.UsrLsp" >
-    insert into usr_lsp (LSP_ID, LSP_NAME, CONTACT, 
-      PHONE_NUM, COMPANY_ADDRESS, COMPANY_INTRODUCTION, 
-      COMPANY_LOGO_PATH, EMAIL)
+    insert into usr_lsp (lsp_id, lsp_name, contact, 
+      company_address, company_introduction, company_logo_id, 
+      email, billing_cycle, statement_date, 
+      create_time, telephone, mobile_phone
+      )
     values (#{lspId,jdbcType=VARCHAR}, #{lspName,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR}, 
-      #{phoneNum,jdbcType=VARCHAR}, #{companyAddress,jdbcType=VARCHAR}, #{companyIntroduction,jdbcType=VARCHAR}, 
-      #{companyLogoPath,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR})
+      #{companyAddress,jdbcType=VARCHAR}, #{companyIntroduction,jdbcType=VARCHAR}, #{companyLogoId,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{billingCycle,jdbcType=INTEGER}, #{statementDate,jdbcType=DATE}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{telephone,jdbcType=VARCHAR}, #{mobilePhone,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ai.yc.user.dao.mapper.bo.UsrLsp" >
     insert into usr_lsp
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="lspId != null" >
-        LSP_ID,
+        lsp_id,
       </if>
       <if test="lspName != null" >
-        LSP_NAME,
+        lsp_name,
       </if>
       <if test="contact != null" >
-        CONTACT,
-      </if>
-      <if test="phoneNum != null" >
-        PHONE_NUM,
+        contact,
       </if>
       <if test="companyAddress != null" >
-        COMPANY_ADDRESS,
+        company_address,
       </if>
       <if test="companyIntroduction != null" >
-        COMPANY_INTRODUCTION,
+        company_introduction,
       </if>
-      <if test="companyLogoPath != null" >
-        COMPANY_LOGO_PATH,
+      <if test="companyLogoId != null" >
+        company_logo_id,
       </if>
       <if test="email != null" >
-        EMAIL,
+        email,
+      </if>
+      <if test="billingCycle != null" >
+        billing_cycle,
+      </if>
+      <if test="statementDate != null" >
+        statement_date,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="mobilePhone != null" >
+        mobile_phone,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -153,20 +173,32 @@
       <if test="contact != null" >
         #{contact,jdbcType=VARCHAR},
       </if>
-      <if test="phoneNum != null" >
-        #{phoneNum,jdbcType=VARCHAR},
-      </if>
       <if test="companyAddress != null" >
         #{companyAddress,jdbcType=VARCHAR},
       </if>
       <if test="companyIntroduction != null" >
         #{companyIntroduction,jdbcType=VARCHAR},
       </if>
-      <if test="companyLogoPath != null" >
-        #{companyLogoPath,jdbcType=VARCHAR},
+      <if test="companyLogoId != null" >
+        #{companyLogoId,jdbcType=VARCHAR},
       </if>
       <if test="email != null" >
         #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="billingCycle != null" >
+        #{billingCycle,jdbcType=INTEGER},
+      </if>
+      <if test="statementDate != null" >
+        #{statementDate,jdbcType=DATE},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        #{mobilePhone,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -180,28 +212,40 @@
     update usr_lsp
     <set >
       <if test="record.lspId != null" >
-        LSP_ID = #{record.lspId,jdbcType=VARCHAR},
+        lsp_id = #{record.lspId,jdbcType=VARCHAR},
       </if>
       <if test="record.lspName != null" >
-        LSP_NAME = #{record.lspName,jdbcType=VARCHAR},
+        lsp_name = #{record.lspName,jdbcType=VARCHAR},
       </if>
       <if test="record.contact != null" >
-        CONTACT = #{record.contact,jdbcType=VARCHAR},
-      </if>
-      <if test="record.phoneNum != null" >
-        PHONE_NUM = #{record.phoneNum,jdbcType=VARCHAR},
+        contact = #{record.contact,jdbcType=VARCHAR},
       </if>
       <if test="record.companyAddress != null" >
-        COMPANY_ADDRESS = #{record.companyAddress,jdbcType=VARCHAR},
+        company_address = #{record.companyAddress,jdbcType=VARCHAR},
       </if>
       <if test="record.companyIntroduction != null" >
-        COMPANY_INTRODUCTION = #{record.companyIntroduction,jdbcType=VARCHAR},
+        company_introduction = #{record.companyIntroduction,jdbcType=VARCHAR},
       </if>
-      <if test="record.companyLogoPath != null" >
-        COMPANY_LOGO_PATH = #{record.companyLogoPath,jdbcType=VARCHAR},
+      <if test="record.companyLogoId != null" >
+        company_logo_id = #{record.companyLogoId,jdbcType=VARCHAR},
       </if>
       <if test="record.email != null" >
-        EMAIL = #{record.email,jdbcType=VARCHAR},
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.billingCycle != null" >
+        billing_cycle = #{record.billingCycle,jdbcType=INTEGER},
+      </if>
+      <if test="record.statementDate != null" >
+        statement_date = #{record.statementDate,jdbcType=DATE},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.telephone != null" >
+        telephone = #{record.telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobilePhone != null" >
+        mobile_phone = #{record.mobilePhone,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -210,14 +254,18 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update usr_lsp
-    set LSP_ID = #{record.lspId,jdbcType=VARCHAR},
-      LSP_NAME = #{record.lspName,jdbcType=VARCHAR},
-      CONTACT = #{record.contact,jdbcType=VARCHAR},
-      PHONE_NUM = #{record.phoneNum,jdbcType=VARCHAR},
-      COMPANY_ADDRESS = #{record.companyAddress,jdbcType=VARCHAR},
-      COMPANY_INTRODUCTION = #{record.companyIntroduction,jdbcType=VARCHAR},
-      COMPANY_LOGO_PATH = #{record.companyLogoPath,jdbcType=VARCHAR},
-      EMAIL = #{record.email,jdbcType=VARCHAR}
+    set lsp_id = #{record.lspId,jdbcType=VARCHAR},
+      lsp_name = #{record.lspName,jdbcType=VARCHAR},
+      contact = #{record.contact,jdbcType=VARCHAR},
+      company_address = #{record.companyAddress,jdbcType=VARCHAR},
+      company_introduction = #{record.companyIntroduction,jdbcType=VARCHAR},
+      company_logo_id = #{record.companyLogoId,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      billing_cycle = #{record.billingCycle,jdbcType=INTEGER},
+      statement_date = #{record.statementDate,jdbcType=DATE},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      telephone = #{record.telephone,jdbcType=VARCHAR},
+      mobile_phone = #{record.mobilePhone,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -226,38 +274,54 @@
     update usr_lsp
     <set >
       <if test="lspName != null" >
-        LSP_NAME = #{lspName,jdbcType=VARCHAR},
+        lsp_name = #{lspName,jdbcType=VARCHAR},
       </if>
       <if test="contact != null" >
-        CONTACT = #{contact,jdbcType=VARCHAR},
-      </if>
-      <if test="phoneNum != null" >
-        PHONE_NUM = #{phoneNum,jdbcType=VARCHAR},
+        contact = #{contact,jdbcType=VARCHAR},
       </if>
       <if test="companyAddress != null" >
-        COMPANY_ADDRESS = #{companyAddress,jdbcType=VARCHAR},
+        company_address = #{companyAddress,jdbcType=VARCHAR},
       </if>
       <if test="companyIntroduction != null" >
-        COMPANY_INTRODUCTION = #{companyIntroduction,jdbcType=VARCHAR},
+        company_introduction = #{companyIntroduction,jdbcType=VARCHAR},
       </if>
-      <if test="companyLogoPath != null" >
-        COMPANY_LOGO_PATH = #{companyLogoPath,jdbcType=VARCHAR},
+      <if test="companyLogoId != null" >
+        company_logo_id = #{companyLogoId,jdbcType=VARCHAR},
       </if>
       <if test="email != null" >
-        EMAIL = #{email,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="billingCycle != null" >
+        billing_cycle = #{billingCycle,jdbcType=INTEGER},
+      </if>
+      <if test="statementDate != null" >
+        statement_date = #{statementDate,jdbcType=DATE},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        mobile_phone = #{mobilePhone,jdbcType=VARCHAR},
       </if>
     </set>
-    where LSP_ID = #{lspId,jdbcType=VARCHAR}
+    where lsp_id = #{lspId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ai.yc.user.dao.mapper.bo.UsrLsp" >
     update usr_lsp
-    set LSP_NAME = #{lspName,jdbcType=VARCHAR},
-      CONTACT = #{contact,jdbcType=VARCHAR},
-      PHONE_NUM = #{phoneNum,jdbcType=VARCHAR},
-      COMPANY_ADDRESS = #{companyAddress,jdbcType=VARCHAR},
-      COMPANY_INTRODUCTION = #{companyIntroduction,jdbcType=VARCHAR},
-      COMPANY_LOGO_PATH = #{companyLogoPath,jdbcType=VARCHAR},
-      EMAIL = #{email,jdbcType=VARCHAR}
-    where LSP_ID = #{lspId,jdbcType=VARCHAR}
+    set lsp_name = #{lspName,jdbcType=VARCHAR},
+      contact = #{contact,jdbcType=VARCHAR},
+      company_address = #{companyAddress,jdbcType=VARCHAR},
+      company_introduction = #{companyIntroduction,jdbcType=VARCHAR},
+      company_logo_id = #{companyLogoId,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      billing_cycle = #{billingCycle,jdbcType=INTEGER},
+      statement_date = #{statementDate,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      mobile_phone = #{mobilePhone,jdbcType=VARCHAR}
+    where lsp_id = #{lspId,jdbcType=VARCHAR}
   </update>
 </mapper>

@@ -11,7 +11,7 @@ public class UsrContact {
 
     private String phone;
 
-    private String mobile;
+    private String mobilePhone;
 
     private String email;
 
@@ -57,12 +57,12 @@ public class UsrContact {
         this.phone = phone == null ? null : phone.trim();
     }
 
-    public String getMobile() {
-        return mobile;
+    public String getMobilePhone() {
+        return mobilePhone;
     }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile == null ? null : mobile.trim();
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone == null ? null : mobilePhone.trim();
     }
 
     public String getEmail() {

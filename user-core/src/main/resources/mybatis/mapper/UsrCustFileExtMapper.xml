@@ -2,16 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.ai.yc.user.dao.mapper.interfaces.UsrCustFileExtMapper" >
   <resultMap id="BaseResultMap" type="com.ai.yc.user.dao.mapper.bo.UsrCustFileExt" >
-    <id column="INFO_EXT_ID" property="infoExtId" jdbcType="VARCHAR" />
-    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
-    <result column="INFO_TYPE" property="infoType" jdbcType="VARCHAR" />
-    <result column="INFO_ITEM" property="infoItem" jdbcType="VARCHAR" />
-    <result column="INFO_NAME" property="infoName" jdbcType="VARCHAR" />
-    <result column="STATE" property="state" jdbcType="VARCHAR" />
-    <result column="ATTR_ID" property="attrId" jdbcType="VARCHAR" />
-    <result column="ATTR_VALUE" property="attrValue" jdbcType="VARCHAR" />
-    <result column="EDIT_STATE" property="editState" jdbcType="VARCHAR" />
-    <result column="USER_TYPE" property="userType" jdbcType="VARCHAR" />
+    <id column="info_ext_id" property="infoExtId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="user_type" property="userType" jdbcType="VARCHAR" />
+    <result column="info_name" property="infoName" jdbcType="VARCHAR" />
+    <result column="info_type" property="infoType" jdbcType="VARCHAR" />
+    <result column="info_item" property="infoItem" jdbcType="VARCHAR" />
+    <result column="attr_id" property="attrId" jdbcType="VARCHAR" />
+    <result column="attr_value" property="attrValue" jdbcType="VARCHAR" />
+    <result column="edit_state" property="editState" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -72,8 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    INFO_EXT_ID, USER_ID, INFO_TYPE, INFO_ITEM, INFO_NAME, STATE, ATTR_ID, ATTR_VALUE, 
-    EDIT_STATE, USER_TYPE
+    info_ext_id, user_id, user_type, info_name, info_type, info_item, attr_id, attr_value, 
+    edit_state, state
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.yc.user.dao.mapper.bo.UsrCustFileExtCriteria" >
     select
@@ -97,11 +97,11 @@
     select 
     <include refid="Base_Column_List" />
     from usr_cust_file_ext
-    where INFO_EXT_ID = #{infoExtId,jdbcType=VARCHAR}
+    where info_ext_id = #{infoExtId,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from usr_cust_file_ext
-    where INFO_EXT_ID = #{infoExtId,jdbcType=VARCHAR}
+    where info_ext_id = #{infoExtId,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="com.ai.yc.user.dao.mapper.bo.UsrCustFileExtCriteria" >
     delete from usr_cust_file_ext
@@ -110,47 +110,47 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.ai.yc.user.dao.mapper.bo.UsrCustFileExt" >
-    insert into usr_cust_file_ext (INFO_EXT_ID, USER_ID, INFO_TYPE, 
-      INFO_ITEM, INFO_NAME, STATE, 
-      ATTR_ID, ATTR_VALUE, EDIT_STATE, 
-      USER_TYPE)
-    values (#{infoExtId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{infoType,jdbcType=VARCHAR}, 
-      #{infoItem,jdbcType=VARCHAR}, #{infoName,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+    insert into usr_cust_file_ext (info_ext_id, user_id, user_type, 
+      info_name, info_type, info_item, 
+      attr_id, attr_value, edit_state, 
+      state)
+    values (#{infoExtId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR}, 
+      #{infoName,jdbcType=VARCHAR}, #{infoType,jdbcType=VARCHAR}, #{infoItem,jdbcType=VARCHAR}, 
       #{attrId,jdbcType=VARCHAR}, #{attrValue,jdbcType=VARCHAR}, #{editState,jdbcType=VARCHAR}, 
-      #{userType,jdbcType=VARCHAR})
+      #{state,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.ai.yc.user.dao.mapper.bo.UsrCustFileExt" >
     insert into usr_cust_file_ext
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="infoExtId != null" >
-        INFO_EXT_ID,
+        info_ext_id,
       </if>
       <if test="userId != null" >
-        USER_ID,
-      </if>
-      <if test="infoType != null" >
-        INFO_TYPE,
-      </if>
-      <if test="infoItem != null" >
-        INFO_ITEM,
-      </if>
-      <if test="infoName != null" >
-        INFO_NAME,
-      </if>
-      <if test="state != null" >
-        STATE,
-      </if>
-      <if test="attrId != null" >
-        ATTR_ID,
-      </if>
-      <if test="attrValue != null" >
-        ATTR_VALUE,
-      </if>
-      <if test="editState != null" >
-        EDIT_STATE,
+        user_id,
       </if>
       <if test="userType != null" >
-        USER_TYPE,
+        user_type,
+      </if>
+      <if test="infoName != null" >
+        info_name,
+      </if>
+      <if test="infoType != null" >
+        info_type,
+      </if>
+      <if test="infoItem != null" >
+        info_item,
+      </if>
+      <if test="attrId != null" >
+        attr_id,
+      </if>
+      <if test="attrValue != null" >
+        attr_value,
+      </if>
+      <if test="editState != null" >
+        edit_state,
+      </if>
+      <if test="state != null" >
+        state,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -160,17 +160,17 @@
       <if test="userId != null" >
         #{userId,jdbcType=VARCHAR},
       </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="infoName != null" >
+        #{infoName,jdbcType=VARCHAR},
+      </if>
       <if test="infoType != null" >
         #{infoType,jdbcType=VARCHAR},
       </if>
       <if test="infoItem != null" >
         #{infoItem,jdbcType=VARCHAR},
-      </if>
-      <if test="infoName != null" >
-        #{infoName,jdbcType=VARCHAR},
-      </if>
-      <if test="state != null" >
-        #{state,jdbcType=VARCHAR},
       </if>
       <if test="attrId != null" >
         #{attrId,jdbcType=VARCHAR},
@@ -181,8 +181,8 @@
       <if test="editState != null" >
         #{editState,jdbcType=VARCHAR},
       </if>
-      <if test="userType != null" >
-        #{userType,jdbcType=VARCHAR},
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -196,34 +196,34 @@
     update usr_cust_file_ext
     <set >
       <if test="record.infoExtId != null" >
-        INFO_EXT_ID = #{record.infoExtId,jdbcType=VARCHAR},
+        info_ext_id = #{record.infoExtId,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null" >
-        USER_ID = #{record.userId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.infoType != null" >
-        INFO_TYPE = #{record.infoType,jdbcType=VARCHAR},
-      </if>
-      <if test="record.infoItem != null" >
-        INFO_ITEM = #{record.infoItem,jdbcType=VARCHAR},
-      </if>
-      <if test="record.infoName != null" >
-        INFO_NAME = #{record.infoName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.state != null" >
-        STATE = #{record.state,jdbcType=VARCHAR},
-      </if>
-      <if test="record.attrId != null" >
-        ATTR_ID = #{record.attrId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.attrValue != null" >
-        ATTR_VALUE = #{record.attrValue,jdbcType=VARCHAR},
-      </if>
-      <if test="record.editState != null" >
-        EDIT_STATE = #{record.editState,jdbcType=VARCHAR},
+        user_id = #{record.userId,jdbcType=VARCHAR},
       </if>
       <if test="record.userType != null" >
-        USER_TYPE = #{record.userType,jdbcType=VARCHAR},
+        user_type = #{record.userType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.infoName != null" >
+        info_name = #{record.infoName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.infoType != null" >
+        info_type = #{record.infoType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.infoItem != null" >
+        info_item = #{record.infoItem,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attrId != null" >
+        attr_id = #{record.attrId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attrValue != null" >
+        attr_value = #{record.attrValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.editState != null" >
+        edit_state = #{record.editState,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -232,16 +232,16 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update usr_cust_file_ext
-    set INFO_EXT_ID = #{record.infoExtId,jdbcType=VARCHAR},
-      USER_ID = #{record.userId,jdbcType=VARCHAR},
-      INFO_TYPE = #{record.infoType,jdbcType=VARCHAR},
-      INFO_ITEM = #{record.infoItem,jdbcType=VARCHAR},
-      INFO_NAME = #{record.infoName,jdbcType=VARCHAR},
-      STATE = #{record.state,jdbcType=VARCHAR},
-      ATTR_ID = #{record.attrId,jdbcType=VARCHAR},
-      ATTR_VALUE = #{record.attrValue,jdbcType=VARCHAR},
-      EDIT_STATE = #{record.editState,jdbcType=VARCHAR},
-      USER_TYPE = #{record.userType,jdbcType=VARCHAR}
+    set info_ext_id = #{record.infoExtId,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      user_type = #{record.userType,jdbcType=VARCHAR},
+      info_name = #{record.infoName,jdbcType=VARCHAR},
+      info_type = #{record.infoType,jdbcType=VARCHAR},
+      info_item = #{record.infoItem,jdbcType=VARCHAR},
+      attr_id = #{record.attrId,jdbcType=VARCHAR},
+      attr_value = #{record.attrValue,jdbcType=VARCHAR},
+      edit_state = #{record.editState,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -250,46 +250,46 @@
     update usr_cust_file_ext
     <set >
       <if test="userId != null" >
-        USER_ID = #{userId,jdbcType=VARCHAR},
-      </if>
-      <if test="infoType != null" >
-        INFO_TYPE = #{infoType,jdbcType=VARCHAR},
-      </if>
-      <if test="infoItem != null" >
-        INFO_ITEM = #{infoItem,jdbcType=VARCHAR},
-      </if>
-      <if test="infoName != null" >
-        INFO_NAME = #{infoName,jdbcType=VARCHAR},
-      </if>
-      <if test="state != null" >
-        STATE = #{state,jdbcType=VARCHAR},
-      </if>
-      <if test="attrId != null" >
-        ATTR_ID = #{attrId,jdbcType=VARCHAR},
-      </if>
-      <if test="attrValue != null" >
-        ATTR_VALUE = #{attrValue,jdbcType=VARCHAR},
-      </if>
-      <if test="editState != null" >
-        EDIT_STATE = #{editState,jdbcType=VARCHAR},
+        user_id = #{userId,jdbcType=VARCHAR},
       </if>
       <if test="userType != null" >
-        USER_TYPE = #{userType,jdbcType=VARCHAR},
+        user_type = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="infoName != null" >
+        info_name = #{infoName,jdbcType=VARCHAR},
+      </if>
+      <if test="infoType != null" >
+        info_type = #{infoType,jdbcType=VARCHAR},
+      </if>
+      <if test="infoItem != null" >
+        info_item = #{infoItem,jdbcType=VARCHAR},
+      </if>
+      <if test="attrId != null" >
+        attr_id = #{attrId,jdbcType=VARCHAR},
+      </if>
+      <if test="attrValue != null" >
+        attr_value = #{attrValue,jdbcType=VARCHAR},
+      </if>
+      <if test="editState != null" >
+        edit_state = #{editState,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
       </if>
     </set>
-    where INFO_EXT_ID = #{infoExtId,jdbcType=VARCHAR}
+    where info_ext_id = #{infoExtId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ai.yc.user.dao.mapper.bo.UsrCustFileExt" >
     update usr_cust_file_ext
-    set USER_ID = #{userId,jdbcType=VARCHAR},
-      INFO_TYPE = #{infoType,jdbcType=VARCHAR},
-      INFO_ITEM = #{infoItem,jdbcType=VARCHAR},
-      INFO_NAME = #{infoName,jdbcType=VARCHAR},
-      STATE = #{state,jdbcType=VARCHAR},
-      ATTR_ID = #{attrId,jdbcType=VARCHAR},
-      ATTR_VALUE = #{attrValue,jdbcType=VARCHAR},
-      EDIT_STATE = #{editState,jdbcType=VARCHAR},
-      USER_TYPE = #{userType,jdbcType=VARCHAR}
-    where INFO_EXT_ID = #{infoExtId,jdbcType=VARCHAR}
+    set user_id = #{userId,jdbcType=VARCHAR},
+      user_type = #{userType,jdbcType=VARCHAR},
+      info_name = #{infoName,jdbcType=VARCHAR},
+      info_type = #{infoType,jdbcType=VARCHAR},
+      info_item = #{infoItem,jdbcType=VARCHAR},
+      attr_id = #{attrId,jdbcType=VARCHAR},
+      attr_value = #{attrValue,jdbcType=VARCHAR},
+      edit_state = #{editState,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR}
+    where info_ext_id = #{infoExtId,jdbcType=VARCHAR}
   </update>
 </mapper>
