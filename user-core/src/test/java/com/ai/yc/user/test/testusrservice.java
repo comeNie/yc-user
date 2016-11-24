@@ -38,7 +38,7 @@ public class testusrservice {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis()); 
 //		String UserID = "000000000000003121";
 //		
-		InsertYCUserRequest insertu = new InsertYCUserRequest(null, "2", "172.245.12.168", "e244g34544", null, "gg31235@qq.com", "h34htff23", "sh33", "b", "h", 0, "13800528791", "21033333344", "BJ", "CN", "BJ", "BJ", "FULLNAME");
+		InsertYCUserRequest insertu = new InsertYCUserRequest();
 		insertu.setUserId("000000000000003121");
 		
 		YCInsertUserResponse User =  usSV.insertYCUser(insertu);
