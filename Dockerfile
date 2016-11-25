@@ -1,5 +1,5 @@
 FROM 10.19.13.18:5000/jdk:7 
-MAINTAINER gucl<gucl@asiainfo.com>
+MAINTAINER gucl<gucl@asiainfo.com> 
 
 # deploy user dubbo service
 COPY ./build/libs /dubbo-service/libs/
