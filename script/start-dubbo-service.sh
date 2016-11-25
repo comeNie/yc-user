@@ -2,7 +2,7 @@
 
 #env
 APP_HOME=/dubbo-service
-APP_NAME="yc.common"
+APP_NAME="yc.user"
 APP_PARM="aiopt.product.name=${APP_NAME}"
 
 for file in ${APP_HOME}/libs/**/*.jar;
