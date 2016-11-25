@@ -35,9 +35,6 @@ sed -i "s%paas.sdk.mode=.*%paas.sdk.mode=${SDK_MODE}%g" ${APP_HOME}/config/paas/
 sed -i "s%ccs.appname=.*%ccs.appname=${CCS_NAME}%g" ${APP_HOME}/config/paas/paas-conf.properties
 sed -i "s%ccs.zk_address=.*%ccs.zk_address=${ZK_ADDR}%g" ${APP_HOME}/config/paas/paas-conf.properties
 
-sed -i "s%srvarea.all=.*%srvarea.all=${SRVAREA_ALL}%g" ${APP_HOME}/config/paas/paas-conf.properties
-sed -i "s%srvarea.curr=.*%srvarea.curr=${SRVAREA_CURR}%g" ${APP_HOME}/config/paas/paas-conf.properties
-
 sed -i "s%dubbo.registry.address=.*%dubbo.registry.address=${REST_REGISTRY_ADDR}%g" ${APP_HOME}/config/dubbo/dubbo.properties
 #general.common.dubbo.port 要与dubbo.properties中的对应
 sed -i "s%yc.user.dubbo.port=.*%yc.user.dubbo.port=${REST_PORT}%g" ${APP_HOME}/config/dubbo/dubbo.properties
