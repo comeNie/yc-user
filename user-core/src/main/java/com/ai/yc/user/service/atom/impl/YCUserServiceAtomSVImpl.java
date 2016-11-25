@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.yc.user.dao.mapper.bo.UsrContact;
+import com.ai.yc.user.dao.mapper.bo.UsrContactCriteria;
 import com.ai.yc.user.dao.mapper.bo.UsrLanguage;
 import com.ai.yc.user.dao.mapper.bo.UsrLanguageCriteria;
 import com.ai.yc.user.dao.mapper.bo.UsrLsp;
@@ -72,8 +73,12 @@ public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 	}
 
 	@Override
-	public UsrContact getUsrContactInfo(String userId) {
-		return uContactMapper.selectByPrimaryKey(userId);
+	public List<UsrContact> getUsrContactInfo(String userId) {
+		UsrContactCriteria example = new UsrContactCriteria();
+		UsrContactCriteria.Criteria criteria = example.createCriteria();
+		criteria.andUserIdEqualTo(userId);
+		return uContactMapper.selectByExample(example);
+//		return uContactMapper.selectByPrimaryKey(userId);
 	}
 
 	@Override

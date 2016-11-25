@@ -10,10 +10,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
+import com.ai.yc.user.api.userservice.param.SearchYCContactRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCTranslatorRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCTranslatorSkillListRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
+import com.ai.yc.user.api.userservice.param.YCContactInfoResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 import com.ai.yc.user.api.userservice.param.YCLSPInfoReponse;
 import com.ai.yc.user.api.userservice.param.YCTranslatorInfoResponse;
@@ -39,7 +41,7 @@ public class testusrservice {
 	public void test() {
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis()); 
 //		String UserID = "000000000000003121";
-		InsertYCUserRequest insertu = new InsertYCUserRequest(null,"operationcode", "1", "172.245.32.172", "azcxvv4gh", null, "qwerdfaga@qq.com", "ftvaads4h", "s2svd3", "b", "h", 0, "13512923652", "2108654", "BJ", "CN", "BJ", "BJ", "FULLNAME","/asdf");
+		InsertYCUserRequest insertu = new InsertYCUserRequest(null,"operationcode", "1", "172.245.32.172", "a3432gh", null, "qwgr4aga@qq.com", "ftvaads4h", "s2svd3", "b", "h", 0, "13512928888", "2108654", "BJ", "CN", "BJ", "BJ", "FULLNAME","/asdf");
 
 		
 		YCInsertUserResponse User =  usSV.insertYCUser(insertu);
@@ -49,22 +51,22 @@ public class testusrservice {
 		SearchYCUserRequest sr1 = new SearchYCUserRequest();
 		sr1.setUserId(UserID);
 		YCUserInfoResponse uir1 = usSV.searchYCUserInfo(sr1);
-		System.out.println(uir1);
+		System.out.println(JSON.toJSONString(uir1));
 		UpdateYCUserRequest updateu = new UpdateYCUserRequest(UserID, "hb", "hhhhhh", "bbbbbb", 0, timestamp, "1031248990", "BJ", "BJ", "BJ", "CN","houbin","fff");
 		usSV.updateYCUserInfo(updateu);
 		SearchYCUserRequest sr2 = new SearchYCUserRequest();
 		sr2.setUserId(UserID);
 		YCUserInfoResponse uir2 = usSV.searchYCUserInfo(sr2);
-		System.out.println(uir2);
+		System.out.println(JSON.toJSONString(uir2));
 	}
 	
 	@Test
 	public void testsearchuser(){
 		
 		SearchYCUserRequest sr1 = new SearchYCUserRequest();
-		sr1.setUserId("4444306");
+		sr1.setUserId("4444314");
 		YCUserInfoResponse uir1 = usSV.searchYCUserInfo(sr1);
-		System.out.println(uir1);
+		System.out.println(JSON.toJSONString(uir1));
 	}
 
 	@Test
@@ -93,6 +95,14 @@ public class testusrservice {
 		searchYCLSPInfoRequest a = new searchYCLSPInfoRequest();
 		a.setLspId("1");
 		YCLSPInfoReponse response = usSV.searchLSPInfo(a);
+		System.out.println(JSON.toJSONString(response));
+	}
+	
+	@Test
+	public void testSearchContact() {
+		SearchYCContactRequest a = new SearchYCContactRequest();
+		a.setUserId("4444314");
+		YCContactInfoResponse response = usSV.searchYCContactInfo(a);
 		System.out.println(JSON.toJSONString(response));
 	}
 }

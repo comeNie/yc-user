@@ -313,13 +313,13 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	}
 
 	@Override
-	public UsrContact searchUsrContactInfo(String userId) throws BusinessException {
+	public List<UsrContact> searchUsrContactInfo(String userId) throws BusinessException {
 
 		if (StringUtil.isBlank(userId)) {
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户Id不能为空");
 		}
 
-		UsrContact usrC = ycUSAtomSV.getUsrContactInfo(userId);
+		List<UsrContact> usrC = ycUSAtomSV.getUsrContactInfo(userId);
 		if (null == usrC) {
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户不存在！");
 		}

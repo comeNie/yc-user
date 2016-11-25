@@ -1,6 +1,8 @@
 package com.ai.yc.user.service.business.interfaces;
 
 
+import java.util.List;
+
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCTranslatorRequest;
@@ -24,7 +26,7 @@ public interface IYCUserServiceBusiSV {
 
 	public UsrTranslator searchYCUsrTranslatorInfo(SearchYCTranslatorRequest searchReq) throws BusinessException;
 
-	public UsrContact searchUsrContactInfo(String userId) throws BusinessException;
+	public List<UsrContact> searchUsrContactInfo(String userId) throws BusinessException;
 	
 	public UsrUser searchuserInfoByNickName(String userId) throws BusinessException;
 

@@ -1,6 +1,9 @@
 package com.ai.yc.user.api.userservice.impl;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
@@ -22,6 +25,8 @@ import com.ai.yc.user.api.userservice.param.SearchYCTranslatorRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCTranslatorSkillListRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
+import com.ai.yc.user.api.userservice.param.UsrContactMessage;
+import com.ai.yc.user.api.userservice.param.UsrLanguageMessage;
 import com.ai.yc.user.api.userservice.param.YCContactInfoResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 import com.ai.yc.user.api.userservice.param.YCLSPInfoReponse;
@@ -32,6 +37,7 @@ import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
 import com.ai.yc.user.api.userservice.param.searchYCLSPInfoRequest;
 import com.ai.yc.user.constants.ExceptCodeConstants;
 import com.ai.yc.user.dao.mapper.bo.UsrContact;
+import com.ai.yc.user.dao.mapper.bo.UsrLanguage;
 import com.ai.yc.user.dao.mapper.bo.UsrTranslator;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.service.business.interfaces.IYCUserServiceBusiSV;
@@ -147,7 +153,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCContactInfoResponse searchYCContactInfo(SearchYCContactRequest cUsrId) {
-		UsrContact usrContact = null;
+		List<UsrContact> usrContact = null;
 		ResponseHeader responseHeader = null;
 		try{
 			usrContact = ycUsrServiceBusiSv.searchUsrContactInfo(cUsrId.getUserId());
@@ -157,11 +163,20 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
 		}
 		YCContactInfoResponse result = new YCContactInfoResponse();
-		BeanUtils.copyProperties(result, usrContact);
+		result.setUsrContactList(changUsrContactToUsrContactMessage(usrContact));
 		
 		result.setResponseHeader(responseHeader);
         result.setResponseCode(ExceptCodeConstants.SUCCESS);
 		return result;
+	}
+	private List<UsrContactMessage> changUsrContactToUsrContactMessage(List<UsrContact> usrLanguageList) {
+		List<UsrContactMessage> ulmList = new ArrayList<UsrContactMessage>();
+		for (UsrContact ul : usrLanguageList) {
+			UsrContactMessage ulm = new UsrContactMessage();
+			BeanUtils.copyProperties(ulm, ul);
+			ulmList.add(ulm);
+		}
+		return ulmList;
 	}
 
 	@Override
