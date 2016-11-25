@@ -256,16 +256,11 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		if (StringUtil.isBlank(userID)) {
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户Id不能为空");
 		}
-//		UsrUserCriteria example = new UsrUserCriteria();
-//		UsrUserCriteria.Criteria criteria = example.createCriteria();
-//		criteria.andUserIdEqualTo(user.getUserId());
-//		ycUSAtomSV.updateUserInfo(user, example);
-		
 		UsrUser usrUser = ycUSAtomSV.getUserInfo(userID);
 		
 		YCUserInfoResponse result = new YCUserInfoResponse();
 		if(null == usrUser){
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户中心不存在此用户");
+			return result;
 		}
 		
 		BeanUtils.copyProperties(result, usrUser);
@@ -306,7 +301,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			utr = ycUSAtomSV.getUsrTranslatorInfoByTranslatorId(searchReq.getTranslatorId());
 		}
 		if (null == utr) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户不存在！");
+			return null;
 		}
 		
 		return utr;
@@ -321,7 +316,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 
 		List<UsrContact> usrC = ycUSAtomSV.getUsrContactInfo(userId);
 		if (null == usrC) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户不存在！");
+			return null;
 		}
 		return usrC;
 	}
@@ -336,7 +331,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		criteria.andNicknameEqualTo(nickName);
 		UsrUser user = ycUSAtomSV.getUserInfoByNickName(example);
 		if (null == user) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户不存在！");
+			return null;
 		}
 		return user;
 	}
@@ -355,7 +350,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		// 获取译员信息
 		UsrTranslator utr = ycUSAtomSV.getUsrTranslatorInfo(userId);
 		if (null == utr) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户不存在！");
+			return translatorSkillList;
 		}
 		
 		BeanUtils.copyProperties(translatorSkillList, utr);
@@ -388,7 +383,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		if (!StringUtil.isBlank(params.getLspId()) && StringUtil.isBlank(params.getLspName())) {
 			usrLsp = ycUSAtomSV.searchLspById(params.getLspId());
 			if (null == usrLsp) {
-				throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "LSP不存在！");
+				return yclspRep;
 			}
 			usrLspList.add(usrLsp);
 			yclspRep.setUsrLspList(changUsrLspToUsrLspMessage(usrLspList));
@@ -399,10 +394,10 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			criteria.andLspNameLike(params.getLspName());
 			usrLspList = ycUSAtomSV.searchLspByName(example);
 			if (null == usrLspList) {
-				throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "LSP不存在！");
+				return yclspRep;
 			}
 			if (null == usrLspList.get(0)){
-				throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "LSP不存在！");
+				return yclspRep;
 			}
 			yclspRep.setUsrLspList(changUsrLspToUsrLspMessage(usrLspList));
 		}

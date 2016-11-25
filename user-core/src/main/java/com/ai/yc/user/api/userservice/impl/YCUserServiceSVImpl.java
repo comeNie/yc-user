@@ -82,12 +82,12 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		try{
 			ycUsrServiceBusiSv.updateUserInfo(updateUserParams);
 			responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"插入成功");
+			response.setResponseCode(ExceptCodeConstants.SUCCESS);
 		}catch(BusinessException e){
 			LOGGER.error("修改失败",e);
 			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
 		}
 		response.setResponseHeader(responseHeader);
-		response.setResponseCode(ExceptCodeConstants.SUCCESS);
         return response;
 	}
 
@@ -95,25 +95,6 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCUserInfoResponse searchYCUserInfo(SearchYCUserRequest userId){
-//		ResponseHeader responseHeader = null;
-//		UsrUser usrUser = null ;
-//		try{
-//			usrUser = ycUsrServiceBusiSv.searchUserInfo(userId.getUserId());
-//			responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"查询成功");
-//		}catch(BusinessException e){
-//			LOGGER.error("修改失败",e);
-//			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
-//		}
-//		YCUserInfoResponse result = new YCUserInfoResponse();
-//		BeanUtils.copyProperties(result,usrUser);
-//		String idpsns = "yc-portal-web";
-//		IImageClient im = IDPSClientFactory.getImageClient(idpsns);
-//		if(usrUser.getPortraitId()!=null&&!"".equals(usrUser.getPortraitId())){
-//			String url = im.getImageUrl(usrUser.getPortraitId(), ".jpg", "100x100");
-//			result.setUrl(url);
-//		}
-//		result.setResponseHeader(responseHeader);
-//        return result;
 		
 		ResponseHeader responseHeader = null;
 		YCUserInfoResponse result = null ;
@@ -140,14 +121,16 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 			
 			usrTranslator = ycUsrServiceBusiSv.searchYCUsrTranslatorInfo(tUsrId);
 			responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"查询成功");
+			if (null != usrTranslator){
+				BeanUtils.copyProperties(result, usrTranslator);
+			}
+			result.setResponseCode(ExceptCodeConstants.SUCCESS);
 		}catch(BusinessException e){
 			LOGGER.error("修改失败",e);
 			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
 		}
-		BeanUtils.copyProperties(result, usrTranslator);
 		
 		result.setResponseHeader(responseHeader);
-        result.setResponseCode(ExceptCodeConstants.SUCCESS);
 		return result;
 	}
 
@@ -155,20 +138,21 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 	public YCContactInfoResponse searchYCContactInfo(SearchYCContactRequest cUsrId) {
 		List<UsrContact> usrContact = null;
 		ResponseHeader responseHeader = null;
+		YCContactInfoResponse result = new YCContactInfoResponse();
 		try{
 			usrContact = ycUsrServiceBusiSv.searchUsrContactInfo(cUsrId.getUserId());
 			responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
+			result.setUsrContactList(changUsrContactToUsrContactMessage(usrContact));
+			result.setResponseCode(ExceptCodeConstants.SUCCESS);
 		}catch(BusinessException e){
 			LOGGER.error("修改失败",e);
 			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
 		}
-		YCContactInfoResponse result = new YCContactInfoResponse();
-		result.setUsrContactList(changUsrContactToUsrContactMessage(usrContact));
 		
 		result.setResponseHeader(responseHeader);
-        result.setResponseCode(ExceptCodeConstants.SUCCESS);
 		return result;
 	}
+	
 	private List<UsrContactMessage> changUsrContactToUsrContactMessage(List<UsrContact> usrLanguageList) {
 		List<UsrContactMessage> ulmList = new ArrayList<UsrContactMessage>();
 		for (UsrContact ul : usrLanguageList) {
@@ -187,7 +171,10 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		YCUserInfoResponse result = new YCUserInfoResponse();
 		try{
 			UsrUser usruser = ycUsrServiceBusiSv.searchuserInfoByNickName(nickName);
-			BeanUtils.copyProperties(result, usruser);
+			if(null != usruser)
+			{
+				BeanUtils.copyProperties(result, usruser);
+			}
 			responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
 		}catch(Exception e){
 			responseHeader = new ResponseHeader(false, ExceptCodeConstants.SUCCESS, "查询失败");
