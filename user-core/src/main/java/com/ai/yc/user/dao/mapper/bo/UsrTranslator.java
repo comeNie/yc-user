@@ -3,9 +3,9 @@ package com.ai.yc.user.dao.mapper.bo;
 import java.sql.Timestamp;
 
 public class UsrTranslator {
-    private String userId;
-
     private String translatorId;
+
+    private String userId;
 
     private String nickname;
 
@@ -59,20 +59,20 @@ public class UsrTranslator {
 
     private String singleLock;
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
-    }
-
     public String getTranslatorId() {
         return translatorId;
     }
 
     public void setTranslatorId(String translatorId) {
         this.translatorId = translatorId == null ? null : translatorId.trim();
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
     }
 
     public String getNickname() {

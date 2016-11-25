@@ -131,7 +131,8 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		UsrTranslator usrTranslator = null;
 		YCTranslatorInfoResponse result = new YCTranslatorInfoResponse();
 		try{
-			usrTranslator = ycUsrServiceBusiSv.searchYCUsrTranslatorInfo(tUsrId.getUserId());
+			
+			usrTranslator = ycUsrServiceBusiSv.searchYCUsrTranslatorInfo(tUsrId);
 			responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"查询成功");
 		}catch(BusinessException e){
 			LOGGER.error("修改失败",e);

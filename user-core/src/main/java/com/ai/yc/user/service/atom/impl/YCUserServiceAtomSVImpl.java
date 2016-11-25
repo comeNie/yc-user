@@ -12,6 +12,7 @@ import com.ai.yc.user.dao.mapper.bo.UsrLanguageCriteria;
 import com.ai.yc.user.dao.mapper.bo.UsrLsp;
 import com.ai.yc.user.dao.mapper.bo.UsrLspCriteria;
 import com.ai.yc.user.dao.mapper.bo.UsrTranslator;
+import com.ai.yc.user.dao.mapper.bo.UsrTranslatorCriteria;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
 import com.ai.yc.user.dao.mapper.interfaces.UsrContactMapper;
@@ -57,7 +58,17 @@ public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 
 	@Override
 	public UsrTranslator getUsrTranslatorInfo(String userId) {
-		return uTranslatorMapper.selectByPrimaryKey(userId);
+		UsrTranslatorCriteria example = new UsrTranslatorCriteria();
+		UsrTranslatorCriteria.Criteria criteria = example.createCriteria();
+		criteria.andUserIdEqualTo(userId);
+		return uTranslatorMapper.selectByExample(example).get(0);
+	}
+	@Override
+	public UsrTranslator getUsrTranslatorInfoByTranslatorId(String translatorId) {
+		UsrTranslatorCriteria example = new UsrTranslatorCriteria();
+		UsrTranslatorCriteria.Criteria criteria = example.createCriteria();
+		criteria.andTranslatorIdEqualTo(translatorId);
+		return uTranslatorMapper.selectByExample(example).get(0);
 	}
 
 	@Override
@@ -88,4 +99,6 @@ public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 	public List<UsrLsp> searchLspByName(UsrLspCriteria example) {
 		return uLspMapper.selectByExample(example);
 	}
+
+	
 }

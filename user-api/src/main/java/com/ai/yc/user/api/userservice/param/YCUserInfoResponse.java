@@ -30,6 +30,11 @@ public class YCUserInfoResponse extends BaseResponse {
      * 昵称
      */
     private String nickname;
+    
+    private String lastname;
+
+    private String firstname;
+
     /**
      * 性别
      */
@@ -224,6 +229,22 @@ public class YCUserInfoResponse extends BaseResponse {
 
 	public void setIsTranslator(Integer isTranslator) {
 		this.isTranslator = isTranslator;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 	
 }

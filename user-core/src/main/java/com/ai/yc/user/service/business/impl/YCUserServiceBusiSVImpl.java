@@ -34,6 +34,7 @@ import com.ai.yc.ucenter.api.members.param.opera.UcMembersGetOperationcodeRespon
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterRequest;
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterResponse;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
+import com.ai.yc.user.api.userservice.param.SearchYCTranslatorRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UsrLanguageMessage;
 import com.ai.yc.user.api.userservice.param.UsrLspMessage;
@@ -255,6 +256,11 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		if (StringUtil.isBlank(userID)) {
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户Id不能为空");
 		}
+//		UsrUserCriteria example = new UsrUserCriteria();
+//		UsrUserCriteria.Criteria criteria = example.createCriteria();
+//		criteria.andUserIdEqualTo(user.getUserId());
+//		ycUSAtomSV.updateUserInfo(user, example);
+		
 		UsrUser usrUser = ycUSAtomSV.getUserInfo(userID);
 		
 		YCUserInfoResponse result = new YCUserInfoResponse();
@@ -286,12 +292,19 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	}
 
 	@Override
-	public UsrTranslator searchYCUsrTranslatorInfo(String userId) throws BusinessException {
-		if (StringUtil.isBlank(userId)) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户Id不能为空");
+	public UsrTranslator searchYCUsrTranslatorInfo(SearchYCTranslatorRequest searchReq) throws BusinessException {
+		if (StringUtil.isBlank(searchReq.getUserId()) && StringUtil.isBlank(searchReq.getTranslatorId())) {
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户Id与译员id不能同时为空");
 		}
-
-		UsrTranslator utr = ycUSAtomSV.getUsrTranslatorInfo(userId);
+		if (!StringUtil.isBlank(searchReq.getUserId()) && !StringUtil.isBlank(searchReq.getTranslatorId())) {
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户Id与译员id不能同时存在");
+		}
+		UsrTranslator utr = null;
+		if(!StringUtil.isBlank(searchReq.getUserId())){
+			utr = ycUSAtomSV.getUsrTranslatorInfo(searchReq.getUserId());
+		} else {
+			utr = ycUSAtomSV.getUsrTranslatorInfoByTranslatorId(searchReq.getTranslatorId());
+		}
 		if (null == utr) {
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户不存在！");
 		}
@@ -340,7 +353,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户非译员身份");
 		}
 		// 获取译员信息
-		UsrTranslator utr = searchYCUsrTranslatorInfo(userId);
+		UsrTranslator utr = ycUSAtomSV.getUsrTranslatorInfo(userId);
 		if (null == utr) {
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户不存在！");
 		}

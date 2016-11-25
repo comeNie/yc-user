@@ -10,7 +10,7 @@ public interface UsrTranslatorMapper {
 
     int deleteByExample(UsrTranslatorCriteria example);
 
-    int deleteByPrimaryKey(String userId);
+    int deleteByPrimaryKey(String translatorId);
 
     int insert(UsrTranslator record);
 
@@ -18,7 +18,7 @@ public interface UsrTranslatorMapper {
 
     List<UsrTranslator> selectByExample(UsrTranslatorCriteria example);
 
-    UsrTranslator selectByPrimaryKey(String userId);
+    UsrTranslator selectByPrimaryKey(String translatorId);
 
     int updateByExampleSelective(@Param("record") UsrTranslator record, @Param("example") UsrTranslatorCriteria example);
 

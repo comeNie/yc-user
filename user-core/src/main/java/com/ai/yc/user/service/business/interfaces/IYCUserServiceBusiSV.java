@@ -3,6 +3,7 @@ package com.ai.yc.user.service.business.interfaces;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
+import com.ai.yc.user.api.userservice.param.SearchYCTranslatorRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 import com.ai.yc.user.api.userservice.param.YCLSPInfoReponse;
@@ -21,7 +22,7 @@ public interface IYCUserServiceBusiSV {
 
     public YCUserInfoResponse searchUserInfo(String userID) throws BusinessException;
 
-	public UsrTranslator searchYCUsrTranslatorInfo(String userId) throws BusinessException;
+	public UsrTranslator searchYCUsrTranslatorInfo(SearchYCTranslatorRequest searchReq) throws BusinessException;
 
 	public UsrContact searchUsrContactInfo(String userId) throws BusinessException;
 	

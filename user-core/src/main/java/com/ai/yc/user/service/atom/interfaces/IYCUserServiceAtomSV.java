@@ -36,4 +36,6 @@ public interface IYCUserServiceAtomSV {
 
 	public List<UsrLsp> searchLspByName(UsrLspCriteria example) ;
 
+	public UsrTranslator getUsrTranslatorInfoByTranslatorId(String translatorId);
+
 }

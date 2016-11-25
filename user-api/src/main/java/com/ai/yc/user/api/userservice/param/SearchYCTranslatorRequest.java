@@ -28,6 +28,7 @@ public class SearchYCTranslatorRequest  implements Serializable{
 	 */
 	private static final long serialVersionUID = -1445662539360692130L;
 	private String userId;
+	private String translatorId;
 
 	public String getUserId() {
 		return userId;
@@ -35,5 +36,13 @@ public class SearchYCTranslatorRequest  implements Serializable{
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	public String getTranslatorId() {
+		return translatorId;
+	}
+
+	public void setTranslatorId(String translatorId) {
+		this.translatorId = translatorId;
 	}
 }
