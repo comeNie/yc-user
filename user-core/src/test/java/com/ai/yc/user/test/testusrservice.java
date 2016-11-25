@@ -79,14 +79,18 @@ public class testusrservice {
 	
 	
 	@Test
-	public void testSearchSkill() {
+	public void testTranslator() {
 		SearchYCTranslatorRequest s = new SearchYCTranslatorRequest();
-		s.setUserId("4444312");
+		s.setUserId("4444314");
+//		s.setTranslatorId("1");
 		YCTranslatorInfoResponse r = usSV.searchYCTranslatorInfo(s);
-		
-		
+		System.out.println(JSON.toJSONString(r));
+	}
+	
+	@Test
+	public void testSearchSkill() {
 		SearchYCTranslatorSkillListRequest a = new SearchYCTranslatorSkillListRequest();
-		a.setUserId("4444312");
+		a.setUserId("4444314");
 		YCTranslatorSkillListResponse response = usSV.getTranslatorSkillList(a);
 		System.out.println(JSON.toJSONString(response));
 	}

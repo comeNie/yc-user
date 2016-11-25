@@ -62,14 +62,26 @@ public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 		UsrTranslatorCriteria example = new UsrTranslatorCriteria();
 		UsrTranslatorCriteria.Criteria criteria = example.createCriteria();
 		criteria.andUserIdEqualTo(userId);
-		return uTranslatorMapper.selectByExample(example).get(0);
+		List<UsrTranslator> list = uTranslatorMapper.selectByExample(example);
+		if(list.size() > 0)
+		{
+			return list.get(0);
+		} else {
+			return null;
+		}
 	}
 	@Override
 	public UsrTranslator getUsrTranslatorInfoByTranslatorId(String translatorId) {
 		UsrTranslatorCriteria example = new UsrTranslatorCriteria();
 		UsrTranslatorCriteria.Criteria criteria = example.createCriteria();
 		criteria.andTranslatorIdEqualTo(translatorId);
-		return uTranslatorMapper.selectByExample(example).get(0);
+		List<UsrTranslator> list = uTranslatorMapper.selectByExample(example);
+		if(list.size() > 0)
+		{
+			return list.get(0);
+		} else {
+			return null;
+		}
 	}
 
 	@Override
@@ -86,8 +98,10 @@ public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 		List<UsrUser> list = tUserMapper.selectByExample(example);
 		if(!CollectionUtil.isEmpty(list)){
 			return list.get(0);
+		} else {
+			return null;
 		}
-		return list.get(0);
+		
 	}
 
 	@Override

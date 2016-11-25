@@ -149,7 +149,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			// 从右到左,把相同类型且属性名相同的复制到右边
 			BeanUtils.copyProperties(tUser, insertinfo);
 			tUser.setUserId(umrResponse.getDate().get("uid").toString());
-			tUser.setNickname("译粉"+SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8));
+			tUser.setNickname("译粉_"+SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8));
 			tUser.setAccountId(accountId);
 			ycUSAtomSV.insertUserInfo(tUser);
 
@@ -215,7 +215,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			// 从右到左,把相同类型且属性名相同的复制到右边
 			BeanUtils.copyProperties(tUser, insertinfo);
 			tUser.setAccountId(accountId);
-			tUser.setNickname("译粉"+SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8));
+			tUser.setNickname("译粉_"+SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8));
 			ycUSAtomSV.insertUserInfo(tUser);
 
 			YCInsertUserResponse insertResp = new YCInsertUserResponse();
