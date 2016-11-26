@@ -119,5 +119,15 @@ public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 		return uLspMapper.selectByExample(example);
 	}
 
+	@Override
+	public int insertContactInfo(UsrContact usrContact) {
+		return uContactMapper.insertSelective(usrContact);
+	}
+
+	@Override
+	public int deleteContactInfo(String contactId) {
+		return uContactMapper.deleteByPrimaryKey(contactId);
+	}
+
 	
 }

@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.ai.yc.user.api.contactsinfo.param.InsertContactsInfoRequest;
 import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
+import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCContactRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCTranslatorRequest;
@@ -16,6 +18,7 @@ import com.ai.yc.user.api.userservice.param.SearchYCTranslatorSkillListRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.YCContactInfoResponse;
+import com.ai.yc.user.api.userservice.param.YCInsertContactResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 import com.ai.yc.user.api.userservice.param.YCLSPInfoReponse;
 import com.ai.yc.user.api.userservice.param.YCTranslatorInfoResponse;
@@ -107,6 +110,17 @@ public class testusrservice {
 		SearchYCContactRequest a = new SearchYCContactRequest();
 		a.setUserId("4444314");
 		YCContactInfoResponse response = usSV.searchYCContactInfo(a);
+		System.out.println(JSON.toJSONString(response));
+	}
+	
+	@Test
+	public void testInsertContact() {
+		InsertYCContactRequest a = new InsertYCContactRequest();
+		a.setUserId("4444314");
+		a.setEmail("10312@qq.com");
+		a.setMobilePhone("13007420476");
+		a.setContactId("2");
+		YCInsertContactResponse response = usSV.insertYCContact(a);
 		System.out.println(JSON.toJSONString(response));
 	}
 }

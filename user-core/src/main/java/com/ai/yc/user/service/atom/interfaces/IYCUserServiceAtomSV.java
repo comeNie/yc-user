@@ -38,4 +38,8 @@ public interface IYCUserServiceAtomSV {
 
 	public UsrTranslator getUsrTranslatorInfoByTranslatorId(String translatorId);
 
+	public int insertContactInfo(UsrContact usrContact);
+
+	public int deleteContactInfo(String contactId);
+
 }

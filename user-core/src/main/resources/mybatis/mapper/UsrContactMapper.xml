@@ -3,6 +3,7 @@
 <mapper namespace="com.ai.yc.user.dao.mapper.interfaces.UsrContactMapper" >
   <resultMap id="BaseResultMap" type="com.ai.yc.user.dao.mapper.bo.UsrContact" >
     <id column="contact_id" property="contactId" jdbcType="VARCHAR" />
+    <result column="gn_country_id" property="gnCountryId" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="VARCHAR" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
@@ -73,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    contact_id, user_id, user_name, phone, mobile_phone, email, qq, address, zip_code, 
-    is_default, create_time
+    contact_id, gn_country_id, user_id, user_name, phone, mobile_phone, email, qq, address, 
+    zip_code, is_default, create_time
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ai.yc.user.dao.mapper.bo.UsrContactCriteria" >
     select
@@ -111,20 +112,25 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.ai.yc.user.dao.mapper.bo.UsrContact" >
-    insert into usr_contact (contact_id, user_id, user_name, 
-      phone, mobile_phone, email, 
-      qq, address, zip_code, 
-      is_default, create_time)
-    values (#{contactId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{mobilePhone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{qq,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, 
-      #{isDefault,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP})
+    insert into usr_contact (contact_id, gn_country_id, user_id, 
+      user_name, phone, mobile_phone, 
+      email, qq, address, 
+      zip_code, is_default, create_time
+      )
+    values (#{contactId,jdbcType=VARCHAR}, #{gnCountryId,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{mobilePhone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{zipCode,jdbcType=VARCHAR}, #{isDefault,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.ai.yc.user.dao.mapper.bo.UsrContact" >
     insert into usr_contact
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="contactId != null" >
         contact_id,
+      </if>
+      <if test="gnCountryId != null" >
+        gn_country_id,
       </if>
       <if test="userId != null" >
         user_id,
@@ -160,6 +166,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="contactId != null" >
         #{contactId,jdbcType=VARCHAR},
+      </if>
+      <if test="gnCountryId != null" >
+        #{gnCountryId,jdbcType=INTEGER},
       </if>
       <if test="userId != null" >
         #{userId,jdbcType=VARCHAR},
@@ -205,6 +214,9 @@
       <if test="record.contactId != null" >
         contact_id = #{record.contactId,jdbcType=VARCHAR},
       </if>
+      <if test="record.gnCountryId != null" >
+        gn_country_id = #{record.gnCountryId,jdbcType=INTEGER},
+      </if>
       <if test="record.userId != null" >
         user_id = #{record.userId,jdbcType=VARCHAR},
       </if>
@@ -243,6 +255,7 @@
   <update id="updateByExample" parameterType="map" >
     update usr_contact
     set contact_id = #{record.contactId,jdbcType=VARCHAR},
+      gn_country_id = #{record.gnCountryId,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=VARCHAR},
       user_name = #{record.userName,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
@@ -260,6 +273,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.ai.yc.user.dao.mapper.bo.UsrContact" >
     update usr_contact
     <set >
+      <if test="gnCountryId != null" >
+        gn_country_id = #{gnCountryId,jdbcType=INTEGER},
+      </if>
       <if test="userId != null" >
         user_id = #{userId,jdbcType=VARCHAR},
       </if>
@@ -295,7 +311,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.ai.yc.user.dao.mapper.bo.UsrContact" >
     update usr_contact
-    set user_id = #{userId,jdbcType=VARCHAR},
+    set gn_country_id = #{gnCountryId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=VARCHAR},
       user_name = #{userName,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       mobile_phone = #{mobilePhone,jdbcType=VARCHAR},

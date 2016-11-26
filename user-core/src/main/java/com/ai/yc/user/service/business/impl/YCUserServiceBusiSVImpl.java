@@ -1,8 +1,8 @@
 package com.ai.yc.user.service.business.impl;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -21,23 +21,22 @@ import com.ai.opt.sdk.util.UUIDUtil;
 import com.ai.paas.ipaas.image.IImageClient;
 import com.ai.slp.balance.api.accountmaintain.interfaces.IAccountMaintainSV;
 import com.ai.slp.balance.api.accountmaintain.param.RegAccReq;
-import com.ai.yc.ucenter.api.members.interfaces.IUcMembersOperationSV;
+import com.ai.yc.common.api.country.interfaces.IGnCountrySV;
+import com.ai.yc.common.api.country.param.CountryRequest;
+import com.ai.yc.common.api.country.param.CountryResponse;
 import com.ai.yc.ucenter.api.members.interfaces.IUcMembersSV;
 import com.ai.yc.ucenter.api.members.param.UcMembersResponse;
-import com.ai.yc.ucenter.api.members.param.UcMembersVo;
 import com.ai.yc.ucenter.api.members.param.editpass.UcMembersEditPassRequest;
-import com.ai.yc.ucenter.api.members.param.get.UcMembersGetRequest;
-import com.ai.yc.ucenter.api.members.param.get.UcMembersGetResponse;
-import com.ai.yc.ucenter.api.members.param.opera.UcMembersGetOperationcodeRequest;
-import com.ai.yc.ucenter.api.members.param.opera.UcMembersGetOperationcodeResponse;
-
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterRequest;
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterResponse;
+import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCTranslatorRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
+import com.ai.yc.user.api.userservice.param.UsrContactMessage;
 import com.ai.yc.user.api.userservice.param.UsrLanguageMessage;
 import com.ai.yc.user.api.userservice.param.UsrLspMessage;
+import com.ai.yc.user.api.userservice.param.YCInsertContactResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 import com.ai.yc.user.api.userservice.param.YCLSPInfoReponse;
 import com.ai.yc.user.api.userservice.param.YCTranslatorSkillListResponse;
@@ -54,11 +53,14 @@ import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
 import com.ai.yc.user.service.atom.interfaces.IYCUserServiceAtomSV;
 import com.ai.yc.user.service.business.interfaces.IYCUserServiceBusiSV;
 import com.ai.yc.user.util.UCDateUtils;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 @Service
 @Transactional
 public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 
+	@SuppressWarnings("unused")
 	private static final Log LOG = LogFactory.getLog(YCUserServiceBusiSVImpl.class);
 
 	@Autowired
@@ -191,12 +193,12 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "内部错误");
 			}
 			if (umr.getCode().getCodeNumber().intValue() != 1) {
-				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "用户中心请求失败 ucenter返回值 : "
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "ucenter返回值 : "
 						+ umr.getCode().getCodeNumber() + " --- " + umr.getCode().getCodeMessage());
 			}
 			if (StringUtil.isBlank(umr.getDate().get("username").toString())) { // 邮箱注册必有值
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT,
-						"用户中心请求失败 ucenter返回值缺少username");
+						"ucenter返回值缺少username");
 			}
 
 			// 支付账户信息
@@ -277,7 +279,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 //		UcMembersGetResponse ucMembersGetResponse = iUcMembersSV.ucGetMember(ucMembersGetRequest);
 //		if (null == ucMembersGetResponse.getDate().get("username")) {
 //			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT,
-//					"用户中心请求失败 ucenter返回值 : " + ucMembersGetResponse.getCode().getCodeNumber() + " --- "
+//					"ucenter返回值 : " + ucMembersGetResponse.getCode().getCodeNumber() + " --- "
 //							+ ucMembersGetResponse.getCode().getCodeMessage());
 //		}
 //		String userName = ucMembersGetResponse.getDate().get("username").toString();
@@ -318,6 +320,18 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		if (null == usrC) {
 			return null;
 		}
+		IGnCountrySV iGnCountrySV = DubboConsumerFactory.getService(IGnCountrySV.class);
+		for(UsrContact contact : usrC){
+			CountryRequest cr = new CountryRequest();
+			cr.setTenantId("yeecloud");
+			cr.setCountryCode(contact.getContactId());
+			CountryResponse cresp = iGnCountrySV.queryCountry(cr);
+			if(null != cresp.getResult()){
+				if(null != cresp.getResult().get(0)){
+					contact.setCountryVo(cresp.getResult().get(0));
+				}
+			}
+		}
 		return usrC;
 	}
 
@@ -344,8 +358,11 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		YCTranslatorSkillListResponse translatorSkillList = new YCTranslatorSkillListResponse();
 		// UsrUser验证译员信息
 		UsrUser userinfo = ycUSAtomSV.getUserInfo(userId);
+		if(null == userinfo.getIsTranslator()){
+			return translatorSkillList;
+		}
 		if (userinfo.getIsTranslator() != 1) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户非译员身份");
+			return translatorSkillList;
 		}
 		// 获取译员信息
 		UsrTranslator utr = ycUSAtomSV.getUsrTranslatorInfo(userId);
@@ -364,13 +381,9 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	}
 
 	private List<UsrLanguageMessage> changUsrLanguageToUsrLanguageMessage(List<UsrLanguage> usrLanguageList) {
-		List<UsrLanguageMessage> ulmList = new ArrayList<UsrLanguageMessage>();
-		for (UsrLanguage ul : usrLanguageList) {
-			UsrLanguageMessage ulm = new UsrLanguageMessage();
-			BeanUtils.copyProperties(ulm, ul);
-			ulmList.add(ulm);
-		}
-		return ulmList;
+		Gson g = new Gson();
+		Type type = new TypeToken<List<UsrLanguageMessage>>(){}.getType();
+		return g.fromJson(g.toJson(usrLanguageList), type);
 	}
 
 	@Override
@@ -418,6 +431,25 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			ulmList.add(ulm);
 		}
 		return ulmList;
+	}
+
+	@Override
+	public YCInsertContactResponse insertContactInfo(InsertYCContactRequest creq) throws BusinessException {
+		UsrContact usrContact = new UsrContact();
+		String contactId = null;
+		if (null != creq.getContactId()){
+			// delete
+			ycUSAtomSV.deleteContactInfo(creq.getContactId());
+			contactId = creq.getContactId();
+		} else {
+			contactId = SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8);
+			usrContact.setContactId(contactId);
+		}
+		BeanUtils.copyProperties(usrContact, creq);
+		ycUSAtomSV.insertContactInfo(usrContact);
+		YCInsertContactResponse icr = new YCInsertContactResponse();
+		icr.setContactId(contactId);
+		return icr;
 	}
 
 }

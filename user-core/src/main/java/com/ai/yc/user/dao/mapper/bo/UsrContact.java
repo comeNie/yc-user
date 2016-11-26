@@ -2,8 +2,12 @@ package com.ai.yc.user.dao.mapper.bo;
 
 import java.sql.Timestamp;
 
+import com.ai.yc.common.api.country.param.CountryVo;
+
 public class UsrContact {
     private String contactId;
+
+    private Integer gnCountryId;
 
     private String userId;
 
@@ -24,6 +28,8 @@ public class UsrContact {
     private Integer isDefault;
 
     private Timestamp createTime;
+    
+    private CountryVo countryVo;
 
     public String getContactId() {
         return contactId;
@@ -31,6 +37,14 @@ public class UsrContact {
 
     public void setContactId(String contactId) {
         this.contactId = contactId == null ? null : contactId.trim();
+    }
+
+    public Integer getGnCountryId() {
+        return gnCountryId;
+    }
+
+    public void setGnCountryId(Integer gnCountryId) {
+        this.gnCountryId = gnCountryId;
     }
 
     public String getUserId() {
@@ -112,4 +126,12 @@ public class UsrContact {
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
+
+	public CountryVo getCountryVo() {
+		return countryVo;
+	}
+
+	public void setCountryVo(CountryVo countryVo) {
+		this.countryVo = countryVo;
+	}
 }

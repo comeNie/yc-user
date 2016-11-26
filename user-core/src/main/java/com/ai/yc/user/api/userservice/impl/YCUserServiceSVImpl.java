@@ -1,6 +1,7 @@
 package com.ai.yc.user.api.userservice.impl;
 
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import com.ai.opt.sdk.components.idps.IDPSClientFactory;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.paas.ipaas.image.IImageClient;
 import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
+import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCTranslatorRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCContactRequest;
@@ -28,6 +30,7 @@ import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UsrContactMessage;
 import com.ai.yc.user.api.userservice.param.UsrLanguageMessage;
 import com.ai.yc.user.api.userservice.param.YCContactInfoResponse;
+import com.ai.yc.user.api.userservice.param.YCInsertContactResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 import com.ai.yc.user.api.userservice.param.YCLSPInfoReponse;
 import com.ai.yc.user.api.userservice.param.YCTranslatorInfoResponse;
@@ -42,6 +45,8 @@ import com.ai.yc.user.dao.mapper.bo.UsrTranslator;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.service.business.interfaces.IYCUserServiceBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 @Service(validation = "true")
 @Component
@@ -153,14 +158,10 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		return result;
 	}
 	
-	private List<UsrContactMessage> changUsrContactToUsrContactMessage(List<UsrContact> usrLanguageList) {
-		List<UsrContactMessage> ulmList = new ArrayList<UsrContactMessage>();
-		for (UsrContact ul : usrLanguageList) {
-			UsrContactMessage ulm = new UsrContactMessage();
-			BeanUtils.copyProperties(ulm, ul);
-			ulmList.add(ulm);
-		}
-		return ulmList;
+	private List<UsrContactMessage> changUsrContactToUsrContactMessage(List<UsrContact> usrContactList) {
+		Gson g = new Gson();
+		Type type = new TypeToken<List<UsrContactMessage>>(){}.getType();
+		return g.fromJson(g.toJson(usrContactList), type);
 	}
 
 	@Override
@@ -209,6 +210,30 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		}
 		result.setResponseHeader(responseHeader);
 		return result;
+	}
+
+	@Override
+	public YCInsertContactResponse insertYCContact(InsertYCContactRequest creq) {
+		ResponseHeader responseHeader = null;
+		try{
+			YCInsertContactResponse response = ycUsrServiceBusiSv.insertContactInfo(creq);
+			if(response != null){
+				responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"插入成功");
+				response.setResponseHeader(responseHeader);
+		        return response;
+			} else {
+				response = new YCInsertContactResponse();
+				responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,"插入失败");
+				response.setResponseHeader(responseHeader);
+		        return response;
+			}
+		}catch(BusinessException e){
+			LOGGER.error("插入失败",e);
+			YCInsertContactResponse response = new YCInsertContactResponse();
+			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
+			response.setResponseHeader(responseHeader);
+	        return response;
+		}
 	}
 
 	

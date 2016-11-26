@@ -3,7 +3,9 @@ package com.ai.yc.user.api.userservice.param;
 import java.sql.Timestamp;
 
 public class UsrContactMessage {
-    private String contactId;
+	private String contactId;
+
+    private Integer gnCountryId;
 
     private String userId;
 
@@ -24,6 +26,8 @@ public class UsrContactMessage {
     private Integer isDefault;
 
     private Timestamp createTime;
+    
+    private CountryVo countryVo;
 
     public String getContactId() {
         return contactId;
@@ -31,6 +35,14 @@ public class UsrContactMessage {
 
     public void setContactId(String contactId) {
         this.contactId = contactId == null ? null : contactId.trim();
+    }
+
+    public Integer getGnCountryId() {
+        return gnCountryId;
+    }
+
+    public void setGnCountryId(Integer gnCountryId) {
+        this.gnCountryId = gnCountryId;
     }
 
     public String getUserId() {
@@ -112,4 +124,12 @@ public class UsrContactMessage {
     public void setCreateTime(Timestamp createTime) {
         this.createTime = createTime;
     }
+
+	public CountryVo getCountryVo() {
+		return countryVo;
+	}
+
+	public void setCountryVo(CountryVo countryVo) {
+		this.countryVo = countryVo;
+	}
 }

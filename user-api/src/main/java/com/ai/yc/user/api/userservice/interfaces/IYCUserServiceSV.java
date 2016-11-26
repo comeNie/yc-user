@@ -6,6 +6,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCTranslatorRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCContactRequest;
@@ -14,6 +15,7 @@ import com.ai.yc.user.api.userservice.param.SearchYCTranslatorSkillListRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.YCContactInfoResponse;
+import com.ai.yc.user.api.userservice.param.YCInsertContactResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertTranslatorResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 import com.ai.yc.user.api.userservice.param.YCLSPInfoReponse;
@@ -105,7 +107,16 @@ public interface IYCUserServiceSV {
 	@POST
 	@Path("/searchYCContactInfo")
 	YCContactInfoResponse searchYCContactInfo(SearchYCContactRequest cUsrId);
-	
+	/**
+	 * 添加译员通讯录
+	 * @param 
+	 * @return
+	 * @ApiCode USR_0007
+     * @RestRelativeURL ycuserservice/insertYCContactInfo
+	 */
+	@POST
+	@Path("/insertYCContactInfo")
+	YCInsertContactResponse insertYCContact(InsertYCContactRequest creq);
 
 	/**
 	 * 查询译员语言技能列表
