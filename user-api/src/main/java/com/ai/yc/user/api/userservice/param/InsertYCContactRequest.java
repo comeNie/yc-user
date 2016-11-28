@@ -21,6 +21,10 @@ public class InsertYCContactRequest implements Serializable {
 	 */
 	private String contactId;
 
+	/**
+	 * 国家编号
+	 * 必填
+	 */
     private Integer gnCountryId;
 
     private String userId;
@@ -28,7 +32,9 @@ public class InsertYCContactRequest implements Serializable {
     private String userName;
 
     private String phone;
-
+    /**
+     * 必填字段
+     */
     private String mobilePhone;
 
     private String email;
