@@ -193,12 +193,11 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "内部错误");
 			}
 			if (umr.getCode().getCodeNumber().intValue() != 1) {
-				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "ucenter返回值 : "
-						+ umr.getCode().getCodeNumber() + " --- " + umr.getCode().getCodeMessage());
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, umr.getCode().getCodeMessage());
 			}
-			if (StringUtil.isBlank(umr.getDate().get("username").toString())) { // 邮箱注册必有值
+			if (StringUtil.isBlank(umr.getDate().get("username").toString())) { // 邮箱注册必有值,ucenter返回值缺少username
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT,
-						"ucenter返回值缺少username");
+						"内部错误");
 			}
 
 			// 支付账户信息
