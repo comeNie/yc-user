@@ -28,14 +28,20 @@ public class YCTranslatorInfoResponse extends BaseResponse {
      */
     private String nickname;
 	/**
-	 * 
+	 * lsp角色
 	 */
     private String lspRole;
-
+	/**
+	 * 工作年限
+	 */
     private Integer workingLife;
-
+	/**
+	 * 母语
+	 */
     private String motherTongue;
-
+	/**
+	 * 翻译类型
+	 */
     private String translationType;
 
     private BigDecimal interpretPrice;
