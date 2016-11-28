@@ -44,6 +44,7 @@ public interface IYCUserServiceSV {
 	YCInsertUserResponse insertYCUser(InsertYCUserRequest registerParamsRequest);
 	/**
 	 * 修改用户基本信息数据
+	 * 只填修改的属性
 	 * @param 
 	 * @return
 	 * @ApiCode USR_0003
@@ -74,20 +75,11 @@ public interface IYCUserServiceSV {
 	@Path("/searchUserInfoByNickName")
 	public YCUserInfoResponse searchUserInfoByNickName(String nickName);
 	
-//	/**
-//	 * 通过昵称查询基本信息
-//	 * @param 
-//	 * @return
-//	 * @ApiCode USR_000
-//     * @RestRelativeURL ycuserservice/insertYCTranslatorInfo
-//	 */
-//	@POST
-//	@Path("insertYCTranslatorInfo")
-//	public YCInsertTranslatorResponse insertYCTranslatorInfo(InsertYCTranslatorRequest translatorInfo);
-	
 	
 	/**
 	 * 查询译员基本信息数据
+	 * uid／translatorid任选其一进行查询
+	 * 不可同时传入
 	 * @param 
 	 * @return
 	 * @ApiCode USR_0004

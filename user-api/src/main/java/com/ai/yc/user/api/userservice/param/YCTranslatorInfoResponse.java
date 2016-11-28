@@ -15,11 +15,21 @@ public class YCTranslatorInfoResponse extends BaseResponse {
 	 * 
 	 */
 	private static final long serialVersionUID = -9068009364796285584L;
-	
+	/**
+	 * 用户id
+	 */
 	private String userId;
-
+	/**
+	 * LSP id
+	 */
     private String lspId;
-
+    /**
+     * 昵称
+     */
+    private String nickname;
+	/**
+	 * 
+	 */
     private String lspRole;
 
     private Integer workingLife;
@@ -138,6 +148,14 @@ public class YCTranslatorInfoResponse extends BaseResponse {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	
 }
