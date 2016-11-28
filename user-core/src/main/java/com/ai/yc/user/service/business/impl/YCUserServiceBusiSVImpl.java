@@ -323,7 +323,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		for(UsrContact contact : usrC){
 			CountryRequest cr = new CountryRequest();
 			cr.setTenantId("yeecloud");
-			cr.setCountryCode(contact.getContactId());
+			cr.setCountryCode(String.valueOf(contact.getGnCountryId()));
 			CountryResponse cresp = iGnCountrySV.queryCountry(cr);
 			if(null != cresp.getResult()){
 				if(null != cresp.getResult().get(0)){
@@ -436,15 +436,15 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	public YCInsertContactResponse insertContactInfo(InsertYCContactRequest creq) throws BusinessException {
 		UsrContact usrContact = new UsrContact();
 		String contactId = null;
-		if (null != creq.getContactId()){
+		if (null != creq.getContactId() && !StringUtil.isBlank(creq.getContactId())){
 			// delete
 			ycUSAtomSV.deleteContactInfo(creq.getContactId());
 			contactId = creq.getContactId();
 		} else {
 			contactId = SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8);
-			usrContact.setContactId(contactId);
 		}
 		BeanUtils.copyProperties(usrContact, creq);
+		usrContact.setContactId(contactId);
 		ycUSAtomSV.insertContactInfo(usrContact);
 		YCInsertContactResponse icr = new YCInsertContactResponse();
 		icr.setContactId(contactId);
