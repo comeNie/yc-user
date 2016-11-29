@@ -411,7 +411,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 //		}
 //		return yclspRep;
 //	}
-
+//
 //	private List<UsrLspMessage> changUsrLspToUsrLspMessage(List<UsrLsp> usrLspList) {
 //		List<UsrLspMessage> ulmList = new ArrayList<UsrLspMessage>();
 //		for (UsrLsp ul : usrLspList) {
