@@ -441,7 +441,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			ycUSAtomSV.deleteContactInfo(creq.getContactId());
 			contactId = creq.getContactId();
 		} else {
-			contactId = SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8);
+			contactId = SeqUtil.getNewId("YC_USER$CONTACT_ID$SEQ", 8);
 		}
 		if (creq.getGnCountryId() < 1){
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "国家编号不能为空");
