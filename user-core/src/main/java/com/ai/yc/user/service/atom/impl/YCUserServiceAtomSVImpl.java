@@ -30,17 +30,17 @@ public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 	@Autowired
 	private transient UsrUserMapper tUserMapper;
 	
-	@Autowired
-	private transient UsrTranslatorMapper uTranslatorMapper;
+//	@Autowired
+//	private transient UsrTranslatorMapper uTranslatorMapper;
 
 	@Autowired
 	private transient UsrContactMapper uContactMapper;
 	
-	@Autowired
-	private transient UsrLanguageMapper uLanguageMapper;
+//	@Autowired
+//	private transient UsrLanguageMapper uLanguageMapper;
 	
-	@Autowired
-	private transient UsrLspMapper uLspMapper;
+//	@Autowired
+//	private transient UsrLspMapper uLspMapper;
 	
 	@Override
 	public int updateUserInfo(UsrUser record, UsrUserCriteria example) {
@@ -57,32 +57,32 @@ public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 		return tUserMapper.insert(user);
 	}
 
-	@Override
-	public UsrTranslator getUsrTranslatorInfo(String userId) {
-		UsrTranslatorCriteria example = new UsrTranslatorCriteria();
-		UsrTranslatorCriteria.Criteria criteria = example.createCriteria();
-		criteria.andUserIdEqualTo(userId);
-		List<UsrTranslator> list = uTranslatorMapper.selectByExample(example);
-		if(list.size() > 0)
-		{
-			return list.get(0);
-		} else {
-			return null;
-		}
-	}
-	@Override
-	public UsrTranslator getUsrTranslatorInfoByTranslatorId(String translatorId) {
-		UsrTranslatorCriteria example = new UsrTranslatorCriteria();
-		UsrTranslatorCriteria.Criteria criteria = example.createCriteria();
-		criteria.andTranslatorIdEqualTo(translatorId);
-		List<UsrTranslator> list = uTranslatorMapper.selectByExample(example);
-		if(list.size() > 0)
-		{
-			return list.get(0);
-		} else {
-			return null;
-		}
-	}
+//	@Override
+//	public UsrTranslator getUsrTranslatorInfo(String userId) {
+//		UsrTranslatorCriteria example = new UsrTranslatorCriteria();
+//		UsrTranslatorCriteria.Criteria criteria = example.createCriteria();
+//		criteria.andUserIdEqualTo(userId);
+//		List<UsrTranslator> list = uTranslatorMapper.selectByExample(example);
+//		if(list.size() > 0)
+//		{
+//			return list.get(0);
+//		} else {
+//			return null;
+//		}
+//	}
+//	@Override
+//	public UsrTranslator getUsrTranslatorInfoByTranslatorId(String translatorId) {
+//		UsrTranslatorCriteria example = new UsrTranslatorCriteria();
+//		UsrTranslatorCriteria.Criteria criteria = example.createCriteria();
+//		criteria.andTranslatorIdEqualTo(translatorId);
+//		List<UsrTranslator> list = uTranslatorMapper.selectByExample(example);
+//		if(list.size() > 0)
+//		{
+//			return list.get(0);
+//		} else {
+//			return null;
+//		}
+//	}
 
 	@Override
 	public List<UsrContact> getUsrContactInfo(String userId) {
@@ -104,20 +104,20 @@ public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 		
 	}
 
-	@Override
-	public List<UsrLanguage> getUsrLanguageList(UsrLanguageCriteria userIdCri) {
-		return uLanguageMapper.selectByExample(userIdCri);
-	}
-
-	@Override
-	public UsrLsp searchLspById(String lspId) {
-		return uLspMapper.selectByPrimaryKey(lspId);
-	}
-
-	@Override
-	public List<UsrLsp> searchLspByName(UsrLspCriteria example) {
-		return uLspMapper.selectByExample(example);
-	}
+//	@Override
+//	public List<UsrLanguage> getUsrLanguageList(UsrLanguageCriteria userIdCri) {
+//		return uLanguageMapper.selectByExample(userIdCri);
+//	}
+//
+//	@Override
+//	public UsrLsp searchLspById(String lspId) {
+//		return uLspMapper.selectByPrimaryKey(lspId);
+//	}
+//
+//	@Override
+//	public List<UsrLsp> searchLspByName(UsrLspCriteria example) {
+//		return uLspMapper.selectByExample(example);
+//	}
 
 	@Override
 	public int insertContactInfo(UsrContact usrContact) {

@@ -8,23 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ai.yc.user.api.contactsinfo.param.InsertContactsInfoRequest;
 import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCContactRequest;
-import com.ai.yc.user.api.userservice.param.SearchYCTranslatorRequest;
-import com.ai.yc.user.api.userservice.param.SearchYCTranslatorSkillListRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.YCContactInfoResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertContactResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
-import com.ai.yc.user.api.userservice.param.YCLSPInfoReponse;
-import com.ai.yc.user.api.userservice.param.YCTranslatorInfoResponse;
-import com.ai.yc.user.api.userservice.param.YCTranslatorSkillListResponse;
 import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
-import com.ai.yc.user.api.userservice.param.searchYCLSPInfoRequest;
 import com.alibaba.fastjson.JSON;
 
 /** 
@@ -41,12 +34,9 @@ public class testusrservice {
 	private IYCUserServiceSV usSV;
 	
 	@Test
-	public void test() {
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis()); 
+	public void testRegister() {
 //		String UserID = "000000000000003121";
-		InsertYCUserRequest insertu = new InsertYCUserRequest(null,"operationcode", "1", "172.245.32.172", "a3432gh", null, "qwgr4aga@qq.com", "ftvaads4h", "s2svd3", "b", "h", 0, "13512928888", "2108654", "BJ", "CN", "BJ", "BJ", "FULLNAME","/asdf");
-
-		
+		InsertYCUserRequest insertu = new InsertYCUserRequest(null,"operationcode", "1", "172.245.32.172", "hbhb123", null, "asdfgh@qq.com", "hbhb123", "s2svd3", "b", "h", 0, "13512928877", "2108654", "BJ", "CN", "BJ", "BJ", "FULLNAME","/asdf");
 		YCInsertUserResponse User =  usSV.insertYCUser(insertu);
 		String UserID = User.getUserId();
 		System.out.println("UserID : " + UserID);
@@ -55,6 +45,13 @@ public class testusrservice {
 		sr1.setUserId(UserID);
 		YCUserInfoResponse uir1 = usSV.searchYCUserInfo(sr1);
 		System.out.println(JSON.toJSONString(uir1));
+		
+	}
+	
+	@Test
+	public void testupdateusruser(){
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		String UserID = "4444314";
 		UpdateYCUserRequest updateu = new UpdateYCUserRequest(UserID, "hb", "hhhhhh", "bbbbbb", 0, timestamp, "1031248990", "BJ", "BJ", "BJ", "CN","houbin","fff");
 		usSV.updateYCUserInfo(updateu);
 		SearchYCUserRequest sr2 = new SearchYCUserRequest();
@@ -81,29 +78,29 @@ public class testusrservice {
 	}
 	
 	
-	@Test
-	public void testTranslator() {
-		SearchYCTranslatorRequest s = new SearchYCTranslatorRequest();
-		s.setUserId("4444314");
+//	@Test
+//	public void testTranslator() {
+//		SearchYCTranslatorRequest s = new SearchYCTranslatorRequest();
+////		s.setUserId("4444314");
 //		s.setTranslatorId("1");
-		YCTranslatorInfoResponse r = usSV.searchYCTranslatorInfo(s);
-		System.out.println(JSON.toJSONString(r));
-	}
-	
-	@Test
-	public void testSearchSkill() {
-		SearchYCTranslatorSkillListRequest a = new SearchYCTranslatorSkillListRequest();
-		a.setUserId("4444314");
-		YCTranslatorSkillListResponse response = usSV.getTranslatorSkillList(a);
-		System.out.println(JSON.toJSONString(response));
-	}
-	@Test
-	public void testSearchLsp() {
-		searchYCLSPInfoRequest a = new searchYCLSPInfoRequest();
-		a.setLspId("1");
-		YCLSPInfoReponse response = usSV.searchLSPInfo(a);
-		System.out.println(JSON.toJSONString(response));
-	}
+//		YCTranslatorInfoResponse r = usSV.searchYCTranslatorInfo(s);
+//		System.out.println(JSON.toJSONString(r));
+//	}
+//	
+//	@Test
+//	public void testSearchSkill() {
+//		SearchYCTranslatorSkillListRequest a = new SearchYCTranslatorSkillListRequest();
+//		a.setUserId("4444314");
+//		YCTranslatorSkillListResponse response = usSV.getTranslatorSkillList(a);
+//		System.out.println(JSON.toJSONString(response));
+//	}
+//	@Test
+//	public void testSearchLsp() {
+//		searchYCLSPInfoRequest a = new searchYCLSPInfoRequest();
+//		a.setLspId("1");
+//		YCLSPInfoReponse response = usSV.searchLSPInfo(a);
+//		System.out.println(JSON.toJSONString(response));
+//	}
 	
 	@Test
 	public void testSearchContact() {
@@ -117,9 +114,10 @@ public class testusrservice {
 	public void testInsertContact() {
 		InsertYCContactRequest a = new InsertYCContactRequest();
 		a.setUserId("4444314");
-		a.setEmail("10312@qq.com");
-		a.setMobilePhone("13007420476");
-		a.setContactId("2");
+		a.setEmail("106542@qq.com");
+		a.setMobilePhone("13007426666");
+		a.setGnCountryId(1);
+//		a.setContactId("2");
 		YCInsertContactResponse response = usSV.insertYCContact(a);
 		System.out.println(JSON.toJSONString(response));
 	}

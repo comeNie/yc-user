@@ -2,7 +2,6 @@ package com.ai.yc.user.api.userservice.impl;
 
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.POST;
@@ -15,33 +14,21 @@ import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.ResponseHeader;
-import com.ai.opt.sdk.components.idps.IDPSClientFactory;
 import com.ai.opt.sdk.util.BeanUtils;
-import com.ai.paas.ipaas.image.IImageClient;
 import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
-import com.ai.yc.user.api.userservice.param.InsertYCTranslatorRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCContactRequest;
-import com.ai.yc.user.api.userservice.param.SearchYCTranslatorRequest;
-import com.ai.yc.user.api.userservice.param.SearchYCTranslatorSkillListRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UsrContactMessage;
-import com.ai.yc.user.api.userservice.param.UsrLanguageMessage;
 import com.ai.yc.user.api.userservice.param.YCContactInfoResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertContactResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
-import com.ai.yc.user.api.userservice.param.YCLSPInfoReponse;
-import com.ai.yc.user.api.userservice.param.YCTranslatorInfoResponse;
-import com.ai.yc.user.api.userservice.param.YCTranslatorSkillListResponse;
 import com.ai.yc.user.api.userservice.param.YCUpdateUserResponse;
 import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
-import com.ai.yc.user.api.userservice.param.searchYCLSPInfoRequest;
 import com.ai.yc.user.constants.ExceptCodeConstants;
 import com.ai.yc.user.dao.mapper.bo.UsrContact;
-import com.ai.yc.user.dao.mapper.bo.UsrLanguage;
-import com.ai.yc.user.dao.mapper.bo.UsrTranslator;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.service.business.interfaces.IYCUserServiceBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -117,27 +104,27 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 	
 	
 
-	@Override
-	public YCTranslatorInfoResponse searchYCTranslatorInfo(SearchYCTranslatorRequest tUsrId) {
-		ResponseHeader responseHeader = null;
-		UsrTranslator usrTranslator = null;
-		YCTranslatorInfoResponse result = new YCTranslatorInfoResponse();
-		try{
-			
-			usrTranslator = ycUsrServiceBusiSv.searchYCUsrTranslatorInfo(tUsrId);
-			responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"查询成功");
-			if (null != usrTranslator){
-				BeanUtils.copyProperties(result, usrTranslator);
-			}
-			result.setResponseCode(ExceptCodeConstants.SUCCESS);
-		}catch(BusinessException e){
-			LOGGER.error("修改失败",e);
-			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
-		}
-		
-		result.setResponseHeader(responseHeader);
-		return result;
-	}
+//	@Override
+//	public YCTranslatorInfoResponse searchYCTranslatorInfo(SearchYCTranslatorRequest tUsrId) {
+//		ResponseHeader responseHeader = null;
+//		UsrTranslator usrTranslator = null;
+//		YCTranslatorInfoResponse result = new YCTranslatorInfoResponse();
+//		try{
+//			
+//			usrTranslator = ycUsrServiceBusiSv.searchYCUsrTranslatorInfo(tUsrId);
+//			responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"查询成功");
+//			if (null != usrTranslator){
+//				BeanUtils.copyProperties(result, usrTranslator);
+//			}
+//			result.setResponseCode(ExceptCodeConstants.SUCCESS);
+//		}catch(BusinessException e){
+//			LOGGER.error("修改失败",e);
+//			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
+//		}
+//		
+//		result.setResponseHeader(responseHeader);
+//		return result;
+//	}
 
 	@Override
 	public YCContactInfoResponse searchYCContactInfo(SearchYCContactRequest cUsrId) {
@@ -184,33 +171,33 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		return result;
 	}
 
-	@Override
-	public YCTranslatorSkillListResponse getTranslatorSkillList(SearchYCTranslatorSkillListRequest getSkillList) {
-		ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "更新成功");
-		YCTranslatorSkillListResponse result = new YCTranslatorSkillListResponse();
-		try{
-			result = ycUsrServiceBusiSv.getTranslatorSkillList(getSkillList.getUserId());
-			responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
-		}catch(Exception e){
-			responseHeader = new ResponseHeader(false, ExceptCodeConstants.SUCCESS, e.getMessage());
-		}
-		result.setResponseHeader(responseHeader);
-		return result;
-	}
-
-	@Override
-	public YCLSPInfoReponse searchLSPInfo(searchYCLSPInfoRequest searchLSPParams) {
-		ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "更新成功");
-		YCLSPInfoReponse result = new YCLSPInfoReponse();
-		try{
-			result = ycUsrServiceBusiSv.searchLSPInfoBussiness(searchLSPParams);
-			responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
-		}catch(Exception e){
-			responseHeader = new ResponseHeader(false, ExceptCodeConstants.SUCCESS, e.getMessage());
-		}
-		result.setResponseHeader(responseHeader);
-		return result;
-	}
+//	@Override
+//	public YCTranslatorSkillListResponse getTranslatorSkillList(SearchYCTranslatorSkillListRequest getSkillList) {
+//		ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "更新成功");
+//		YCTranslatorSkillListResponse result = new YCTranslatorSkillListResponse();
+//		try{
+//			result = ycUsrServiceBusiSv.getTranslatorSkillList(getSkillList.getUserId());
+//			responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
+//		}catch(Exception e){
+//			responseHeader = new ResponseHeader(false, ExceptCodeConstants.SUCCESS, e.getMessage());
+//		}
+//		result.setResponseHeader(responseHeader);
+//		return result;
+//	}
+//
+//	@Override
+//	public YCLSPInfoReponse searchLSPInfo(searchYCLSPInfoRequest searchLSPParams) {
+//		ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "更新成功");
+//		YCLSPInfoReponse result = new YCLSPInfoReponse();
+//		try{
+//			result = ycUsrServiceBusiSv.searchLSPInfoBussiness(searchLSPParams);
+//			responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
+//		}catch(Exception e){
+//			responseHeader = new ResponseHeader(false, ExceptCodeConstants.SUCCESS, e.getMessage());
+//		}
+//		result.setResponseHeader(responseHeader);
+//		return result;
+//	}
 
 	@Override
 	public YCInsertContactResponse insertYCContact(InsertYCContactRequest creq) {

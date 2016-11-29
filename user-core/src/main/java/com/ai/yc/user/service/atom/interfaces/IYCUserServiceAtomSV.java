@@ -4,13 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import com.ai.yc.user.api.userservice.param.YCLSPInfoReponse;
 import com.ai.yc.user.dao.mapper.bo.UsrContact;
-import com.ai.yc.user.dao.mapper.bo.UsrLanguage;
-import com.ai.yc.user.dao.mapper.bo.UsrLanguageCriteria;
-import com.ai.yc.user.dao.mapper.bo.UsrLsp;
-import com.ai.yc.user.dao.mapper.bo.UsrLspCriteria;
-import com.ai.yc.user.dao.mapper.bo.UsrTranslator;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
 
@@ -24,19 +18,19 @@ public interface IYCUserServiceAtomSV {
 
     public UsrUser getUserInfo(String userId);
 
-	public UsrTranslator getUsrTranslatorInfo(String userId);
+//	public UsrTranslator getUsrTranslatorInfo(String userId);
 
 	public List<UsrContact> getUsrContactInfo(String userId);
 	
 	public UsrUser getUserInfoByNickName(UsrUserCriteria example);
 
-	public List<UsrLanguage> getUsrLanguageList(UsrLanguageCriteria userIdCri);
+//	public List<UsrLanguage> getUsrLanguageList(UsrLanguageCriteria userIdCri);
 
-	public UsrLsp searchLspById(String lspId) ;
+//	public UsrLsp searchLspById(String lspId) ;
 
-	public List<UsrLsp> searchLspByName(UsrLspCriteria example) ;
+//	public List<UsrLsp> searchLspByName(UsrLspCriteria example) ;
 
-	public UsrTranslator getUsrTranslatorInfoByTranslatorId(String translatorId);
+//	public UsrTranslator getUsrTranslatorInfoByTranslatorId(String translatorId);
 
 	public int insertContactInfo(UsrContact usrContact);
 

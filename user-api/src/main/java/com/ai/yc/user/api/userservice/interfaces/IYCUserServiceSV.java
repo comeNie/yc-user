@@ -7,23 +7,15 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
-import com.ai.yc.user.api.userservice.param.InsertYCTranslatorRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCContactRequest;
-import com.ai.yc.user.api.userservice.param.SearchYCTranslatorRequest;
-import com.ai.yc.user.api.userservice.param.SearchYCTranslatorSkillListRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.YCContactInfoResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertContactResponse;
-import com.ai.yc.user.api.userservice.param.YCInsertTranslatorResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
-import com.ai.yc.user.api.userservice.param.YCLSPInfoReponse;
-import com.ai.yc.user.api.userservice.param.YCTranslatorInfoResponse;
-import com.ai.yc.user.api.userservice.param.YCTranslatorSkillListResponse;
 import com.ai.yc.user.api.userservice.param.YCUpdateUserResponse;
 import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
-import com.ai.yc.user.api.userservice.param.searchYCLSPInfoRequest;
 
 
 @Path("/ycuserservice")
@@ -76,18 +68,18 @@ public interface IYCUserServiceSV {
 	public YCUserInfoResponse searchUserInfoByNickName(String nickName);
 	
 	
-	/**
-	 * 查询译员基本信息数据
-	 * uid／translatorid任选其一进行查询
-	 * 不可同时传入
-	 * @param 
-	 * @return
-	 * @ApiCode USR_0004
-     * @RestRelativeURL ycuserservice/searchYCTranslatorInfo
-	 */
-	@POST
-	@Path("/searchYCTranslatorInfo")
-	YCTranslatorInfoResponse searchYCTranslatorInfo(SearchYCTranslatorRequest tUsrId);
+//	/**
+//	 * 查询译员基本信息数据
+//	 * uid／translatorid任选其一进行查询
+//	 * 不可同时传入
+//	 * @param 
+//	 * @return
+//	 * @ApiCode USR_0004
+//     * @RestRelativeURL ycuserservice/searchYCTranslatorInfo
+//	 */
+//	@POST
+//	@Path("/searchYCTranslatorInfo")
+//	YCTranslatorInfoResponse searchYCTranslatorInfo(SearchYCTranslatorRequest tUsrId);
 	
 	/**
 	 * 查询译员通讯录
@@ -110,26 +102,26 @@ public interface IYCUserServiceSV {
 	@Path("/insertYCContactInfo")
 	YCInsertContactResponse insertYCContact(InsertYCContactRequest creq);
 
-	/**
-	 * 查询译员语言技能列表
-	 * @param 
-	 * @return
-	 * @ApiCode USR_0009
-     * @RestRelativeURL ycuserservice/SearchTranslatorSkillList
-	 */
-	@POST
-	@Path("/SearchTranslatorSkillList")
-	YCTranslatorSkillListResponse getTranslatorSkillList(SearchYCTranslatorSkillListRequest getSkillList);
+//	/**
+//	 * 查询译员语言技能列表
+//	 * @param 
+//	 * @return
+//	 * @ApiCode USR_0009
+//     * @RestRelativeURL ycuserservice/SearchTranslatorSkillList
+//	 */
+//	@POST
+//	@Path("/SearchTranslatorSkillList")
+//	YCTranslatorSkillListResponse getTranslatorSkillList(SearchYCTranslatorSkillListRequest getSkillList);
 	
-	/**
-	 * 查询LSP信息
-	 * @param 
-	 * @return
-	 * @ApiCode USR_0010
-     * @RestRelativeURL ycuserservice/searchLSPInfo
-	 */
-	@POST
-	@Path("/searchLSPInfo")
-	YCLSPInfoReponse searchLSPInfo(searchYCLSPInfoRequest searchLSPParams);
+//	/**
+//	 * 查询LSP信息
+//	 * @param 
+//	 * @return
+//	 * @ApiCode USR_0010
+//     * @RestRelativeURL ycuserservice/searchLSPInfo
+//	 */
+//	@POST
+//	@Path("/searchLSPInfo")
+//	YCLSPInfoReponse searchLSPInfo(searchYCLSPInfoRequest searchLSPParams);
 	
 }

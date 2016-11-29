@@ -31,23 +31,13 @@ import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterRequest;
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterResponse;
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
-import com.ai.yc.user.api.userservice.param.SearchYCTranslatorRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
-import com.ai.yc.user.api.userservice.param.UsrContactMessage;
-import com.ai.yc.user.api.userservice.param.UsrLanguageMessage;
-import com.ai.yc.user.api.userservice.param.UsrLspMessage;
 import com.ai.yc.user.api.userservice.param.YCInsertContactResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
-import com.ai.yc.user.api.userservice.param.YCLSPInfoReponse;
-import com.ai.yc.user.api.userservice.param.YCTranslatorSkillListResponse;
 import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
-import com.ai.yc.user.api.userservice.param.searchYCLSPInfoRequest;
 import com.ai.yc.user.dao.mapper.bo.UsrContact;
 import com.ai.yc.user.dao.mapper.bo.UsrLanguage;
-import com.ai.yc.user.dao.mapper.bo.UsrLanguageCriteria;
 import com.ai.yc.user.dao.mapper.bo.UsrLsp;
-import com.ai.yc.user.dao.mapper.bo.UsrLspCriteria;
-import com.ai.yc.user.dao.mapper.bo.UsrTranslator;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
 import com.ai.yc.user.service.atom.interfaces.IYCUserServiceAtomSV;
@@ -287,26 +277,26 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		return result;
 	}
 
-	@Override
-	public UsrTranslator searchYCUsrTranslatorInfo(SearchYCTranslatorRequest searchReq) throws BusinessException {
-		if (StringUtil.isBlank(searchReq.getUserId()) && StringUtil.isBlank(searchReq.getTranslatorId())) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户Id与译员id不能同时为空");
-		}
-		if (!StringUtil.isBlank(searchReq.getUserId()) && !StringUtil.isBlank(searchReq.getTranslatorId())) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户Id与译员id不能同时存在");
-		}
-		UsrTranslator utr = null;
-		if(!StringUtil.isBlank(searchReq.getUserId())){
-			utr = ycUSAtomSV.getUsrTranslatorInfo(searchReq.getUserId());
-		} else {
-			utr = ycUSAtomSV.getUsrTranslatorInfoByTranslatorId(searchReq.getTranslatorId());
-		}
-		if (null == utr) {
-			return null;
-		}
-		
-		return utr;
-	}
+//	@Override
+//	public UsrTranslator searchYCUsrTranslatorInfo(SearchYCTranslatorRequest searchReq) throws BusinessException {
+//		if (StringUtil.isBlank(searchReq.getUserId()) && StringUtil.isBlank(searchReq.getTranslatorId())) {
+//			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户Id与译员id不能同时为空");
+//		}
+//		if (!StringUtil.isBlank(searchReq.getUserId()) && !StringUtil.isBlank(searchReq.getTranslatorId())) {
+//			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户Id与译员id不能同时存在");
+//		}
+//		UsrTranslator utr = null;
+//		if(!StringUtil.isBlank(searchReq.getUserId())){
+//			utr = ycUSAtomSV.getUsrTranslatorInfo(searchReq.getUserId());
+//		} else {
+//			utr = ycUSAtomSV.getUsrTranslatorInfoByTranslatorId(searchReq.getTranslatorId());
+//		}
+//		if (null == utr) {
+//			return null;
+//		}
+//		
+//		return utr;
+//	}
 
 	@Override
 	public List<UsrContact> searchUsrContactInfo(String userId) throws BusinessException {
@@ -349,88 +339,88 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		return user;
 	}
 
-	@Override
-	public YCTranslatorSkillListResponse getTranslatorSkillList(String userId) throws BusinessException {
-		if (StringUtil.isBlank(userId)) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户ID不能为空");
-		}
-		YCTranslatorSkillListResponse translatorSkillList = new YCTranslatorSkillListResponse();
-		// UsrUser验证译员信息
-		UsrUser userinfo = ycUSAtomSV.getUserInfo(userId);
-		if(null == userinfo.getIsTranslator()){
-			return translatorSkillList;
-		}
-		if (userinfo.getIsTranslator() != 1) {
-			return translatorSkillList;
-		}
-		// 获取译员信息
-		UsrTranslator utr = ycUSAtomSV.getUsrTranslatorInfo(userId);
-		if (null == utr) {
-			return translatorSkillList;
-		}
-		
-		BeanUtils.copyProperties(translatorSkillList, utr);
-		// 获取技能列表
-		UsrLanguageCriteria example = new UsrLanguageCriteria();
-		UsrLanguageCriteria.Criteria criteria = example.createCriteria();
-		criteria.andTranslatorIdEqualTo(utr.getTranslatorId());
-		List<UsrLanguage> usrLanguageList = ycUSAtomSV.getUsrLanguageList(example);
-		translatorSkillList.setUsrLanguageList(changUsrLanguageToUsrLanguageMessage(usrLanguageList));
-		return translatorSkillList;
-	}
+//	@Override
+//	public YCTranslatorSkillListResponse getTranslatorSkillList(String userId) throws BusinessException {
+//		if (StringUtil.isBlank(userId)) {
+//			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户ID不能为空");
+//		}
+//		YCTranslatorSkillListResponse translatorSkillList = new YCTranslatorSkillListResponse();
+//		// UsrUser验证译员信息
+//		UsrUser userinfo = ycUSAtomSV.getUserInfo(userId);
+//		if(null == userinfo.getIsTranslator()){
+//			return translatorSkillList;
+//		}
+//		if (userinfo.getIsTranslator() != 1) {
+//			return translatorSkillList;
+//		}
+//		// 获取译员信息
+//		UsrTranslator utr = ycUSAtomSV.getUsrTranslatorInfo(userId);
+//		if (null == utr) {
+//			return translatorSkillList;
+//		}
+//		
+//		BeanUtils.copyProperties(translatorSkillList, utr);
+//		// 获取技能列表
+//		UsrLanguageCriteria example = new UsrLanguageCriteria();
+//		UsrLanguageCriteria.Criteria criteria = example.createCriteria();
+//		criteria.andTranslatorIdEqualTo(utr.getTranslatorId());
+//		List<UsrLanguage> usrLanguageList = ycUSAtomSV.getUsrLanguageList(example);
+//		translatorSkillList.setUsrLanguageList(changUsrLanguageToUsrLanguageMessage(usrLanguageList));
+//		return translatorSkillList;
+//	}
 
-	private List<UsrLanguageMessage> changUsrLanguageToUsrLanguageMessage(List<UsrLanguage> usrLanguageList) {
-		Gson g = new Gson();
-		Type type = new TypeToken<List<UsrLanguageMessage>>(){}.getType();
-		return g.fromJson(g.toJson(usrLanguageList), type);
-	}
+//	private List<UsrLanguageMessage> changUsrLanguageToUsrLanguageMessage(List<UsrLanguage> usrLanguageList) {
+//		Gson g = new Gson();
+//		Type type = new TypeToken<List<UsrLanguageMessage>>(){}.getType();
+//		return g.fromJson(g.toJson(usrLanguageList), type);
+//	}
 
-	@Override
-	public YCLSPInfoReponse searchLSPInfoBussiness(searchYCLSPInfoRequest params) {
-		UsrLsp usrLsp = null;
-		YCLSPInfoReponse yclspRep = new YCLSPInfoReponse();
-		yclspRep.setLspId(params.getLspId());
-		yclspRep.setLspName(params.getLspName());
-		List<UsrLsp> usrLspList = new ArrayList<UsrLsp>();
-		if (!StringUtil.isBlank(params.getLspId()) && StringUtil.isBlank(params.getLspName())) {
-			usrLsp = ycUSAtomSV.searchLspById(params.getLspId());
-			if (null == usrLsp) {
-				return yclspRep;
-			}
-			usrLspList.add(usrLsp);
-			yclspRep.setUsrLspList(changUsrLspToUsrLspMessage(usrLspList));
-		}
-		if (StringUtil.isBlank(params.getLspId()) && !StringUtil.isBlank(params.getLspName())) {
-			UsrLspCriteria example = new UsrLspCriteria();
-			UsrLspCriteria.Criteria criteria = example.createCriteria();
-			criteria.andLspNameLike(params.getLspName());
-			usrLspList = ycUSAtomSV.searchLspByName(example);
-			if (null == usrLspList) {
-				return yclspRep;
-			}
-			if (null == usrLspList.get(0)){
-				return yclspRep;
-			}
-			yclspRep.setUsrLspList(changUsrLspToUsrLspMessage(usrLspList));
-		}
-		if (StringUtil.isBlank(params.getLspId()) && StringUtil.isBlank(params.getLspName())) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "参数不能同时为空");
-		}
-		if (!StringUtil.isBlank(params.getLspId()) && !StringUtil.isBlank(params.getLspName())) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "参数不能同时有值");
-		}
-		return yclspRep;
-	}
+//	@Override
+//	public YCLSPInfoReponse searchLSPInfoBussiness(searchYCLSPInfoRequest params) {
+//		UsrLsp usrLsp = null;
+//		YCLSPInfoReponse yclspRep = new YCLSPInfoReponse();
+//		yclspRep.setLspId(params.getLspId());
+//		yclspRep.setLspName(params.getLspName());
+//		List<UsrLsp> usrLspList = new ArrayList<UsrLsp>();
+//		if (!StringUtil.isBlank(params.getLspId()) && StringUtil.isBlank(params.getLspName())) {
+//			usrLsp = ycUSAtomSV.searchLspById(params.getLspId());
+//			if (null == usrLsp) {
+//				return yclspRep;
+//			}
+//			usrLspList.add(usrLsp);
+//			yclspRep.setUsrLspList(changUsrLspToUsrLspMessage(usrLspList));
+//		}
+//		if (StringUtil.isBlank(params.getLspId()) && !StringUtil.isBlank(params.getLspName())) {
+//			UsrLspCriteria example = new UsrLspCriteria();
+//			UsrLspCriteria.Criteria criteria = example.createCriteria();
+//			criteria.andLspNameLike(params.getLspName());
+//			usrLspList = ycUSAtomSV.searchLspByName(example);
+//			if (null == usrLspList) {
+//				return yclspRep;
+//			}
+//			if (null == usrLspList.get(0)){
+//				return yclspRep;
+//			}
+//			yclspRep.setUsrLspList(changUsrLspToUsrLspMessage(usrLspList));
+//		}
+//		if (StringUtil.isBlank(params.getLspId()) && StringUtil.isBlank(params.getLspName())) {
+//			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "参数不能同时为空");
+//		}
+//		if (!StringUtil.isBlank(params.getLspId()) && !StringUtil.isBlank(params.getLspName())) {
+//			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "参数不能同时有值");
+//		}
+//		return yclspRep;
+//	}
 
-	private List<UsrLspMessage> changUsrLspToUsrLspMessage(List<UsrLsp> usrLspList) {
-		List<UsrLspMessage> ulmList = new ArrayList<UsrLspMessage>();
-		for (UsrLsp ul : usrLspList) {
-			UsrLspMessage ulm = new UsrLspMessage();
-			BeanUtils.copyProperties(ulm, ul);
-			ulmList.add(ulm);
-		}
-		return ulmList;
-	}
+//	private List<UsrLspMessage> changUsrLspToUsrLspMessage(List<UsrLsp> usrLspList) {
+//		List<UsrLspMessage> ulmList = new ArrayList<UsrLspMessage>();
+//		for (UsrLsp ul : usrLspList) {
+//			UsrLspMessage ulm = new UsrLspMessage();
+//			BeanUtils.copyProperties(ulm, ul);
+//			ulmList.add(ulm);
+//		}
+//		return ulmList;
+//	}
 
 	@Override
 	public YCInsertContactResponse insertContactInfo(InsertYCContactRequest creq) throws BusinessException {
