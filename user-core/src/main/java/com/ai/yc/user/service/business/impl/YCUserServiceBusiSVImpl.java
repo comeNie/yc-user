@@ -42,6 +42,7 @@ import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
 import com.ai.yc.user.service.atom.interfaces.IYCUserServiceAtomSV;
 import com.ai.yc.user.service.business.interfaces.IYCUserServiceBusiSV;
 import com.ai.yc.user.util.UCDateUtils;
+import com.alibaba.fastjson.JSON;
 
 @Service
 @Transactional
@@ -100,6 +101,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			umrr.setCreatetime(UCDateUtils.getSystime() + "");
 			UcMembersRegisterResponse umrResponse = null;
 			umrResponse = iUcMembersSV.ucRegisterMember(umrr);
+			LOG.info("调用ucenter服务完毕----------");
 			if (umrResponse == null) {
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "返回值为空");
 			}
@@ -121,7 +123,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT,
 						"ucenter返回值缺少operationcode");
 			}
-
+			LOG.info("创建ucenter账号成功-----------"+JSON.toJSONString(umrResponse));
 			// 支付账户信息
 			IAccountMaintainSV iAccountMaintainSV = DubboConsumerFactory.getService(IAccountMaintainSV.class);
 			RegAccReq vo = new RegAccReq();
@@ -132,7 +134,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			vo.setAcctName(umrResponse.getDate().get("username").toString());
 			vo.setAcctType("1");
 			long accountId = iAccountMaintainSV.createAccount(vo);
-
+			LOG.info("创建个人账户成功----------------");
 			// 插入数据
 			UsrUser tUser = new UsrUser();
 			// 从右到左,把相同类型且属性名相同的复制到右边
@@ -141,10 +143,11 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			tUser.setNickname("译粉_"+SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8));
 			tUser.setAccountId(accountId);
 			ycUSAtomSV.insertUserInfo(tUser);
-
+			LOG.info("创建个人信息成功-----------");
 			YCInsertUserResponse insertResp = new YCInsertUserResponse();
 			insertResp.setUserId(tUser.getUserId());
 			insertResp.setOperationcode(umrResponse.getDate().get("operationcode").toString());
+			LOG.info("返回数据------------"+JSON.toJSONString(insertResp));
 			return insertResp;
 		} else if (insertinfo.getLoginway().equals("2")) {// 思路：前台调用ucGetOperationcode接口，然后这里调用UcMembersEditPassRequest接口修改密码，与邮箱注册不同的是前台必须要传uid和Operationcod过来
 			//---------------------- 
@@ -175,7 +178,6 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 //			umepr.setUid(Integer.valueOf(umgor.getDate().get("uid").toString()));
 //			insertinfo.setUserId(umgor.getDate().get("uid").toString());
 //			//----------------------
-
 			UcMembersResponse umr = iUcMembersSV.ucEditPassword(umepr);
 			if (umr == null) {
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "返回值为NULL");
@@ -190,7 +192,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT,
 						"内部错误 缺少username");
 			}
-
+			LOG.info("修改密码成功-------------");
 			// 支付账户信息
 			IAccountMaintainSV iAccountMaintainSV = DubboConsumerFactory.getService(IAccountMaintainSV.class);
 			RegAccReq vo = new RegAccReq();
@@ -201,7 +203,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			vo.setAcctName(umr.getDate().get("username").toString());
 			vo.setAcctType("1");//1预付费
 			long accountId = iAccountMaintainSV.createAccount(vo);
-			
+			LOG.info("创建账号成功-----------------");
 			// 插入数据
 			UsrUser tUser = new UsrUser();
 			// 从右到左,把相同类型且属性名相同的复制到右边
@@ -209,9 +211,10 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			tUser.setAccountId(accountId);
 			tUser.setNickname("译粉_"+SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8));
 			ycUSAtomSV.insertUserInfo(tUser);
-
+			LOG.info("创建个人信息---------------"+JSON.toJSONString(tUser));
 			YCInsertUserResponse insertResp = new YCInsertUserResponse();
 			insertResp.setUserId(tUser.getUserId());
+			LOG.info("返回数据------------------------"+JSON.toJSONString(insertResp));
 			return insertResp;
 
 		} else {
