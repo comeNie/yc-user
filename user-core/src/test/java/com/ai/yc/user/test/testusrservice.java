@@ -36,7 +36,7 @@ public class testusrservice {
 	@Test
 	public void testRegister() {
 //		String UserID = "000000000000003121";
-		InsertYCUserRequest insertu = new InsertYCUserRequest(null,"operationcode", "1", "172.245.32.172", "hbhb123", null, "asdfgh@qq.com", "hbhb123", "s2svd3", "b", "h", 0, "13512928877", "2108654", "BJ", "CN", "BJ", "BJ", "FULLNAME","/asdf");
+		InsertYCUserRequest insertu = new InsertYCUserRequest("11111","opera", "2", "172.245.32.172", "hbhb123", null, "bkkfgh@qq.com", "hbhb123", null, null, null, 0, "13512926347", null, null, null, null, null, null,null);
 		YCInsertUserResponse User =  usSV.insertYCUser(insertu);
 		String UserID = User.getUserId();
 		System.out.println("UserID : " + UserID);

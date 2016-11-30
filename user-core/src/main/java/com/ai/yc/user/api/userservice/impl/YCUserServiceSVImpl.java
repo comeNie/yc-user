@@ -45,6 +45,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCInsertUserResponse insertYCUser(InsertYCUserRequest insertInfo){
+		LOGGER.debug("insertYCUser input params:", insertInfo);
 		ResponseHeader responseHeader = null;
 		try{
 			YCInsertUserResponse response = ycUsrServiceBusiSv.insertUserInfo(insertInfo);
@@ -69,6 +70,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCUpdateUserResponse updateYCUserInfo(UpdateYCUserRequest updateUserParams){
+		LOGGER.debug("updateYCUserInfo input params:", updateUserParams);
 		ResponseHeader responseHeader = null;
 		YCUpdateUserResponse response = new YCUpdateUserResponse();
 		try{
@@ -87,7 +89,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCUserInfoResponse searchYCUserInfo(SearchYCUserRequest userId){
-		
+		LOGGER.debug("searchYCUserInfo input params:", userId);
 		ResponseHeader responseHeader = null;
 		YCUserInfoResponse result = null ;
 		try{
@@ -128,6 +130,8 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCContactInfoResponse searchYCContactInfo(SearchYCContactRequest cUsrId) {
+		LOGGER.debug("searchYCContactInfo input params:", cUsrId);
+		
 		List<UsrContact> usrContact = null;
 		ResponseHeader responseHeader = null;
 		YCContactInfoResponse result = new YCContactInfoResponse();
@@ -155,6 +159,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 	@POST
 	@Path("/searchUserInfoByNickName")
 	public YCUserInfoResponse searchUserInfoByNickName(String nickName) {
+		LOGGER.debug("searchUserInfoByNickName input params:",nickName);
 		ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "更新成功");
 		YCUserInfoResponse result = new YCUserInfoResponse();
 		try{
@@ -164,8 +169,8 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 				BeanUtils.copyProperties(result, usruser);
 			}
 			responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
-		}catch(Exception e){
-			responseHeader = new ResponseHeader(false, ExceptCodeConstants.SUCCESS, "查询失败");
+		}catch(BusinessException e){
+			responseHeader = new ResponseHeader(false, ExceptCodeConstants.FAILD, e.getErrorMessage());
 		}
 		result.setResponseHeader(responseHeader);
 		return result;
@@ -201,6 +206,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	@Override
 	public YCInsertContactResponse insertYCContact(InsertYCContactRequest creq) {
+		LOGGER.debug("insertYCContact input params:", creq);
 		ResponseHeader responseHeader = null;
 		try{
 			YCInsertContactResponse response = ycUsrServiceBusiSv.insertContactInfo(creq);

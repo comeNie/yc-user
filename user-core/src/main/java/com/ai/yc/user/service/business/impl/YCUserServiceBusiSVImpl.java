@@ -1,7 +1,5 @@
 package com.ai.yc.user.service.business.impl;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -24,9 +22,12 @@ import com.ai.slp.balance.api.accountmaintain.param.RegAccReq;
 import com.ai.yc.common.api.country.interfaces.IGnCountrySV;
 import com.ai.yc.common.api.country.param.CountryRequest;
 import com.ai.yc.common.api.country.param.CountryResponse;
+import com.ai.yc.ucenter.api.members.interfaces.IUcMembersOperationSV;
 import com.ai.yc.ucenter.api.members.interfaces.IUcMembersSV;
 import com.ai.yc.ucenter.api.members.param.UcMembersResponse;
 import com.ai.yc.ucenter.api.members.param.editpass.UcMembersEditPassRequest;
+import com.ai.yc.ucenter.api.members.param.opera.UcMembersGetOperationcodeRequest;
+import com.ai.yc.ucenter.api.members.param.opera.UcMembersGetOperationcodeResponse;
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterRequest;
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterResponse;
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
@@ -36,15 +37,11 @@ import com.ai.yc.user.api.userservice.param.YCInsertContactResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
 import com.ai.yc.user.dao.mapper.bo.UsrContact;
-import com.ai.yc.user.dao.mapper.bo.UsrLanguage;
-import com.ai.yc.user.dao.mapper.bo.UsrLsp;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
 import com.ai.yc.user.service.atom.interfaces.IYCUserServiceAtomSV;
 import com.ai.yc.user.service.business.interfaces.IYCUserServiceBusiSV;
 import com.ai.yc.user.util.UCDateUtils;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 @Service
 @Transactional
@@ -107,7 +104,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "返回值为空");
 			}
 			if (!umrResponse.getMessage().isSuccess()) {
-				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "内部错误 : ");
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "内部错误 : " + umrResponse.getCode().getCodeMessage());
 			}
 			if (umrResponse.getCode().getCodeNumber().intValue() != 1) {
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "ucenter返回值 : "
@@ -162,7 +159,11 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 //			 umgor.getDate().get("uid");
 //			 umgor.getDate().get("operationcode");
 			//----------------------
-
+			
+			UsrUser user = ycUSAtomSV.getUserInfo(insertinfo.getUserId());
+			if(null != user){
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "UID 已经存在");
+			}
 			UcMembersEditPassRequest umepr = new UcMembersEditPassRequest();
 			umepr.setUid(Integer.valueOf(insertinfo.getUserId()));
 			umepr.setChecke_code(insertinfo.getOperationcode());
@@ -180,14 +181,14 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "返回值为NULL");
 			}
 			if (!umr.getMessage().isSuccess()) {
-				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "内部错误");
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "ucenter 内部错误");
 			}
 			if (umr.getCode().getCodeNumber().intValue() != 1) {
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, umr.getCode().getCodeMessage());
 			}
 			if (StringUtil.isBlank(umr.getDate().get("username").toString())) { // 邮箱注册必有值,ucenter返回值缺少username
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT,
-						"内部错误");
+						"内部错误 缺少username");
 			}
 
 			// 支付账户信息
