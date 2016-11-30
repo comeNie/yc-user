@@ -192,7 +192,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT,
 						"内部错误 缺少username");
 			}
-			LOG.info("修改密码成功-------------");
+			LOG.info("修改密码成功-------------"+JSON.toJSONString(umepr));
 			// 支付账户信息
 			IAccountMaintainSV iAccountMaintainSV = DubboConsumerFactory.getService(IAccountMaintainSV.class);
 			RegAccReq vo = new RegAccReq();
@@ -207,6 +207,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			// 插入数据
 			UsrUser tUser = new UsrUser();
 			// 从右到左,把相同类型且属性名相同的复制到右边
+			LOG.info("个人信息insertinfo"+JSON.toJSONString(insertinfo));
 			BeanUtils.copyProperties(tUser, insertinfo);
 			tUser.setAccountId(accountId);
 			tUser.setNickname("译粉_"+SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8));
