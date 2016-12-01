@@ -231,10 +231,6 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "昵称不能为空");
 		}
 
-		if (StringUtil.isBlank(userparam.getUserName())) {
-			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户名不能为空");
-		}
-
 		UsrUser user = new UsrUser();
 		BeanUtils.copyProperties(user, userparam);
 		UsrUserCriteria example = new UsrUserCriteria();
