@@ -14,7 +14,10 @@ import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.ResponseHeader;
+import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
 import com.ai.opt.sdk.util.BeanUtils;
+import com.ai.yc.ucenter.api.members.interfaces.IUcMembersSV;
+import com.ai.yc.ucenter.api.members.param.del.UcMembersDelRequest;
 import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
@@ -54,12 +57,21 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 				response.setResponseHeader(responseHeader);
 		        return response;
 			} else {
+				
 				response = new YCInsertUserResponse();
 				responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,"传入不支持注册类型，注册失败");
 				response.setResponseHeader(responseHeader);
 		        return response;
 			}
 		}catch(BusinessException e){
+			if(insertInfo.getUserId() != null){
+				IUcMembersSV iUcMembersSV = DubboConsumerFactory.getService(IUcMembersSV.class);
+				UcMembersDelRequest umdr = new UcMembersDelRequest();
+				umdr.setTenantId("yeecloud");
+				umdr.setUid(Integer.valueOf(insertInfo.getUserId()));
+				iUcMembersSV.ucDelMember(umdr);
+			}
+			
 			LOGGER.error("插入失败",e);
 			YCInsertUserResponse response = new YCInsertUserResponse();
 			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
