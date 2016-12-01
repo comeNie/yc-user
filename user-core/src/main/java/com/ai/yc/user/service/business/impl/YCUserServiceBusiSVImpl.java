@@ -22,12 +22,9 @@ import com.ai.slp.balance.api.accountmaintain.param.RegAccReq;
 import com.ai.yc.common.api.country.interfaces.IGnCountrySV;
 import com.ai.yc.common.api.country.param.CountryRequest;
 import com.ai.yc.common.api.country.param.CountryResponse;
-import com.ai.yc.ucenter.api.members.interfaces.IUcMembersOperationSV;
 import com.ai.yc.ucenter.api.members.interfaces.IUcMembersSV;
 import com.ai.yc.ucenter.api.members.param.UcMembersResponse;
 import com.ai.yc.ucenter.api.members.param.editpass.UcMembersEditPassRequest;
-import com.ai.yc.ucenter.api.members.param.opera.UcMembersGetOperationcodeRequest;
-import com.ai.yc.ucenter.api.members.param.opera.UcMembersGetOperationcodeResponse;
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterRequest;
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterResponse;
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
@@ -48,7 +45,6 @@ import com.alibaba.fastjson.JSON;
 @Transactional
 public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 
-	@SuppressWarnings("unused")
 	private static final Log LOG = LogFactory.getLog(YCUserServiceBusiSVImpl.class);
 
 	@Autowired
@@ -147,6 +143,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			YCInsertUserResponse insertResp = new YCInsertUserResponse();
 			insertResp.setUserId(tUser.getUserId());
 			insertResp.setOperationcode(umrResponse.getDate().get("operationcode").toString());
+			insertResp.setUsername(umrResponse.getDate().get("username").toString());
 			LOG.info("返回数据------------"+JSON.toJSONString(insertResp));
 			return insertResp;
 		} else if (insertinfo.getLoginway().equals("2")) {// 思路：前台调用ucGetOperationcode接口，然后这里调用UcMembersEditPassRequest接口修改密码，与邮箱注册不同的是前台必须要传uid和Operationcod过来

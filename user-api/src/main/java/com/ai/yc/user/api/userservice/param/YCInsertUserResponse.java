@@ -18,8 +18,15 @@ public class YCInsertUserResponse extends BaseResponse {
 	 * 用户uid／userid
 	 */
 	private String userId;
-	
+	/**
+	 * 验证码
+	 */
 	private String operationcode;
+	/**
+	 * 用户
+	 */
+	private String username;
+	
 	public String getUserId() {
 		return userId;
 	}
@@ -31,5 +38,11 @@ public class YCInsertUserResponse extends BaseResponse {
 	}
 	public void setOperationcode(String operationcode) {
 		this.operationcode = operationcode;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 }
