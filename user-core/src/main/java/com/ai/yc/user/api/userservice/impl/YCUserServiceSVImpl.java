@@ -38,7 +38,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-@Service(validation = "true")
+@Service
 @Component
 public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
