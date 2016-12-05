@@ -8,18 +8,9 @@ import org.springframework.stereotype.Component;
 import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.yc.user.dao.mapper.bo.UsrContact;
 import com.ai.yc.user.dao.mapper.bo.UsrContactCriteria;
-import com.ai.yc.user.dao.mapper.bo.UsrLanguage;
-import com.ai.yc.user.dao.mapper.bo.UsrLanguageCriteria;
-import com.ai.yc.user.dao.mapper.bo.UsrLsp;
-import com.ai.yc.user.dao.mapper.bo.UsrLspCriteria;
-import com.ai.yc.user.dao.mapper.bo.UsrTranslator;
-import com.ai.yc.user.dao.mapper.bo.UsrTranslatorCriteria;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
 import com.ai.yc.user.dao.mapper.interfaces.UsrContactMapper;
-import com.ai.yc.user.dao.mapper.interfaces.UsrLanguageMapper;
-import com.ai.yc.user.dao.mapper.interfaces.UsrLspMapper;
-import com.ai.yc.user.dao.mapper.interfaces.UsrTranslatorMapper;
 import com.ai.yc.user.dao.mapper.interfaces.UsrUserMapper;
 import com.ai.yc.user.service.atom.interfaces.IYCUserServiceAtomSV;
 
