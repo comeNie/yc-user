@@ -181,6 +181,9 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			if (umr == null) {
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "返回值为NULL");
 			}
+			if (umr.getMessage() == null) {
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "返回值为NULL");
+			}
 			if (!umr.getMessage().isSuccess()) {
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "ucenter 内部错误");
 			}

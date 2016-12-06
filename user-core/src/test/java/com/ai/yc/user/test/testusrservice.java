@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
+import com.ai.yc.ucenter.api.members.interfaces.IUcMembersOperationSV;
+import com.ai.yc.ucenter.api.members.param.opera.UcMembersGetOperationcodeRequest;
+import com.ai.yc.ucenter.api.members.param.opera.UcMembersGetOperationcodeResponse;
 import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
@@ -35,17 +39,36 @@ public class testusrservice {
 	
 	@Test
 	public void testRegister() {
-//		String UserID = "000000000000003121";
-		InsertYCUserRequest insertu = new InsertYCUserRequest("11111","opera", "2", "172.245.32.172", "hbhb123", null, "bkkfgh@qq.com", "hbhb123", null, null, null, 0, "13512926347", null, null, null, null, null, null,null);
+		String PhoneNum = "13512926354";
+		String Email = "yhniausv4@qq.com";
+		String Password = "hbhb123";
+		
+		IUcMembersOperationSV iUcMembersOperationSV = DubboConsumerFactory.getService(IUcMembersOperationSV.class);
+		UcMembersGetOperationcodeRequest ucMembersGetOperationcodeRequest = new UcMembersGetOperationcodeRequest();
+		ucMembersGetOperationcodeRequest.setUserinfo(PhoneNum);
+		ucMembersGetOperationcodeRequest.setOperationtype("1");
+		UcMembersGetOperationcodeResponse umgor = iUcMembersOperationSV.ucGetOperationcode(ucMembersGetOperationcodeRequest);
+		
+		InsertYCUserRequest insertu = new InsertYCUserRequest(umgor.getDate().get("uid").toString(),umgor.getDate().get("operationcode").toString().substring(1) + "1", "2", "172.245.32.172", "hbhb123", null, Email, Password, null, null, null, 0, PhoneNum, null, null, null, null, null, null,null);
 		YCInsertUserResponse User =  usSV.insertYCUser(insertu);
 		String UserID = User.getUserId();
 		System.out.println("UserID : " + UserID);
 		System.out.println("ResultMessage : "+User.getResponseHeader().getResultMessage()+" ; IsSuccess : " + User.getResponseHeader().getIsSuccess());
+		
 		SearchYCUserRequest sr1 = new SearchYCUserRequest();
 		sr1.setUserId(UserID);
 		YCUserInfoResponse uir1 = usSV.searchYCUserInfo(sr1);
 		System.out.println(JSON.toJSONString(uir1));
 		
+		
+		InsertYCUserRequest insertu1 = new InsertYCUserRequest(umgor.getDate().get("uid").toString(),umgor.getDate().get("operationcode").toString(), "2", "172.245.32.172", "hbhb123", null, Email, Password, null, null, null, 0, PhoneNum, null, null, null, null, null, null,null);
+		YCInsertUserResponse User1 =  usSV.insertYCUser(insertu1);
+		UserID = User1.getUserId();
+		
+		SearchYCUserRequest sr2 = new SearchYCUserRequest();
+		sr1.setUserId(UserID);
+		YCUserInfoResponse uir2 = usSV.searchYCUserInfo(sr2);
+		System.out.println(JSON.toJSONString(uir2));
 	}
 	
 	@Test
