@@ -1,5 +1,7 @@
 package com.ai.yc.user.api.userservice.interfaces;
 
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -67,20 +69,7 @@ public interface IYCUserServiceSV {
 	@Path("/searchUserInfoByNickName")
 	public YCUserInfoResponse searchUserInfoByNickName(String nickName);
 	
-	
-//	/**
-//	 * 查询译员基本信息数据
-//	 * uid／translatorid任选其一进行查询
-//	 * 不可同时传入
-//	 * @param 
-//	 * @return
-//	 * @ApiCode USR_0004
-//     * @RestRelativeURL ycuserservice/searchYCTranslatorInfo
-//	 */
-//	@POST
-//	@Path("/searchYCTranslatorInfo")
-//	YCTranslatorInfoResponse searchYCTranslatorInfo(SearchYCTranslatorRequest tUsrId);
-	
+
 	/**
 	 * 查询译员通讯录
 	 * @param 
@@ -102,26 +91,16 @@ public interface IYCUserServiceSV {
 	@Path("/insertYCContactInfo")
 	YCInsertContactResponse insertYCContact(InsertYCContactRequest creq);
 
-//	/**
-//	 * 查询译员语言技能列表
-//	 * @param 
-//	 * @return
-//	 * @ApiCode USR_0009
-//     * @RestRelativeURL ycuserservice/SearchTranslatorSkillList
-//	 */
-//	@POST
-//	@Path("/SearchTranslatorSkillList")
-//	YCTranslatorSkillListResponse getTranslatorSkillList(SearchYCTranslatorSkillListRequest getSkillList);
-	
-//	/**
-//	 * 查询LSP信息
-//	 * @param 
-//	 * @return
-//	 * @ApiCode USR_0010
-//     * @RestRelativeURL ycuserservice/searchLSPInfo
-//	 */
-//	@POST
-//	@Path("/searchLSPInfo")
-//	YCLSPInfoReponse searchLSPInfo(searchYCLSPInfoRequest searchLSPParams);
+	/**
+	 * 添加译员通讯录
+	 * @param 
+	 * @return
+	 * @ApiCode USR_0007
+     * @RestRelativeURL ycuserservice/insertYCContactInfo
+	 */
+	@POST
+	@Path("/getAllUserInfo")
+	public List<YCUserInfoResponse> getAllUserInfo();
+
 	
 }
