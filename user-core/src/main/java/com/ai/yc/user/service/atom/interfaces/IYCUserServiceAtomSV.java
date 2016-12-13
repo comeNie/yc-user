@@ -35,5 +35,6 @@ public interface IYCUserServiceAtomSV {
 	public int insertContactInfo(UsrContact usrContact);
 
 	public int deleteContactInfo(String contactId);
-
+	
+	public List<UsrUser> getAllUserInfo();
 }

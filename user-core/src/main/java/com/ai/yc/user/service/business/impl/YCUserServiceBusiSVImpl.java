@@ -130,7 +130,16 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			vo.setTenantId("yeecloud");// 租户ID
 			vo.setRegCustomerId(umrResponse.getDate().get("uid").toString());
 			vo.setAcctName(umrResponse.getDate().get("username").toString());
+			
+			/**
+			 * 个人客户需校验支付密码
+			 */
+			vo.setPayCheck("1");
+			/**
+			 * 1、预付费 0、后付费
+			 */
 			vo.setAcctType("1");
+			
 			long accountId = iAccountMaintainSV.createAccount(vo);
 			LOG.info("创建个人账户成功----------------");
 			// 插入数据
@@ -264,42 +273,9 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			String url = im.getImageUrl(usrUser.getPortraitId(), ".jpg", "100x100");
 			result.setUrl(url);
 		}
-//		IUcMembersSV iUcMembersSV = DubboConsumerFactory.getService(IUcMembersSV.class);
-//		UcMembersGetRequest ucMembersGetRequest = new UcMembersGetRequest();
-//		ucMembersGetRequest.setUsername(usrUser.getUserId());
-//		ucMembersGetRequest.setGetmode("1");
-//		UcMembersGetResponse ucMembersGetResponse = iUcMembersSV.ucGetMember(ucMembersGetRequest);
-//		if (null == ucMembersGetResponse.getDate().get("username")) {
-//			throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT,
-//					"ucenter返回值 : " + ucMembersGetResponse.getCode().getCodeNumber() + " --- "
-//							+ ucMembersGetResponse.getCode().getCodeMessage());
-//		}
-//		String userName = ucMembersGetResponse.getDate().get("username").toString();
-//		result.setUsername(userName);
-
 		return result;
 	}
 
-//	@Override
-//	public UsrTranslator searchYCUsrTranslatorInfo(SearchYCTranslatorRequest searchReq) throws BusinessException {
-//		if (StringUtil.isBlank(searchReq.getUserId()) && StringUtil.isBlank(searchReq.getTranslatorId())) {
-//			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户Id与译员id不能同时为空");
-//		}
-//		if (!StringUtil.isBlank(searchReq.getUserId()) && !StringUtil.isBlank(searchReq.getTranslatorId())) {
-//			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户Id与译员id不能同时存在");
-//		}
-//		UsrTranslator utr = null;
-//		if(!StringUtil.isBlank(searchReq.getUserId())){
-//			utr = ycUSAtomSV.getUsrTranslatorInfo(searchReq.getUserId());
-//		} else {
-//			utr = ycUSAtomSV.getUsrTranslatorInfoByTranslatorId(searchReq.getTranslatorId());
-//		}
-//		if (null == utr) {
-//			return null;
-//		}
-//		
-//		return utr;
-//	}
 
 	@Override
 	public List<UsrContact> searchUsrContactInfo(String userId) throws BusinessException {
@@ -341,90 +317,6 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		}
 		return user;
 	}
-
-//	@Override
-//	public YCTranslatorSkillListResponse getTranslatorSkillList(String userId) throws BusinessException {
-//		if (StringUtil.isBlank(userId)) {
-//			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户ID不能为空");
-//		}
-//		YCTranslatorSkillListResponse translatorSkillList = new YCTranslatorSkillListResponse();
-//		// UsrUser验证译员信息
-//		UsrUser userinfo = ycUSAtomSV.getUserInfo(userId);
-//		if(null == userinfo.getIsTranslator()){
-//			return translatorSkillList;
-//		}
-//		if (userinfo.getIsTranslator() != 1) {
-//			return translatorSkillList;
-//		}
-//		// 获取译员信息
-//		UsrTranslator utr = ycUSAtomSV.getUsrTranslatorInfo(userId);
-//		if (null == utr) {
-//			return translatorSkillList;
-//		}
-//		
-//		BeanUtils.copyProperties(translatorSkillList, utr);
-//		// 获取技能列表
-//		UsrLanguageCriteria example = new UsrLanguageCriteria();
-//		UsrLanguageCriteria.Criteria criteria = example.createCriteria();
-//		criteria.andTranslatorIdEqualTo(utr.getTranslatorId());
-//		List<UsrLanguage> usrLanguageList = ycUSAtomSV.getUsrLanguageList(example);
-//		translatorSkillList.setUsrLanguageList(changUsrLanguageToUsrLanguageMessage(usrLanguageList));
-//		return translatorSkillList;
-//	}
-
-//	private List<UsrLanguageMessage> changUsrLanguageToUsrLanguageMessage(List<UsrLanguage> usrLanguageList) {
-//		Gson g = new Gson();
-//		Type type = new TypeToken<List<UsrLanguageMessage>>(){}.getType();
-//		return g.fromJson(g.toJson(usrLanguageList), type);
-//	}
-
-//	@Override
-//	public YCLSPInfoReponse searchLSPInfoBussiness(searchYCLSPInfoRequest params) {
-//		UsrLsp usrLsp = null;
-//		YCLSPInfoReponse yclspRep = new YCLSPInfoReponse();
-//		yclspRep.setLspId(params.getLspId());
-//		yclspRep.setLspName(params.getLspName());
-//		List<UsrLsp> usrLspList = new ArrayList<UsrLsp>();
-//		if (!StringUtil.isBlank(params.getLspId()) && StringUtil.isBlank(params.getLspName())) {
-//			usrLsp = ycUSAtomSV.searchLspById(params.getLspId());
-//			if (null == usrLsp) {
-//				return yclspRep;
-//			}
-//			usrLspList.add(usrLsp);
-//			yclspRep.setUsrLspList(changUsrLspToUsrLspMessage(usrLspList));
-//		}
-//		if (StringUtil.isBlank(params.getLspId()) && !StringUtil.isBlank(params.getLspName())) {
-//			UsrLspCriteria example = new UsrLspCriteria();
-//			UsrLspCriteria.Criteria criteria = example.createCriteria();
-//			criteria.andLspNameLike(params.getLspName());
-//			usrLspList = ycUSAtomSV.searchLspByName(example);
-//			if (null == usrLspList) {
-//				return yclspRep;
-//			}
-//			if (null == usrLspList.get(0)){
-//				return yclspRep;
-//			}
-//			yclspRep.setUsrLspList(changUsrLspToUsrLspMessage(usrLspList));
-//		}
-//		if (StringUtil.isBlank(params.getLspId()) && StringUtil.isBlank(params.getLspName())) {
-//			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "参数不能同时为空");
-//		}
-//		if (!StringUtil.isBlank(params.getLspId()) && !StringUtil.isBlank(params.getLspName())) {
-//			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "参数不能同时有值");
-//		}
-//		return yclspRep;
-//	}
-//
-//	private List<UsrLspMessage> changUsrLspToUsrLspMessage(List<UsrLsp> usrLspList) {
-//		List<UsrLspMessage> ulmList = new ArrayList<UsrLspMessage>();
-//		for (UsrLsp ul : usrLspList) {
-//			UsrLspMessage ulm = new UsrLspMessage();
-//			BeanUtils.copyProperties(ulm, ul);
-//			ulmList.add(ulm);
-//		}
-//		return ulmList;
-//	}
-
 	@Override
 	public YCInsertContactResponse insertContactInfo(InsertYCContactRequest creq) throws BusinessException {
 		UsrContact usrContact = new UsrContact();
@@ -445,6 +337,12 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		YCInsertContactResponse icr = new YCInsertContactResponse();
 		icr.setContactId(contactId);
 		return icr;
+	}
+
+	@Override
+	public List<YCUserInfoResponse> getAllUserInfo() throws BusinessException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -242,6 +242,13 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		}
 	}
 
+	@Override
+	@POST
+	@Path("/getAllUserInfo")
+	public List<YCUserInfoResponse> getAllUserInfo() {
+		return ycUsrServiceBusiSv.getAllUserInfo();
+	}
+
 	
 	
 //	@Override

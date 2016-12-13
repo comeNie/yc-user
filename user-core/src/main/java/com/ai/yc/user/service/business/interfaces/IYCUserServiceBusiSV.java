@@ -32,4 +32,5 @@ public interface IYCUserServiceBusiSV {
 //	public YCLSPInfoReponse searchLSPInfoBussiness(searchYCLSPInfoRequest searchLSPParams) throws BusinessException;
 
 	public YCInsertContactResponse insertContactInfo(InsertYCContactRequest creq) throws BusinessException;
+	public List<YCUserInfoResponse> getAllUserInfo()throws BusinessException;
 }
