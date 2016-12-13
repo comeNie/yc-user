@@ -68,7 +68,7 @@ public class YCUserInfoResponse extends BaseResponse {
      */
     private String country;
     /**
-     * 昵称是否改变
+     * 用户名是否改变
      */
     private String isChange;
     /**
