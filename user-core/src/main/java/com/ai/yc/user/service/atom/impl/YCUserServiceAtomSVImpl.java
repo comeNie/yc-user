@@ -54,7 +54,7 @@ public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 		UsrContactCriteria.Criteria criteria = example.createCriteria();
 		criteria.andUserIdEqualTo(userId);
 		return uContactMapper.selectByExample(example);
-	
+
 	}
 
 	@Override
