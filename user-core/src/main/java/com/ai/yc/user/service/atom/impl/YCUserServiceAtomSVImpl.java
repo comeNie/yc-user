@@ -48,40 +48,12 @@ public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 		return tUserMapper.insert(user);
 	}
 
-//	@Override
-//	public UsrTranslator getUsrTranslatorInfo(String userId) {
-//		UsrTranslatorCriteria example = new UsrTranslatorCriteria();
-//		UsrTranslatorCriteria.Criteria criteria = example.createCriteria();
-//		criteria.andUserIdEqualTo(userId);
-//		List<UsrTranslator> list = uTranslatorMapper.selectByExample(example);
-//		if(list.size() > 0)
-//		{
-//			return list.get(0);
-//		} else {
-//			return null;
-//		}
-//	}
-//	@Override
-//	public UsrTranslator getUsrTranslatorInfoByTranslatorId(String translatorId) {
-//		UsrTranslatorCriteria example = new UsrTranslatorCriteria();
-//		UsrTranslatorCriteria.Criteria criteria = example.createCriteria();
-//		criteria.andTranslatorIdEqualTo(translatorId);
-//		List<UsrTranslator> list = uTranslatorMapper.selectByExample(example);
-//		if(list.size() > 0)
-//		{
-//			return list.get(0);
-//		} else {
-//			return null;
-//		}
-//	}
-
 	@Override
 	public List<UsrContact> getUsrContactInfo(String userId) {
 		UsrContactCriteria example = new UsrContactCriteria();
 		UsrContactCriteria.Criteria criteria = example.createCriteria();
 		criteria.andUserIdEqualTo(userId);
 		return uContactMapper.selectByExample(example);
-//		return uContactMapper.selectByPrimaryKey(userId);
 	}
 
 	@Override
@@ -95,20 +67,6 @@ public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 		
 	}
 
-//	@Override
-//	public List<UsrLanguage> getUsrLanguageList(UsrLanguageCriteria userIdCri) {
-//		return uLanguageMapper.selectByExample(userIdCri);
-//	}
-//
-//	@Override
-//	public UsrLsp searchLspById(String lspId) {
-//		return uLspMapper.selectByPrimaryKey(lspId);
-//	}
-//
-//	@Override
-//	public List<UsrLsp> searchLspByName(UsrLspCriteria example) {
-//		return uLspMapper.selectByExample(example);
-//	}
 
 	@Override
 	public int insertContactInfo(UsrContact usrContact) {
@@ -118,6 +76,13 @@ public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 	@Override
 	public int deleteContactInfo(String contactId) {
 		return uContactMapper.deleteByPrimaryKey(contactId);
+	}
+
+	@Override
+	public List<UsrUser> getAllUserInfo() {
+		UsrUserCriteria example = new UsrUserCriteria();
+		List<UsrUser> list = tUserMapper.selectByExample(example);
+		return list;
 	}
 
 	
