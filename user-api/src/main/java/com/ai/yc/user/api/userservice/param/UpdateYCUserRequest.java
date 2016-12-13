@@ -55,6 +55,10 @@ public class UpdateYCUserRequest implements Serializable{
 	 * 生日
 	 */
     private Timestamp birthday;
+    /**
+     * 手机
+     */
+    private String mobilePhone;
 	/**
 	 * 必填
 	 * QQ
@@ -97,7 +101,7 @@ public class UpdateYCUserRequest implements Serializable{
     private String portraitId;
     
     /**
-     * 昵称是否改变
+     * 用户名是否改变
      */
     private String isChange;
     /**
@@ -105,6 +109,8 @@ public class UpdateYCUserRequest implements Serializable{
      */
     private Integer isTranslator;
 
+    private Long accountId;
+    
 	public UpdateYCUserRequest() {
 		super();
 	}
@@ -262,6 +268,22 @@ public class UpdateYCUserRequest implements Serializable{
 
 	public void setIsTranslator(Integer isTranslator) {
 		this.isTranslator = isTranslator;
+	}
+
+	public Long getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(Long accountId) {
+		this.accountId = accountId;
+	}
+
+	public String getMobilePhone() {
+		return mobilePhone;
+	}
+
+	public void setMobilePhone(String mobilePhone) {
+		this.mobilePhone = mobilePhone;
 	}
     
 
