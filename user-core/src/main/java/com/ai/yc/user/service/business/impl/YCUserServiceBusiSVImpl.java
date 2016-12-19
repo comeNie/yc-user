@@ -48,7 +48,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	private static final Log LOG = LogFactory.getLog(YCUserServiceBusiSVImpl.class);
 
 	@Autowired
-	public IYCUserServiceAtomSV ycUSAtomSV;
+	private IYCUserServiceAtomSV ycUSAtomSV;
 
 	/**
 	 * resultCode 0 fail 1 success
@@ -83,7 +83,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		}
 
 		IUcMembersSV iUcMembersSV = DubboConsumerFactory.getService(IUcMembersSV.class);
-		if (insertinfo.getLoginway().equals("1")) {
+		if ("1".equals(insertinfo.getLoginway())) {
 			// 孟博注册接口
 
 			UcMembersRegisterRequest umrr = new UcMembersRegisterRequest();

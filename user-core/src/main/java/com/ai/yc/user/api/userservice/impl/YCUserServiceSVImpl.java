@@ -14,10 +14,7 @@ import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.ResponseHeader;
-import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
 import com.ai.opt.sdk.util.BeanUtils;
-import com.ai.yc.ucenter.api.members.interfaces.IUcMembersSV;
-import com.ai.yc.ucenter.api.members.param.del.UcMembersDelRequest;
 import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
@@ -44,12 +41,12 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(YCUserServiceSVImpl.class);
     @Autowired
-    public IYCUserServiceBusiSV ycUsrServiceBusiSv;
+    private IYCUserServiceBusiSV ycUsrServiceBusiSv;
 
 	@Override
 	public YCInsertUserResponse insertYCUser(InsertYCUserRequest insertInfo){
 		LOGGER.debug("insertYCUser input params:", insertInfo);
-		ResponseHeader responseHeader = new ResponseHeader(true,ExceptCodeConstants.FAILD,"未捕获错误异常");
+		ResponseHeader responseHeader;
 		try{
 			YCInsertUserResponse response = ycUsrServiceBusiSv.insertUserInfo(insertInfo);
 			if(response != null){
@@ -65,14 +62,6 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 			}
 		}catch(BusinessException e){
 			// 这里不应回滚
-//			if(insertInfo.getUserId() != null){
-//				IUcMembersSV iUcMembersSV = DubboConsumerFactory.getService(IUcMembersSV.class);
-//				UcMembersDelRequest umdr = new UcMembersDelRequest();
-//				umdr.setTenantId("yeecloud");
-//				umdr.setUid(Integer.valueOf(insertInfo.getUserId()));
-//				iUcMembersSV.ucDelMember(umdr);
-//			}
-			
 			LOGGER.error("插入失败",e);
 			YCInsertUserResponse response = new YCInsertUserResponse();
 			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
@@ -84,7 +73,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 	@Override
 	public YCUpdateUserResponse updateYCUserInfo(UpdateYCUserRequest updateUserParams){
 		LOGGER.debug("updateYCUserInfo input params:", updateUserParams);
-		ResponseHeader responseHeader = new ResponseHeader(true,ExceptCodeConstants.FAILD,"未捕获错误异常");
+		ResponseHeader responseHeader;
 		YCUpdateUserResponse response = new YCUpdateUserResponse();
 		try{
 			ycUsrServiceBusiSv.updateUserInfo(updateUserParams);
@@ -103,7 +92,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 	@Override
 	public YCUserInfoResponse searchYCUserInfo(SearchYCUserRequest userId){
 		LOGGER.debug("searchYCUserInfo input params:", userId);
-		ResponseHeader responseHeader = new ResponseHeader(true,ExceptCodeConstants.FAILD,"未捕获错误异常");
+		ResponseHeader responseHeader;
 		YCUserInfoResponse result = new YCUserInfoResponse() ;
 		try{
 			result = ycUsrServiceBusiSv.searchUserInfo(userId.getUserId());
@@ -116,37 +105,13 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		result.setResponseHeader(responseHeader);
         return result;
 	}
-	
-	
-
-//	@Override
-//	public YCTranslatorInfoResponse searchYCTranslatorInfo(SearchYCTranslatorRequest tUsrId) {
-//		ResponseHeader responseHeader = null;
-//		UsrTranslator usrTranslator = null;
-//		YCTranslatorInfoResponse result = new YCTranslatorInfoResponse();
-//		try{
-//			
-//			usrTranslator = ycUsrServiceBusiSv.searchYCUsrTranslatorInfo(tUsrId);
-//			responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"查询成功");
-//			if (null != usrTranslator){
-//				BeanUtils.copyProperties(result, usrTranslator);
-//			}
-//			result.setResponseCode(ExceptCodeConstants.SUCCESS);
-//		}catch(BusinessException e){
-//			LOGGER.error("修改失败",e);
-//			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
-//		}
-//		
-//		result.setResponseHeader(responseHeader);
-//		return result;
-//	}
 
 	@Override
 	public YCContactInfoResponse searchYCContactInfo(SearchYCContactRequest cUsrId) {
 		LOGGER.debug("searchYCContactInfo input params:", cUsrId);
 		
 		List<UsrContact> usrContact = null;
-		ResponseHeader responseHeader = new ResponseHeader(true,ExceptCodeConstants.FAILD,"未捕获错误异常");
+		ResponseHeader responseHeader;
 		YCContactInfoResponse result = new YCContactInfoResponse();
 		try{
 			usrContact = ycUsrServiceBusiSv.searchUsrContactInfo(cUsrId.getUserId());
@@ -173,7 +138,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 	@Path("/searchUserInfoByNickName")
 	public YCUserInfoResponse searchUserInfoByNickName(String nickName) {
 		LOGGER.debug("searchUserInfoByNickName input params:",nickName);
-		ResponseHeader responseHeader = new ResponseHeader(true,ExceptCodeConstants.FAILD,"未捕获错误异常");
+		ResponseHeader responseHeader;
 		YCUserInfoResponse result = new YCUserInfoResponse();
 		try{
 			UsrUser usruser = ycUsrServiceBusiSv.searchuserInfoByNickName(nickName);
@@ -183,44 +148,17 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 			}
 			responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
 		}catch(BusinessException e){
+			LOGGER.error("查询失败",e);
 			responseHeader = new ResponseHeader(false, ExceptCodeConstants.FAILD, e.getErrorMessage());
 		}
 		result.setResponseHeader(responseHeader);
 		return result;
 	}
 
-//	@Override
-//	public YCTranslatorSkillListResponse getTranslatorSkillList(SearchYCTranslatorSkillListRequest getSkillList) {
-//		ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "更新成功");
-//		YCTranslatorSkillListResponse result = new YCTranslatorSkillListResponse();
-//		try{
-//			result = ycUsrServiceBusiSv.getTranslatorSkillList(getSkillList.getUserId());
-//			responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
-//		}catch(Exception e){
-//			responseHeader = new ResponseHeader(false, ExceptCodeConstants.SUCCESS, e.getMessage());
-//		}
-//		result.setResponseHeader(responseHeader);
-//		return result;
-//	}
-//
-//	@Override
-//	public YCLSPInfoReponse searchLSPInfo(searchYCLSPInfoRequest searchLSPParams) {
-//		ResponseHeader responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "更新成功");
-//		YCLSPInfoReponse result = new YCLSPInfoReponse();
-//		try{
-//			result = ycUsrServiceBusiSv.searchLSPInfoBussiness(searchLSPParams);
-//			responseHeader = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
-//		}catch(Exception e){
-//			responseHeader = new ResponseHeader(false, ExceptCodeConstants.SUCCESS, e.getMessage());
-//		}
-//		result.setResponseHeader(responseHeader);
-//		return result;
-//	}
-
 	@Override
 	public YCInsertContactResponse insertYCContact(InsertYCContactRequest creq) {
 		LOGGER.debug("insertYCContact input params:", creq);
-		ResponseHeader responseHeader = new ResponseHeader(true,ExceptCodeConstants.FAILD,"未捕获错误异常");
+		ResponseHeader responseHeader;
 		try{
 			YCInsertContactResponse response = ycUsrServiceBusiSv.insertContactInfo(creq);
 			if(response != null){
@@ -248,24 +186,5 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 	public List<YCUserInfoResponse> getAllUserInfo() {
 		return ycUsrServiceBusiSv.getAllUserInfo();
 	}
-
-	
-	
-//	@Override
-//	public YCInsertTranslatorResponse insertYCTranslatorInfo(InsertYCTranslatorRequest translatorInfo) {
-//		ResponseHeader responseHeader = null;
-//		YCInsertTranslatorResponse response = new YCInsertTranslatorResponse();
-//		String userId = "";
-//		try{
-//			userId = ycUsrServiceBusiSv.insertTranslatorInfo(translatorInfo);
-//			responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"插入成功");
-//		}catch(BusinessException e){
-//			LOGGER.error("插入失败",e);
-//			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
-//		}
-//		response.setUserId(userId);
-//		response.setResponseHeader(responseHeader);
-//        return response;
-//	}
 
 }
