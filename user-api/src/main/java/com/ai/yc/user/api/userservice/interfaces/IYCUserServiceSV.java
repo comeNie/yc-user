@@ -92,11 +92,11 @@ public interface IYCUserServiceSV {
 	YCInsertContactResponse insertYCContact(InsertYCContactRequest creq);
 
 	/**
-	 * 添加译员通讯录
+	 * 查询所有用户
 	 * @param 
 	 * @return
 	 * @ApiCode USR_0007
-     * @RestRelativeURL ycuserservice/insertYCContactInfo
+     * @RestRelativeURL ycuserservice/getAllUserInfo
 	 */
 	@POST
 	@Path("/getAllUserInfo")
