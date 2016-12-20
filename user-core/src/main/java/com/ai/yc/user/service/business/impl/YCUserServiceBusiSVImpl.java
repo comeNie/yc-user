@@ -107,7 +107,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "内部错误 : " + umrResponse.getCode().getCodeMessage());
 			}
 			if (umrResponse.getCode().getCodeNumber().intValue() != 1) {
-				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "ucenter返回值 : "
+				throw new BusinessException(umrResponse.getCode().getCodeNumber() + "", "ucenter返回值 : "
 						+ umrResponse.getCode().getCodeNumber() + " --- " + umrResponse.getCode().getCodeMessage());
 			}
 			if (StringUtil.isBlank(umrResponse.getDate().get("uid").toString())) {

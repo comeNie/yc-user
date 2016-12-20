@@ -64,7 +64,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 			// 这里不应回滚
 			LOGGER.error("插入失败",e);
 			YCInsertUserResponse response = new YCInsertUserResponse();
-			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
+			responseHeader = new ResponseHeader(false,e.getErrorCode(),e.getErrorMessage());
 			response.setResponseHeader(responseHeader);
 	        return response;
 		}
