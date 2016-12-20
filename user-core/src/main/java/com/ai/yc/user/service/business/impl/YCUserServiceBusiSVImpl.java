@@ -1,5 +1,6 @@
 package com.ai.yc.user.service.business.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -341,8 +342,15 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 
 	@Override
 	public List<YCUserInfoResponse> getAllUserInfo() throws BusinessException {
-		// TODO Auto-generated method stub
-		return null;
+		List<YCUserInfoResponse> list = new ArrayList<YCUserInfoResponse>();
+		List<UsrUser> usrList = ycUSAtomSV.getAllUserInfo();
+		for(UsrUser usrUser:usrList){
+			YCUserInfoResponse userInfoResponse = new YCUserInfoResponse();
+			BeanUtils.copyProperties(userInfoResponse, usrUser);
+			list.add(userInfoResponse);
+		}
+		return list;
 	}
+
 
 }
