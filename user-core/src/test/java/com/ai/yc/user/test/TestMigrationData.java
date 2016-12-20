@@ -1,6 +1,5 @@
 package com.ai.yc.user.test;
 
-import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -17,7 +16,6 @@ import com.ai.slp.balance.api.accountmaintain.param.RegAccReq;
 import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
-import com.alibaba.dubbo.registry.dubbo.DubboRegistryFactory;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -27,7 +25,6 @@ public class TestMigrationData {
 	private IYCUserServiceSV usSV;
 	@Test
 	public void testsearchuser(){
-		
 		List<YCUserInfoResponse> list = usSV.getAllUserInfo();
 		for(int i=0;i<list.size();i++){
 			YCUserInfoResponse response = list.get(i);
