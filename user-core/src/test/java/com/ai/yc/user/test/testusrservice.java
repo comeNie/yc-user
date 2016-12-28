@@ -13,6 +13,7 @@ import com.ai.yc.ucenter.api.members.interfaces.IUcMembersOperationSV;
 import com.ai.yc.ucenter.api.members.param.opera.UcMembersGetOperationcodeRequest;
 import com.ai.yc.ucenter.api.members.param.opera.UcMembersGetOperationcodeResponse;
 import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
+import com.ai.yc.user.api.userservice.param.CompleteUserInfoRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCContactRequest;
@@ -87,7 +88,7 @@ public class testusrservice {
 	public void testsearchuser(){
 		
 		SearchYCUserRequest sr1 = new SearchYCUserRequest();
-		sr1.setUserId("4444314");
+		sr1.setUserId("4444608");
 		YCUserInfoResponse uir1 = usSV.searchYCUserInfo(sr1);
 		System.out.println(JSON.toJSONString(uir1));
 	}
@@ -135,13 +136,25 @@ public class testusrservice {
 	
 	@Test
 	public void testInsertContact() {
-		InsertYCContactRequest a = new InsertYCContactRequest();
+		String email = "111@qq.com";
+		String newEmail = email.substring(0,1)+"*****"+email.substring(email.indexOf("@")-1,email.length());
+		System.out.println(newEmail);
+		/*InsertYCContactRequest a = new InsertYCContactRequest();
 		a.setUserId("4444314");
 		a.setEmail("106542@qq.com");
 		a.setMobilePhone("13007426666");
 		a.setGnCountryId(1);
 //		a.setContactId("2");
 		YCInsertContactResponse response = usSV.insertYCContact(a);
-		System.out.println(JSON.toJSONString(response));
+		System.out.println(JSON.toJSONString(response));*/
+	}
+	
+	@Test
+	public void testInsertCompleteUserInfo(){
+		CompleteUserInfoRequest request = new CompleteUserInfoRequest();
+		request.setUserId("1234567");
+		request.setLoginName("test");
+		request.setMobilePhone("16799999999");
+		usSV.completeUserInfo(request);
 	}
 }
