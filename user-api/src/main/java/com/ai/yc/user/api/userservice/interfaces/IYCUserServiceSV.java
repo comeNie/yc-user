@@ -8,6 +8,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.ai.opt.base.vo.BaseResponse;
+import com.ai.yc.user.api.userservice.param.CompleteUserInfoRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCContactRequest;
@@ -102,5 +104,14 @@ public interface IYCUserServiceSV {
 	@Path("/getAllUserInfo")
 	public List<YCUserInfoResponse> getAllUserInfo();
 
-	
+	/**
+	 * 如果登录的用户名客户中心没有则补全一条
+	 * @param 
+	 * @return
+	 * @ApiCode USR_0007
+     * @RestRelativeURL ycuserservice/completeUserInfo
+	 */
+	@POST
+	@Path("/completeUserInfo")
+	public BaseResponse completeUserInfo(CompleteUserInfoRequest request);
 }
