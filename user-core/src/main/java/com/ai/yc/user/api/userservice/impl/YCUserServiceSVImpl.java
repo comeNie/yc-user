@@ -13,9 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
+import com.ai.yc.user.api.userservice.param.CompleteUserInfoRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCContactRequest;
@@ -185,6 +187,13 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 	@Path("/getAllUserInfo")
 	public List<YCUserInfoResponse> getAllUserInfo() {
 		return ycUsrServiceBusiSv.getAllUserInfo();
+	}
+
+	@Override
+	@POST
+	@Path("/completeUserInfo")
+	public BaseResponse completeUserInfo(CompleteUserInfoRequest request) {
+		return ycUsrServiceBusiSv.completeUserInfo(request);
 	}
 
 }

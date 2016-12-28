@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.base.vo.BaseResponse;
+import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.components.idps.IDPSClientFactory;
 import com.ai.opt.sdk.components.sequence.util.SeqUtil;
 import com.ai.opt.sdk.constants.ExceptCodeConstants;
@@ -28,6 +30,7 @@ import com.ai.yc.ucenter.api.members.param.UcMembersResponse;
 import com.ai.yc.ucenter.api.members.param.editpass.UcMembersEditPassRequest;
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterRequest;
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterResponse;
+import com.ai.yc.user.api.userservice.param.CompleteUserInfoRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
@@ -41,6 +44,7 @@ import com.ai.yc.user.service.atom.interfaces.IYCUserServiceAtomSV;
 import com.ai.yc.user.service.business.interfaces.IYCUserServiceBusiSV;
 import com.ai.yc.user.util.UCDateUtils;
 import com.alibaba.fastjson.JSON;
+import com.sun.mail.iap.ResponseHandler;
 
 @Service
 @Transactional
@@ -347,5 +351,48 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		return list;
 	}
 
-
+	@Override
+	public BaseResponse completeUserInfo(CompleteUserInfoRequest userinfo) throws BusinessException {
+		ResponseHeader responseHeader = null;
+		BaseResponse response = new BaseResponse();
+		try{
+			// 支付账户信息
+			IAccountMaintainSV iAccountMaintainSV = DubboConsumerFactory.getService(IAccountMaintainSV.class);
+			RegAccReq vo = new RegAccReq();
+			vo.setExternalId(UUIDUtil.genId32());// 外部流水号ID
+			vo.setSystemId("Cloud-UAC_WEB");// 系统ID
+			vo.setTenantId("yeecloud");// 租户ID
+			vo.setRegCustomerId(userinfo.getUserId());
+			vo.setAcctName(userinfo.getLoginName());
+			
+			/**
+			 * 个人客户需校验支付密码
+			 */
+			vo.setPayCheck("1");
+			/**
+			 * 1、预付费 0、后付费
+			 */
+			vo.setAcctType("1");
+			
+			long accountId = iAccountMaintainSV.createAccount(vo);
+			LOG.info("创建个人账户成功----------------");
+			// 插入数据
+			UsrUser tUser = new UsrUser();
+			// 从右到左,把相同类型且属性名相同的复制到右边
+			BeanUtils.copyProperties(tUser, userinfo);
+			tUser.setUserId(userinfo.getUserId());
+			tUser.setNickname("译粉_"+SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8));
+			tUser.setAccountId(accountId);
+			ycUSAtomSV.insertUserInfo(tUser);
+			LOG.info("创建个人信息成功-----------");
+			responseHeader = new ResponseHeader(true,ExceptCodeConstants.Special.SUCCESS,"补全信息成功");
+			response.setResponseHeader(responseHeader);
+		}catch(Exception e){
+			LOG.error("补全信息失败",e);
+			responseHeader = new ResponseHeader(true,ExceptCodeConstants.Special.SYSTEM_ERROR,"补全信息失败");
+			response.setResponseHeader(responseHeader);
+		}
+		
+		return response;
+	}
 }

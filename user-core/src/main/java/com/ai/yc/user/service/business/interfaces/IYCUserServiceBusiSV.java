@@ -4,6 +4,8 @@ package com.ai.yc.user.service.business.interfaces;
 import java.util.List;
 
 import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.base.vo.BaseResponse;
+import com.ai.yc.user.api.userservice.param.CompleteUserInfoRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
@@ -33,4 +35,6 @@ public interface IYCUserServiceBusiSV {
 
 	public YCInsertContactResponse insertContactInfo(InsertYCContactRequest creq) throws BusinessException;
 	public List<YCUserInfoResponse> getAllUserInfo()throws BusinessException;
+	
+	public BaseResponse completeUserInfo(CompleteUserInfoRequest userinfo) throws BusinessException;
 }
