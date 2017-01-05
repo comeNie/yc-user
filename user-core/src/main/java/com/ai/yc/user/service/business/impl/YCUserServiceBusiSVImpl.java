@@ -146,7 +146,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			vo.setAcctType("1");
 			
 			long accountId = iAccountMaintainSV.createAccount(vo);
-			LOG.info("创建个人账户成功----------------");
+			LOG.info("创建个人账户成功----------------"+JSON.toJSONString(vo));
 			// 插入数据
 			UsrUser tUser = new UsrUser();
 			// 从右到左,把相同类型且属性名相同的复制到右边
