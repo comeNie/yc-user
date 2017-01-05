@@ -217,6 +217,10 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			vo.setTenantId("yeecloud");// 租户ID
 			vo.setRegCustomerId(insertinfo.getUserId());
 			vo.setAcctName(umr.getDate().get("username").toString());
+			/**
+			 * 个人客户需校验支付密码
+			 */
+			vo.setPayCheck("1");
 			vo.setAcctType("1");//1预付费
 			long accountId = iAccountMaintainSV.createAccount(vo);
 			LOG.info("创建账号成功-----------------");
