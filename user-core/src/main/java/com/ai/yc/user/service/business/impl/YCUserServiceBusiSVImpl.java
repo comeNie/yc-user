@@ -146,7 +146,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			vo.setAcctType("1");
 			
 			long accountId = iAccountMaintainSV.createAccount(vo);
-			LOG.info("创建个人账户成功----------------");
+			LOG.info("创建个人账户成功----------------"+JSON.toJSONString(vo));
 			// 插入数据
 			UsrUser tUser = new UsrUser();
 			// 从右到左,把相同类型且属性名相同的复制到右边
@@ -217,6 +217,10 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			vo.setTenantId("yeecloud");// 租户ID
 			vo.setRegCustomerId(insertinfo.getUserId());
 			vo.setAcctName(umr.getDate().get("username").toString());
+			/**
+			 * 个人客户需校验支付密码
+			 */
+			vo.setPayCheck("1");
 			vo.setAcctType("1");//1预付费
 			long accountId = iAccountMaintainSV.createAccount(vo);
 			LOG.info("创建账号成功-----------------");
