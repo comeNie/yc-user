@@ -385,7 +385,9 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			// 从右到左,把相同类型且属性名相同的复制到右边
 			BeanUtils.copyProperties(tUser, userinfo);
 			tUser.setUserId(userinfo.getUserId());
-			tUser.setNickname("译粉_"+SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8));
+			if("".equals(tUser.getNickname())||tUser.getNickname()==null){
+				tUser.setNickname("译粉_"+SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8));
+			}
 			tUser.setAccountId(accountId);
 			ycUSAtomSV.insertUserInfo(tUser);
 			LOG.info("创建个人信息成功-----------");
