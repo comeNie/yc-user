@@ -2,6 +2,11 @@ package com.ai.yc.user.api.userservice.impl;
 
 
 import java.lang.reflect.Type;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.ws.rs.POST;
@@ -15,8 +20,13 @@ import org.springframework.stereotype.Component;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
+import com.ai.opt.sdk.components.ccs.CCSClientFactory;
+import com.ai.opt.sdk.components.mcs.MCSClientFactory;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.DateUtil;
+import com.ai.paas.ipaas.ccs.IConfigClient;
+import com.ai.paas.ipaas.mcs.interfaces.ICacheClient;
+import com.ai.paas.ipaas.util.StringUtil;
 import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
 import com.ai.yc.user.api.userservice.param.CompleteUserInfoRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
@@ -38,14 +48,12 @@ import com.ai.yc.user.util.DataSourceUtil;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
 @Service
 @Component
 public class YCUserServiceSVImpl implements IYCUserServiceSV {
+	//gntdictarearegion对应的缓存空间，用于转换译云2.0系统的省份和城市代码为gn_region中的region_code
+	public static final String CACHE_GN_T_DICT_AREA_REGION = "com.ai.yc.common.cache.gntdictarearegion";
+	public static final String CCS_READ_USER_FROM_OLD_YC = "/read_user_from_old_yc";
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(YCUserServiceSVImpl.class);
     @Autowired
@@ -204,55 +212,81 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		ResultSet rs = null;
 		ResponseHeader responseHeader = null;
 		BaseResponse response = new BaseResponse();
+		//更新请求参数
+		UpdateYCUserRequest updateUserRequest = new UpdateYCUserRequest();
 		try {
+			//缓存客户端
+			ICacheClient cacheClient= MCSClientFactory.getCacheClient(CACHE_GN_T_DICT_AREA_REGION);
+			IConfigClient ccsClient= CCSClientFactory.getDefaultConfigClient();
+			String readOldYc="0";
+			try{
+				readOldYc=ccsClient.get(CCS_READ_USER_FROM_OLD_YC);
+			}
+			catch(Exception e){
+				LOGGER.error("读取配置项["+CCS_READ_USER_FROM_OLD_YC+"]失败");
+			}
+			
 			YCUserInfoResponse userInfoResponse = ycUsrServiceBusiSv.searchUserInfo(request.getUserId());
-			conn = DataSourceUtil.getConnection();
-			String sql ="";			
-			sql="select PK_USER,LASTNAME, FIRSTNAME,SEX, BIRTHDAY,TELEPHONE, MOBILE_PHONE, ADDRESS, CITY,PROVINCE, COUNTRY,REGIST_TIME,LAST_MODIFY_TIME,QQ,NICKNAME,country_code  from t_user where PK_USER=?";
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, request.getUserId());
-			rs = ps.executeQuery();
-			if (rs.next()) {
-				String lastname=rs.getString("LASTNAME");	
-				String firstname=rs.getString("FIRSTNAME");	
-				int sex = rs.getInt("SEX");
-				String birthday = rs.getString("BIRTHDAY");
-				String telephone = rs.getString("TELEPHONE");
-				String mobilePhone = rs.getString("MOBILE_PHONE");
-				String address = rs.getString("ADDRESS");
-				String city = rs.getString("CITY");
-				String province = rs.getString("PROVINCE");
-				//String country = rs.getString("COUNTRY");
-				String countryCode = rs.getString("COUNTRY_CODE");
-				Timestamp registTime = rs.getTimestamp("REGIST_TIME");
-				Timestamp lastModifyTime = rs.getTimestamp("LAST_MODIFY_TIME");
-				String qq = rs.getString("QQ");
-				String nickName = rs.getString("NICKNAME");
-				Timestamp dateBirthday = null;
-				if(birthday!=""&&birthday!=null&&birthday.contains("-")){
-					birthday = birthday+" 00:00:00";
-					dateBirthday = DateUtil.getTimestamp(birthday);
-					request.setBirthday(dateBirthday);
-				}
-				if("86".equals(countryCode)){
-					request.setCountry("3385");
-				}
-				request.setAddress(address);
-				request.setFirstName(firstname);
-				request.setLastName(lastname);
-				request.setTelephone(telephone);
-				request.setMobilePhone(mobilePhone);
-				request.setSex(sex);
-				request.setQq(qq);
-				request.setNickName(nickName);
-				request.setRegisterTime(registTime);
-				request.setLastModifyTime(lastModifyTime);
-				/**
-				 * 如果在译云3.0数据库中存在此数据则更新，不存在则插入
-				 */
-				if(userInfoResponse!=null&&userInfoResponse.getUserId()!=null&&!"".equals(userInfoResponse.getUserId())){
-					UpdateYCUserRequest updateUserRequest = new UpdateYCUserRequest();
-					updateUserRequest.setUserId(request.getUserId());
+			
+			if("1".equals(readOldYc)){
+				conn = DataSourceUtil.getConnection();
+				String sql ="";			
+				sql="select PK_USER,LASTNAME, FIRSTNAME,SEX, BIRTHDAY,TELEPHONE, MOBILE_PHONE, ADDRESS, CITY,CN_CITY,PROVINCE, COUNTRY,REGIST_TIME,LAST_MODIFY_TIME,QQ,NICKNAME,country_code  from t_user where PK_USER=?";
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, request.getUserId());
+				rs = ps.executeQuery();
+				if (rs.next()) {
+					String lastname=rs.getString("LASTNAME");	
+					String firstname=rs.getString("FIRSTNAME");	
+					int sex = rs.getInt("SEX");
+					String birthday = rs.getString("BIRTHDAY");
+					String telephone = rs.getString("TELEPHONE");
+					String mobilePhone = rs.getString("MOBILE_PHONE");
+					String address = rs.getString("ADDRESS");
+					String city = rs.getString("CITY");
+					String cncity = rs.getString("CN_CITY");
+					String province = rs.getString("PROVINCE");
+					//String country = rs.getString("COUNTRY");
+					String countryCode = rs.getString("COUNTRY_CODE");
+					Timestamp registTime = rs.getTimestamp("REGIST_TIME");
+					Timestamp lastModifyTime = rs.getTimestamp("LAST_MODIFY_TIME");
+					String qq = rs.getString("QQ");
+					String nickName = rs.getString("NICKNAME");
+					Timestamp dateBirthday = null;
+					if(birthday!=""&&birthday!=null&&birthday.contains("-")){
+						birthday = birthday+" 00:00:00";
+						dateBirthday = DateUtil.getTimestamp(birthday);
+						request.setBirthday(dateBirthday);
+					}
+					if("86".equals(countryCode)){
+						request.setCountry("3385");
+					}
+					if(!StringUtil.isBlank(province)){
+						String regionCode_province=cacheClient.hget(CACHE_GN_T_DICT_AREA_REGION, province);
+						if(!StringUtil.isBlank(regionCode_province)){
+							request.setProvince(regionCode_province);
+						}
+					}
+					if(!StringUtil.isBlank(cncity)){
+						String cncity_province=cacheClient.hget(CACHE_GN_T_DICT_AREA_REGION, cncity);
+						if(!StringUtil.isBlank(cncity_province)){
+							request.setCnCity(cncity_province);
+						}
+					}
+					
+					request.setAddress(address);
+					request.setFirstName(firstname);
+					request.setLastName(lastname);
+					request.setTelephone(telephone);
+					request.setMobilePhone(mobilePhone);
+					request.setSex(sex);
+					request.setQq(qq);
+					request.setNickName(nickName);
+					request.setRegisterTime(registTime);
+					request.setLastModifyTime(lastModifyTime);
+					
+					
+					//准备更新请求参数
 					updateUserRequest.setAddress(address);
 					updateUserRequest.setSex(sex);
 					updateUserRequest.setAddress(address);
@@ -266,13 +300,23 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 					updateUserRequest.setRegisterTime(registTime);
 					updateUserRequest.setLastModifyTime(lastModifyTime);
 					updateUserRequest.setBirthday(dateBirthday);
+					}//end rs.next
+				}//end readOldYc
+				
+				
+				/**
+				 * 如果在译云3.0数据库中存在此数据则更新，不存在则插入
+				 */
+				if(userInfoResponse!=null&&userInfoResponse.getUserId()!=null&&!"".equals(userInfoResponse.getUserId())){
+					updateUserRequest.setUserId(request.getUserId());
 					ycUsrServiceBusiSv.updateUserInfo(updateUserRequest);
 				}else{
 					 ycUsrServiceBusiSv.completeUserInfo(request);
 				}
 				responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"补全信息成功");
 				response.setResponseHeader(responseHeader);
-			}
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,"补全信息失败");
