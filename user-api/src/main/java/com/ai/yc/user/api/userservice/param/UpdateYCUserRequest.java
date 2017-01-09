@@ -2,6 +2,7 @@ package com.ai.yc.user.api.userservice.param;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 import com.ai.opt.base.vo.BaseInfo;
 
@@ -110,6 +111,19 @@ public class UpdateYCUserRequest implements Serializable{
     private Integer isTranslator;
 
     private Long accountId;
+    
+    /**
+     * 座机
+     */
+    private String telephone;
+    /**
+     * 注册时间
+     */
+    private Date registerTime;
+    /**
+     * 修改时间
+     */
+    private Date lastModifyTime;
     
 	public UpdateYCUserRequest() {
 		super();
@@ -284,6 +298,30 @@ public class UpdateYCUserRequest implements Serializable{
 
 	public void setMobilePhone(String mobilePhone) {
 		this.mobilePhone = mobilePhone;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	public Date getRegisterTime() {
+		return registerTime;
+	}
+
+	public void setRegisterTime(Date registerTime) {
+		this.registerTime = registerTime;
+	}
+
+	public Date getLastModifyTime() {
+		return lastModifyTime;
+	}
+
+	public void setLastModifyTime(Date lastModifyTime) {
+		this.lastModifyTime = lastModifyTime;
 	}
     
 
