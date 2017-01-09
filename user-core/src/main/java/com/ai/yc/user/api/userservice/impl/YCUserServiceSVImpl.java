@@ -208,7 +208,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 			YCUserInfoResponse userInfoResponse = ycUsrServiceBusiSv.searchUserInfo(request.getUserId());
 			conn = DataSourceUtil.getConnection();
 			String sql ="";			
-			sql="select PK_USER,LASTNAME, FIRSTNAME,SEX, BIRTHDAY,TELEPHONE, MOBILE_PHONE, ADDRESS, CITY,PROVINCE, COUNTRY,REGIST_TIME,LAST_MODIFY_TIME,QQ,NICKNAME  from t_user where PK_USER=?";
+			sql="select PK_USER,LASTNAME, FIRSTNAME,SEX, BIRTHDAY,TELEPHONE, MOBILE_PHONE, ADDRESS, CITY,PROVINCE, COUNTRY,REGIST_TIME,LAST_MODIFY_TIME,QQ,NICKNAME,country_code  from t_user where PK_USER=?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, request.getUserId());
 			rs = ps.executeQuery();
@@ -222,9 +222,10 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 				String address = rs.getString("ADDRESS");
 				String city = rs.getString("CITY");
 				String province = rs.getString("PROVINCE");
-				String country = rs.getString("COUNTRY");
-				Timestamp registTime = DateUtil.getTimestamp(DateUtil.getDateString(rs.getDate("REGIST_TIME"), "yyyy-MM-dd HH:mm:ss"));
-				Timestamp lastModifyTime = DateUtil.getTimestamp(DateUtil.getDateString(rs.getDate("LAST_MODIFY_TIME"),"yyyy-MM-dd HH:mm:ss"));
+				//String country = rs.getString("COUNTRY");
+				String countryCode = rs.getString("COUNTRY_CODE");
+				Timestamp registTime = rs.getTimestamp("REGIST_TIME");
+				Timestamp lastModifyTime = rs.getTimestamp("LAST_MODIFY_TIME");
 				String qq = rs.getString("QQ");
 				String nickName = rs.getString("NICKNAME");
 				Timestamp dateBirthday = null;
@@ -232,6 +233,9 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 					birthday = birthday+" 00:00:00";
 					dateBirthday = DateUtil.getTimestamp(birthday);
 					request.setBirthday(dateBirthday);
+				}
+				if("86".equals(countryCode)){
+					request.setCountry("3385");
 				}
 				request.setAddress(address);
 				request.setFirstName(firstname);
