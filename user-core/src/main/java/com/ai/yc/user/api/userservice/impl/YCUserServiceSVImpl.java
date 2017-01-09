@@ -263,11 +263,11 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 					updateUserRequest.setLastModifyTime(lastModifyTime);
 					updateUserRequest.setBirthday(dateBirthday);
 					ycUsrServiceBusiSv.updateUserInfo(updateUserRequest);
-					responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"补全信息成功");
-					response.setResponseHeader(responseHeader);
 				}else{
 					 ycUsrServiceBusiSv.completeUserInfo(request);
 				}
+				responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"补全信息成功");
+				response.setResponseHeader(responseHeader);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
