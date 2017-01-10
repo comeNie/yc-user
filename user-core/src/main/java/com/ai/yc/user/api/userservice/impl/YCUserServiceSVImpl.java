@@ -226,7 +226,14 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 				LOGGER.error("读取配置项["+CCS_READ_USER_FROM_OLD_YC+"]失败");
 			}
 			
+			/**
+			 * 根据登录用户ID获取用户信息
+			 */
 			YCUserInfoResponse userInfoResponse = ycUsrServiceBusiSv.searchUserInfo(request.getUserId());
+			
+			/**
+			 * 如果readOldYc为1表示译云2.0的old-yc-gtctech-db库可以使用
+			 */
 			
 			if("1".equals(readOldYc)){
 				conn = DataSourceUtil.getConnection();
@@ -253,7 +260,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 					String qq = rs.getString("QQ");
 					String nickName = rs.getString("NICKNAME");
 					Timestamp dateBirthday = null;
-					if(birthday!=""&&birthday!=null&&birthday.contains("-")){
+					if(!StringUtil.isBlank(birthday)&&birthday.contains("-")){
 						birthday = birthday+" 00:00:00";
 						dateBirthday = DateUtil.getTimestamp(birthday);
 						request.setBirthday(dateBirthday);
@@ -275,14 +282,14 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 					}
 					
 					request.setAddress(address);
-					request.setFirstName(firstname);
-					request.setLastName(lastname);
+					request.setFirstname(firstname);
+					request.setLastname(lastname);
 					request.setTelephone(telephone);
 					request.setMobilePhone(mobilePhone);
 					request.setSex(sex);
 					request.setQq(qq);
-					request.setNickName(nickName);
-					request.setRegisterTime(registTime);
+					request.setNickname(nickName);
+					request.setRegistTime(registTime);
 					request.setLastModifyTime(lastModifyTime);
 					
 					
@@ -297,7 +304,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 					updateUserRequest.setSex(sex);
 					updateUserRequest.setQq(qq);
 					updateUserRequest.setNickname(nickName);
-					updateUserRequest.setRegisterTime(registTime);
+					updateUserRequest.setRegistTime(registTime);
 					updateUserRequest.setLastModifyTime(lastModifyTime);
 					updateUserRequest.setBirthday(dateBirthday);
 					}//end rs.next
