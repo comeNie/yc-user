@@ -119,11 +119,11 @@ public class UpdateYCUserRequest implements Serializable{
     /**
      * 注册时间
      */
-    private Date registerTime;
+    private Timestamp registTime;
     /**
      * 修改时间
      */
-    private Date lastModifyTime;
+    private Timestamp lastModifyTime;
     
 	public UpdateYCUserRequest() {
 		super();
@@ -308,21 +308,19 @@ public class UpdateYCUserRequest implements Serializable{
 		this.telephone = telephone;
 	}
 
-	public Date getRegisterTime() {
-		return registerTime;
+	public Timestamp getRegistTime() {
+		return registTime;
 	}
 
-	public void setRegisterTime(Date registerTime) {
-		this.registerTime = registerTime;
+	public void setRegistTime(Timestamp registTime) {
+		this.registTime = registTime;
 	}
 
-	public Date getLastModifyTime() {
+	public Timestamp getLastModifyTime() {
 		return lastModifyTime;
 	}
 
-	public void setLastModifyTime(Date lastModifyTime) {
+	public void setLastModifyTime(Timestamp lastModifyTime) {
 		this.lastModifyTime = lastModifyTime;
 	}
-    
-
 }

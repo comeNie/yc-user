@@ -19,11 +19,11 @@ public class CompleteUserInfoRequest {
     /**
      * 名
      */
-    private String lastName;
+    private String lastname;
     /**
      * 姓
      */
-    private String firstName;
+    private String firstname;
      /**
       * 性别
       */
@@ -61,15 +61,15 @@ public class CompleteUserInfoRequest {
     /**
      * 昵称
      */
-    private String nickName;
+    private String nickname;
     /**
      * 注册时间
      */
-    private Date registerTime;
+    private Timestamp registTime;
     /**
      * 修改时间
      */
-    private Date lastModifyTime;
+    private Timestamp lastModifyTime;
     
 	public String getUserId() {
 		return userId;
@@ -89,17 +89,33 @@ public class CompleteUserInfoRequest {
 	public void setLoginName(String loginName) {
 		this.loginName = loginName;
 	}
-	public String getLastName() {
-		return lastName;
+	
+	public String getLastname() {
+		return lastname;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
-	public String getFirstName() {
-		return firstName;
+	public String getFirstname() {
+		return firstname;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public Timestamp getRegistTime() {
+		return registTime;
+	}
+	public void setRegistTime(Timestamp registTime) {
+		this.registTime = registTime;
+	}
+	public void setLastModifyTime(Timestamp lastModifyTime) {
+		this.lastModifyTime = lastModifyTime;
 	}
 	public int getSex() {
 		return sex;
@@ -155,22 +171,8 @@ public class CompleteUserInfoRequest {
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
-	public String getNickName() {
-		return nickName;
-	}
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
-	}
-	public Date getRegisterTime() {
-		return registerTime;
-	}
-	public void setRegisterTime(Date registerTime) {
-		this.registerTime = registerTime;
-	}
+	
 	public Date getLastModifyTime() {
 		return lastModifyTime;
-	}
-	public void setLastModifyTime(Date lastModifyTime) {
-		this.lastModifyTime = lastModifyTime;
 	}
 }
