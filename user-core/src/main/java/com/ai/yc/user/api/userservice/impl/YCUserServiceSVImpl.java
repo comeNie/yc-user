@@ -357,8 +357,8 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 				response.setResponseHeader(responseHeader);
 			
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			LOGGER.error("操作失败："+e.getMessage(),e);
 			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,"补全信息失败");
 			response.setResponseHeader(responseHeader);
 		}finally {
