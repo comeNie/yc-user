@@ -348,11 +348,11 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 				if(userInfoResponse!=null&&userInfoResponse.getUserId()!=null&&!"".equals(userInfoResponse.getUserId())){
 					updateUserRequest.setUserId(request.getUserId());
 					ycUsrServiceBusiSv.updateUserInfo(updateUserRequest);
+					IYCTranslatorServiceSV translatorSV = DubboConsumerFactory.getService(IYCTranslatorServiceSV.class);
+					translatorSV.updateTranslatorByUserId(translatorRequest);
 				}else{
 					 ycUsrServiceBusiSv.completeUserInfo(request);
 				}
-				IYCTranslatorServiceSV translatorSV = DubboConsumerFactory.getService(IYCTranslatorServiceSV.class);
-				translatorSV.updateTranslatorByUserId(translatorRequest);
 				responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"补全信息成功");
 				response.setResponseHeader(responseHeader);
 			
