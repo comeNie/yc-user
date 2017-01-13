@@ -387,6 +387,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			tUser.setUserId(userinfo.getUserId());
 			if("".equals(tUser.getNickname())||tUser.getNickname()==null){
 				tUser.setNickname("译粉_"+SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8));
+				userinfo.setNickname(tUser.getNickname());
 			}
 			tUser.setAccountId(accountId);
 			ycUSAtomSV.insertUserInfo(tUser);

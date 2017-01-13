@@ -350,6 +350,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 					ycUsrServiceBusiSv.updateUserInfo(updateUserRequest);
 				}else{
 					 ycUsrServiceBusiSv.completeUserInfo(request);
+					 translatorRequest.setNickname(request.getNickname());
 				}
 				IYCTranslatorServiceSV translatorSV = DubboConsumerFactory.getService(IYCTranslatorServiceSV.class);
 				translatorRequest.setUserId(request.getUserId());
