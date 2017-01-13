@@ -244,13 +244,21 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 				rs = ps.executeQuery();
 				if (rs.next()) {
 					String lastname=rs.getString("LASTNAME");	
+					if(StringUtil.isBlank(lastname)){
+						lastname = "";
+					}
 					String firstname=rs.getString("FIRSTNAME");	
+					if(StringUtil.isBlank(firstname)){
+						firstname = "";
+					}
 					int sex = rs.getInt("SEX");
 					String birthday = rs.getString("BIRTHDAY");
 					String telephone = rs.getString("TELEPHONE");
 					String mobilePhone = rs.getString("MOBILE_PHONE");
 					String address = rs.getString("ADDRESS");
-					String city = rs.getString("CITY");
+					if(StringUtil.isBlank(address)){
+						address = "";
+					}
 					String cncity = rs.getString("CN_CITY");
 					String province = rs.getString("PROVINCE");
 					//String country = rs.getString("COUNTRY");
@@ -258,7 +266,13 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 					Timestamp registTime = rs.getTimestamp("REGIST_TIME");
 					Timestamp lastModifyTime = rs.getTimestamp("LAST_MODIFY_TIME");
 					String qq = rs.getString("QQ");
+					if(StringUtil.isBlank(qq)){
+						qq = "";
+					}
 					String nickName = rs.getString("NICKNAME");
+					if(StringUtil.isBlank(nickName)){
+						nickName = "";
+					}
 					Timestamp dateBirthday = null;
 					if(!StringUtil.isBlank(birthday)&&birthday.contains("-")){
 						birthday = birthday+" 00:00:00";
