@@ -46,5 +46,6 @@
 		interface="com.ai.slp.balance.api.accountmaintain.interfaces.IAccountMaintainSV" />
 	<dubbo:reference id="iGnCountrySV"
 		interface="com.ai.yc.common.api.country.interfaces.IGnCountrySV" />
-		 
+	<dubbo:reference id="iYCTranslatorServiceSV"
+		interface="com.ai.yc.translator.api.translatorservice.interfaces.IYCTranslatorServiceSV" />	 
 </beans>
