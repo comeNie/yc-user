@@ -152,7 +152,7 @@ public class testusrservice {
 	@Test
 	public void testInsertCompleteUserInfo(){
 		CompleteUserInfoRequest request = new CompleteUserInfoRequest();
-		request.setUserId("1234567");
+		request.setUserId("4444820");
 		request.setLoginName("test");
 		request.setMobilePhone("16799999999");
 		usSV.completeUserInfo(request);
