@@ -22,11 +22,14 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.components.ccs.CCSClientFactory;
 import com.ai.opt.sdk.components.mcs.MCSClientFactory;
+import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.DateUtil;
 import com.ai.paas.ipaas.ccs.IConfigClient;
 import com.ai.paas.ipaas.mcs.interfaces.ICacheClient;
 import com.ai.paas.ipaas.util.StringUtil;
+import com.ai.yc.translator.api.translatorservice.interfaces.IYCTranslatorServiceSV;
+import com.ai.yc.translator.api.translatorservice.param.newparam.UpdateYCTranslatorRequest;
 import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
 import com.ai.yc.user.api.userservice.param.CompleteUserInfoRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
@@ -212,8 +215,10 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		ResultSet rs = null;
 		ResponseHeader responseHeader = null;
 		BaseResponse response = new BaseResponse();
-		//更新请求参数
+		//更新客户请求参数
 		UpdateYCUserRequest updateUserRequest = new UpdateYCUserRequest();
+		//更新译员请求参数
+		UpdateYCTranslatorRequest translatorRequest = new UpdateYCTranslatorRequest();
 		try {
 			//缓存客户端
 			ICacheClient cacheClient= MCSClientFactory.getCacheClient(CACHE_GN_T_DICT_AREA_REGION);
@@ -307,7 +312,7 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 					request.setLastModifyTime(lastModifyTime);
 					
 					
-					//准备更新请求参数
+					//准备更新客户请求参数
 					updateUserRequest.setAddress(address);
 					updateUserRequest.setSex(sex);
 					updateUserRequest.setAddress(address);
@@ -321,6 +326,18 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 					updateUserRequest.setRegistTime(registTime);
 					updateUserRequest.setLastModifyTime(lastModifyTime);
 					updateUserRequest.setBirthday(dateBirthday);
+					//修改译员信息
+					translatorRequest.setAddress(address);
+					translatorRequest.setSex(sex);
+					translatorRequest.setAddress(address);
+					/*translatorRequest.set(firstname);
+					translatorRequest.setLastname(lastname);
+					translatorRequest.setTelephone(telephone);*/
+					translatorRequest.setMobilePhone(mobilePhone);
+					translatorRequest.setSex(sex);
+					translatorRequest.setQq(qq);
+					translatorRequest.setNickname(nickName);
+					translatorRequest.setBirthday(dateBirthday);
 					}//end rs.next
 				}//end readOldYc
 				
@@ -334,6 +351,8 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 				}else{
 					 ycUsrServiceBusiSv.completeUserInfo(request);
 				}
+				IYCTranslatorServiceSV translatorSV = DubboConsumerFactory.getService(IYCTranslatorServiceSV.class);
+				translatorSV.updateTranslatorByUserId(translatorRequest);
 				responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"补全信息成功");
 				response.setResponseHeader(responseHeader);
 			
