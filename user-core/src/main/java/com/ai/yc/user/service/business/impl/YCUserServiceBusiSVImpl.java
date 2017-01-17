@@ -109,7 +109,8 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "返回值为空");
 			}
 			if (!umrResponse.getMessage().isSuccess()) {
-				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "内部错误 : " + umrResponse.getCode().getCodeMessage());
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT,
+						"内部错误 : " + umrResponse.getCode().getCodeMessage());
 			}
 			if (umrResponse.getCode().getCodeNumber().intValue() != 1) {
 				throw new BusinessException(umrResponse.getCode().getCodeNumber() + "", "ucenter返回值 : "
@@ -119,14 +120,12 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "ucenter返回值缺少uid");
 			}
 			if (StringUtil.isBlank(umrResponse.getDate().get("username").toString())) { // 邮箱注册必有值
-				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT,
-						"ucenter返回值缺少username");
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "ucenter返回值缺少username");
 			}
 			if (StringUtil.isBlank(umrResponse.getDate().get("operationcode").toString())) { // 邮箱注册必有值
-				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT,
-						"ucenter返回值缺少operationcode");
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "ucenter返回值缺少operationcode");
 			}
-			LOG.info("创建ucenter账号成功-----------"+JSON.toJSONString(umrResponse));
+			LOG.info("创建ucenter账号成功-----------" + JSON.toJSONString(umrResponse));
 			// 支付账户信息
 			IAccountMaintainSV iAccountMaintainSV = DubboConsumerFactory.getService(IAccountMaintainSV.class);
 			RegAccReq vo = new RegAccReq();
@@ -135,7 +134,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			vo.setTenantId("yeecloud");// 租户ID
 			vo.setRegCustomerId(umrResponse.getDate().get("uid").toString());
 			vo.setAcctName(umrResponse.getDate().get("username").toString());
-			
+
 			/**
 			 * 个人客户需校验支付密码
 			 */
@@ -144,40 +143,48 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			 * 1、预付费 0、后付费
 			 */
 			vo.setAcctType("1");
-			
+
 			long accountId = iAccountMaintainSV.createAccount(vo);
-			LOG.info("创建个人账户成功----------------"+JSON.toJSONString(vo));
+			LOG.info("创建个人账户成功----------------" + JSON.toJSONString(vo));
 			// 插入数据
 			UsrUser tUser = new UsrUser();
 			// 从右到左,把相同类型且属性名相同的复制到右边
 			BeanUtils.copyProperties(tUser, insertinfo);
 			tUser.setUserId(umrResponse.getDate().get("uid").toString());
-			tUser.setNickname("译粉_"+SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8));
+			tUser.setNickname("译粉_" + SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8));
 			tUser.setAccountId(accountId);
-			ycUSAtomSV.insertUserInfo(tUser);
+			try {
+				ycUSAtomSV.insertUserInfo(tUser);
+			} catch (Exception e) {
+				throw new BusinessException(ExceptCodeConstants.Special.SYSTEM_ERROR, e);
+			}
 			LOG.info("创建个人信息成功-----------");
 			YCInsertUserResponse insertResp = new YCInsertUserResponse();
 			insertResp.setUserId(tUser.getUserId());
 			insertResp.setOperationcode(umrResponse.getDate().get("operationcode").toString());
 			insertResp.setUsername(umrResponse.getDate().get("username").toString());
-			LOG.info("返回数据------------"+JSON.toJSONString(insertResp));
+			LOG.info("返回数据------------" + JSON.toJSONString(insertResp));
 			return insertResp;
 		} else if (insertinfo.getLoginway().equals("2")) {// 思路：前台调用ucGetOperationcode接口，然后这里调用UcMembersEditPassRequest接口修改密码，与邮箱注册不同的是前台必须要传uid和Operationcod过来
-			//---------------------- 
-//			IUcMembersOperationSV iUcMembersOperationSV =
-//			 DubboConsumerFactory.getService(IUcMembersOperationSV.class);
-//			 UcMembersGetOperationcodeRequest ucMembersGetOperationcodeRequest
-//			 = new UcMembersGetOperationcodeRequest();
-//			 ucMembersGetOperationcodeRequest.setUserinfo(insertinfo.getMobilePhone());
-//			 ucMembersGetOperationcodeRequest.setOperationtype("1");
-//			 UcMembersGetOperationcodeResponse umgor =
-//			 iUcMembersOperationSV.ucGetOperationcode(ucMembersGetOperationcodeRequest);
-//			 umgor.getDate().get("uid");
-//			 umgor.getDate().get("operationcode");
-			//----------------------
-			
-			UsrUser user = ycUSAtomSV.getUserInfo(insertinfo.getUserId());
-			if(null != user){
+			// ----------------------
+			// IUcMembersOperationSV iUcMembersOperationSV =
+			// DubboConsumerFactory.getService(IUcMembersOperationSV.class);
+			// UcMembersGetOperationcodeRequest ucMembersGetOperationcodeRequest
+			// = new UcMembersGetOperationcodeRequest();
+			// ucMembersGetOperationcodeRequest.setUserinfo(insertinfo.getMobilePhone());
+			// ucMembersGetOperationcodeRequest.setOperationtype("1");
+			// UcMembersGetOperationcodeResponse umgor =
+			// iUcMembersOperationSV.ucGetOperationcode(ucMembersGetOperationcodeRequest);
+			// umgor.getDate().get("uid");
+			// umgor.getDate().get("operationcode");
+			// ----------------------
+			UsrUser user;
+			try {
+				user = ycUSAtomSV.getUserInfo(insertinfo.getUserId());
+			} catch (Exception e) {
+				throw new BusinessException(ExceptCodeConstants.Special.SYSTEM_ERROR, e);
+			}
+			if (null != user) {
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "UID 已经存在");
 			}
 			UcMembersEditPassRequest umepr = new UcMembersEditPassRequest();
@@ -185,12 +192,12 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			umepr.setChecke_code(insertinfo.getOperationcode());
 			umepr.setChecke_mode("2");
 			umepr.setNewpw(insertinfo.getPassword());
-			
-//			//----------------------
-//			umepr.setChecke_code(umgor.getDate().get("operationcode").toString());
-//			umepr.setUid(Integer.valueOf(umgor.getDate().get("uid").toString()));
-//			insertinfo.setUserId(umgor.getDate().get("uid").toString());
-//			//----------------------
+
+			// //----------------------
+			// umepr.setChecke_code(umgor.getDate().get("operationcode").toString());
+			// umepr.setUid(Integer.valueOf(umgor.getDate().get("uid").toString()));
+			// insertinfo.setUserId(umgor.getDate().get("uid").toString());
+			// //----------------------
 			UcMembersResponse umr = iUcMembersSV.ucEditPassword(umepr);
 			if (umr == null) {
 				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "返回值为NULL");
@@ -205,10 +212,9 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 				throw new BusinessException(umr.getCode().getCodeNumber() + "", umr.getCode().getCodeMessage());
 			}
 			if (StringUtil.isBlank(umr.getDate().get("username").toString())) { // 邮箱注册必有值,ucenter返回值缺少username
-				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT,
-						"内部错误 缺少username");
+				throw new BusinessException(ExceptCodeConstants.Special.NO_RESULT, "内部错误 缺少username");
 			}
-			LOG.info("修改密码成功-------------"+JSON.toJSONString(umepr));
+			LOG.info("修改密码成功-------------" + JSON.toJSONString(umepr));
 			// 支付账户信息
 			IAccountMaintainSV iAccountMaintainSV = DubboConsumerFactory.getService(IAccountMaintainSV.class);
 			RegAccReq vo = new RegAccReq();
@@ -221,21 +227,25 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			 * 个人客户需校验支付密码
 			 */
 			vo.setPayCheck("1");
-			vo.setAcctType("1");//1预付费
+			vo.setAcctType("1");// 1预付费
 			long accountId = iAccountMaintainSV.createAccount(vo);
 			LOG.info("创建账号成功-----------------");
 			// 插入数据
 			UsrUser tUser = new UsrUser();
 			// 从右到左,把相同类型且属性名相同的复制到右边
-			LOG.info("个人信息insertinfo"+JSON.toJSONString(insertinfo));
+			LOG.info("个人信息insertinfo" + JSON.toJSONString(insertinfo));
 			BeanUtils.copyProperties(tUser, insertinfo);
 			tUser.setAccountId(accountId);
-			tUser.setNickname("译粉_"+SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8));
-			ycUSAtomSV.insertUserInfo(tUser);
-			LOG.info("创建个人信息---------------"+JSON.toJSONString(tUser));
+			tUser.setNickname("译粉_" + SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8));
+			try {
+				ycUSAtomSV.insertUserInfo(tUser);
+			} catch (Exception e) {
+				throw new BusinessException(ExceptCodeConstants.Special.SYSTEM_ERROR, e);
+			}
+			LOG.info("创建个人信息---------------" + JSON.toJSONString(tUser));
 			YCInsertUserResponse insertResp = new YCInsertUserResponse();
 			insertResp.setUserId(tUser.getUserId());
-			LOG.info("返回数据------------------------"+JSON.toJSONString(insertResp));
+			LOG.info("返回数据------------------------" + JSON.toJSONString(insertResp));
 			return insertResp;
 
 		} else {
@@ -254,7 +264,13 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		UsrUserCriteria example = new UsrUserCriteria();
 		UsrUserCriteria.Criteria criteria = example.createCriteria();
 		criteria.andUserIdEqualTo(user.getUserId());
-		return ycUSAtomSV.updateUserInfo(user, example);
+		int resp;
+		try {
+			resp = ycUSAtomSV.updateUserInfo(user, example);
+		} catch (Exception e) {
+			throw new BusinessException(ExceptCodeConstants.Special.SYSTEM_ERROR, e);
+		}
+		return resp;
 
 	}
 
@@ -263,13 +279,17 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		if (StringUtil.isBlank(userID)) {
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户Id不能为空");
 		}
-		UsrUser usrUser = ycUSAtomSV.getUserInfo(userID);
-		
+		UsrUser usrUser;
+		try {
+			usrUser = ycUSAtomSV.getUserInfo(userID);
+		} catch (Exception e) {
+			throw new BusinessException(ExceptCodeConstants.Special.SYSTEM_ERROR, e);
+		}
 		YCUserInfoResponse result = new YCUserInfoResponse();
-		if(null == usrUser){
+		if (null == usrUser) {
 			return result;
 		}
-		
+
 		BeanUtils.copyProperties(result, usrUser);
 		String idpsns = "yc-portal-web";
 		IImageClient im = IDPSClientFactory.getImageClient(idpsns);
@@ -280,26 +300,29 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		return result;
 	}
 
-
 	@Override
 	public List<UsrContact> searchUsrContactInfo(String userId) throws BusinessException {
 
 		if (StringUtil.isBlank(userId)) {
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户Id不能为空");
 		}
-
-		List<UsrContact> usrC = ycUSAtomSV.getUsrContactInfo(userId);
+		List<UsrContact> usrC;
+		try {
+			usrC = ycUSAtomSV.getUsrContactInfo(userId);
+		} catch (Exception e) {
+			throw new BusinessException(ExceptCodeConstants.Special.SYSTEM_ERROR, e);
+		}
 		if (null == usrC) {
 			return null;
 		}
 		IGnCountrySV iGnCountrySV = DubboConsumerFactory.getService(IGnCountrySV.class);
-		for(UsrContact contact : usrC){
+		for (UsrContact contact : usrC) {
 			CountryRequest cr = new CountryRequest();
 			cr.setTenantId("yeecloud");
 			cr.setCountryCode(String.valueOf(contact.getGnCountryId()));
 			CountryResponse cresp = iGnCountrySV.queryCountry(cr);
-			if(null != cresp.getResult()){
-				if(null != cresp.getResult().get(0)){
+			if (null != cresp.getResult()) {
+				if (null != cresp.getResult().get(0)) {
 					contact.setCountryVo(cresp.getResult().get(0));
 				}
 			}
@@ -315,29 +338,43 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		UsrUserCriteria example = new UsrUserCriteria();
 		UsrUserCriteria.Criteria criteria = example.createCriteria();
 		criteria.andNicknameEqualTo(nickName);
-		UsrUser user = ycUSAtomSV.getUserInfoByNickName(example);
+		UsrUser user;
+		try {
+			user = ycUSAtomSV.getUserInfoByNickName(example);
+		} catch (Exception e) {
+			throw new BusinessException(ExceptCodeConstants.Special.SYSTEM_ERROR, e);
+		}
 		if (null == user) {
 			return null;
 		}
 		return user;
 	}
+
 	@Override
 	public YCInsertContactResponse insertContactInfo(InsertYCContactRequest creq) throws BusinessException {
 		UsrContact usrContact = new UsrContact();
 		String contactId = null;
-		if (null != creq.getContactId() && !StringUtil.isBlank(creq.getContactId())){
+		if (null != creq.getContactId() && !StringUtil.isBlank(creq.getContactId())) {
 			// delete
-			ycUSAtomSV.deleteContactInfo(creq.getContactId());
+			try {
+				ycUSAtomSV.deleteContactInfo(creq.getContactId());
+			} catch (Exception e) {
+				throw new BusinessException(ExceptCodeConstants.Special.SYSTEM_ERROR, e);
+			}
 			contactId = creq.getContactId();
 		} else {
 			contactId = SeqUtil.getNewId("YC_USER$CONTACT_ID$SEQ", 8);
 		}
-		if (creq.getGnCountryId() < 1){
+		if (creq.getGnCountryId() < 1) {
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "国家编号不能为空");
 		}
 		BeanUtils.copyProperties(usrContact, creq);
 		usrContact.setContactId(contactId);
-		ycUSAtomSV.insertContactInfo(usrContact);
+		try {
+			ycUSAtomSV.insertContactInfo(usrContact);
+		} catch (Exception e) {
+			throw new BusinessException(ExceptCodeConstants.Special.SYSTEM_ERROR, e);
+		}
 		YCInsertContactResponse icr = new YCInsertContactResponse();
 		icr.setContactId(contactId);
 		return icr;
@@ -346,8 +383,13 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	@Override
 	public List<YCUserInfoResponse> getAllUserInfo() throws BusinessException {
 		List<YCUserInfoResponse> list = new ArrayList<YCUserInfoResponse>();
-		List<UsrUser> usrList = ycUSAtomSV.getAllUserInfo();
-		for(UsrUser usrUser:usrList){
+		List<UsrUser> usrList;
+		try {
+			usrList = ycUSAtomSV.getAllUserInfo();
+		} catch (Exception e) {
+			throw new BusinessException(ExceptCodeConstants.Special.SYSTEM_ERROR, e);
+		}
+		for (UsrUser usrUser : usrList) {
 			YCUserInfoResponse userInfoResponse = new YCUserInfoResponse();
 			BeanUtils.copyProperties(userInfoResponse, usrUser);
 			list.add(userInfoResponse);
@@ -359,7 +401,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	public BaseResponse completeUserInfo(CompleteUserInfoRequest userinfo) throws BusinessException {
 		ResponseHeader responseHeader = null;
 		BaseResponse response = new BaseResponse();
-		try{
+		try {
 			// 支付账户信息
 			IAccountMaintainSV iAccountMaintainSV = DubboConsumerFactory.getService(IAccountMaintainSV.class);
 			RegAccReq vo = new RegAccReq();
@@ -368,7 +410,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			vo.setTenantId("yeecloud");// 租户ID
 			vo.setRegCustomerId(userinfo.getUserId());
 			vo.setAcctName(userinfo.getLoginName());
-			
+
 			/**
 			 * 个人客户需校验支付密码
 			 */
@@ -377,7 +419,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			 * 1、预付费 0、后付费
 			 */
 			vo.setAcctType("1");
-			
+
 			long accountId = iAccountMaintainSV.createAccount(vo);
 			LOG.info("创建个人账户成功----------------");
 			// 插入数据
@@ -385,21 +427,25 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			// 从右到左,把相同类型且属性名相同的复制到右边
 			BeanUtils.copyProperties(tUser, userinfo);
 			tUser.setUserId(userinfo.getUserId());
-			if("".equals(tUser.getNickname())||tUser.getNickname()==null){
-				tUser.setNickname("译粉_"+SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8));
+			if ("".equals(tUser.getNickname()) || tUser.getNickname() == null) {
+				tUser.setNickname("译粉_" + SeqUtil.getNewId("YC_USER$NIKE_NAME_ID$SEQ", 8));
 				userinfo.setNickname(tUser.getNickname());
 			}
 			tUser.setAccountId(accountId);
-			ycUSAtomSV.insertUserInfo(tUser);
+			try {
+				ycUSAtomSV.insertUserInfo(tUser);
+			} catch (Exception e) {
+				throw new BusinessException(ExceptCodeConstants.Special.SYSTEM_ERROR, e);
+			}
 			LOG.info("创建个人信息成功-----------");
-			responseHeader = new ResponseHeader(true,ExceptCodeConstants.Special.SUCCESS,"补全信息成功");
+			responseHeader = new ResponseHeader(true, ExceptCodeConstants.Special.SUCCESS, "补全信息成功");
 			response.setResponseHeader(responseHeader);
-		}catch(Exception e){
-			LOG.error("补全信息失败",e);
-			responseHeader = new ResponseHeader(true,ExceptCodeConstants.Special.SYSTEM_ERROR,"补全信息失败");
+		} catch (Exception e) {
+			LOG.error("补全信息失败", e);
+			responseHeader = new ResponseHeader(true, ExceptCodeConstants.Special.SYSTEM_ERROR, "补全信息失败");
 			response.setResponseHeader(responseHeader);
 		}
-		
+
 		return response;
 	}
 }
