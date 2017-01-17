@@ -368,6 +368,9 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		if (creq.getGnCountryId() < 1) {
 			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "国家编号不能为空");
 		}
+		if (StringUtil.isBlank(creq.getUserId())){
+			throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户ID不能为空");
+		}
 		BeanUtils.copyProperties(usrContact, creq);
 		usrContact.setContactId(contactId);
 		try {
