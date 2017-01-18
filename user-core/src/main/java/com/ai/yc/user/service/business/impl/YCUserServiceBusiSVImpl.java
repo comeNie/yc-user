@@ -319,7 +319,8 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		for (UsrContact contact : usrC) {
 			CountryRequest cr = new CountryRequest();
 			cr.setTenantId("yeecloud");
-			cr.setCountryCode(String.valueOf(contact.getGnCountryId()));
+//			cr.setCountryCode(String.valueOf(contact.getGnCountryId()));
+			cr.setId(contact.getGnCountryId());
 			CountryResponse cresp = iGnCountrySV.queryCountry(cr);
 			if (null != cresp.getResult()) {
 				if (null != cresp.getResult().get(0)) {
