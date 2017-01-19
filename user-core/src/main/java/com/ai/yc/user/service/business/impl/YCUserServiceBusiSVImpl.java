@@ -78,11 +78,11 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 				}
 				if (StringUtil.isBlank(insertinfo.getUserId())) {
 					LOG.debug("手机验证码注册时用户ID不能为空");
-					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "手机验证码不正确");
+					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "手机动态码不正确");
 				}
 				if (StringUtil.isBlank(insertinfo.getOperationcode())) {
 					LOG.debug("手机验证码注册时Operationcode不能为空");
-					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "手机验证码不正确");
+					throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "手机动态码不正确");
 				}
 			}
 		}
