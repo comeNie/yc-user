@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ai.opt.base.vo.PageInfo;
+import com.ai.yc.user.api.usercollectiontranslation.param.UserCollectionInfoRequest;
 import com.ai.yc.user.dao.mapper.bo.UsrCollectionTranslation;
 import com.ai.yc.user.dao.mapper.bo.UsrCollectionTranslationCriteria;
 import com.ai.yc.user.dao.mapper.interfaces.UsrCollectionTranslationMapper;
@@ -36,5 +38,11 @@ public class YCUserCollectionAtomSVImpl implements IYCUserCollectionAtomSV{
 	public List<UsrCollectionTranslation> queryCollectionInfo(
 			UsrCollectionTranslationCriteria example) {
 		return uCollectionMapper.selectByExample(example);
+	}
+
+	@Override
+	public int getCollectionCount(UsrCollectionTranslationCriteria example) {
+		// TODO Auto-generated method stub
+		return uCollectionMapper.countByExample(example);
 	}
 }
