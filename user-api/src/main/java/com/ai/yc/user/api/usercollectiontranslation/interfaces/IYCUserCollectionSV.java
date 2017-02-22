@@ -51,5 +51,6 @@ public interface IYCUserCollectionSV {
 	 * @ApiCode USR_0005
      * @RestRelativeURL ycusercollection/deleteCollectionInfo
 	 */
-	public BaseResponse deleteCollectionInfo(List<String> collectionIds)throws BusinessException,SystemException;
+	public BaseResponse deleteCollectionInfo(UserCollectionInfoRequest userInfoRequest)throws BusinessException,SystemException;
+	
 }
