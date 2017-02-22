@@ -10,8 +10,6 @@ import javax.ws.rs.core.MediaType;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.opt.base.vo.PageInfo;
-import com.ai.yc.user.api.usercollectiontranslation.param.UserCollectionInfo;
 import com.ai.yc.user.api.usercollectiontranslation.param.UserCollectionInfoListResponse;
 import com.ai.yc.user.api.usercollectiontranslation.param.UserCollectionInfoRequest;
 import com.ai.yc.user.api.usercollectiontranslation.param.UserCollectionInfoResponse;
