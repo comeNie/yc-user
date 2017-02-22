@@ -83,4 +83,8 @@ public class ExceptCodeConstants {
         public static final String BALANCE_NOT_ENOUGH = "300002";
         public static final String VERSION_EXPORE = "300003";
     }
+    
+    public static final class Contact{
+    	 public static final String INSERT_ERROR = "400001";
+    }
 }
