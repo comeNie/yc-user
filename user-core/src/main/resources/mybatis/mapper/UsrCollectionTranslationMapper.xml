@@ -68,6 +68,7 @@
       </foreach>
     </where>
   </sql>
+  
   <sql id="Base_Column_List">
     collection_id, user_id, original, translation, collect_time, source_language, target_language
   </sql>
