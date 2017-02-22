@@ -57,8 +57,8 @@ public class YCUserCollectionSVImpl implements IYCUserCollectionSV{
 	}
 
 	@Override
-	public BaseResponse deleteCollectionInfo(List<String> collectionIds) {
-		return ycUserCollectionSV.deleteCollectionInfo(collectionIds);
+	public BaseResponse deleteCollectionInfo(UserCollectionInfoRequest userInfoRequest) {
+		return ycUserCollectionSV.deleteCollectionInfo(userInfoRequest);
 	}
 
 }
