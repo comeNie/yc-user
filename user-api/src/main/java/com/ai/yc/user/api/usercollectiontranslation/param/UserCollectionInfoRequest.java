@@ -1,5 +1,7 @@
 package com.ai.yc.user.api.usercollectiontranslation.param;
 
+import java.util.List;
+
 public class UserCollectionInfoRequest {
 	/**
 	 * 主键Id
@@ -30,6 +32,8 @@ public class UserCollectionInfoRequest {
 	 * 目标语言
 	 */
 	private String targetLanguage;
+	
+	private List<String> collectionIds;
 	
 	public String getCollectionId() {
 		return collectionId;
@@ -72,6 +76,12 @@ public class UserCollectionInfoRequest {
 	}
 	public void setTargetLanguage(String targetLanguage) {
 		this.targetLanguage = targetLanguage;
+	}
+	public List<String> getCollectionIds() {
+		return collectionIds;
+	}
+	public void setCollectionIds(List<String> collectionIds) {
+		this.collectionIds = collectionIds;
 	}
 	
 }
