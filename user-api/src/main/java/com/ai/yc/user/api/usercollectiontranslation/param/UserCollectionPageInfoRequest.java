@@ -1,10 +1,8 @@
 package com.ai.yc.user.api.usercollectiontranslation.param;
 
-import com.ai.opt.base.vo.BaseResponse;
+import java.util.List;
 
-public class UserCollectionInfoResponse extends BaseResponse{
-	
-	private static final long serialVersionUID = 1L;
+public class UserCollectionPageInfoRequest {
 	/**
 	 * 主键Id
 	 */
@@ -34,7 +32,20 @@ public class UserCollectionInfoResponse extends BaseResponse{
 	 * 目标语言
 	 */
 	private String targetLanguage;
+	/**
+	 * 多个收藏id
+	 */
+	private List<String> collectionIds;
 	
+	 /**
+     * 当前第几页,必填
+     */
+    private Integer pageNo;
+
+    /**
+     * 每页数据条数,必填
+     */
+    private Integer pageSize;
 	
 	public String getCollectionId() {
 		return collectionId;
@@ -77,6 +88,24 @@ public class UserCollectionInfoResponse extends BaseResponse{
 	}
 	public void setTargetLanguage(String targetLanguage) {
 		this.targetLanguage = targetLanguage;
+	}
+	public List<String> getCollectionIds() {
+		return collectionIds;
+	}
+	public void setCollectionIds(List<String> collectionIds) {
+		this.collectionIds = collectionIds;
+	}
+	public Integer getPageNo() {
+		return pageNo;
+	}
+	public void setPageNo(Integer pageNo) {
+		this.pageNo = pageNo;
+	}
+	public Integer getPageSize() {
+		return pageSize;
+	}
+	public void setPageSize(Integer pageSize) {
+		this.pageSize = pageSize;
 	}
 	
 }

@@ -2,13 +2,13 @@ package com.ai.yc.user.api.usercollectiontranslation.param;
 
 import com.ai.opt.base.vo.BaseResponse;
 
-public class UserCollectionInfoResponse extends BaseResponse{
+public class UserCollectionInfo extends BaseResponse{
 	
 	private static final long serialVersionUID = 1L;
 	/**
 	 * 主键Id
 	 */
-	private String collectionId;
+	private String id;
 	/**
 	 * 用户Id
 	 */
@@ -35,12 +35,11 @@ public class UserCollectionInfoResponse extends BaseResponse{
 	 */
 	private String targetLanguage;
 	
-	
-	public String getCollectionId() {
-		return collectionId;
+	public String getId() {
+		return id;
 	}
-	public void setCollectionId(String collectionId) {
-		this.collectionId = collectionId;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getUserId() {
 		return userId;
