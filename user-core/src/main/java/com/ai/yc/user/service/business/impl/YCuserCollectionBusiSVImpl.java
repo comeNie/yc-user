@@ -1,6 +1,5 @@
 package com.ai.yc.user.service.business.impl;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,10 +65,10 @@ public class YCuserCollectionBusiSVImpl implements IYCUserCollectionBusiSV{
 			UsrCollectionTranslationCriteria.Criteria criteria = example.createCriteria();
 			criteria.andCollectionIdIn(collectionIds);
 			ycUSCollectionAtomSV.deleteCollectionInfo(example);
-			header = new ResponseHeader(true, ExceptCodeConstants.Special.SUCCESS, "更新收藏信息成功");
+			header = new ResponseHeader(true, ExceptCodeConstants.Special.SUCCESS, "删除收藏信息成功");
 		}catch(Exception e){
 			e.printStackTrace();
-			header = new ResponseHeader(false, ExceptCodeConstants.Special.SYSTEM_ERROR, "更新收藏信息失败");
+			header = new ResponseHeader(false, ExceptCodeConstants.Special.SYSTEM_ERROR, "删除收藏信息失败");
 		}
 		response.setResponseHeader(header);
 		return response;
@@ -85,11 +84,23 @@ public class YCuserCollectionBusiSVImpl implements IYCUserCollectionBusiSV{
 			if(!StringUtil.isBlank(userInfoRequest.getCollectionId())){
 				criteria.andCollectionIdEqualTo(userInfoRequest.getCollectionId());
 			}
+			if(!StringUtil.isBlank(userInfoRequest.getTranslation())){
+				criteria.andTranslationEqualTo(userInfoRequest.getTranslation().trim());
+			}
+			if(!StringUtil.isBlank(userInfoRequest.getOriginal())){
+				criteria.andOriginalEqualTo(userInfoRequest.getOriginal().trim());
+			}
+			if(!StringUtil.isBlank(userInfoRequest.getSourceLanguage())){
+				criteria.andSourceLanguageEqualTo(userInfoRequest.getSourceLanguage());
+			}
+			if(!StringUtil.isBlank(userInfoRequest.getTargetLanguage())){
+				criteria.andTargetLanguageEqualTo(userInfoRequest.getTargetLanguage());
+			}
 			ycUSCollectionAtomSV.queryCollectionInfo(example);
-			header = new ResponseHeader(true, ExceptCodeConstants.Special.SUCCESS, "更新收藏信息成功");
+			header = new ResponseHeader(true, ExceptCodeConstants.Special.SUCCESS, "查询收藏信息成功");
 		}catch(Exception e){
 			e.printStackTrace();
-			header = new ResponseHeader(false, ExceptCodeConstants.Special.SYSTEM_ERROR, "更新收藏信息失败");
+			header = new ResponseHeader(false, ExceptCodeConstants.Special.SYSTEM_ERROR, "查询收藏信息失败");
 		}
 		response.setResponseHeader(header);
 		return response;
