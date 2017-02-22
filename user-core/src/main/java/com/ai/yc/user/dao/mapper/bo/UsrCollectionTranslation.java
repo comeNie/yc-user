@@ -13,6 +13,10 @@ public class UsrCollectionTranslation {
 
     private Timestamp collectTime;
 
+    private String sourceLanguage;
+
+    private String targetLanguage;
+
     public String getCollectionId() {
         return collectionId;
     }
@@ -51,5 +55,21 @@ public class UsrCollectionTranslation {
 
     public void setCollectTime(Timestamp collectTime) {
         this.collectTime = collectTime;
+    }
+
+    public String getSourceLanguage() {
+        return sourceLanguage;
+    }
+
+    public void setSourceLanguage(String sourceLanguage) {
+        this.sourceLanguage = sourceLanguage == null ? null : sourceLanguage.trim();
+    }
+
+    public String getTargetLanguage() {
+        return targetLanguage;
+    }
+
+    public void setTargetLanguage(String targetLanguage) {
+        this.targetLanguage = targetLanguage == null ? null : targetLanguage.trim();
     }
 }

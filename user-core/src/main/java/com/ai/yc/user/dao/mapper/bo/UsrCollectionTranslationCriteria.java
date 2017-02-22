@@ -464,6 +464,146 @@ public class UsrCollectionTranslationCriteria {
             addCriterion("collect_time not between", value1, value2, "collectTime");
             return (Criteria) this;
         }
+
+        public Criteria andSourceLanguageIsNull() {
+            addCriterion("source_language is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceLanguageIsNotNull() {
+            addCriterion("source_language is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceLanguageEqualTo(String value) {
+            addCriterion("source_language =", value, "sourceLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceLanguageNotEqualTo(String value) {
+            addCriterion("source_language <>", value, "sourceLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceLanguageGreaterThan(String value) {
+            addCriterion("source_language >", value, "sourceLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceLanguageGreaterThanOrEqualTo(String value) {
+            addCriterion("source_language >=", value, "sourceLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceLanguageLessThan(String value) {
+            addCriterion("source_language <", value, "sourceLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceLanguageLessThanOrEqualTo(String value) {
+            addCriterion("source_language <=", value, "sourceLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceLanguageLike(String value) {
+            addCriterion("source_language like", value, "sourceLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceLanguageNotLike(String value) {
+            addCriterion("source_language not like", value, "sourceLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceLanguageIn(List<String> values) {
+            addCriterion("source_language in", values, "sourceLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceLanguageNotIn(List<String> values) {
+            addCriterion("source_language not in", values, "sourceLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceLanguageBetween(String value1, String value2) {
+            addCriterion("source_language between", value1, value2, "sourceLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andSourceLanguageNotBetween(String value1, String value2) {
+            addCriterion("source_language not between", value1, value2, "sourceLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetLanguageIsNull() {
+            addCriterion("target_language is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetLanguageIsNotNull() {
+            addCriterion("target_language is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetLanguageEqualTo(String value) {
+            addCriterion("target_language =", value, "targetLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetLanguageNotEqualTo(String value) {
+            addCriterion("target_language <>", value, "targetLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetLanguageGreaterThan(String value) {
+            addCriterion("target_language >", value, "targetLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetLanguageGreaterThanOrEqualTo(String value) {
+            addCriterion("target_language >=", value, "targetLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetLanguageLessThan(String value) {
+            addCriterion("target_language <", value, "targetLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetLanguageLessThanOrEqualTo(String value) {
+            addCriterion("target_language <=", value, "targetLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetLanguageLike(String value) {
+            addCriterion("target_language like", value, "targetLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetLanguageNotLike(String value) {
+            addCriterion("target_language not like", value, "targetLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetLanguageIn(List<String> values) {
+            addCriterion("target_language in", values, "targetLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetLanguageNotIn(List<String> values) {
+            addCriterion("target_language not in", values, "targetLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetLanguageBetween(String value1, String value2) {
+            addCriterion("target_language between", value1, value2, "targetLanguage");
+            return (Criteria) this;
+        }
+
+        public Criteria andTargetLanguageNotBetween(String value1, String value2) {
+            addCriterion("target_language not between", value1, value2, "targetLanguage");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
