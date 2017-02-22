@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.constants.ExceptCodeConstants;
@@ -57,13 +58,20 @@ public class YCuserCollectionBusiSVImpl implements IYCUserCollectionBusiSV{
 	}
 
 	@Override
-	public BaseResponse deleteCollectionInfo(List<String> collectionIds) {
+	public BaseResponse deleteCollectionInfo(UserCollectionInfoRequest userInfoRequest) {
 		BaseResponse response = new BaseResponse();
 		ResponseHeader header = null;
 		try{
 			UsrCollectionTranslationCriteria example = new UsrCollectionTranslationCriteria();
 			UsrCollectionTranslationCriteria.Criteria criteria = example.createCriteria();
-			criteria.andCollectionIdIn(collectionIds);
+			if(StringUtil.isBlank(userInfoRequest.getUserId())){
+				throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "用户Id不能为空");
+			}
+			if(StringUtil.isBlank(userInfoRequest.getCollectionId())){
+				throw new BusinessException(ExceptCodeConstants.Special.PARAM_IS_NULL, "译文Id不能为空");
+			}
+			criteria.andUserIdEqualTo(userInfoRequest.getUserId());
+			criteria.andCollectionIdIn(userInfoRequest.getCollectionIds());
 			ycUSCollectionAtomSV.deleteCollectionInfo(example);
 			header = new ResponseHeader(true, ExceptCodeConstants.Special.SUCCESS, "删除收藏信息成功");
 		}catch(Exception e){
