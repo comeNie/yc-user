@@ -8,9 +8,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ai.opt.sdk.util.DateUtil;
 import com.ai.yc.user.api.usercollectiontranslation.interfaces.IYCUserCollectionSV;
+import com.ai.yc.user.api.usercollectiontranslation.param.UserCollectionInfoListResponse;
 import com.ai.yc.user.api.usercollectiontranslation.param.UserCollectionInfoRequest;
+import com.ai.yc.user.api.usercollectiontranslation.param.UserCollectionInfoResponse;
+import com.ai.yc.user.api.usercollectiontranslation.param.UserCollectionPageInfoRequest;
 import com.ai.yc.user.api.usercontact.interfaces.IYCUserContactSV;
 import com.ai.yc.user.api.usercontact.param.UserContactInfoRequest;
+import com.alibaba.fastjson.JSON;
 
 /** 
  * @author  作者 “WTF” E-mail: 1031248990@qq.com
@@ -28,9 +32,11 @@ public class testusrcollection {
 	@Test
 	public void testInsertContactInfo() {
 		UserCollectionInfoRequest userInfoRequest = new UserCollectionInfoRequest();
-		userInfoRequest.setOriginal("我爱你");
+		userInfoRequest.setOriginal("我爱w");
 		userInfoRequest.setTranslation("I love you");
-		usSV.insertCollectionInfo(userInfoRequest);
+		userInfoRequest.setUserId("2");
+		UserCollectionInfoResponse response = usSV.insertCollectionInfo(userInfoRequest);
+		System.out.println(response.getCollectionId());
 	}
 	
 	@Test
@@ -41,4 +47,15 @@ public class testusrcollection {
 		contactInfo.setTranslation("meyouit");
 		usSV.updateCollectionInfo(contactInfo);
 	}
+	
+	@Test
+	public void testQueryContactInfo() {
+		UserCollectionPageInfoRequest contactInfo = new UserCollectionPageInfoRequest();
+		contactInfo.setUserId("2");
+		contactInfo.setPageNo(1);
+		contactInfo.setPageSize(2);
+		UserCollectionInfoListResponse response = usSV.queryCollectionInfo(contactInfo);
+		System.out.println(JSON.toJSONString(response));
+	}
+	
 }
