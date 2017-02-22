@@ -27,7 +27,7 @@ public interface IYCUserCollectionSV {
 	 */
 	public BaseResponse insertCollectionInfo(UserCollectionInfoRequest userInfoRequest)throws BusinessException,SystemException;
 	/**
-	 * 编辑译文
+	 * 根据条件查询译文
 	 * @param 
 	 * @return
 	 * @ApiCode USR_0005
