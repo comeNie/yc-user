@@ -32,7 +32,9 @@ public class UserCollectionInfoRequest {
 	 * 目标语言
 	 */
 	private String targetLanguage;
-	
+	/**
+	 * 用于删除和取消操作
+	 */
 	private List<String> collectionIds;
 	
 	public String getCollectionId() {
