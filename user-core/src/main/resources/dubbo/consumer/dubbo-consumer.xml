@@ -47,5 +47,8 @@
 	<dubbo:reference id="iGnCountrySV"
 		interface="com.ai.yc.common.api.country.interfaces.IGnCountrySV" />
 	<dubbo:reference id="iYCTranslatorServiceSV"
-		interface="com.ai.yc.translator.api.translatorservice.interfaces.IYCTranslatorServiceSV" />	 
+		interface="com.ai.yc.translator.api.translatorservice.interfaces.IYCTranslatorServiceSV" />
+			 
+	<dubbo:reference id="iYCUserCompanySV"
+		interface="com.ai.yc.user.api.userCompany.interfaces.IYCUserCompanySV" />	 
 </beans>
