@@ -36,7 +36,7 @@ public class testusrcollection {
 		userInfoRequest.setTranslation("I love you");
 		userInfoRequest.setUserId("2");
 		UserCollectionInfoResponse response = usSV.insertCollectionInfo(userInfoRequest);
-		System.out.println(response.getCollectionId());
+		System.out.println(JSON.toJSONString(response));
 	}
 	
 	@Test

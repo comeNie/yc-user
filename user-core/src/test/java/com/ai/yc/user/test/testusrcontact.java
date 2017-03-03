@@ -1,5 +1,6 @@
 package com.ai.yc.user.test;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import com.ai.yc.user.api.usercontact.interfaces.IYCUserContactSV;
 import com.ai.yc.user.api.usercontact.param.UserContactInfo;
 import com.ai.yc.user.api.usercontact.param.UserContactInfoRequest;
 import com.ai.yc.user.api.usercontact.param.UserContactInfoRespose;
+import com.alibaba.fastjson.JSON;
 
 /** 
  * @author  作者 “WTF” E-mail: 1031248990@qq.com
@@ -52,11 +54,22 @@ public class testusrcontact {
 	
 	@Test
 	public void testQueryContactInfo() {
-		UserContactInfoRespose response = usSV.queryContactInfo("4444314");
-		List<UserContactInfo> list = response.getUsrContactList();
+		
+		UserContactInfoRespose response1 = new UserContactInfoRespose();
+		response1.setUserId("1");
+		System.out.println("========"+JSON.toJSONString(response1));
+		
+		/*UserContactInfoRespose response = usSV.queryContactInfo("4444314");
+		List<String> list = new ArrayList<String>();
+		list.add("1");
+		list.add("2");
+		list.add("3");
+		response.setList(list);
+		System.out.println(JSON.toJSONString(response));*/
+		/*List<UserContactInfo> list = response.getUsrContactList();
 		for(int i=0;i<list.size();i++){
 			UserContactInfo info = list.get(i);
 			System.out.println(info.getIsDefault());
-		}
+		}*/
 	}
 }
