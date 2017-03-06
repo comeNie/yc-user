@@ -93,6 +93,21 @@ public class YCUserInfoResponse extends BaseResponse {
      * 个人账户id
      */
     private Long accountId;
+    /**
+     * 会员等级中文
+     */
+    private String griwthLevelZH;
+    
+    /**
+     * 会员等级英文
+     */
+    private String griwthLevelEN;
+    
+    /**
+     * 经验值
+     */
+    private Integer griwthValue;
+    
     
 
 	public String getUserId() {
@@ -257,6 +272,30 @@ public class YCUserInfoResponse extends BaseResponse {
 
 	public void setIsChange(String isChange) {
 		this.isChange = isChange;
+	}
+
+	public String getGriwthLevelZH() {
+		return griwthLevelZH;
+	}
+
+	public void setGriwthLevelZH(String griwthLevelZH) {
+		this.griwthLevelZH = griwthLevelZH;
+	}
+
+	public String getGriwthLevelEN() {
+		return griwthLevelEN;
+	}
+
+	public void setGriwthLevelEN(String griwthLevelEN) {
+		this.griwthLevelEN = griwthLevelEN;
+	}
+
+	public Integer getGriwthValue() {
+		return griwthValue;
+	}
+
+	public void setGriwthValue(Integer griwthValue) {
+		this.griwthValue = griwthValue;
 	}
 	
 }
