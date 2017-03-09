@@ -37,6 +37,29 @@ public class YCuserCollectionBusiSVImpl implements IYCUserCollectionBusiSV{
 		UserCollectionInfoResponse response = new UserCollectionInfoResponse();
 		ResponseHeader header = null;
 		try{
+			UsrCollectionTranslationCriteria example = new UsrCollectionTranslationCriteria();
+			UsrCollectionTranslationCriteria.Criteria criteria = example.createCriteria();
+			criteria.andUserIdEqualTo(contactInfo.getUserId());
+			int count = ycUSCollectionAtomSV.getCollectionCount(example);
+			/**
+			 * 用户最多收藏200条记录
+			 */
+			if(count>200){
+				header = new ResponseHeader(true, ExceptCodeConstants.COLLECTIONFAILD_COUNT, "收藏信息失败，超过200条记录");
+				response.setResponseHeader(header);
+				return response;
+			}
+			int sourceLanguage = contactInfo.getSourceLanguage().length();
+			int targetLanguage= contactInfo.getTargetLanguage().length();
+			int stSum = sourceLanguage+targetLanguage;
+			/**
+			 * 原译文字数之和不超过20000字
+			 */
+			if(stSum>20000){
+				header = new ResponseHeader(true, ExceptCodeConstants.COLLECTIONFAILD_SUM, "收藏信息失败，原译文字数之和超过20000字");
+				response.setResponseHeader(header);
+				return response;
+			}
 			ycUSCollectionAtomSV.insertCollectionInfo(contactInfo);
 			response.setCollectionId(contactInfo.getCollectionId());
 			header = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "收藏信息成功");
