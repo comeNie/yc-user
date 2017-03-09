@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ai.yc.user.dao.mapper.attach.UsrGriwthValueAttachMapper;
 import com.ai.yc.user.dao.mapper.bo.UsrGriwthValue;
 import com.ai.yc.user.dao.mapper.bo.UsrGriwthValueCriteria;
 import com.ai.yc.user.dao.mapper.interfaces.UsrGriwthValueMapper;
@@ -14,6 +15,9 @@ public class YCUserGriwthValueAtomSVImpl implements IYCUserGriwthValueAtomSV{
 
 	@Autowired
 	private transient UsrGriwthValueMapper griwthValueMapper;
+	
+	@Autowired
+	private transient UsrGriwthValueAttachMapper griwthValueAttachMapper;
 	
 	@Override
 	public int insertGriwthValueInfo(UsrGriwthValue griwthValueInfo) {
@@ -34,6 +38,11 @@ public class YCUserGriwthValueAtomSVImpl implements IYCUserGriwthValueAtomSV{
 	@Override
 	public int getUsrGriwthValueCount(UsrGriwthValueCriteria example) {
 		return griwthValueMapper.countByExample(example);
+	}
+
+	@Override
+	public int getUsrGriwthValueSum(String userId) {
+		return griwthValueAttachMapper.getGriwthValueSum(userId);
 	}
 
 }
