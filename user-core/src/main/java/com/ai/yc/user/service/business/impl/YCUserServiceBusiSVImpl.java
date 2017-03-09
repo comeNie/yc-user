@@ -289,8 +289,22 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		if (null == usrUser) {
 			return result;
 		}
-
 		BeanUtils.copyProperties(result, usrUser);
+		
+		if(result.getGriwthValue()>=0 && result.getGriwthValue()<=5999){
+			result.setGriwthLevelEN("Regular Members");
+			result.setGriwthLevelZH("普通会员");
+		}else if(result.getGriwthValue()<=14999){
+			result.setGriwthLevelEN("VIP Member");
+			result.setGriwthLevelZH("VIP会员");
+		}else if(result.getGriwthValue()<=29999){
+			result.setGriwthLevelEN("SVIP Member");
+			result.setGriwthLevelZH("SVIP会员");
+		}else{
+			result.setGriwthLevelEN("SVIP Platinum Member");
+			result.setGriwthLevelZH("SVIP白金会员");
+		}
+		
 		String idpsns = "yc-portal-web";
 		IImageClient im = IDPSClientFactory.getImageClient(idpsns);
 		if (usrUser.getPortraitId() != null && !"".equals(usrUser.getPortraitId())) {
