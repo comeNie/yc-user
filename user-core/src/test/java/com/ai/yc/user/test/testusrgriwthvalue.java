@@ -37,9 +37,9 @@ public class testusrgriwthvalue {
 	@Test
 	public void testInsertGriwthValueInfo() {
 		UsrGriwthValueRequest request = new UsrGriwthValueRequest();
-		request.setUserId("2323");
+		request.setUserId("1234567");
 		request.setGriwthResource("登录详情121");
-		request.setGriwthValue(50);
+		request.setGriwthValue(-10);
 		request.setResourceDetail("2015-06-09 登录");
 		request.setResourceTime(DateUtil.getTimestamp(new Date().getTime()));
 		griwthValueSV.insertGriwthValueInfo(request);
