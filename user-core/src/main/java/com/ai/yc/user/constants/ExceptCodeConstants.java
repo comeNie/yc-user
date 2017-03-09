@@ -45,6 +45,15 @@ public class ExceptCodeConstants {
      */
     public static final String USER_NOT_NORMAL="100001";
     
+    /**
+     * 收藏失败
+     */
+    public static final String COLLECTIONFAILD_COUNT="1";
+    /**
+     * 收藏译文失败
+     */
+    public static final String COLLECTIONFAILD_SUM="2";
+    
     public static final class Account {
         private Account() {
         }
