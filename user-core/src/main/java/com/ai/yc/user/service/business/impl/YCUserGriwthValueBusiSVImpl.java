@@ -17,7 +17,10 @@ import com.ai.yc.user.api.usergriwthvalue.param.UsrGriwthValuePageInfoRequest;
 import com.ai.yc.user.constants.ExceptCodeConstants;
 import com.ai.yc.user.dao.mapper.bo.UsrGriwthValue;
 import com.ai.yc.user.dao.mapper.bo.UsrGriwthValueCriteria;
+import com.ai.yc.user.dao.mapper.bo.UsrUser;
+import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
 import com.ai.yc.user.service.atom.interfaces.IYCUserGriwthValueAtomSV;
+import com.ai.yc.user.service.atom.interfaces.IYCUserServiceAtomSV;
 import com.ai.yc.user.service.business.interfaces.IYCUserGriwthValueBusiSV;
 
 @Service
@@ -27,12 +30,32 @@ public class YCUserGriwthValueBusiSVImpl implements IYCUserGriwthValueBusiSV{
 	@Autowired
 	private IYCUserGriwthValueAtomSV userGriwthValueAtomSV;
 	
+	@Autowired
+	private IYCUserServiceAtomSV userServiceAtomSV;
+	
 	@Override
 	public BaseResponse insertGriwthValueInfo(UsrGriwthValue griwthValueInfo) {
 		BaseResponse response = new BaseResponse();
 		ResponseHeader header = null;
 		try{
+			/**
+			 * 新增成长值
+			 */
 			userGriwthValueAtomSV.insertGriwthValueInfo(griwthValueInfo);
+			/**
+			 * 获取该用户总成长值
+			 */
+			int sum = userGriwthValueAtomSV.getUsrGriwthValueSum(griwthValueInfo.getUserId());
+			/**
+			 * 更新usr_user表中该用户的成长值
+			 */
+			UsrUser usrUser = new UsrUser();
+			usrUser.setGriwthValue(sum);
+			UsrUserCriteria example = new UsrUserCriteria();
+			UsrUserCriteria.Criteria usrCriteria = example.createCriteria();
+			usrCriteria.andUserIdEqualTo(griwthValueInfo.getUserId());
+			userServiceAtomSV.updateUserInfo(usrUser, example);
+			
 			header = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "新增成长记录成功");
 		}catch(Exception e){
 			e.printStackTrace();
