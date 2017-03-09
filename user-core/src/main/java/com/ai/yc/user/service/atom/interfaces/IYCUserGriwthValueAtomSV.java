@@ -11,4 +11,5 @@ public interface IYCUserGriwthValueAtomSV {
 	public int updateGriwthValueInfo(UsrGriwthValue griwthValuetInfo);
 	public List<UsrGriwthValue> queryGriwthValueInfo(UsrGriwthValueCriteria example);
 	public int getUsrGriwthValueCount(UsrGriwthValueCriteria example);
+	public int getUsrGriwthValueSum(String userId);
 }
