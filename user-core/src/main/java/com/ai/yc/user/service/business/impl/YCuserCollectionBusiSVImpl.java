@@ -139,7 +139,7 @@ public class YCuserCollectionBusiSVImpl implements IYCUserCollectionBusiSV{
 			header = new ResponseHeader(false, ExceptCodeConstants.FAILD, "查询收藏信息失败");
 		}
 		response.setResponseHeader(header);
-		response.setGetCollectionListByPage(collectionInfoPageInfo);
+		response.setCollectionList(collectionInfoPageInfo);
 		return response;
 	}
 }
