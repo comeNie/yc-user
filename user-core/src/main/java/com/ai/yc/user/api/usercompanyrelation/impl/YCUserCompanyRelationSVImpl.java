@@ -20,7 +20,7 @@ public class YCUserCompanyRelationSVImpl implements IYCUserCompanyRelationSV{
 	private IYCUserCompanyRelationBusiSV ycUserCompanyBusiSV;
 
 	@Override
-	public BaseResponse insertCompanyRelatInfo(
+	public BaseResponse insertCompanyRelationInfo(
 			UserCompanyInfoRequest userInfoRequest) throws BusinessException,
 			SystemException {
 		UsrCompanyRelation companyRelation = new UsrCompanyRelation();
@@ -29,7 +29,7 @@ public class YCUserCompanyRelationSVImpl implements IYCUserCompanyRelationSV{
 	}
 
 	@Override
-	public BaseResponse updateCompanyInfo(UserCompanyInfoRequest userInfoRequest)
+	public BaseResponse updateCompanyRelationInfo(UserCompanyInfoRequest userInfoRequest)
 			throws BusinessException, SystemException {
 		UsrCompanyRelation companyRelation = new UsrCompanyRelation();
 		BeanUtils.copyProperties(companyRelation, userInfoRequest);
