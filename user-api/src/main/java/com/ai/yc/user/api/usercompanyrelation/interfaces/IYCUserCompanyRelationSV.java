@@ -22,15 +22,15 @@ public interface IYCUserCompanyRelationSV {
 	 * @ApiCode USR_0008
      * @RestRelativeURL ycusercompanyrelation/insertCompanyRelatInfo
 	 */
-	public BaseResponse insertCompanyRelatInfo(UserCompanyInfoRequest userInfoRequest)throws BusinessException,SystemException;
+	public BaseResponse insertCompanyRelationInfo(UserCompanyInfoRequest userInfoRequest)throws BusinessException,SystemException;
 
 	/**
 	 * 修改企业信息
 	 * @param 
 	 * @return
 	 * @ApiCode USR_0007
-     * @RestRelativeURL ycusercompany/updateCompanyInfo
+     * @RestRelativeURL ycusercompanyrelation/updateCompanyRelationInfo
 	 */
-	public BaseResponse updateCompanyInfo(UserCompanyInfoRequest userInfoRequest)throws BusinessException,SystemException;
+	public BaseResponse updateCompanyRelationInfo(UserCompanyInfoRequest userInfoRequest)throws BusinessException,SystemException;
 
 }
