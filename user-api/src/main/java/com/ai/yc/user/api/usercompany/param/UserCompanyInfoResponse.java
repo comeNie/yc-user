@@ -1,8 +1,12 @@
-package com.ai.yc.user.api.userCompany.param;
+package com.ai.yc.user.api.usercompany.param;
 
 import java.sql.Timestamp;
 
-public class UserCompanyInfoRequest {
+import com.ai.opt.base.vo.BaseResponse;
+
+public class UserCompanyInfoResponse extends BaseResponse{
+		
+		private static final long serialVersionUID = 1L;
 		/**
 		 * 企业编号
 		 */

@@ -1,4 +1,4 @@
-package com.ai.yc.user.api.userCompany.interfaces;
+package com.ai.yc.user.api.usercompany.interfaces;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Path;
@@ -8,8 +8,8 @@ import javax.ws.rs.core.MediaType;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
-import com.ai.yc.user.api.userCompany.param.UserCompanyInfoRequest;
-import com.ai.yc.user.api.userCompany.param.UserCompanyInfoResponse;
+import com.ai.yc.user.api.usercompany.param.UserCompanyInfoRequest;
+import com.ai.yc.user.api.usercompany.param.UserCompanyInfoResponse;
 
 @Path("/ycusercompany")
 @Consumes({ MediaType.APPLICATION_JSON })

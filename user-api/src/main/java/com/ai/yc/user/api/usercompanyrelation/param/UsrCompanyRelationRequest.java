@@ -1,4 +1,4 @@
-package com.ai.yc.user.api.usercompanyRelation.param;
+package com.ai.yc.user.api.usercompanyrelation.param;
 
 import java.sql.Timestamp;
 
