@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ai.yc.user.api.userCompany.interfaces.IYCUserCompanySV;
-import com.ai.yc.user.api.userCompany.param.UserCompanyInfoRequest;
-import com.ai.yc.user.api.userCompany.param.UserCompanyInfoResponse;
+import com.ai.yc.user.api.usercompany.interfaces.IYCUserCompanySV;
+import com.ai.yc.user.api.usercompany.param.UserCompanyInfoRequest;
+import com.ai.yc.user.api.usercompany.param.UserCompanyInfoResponse;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
