@@ -1,6 +1,7 @@
 package com.ai.yc.user.api.usercompany.interfaces;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -22,6 +23,8 @@ public interface IYCUserCompanySV {
 	 * @ApiCode USR_0007
      * @RestRelativeURL ycusercompany/insertCompanyInfo
 	 */
+	@POST
+	@Path("/insertCompanyInfo")
 	public BaseResponse insertCompanyInfo(UserCompanyInfoRequest userInfoRequest)throws BusinessException,SystemException;
 
 	/**
@@ -31,6 +34,8 @@ public interface IYCUserCompanySV {
 	 * @ApiCode USR_0007
      * @RestRelativeURL ycusercompany/updateCompanyInfo
 	 */
+	@POST
+	@Path("/updateCompanyInfo")
 	public BaseResponse updateCompanyInfo(UserCompanyInfoRequest userInfoRequest)throws BusinessException,SystemException;
 
 	/**
@@ -40,6 +45,8 @@ public interface IYCUserCompanySV {
 	 * @ApiCode USR_0007
      * @RestRelativeURL ycusercompany/queryCompanyInfo
 	 */
+	@POST
+	@Path("/queryCompanyInfo")
 	public UserCompanyInfoResponse queryCompanyInfo(UserCompanyInfoRequest userInfoRequest)throws BusinessException,SystemException;
 
 }
