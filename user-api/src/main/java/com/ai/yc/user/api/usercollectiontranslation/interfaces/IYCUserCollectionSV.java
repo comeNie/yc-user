@@ -27,6 +27,8 @@ public interface IYCUserCollectionSV {
 	 * @ApiCode USR_0005
      * @RestRelativeURL ycusercollection/insertCollectionInfo
 	 */
+	@POST
+	@Path("/insertCollectionInfo")
 	public UserCollectionInfoResponse insertCollectionInfo(UserCollectionInfoRequest userInfoRequest)throws BusinessException,SystemException;
 	/**
 	 * 根据条件查询译文(分页)
@@ -35,6 +37,8 @@ public interface IYCUserCollectionSV {
 	 * @ApiCode USR_0005
      * @RestRelativeURL ycusercollection/queryCollectionInfo
 	 */
+	@POST
+	@Path("/queryCollectionInfo")
 	public UserCollectionInfoListResponse queryCollectionInfo(UserCollectionPageInfoRequest userInfoRequest)throws BusinessException,SystemException;
 
 	/**
@@ -44,6 +48,8 @@ public interface IYCUserCollectionSV {
 	 * @ApiCode USR_0005
      * @RestRelativeURL ycusercollection/updateCollectionInfo
 	 */
+	@POST
+	@Path("/updateCollectionInfo")
 	public BaseResponse updateCollectionInfo(UserCollectionInfoRequest userInfoRequest)throws BusinessException,SystemException;
 	
 	/**
@@ -53,6 +59,8 @@ public interface IYCUserCollectionSV {
 	 * @ApiCode USR_0005
      * @RestRelativeURL ycusercollection/deleteCollectionInfo
 	 */
+	@POST
+	@Path("/deleteCollectionInfo")
 	public BaseResponse deleteCollectionInfo(UserCollectionInfoRequest userInfoRequest)throws BusinessException,SystemException;
 	
 }
