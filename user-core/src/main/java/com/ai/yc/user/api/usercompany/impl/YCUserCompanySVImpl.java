@@ -1,5 +1,8 @@
 package com.ai.yc.user.api.usercompany.impl;
 
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -44,6 +47,15 @@ public class YCUserCompanySVImpl implements IYCUserCompanySV{
 			UserCompanyInfoRequest userInfoRequest) throws BusinessException,
 			SystemException {
 		return ycUserCompanyBusiSV.queryCompanyInfo(userInfoRequest);
+	}
+
+	@Override
+	@POST
+	@Path("/checkCompanyName")
+	public BaseResponse checkCompanyName(
+			UserCompanyInfoRequest userInfoRequest) throws BusinessException,
+			SystemException {
+		return ycUserCompanyBusiSV.checkCompanyInfo(userInfoRequest);
 	}
 
 }

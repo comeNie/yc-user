@@ -9,4 +9,5 @@ public interface IYCUserCompanyBusiSV {
 	public BaseResponse insertCompanyInfo(UsrCompany companyInfo);
 	public BaseResponse updateCompanyInfo(UsrCompany companyInfo);
 	public UserCompanyInfoResponse queryCompanyInfo(UserCompanyInfoRequest userInfoRequest);
+	public BaseResponse checkCompanyInfo(UserCompanyInfoRequest userInfoRequest);
 }

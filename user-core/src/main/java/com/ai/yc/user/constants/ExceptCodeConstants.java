@@ -96,4 +96,9 @@ public class ExceptCodeConstants {
     public static final class Contact{
     	 public static final String INSERT_ERROR = "400001";
     }
+    
+    public static final class Company{
+    	public static final String COMPANY_NAME_EXIST="0";
+    	public static final String COMPANY_NAME_NO_EXIST="1";
+    }
 }

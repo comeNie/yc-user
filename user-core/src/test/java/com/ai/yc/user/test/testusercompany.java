@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.ai.opt.base.vo.BaseResponse;
 import com.ai.yc.user.api.usercompany.interfaces.IYCUserCompanySV;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoRequest;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoResponse;
@@ -51,5 +52,13 @@ public class testusercompany {
 		userInfoRequest.setAdminUserId("2323");
 		UserCompanyInfoResponse response = userCompanySV.queryCompanyInfo(userInfoRequest);
 		System.out.println(JSON.toJSONString(response));
+	}
+	
+	@Test
+	public void checkCompanyInfo(){
+		UserCompanyInfoRequest request = new UserCompanyInfoRequest();
+		request.setCompanyName("1212121");
+		BaseResponse response = userCompanySV.checkCompanyName(request);
+		System.out.println("============="+JSON.toJSONString(response));
 	}
 }

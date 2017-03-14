@@ -39,5 +39,4 @@ public class YCUserCompanyAtomSVImpl implements IYCUserCompanyAtomSV{
 	public int getCompanyCount(UsrCompanyCriteria example) {
 		return usrCompanyMapper.countByExample(example);
 	}
-
 }

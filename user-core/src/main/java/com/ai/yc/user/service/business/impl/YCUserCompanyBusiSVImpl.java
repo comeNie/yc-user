@@ -131,4 +131,28 @@ public class YCUserCompanyBusiSVImpl implements IYCUserCompanyBusiSV {
 		return response;
 	}
 
+	@Override
+	public BaseResponse checkCompanyInfo(
+			UserCompanyInfoRequest userInfoRequest) {
+		List<UsrCompany> companyInfoList = null;
+		UsrCompanyCriteria companyExample = new UsrCompanyCriteria();
+		UsrCompanyCriteria.Criteria companyCriteria = companyExample.createCriteria();
+		BaseResponse response = new BaseResponse();
+		ResponseHeader header = null;
+		try{
+			if(!"".equals(userInfoRequest.getCompanyName())&&!StringUtil.isBlank(userInfoRequest.getCompanyName())){
+				companyCriteria.andCompanyNameEqualTo(userInfoRequest.getCompanyName());
+			}
+			companyInfoList = ycUserCompanyAtomSV.queryCompanyInfo(companyExample);
+			if(companyInfoList!=null&&companyInfoList.size()>0){
+				header = new ResponseHeader(true, ExceptCodeConstants.Company.COMPANY_NAME_EXIST, "企业名称已存在");
+			}else{
+				header = new ResponseHeader(true, ExceptCodeConstants.Company.COMPANY_NAME_NO_EXIST, "企业名称不存在");
+			}
+		}catch(Exception e){
+			header = new ResponseHeader(false, ExceptCodeConstants.FAILD, "校验企业名称失败");
+		}
+		response.setResponseHeader(header);
+		return response;
+	}
 }
