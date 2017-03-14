@@ -49,4 +49,15 @@ public interface IYCUserCompanySV {
 	@Path("/queryCompanyInfo")
 	public UserCompanyInfoResponse queryCompanyInfo(UserCompanyInfoRequest userInfoRequest)throws BusinessException,SystemException;
 
+	
+	/**
+	 * 校验企业名称的唯一性
+	 * @param 
+	 * @return
+	 * @ApiCode USR_0009
+     * @RestRelativeURL ycusercompany/checkCompanyName
+	 */
+	@POST
+	@Path("/checkCompanyName")
+	public BaseResponse checkCompanyName(UserCompanyInfoRequest userInfoRequest)throws BusinessException,SystemException;
 }
