@@ -80,6 +80,19 @@ public class UserCompanyInfoRequest {
 	     * 管理员用户Id
 	     */
 	    private String adminUserId;
+	    /**
+	     * 国家
+	     */
+	    private String country;
+	    /**
+	     * 省
+	     */
+	    private String province;
+	    /**
+	     * 市
+	     */
+	    private String cnCity;
+	    
 
 	    public String getCompanyId() {
 	        return companyId;
@@ -232,4 +245,29 @@ public class UserCompanyInfoRequest {
 	    public void setAdminUserId(String adminUserId) {
 	        this.adminUserId = adminUserId == null ? null : adminUserId.trim();
 	    }
+
+		public String getCountry() {
+			return country;
+		}
+
+		public void setCountry(String country) {
+			this.country = country;
+		}
+
+		public String getProvince() {
+			return province;
+		}
+
+		public void setProvince(String province) {
+			this.province = province;
+		}
+
+		public String getCnCity() {
+			return cnCity;
+		}
+
+		public void setCnCity(String cnCity) {
+			this.cnCity = cnCity;
+		}
+	    
 }
