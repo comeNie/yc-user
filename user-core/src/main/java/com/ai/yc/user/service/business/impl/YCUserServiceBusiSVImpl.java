@@ -291,13 +291,13 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		}
 		BeanUtils.copyProperties(result, usrUser);
 		
-		if(result.getGriwthValue()>=0 && result.getGriwthValue()<=5999){
+		if(result.getGriwthValue()!=null&&result.getGriwthValue()>=0 && result.getGriwthValue()<=5999){
 			result.setGriwthLevelEN("Regular Members");
 			result.setGriwthLevelZH("普通会员");
-		}else if(result.getGriwthValue()<=14999){
+		}else if(result.getGriwthValue()!=null&&result.getGriwthValue()<=14999){
 			result.setGriwthLevelEN("VIP Member");
 			result.setGriwthLevelZH("VIP会员");
-		}else if(result.getGriwthValue()<=29999){
+		}else if(result.getGriwthValue()!=null&&result.getGriwthValue()<=29999){
 			result.setGriwthLevelEN("SVIP Member");
 			result.setGriwthLevelZH("SVIP会员");
 		}else{
