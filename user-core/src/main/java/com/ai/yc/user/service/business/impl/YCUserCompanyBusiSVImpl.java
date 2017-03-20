@@ -177,7 +177,7 @@ public class YCUserCompanyBusiSVImpl implements IYCUserCompanyBusiSV {
 			/**
 			 * 待审核企业
 			 */
-			if(pageInfoRequest.getState()==0){
+			if(pageInfoRequest.getState()!=null&&pageInfoRequest.getState()==0){
 				companyCriteria.andStateEqualTo(pageInfoRequest.getState());
 			}
 			int count = ycUserCompanyAtomSV.getCompanyCount(companyExample);
