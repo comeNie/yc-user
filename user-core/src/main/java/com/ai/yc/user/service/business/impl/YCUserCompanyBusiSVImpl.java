@@ -180,9 +180,9 @@ public class YCUserCompanyBusiSVImpl implements IYCUserCompanyBusiSV {
 			if(pageInfoRequest.getState()!=null&&pageInfoRequest.getState()==0){
 				companyCriteria.andStateEqualTo(pageInfoRequest.getState());
 			}
-			int count = ycUserCompanyAtomSV.getCompanyCount(companyExample);
 			companyExample.setLimitStart(pageInfoRequest.getPageNo());
 			companyExample.setLimitEnd(pageInfoRequest.getPageSize());
+			int count = ycUserCompanyAtomSV.getCompanyCount(companyExample);
 			companyInfoList = ycUserCompanyAtomSV.queryCompanyInfo(companyExample);
 			if(companyInfoList!=null){
 				for(int i=0;i<companyInfoList.size();i++){
