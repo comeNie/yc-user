@@ -1,5 +1,6 @@
 package com.ai.yc.user.service.business.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,14 +10,20 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.BaseResponse;
+import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.components.sequence.util.SeqUtil;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.DateUtil;
 import com.ai.paas.ipaas.util.StringUtil;
+import com.ai.yc.user.api.usercollectiontranslation.param.UserCollectionInfo;
+import com.ai.yc.user.api.usercompany.param.UserCompanyInfoListResponse;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoRequest;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoResponse;
+import com.ai.yc.user.api.usercompany.param.UserCompanyPageInfoRequest;
+import com.ai.yc.user.api.usercompany.param.UsrCompanyInfo;
 import com.ai.yc.user.constants.ExceptCodeConstants;
+import com.ai.yc.user.dao.mapper.bo.UsrCollectionTranslation;
 import com.ai.yc.user.dao.mapper.bo.UsrCompany;
 import com.ai.yc.user.dao.mapper.bo.UsrCompanyCriteria;
 import com.ai.yc.user.dao.mapper.bo.UsrCompanyRelation;
@@ -151,6 +158,47 @@ public class YCUserCompanyBusiSVImpl implements IYCUserCompanyBusiSV {
 			}
 		}catch(Exception e){
 			header = new ResponseHeader(false, ExceptCodeConstants.FAILD, "校验企业名称失败");
+		}
+		response.setResponseHeader(header);
+		return response;
+	}
+
+	@Override
+	public UserCompanyInfoListResponse queryPageInfoCompanyInfo(
+			UserCompanyPageInfoRequest pageInfoRequest) {
+		UserCompanyInfoListResponse response = new UserCompanyInfoListResponse();
+		List<UsrCompany> companyInfoList = null;
+		PageInfo<UsrCompanyInfo> companyInfoPageInfo = new PageInfo<UsrCompanyInfo>();
+		List<UsrCompanyInfo> list = new ArrayList<UsrCompanyInfo>();
+		ResponseHeader header = null;
+		try{
+			UsrCompanyCriteria companyExample = new UsrCompanyCriteria();
+			UsrCompanyCriteria.Criteria companyCriteria = companyExample.createCriteria();
+			/**
+			 * 待审核企业
+			 */
+			if(pageInfoRequest.getState()==0){
+				companyCriteria.andStateEqualTo(pageInfoRequest.getState());
+			}
+			int count = ycUserCompanyAtomSV.getCompanyCount(companyExample);
+			companyInfoPageInfo.setPageCount(count);
+			companyInfoPageInfo.setPageNo(pageInfoRequest.getPageNo());
+			companyInfoPageInfo.setPageSize(pageInfoRequest.getPageSize());
+			companyInfoList = ycUserCompanyAtomSV.queryCompanyInfo(companyExample);
+			if(companyInfoList!=null){
+				for(int i=0;i<companyInfoList.size();i++){
+					UsrCompanyInfo usrCompanyInfo = new UsrCompanyInfo();
+					UsrCompany usrCompany = companyInfoList.get(i);
+					BeanUtils.copyProperties(usrCompanyInfo, usrCompany);
+					list.add(usrCompanyInfo);
+				}
+			}
+			companyInfoPageInfo.setResult(list);
+			response.setCompanyList(companyInfoPageInfo);
+			header = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询企业信息成功");
+		}catch(Exception e){
+			header = new ResponseHeader(false, ExceptCodeConstants.FAILD, "查询企业信息失败");
+			e.printStackTrace();
 		}
 		response.setResponseHeader(header);
 		return response;

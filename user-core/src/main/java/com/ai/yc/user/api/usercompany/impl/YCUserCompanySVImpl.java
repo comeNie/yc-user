@@ -12,8 +12,10 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.sdk.components.sequence.util.SeqUtil;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.yc.user.api.usercompany.interfaces.IYCUserCompanySV;
+import com.ai.yc.user.api.usercompany.param.UserCompanyInfoListResponse;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoRequest;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoResponse;
+import com.ai.yc.user.api.usercompany.param.UserCompanyPageInfoRequest;
 import com.ai.yc.user.dao.mapper.bo.UsrCompany;
 import com.ai.yc.user.service.business.interfaces.IYCUserCompanyBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -31,6 +33,7 @@ public class YCUserCompanySVImpl implements IYCUserCompanySV{
 		UsrCompany usrCompany = new UsrCompany();
 		BeanUtils.copyProperties(usrCompany, userInfoRequest);
 		usrCompany.setCompanyId(companyId);
+		usrCompany.setState(0);
 		return ycUserCompanyBusiSV.insertCompanyInfo(usrCompany);
 	}
 
@@ -56,6 +59,15 @@ public class YCUserCompanySVImpl implements IYCUserCompanySV{
 			UserCompanyInfoRequest userInfoRequest) throws BusinessException,
 			SystemException {
 		return ycUserCompanyBusiSV.checkCompanyInfo(userInfoRequest);
+	}
+
+	@Override
+	@POST
+	@Path("/queryPageInfoCompanyInfo")
+	public UserCompanyInfoListResponse queryPageInfoCompanyInfo(
+			UserCompanyPageInfoRequest userInfoRequest)
+			throws BusinessException, SystemException {
+		 return ycUserCompanyBusiSV.queryPageInfoCompanyInfo(userInfoRequest);
 	}
 
 }
