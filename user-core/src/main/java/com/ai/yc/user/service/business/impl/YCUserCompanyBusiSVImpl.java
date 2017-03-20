@@ -181,9 +181,6 @@ public class YCUserCompanyBusiSVImpl implements IYCUserCompanyBusiSV {
 				companyCriteria.andStateEqualTo(pageInfoRequest.getState());
 			}
 			int count = ycUserCompanyAtomSV.getCompanyCount(companyExample);
-			companyInfoPageInfo.setPageCount(count);
-			companyInfoPageInfo.setPageNo(pageInfoRequest.getPageNo());
-			companyInfoPageInfo.setPageSize(pageInfoRequest.getPageSize());
 			companyInfoList = ycUserCompanyAtomSV.queryCompanyInfo(companyExample);
 			if(companyInfoList!=null){
 				for(int i=0;i<companyInfoList.size();i++){
@@ -194,6 +191,9 @@ public class YCUserCompanyBusiSVImpl implements IYCUserCompanyBusiSV {
 				}
 			}
 			companyInfoPageInfo.setResult(list);
+			companyInfoPageInfo.setPageNo(pageInfoRequest.getPageNo());
+			companyInfoPageInfo.setPageSize(pageInfoRequest.getPageSize());
+			companyInfoPageInfo.setCount(count);
 			response.setCompanyList(companyInfoPageInfo);
 			header = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询企业信息成功");
 		}catch(Exception e){
