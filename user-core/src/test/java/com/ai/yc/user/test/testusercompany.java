@@ -8,8 +8,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.yc.user.api.usercompany.interfaces.IYCUserCompanySV;
+import com.ai.yc.user.api.usercompany.param.UserCompanyInfoListResponse;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoRequest;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoResponse;
+import com.ai.yc.user.api.usercompany.param.UserCompanyPageInfoRequest;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -60,5 +62,15 @@ public class testusercompany {
 		request.setCompanyName("1212121");
 		BaseResponse response = userCompanySV.checkCompanyName(request);
 		System.out.println("============="+JSON.toJSONString(response));
+	}
+	
+	@Test
+	public void queryCompanyInfoList(){
+		UserCompanyPageInfoRequest userInfoRequest = new UserCompanyPageInfoRequest();
+		userInfoRequest.setState(0);
+		userInfoRequest.setPageNo(1);
+		userInfoRequest.setPageSize(1);
+		UserCompanyInfoListResponse response = userCompanySV.queryPageInfoCompanyInfo(userInfoRequest);
+		System.out.println(JSON.toJSONString(response));
 	}
 }
