@@ -180,7 +180,7 @@ public class YCUserCompanyBusiSVImpl implements IYCUserCompanyBusiSV {
 			 * 待审核企业
 			 */
 			if(pageInfoRequest.getState()!=null&&pageInfoRequest.getState()==0){
-				querySql = querySql+"company.state = "+pageInfoRequest.getState()+"and ";
+				querySql = querySql+"company.state = "+pageInfoRequest.getState()+" and ";
 			}
 			if(pageInfoRequest.getNickName()!=null&&!"".equals(pageInfoRequest.getNickName())){
 				querySql = querySql+"usr.nickname like % "+pageInfoRequest.getNickName()+" % and ";
