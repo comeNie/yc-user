@@ -20,6 +20,7 @@ import com.ai.yc.user.api.usercollectiontranslation.param.UserCollectionInfo;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoListResponse;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoRequest;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoResponse;
+import com.ai.yc.user.api.usercompany.param.UserCompanyPageInfo;
 import com.ai.yc.user.api.usercompany.param.UserCompanyPageInfoRequest;
 import com.ai.yc.user.api.usercompany.param.UsrCompanyInfo;
 import com.ai.yc.user.constants.ExceptCodeConstants;
@@ -167,10 +168,11 @@ public class YCUserCompanyBusiSVImpl implements IYCUserCompanyBusiSV {
 	public UserCompanyInfoListResponse queryPageInfoCompanyInfo(
 			UserCompanyPageInfoRequest pageInfoRequest) {
 		UserCompanyInfoListResponse response = new UserCompanyInfoListResponse();
-		List<UsrCompany> companyInfoList = null;
+		List<UserCompanyPageInfo> companyInfoList = null;
 		PageInfo<UsrCompanyInfo> companyInfoPageInfo = new PageInfo<UsrCompanyInfo>();
 		List<UsrCompanyInfo> list = new ArrayList<UsrCompanyInfo>();
 		ResponseHeader header = null;
+		String querySql = "";
 		try{
 			UsrCompanyCriteria companyExample = new UsrCompanyCriteria();
 			UsrCompanyCriteria.Criteria companyCriteria = companyExample.createCriteria();
@@ -178,17 +180,31 @@ public class YCUserCompanyBusiSVImpl implements IYCUserCompanyBusiSV {
 			 * 待审核企业
 			 */
 			if(pageInfoRequest.getState()!=null&&pageInfoRequest.getState()==0){
-				companyCriteria.andStateEqualTo(pageInfoRequest.getState());
+				querySql = querySql+"company.state = "+pageInfoRequest.getState()+"and ";
 			}
-			int count = ycUserCompanyAtomSV.getCompanyCount(companyExample);
-			companyExample.setLimitStart((pageInfoRequest.getPageNo()-1)*pageInfoRequest.getPageSize());
-			companyExample.setLimitEnd(pageInfoRequest.getPageSize());
+			if(pageInfoRequest.getNickName()!=null&&!"".equals(pageInfoRequest.getNickName())){
+				querySql = querySql+"usr.nickname like % "+pageInfoRequest.getNickName()+" % and ";
+			}
+			if(pageInfoRequest.getMoblePhone()!=null&&!"".equals(pageInfoRequest.getMoblePhone())){
+				querySql = querySql+"usr.mobile_phone = "+pageInfoRequest.getMoblePhone()+"  and ";
+			}
+			if(pageInfoRequest.getCompanyName()!=null&&!"".equals(pageInfoRequest.getCompanyName())){
+				querySql = querySql +"company.company_name ="+pageInfoRequest.getCompanyName()+" and ";
+			}
+			if(pageInfoRequest.getCheckName()!=null&&!"".equals(pageInfoRequest.getCheckName())){
+				querySql = querySql +"company.auditor =" +pageInfoRequest.getCheckName() +" and " ;
+			}
+			querySql = querySql+" 1 = 1";
+			int count = ycUserCompanyAtomSV.getCompanyListCount(querySql);
+			int limitStart = (pageInfoRequest.getPageNo()-1)*pageInfoRequest.getPageSize();
+			int limitEnd = pageInfoRequest.getPageSize();
+			querySql = querySql+" limit "+limitStart+","+limitEnd;
 			int pageCount = count / pageInfoRequest.getPageNo() + (count % pageInfoRequest.getPageSize() > 0 ? 1 : 0);
-			companyInfoList = ycUserCompanyAtomSV.queryCompanyInfo(companyExample);
+			companyInfoList = ycUserCompanyAtomSV.queryCompanyInfoList(querySql);
 			if(companyInfoList!=null){
 				for(int i=0;i<companyInfoList.size();i++){
 					UsrCompanyInfo usrCompanyInfo = new UsrCompanyInfo();
-					UsrCompany usrCompany = companyInfoList.get(i);
+					UserCompanyPageInfo usrCompany = companyInfoList.get(i);
 					BeanUtils.copyProperties(usrCompanyInfo, usrCompany);
 					list.add(usrCompanyInfo);
 				}
