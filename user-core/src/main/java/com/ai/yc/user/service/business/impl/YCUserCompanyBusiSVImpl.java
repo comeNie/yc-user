@@ -116,11 +116,11 @@ public class YCUserCompanyBusiSVImpl implements IYCUserCompanyBusiSV {
 		ResponseHeader header = null;
 		UsrCompanyRelationCriteria relationExample = new UsrCompanyRelationCriteria();
 		UsrCompanyRelationCriteria.Criteria relationCriteria = relationExample.createCriteria();
-		if(StringUtil.isBlank(userInfoRequest.getAdminUserId())){
+		if(StringUtil.isBlank(userInfoRequest.getUserId())){
 			throw new BusinessException(ExceptCodeConstants.PARAM_IS_NULL, "用户Id不能为空");
 		}
 		relationCriteria.andStatusEqualTo("1");
-		relationCriteria.andUserIdEqualTo(userInfoRequest.getAdminUserId());
+		relationCriteria.andUserIdEqualTo(userInfoRequest.getUserId());
 		List<UsrCompanyRelation> relationList = yCUserCompanyRelationAtomSV.queryRelationInfo(relationExample);
 		List<UsrCompany> companyInfoList = null;
 		if(relationList!=null&&relationList.size()==0){

@@ -27,7 +27,7 @@ public class testusercompanyrelation {
 		request.setLinkman("zyh");
 		request.setAddress("4444");
 		request.setMobilephone("44544");
-		request.setAdminUserId("2323");
+		request.setUserId("2323");
 		userCompanySV.insertCompanyInfo(request);
 	}
 	
@@ -41,14 +41,14 @@ public class testusercompanyrelation {
 		request.setLinkman("zyh");
 		request.setAddress("4444");
 		request.setMobilephone("44544");
-		request.setAdminUserId("2323");
+		request.setUserId("2323");
 		userCompanySV.updateCompanyInfo(request);
 	}
 	
 	@Test
 	public void queryCompanyInfo(){
 		UserCompanyInfoRequest userInfoRequest = new UserCompanyInfoRequest();
-		userInfoRequest.setAdminUserId("2323");
+		userInfoRequest.setUserId("2323");
 		UserCompanyInfoResponse response = userCompanySV.queryCompanyInfo(userInfoRequest);
 		System.out.println(JSON.toJSONString(response));
 	}
