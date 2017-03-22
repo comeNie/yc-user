@@ -43,7 +43,11 @@ public class UserCompanyPageInfoRequest {
 	     */
 	    private Integer pageSize;
 		
-
+	    /**
+	     * 申请来源
+	     */
+	    private String userSource;
+	    
 		public Integer getPageNo() {
 			return pageNo;
 		}
@@ -114,6 +118,14 @@ public class UserCompanyPageInfoRequest {
 
 		public void setState(Integer state) {
 			this.state = state;
+		}
+
+		public String getUserSource() {
+			return userSource;
+		}
+
+		public void setUserSource(String userSource) {
+			this.userSource = userSource;
 		}
 	    
 }
