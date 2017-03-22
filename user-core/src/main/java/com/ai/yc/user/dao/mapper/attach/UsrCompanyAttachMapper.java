@@ -5,12 +5,14 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.type.JdbcType;
 
 import com.ai.yc.user.api.usercompany.param.UserCompanyPageInfo;
+import com.ai.yc.user.api.usercompany.param.UserCompanyPageInfoRequest;
 
 public interface UsrCompanyAttachMapper {
+	@SelectProvider(type = UsrCompanyQueryList.class, method = "queryUserCompany")
 	@Results({
 		  @Result(property = "adminUserId", column = "admin_user_id", javaType = String.class),
 	      @Result(property = "usersource", column = "usersource", javaType = String.class),
@@ -21,10 +23,8 @@ public interface UsrCompanyAttachMapper {
           @Result(property ="createTime",column = "create_time",javaType = Timestamp.class),
           @Result(property ="state",column = "state",javaType = Integer.class),
 	})
-	@Select("select usr.usersource,company.company_name,usr.nickname,usr.firstname,company.telephone,company.linkman,company.create_time,company.state from usr_user usr,usr_company company where usr.user_id = company.admin_user_id and #{condition} ")
-	public List<UserCompanyPageInfo> getCompanyInfoList(String condition);
+	public List<UserCompanyPageInfo> getCompanyInfoList(UserCompanyPageInfoRequest request);
 	
-	@Result(property = "companyCount", column = "companyCount", javaType = Integer.class)
-	@Select("select count(company.state) companyCount from usr_user usr,usr_company company where usr.user_id = company.admin_user_id and #{condition}")
-	public int getCompanyInfoCount(String condition);
+	@SelectProvider(type=UsrCompanyQueryList.class,method="queryUserCompanyCount")
+	public int getCompanyInfoCount(UserCompanyPageInfoRequest request);
 }

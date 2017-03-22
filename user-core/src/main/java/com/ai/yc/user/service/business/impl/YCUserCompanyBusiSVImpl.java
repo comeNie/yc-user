@@ -172,35 +172,10 @@ public class YCUserCompanyBusiSVImpl implements IYCUserCompanyBusiSV {
 		PageInfo<UsrCompanyInfo> companyInfoPageInfo = new PageInfo<UsrCompanyInfo>();
 		List<UsrCompanyInfo> list = new ArrayList<UsrCompanyInfo>();
 		ResponseHeader header = null;
-		String querySql = "";
 		try{
-			UsrCompanyCriteria companyExample = new UsrCompanyCriteria();
-			UsrCompanyCriteria.Criteria companyCriteria = companyExample.createCriteria();
-			/**
-			 * 待审核企业
-			 */
-			if(pageInfoRequest.getState()!=null&&pageInfoRequest.getState()==0){
-				querySql = querySql+"company.state = "+pageInfoRequest.getState()+" and ";
-			}
-			if(pageInfoRequest.getNickName()!=null&&!"".equals(pageInfoRequest.getNickName())){
-				querySql = querySql+"usr.nickname like % "+pageInfoRequest.getNickName()+" % and ";
-			}
-			if(pageInfoRequest.getMoblePhone()!=null&&!"".equals(pageInfoRequest.getMoblePhone())){
-				querySql = querySql+"usr.mobile_phone = "+pageInfoRequest.getMoblePhone()+"  and ";
-			}
-			if(pageInfoRequest.getCompanyName()!=null&&!"".equals(pageInfoRequest.getCompanyName())){
-				querySql = querySql +"company.company_name ="+pageInfoRequest.getCompanyName()+" and ";
-			}
-			if(pageInfoRequest.getCheckName()!=null&&!"".equals(pageInfoRequest.getCheckName())){
-				querySql = querySql +"company.auditor =" +pageInfoRequest.getCheckName() +" and " ;
-			}
-			querySql = querySql+" 1 = 1";
-			int count = ycUserCompanyAtomSV.getCompanyListCount(querySql);
-			int limitStart = (pageInfoRequest.getPageNo()-1)*pageInfoRequest.getPageSize();
-			int limitEnd = pageInfoRequest.getPageSize();
-			querySql = querySql+" limit "+limitStart+","+limitEnd;
+			int count = ycUserCompanyAtomSV.getCompanyListCount(pageInfoRequest);
 			int pageCount = count / pageInfoRequest.getPageNo() + (count % pageInfoRequest.getPageSize() > 0 ? 1 : 0);
-			companyInfoList = ycUserCompanyAtomSV.queryCompanyInfoList(querySql);
+			companyInfoList = ycUserCompanyAtomSV.queryCompanyInfoList(pageInfoRequest);
 			if(companyInfoList!=null){
 				for(int i=0;i<companyInfoList.size();i++){
 					UsrCompanyInfo usrCompanyInfo = new UsrCompanyInfo();

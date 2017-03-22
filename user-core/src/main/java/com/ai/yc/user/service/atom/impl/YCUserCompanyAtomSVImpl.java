@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ai.yc.user.api.usercompany.param.UserCompanyPageInfo;
+import com.ai.yc.user.api.usercompany.param.UserCompanyPageInfoRequest;
 import com.ai.yc.user.dao.mapper.attach.UsrCompanyAttachMapper;
 import com.ai.yc.user.dao.mapper.bo.UsrCompany;
 import com.ai.yc.user.dao.mapper.bo.UsrCompanyCriteria;
@@ -45,12 +46,12 @@ public class YCUserCompanyAtomSVImpl implements IYCUserCompanyAtomSV{
 	}
 
 	@Override
-	public List<UserCompanyPageInfo> queryCompanyInfoList(String condition) {
-		return companyAttachMapper.getCompanyInfoList(condition);
+	public List<UserCompanyPageInfo> queryCompanyInfoList(UserCompanyPageInfoRequest pageInfoReqeust) {
+		return companyAttachMapper.getCompanyInfoList(pageInfoReqeust);
 	}
 
 	@Override
-	public int getCompanyListCount(String condition) {
-		return companyAttachMapper.getCompanyInfoCount(condition);
+	public int getCompanyListCount(UserCompanyPageInfoRequest pageInfoReqeust) {
+		return companyAttachMapper.getCompanyInfoCount(pageInfoReqeust);
 	}
 }
