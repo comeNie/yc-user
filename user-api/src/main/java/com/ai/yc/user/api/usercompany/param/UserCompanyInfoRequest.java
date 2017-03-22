@@ -79,7 +79,7 @@ public class UserCompanyInfoRequest {
 	    /**
 	     * 管理员用户Id
 	     */
-	    private String adminUserId;
+	    private String userId;
 	    /**
 	     * 国家
 	     */
@@ -238,13 +238,14 @@ public class UserCompanyInfoRequest {
 	        this.accountId = accountId;
 	    }
 
-	    public String getAdminUserId() {
-	        return adminUserId;
-	    }
 
-	    public void setAdminUserId(String adminUserId) {
-	        this.adminUserId = adminUserId == null ? null : adminUserId.trim();
-	    }
+		public String getUserId() {
+			return userId;
+		}
+
+		public void setUserId(String userId) {
+			this.userId = userId;
+		}
 
 		public String getCountry() {
 			return country;
