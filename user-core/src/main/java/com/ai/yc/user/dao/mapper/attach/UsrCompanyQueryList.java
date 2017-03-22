@@ -15,7 +15,7 @@ public class UsrCompanyQueryList {
 			stringBuffer.append("company.state = "+pageInfoRequest.getState()+" and ");
 		}
 		if(pageInfoRequest.getNickName()!=null&&!"".equals(pageInfoRequest.getNickName())){
-			stringBuffer.append("usr.nickname like % "+pageInfoRequest.getNickName()+" % and ");
+			stringBuffer.append("usr.nickname like '%"+pageInfoRequest.getNickName()+"%' and ");
 		}
 		if(pageInfoRequest.getMoblePhone()!=null&&!"".equals(pageInfoRequest.getMoblePhone())){
 			stringBuffer.append("usr.mobile_phone = "+pageInfoRequest.getMoblePhone()+"  and ");
@@ -47,7 +47,7 @@ public class UsrCompanyQueryList {
 			stringBuffer.append("company.state = "+pageInfoRequest.getState()+" and ");
 		}
 		if(pageInfoRequest.getNickName()!=null&&!"".equals(pageInfoRequest.getNickName())){
-			stringBuffer.append("usr.nickname like % "+pageInfoRequest.getNickName()+" % and ");
+			stringBuffer.append("usr.nickname like '%"+pageInfoRequest.getNickName()+"%' and ");
 		}
 		if(pageInfoRequest.getMoblePhone()!=null&&!"".equals(pageInfoRequest.getMoblePhone())){
 			stringBuffer.append("usr.mobile_phone = "+pageInfoRequest.getMoblePhone()+"  and ");
