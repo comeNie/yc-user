@@ -16,6 +16,8 @@ public interface UsrCompanyAttachMapper {
 	@Results({
 		  @Result(property = "adminUserId", column = "admin_user_id", javaType = String.class),
 	      @Result(property = "usersource", column = "usr.usersource", javaType = String.class),
+	      @Result(property = "lastname", column = "usr.lastname", javaType = String.class),
+	      @Result(property = "firstname", column = "usr.firstname", javaType = String.class),
 	      @Result(property="companyName",column="company_name",javaType=String.class,jdbcType= JdbcType.VARBINARY),
           @Result(property ="nickName",column = "nick_name",javaType=String.class,jdbcType= JdbcType.VARBINARY),
           @Result(property ="telephone",column = "telephone",javaType = String.class,jdbcType = JdbcType.VARCHAR),
