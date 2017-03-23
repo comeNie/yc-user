@@ -4,10 +4,6 @@ import java.sql.Timestamp;
 
 public class CompanyUserInfo {
 
-		
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = -2997865058532181384L;
 		/**
 		 * ucenter获取的用户名
@@ -74,6 +70,16 @@ public class CompanyUserInfo {
 	     * 创建时间
 	     */
 	    private Timestamp createTime;
+	    /**
+	     * 译员级别
+	     */
+	    private String vipLevel;
+	    /**
+	     * 邮箱
+	     */
+	    private String email;
+	    
+	    
 
 		public String getUserId() {
 			return userId;
@@ -217,4 +223,20 @@ public class CompanyUserInfo {
 			this.createTime = createTime;
 		}
 
+		public String getVipLevel() {
+			return vipLevel;
+		}
+
+		public void setVipLevel(String vipLevel) {
+			this.vipLevel = vipLevel;
+		}
+
+		public String getEmail() {
+			return email;
+		}
+
+		public void setEmail(String email) {
+			this.email = email;
+		}
+		
 }
