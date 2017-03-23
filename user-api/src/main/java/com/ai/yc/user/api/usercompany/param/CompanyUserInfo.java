@@ -78,8 +78,10 @@ public class CompanyUserInfo {
 	     * 邮箱
 	     */
 	    private String email;
-	    
-	    
+	    /**
+	     * 个人账户余额
+	     */
+	    private long balance;
 
 		public String getUserId() {
 			return userId;
@@ -237,6 +239,14 @@ public class CompanyUserInfo {
 
 		public void setEmail(String email) {
 			this.email = email;
+		}
+
+		public long getBalance() {
+			return balance;
+		}
+
+		public void setBalance(long balance) {
+			this.balance = balance;
 		}
 		
 }
