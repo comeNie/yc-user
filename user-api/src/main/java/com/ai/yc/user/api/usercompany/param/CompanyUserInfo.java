@@ -91,7 +91,7 @@ public class CompanyUserInfo {
 	    /**
 	     * 营业执照Id
 	     */
-	    private String licenseAttacid;
+	    private String licenseAttacurl;
 	    /**
 	     * 地址
 	     */
@@ -115,7 +115,7 @@ public class CompanyUserInfo {
 	    /**
 	     * 企业logo
 	     */
-	    private String entpAttacid;
+	    private String logoUrl;
 	   
 	    /**
 	     * 创建时间
@@ -313,13 +313,6 @@ public class CompanyUserInfo {
 			this.companyName = companyName;
 		}
 
-		public String getLicenseAttacid() {
-			return licenseAttacid;
-		}
-
-		public void setLicenseAttacid(String licenseAttacid) {
-			this.licenseAttacid = licenseAttacid;
-		}
 
 		public String getAddress() {
 			return address;
@@ -361,12 +354,21 @@ public class CompanyUserInfo {
 			this.mobilephone = mobilephone;
 		}
 
-		public String getEntpAttacid() {
-			return entpAttacid;
+
+		public String getLicenseAttacurl() {
+			return licenseAttacurl;
 		}
 
-		public void setEntpAttacid(String entpAttacid) {
-			this.entpAttacid = entpAttacid;
+		public void setLicenseAttacurl(String licenseAttacurl) {
+			this.licenseAttacurl = licenseAttacurl;
+		}
+
+		public String getLogoUrl() {
+			return logoUrl;
+		}
+
+		public void setLogoUrl(String logoUrl) {
+			this.logoUrl = logoUrl;
 		}
 
 		public Timestamp getCompanyCreateTime() {
