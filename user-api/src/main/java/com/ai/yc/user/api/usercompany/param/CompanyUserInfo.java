@@ -82,7 +82,55 @@ public class CompanyUserInfo {
 	     * 个人账户余额
 	     */
 	    private long balance;
+	    
+	    private String companyId;
+	    /**
+	     * 企业名称
+	     */
+	    private String companyName;
+	    /**
+	     * 营业执照Id
+	     */
+	    private String licenseAttacid;
+	    /**
+	     * 地址
+	     */
+	    private String address;
+	    /**
+	     * 邮件
+	     */
+	    private String companyEmail;
+	    /**
+	     * 联系电话(座机)
+	     */
+	    private String telephone;
+	    /**
+	     * 联系人
+	     */
+	    private String linkman;
+	    /**
+	     * 手机号
+	     */
+	    private String mobilephone;
+	    /**
+	     * 企业logo
+	     */
+	    private String entpAttacid;
+	   
+	    /**
+	     * 创建时间
+	     */
+	    private Timestamp companyCreateTime;
+	   
+	    /**
+	     * 账户Id
+	     */
+	    private Long companyAccountId;
 
+	    private String province;
+	    
+	    private String cncity;
+	    
 		public String getUserId() {
 			return userId;
 		}
@@ -247,6 +295,110 @@ public class CompanyUserInfo {
 
 		public void setBalance(long balance) {
 			this.balance = balance;
+		}
+
+		public String getCompanyId() {
+			return companyId;
+		}
+
+		public void setCompanyId(String companyId) {
+			this.companyId = companyId;
+		}
+
+		public String getCompanyName() {
+			return companyName;
+		}
+
+		public void setCompanyName(String companyName) {
+			this.companyName = companyName;
+		}
+
+		public String getLicenseAttacid() {
+			return licenseAttacid;
+		}
+
+		public void setLicenseAttacid(String licenseAttacid) {
+			this.licenseAttacid = licenseAttacid;
+		}
+
+		public String getAddress() {
+			return address;
+		}
+
+		public void setAddress(String address) {
+			this.address = address;
+		}
+
+		public String getCompanyEmail() {
+			return companyEmail;
+		}
+
+		public void setCompanyEmail(String companyEmail) {
+			this.companyEmail = companyEmail;
+		}
+
+		public String getTelephone() {
+			return telephone;
+		}
+
+		public void setTelephone(String telephone) {
+			this.telephone = telephone;
+		}
+
+		public String getLinkman() {
+			return linkman;
+		}
+
+		public void setLinkman(String linkman) {
+			this.linkman = linkman;
+		}
+
+		public String getMobilephone() {
+			return mobilephone;
+		}
+
+		public void setMobilephone(String mobilephone) {
+			this.mobilephone = mobilephone;
+		}
+
+		public String getEntpAttacid() {
+			return entpAttacid;
+		}
+
+		public void setEntpAttacid(String entpAttacid) {
+			this.entpAttacid = entpAttacid;
+		}
+
+		public Timestamp getCompanyCreateTime() {
+			return companyCreateTime;
+		}
+
+		public void setCompanyCreateTime(Timestamp companyCreateTime) {
+			this.companyCreateTime = companyCreateTime;
+		}
+
+		public Long getCompanyAccountId() {
+			return companyAccountId;
+		}
+
+		public void setCompanyAccountId(Long companyAccountId) {
+			this.companyAccountId = companyAccountId;
+		}
+
+		public String getProvince() {
+			return province;
+		}
+
+		public void setProvince(String province) {
+			this.province = province;
+		}
+
+		public String getCncity() {
+			return cncity;
+		}
+
+		public void setCncity(String cncity) {
+			this.cncity = cncity;
 		}
 		
 }
