@@ -12,6 +12,7 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.sdk.components.sequence.util.SeqUtil;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.yc.user.api.usercompany.interfaces.IYCUserCompanySV;
+import com.ai.yc.user.api.usercompany.param.UserCompanyInfoDetailResponse;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoListResponse;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoRequest;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoResponse;
@@ -68,6 +69,16 @@ public class YCUserCompanySVImpl implements IYCUserCompanySV{
 			UserCompanyPageInfoRequest userInfoRequest)
 			throws BusinessException, SystemException {
 		 return ycUserCompanyBusiSV.queryPageInfoCompanyInfo(userInfoRequest);
+	}
+
+	@Override
+	@POST
+	@Path("/ycUserCompanyBusiSV")
+	public UserCompanyInfoDetailResponse queryCompanyInfoDetail(
+			UserCompanyInfoRequest userInfoRequest) throws BusinessException,
+			SystemException {
+		// TODO Auto-generated method stub
+		return ycUserCompanyBusiSV.queryCompanyInfoDetail(userInfoRequest);
 	}
 
 }

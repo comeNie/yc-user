@@ -1,6 +1,7 @@
 package com.ai.yc.user.service.business.interfaces;
 
 import com.ai.opt.base.vo.BaseResponse;
+import com.ai.yc.user.api.usercompany.param.UserCompanyInfoDetailResponse;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoListResponse;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoRequest;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoResponse;
@@ -13,4 +14,5 @@ public interface IYCUserCompanyBusiSV {
 	public UserCompanyInfoResponse queryCompanyInfo(UserCompanyInfoRequest userInfoRequest);
 	public BaseResponse checkCompanyInfo(UserCompanyInfoRequest userInfoRequest);
 	public UserCompanyInfoListResponse queryPageInfoCompanyInfo(UserCompanyPageInfoRequest pageInfoRequest);
+	public UserCompanyInfoDetailResponse queryCompanyInfoDetail(UserCompanyInfoRequest userInfoRequest);
 }

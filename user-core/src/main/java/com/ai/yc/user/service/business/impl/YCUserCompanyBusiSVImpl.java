@@ -17,6 +17,7 @@ import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.opt.sdk.util.DateUtil;
 import com.ai.paas.ipaas.util.StringUtil;
 import com.ai.yc.user.api.usercollectiontranslation.param.UserCollectionInfo;
+import com.ai.yc.user.api.usercompany.param.UserCompanyInfoDetailResponse;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoListResponse;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoRequest;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoResponse;
@@ -194,6 +195,30 @@ public class YCUserCompanyBusiSVImpl implements IYCUserCompanyBusiSV {
 		}catch(Exception e){
 			header = new ResponseHeader(false, ExceptCodeConstants.FAILD, "查询企业信息失败");
 			e.printStackTrace();
+		}
+		response.setResponseHeader(header);
+		return response;
+	}
+
+	@Override
+	public UserCompanyInfoDetailResponse queryCompanyInfoDetail(
+			UserCompanyInfoRequest userInfoRequest) {
+		List<UsrCompany> companyInfoList = null;
+		UsrCompanyCriteria companyExample = new UsrCompanyCriteria();
+		UsrCompanyCriteria.Criteria companyCriteria = companyExample.createCriteria();
+		UserCompanyInfoDetailResponse response = new UserCompanyInfoDetailResponse();
+		ResponseHeader header = null;
+		try{
+			if(!"".equals(userInfoRequest.getUserId())&&!StringUtil.isBlank(userInfoRequest.getUserId())){
+				companyCriteria.andAdminUserIdEqualTo(userInfoRequest.getUserId());
+			}
+			companyInfoList = ycUserCompanyAtomSV.queryCompanyInfo(companyExample);
+			if(companyInfoList!=null&&companyInfoList.size()>0){
+				UsrCompany usercompany= companyInfoList.get(0);
+				BeanUtils.copyProperties(response, usercompany);
+			}
+		}catch(Exception e){
+			header = new ResponseHeader(false, ExceptCodeConstants.FAILD, "查询企业详情失败");
 		}
 		response.setResponseHeader(header);
 		return response;

@@ -8,6 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.yc.user.api.usercompany.interfaces.IYCUserCompanySV;
+import com.ai.yc.user.api.usercompany.param.UserCompanyInfoDetailResponse;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoListResponse;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoRequest;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoResponse;
@@ -73,5 +74,13 @@ public class testusercompany {
 		userInfoRequest.setPageSize(10);
 		UserCompanyInfoListResponse response = userCompanySV.queryPageInfoCompanyInfo(userInfoRequest);
 		System.out.println(JSON.toJSONString(response));
+	}
+	
+	@Test
+	public void getCompanyInfo(){
+		UserCompanyInfoRequest request = new UserCompanyInfoRequest();
+		request.setUserId("405411");
+		UserCompanyInfoDetailResponse response = userCompanySV.queryCompanyInfoDetail(request);
+		System.out.println("============="+JSON.toJSONString(response));
 	}
 }
