@@ -9,6 +9,7 @@ import javax.ws.rs.core.MediaType;
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
+import com.ai.yc.user.api.usercompany.param.UserCompanyInfoDetailResponse;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoListResponse;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoRequest;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoResponse;
@@ -74,4 +75,16 @@ public interface IYCUserCompanySV {
 	@Path("/queryPageInfoCompanyInfo")
 	public UserCompanyInfoListResponse queryPageInfoCompanyInfo(UserCompanyPageInfoRequest userInfoRequest)throws BusinessException,SystemException;
 
+	
+	/**
+	 * 查询某一个企业详情
+	 * @param 
+	 * @return
+	 * @ApiCode USR_0007
+     * @RestRelativeURL ycusercompany/queryCompanyInfoDetail
+	 */
+	@POST
+	@Path("/queryCompanyInfoDetail")
+	public UserCompanyInfoDetailResponse queryCompanyInfoDetail(UserCompanyInfoRequest userInfoRequest)throws BusinessException,SystemException;
+	
 }
