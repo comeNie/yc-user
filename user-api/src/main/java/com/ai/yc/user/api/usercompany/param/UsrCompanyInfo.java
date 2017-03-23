@@ -55,6 +55,12 @@ public class UsrCompanyInfo {
 
     private String usersource;
     
+    private String nickName;
+    
+    private String firstname;
+    
+    private String lastname;
+    
     public String getCompanyId() {
         return companyId;
     }
@@ -262,4 +268,29 @@ public class UsrCompanyInfo {
 	public void setUsersource(String usersource) {
 		this.usersource = usersource;
 	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+	
 }

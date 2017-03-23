@@ -35,6 +35,11 @@ public class UserCompanyPageInfo {
 	 * 审核状态
 	 */
 	private Integer state;
+	
+	private String lastname;
+	
+	private String firstname;
+	
 	public String getAdminUserId() {
 		return adminUserId;
 	}
@@ -82,5 +87,17 @@ public class UserCompanyPageInfo {
 	}
 	public void setState(Integer state) {
 		this.state = state;
+	}
+	public String getLastname() {
+		return lastname;
+	}
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+	public String getFirstname() {
+		return firstname;
+	}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 }
