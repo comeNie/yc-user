@@ -201,4 +201,20 @@ public class CompanyUserInfo {
 			this.griwthValue = griwthValue;
 		}
 
+		public String getUsersource() {
+			return usersource;
+		}
+
+		public void setUsersource(String usersource) {
+			this.usersource = usersource;
+		}
+
+		public Timestamp getCreateTime() {
+			return createTime;
+		}
+
+		public void setCreateTime(Timestamp createTime) {
+			this.createTime = createTime;
+		}
+
 }
