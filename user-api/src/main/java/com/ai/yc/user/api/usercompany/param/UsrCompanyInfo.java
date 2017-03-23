@@ -53,6 +53,8 @@ public class UsrCompanyInfo {
 
     private String adminUserId;
 
+    private String usersource;
+    
     public String getCompanyId() {
         return companyId;
     }
@@ -252,4 +254,12 @@ public class UsrCompanyInfo {
     public void setAdminUserId(String adminUserId) {
         this.adminUserId = adminUserId == null ? null : adminUserId.trim();
     }
+
+	public String getUsersource() {
+		return usersource;
+	}
+
+	public void setUsersource(String usersource) {
+		this.usersource = usersource;
+	}
 }
