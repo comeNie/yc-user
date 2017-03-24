@@ -27,7 +27,7 @@ public class YCUserCompanyAtomSVImpl implements IYCUserCompanyAtomSV{
 
 	@Override
 	public int updateCompanyInfo(UsrCompany companyInfo) {
-		return usrCompanyMapper.updateByPrimaryKey(companyInfo);
+		return usrCompanyMapper.updateByPrimaryKeySelective(companyInfo);
 	}
 
 	@Override
