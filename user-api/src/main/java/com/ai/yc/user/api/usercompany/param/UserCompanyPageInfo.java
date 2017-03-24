@@ -40,6 +40,10 @@ public class UserCompanyPageInfo {
 	
 	private String firstname;
 	
+	private String content;
+	
+	private String remark;
+	
 	public String getAdminUserId() {
 		return adminUserId;
 	}
@@ -99,5 +103,17 @@ public class UserCompanyPageInfo {
 	}
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 }

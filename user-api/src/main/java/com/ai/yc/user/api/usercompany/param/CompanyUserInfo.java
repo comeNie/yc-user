@@ -131,6 +131,10 @@ public class CompanyUserInfo {
 	    
 	    private String cncity;
 	    
+	    private String content;
+	    
+	    private String remark;
+	    
 		public String getUserId() {
 			return userId;
 		}
@@ -401,6 +405,22 @@ public class CompanyUserInfo {
 
 		public void setCncity(String cncity) {
 			this.cncity = cncity;
+		}
+
+		public String getContent() {
+			return content;
+		}
+
+		public void setContent(String content) {
+			this.content = content;
+		}
+
+		public String getRemark() {
+			return remark;
+		}
+
+		public void setRemark(String remark) {
+			this.remark = remark;
 		}
 		
 }
