@@ -14,6 +14,7 @@ import com.ai.yc.user.api.usercompany.param.UserCompanyPageInfoRequest;
 public interface UsrCompanyAttachMapper {
 	@SelectProvider(type = UsrCompanyQueryList.class, method = "queryUserCompany")
 	@Results({
+		  @Result(property = "companyId", column = "company_id", javaType = String.class),
 		  @Result(property = "adminUserId", column = "admin_user_id", javaType = String.class),
 	      @Result(property = "usersource", column = "usr.usersource", javaType = String.class),
 	      @Result(property = "lastname", column = "usr.lastname", javaType = String.class),

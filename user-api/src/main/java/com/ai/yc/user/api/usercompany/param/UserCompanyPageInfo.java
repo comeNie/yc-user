@@ -4,6 +4,10 @@ import java.sql.Timestamp;
 
 public class UserCompanyPageInfo {
 	/**
+	 * 企业编号
+	 */
+	private String companyId;
+	/**
 	 * 用户Id
 	 */
 	private String adminUserId;
@@ -116,4 +120,11 @@ public class UserCompanyPageInfo {
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
+	public String getCompanyId() {
+		return companyId;
+	}
+	public void setCompanyId(String companyId) {
+		this.companyId = companyId;
+	}
+	
 }
