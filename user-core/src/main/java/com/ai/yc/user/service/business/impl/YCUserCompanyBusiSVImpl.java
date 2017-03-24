@@ -86,21 +86,6 @@ public class YCUserCompanyBusiSVImpl implements IYCUserCompanyBusiSV {
 		BaseResponse response = new BaseResponse();
 		ResponseHeader header = null;
 		try{
-			if(StringUtil.isBlank(companyInfo.getCompanyName())){
-				throw new BusinessException(ExceptCodeConstants.PARAM_IS_NULL, "企业名称不能为空");
-			}
-			if(StringUtil.isBlank(companyInfo.getLicenseAttacid())){
-				throw new BusinessException(ExceptCodeConstants.PARAM_IS_NULL, "营业执照不能为空");
-			}
-			if(StringUtil.isBlank(companyInfo.getAddress())){
-				throw new BusinessException(ExceptCodeConstants.PARAM_IS_NULL, "企业地址不能为空");
-			}
-			if(StringUtil.isBlank(companyInfo.getTelephone())){
-				throw new BusinessException(ExceptCodeConstants.PARAM_IS_NULL, "企业座机不能为空");
-			}
-			if(StringUtil.isBlank(companyInfo.getLinkman())){
-				throw new BusinessException(ExceptCodeConstants.PARAM_IS_NULL, "联系人不能为空");
-			}
 			ycUserCompanyAtomSV.updateCompanyInfo(companyInfo);
 			header = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "更新企业信息成功");
 		}catch(Exception e){
