@@ -47,6 +47,10 @@ public class UserCompanyPageInfo {
 	private String content;
 	
 	private String remark;
+	/**
+	 * 成员数量
+	 */
+	private int membersCount;
 	
 	public String getAdminUserId() {
 		return adminUserId;
@@ -125,6 +129,12 @@ public class UserCompanyPageInfo {
 	}
 	public void setCompanyId(String companyId) {
 		this.companyId = companyId;
+	}
+	public int getMembersCount() {
+		return membersCount;
+	}
+	public void setMembersCount(int membersCount) {
+		this.membersCount = membersCount;
 	}
 	
 }

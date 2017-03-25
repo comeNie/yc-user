@@ -1814,6 +1814,66 @@ public class UsrCompanyCriteria {
             addCriterion("admin_user_id not between", value1, value2, "adminUserId");
             return (Criteria) this;
         }
+
+        public Criteria andMembersCountIsNull() {
+            addCriterion("members_count is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMembersCountIsNotNull() {
+            addCriterion("members_count is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMembersCountEqualTo(Long value) {
+            addCriterion("members_count =", value, "membersCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMembersCountNotEqualTo(Long value) {
+            addCriterion("members_count <>", value, "membersCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMembersCountGreaterThan(Long value) {
+            addCriterion("members_count >", value, "membersCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMembersCountGreaterThanOrEqualTo(Long value) {
+            addCriterion("members_count >=", value, "membersCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMembersCountLessThan(Long value) {
+            addCriterion("members_count <", value, "membersCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMembersCountLessThanOrEqualTo(Long value) {
+            addCriterion("members_count <=", value, "membersCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMembersCountIn(List<Long> values) {
+            addCriterion("members_count in", values, "membersCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMembersCountNotIn(List<Long> values) {
+            addCriterion("members_count not in", values, "membersCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMembersCountBetween(Long value1, Long value2) {
+            addCriterion("members_count between", value1, value2, "membersCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andMembersCountNotBetween(Long value1, Long value2) {
+            addCriterion("members_count not between", value1, value2, "membersCount");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

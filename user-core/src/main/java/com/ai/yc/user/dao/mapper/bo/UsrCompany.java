@@ -53,6 +53,8 @@ public class UsrCompany {
 
     private String adminUserId;
 
+    private Long membersCount;
+
     public String getCompanyId() {
         return companyId;
     }
@@ -251,5 +253,13 @@ public class UsrCompany {
 
     public void setAdminUserId(String adminUserId) {
         this.adminUserId = adminUserId == null ? null : adminUserId.trim();
+    }
+
+    public Long getMembersCount() {
+        return membersCount;
+    }
+
+    public void setMembersCount(Long membersCount) {
+        this.membersCount = membersCount;
     }
 }

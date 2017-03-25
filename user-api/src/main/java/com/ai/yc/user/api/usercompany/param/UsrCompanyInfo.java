@@ -3,32 +3,51 @@ package com.ai.yc.user.api.usercompany.param;
 import java.sql.Timestamp;
 
 public class UsrCompanyInfo {
+	/**
+	 * 企业编号
+	 */
     private String companyId;
-
+    /**
+     * 企业名称
+     */
     private String companyName;
-
+    /**
+     * 营业执照
+     */
     private String licenseAttacid;
-
+    /**
+     * 地址
+     */
     private String address;
 
     private String companyEmail;
-
+    /**
+     * 座机
+     */
     private String telephone;
-
+    /**
+     * 联系人
+     */
     private String linkman;
-
+    /**
+     * 联系手机号
+     */
     private String mobilephone;
 
     private String entpAttacid;
-
+    /**
+     * 企业简介
+     */
     private String content;
-
+    
     private String proposerId;
 
     private String proposerName;
-
+    /**
+     * 审核状态
+     */
     private Integer state;
-
+    
     private Timestamp createTime;
 
     private Timestamp modifyTime;
@@ -60,6 +79,22 @@ public class UsrCompanyInfo {
     private String firstname;
     
     private String lastname;
+    /**
+     * 成员数量
+     */
+    private int membersCount;
+    /**
+     * 折扣
+     */
+    private String corporateDiscount;
+    /**
+     * 结算方式
+     */
+    private String settlingAccounts;
+    /**
+     * 企业账户
+     */
+    private int companyAccount;
     
     public String getCompanyId() {
         return companyId;
@@ -291,6 +326,38 @@ public class UsrCompanyInfo {
 
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
+	}
+
+	public int getMembersCount() {
+		return membersCount;
+	}
+
+	public void setMembersCount(int membersCount) {
+		this.membersCount = membersCount;
+	}
+
+	public String getCorporateDiscount() {
+		return corporateDiscount;
+	}
+
+	public void setCorporateDiscount(String corporateDiscount) {
+		this.corporateDiscount = corporateDiscount;
+	}
+
+	public String getSettlingAccounts() {
+		return settlingAccounts;
+	}
+
+	public void setSettlingAccounts(String settlingAccounts) {
+		this.settlingAccounts = settlingAccounts;
+	}
+
+	public int getCompanyAccount() {
+		return companyAccount;
+	}
+
+	public void setCompanyAccount(int companyAccount) {
+		this.companyAccount = companyAccount;
 	}
 	
 }
