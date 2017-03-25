@@ -69,7 +69,7 @@ public class testusercompany {
 	public void queryCompanyInfoList(){
 		UserCompanyPageInfoRequest userInfoRequest = new UserCompanyPageInfoRequest();
 		userInfoRequest.setState(0);
-		userInfoRequest.setCompanyName("1212");
+		//userInfoRequest.setCompanyName("1212");
 		userInfoRequest.setPageNo(1);
 		userInfoRequest.setPageSize(10);
 		UserCompanyInfoListResponse response = userCompanySV.queryPageInfoCompanyInfo(userInfoRequest);
