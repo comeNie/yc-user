@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.components.ccs.CCSClientFactory;
@@ -34,6 +35,10 @@ import com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV;
 import com.ai.yc.user.api.userservice.param.CompleteUserInfoRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
+import com.ai.yc.user.api.userservice.param.QueryUserDetailRequest;
+import com.ai.yc.user.api.userservice.param.QueryUserDetailRespones;
+import com.ai.yc.user.api.userservice.param.QueryUserRequest;
+import com.ai.yc.user.api.userservice.param.QueryUserResponse;
 import com.ai.yc.user.api.userservice.param.SearchYCContactRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
@@ -370,6 +375,57 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 		 * 如果response中的responseHeader为空表示从t_user表中没有查询到数据
 		 */
 		return response;
+	}
+	
+	@Override
+	public QueryUserResponse queryUserPage(QueryUserRequest request)
+			throws BusinessException, SystemException {
+		
+		ResponseHeader responseHeader = null;
+		try{
+			QueryUserResponse response = ycUsrServiceBusiSv.searchUserPage(request);
+			if(response != null){
+				responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"查询成功");
+				response.setResponseHeader(responseHeader);
+		        return response;
+			} else {
+				response = new QueryUserResponse();
+				responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,"查询失败");
+				response.setResponseHeader(responseHeader);
+		        return response;
+			}
+		}catch(BusinessException e){
+			LOGGER.error("查询失败",e);
+			QueryUserResponse response = new QueryUserResponse();
+			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
+			response.setResponseHeader(responseHeader);
+	        return response;
+		}
+	}
+
+	@Override
+	public QueryUserDetailRespones queryUserDetail(QueryUserDetailRequest request) throws BusinessException, SystemException {
+
+		ResponseHeader responseHeader = null;
+		try{
+			QueryUserDetailRespones response = ycUsrServiceBusiSv.queryUserDetail(request);
+			if(response != null){
+				responseHeader = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"查询成功");
+				response.setResponseHeader(responseHeader);
+		        return response;
+			} else {
+				response = new QueryUserDetailRespones();
+				responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,"查询失败");
+				response.setResponseHeader(responseHeader);
+		        return response;
+			}
+		}catch(BusinessException e){
+			LOGGER.error("查询失败",e);
+			QueryUserDetailRespones response = new QueryUserDetailRespones();
+			responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,e.getErrorMessage());
+			response.setResponseHeader(responseHeader);
+	        return response;
+		}
 	}
 
 }

@@ -37,4 +37,6 @@ public interface IYCUserServiceAtomSV {
 	public int deleteContactInfo(String contactId);
 	
 	public List<UsrUser> getAllUserInfo();
+	
+	public List<UsrUser> getUserInfo(UsrUserCriteria example);
 }

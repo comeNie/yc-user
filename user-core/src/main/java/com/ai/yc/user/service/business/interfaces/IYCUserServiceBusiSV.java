@@ -8,6 +8,10 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.yc.user.api.userservice.param.CompleteUserInfoRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
+import com.ai.yc.user.api.userservice.param.QueryUserDetailRequest;
+import com.ai.yc.user.api.userservice.param.QueryUserDetailRespones;
+import com.ai.yc.user.api.userservice.param.QueryUserRequest;
+import com.ai.yc.user.api.userservice.param.QueryUserResponse;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
 import com.ai.yc.user.api.userservice.param.YCInsertContactResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
@@ -37,4 +41,9 @@ public interface IYCUserServiceBusiSV {
 	public List<YCUserInfoResponse> getAllUserInfo()throws BusinessException;
 	
 	public BaseResponse completeUserInfo(CompleteUserInfoRequest userinfo) throws BusinessException;
+
+	public QueryUserResponse searchUserPage(QueryUserRequest request) throws BusinessException;
+    
+    public QueryUserDetailRespones queryUserDetail(QueryUserDetailRequest request) throws BusinessException;
+
 }

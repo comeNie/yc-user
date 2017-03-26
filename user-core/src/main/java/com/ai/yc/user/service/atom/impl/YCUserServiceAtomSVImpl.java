@@ -86,5 +86,10 @@ public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 		return list;
 	}
 
+	@Override
+	public List<UsrUser> getUserInfo(UsrUserCriteria example) {
+		return tUserMapper.selectByExample(example);
+	}
+
 	
 }

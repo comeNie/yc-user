@@ -11,12 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.BaseResponse;
+import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.components.idps.IDPSClientFactory;
 import com.ai.opt.sdk.components.sequence.util.SeqUtil;
 import com.ai.opt.sdk.constants.ExceptCodeConstants;
 import com.ai.opt.sdk.dubbo.util.DubboConsumerFactory;
 import com.ai.opt.sdk.util.BeanUtils;
+import com.ai.opt.sdk.util.CollectionUtil;
 import com.ai.opt.sdk.util.StringUtil;
 import com.ai.opt.sdk.util.UUIDUtil;
 import com.ai.paas.ipaas.image.IImageClient;
@@ -33,18 +35,29 @@ import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterResponse;
 import com.ai.yc.user.api.userservice.param.CompleteUserInfoRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
+import com.ai.yc.user.api.userservice.param.QueryUserDetailRequest;
+import com.ai.yc.user.api.userservice.param.QueryUserDetailRespones;
+import com.ai.yc.user.api.userservice.param.QueryUserRequest;
+import com.ai.yc.user.api.userservice.param.QueryUserResponse;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
+import com.ai.yc.user.api.userservice.param.UsrContactMessage;
+import com.ai.yc.user.api.userservice.param.UsrGriwthValueInfo;
+import com.ai.yc.user.api.userservice.param.YCUsrUserVO;
 import com.ai.yc.user.api.userservice.param.YCInsertContactResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
 import com.ai.yc.user.dao.mapper.bo.UsrContact;
+import com.ai.yc.user.dao.mapper.bo.UsrContactCriteria;
+import com.ai.yc.user.dao.mapper.bo.UsrGriwthValue;
+import com.ai.yc.user.dao.mapper.bo.UsrGriwthValueCriteria;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
+import com.ai.yc.user.service.atom.interfaces.IYCUserContactAtomSV;
+import com.ai.yc.user.service.atom.interfaces.IYCUserGriwthValueAtomSV;
 import com.ai.yc.user.service.atom.interfaces.IYCUserServiceAtomSV;
 import com.ai.yc.user.service.business.interfaces.IYCUserServiceBusiSV;
 import com.ai.yc.user.util.UCDateUtils;
 import com.alibaba.fastjson.JSON;
-import com.sun.mail.iap.ResponseHandler;
 
 @Service
 @Transactional
@@ -54,6 +67,11 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 
 	@Autowired
 	private IYCUserServiceAtomSV ycUSAtomSV;
+	@Autowired
+	private IYCUserContactAtomSV ycUCAtomSV;
+	@Autowired
+	private IYCUserGriwthValueAtomSV ycUGVAtomSV;
+	
 
 	/**
 	 * resultCode 0 fail 1 success
@@ -464,6 +482,105 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			response.setResponseHeader(responseHeader);
 		}
 
+		return response;
+	}
+	@Override
+	public QueryUserResponse searchUserPage(QueryUserRequest request)
+			throws BusinessException {
+
+		QueryUserResponse response = new QueryUserResponse();
+		UsrUserCriteria example = new UsrUserCriteria();
+		example.setLimitStart((request.getPageNo() - 1) * request.getPageSize());
+		example.setLimitEnd(request.getPageSize());
+		UsrUserCriteria.Criteria criteria = example.createCriteria();
+		if (!StringUtil.isBlank(request.getNickname())) {
+			criteria.andNicknameLike(request.getNickname());
+		}
+		if (!StringUtil.isBlank(request.getMobilePhone())) {
+			criteria.andMobilePhoneEqualTo(request.getMobilePhone());
+		}
+		// 注册来源
+		
+
+		
+		if (!StringUtil.isBlank(request.getUsersource())) {
+			criteria.andUsersourceEqualTo(request.getUsersource());
+		}
+		if (!StringUtil.isBlank(request.getSafetyLevel())) {
+			criteria.andSafetyLevelEqualTo(request.getSafetyLevel());
+		}
+		if (null != request.getState()) {
+			criteria.andStateEqualTo(request.getState());
+		}
+		if (null != request.getIsTranslator()) {
+			criteria.andSafetyLevelEqualTo(request.getSafetyLevel());
+		}
+		if (null != request.getRegistTimeStart()
+				&& null != request.getRegistTimeStart()) {
+			criteria.andRegistTimeBetween(request.getRegistTimeStart(),
+					request.getRegistTimeEnd());
+		}
+		// 最后登录时间
+
+		
+		List<UsrUser> usrUserList = ycUSAtomSV.getUserInfo(example);
+		List<YCUsrUserVO> results = new ArrayList<YCUsrUserVO>();
+		if (!CollectionUtil.isEmpty(usrUserList)) {
+			for (UsrUser user : usrUserList) {
+				YCUsrUserVO userVO = new YCUsrUserVO();
+				//余额
+//				userVO.setBalance(balance);
+				//积分
+//				userVO.setIntegral(integral);
+				BeanUtils.copyProperties(userVO, user);
+				results.add(userVO);
+			}
+		}
+		PageInfo<YCUsrUserVO> pageinfo = new PageInfo<YCUsrUserVO>();
+		pageinfo.setResult(results);
+		pageinfo.setPageSize(request.getPageSize());
+		pageinfo.setPageNo(request.getPageNo());
+		response.setPageInfo(pageinfo);
+		return response;
+	}
+
+	@Override
+	public QueryUserDetailRespones queryUserDetail(
+			QueryUserDetailRequest request) throws BusinessException {
+		QueryUserDetailRespones response = new QueryUserDetailRespones();
+		UsrUser user = ycUSAtomSV.getUserInfo(request.getUserId());
+		if(null != user){
+			YCUsrUserVO usrUserInfo = new YCUsrUserVO();
+			BeanUtils.copyProperties(usrUserInfo, user);
+			response.setUsrUser(usrUserInfo);
+			UsrContactCriteria example = new UsrContactCriteria();
+			UsrContactCriteria.Criteria criteria = example.createCriteria();
+			criteria.andUserIdEqualTo(request.getUserId());
+			List<UsrContact> usrContactList = ycUCAtomSV.queryContactInfo(example);
+			if(!CollectionUtil.isEmpty(usrContactList)){
+				List<UsrContactMessage> UsrGriwthValueInfoList = new ArrayList<UsrContactMessage>();
+				for(UsrContact usrContact:usrContactList){
+					UsrContactMessage usrContactInfo = new UsrContactMessage();
+					BeanUtils.copyProperties(usrContactInfo, usrContact);
+					UsrGriwthValueInfoList.add(usrContactInfo);
+				}
+				response.setUsrContact(UsrGriwthValueInfoList);
+			}
+			UsrGriwthValueCriteria example1 = new UsrGriwthValueCriteria();
+			UsrGriwthValueCriteria.Criteria criteria1  = example1.createCriteria();
+			criteria1.andUserIdEqualTo(request.getUserId());
+			List<UsrGriwthValue> usrGriwthValueList = ycUGVAtomSV.queryGriwthValueInfo(example1);
+			if(!CollectionUtil.isEmpty(usrGriwthValueList)){
+				List<UsrGriwthValueInfo> UsrGriwthValueInfoList = new ArrayList<UsrGriwthValueInfo>();
+				for(UsrGriwthValue usrGriwthValue :usrGriwthValueList){
+					UsrGriwthValueInfo UsrGriwthValueInfo = new UsrGriwthValueInfo();
+					BeanUtils.copyProperties(UsrGriwthValueInfo, usrGriwthValue);
+					UsrGriwthValueInfoList.add(UsrGriwthValueInfo);
+				}
+				response.setUsrGriwthValueList(UsrGriwthValueInfoList);
+			}
+			return response;
+		}
 		return response;
 	}
 }

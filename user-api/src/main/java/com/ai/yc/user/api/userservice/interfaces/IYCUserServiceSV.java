@@ -8,10 +8,16 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.yc.user.api.userservice.param.CompleteUserInfoRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
+import com.ai.yc.user.api.userservice.param.QueryUserDetailRequest;
+import com.ai.yc.user.api.userservice.param.QueryUserDetailRespones;
+import com.ai.yc.user.api.userservice.param.QueryUserRequest;
+import com.ai.yc.user.api.userservice.param.QueryUserResponse;
 import com.ai.yc.user.api.userservice.param.SearchYCContactRequest;
 import com.ai.yc.user.api.userservice.param.SearchYCUserRequest;
 import com.ai.yc.user.api.userservice.param.UpdateYCUserRequest;
@@ -114,4 +120,24 @@ public interface IYCUserServiceSV {
 	@POST
 	@Path("/completeUserInfo")
 	public BaseResponse completeUserInfo(CompleteUserInfoRequest request);
+	
+	/**
+	 * 查询会员列表
+	 * @param request
+	 * @return
+	 * @RestRelativeURL ycuserservice/queryUserPage
+	 */
+	@POST
+	@Path("/queryUserPage")
+	public QueryUserResponse queryUserPage(QueryUserRequest request) throws BusinessException, SystemException;
+	/**
+	 * 查询会员详情
+	 * @param request
+	 * @return
+	 * @RestRelativeURL ycuserservice/queryUserDetail
+	 */
+	@POST
+	@Path("/queryUserDetail")
+	public QueryUserDetailRespones queryUserDetail(QueryUserDetailRequest request) throws BusinessException, SystemException;
+
 }

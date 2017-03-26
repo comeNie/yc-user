@@ -1,8 +1,14 @@
 package com.ai.yc.user.api.userservice.param;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class UsrContactMessage {
+public class UsrContactMessage implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 253944229582627583L;
+
 	private String contactId;
 
     private Integer gnCountryId;
