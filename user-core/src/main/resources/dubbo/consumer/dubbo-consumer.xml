@@ -51,4 +51,6 @@
 			 
 	<dubbo:reference id="iYCUserCompanySV"
 		interface="com.ai.yc.user.api.userCompany.interfaces.IYCUserCompanySV" />	 
+	<dubbo:reference id="iYCUserServiceSV"
+		interface="com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV" />
 </beans>
