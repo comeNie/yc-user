@@ -39,4 +39,6 @@ public interface IYCUserServiceAtomSV {
 	public List<UsrUser> getAllUserInfo();
 	
 	public List<UsrUser> getUserInfo(UsrUserCriteria example);
+	
+	public int countByExample(UsrUserCriteria example);
 }

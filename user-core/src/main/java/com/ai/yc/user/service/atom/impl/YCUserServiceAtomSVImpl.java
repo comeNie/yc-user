@@ -91,5 +91,10 @@ public class YCUserServiceAtomSVImpl implements IYCUserServiceAtomSV {
 		return tUserMapper.selectByExample(example);
 	}
 
+	@Override
+	public int countByExample(UsrUserCriteria example) {
+		return tUserMapper.countByExample(example);
+	}
+
 	
 }

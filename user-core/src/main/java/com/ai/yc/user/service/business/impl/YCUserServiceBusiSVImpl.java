@@ -540,6 +540,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		pageinfo.setResult(results);
 		pageinfo.setPageSize(request.getPageSize());
 		pageinfo.setPageNo(request.getPageNo());
+		pageinfo.setCount(ycUSAtomSV.countByExample(example));
 		response.setPageInfo(pageinfo);
 		return response;
 	}
