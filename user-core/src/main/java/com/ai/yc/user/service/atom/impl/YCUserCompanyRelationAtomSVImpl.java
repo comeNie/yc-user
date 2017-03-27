@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ai.yc.user.api.usercompany.param.UserCompanyRelationPageInfo;
+import com.ai.yc.user.dao.mapper.attach.UsrCompanyRelationAttachMapper;
 import com.ai.yc.user.dao.mapper.bo.UsrCompanyRelation;
 import com.ai.yc.user.dao.mapper.bo.UsrCompanyRelationCriteria;
 import com.ai.yc.user.dao.mapper.interfaces.UsrCompanyRelationMapper;
@@ -15,6 +17,9 @@ public class YCUserCompanyRelationAtomSVImpl implements IYCUserCompanyRelationAt
 
 	@Autowired
 	private  transient UsrCompanyRelationMapper usrCompanyRelationMapper;
+	
+	@Autowired
+	private transient UsrCompanyRelationAttachMapper usrCompanyRelationAttachMapper;
 	
 	@Override
 	public int insertRelationInfo(UsrCompanyRelation relationInfo) {
@@ -29,6 +34,16 @@ public class YCUserCompanyRelationAtomSVImpl implements IYCUserCompanyRelationAt
 	@Override
 	public int updateRelationInfo(UsrCompanyRelation relationInfo) {
 		return usrCompanyRelationMapper.updateByPrimaryKeySelective(relationInfo);
+	}
+
+	@Override
+	public List<UserCompanyRelationPageInfo> getCompanyUser(String companyId,int startLimit,int endLimit) {
+		return usrCompanyRelationAttachMapper.getCompanyInfoList(companyId,startLimit,endLimit);
+	}
+
+	@Override
+	public int getCompanyUserCount(String companyId) {
+		return usrCompanyRelationAttachMapper.getCompanyInfoCount(companyId);
 	}
 
 

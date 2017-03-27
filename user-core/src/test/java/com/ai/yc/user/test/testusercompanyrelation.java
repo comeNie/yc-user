@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.ai.yc.user.api.usercompany.interfaces.IYCUserCompanySV;
-import com.ai.yc.user.api.usercompany.param.UserCompanyInfoRequest;
-import com.ai.yc.user.api.usercompany.param.UserCompanyInfoResponse;
+import com.ai.yc.user.api.usercompanyrelation.interfaces.IYCUserCompanyRelationSV;
+import com.ai.yc.user.api.usercompanyrelation.param.CompanyRelationResponse;
+import com.ai.yc.user.api.usercompanyrelation.param.UserCompanyRelationPageInfoRequest;
 import com.alibaba.fastjson.JSON;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -16,40 +16,15 @@ import com.alibaba.fastjson.JSON;
 public class testusercompanyrelation {
 	
 	@Autowired
-	private IYCUserCompanySV userCompanySV;
+	private IYCUserCompanyRelationSV userCompanySV;
 	
 	@Test
-	public void insertCompanyInfo(){
-		UserCompanyInfoRequest request = new UserCompanyInfoRequest();
-		request.setCompanyName("test2");
-		request.setLicenseAttacid("3");
-		request.setTelephone("13718");
-		request.setLinkman("zyh");
-		request.setAddress("4444");
-		request.setMobilephone("44544");
-		request.setUserId("2323");
-		userCompanySV.insertCompanyInfo(request);
-	}
-	
-	@Test
-	public void updateCompanyInfo(){
-		UserCompanyInfoRequest request = new UserCompanyInfoRequest();
-		request.setCompanyId("00000000");
-		request.setCompanyName("11111");
-		request.setLicenseAttacid("232");
-		request.setTelephone("1371");
-		request.setLinkman("zyh");
-		request.setAddress("4444");
-		request.setMobilephone("44544");
-		request.setUserId("2323");
-		userCompanySV.updateCompanyInfo(request);
-	}
-	
-	@Test
-	public void queryCompanyInfo(){
-		UserCompanyInfoRequest userInfoRequest = new UserCompanyInfoRequest();
-		userInfoRequest.setUserId("2323");
-		UserCompanyInfoResponse response = userCompanySV.queryCompanyInfo(userInfoRequest);
-		System.out.println(JSON.toJSONString(response));
+	public void getCompanyUser(){
+		UserCompanyRelationPageInfoRequest relationPage = new UserCompanyRelationPageInfoRequest();
+		relationPage.setCompanyId("00000025");
+		relationPage.setPageNo(1);
+		relationPage.setPageSize(10);
+		CompanyRelationResponse relationResponse = userCompanySV.getCompanyUsers(relationPage);
+		System.out.println(JSON.toJSONString(relationResponse));
 	}
 }
