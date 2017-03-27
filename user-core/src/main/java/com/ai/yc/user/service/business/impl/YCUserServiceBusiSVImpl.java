@@ -536,7 +536,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		if (!CollectionUtil.isEmpty(usrUserList)) {
 			for (UsrUser user : usrUserList) {
 				YCUsrUserVO userVO = new YCUsrUserVO();
-				if(user.getGriwthValue()!=null&&user.getGriwthValue()>=0 && user.getGriwthValue()<=5999){
+				if(user.getGriwthValue()==null||user.getGriwthValue()!=null&&user.getGriwthValue()>=0 && user.getGriwthValue()<=5999){
 					user.setSafetyLevel("普通会员");
 				}else if(user.getGriwthValue()!=null&&user.getGriwthValue()<=14999){
 					user.setSafetyLevel("VIP会员");
@@ -545,10 +545,6 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 				}else{
 					user.setSafetyLevel("SVIP白金会员");
 				}
-				//余额
-//				userVO.setBalance(balance);
-				//积分
-//				userVO.setIntegral(integral);
 				BeanUtils.copyProperties(userVO, user);
 				results.add(userVO);
 			}

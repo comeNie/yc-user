@@ -1,12 +1,12 @@
 package com.ai.yc.user.api.userservice.param;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 import com.ai.opt.base.vo.BaseInfo;
 
 public class YCUsrUserVO extends BaseInfo{
-	private static final long serialVersionUID = 2757709023150006277L;
+
+	private static final long serialVersionUID = 2207957250250450105L;
 	private String userId;
 	/**
 	 * 昵称
