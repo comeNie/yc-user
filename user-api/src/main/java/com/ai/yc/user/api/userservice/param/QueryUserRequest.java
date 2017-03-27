@@ -58,7 +58,7 @@ public class QueryUserRequest implements Serializable{
 
 	private Integer pageNo = 1;
 
-	private Integer pageSize = 20;
+	private Integer pageSize = 10;
 
 	public String getNickname() {
 		return nickname;

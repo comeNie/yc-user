@@ -309,7 +309,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		}
 		BeanUtils.copyProperties(result, usrUser);
 		
-		if(result.getGriwthValue()!=null&&result.getGriwthValue()>=0 && result.getGriwthValue()<=5999){
+		if(result.getGriwthValue()==null||result.getGriwthValue()!=null&&result.getGriwthValue()>=0 && result.getGriwthValue()<=5999){
 			result.setGriwthLevelEN("Regular Members");
 			result.setGriwthLevelZH("普通会员");
 		}else if(result.getGriwthValue()!=null&&result.getGriwthValue()<=14999){
@@ -494,7 +494,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		example.setLimitEnd(request.getPageSize());
 		UsrUserCriteria.Criteria criteria = example.createCriteria();
 		if (!StringUtil.isBlank(request.getNickname())) {
-			criteria.andNicknameLike(request.getNickname());
+			criteria.andNicknameLike("%"+request.getNickname()+"%");
 		}
 		if (!StringUtil.isBlank(request.getMobilePhone())) {
 			criteria.andMobilePhoneEqualTo(request.getMobilePhone());
@@ -507,13 +507,21 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			criteria.andUsersourceEqualTo(request.getUsersource());
 		}
 		if (!StringUtil.isBlank(request.getSafetyLevel())) {
-			criteria.andSafetyLevelEqualTo(request.getSafetyLevel());
+			if(request.getSafetyLevel().equals("1")){
+				criteria.andGriwthValueBetween(0, 5999);
+			}else if(request.getSafetyLevel().equals("2")){
+				criteria.andGriwthValueBetween(6000, 14999);
+			}else if(request.getSafetyLevel().equals("3")){
+				criteria.andGriwthValueBetween(15000, 29999);
+			}else if(request.getSafetyLevel().equals("4")){
+				criteria.andGriwthValueGreaterThan(30000);
+			}
 		}
 		if (null != request.getState()) {
 			criteria.andStateEqualTo(request.getState());
 		}
 		if (null != request.getIsTranslator()) {
-			criteria.andSafetyLevelEqualTo(request.getSafetyLevel());
+			criteria.andIsTranslatorEqualTo(request.getIsTranslator());
 		}
 		if (null != request.getRegistTimeStart()
 				&& null != request.getRegistTimeStart()) {
@@ -528,6 +536,15 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		if (!CollectionUtil.isEmpty(usrUserList)) {
 			for (UsrUser user : usrUserList) {
 				YCUsrUserVO userVO = new YCUsrUserVO();
+				if(user.getGriwthValue()!=null&&user.getGriwthValue()>=0 && user.getGriwthValue()<=5999){
+					user.setSafetyLevel("普通会员");
+				}else if(user.getGriwthValue()!=null&&user.getGriwthValue()<=14999){
+					user.setSafetyLevel("VIP会员");
+				}else if(user.getGriwthValue()!=null&&user.getGriwthValue()<=29999){
+					user.setSafetyLevel("SVIP会员");
+				}else{
+					user.setSafetyLevel("SVIP白金会员");
+				}
 				//余额
 //				userVO.setBalance(balance);
 				//积分

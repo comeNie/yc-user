@@ -28,12 +28,13 @@ public class UserQuerySVImplTest {
 		QueryUserRequest request = new QueryUserRequest();
 //		request.setNickname("%译粉%");
 //		request.setMobilePhone("18900020002");
-		request.setPageSize(20);
+		request.setPageSize(2);
 		request.setPageNo(1);
-		Timestamp ts = Timestamp.valueOf("2016-01-14 12:47:12");
-		Timestamp es = Timestamp.valueOf("2017-11-14 20:20:12");
-		request.setRegistTimeStart(ts);
-		request.setRegistTimeEnd(es);
+//		Timestamp ts = Timestamp.valueOf("2016-01-14 12:47:12");
+//		Timestamp es = Timestamp.valueOf("2017-11-14 20:20:12");
+//		request.setRegistTimeStart(ts);
+//		request.setRegistTimeEnd(es);
+		request.setSafetyLevel("2");
 		QueryUserResponse queryUserPage = IYCUserServiceSV.queryUserPage(request);
 		PageInfo<YCUsrUserVO> pageInfo = queryUserPage.getPageInfo();
 		List<YCUsrUserVO> result = pageInfo.getResult();

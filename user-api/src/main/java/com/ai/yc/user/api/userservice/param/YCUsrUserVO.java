@@ -97,11 +97,15 @@ public class YCUsrUserVO extends BaseInfo{
 
     private Integer griwthValue;
 	// 登录次数
-	private int loginCount;
+	private Integer loginCount;
 	// 余额
-	private BigDecimal balance;
+	private Long balance;
 	// 积分
-	private long integral;
+	private Long integral;
+	/**
+	 * 是否是企业
+	 */
+	private Integer isCompany;
 	public String getUserId() {
 		return userId;
 	}
@@ -192,14 +196,17 @@ public class YCUsrUserVO extends BaseInfo{
 	public Integer getGriwthValue() {
 		return griwthValue;
 	}
-	public int getLoginCount() {
+	public Integer getLoginCount() {
 		return loginCount;
 	}
-	public BigDecimal getBalance() {
+	public Long getBalance() {
 		return balance;
 	}
-	public long getIntegral() {
+	public Long getIntegral() {
 		return integral;
+	}
+	public Integer getIsCompany() {
+		return isCompany;
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
@@ -291,14 +298,17 @@ public class YCUsrUserVO extends BaseInfo{
 	public void setGriwthValue(Integer griwthValue) {
 		this.griwthValue = griwthValue;
 	}
-	public void setLoginCount(int loginCount) {
+	public void setLoginCount(Integer loginCount) {
 		this.loginCount = loginCount;
 	}
-	public void setBalance(BigDecimal balance) {
+	public void setBalance(Long balance) {
 		this.balance = balance;
 	}
-	public void setIntegral(long integral) {
+	public void setIntegral(Long integral) {
 		this.integral = integral;
 	}
-
+	public void setIsCompany(Integer isCompany) {
+		this.isCompany = isCompany;
+	}
+	
 }
