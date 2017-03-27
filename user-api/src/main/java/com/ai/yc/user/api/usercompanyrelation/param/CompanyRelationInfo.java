@@ -2,9 +2,11 @@ package com.ai.yc.user.api.usercompanyrelation.param;
 
 import java.sql.Timestamp;
 
-import com.ai.opt.base.vo.BaseResponse;
 
 public class CompanyRelationInfo{
+	
+	private String userId;
+	
 	private String nickname;
 	
 	private String username;
@@ -53,6 +55,14 @@ public class CompanyRelationInfo{
 
 	public void setJoinTime(Timestamp joinTime) {
 		this.joinTime = joinTime;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
 }

@@ -4,6 +4,10 @@ import java.sql.Timestamp;
 
 public class UserCompanyRelationPageInfo {
 	/**
+	 * 用户Id
+	 */
+	private String userId;
+	/**
 	 * 昵称
 	 */
 	private String nickName;
@@ -40,7 +44,12 @@ public class UserCompanyRelationPageInfo {
 	public void setJoinTime(Timestamp joinTime) {
 		this.joinTime = joinTime;
 	}
-	
-	
-	
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 }
