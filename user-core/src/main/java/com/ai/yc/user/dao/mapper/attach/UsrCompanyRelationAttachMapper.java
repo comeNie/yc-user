@@ -12,7 +12,7 @@ import com.ai.yc.user.api.usercompany.param.UserCompanyRelationPageInfo;
 
 public interface UsrCompanyRelationAttachMapper {
 	@Results({
-		  @Result(property ="userId",column = "usr.user_id",javaType=String.class,jdbcType= JdbcType.VARBINARY),
+		  @Result(property ="userId",column = "user_id",javaType=String.class,jdbcType= JdbcType.VARBINARY),
           @Result(property ="nickName",column = "nickname",javaType=String.class,jdbcType= JdbcType.VARBINARY),
           @Result(property ="isManagment",column = "is_management",javaType =Integer.class),
           @Result(property ="joinTime",column = "join_time",javaType = Timestamp.class),
