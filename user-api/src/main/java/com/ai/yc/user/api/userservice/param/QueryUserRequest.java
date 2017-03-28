@@ -55,6 +55,8 @@ public class QueryUserRequest implements Serializable{
 	 * 最后登录时间结束
 	 */
 	private Timestamp lastLoginTimeEnd;
+	
+	private String userId;
 
 	private Integer pageNo = 1;
 
@@ -170,6 +172,14 @@ public class QueryUserRequest implements Serializable{
 
 	public void setPageSize(Integer pageSize) {
 		this.pageSize = pageSize;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 

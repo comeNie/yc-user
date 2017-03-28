@@ -499,10 +499,9 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		if (!StringUtil.isBlank(request.getMobilePhone())) {
 			criteria.andMobilePhoneEqualTo(request.getMobilePhone());
 		}
-		// 注册来源
-		
-
-		
+		if (!StringUtil.isBlank(request.getUserId())) {
+			criteria.andUserIdEqualTo(request.getUserId());
+		}
 		if (!StringUtil.isBlank(request.getUsersource())) {
 			criteria.andUsersourceEqualTo(request.getUsersource());
 		}
@@ -528,9 +527,6 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			criteria.andRegistTimeBetween(request.getRegistTimeStart(),
 					request.getRegistTimeEnd());
 		}
-		// 最后登录时间
-
-		
 		List<UsrUser> usrUserList = ycUSAtomSV.getUserInfo(example);
 		List<YCUsrUserVO> results = new ArrayList<YCUsrUserVO>();
 		if (!CollectionUtil.isEmpty(usrUserList)) {

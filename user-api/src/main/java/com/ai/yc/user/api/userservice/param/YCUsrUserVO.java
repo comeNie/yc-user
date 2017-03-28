@@ -106,6 +106,11 @@ public class YCUsrUserVO extends BaseInfo{
 	 * 是否是企业
 	 */
 	private Integer isCompany;
+	
+	private String email;
+	
+	private String acctStatus;
+	
 	public String getUserId() {
 		return userId;
 	}
@@ -309,6 +314,18 @@ public class YCUsrUserVO extends BaseInfo{
 	}
 	public void setIsCompany(Integer isCompany) {
 		this.isCompany = isCompany;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getAcctStatus() {
+		return acctStatus;
+	}
+	public void setAcctStatus(String acctStatus) {
+		this.acctStatus = acctStatus;
 	}
 	
 }
