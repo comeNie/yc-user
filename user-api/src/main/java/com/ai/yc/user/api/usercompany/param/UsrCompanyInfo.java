@@ -122,6 +122,11 @@ public class UsrCompanyInfo {
      */
     private int companySingularNumber;
     
+    /**
+	 * 企业角色
+	 */
+	private int isManagment;
+    
     public String getCompanyId() {
         return companyId;
     }
@@ -432,6 +437,14 @@ public class UsrCompanyInfo {
 
 	public void setCompanySingularNumber(int companySingularNumber) {
 		this.companySingularNumber = companySingularNumber;
+	}
+
+	public int getIsManagment() {
+		return isManagment;
+	}
+
+	public void setIsManagment(int isManagment) {
+		this.isManagment = isManagment;
 	}
 	
 }
