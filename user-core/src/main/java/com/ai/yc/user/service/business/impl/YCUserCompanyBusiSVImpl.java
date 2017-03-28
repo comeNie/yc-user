@@ -117,6 +117,7 @@ public class YCUserCompanyBusiSVImpl implements IYCUserCompanyBusiSV {
 			UsrCompanyRelation relation = relationList.get(0);
 			companyCriteria.andCompanyIdEqualTo(relation.getCompanyId());
 			companyInfoList = ycUserCompanyAtomSV.queryCompanyInfo(companyExample);
+			header = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"此用户是企业用户");
 		}
 		response.setResponseHeader(header);
 		if(companyInfoList!=null){
