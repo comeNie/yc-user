@@ -148,32 +148,6 @@ public class CompanyUserInfo {
 	     */
 	    private String remark;
 	    
-	    /**
-	     * 企业用户昵称
-	     */
-	    private String companyUserNickName;
-	    /**
-	     * 企业用户名称
-	     */
-	    private String companyUserUserName;
-	    /**
-	     * 企业成员用户级别
-	     */
-	    private String companyUserLevel;
-	    /**
-	     * 企业成员用户加入时间
-	     */
-	    private Timestamp companyJoinTime;
-	    /**
-	     * 企业成员用户余额
-	     */
-	    private int companyUserBalance;
-	    /**
-	     * 企业成员用户下单数
-	     */
-	    private int companySingularNumber;
-	    
-	    
 		public String getUserId() {
 			return userId;
 		}
@@ -461,53 +435,4 @@ public class CompanyUserInfo {
 		public void setRemark(String remark) {
 			this.remark = remark;
 		}
-
-		public String getCompanyUserNickName() {
-			return companyUserNickName;
-		}
-
-		public void setCompanyUserNickName(String companyUserNickName) {
-			this.companyUserNickName = companyUserNickName;
-		}
-
-		public String getCompanyUserUserName() {
-			return companyUserUserName;
-		}
-
-		public void setCompanyUserUserName(String companyUserUserName) {
-			this.companyUserUserName = companyUserUserName;
-		}
-
-		public String getCompanyUserLevel() {
-			return companyUserLevel;
-		}
-
-		public void setCompanyUserLevel(String companyUserLevel) {
-			this.companyUserLevel = companyUserLevel;
-		}
-
-		public Timestamp getCompanyJoinTime() {
-			return companyJoinTime;
-		}
-
-		public void setCompanyJoinTime(Timestamp companyJoinTime) {
-			this.companyJoinTime = companyJoinTime;
-		}
-
-		public int getCompanyUserBalance() {
-			return companyUserBalance;
-		}
-
-		public void setCompanyUserBalance(int companyUserBalance) {
-			this.companyUserBalance = companyUserBalance;
-		}
-
-		public int getCompanySingularNumber() {
-			return companySingularNumber;
-		}
-
-		public void setCompanySingularNumber(int companySingularNumber) {
-			this.companySingularNumber = companySingularNumber;
-		}
-		
 }
