@@ -46,12 +46,15 @@ import com.ai.yc.user.api.userservice.param.YCUsrUserVO;
 import com.ai.yc.user.api.userservice.param.YCInsertContactResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
+import com.ai.yc.user.dao.mapper.bo.UsrCollectionTranslationCriteria;
+import com.ai.yc.user.dao.mapper.bo.UsrCollectionTranslationCriteria.Criteria;
 import com.ai.yc.user.dao.mapper.bo.UsrContact;
 import com.ai.yc.user.dao.mapper.bo.UsrContactCriteria;
 import com.ai.yc.user.dao.mapper.bo.UsrGriwthValue;
 import com.ai.yc.user.dao.mapper.bo.UsrGriwthValueCriteria;
 import com.ai.yc.user.dao.mapper.bo.UsrUser;
 import com.ai.yc.user.dao.mapper.bo.UsrUserCriteria;
+import com.ai.yc.user.service.atom.interfaces.IYCUserCollectionAtomSV;
 import com.ai.yc.user.service.atom.interfaces.IYCUserContactAtomSV;
 import com.ai.yc.user.service.atom.interfaces.IYCUserGriwthValueAtomSV;
 import com.ai.yc.user.service.atom.interfaces.IYCUserServiceAtomSV;
@@ -71,7 +74,8 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	private IYCUserContactAtomSV ycUCAtomSV;
 	@Autowired
 	private IYCUserGriwthValueAtomSV ycUGVAtomSV;
-	
+	@Autowired
+	private IYCUserCollectionAtomSV ycUCollectionAtomSV;
 
 	/**
 	 * resultCode 0 fail 1 success
@@ -562,6 +566,29 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		if(null != user){
 			YCUsrUserVO usrUserInfo = new YCUsrUserVO();
 			BeanUtils.copyProperties(usrUserInfo, user);
+			//设置收藏数
+			UsrCollectionTranslationCriteria example1 = new UsrCollectionTranslationCriteria();
+			UsrCollectionTranslationCriteria.Criteria criteria1 = example1.createCriteria();
+			criteria1.andUserIdEqualTo(usrUserInfo.getUserId());
+			int collectionCount = ycUCollectionAtomSV.getCollectionCount(example1);
+			usrUserInfo.setCollectCount(collectionCount);
+			
+			//头像
+			String idpsns = "yc-portal-web";
+			IImageClient im = IDPSClientFactory.getImageClient(idpsns);
+			String url = im.getImageUrl(usrUserInfo.getPortraitId(), ".jpg", "40x20");
+			usrUserInfo.setPortraitId(url);
+			
+			if(usrUserInfo.getGriwthValue()==null||usrUserInfo.getGriwthValue()!=null&&usrUserInfo.getGriwthValue()>=0 && usrUserInfo.getGriwthValue()<=5999){
+				usrUserInfo.setSafetyLevel("普通会员");
+			}else if(usrUserInfo.getGriwthValue()!=null&&usrUserInfo.getGriwthValue()<=14999){
+				usrUserInfo.setSafetyLevel("VIP会员");
+			}else if(usrUserInfo.getGriwthValue()!=null&&usrUserInfo.getGriwthValue()<=29999){
+				usrUserInfo.setSafetyLevel("SVIP会员");
+			}else{
+				usrUserInfo.setSafetyLevel("SVIP白金会员");
+			}
+			
 			response.setUsrUser(usrUserInfo);
 			UsrContactCriteria example = new UsrContactCriteria();
 			UsrContactCriteria.Criteria criteria = example.createCriteria();
@@ -576,10 +603,10 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 				}
 				response.setUsrContact(UsrGriwthValueInfoList);
 			}
-			UsrGriwthValueCriteria example1 = new UsrGriwthValueCriteria();
-			UsrGriwthValueCriteria.Criteria criteria1  = example1.createCriteria();
-			criteria1.andUserIdEqualTo(request.getUserId());
-			List<UsrGriwthValue> usrGriwthValueList = ycUGVAtomSV.queryGriwthValueInfo(example1);
+			UsrGriwthValueCriteria example2 = new UsrGriwthValueCriteria();
+			UsrGriwthValueCriteria.Criteria criteria2  = example2.createCriteria();
+			criteria2.andUserIdEqualTo(request.getUserId());
+			List<UsrGriwthValue> usrGriwthValueList = ycUGVAtomSV.queryGriwthValueInfo(example2);
 			if(!CollectionUtil.isEmpty(usrGriwthValueList)){
 				List<UsrGriwthValueInfo> UsrGriwthValueInfoList = new ArrayList<UsrGriwthValueInfo>();
 				for(UsrGriwthValue usrGriwthValue :usrGriwthValueList){

@@ -12,9 +12,13 @@ public class YCUsrUserVO extends BaseInfo{
 	 * 昵称
 	 */
     private String nickname;
-
+    /**
+     * 姓
+     */
     private String lastname;
-
+    /**
+     * 名
+     */
     private String firstname;
     /**
      * 性别
@@ -106,11 +110,29 @@ public class YCUsrUserVO extends BaseInfo{
 	 * 是否是企业
 	 */
 	private Integer isCompany;
-	
+	/**
+	 * email
+	 */
 	private String email;
-	
+	/**
+	 * 账户状态
+	 */
 	private String acctStatus;
+	/**
+	 * 用户名
+	 */
+	private String username;
+	/**
+	 * 收藏数
+	 */
+	private Integer collectCount;
+	/**
+	 * 注册时IP
+	 */
+	private String registIP;
 	
+	private String translatorLevel;
+
 	public String getUserId() {
 		return userId;
 	}
@@ -326,6 +348,30 @@ public class YCUsrUserVO extends BaseInfo{
 	}
 	public void setAcctStatus(String acctStatus) {
 		this.acctStatus = acctStatus;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public Integer getCollectCount() {
+		return collectCount;
+	}
+	public void setCollectCount(Integer collectCount) {
+		this.collectCount = collectCount;
+	}
+	public String getRegistIP() {
+		return registIP;
+	}
+	public void setRegistIP(String registIP) {
+		this.registIP = registIP;
+	}
+	public String getTranslatorLevel() {
+		return translatorLevel;
+	}
+	public void setTranslatorLevel(String translatorLevel) {
+		this.translatorLevel = translatorLevel;
 	}
 	
 }
