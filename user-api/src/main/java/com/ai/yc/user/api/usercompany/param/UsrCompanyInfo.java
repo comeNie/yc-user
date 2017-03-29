@@ -127,6 +127,10 @@ public class UsrCompanyInfo {
 	 */
 	private int isManagment;
     
+	private String fullName;
+	
+	private String stateName;
+	
     public String getCompanyId() {
         return companyId;
     }
@@ -445,6 +449,22 @@ public class UsrCompanyInfo {
 
 	public void setIsManagment(int isManagment) {
 		this.isManagment = isManagment;
+	}
+
+	public String getFullName() {
+		return fullName;
+	}
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public String getStateName() {
+		return stateName;
+	}
+
+	public void setStateName(String stateName) {
+		this.stateName = stateName;
 	}
 	
 }
