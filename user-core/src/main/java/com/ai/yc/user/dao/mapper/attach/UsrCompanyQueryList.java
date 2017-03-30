@@ -30,7 +30,7 @@ public class UsrCompanyQueryList {
 			stringBuffer.append("usr.usersource =" +pageInfoRequest.getUserSource() +" and ");
 		}
 		if(!StringUtil.isBlank(pageInfoRequest.getCreateStartTime())&&!StringUtil.isBlank(pageInfoRequest.getCreateEndTime())){
-			stringBuffer.append("company.create_time >="+pageInfoRequest.getCreateStartTime() + " and company.create_time <="+pageInfoRequest.getCreateEndTime());
+			stringBuffer.append("company.create_time >='"+pageInfoRequest.getCreateStartTime() + "' and company.create_time <='"+pageInfoRequest.getCreateEndTime()+"' and ");
 		}
 		stringBuffer.append(" 1 = 1") ;
 		int limitStart = (pageInfoRequest.getPageNo()-1)*pageInfoRequest.getPageSize();
@@ -64,7 +64,7 @@ public class UsrCompanyQueryList {
 			stringBuffer.append("usr.usersource =" +pageInfoRequest.getUserSource() +" and ");
 		}
 		if(!StringUtil.isBlank(pageInfoRequest.getCreateStartTime())&&!StringUtil.isBlank(pageInfoRequest.getCreateEndTime())){
-			stringBuffer.append("company.create_time >="+pageInfoRequest.getCreateStartTime() + "and company.create_time <="+pageInfoRequest.getCreateEndTime());
+			stringBuffer.append("company.create_time >='"+pageInfoRequest.getCreateStartTime() + "' and company.create_time <='"+pageInfoRequest.getCreateEndTime()+"' and ");
 		}
 		stringBuffer.append(" 1 = 1") ;
 		
