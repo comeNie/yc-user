@@ -52,12 +52,12 @@ public class UserCompanyPageInfoRequest {
 	    /**
 		 * 创建开始时间
 		 */
-		private Timestamp createStartTime;
+		private String createStartTime;
 		
 		/**
 		 * 创建结束时间
 		 */
-		private Timestamp createEndTime;
+		private String createEndTime;
 	    
 		public Integer getPageNo() {
 			return pageNo;
@@ -139,20 +139,22 @@ public class UserCompanyPageInfoRequest {
 			this.userSource = userSource;
 		}
 
-		public Timestamp getCreateStartTime() {
+		public String getCreateStartTime() {
 			return createStartTime;
 		}
 
-		public void setCreateStartTime(Timestamp createStartTime) {
+		public void setCreateStartTime(String createStartTime) {
 			this.createStartTime = createStartTime;
 		}
 
-		public Timestamp getCreateEndTime() {
+		public String getCreateEndTime() {
 			return createEndTime;
 		}
 
-		public void setCreateEndTime(Timestamp createEndTime) {
+		public void setCreateEndTime(String createEndTime) {
 			this.createEndTime = createEndTime;
 		}
+
+		
 	    
 }
