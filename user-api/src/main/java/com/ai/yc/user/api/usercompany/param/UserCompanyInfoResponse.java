@@ -84,7 +84,22 @@ public class UserCompanyInfoResponse extends BaseResponse{
 	     * 管理员用户Id
 	     */
 	    private String adminUserId;
-
+	    /**
+	     * 企业角色
+	     */
+	    private int isManagement;
+	    /**
+	     * 成员数量
+	     */
+	    private long membersCount;
+	    /**
+	     * 审核人
+	     */
+	    private String auditor;
+	    /**
+	     * 审核时间
+	     */
+	    private Timestamp checkTime;
 	    public String getCompanyId() {
 	        return companyId;
 	    }
@@ -236,4 +251,36 @@ public class UserCompanyInfoResponse extends BaseResponse{
 	    public void setAdminUserId(String adminUserId) {
 	        this.adminUserId = adminUserId == null ? null : adminUserId.trim();
 	    }
+
+		public int getIsManagement() {
+			return isManagement;
+		}
+
+		public void setIsManagement(int isManagement) {
+			this.isManagement = isManagement;
+		}
+
+		public long getMembersCount() {
+			return membersCount;
+		}
+
+		public void setMembersCount(long membersCount) {
+			this.membersCount = membersCount;
+		}
+
+		public String getAuditor() {
+			return auditor;
+		}
+
+		public void setAuditor(String auditor) {
+			this.auditor = auditor;
+		}
+
+		public Timestamp getCheckTime() {
+			return checkTime;
+		}
+
+		public void setCheckTime(Timestamp checkTime) {
+			this.checkTime = checkTime;
+		}
 }

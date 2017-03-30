@@ -23,5 +23,5 @@ public interface UsrCompanyRelationAttachMapper {
 	
 	@Select("select count(company.company_id) count from usr_user usr,usr_company_relation company where usr.user_id = company.user_id and company.company_id = #{companyId}")
 	public int getCompanyInfoCount(@Param("companyId") String companyId);
-	
+  
 }

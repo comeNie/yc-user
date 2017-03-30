@@ -100,29 +100,21 @@ public class YCUserCompanyBusiSVImpl implements IYCUserCompanyBusiSV {
 	public UserCompanyInfoResponse queryCompanyInfo(UserCompanyInfoRequest userInfoRequest) {
 		UserCompanyInfoResponse response = new UserCompanyInfoResponse();
 		ResponseHeader header = null;
-		UsrCompanyRelationCriteria relationExample = new UsrCompanyRelationCriteria();
-		UsrCompanyRelationCriteria.Criteria relationCriteria = relationExample.createCriteria();
+		
 		if(StringUtil.isBlank(userInfoRequest.getUserId())){
 			throw new BusinessException(ExceptCodeConstants.PARAM_IS_NULL, "用户Id不能为空");
 		}
-		relationCriteria.andStatusEqualTo("1");
-		relationCriteria.andUserIdEqualTo(userInfoRequest.getUserId());
-		List<UsrCompanyRelation> relationList = yCUserCompanyRelationAtomSV.queryRelationInfo(relationExample);
-		List<UsrCompany> companyInfoList = null;
-		if(relationList!=null&&relationList.size()==0){
-			header = new ResponseHeader(true,ExceptCodeConstants.NO_RESULT,"此用户不是企业用户");
-		}else{
-			UsrCompanyCriteria companyExample = new UsrCompanyCriteria();
-			UsrCompanyCriteria.Criteria companyCriteria = companyExample.createCriteria();
-			UsrCompanyRelation relation = relationList.get(0);
-			companyCriteria.andCompanyIdEqualTo(relation.getCompanyId());
-			companyInfoList = ycUserCompanyAtomSV.queryCompanyInfo(companyExample);
-			header = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"此用户是企业用户");
+		try{
+			response = ycUserCompanyAtomSV.queryCompanyInfoByUserId(userInfoRequest.getUserId());
+			if(StringUtil.isBlank(response.getAdminUserId())){
+				header = new ResponseHeader(true,ExceptCodeConstants.NO_RESULT,"无结果");
+			}
+			response.setResponseHeader(header);
+		}catch(Exception e){
+			e.printStackTrace();
+			header = new ResponseHeader(true,ExceptCodeConstants.FAILD,"查询失败");
 		}
-		response.setResponseHeader(header);
-		if(companyInfoList!=null){
-			BeanUtils.copyProperties(response, companyInfoList.get(0));
-		}
+		
 		return response;
 	}
 
