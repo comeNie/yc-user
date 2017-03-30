@@ -29,7 +29,7 @@ public class UsrCompanyQueryList {
 		if(!StringUtil.isBlank(pageInfoRequest.getUserSource())){
 			stringBuffer.append("usr.usersource =" +pageInfoRequest.getUserSource() +" and ");
 		}
-		if(pageInfoRequest.getCreateStartTime()!=null&&pageInfoRequest.getCreateEndTime()!=null){
+		if(StringUtil.isBlank(pageInfoRequest.getCreateStartTime())&&StringUtil.isBlank(pageInfoRequest.getCreateEndTime())){
 			stringBuffer.append("company.create_time >="+pageInfoRequest.getCreateStartTime() + "and company.create_time <="+pageInfoRequest.getCreateEndTime());
 		}
 		stringBuffer.append(" 1 = 1") ;
@@ -63,7 +63,7 @@ public class UsrCompanyQueryList {
 		if(!StringUtil.isBlank(pageInfoRequest.getUserSource())){
 			stringBuffer.append("usr.usersource =" +pageInfoRequest.getUserSource() +" and ");
 		}
-		if(pageInfoRequest.getCreateStartTime()!=null&&pageInfoRequest.getCreateEndTime()!=null){
+		if(StringUtil.isBlank(pageInfoRequest.getCreateStartTime())&&StringUtil.isBlank(pageInfoRequest.getCreateEndTime())){
 			stringBuffer.append("company.create_time >="+pageInfoRequest.getCreateStartTime() + "and company.create_time <="+pageInfoRequest.getCreateEndTime());
 		}
 		stringBuffer.append(" 1 = 1") ;
