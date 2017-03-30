@@ -18,18 +18,20 @@ public class UsrCompanyQueryList {
 			stringBuffer.append("usr.nickname like '%"+pageInfoRequest.getNickName()+"%' and ");
 		}
 		if(pageInfoRequest.getMoblePhone()!=null&&!"".equals(pageInfoRequest.getMoblePhone())){
-			stringBuffer.append("usr.mobile_phone = "+pageInfoRequest.getMoblePhone()+"  and ");
+			stringBuffer.append("usr.mobile_phone = '"+pageInfoRequest.getMoblePhone()+"'  and ");
 		}
 		if(pageInfoRequest.getCompanyName()!=null&&!"".equals(pageInfoRequest.getCompanyName())){
-			stringBuffer.append("company.company_name ="+pageInfoRequest.getCompanyName()+" and ") ;
+			stringBuffer.append("company.company_name ='"+pageInfoRequest.getCompanyName()+"' and ") ;
 		}
 		if(pageInfoRequest.getCheckName()!=null&&!"".equals(pageInfoRequest.getCheckName())){
-			stringBuffer.append("company.auditor =" +pageInfoRequest.getCheckName() +" and ") ;
+			stringBuffer.append("company.auditor ='" +pageInfoRequest.getCheckName() +"' and ") ;
 		}
 		if(!StringUtil.isBlank(pageInfoRequest.getUserSource())){
 			stringBuffer.append("usr.usersource =" +pageInfoRequest.getUserSource() +" and ");
 		}
-
+		if(pageInfoRequest.getCreateStartTime()!=null&&pageInfoRequest.getCreateEndTime()!=null){
+			stringBuffer.append("company.create_time >="+pageInfoRequest.getCreateStartTime() + "and company.create_time <="+pageInfoRequest.getCreateEndTime());
+		}
 		stringBuffer.append(" 1 = 1") ;
 		int limitStart = (pageInfoRequest.getPageNo()-1)*pageInfoRequest.getPageSize();
 		int limitEnd = pageInfoRequest.getPageSize();
@@ -50,16 +52,19 @@ public class UsrCompanyQueryList {
 			stringBuffer.append("usr.nickname like '%"+pageInfoRequest.getNickName()+"%' and ");
 		}
 		if(pageInfoRequest.getMoblePhone()!=null&&!"".equals(pageInfoRequest.getMoblePhone())){
-			stringBuffer.append("usr.mobile_phone = "+pageInfoRequest.getMoblePhone()+"  and ");
+			stringBuffer.append("usr.mobile_phone = '"+pageInfoRequest.getMoblePhone()+"'  and ");
 		}
 		if(pageInfoRequest.getCompanyName()!=null&&!"".equals(pageInfoRequest.getCompanyName())){
-			stringBuffer.append("company.company_name ="+pageInfoRequest.getCompanyName()+" and ") ;
+			stringBuffer.append("company.company_name ='"+pageInfoRequest.getCompanyName()+"' and ") ;
 		}
 		if(pageInfoRequest.getCheckName()!=null&&!"".equals(pageInfoRequest.getCheckName())){
-			stringBuffer.append("company.auditor =" +pageInfoRequest.getCheckName() +" and ") ;
+			stringBuffer.append("company.auditor ='" +pageInfoRequest.getCheckName() +"' and ") ;
 		}
 		if(!StringUtil.isBlank(pageInfoRequest.getUserSource())){
 			stringBuffer.append("usr.usersource =" +pageInfoRequest.getUserSource() +" and ");
+		}
+		if(pageInfoRequest.getCreateStartTime()!=null&&pageInfoRequest.getCreateEndTime()!=null){
+			stringBuffer.append("company.create_time >="+pageInfoRequest.getCreateStartTime() + "and company.create_time <="+pageInfoRequest.getCreateEndTime());
 		}
 		stringBuffer.append(" 1 = 1") ;
 		
