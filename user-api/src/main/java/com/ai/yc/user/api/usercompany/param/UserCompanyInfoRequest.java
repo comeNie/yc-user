@@ -93,6 +93,7 @@ public class UserCompanyInfoRequest {
 	     */
 	    private String cnCity;
 	    
+	    private String auditor;
 
 	    public String getCompanyId() {
 	        return companyId;
@@ -269,6 +270,14 @@ public class UserCompanyInfoRequest {
 
 		public void setCnCity(String cnCity) {
 			this.cnCity = cnCity;
+		}
+
+		public String getAuditor() {
+			return auditor;
+		}
+
+		public void setAuditor(String auditor) {
+			this.auditor = auditor;
 		}
 	    
 }
