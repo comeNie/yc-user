@@ -25,6 +25,7 @@ public interface UsrCompanyAttachMapper {
           @Result(property ="telephone",column = "telephone",javaType = String.class,jdbcType = JdbcType.VARCHAR),
           @Result(property ="linkman",column = "linkman",javaType = String.class,jdbcType = JdbcType.VARCHAR),
           @Result(property ="createTime",column = "create_time",javaType = Timestamp.class),
+          @Result(property ="checkTime",column = "check_time",javaType = Timestamp.class),
           @Result(property ="state",column = "state",javaType = Integer.class),
 	})
 	public List<UserCompanyPageInfo> getCompanyInfoList(UserCompanyPageInfoRequest request);

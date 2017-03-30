@@ -39,6 +39,10 @@ public class UserCompanyPageInfo {
 	 * 审核状态
 	 */
 	private Integer state;
+	/**
+	 * 审核时间
+	 */
+	private Timestamp checkTime;
 	
 	private String lastname;
 	
@@ -135,6 +139,12 @@ public class UserCompanyPageInfo {
 	}
 	public void setMembersCount(int membersCount) {
 		this.membersCount = membersCount;
+	}
+	public Timestamp getCheckTime() {
+		return checkTime;
+	}
+	public void setCheckTime(Timestamp checkTime) {
+		this.checkTime = checkTime;
 	}
 	
 }
