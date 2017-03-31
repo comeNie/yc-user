@@ -68,10 +68,12 @@ public class testusercompany {
 	@Test
 	public void queryCompanyInfoList(){
 		UserCompanyPageInfoRequest userInfoRequest = new UserCompanyPageInfoRequest();
-		userInfoRequest.setState(0);
+		//userInfoRequest.setState(0);
 		//userInfoRequest.setCompanyName("1212");
 		userInfoRequest.setPageNo(1);
 		userInfoRequest.setPageSize(10);
+		//userInfoRequest.setCreateStartTime("2017-09-05 12:00:00");
+		//userInfoRequest.setCreateEndTime("2017-09-09 12:00:00");
 		UserCompanyInfoListResponse response = userCompanySV.queryPageInfoCompanyInfo(userInfoRequest);
 		System.out.println(JSON.toJSONString(response));
 	}

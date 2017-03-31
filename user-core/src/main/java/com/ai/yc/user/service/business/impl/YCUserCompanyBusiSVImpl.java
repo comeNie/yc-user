@@ -108,6 +108,8 @@ public class YCUserCompanyBusiSVImpl implements IYCUserCompanyBusiSV {
 			response = ycUserCompanyAtomSV.queryCompanyInfoByUserId(userInfoRequest.getUserId());
 			if(StringUtil.isBlank(response.getAdminUserId())){
 				header = new ResponseHeader(true,ExceptCodeConstants.NO_RESULT,"无结果");
+			}else{
+				header = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"查询结果正常");
 			}
 			response.setResponseHeader(header);
 		}catch(Exception e){
