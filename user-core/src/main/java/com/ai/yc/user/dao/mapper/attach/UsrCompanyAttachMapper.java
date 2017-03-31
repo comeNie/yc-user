@@ -54,6 +54,6 @@ public interface UsrCompanyAttachMapper {
         @Result(property ="isManagement",column = "is_management",javaType = Integer.class),
         
 	})
-	@Select("select c.company_id,c.company_name,c.license_attacid,c.admin_user_id,c.account_id,c.entp_attacid,c.license_attacid,c.linkman,c.telephone,c.members_count,c.auditor,c.check_time,c.state,r.is_management from usr_company c,usr_company_relation r where c.company_id and r.company_id and c.state = 1 and r.user_id=#{userId}")
+	@Select("select c.company_id,c.company_name,c.license_attacid,c.admin_user_id,c.account_id,c.entp_attacid,c.license_attacid,c.linkman,c.telephone,c.members_count,c.auditor,c.check_time,c.state,r.is_management from usr_company c,usr_company_relation r where c.company_id = r.company_id and c.state = 1 and r.user_id=#{userId}")
 	public UserCompanyInfoResponse getCompanyInfoByUserId(@Param("userId") String userId);
 }

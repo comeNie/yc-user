@@ -52,7 +52,7 @@ public class testusercompany {
 	@Test
 	public void queryCompanyInfo(){
 		UserCompanyInfoRequest userInfoRequest = new UserCompanyInfoRequest();
-		userInfoRequest.setUserId("2323");
+		userInfoRequest.setUserId("525378");
 		UserCompanyInfoResponse response = userCompanySV.queryCompanyInfo(userInfoRequest);
 		System.out.println(JSON.toJSONString(response));
 	}
