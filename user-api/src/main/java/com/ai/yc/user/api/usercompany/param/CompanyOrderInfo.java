@@ -115,6 +115,7 @@ public class CompanyOrderInfo extends BaseInfo{
 	private String interLevel;
 	/**
 	 * 译员账户
+	 * 
 	 */
 	private String translatorAccount;
 
