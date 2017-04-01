@@ -7,36 +7,12 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.type.JdbcType;
 
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoResponse;
-import com.ai.yc.user.api.usercompany.param.UserCompanyPageInfo;
-import com.ai.yc.user.api.usercompany.param.UserCompanyPageInfoRequest;
-import com.ai.yc.user.dao.mapper.bo.UsrCompany;
+import com.ai.yc.user.dao.mapper.bo.UsrUser;
 
-public interface UsrCompanyAttachMapper {
-	@SelectProvider(type = UsrCompanyQueryList.class, method = "queryUserCompany")
-	@Results({
-		  @Result(property = "companyId", column = "company_id", javaType = String.class),
-		  @Result(property = "membersCount", column = "members_count", javaType =Integer.class),
-		  @Result(property = "adminUserId", column = "admin_user_id", javaType = String.class),
-	      @Result(property = "usersource", column = "usr.usersource", javaType = String.class),
-	      @Result(property = "lastname", column = "usr.lastname", javaType = String.class),
-	      @Result(property = "firstname", column = "usr.firstname", javaType = String.class),
-	      @Result(property="companyName",column="company_name",javaType=String.class,jdbcType= JdbcType.VARBINARY),
-          @Result(property ="nickName",column = "nick_name",javaType=String.class,jdbcType= JdbcType.VARBINARY),
-          @Result(property ="telephone",column = "telephone",javaType = String.class,jdbcType = JdbcType.VARCHAR),
-          @Result(property ="linkman",column = "linkman",javaType = String.class,jdbcType = JdbcType.VARCHAR),
-          @Result(property ="createTime",column = "create_time",javaType = Timestamp.class),
-          @Result(property ="checkTime",column = "check_time",javaType = Timestamp.class),
-          @Result(property ="state",column = "state",javaType = Integer.class),
-	})
-	public List<UserCompanyPageInfo> getCompanyInfoList(UserCompanyPageInfoRequest request);
-	
-	@SelectProvider(type=UsrCompanyQueryList.class,method="queryUserCompanyCount")
-	public int getCompanyInfoCount(UserCompanyPageInfoRequest request);
-	
+public interface UsrUserValueAttachMapper {
 	@Results({
 		@Result(property ="companyId",column = "company_id",javaType=String.class,jdbcType= JdbcType.VARBINARY),
         @Result(property ="companyName",column = "company_name",javaType=String.class,jdbcType= JdbcType.VARBINARY),
@@ -55,5 +31,10 @@ public interface UsrCompanyAttachMapper {
         
 	})
 	@Select("select c.company_id,c.company_name,c.license_attacid,c.admin_user_id,c.account_id,c.entp_attacid,c.license_attacid,c.linkman,c.telephone,c.members_count,c.auditor,c.check_time,c.state,r.is_management from usr_company c,usr_company_relation r where c.company_id = r.company_id and c.state = 1 and r.user_id=#{userId}")
-	public UserCompanyInfoResponse getCompanyInfoByUserId(@Param("userId") String userId);
+	public List<UsrUser> getCompanyInfoByUserId(@Param("userId") String userId);
+	@Select("SELECT c.user_id,c.nickname,c.lastname,c.firstname,c.sex,c.birthday,c.telephone,c.mobile_phone,c.fix_phone,c.address,c.cn_city,c.province,c.safety_level,c.regist_time,c.last_modify_time,c.usersource,c.state,c.portrait_id,c.is_translator,c.account_id,c.griwth_level,c.griwth_value"
+			+ " FROM usr_company_relation a INNER JOIN usr_company b ON a.company_id = b.company_id INNER JOIN usr_user c ON a.user_id = c.user_id WHERE b.state=1 AND a.status=0;")
+
+	public List<UsrUser> getUserInfoByParam(@Param("userId") String userId);
+
 }

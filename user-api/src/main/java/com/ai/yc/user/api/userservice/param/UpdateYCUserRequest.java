@@ -124,6 +124,10 @@ public class UpdateYCUserRequest implements Serializable{
      * 修改时间
      */
     private Timestamp lastModifyTime;
+    /**
+     * 用户状态
+     */
+    private String state;
     
 	public UpdateYCUserRequest() {
 		super();
@@ -323,4 +327,13 @@ public class UpdateYCUserRequest implements Serializable{
 	public void setLastModifyTime(Timestamp lastModifyTime) {
 		this.lastModifyTime = lastModifyTime;
 	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+	
 }
