@@ -13,7 +13,6 @@ import org.apache.ibatis.type.JdbcType;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoResponse;
 import com.ai.yc.user.api.usercompany.param.UserCompanyPageInfo;
 import com.ai.yc.user.api.usercompany.param.UserCompanyPageInfoRequest;
-import com.ai.yc.user.dao.mapper.bo.UsrCompany;
 
 public interface UsrCompanyAttachMapper {
 	@SelectProvider(type = UsrCompanyQueryList.class, method = "queryUserCompany")
