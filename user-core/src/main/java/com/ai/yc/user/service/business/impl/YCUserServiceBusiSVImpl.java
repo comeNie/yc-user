@@ -46,6 +46,7 @@ import com.ai.yc.user.api.userservice.param.YCUsrUserVO;
 import com.ai.yc.user.api.userservice.param.YCInsertContactResponse;
 import com.ai.yc.user.api.userservice.param.YCInsertUserResponse;
 import com.ai.yc.user.api.userservice.param.YCUserInfoResponse;
+import com.ai.yc.user.dao.mapper.attach.UsrUserValueAttachMapper;
 import com.ai.yc.user.dao.mapper.bo.UsrCollectionTranslationCriteria;
 import com.ai.yc.user.dao.mapper.bo.UsrCollectionTranslationCriteria.Criteria;
 import com.ai.yc.user.dao.mapper.bo.UsrContact;
@@ -76,6 +77,8 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 	private IYCUserGriwthValueAtomSV ycUGVAtomSV;
 	@Autowired
 	private IYCUserCollectionAtomSV ycUCollectionAtomSV;
+	@Autowired
+	private UsrUserValueAttachMapper usrUserValueAttachMapper;
 
 	/**
 	 * resultCode 0 fail 1 success
@@ -497,6 +500,12 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		example.setLimitStart((request.getPageNo() - 1) * request.getPageSize());
 		example.setLimitEnd(request.getPageSize());
 		UsrUserCriteria.Criteria criteria = example.createCriteria();
+		
+		if (null != request.getIsCompany() && request.getIsCompany()==1) {
+			List<String> companyUserId = usrUserValueAttachMapper.getCompanyUserId();
+			criteria.andUserIdIn(companyUserId);
+		}
+		
 		if (!StringUtil.isBlank(request.getNickname())) {
 			criteria.andNicknameLike("%"+request.getNickname()+"%");
 		}
