@@ -501,7 +501,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 		example.setLimitEnd(request.getPageSize());
 		UsrUserCriteria.Criteria criteria = example.createCriteria();
 		
-		if (null != request.getIsCompany() && request.getIsCompany()==1) {
+		if (null != request.getIsCompany() && request.getIsCompany().equals(1)) {
 			List<String> companyUserId = usrUserValueAttachMapper.getCompanyUserId();
 			criteria.andUserIdIn(companyUserId);
 		}
