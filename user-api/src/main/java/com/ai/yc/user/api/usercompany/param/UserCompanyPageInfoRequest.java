@@ -5,6 +5,10 @@ import java.sql.Timestamp;
 
 public class UserCompanyPageInfoRequest {
 		/**
+		 * 企业Id
+		 */
+	    private String companyId;
+		/**
 		 * 昵称
 		 */
 		private String nickName;
@@ -153,6 +157,14 @@ public class UserCompanyPageInfoRequest {
 
 		public void setCreateEndTime(String createEndTime) {
 			this.createEndTime = createEndTime;
+		}
+
+		public String getCompanyId() {
+			return companyId;
+		}
+
+		public void setCompanyId(String companyId) {
+			this.companyId = companyId;
 		}
 
 		

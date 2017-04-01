@@ -8,9 +8,11 @@ public class UsrCompanyQueryList {
 	public String queryUserCompany(UserCompanyPageInfoRequest pageInfoRequest){
 		StringBuffer stringBuffer = new StringBuffer();
 		stringBuffer.append("select company.company_id,company.admin_user_id,usr.usersource,company.company_name,usr.nickname,usr.firstname,usr.lastname,company.telephone,company.linkman,company.create_time,company.state,company.content,company.remark,company.members_count,company.check_time from usr_user usr,usr_company company where usr.user_id = company.admin_user_id and ");
-		/**
-		 * 待审核企业
-		 */
+		
+		if(!StringUtil.isBlank(pageInfoRequest.getCompanyId())){
+			stringBuffer.append("company.company_id= " +pageInfoRequest.getCompanyId()+" and ");
+		}
+		
 		if(pageInfoRequest.getState()!=null){
 			stringBuffer.append("company.state = "+pageInfoRequest.getState()+" and ");
 		}

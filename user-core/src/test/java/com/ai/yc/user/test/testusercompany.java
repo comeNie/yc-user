@@ -52,7 +52,7 @@ public class testusercompany {
 	@Test
 	public void queryCompanyInfo(){
 		UserCompanyInfoRequest userInfoRequest = new UserCompanyInfoRequest();
-		userInfoRequest.setUserId("525378");
+		userInfoRequest.setUserId("4444914");
 		UserCompanyInfoResponse response = userCompanySV.queryCompanyInfo(userInfoRequest);
 		System.out.println(JSON.toJSONString(response));
 	}
@@ -68,12 +68,9 @@ public class testusercompany {
 	@Test
 	public void queryCompanyInfoList(){
 		UserCompanyPageInfoRequest userInfoRequest = new UserCompanyPageInfoRequest();
-		//userInfoRequest.setState(0);
-		//userInfoRequest.setCompanyName("1212");
 		userInfoRequest.setPageNo(1);
-		userInfoRequest.setPageSize(10);
-		//userInfoRequest.setCreateStartTime("2017-09-05 12:00:00");
-		//userInfoRequest.setCreateEndTime("2017-09-09 12:00:00");
+		userInfoRequest.setPageSize(1);
+		userInfoRequest.setCompanyId("00000027");
 		UserCompanyInfoListResponse response = userCompanySV.queryPageInfoCompanyInfo(userInfoRequest);
 		System.out.println(JSON.toJSONString(response));
 	}
