@@ -8,6 +8,11 @@ public class UserCompanyPageInfoRequest {
 		 * 企业Id
 		 */
 	    private String companyId;
+	    /**
+	     * 用户Id
+	     */
+	    private String userId;
+	    
 		/**
 		 * 昵称
 		 */
@@ -167,6 +172,11 @@ public class UserCompanyPageInfoRequest {
 			this.companyId = companyId;
 		}
 
-		
-	    
+		public String getUserId() {
+			return userId;
+		}
+
+		public void setUserId(String userId) {
+			this.userId = userId;
+		}
 }
