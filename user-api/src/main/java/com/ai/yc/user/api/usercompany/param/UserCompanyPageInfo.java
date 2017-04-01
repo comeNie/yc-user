@@ -55,6 +55,10 @@ public class UserCompanyPageInfo {
 	 * 成员数量
 	 */
 	private int membersCount;
+	/**
+	 * 是否译员
+	 */
+	private int isTranslator;
 	
 	public String getAdminUserId() {
 		return adminUserId;
@@ -145,6 +149,12 @@ public class UserCompanyPageInfo {
 	}
 	public void setCheckTime(Timestamp checkTime) {
 		this.checkTime = checkTime;
+	}
+	public int getIsTranslator() {
+		return isTranslator;
+	}
+	public void setIsTranslator(int isTranslator) {
+		this.isTranslator = isTranslator;
 	}
 	
 }

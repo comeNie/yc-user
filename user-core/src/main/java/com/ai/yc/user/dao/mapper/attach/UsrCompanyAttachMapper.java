@@ -30,6 +30,7 @@ public interface UsrCompanyAttachMapper {
           @Result(property ="createTime",column = "create_time",javaType = Timestamp.class),
           @Result(property ="checkTime",column = "check_time",javaType = Timestamp.class),
           @Result(property ="state",column = "state",javaType = Integer.class),
+          @Result(property ="isTranslator",column = "is_translator",javaType = Integer.class),
 	})
 	public List<UserCompanyPageInfo> getCompanyInfoList(UserCompanyPageInfoRequest request);
 	
