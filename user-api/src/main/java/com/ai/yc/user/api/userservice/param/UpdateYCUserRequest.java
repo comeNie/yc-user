@@ -127,7 +127,7 @@ public class UpdateYCUserRequest implements Serializable{
     /**
      * 用户状态
      */
-    private String state;
+    private Integer state;
     
 	public UpdateYCUserRequest() {
 		super();
@@ -328,12 +328,13 @@ public class UpdateYCUserRequest implements Serializable{
 		this.lastModifyTime = lastModifyTime;
 	}
 
-	public String getState() {
+	public Integer getState() {
 		return state;
 	}
 
-	public void setState(String state) {
+	public void setState(Integer state) {
 		this.state = state;
 	}
+
 	
 }
