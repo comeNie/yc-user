@@ -70,7 +70,7 @@ public class testusercompany {
 		UserCompanyPageInfoRequest userInfoRequest = new UserCompanyPageInfoRequest();
 		userInfoRequest.setPageNo(1);
 		userInfoRequest.setPageSize(1);
-		userInfoRequest.setCompanyId("00000027");
+		userInfoRequest.setUserId("4444914");
 		UserCompanyInfoListResponse response = userCompanySV.queryPageInfoCompanyInfo(userInfoRequest);
 		System.out.println(JSON.toJSONString(response));
 	}

@@ -113,6 +113,10 @@ public class CompanyOrderInfo extends BaseInfo{
 	 * 译员级别
 	 */
 	private String interLevel;
+	/**
+	 * 译员账户
+	 */
+	private String translatorAccount;
 
 	public Long getDiscountFee() {
 		return discountFee;
@@ -310,6 +314,14 @@ public class CompanyOrderInfo extends BaseInfo{
 
 	public void setCompanyRole(String companyRole) {
 		this.companyRole = companyRole;
+	}
+
+	public String getTranslatorAccount() {
+		return translatorAccount;
+	}
+
+	public void setTranslatorAccount(String translatorAccount) {
+		this.translatorAccount = translatorAccount;
 	}
 	
 }
