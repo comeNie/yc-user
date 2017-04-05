@@ -119,6 +119,11 @@ public class CompanyOrderInfo extends BaseInfo{
 	 */
 	private String translatorAccount;
 
+	/**
+	 * 总实收费用
+	 */
+	private long paidFee;
+	
 	public Long getDiscountFee() {
 		return discountFee;
 	}
@@ -323,6 +328,14 @@ public class CompanyOrderInfo extends BaseInfo{
 
 	public void setTranslatorAccount(String translatorAccount) {
 		this.translatorAccount = translatorAccount;
+	}
+
+	public long getPaidFee() {
+		return paidFee;
+	}
+
+	public void setPaidFee(long paidFee) {
+		this.paidFee = paidFee;
 	}
 	
 }
