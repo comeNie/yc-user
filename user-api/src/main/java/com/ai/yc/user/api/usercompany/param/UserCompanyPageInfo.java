@@ -63,6 +63,10 @@ public class UserCompanyPageInfo {
 	 * 企业账户Id
 	 */
 	private long companyAccount;
+	/**
+	 * 审核人
+	 */
+	private String auditor;
 	
 	public String getAdminUserId() {
 		return adminUserId;
@@ -165,6 +169,12 @@ public class UserCompanyPageInfo {
 	}
 	public void setCompanyAccount(long companyAccount) {
 		this.companyAccount = companyAccount;
+	}
+	public String getAuditor() {
+		return auditor;
+	}
+	public void setAuditor(String auditor) {
+		this.auditor = auditor;
 	}
 	
 }

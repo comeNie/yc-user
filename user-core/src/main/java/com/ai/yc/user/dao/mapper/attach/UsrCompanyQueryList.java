@@ -7,7 +7,7 @@ public class UsrCompanyQueryList {
 	
 	public String queryUserCompany(UserCompanyPageInfoRequest pageInfoRequest){
 		StringBuffer stringBuffer = new StringBuffer();
-		stringBuffer.append("select company.company_id,company.admin_user_id,usr.usersource,company.company_name,usr.nickname,usr.firstname,usr.lastname,company.telephone,company.linkman,company.create_time,company.state,company.content,company.remark,company.members_count,company.check_time,usr.is_translator,company.account_id from usr_user usr,usr_company company where usr.user_id = company.admin_user_id and ");
+		stringBuffer.append("select company.company_id,company.admin_user_id,usr.usersource,company.company_name,usr.nickname,usr.firstname,usr.lastname,company.telephone,company.linkman,company.create_time,company.state,company.content,company.remark,company.members_count,company.check_time,usr.is_translator,company.account_id,company.auditor from usr_user usr,usr_company company where usr.user_id = company.admin_user_id and ");
 		 
 		if(!StringUtil.isBlank(pageInfoRequest.getUserId())){
 			stringBuffer.append("usr.user_id = " +pageInfoRequest.getUserId()+" and ");
