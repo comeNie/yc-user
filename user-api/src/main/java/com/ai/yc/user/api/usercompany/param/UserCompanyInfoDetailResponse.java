@@ -104,6 +104,10 @@ public class UserCompanyInfoDetailResponse extends BaseResponse{
 	     * 城市
 	     */
 	    private String cnCity;
+	    /**
+	     * 企业账户余额
+	     */
+	    private long companyBalance;
 	    
 	    public String getCompanyId() {
 	        return companyId;
@@ -295,6 +299,14 @@ public class UserCompanyInfoDetailResponse extends BaseResponse{
 
 		public void setCnCity(String cnCity) {
 			this.cnCity = cnCity;
+		}
+
+		public long getCompanyBalance() {
+			return companyBalance;
+		}
+
+		public void setCompanyBalance(long companyBalance) {
+			this.companyBalance = companyBalance;
 		}
 	    
 }
