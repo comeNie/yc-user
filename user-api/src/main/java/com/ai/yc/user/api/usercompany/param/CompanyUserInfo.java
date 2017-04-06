@@ -147,6 +147,20 @@ public class CompanyUserInfo {
 	     * 备注
 	     */
 	    private String remark;
+	    /**
+	     * 企业账户
+	     */
+	    private long companyBalance;
+	    
+	    /**
+	     * 审核人
+	     */
+	    private String auditor;
+	    
+	    /**
+	     * 审核时间
+	     */
+	    private Timestamp checkTime;
 	    
 		public String getUserId() {
 			return userId;
@@ -435,4 +449,29 @@ public class CompanyUserInfo {
 		public void setRemark(String remark) {
 			this.remark = remark;
 		}
+
+		public long getCompanyBalance() {
+			return companyBalance;
+		}
+
+		public void setCompanyBalance(long companyBalance) {
+			this.companyBalance = companyBalance;
+		}
+
+		public Timestamp getCheckTime() {
+			return checkTime;
+		}
+
+		public void setCheckTime(Timestamp checkTime) {
+			this.checkTime = checkTime;
+		}
+
+		public String getAuditor() {
+			return auditor;
+		}
+
+		public void setAuditor(String auditor) {
+			this.auditor = auditor;
+		}
+		
 }
