@@ -130,6 +130,10 @@ public class UsrCompanyInfo {
 	private String fullName;
 	
 	private String stateName;
+	/**
+	 * 企业账户余额
+	 */
+	private long companyBalance;
 	
     public String getCompanyId() {
         return companyId;
@@ -465,6 +469,14 @@ public class UsrCompanyInfo {
 
 	public void setStateName(String stateName) {
 		this.stateName = stateName;
+	}
+
+	public long getCompanyBalance() {
+		return companyBalance;
+	}
+
+	public void setCompanyBalance(long companyBalance) {
+		this.companyBalance = companyBalance;
 	}
 	
 }
