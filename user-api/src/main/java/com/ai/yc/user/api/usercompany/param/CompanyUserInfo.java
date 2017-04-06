@@ -165,6 +165,10 @@ public class CompanyUserInfo {
 	     * 审核时间
 	     */
 	    private Timestamp checkTime;
+	    /**
+	     * 结算方式
+	     */
+	    private String accountType;
 	    
 		public String getUserId() {
 			return userId;
@@ -484,6 +488,14 @@ public class CompanyUserInfo {
 
 		public void setCountry(String country) {
 			this.country = country;
+		}
+
+		public String getAccountType() {
+			return accountType;
+		}
+
+		public void setAccountType(String accountType) {
+			this.accountType = accountType;
 		}
 		
 }
