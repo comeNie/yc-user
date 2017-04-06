@@ -94,7 +94,7 @@ public class UsrCompanyInfo {
     /**
      * 企业账户
      */
-    private int companyAccount;
+    private long companyAccount;
     
     
     /**
@@ -387,11 +387,11 @@ public class UsrCompanyInfo {
 		this.settlingAccounts = settlingAccounts;
 	}
 
-	public int getCompanyAccount() {
+	public long getCompanyAccount() {
 		return companyAccount;
 	}
 
-	public void setCompanyAccount(int companyAccount) {
+	public void setCompanyAccount(long companyAccount) {
 		this.companyAccount = companyAccount;
 	}
 
