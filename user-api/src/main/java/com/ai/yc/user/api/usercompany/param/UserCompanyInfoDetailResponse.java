@@ -84,7 +84,27 @@ public class UserCompanyInfoDetailResponse extends BaseResponse{
 	     * 管理员用户Id
 	     */
 	    private String adminUserId;
-
+	    /**
+	     * 审核人
+	     */
+	    private String auditor;
+	    /**
+	     * 审核时间
+	     */
+	    private Timestamp checkTime;
+	    /**
+	     * 国家
+	     */
+	    private String country;
+	    /**
+	     * 省
+	     */
+	    private String province;
+	    /**
+	     * 城市
+	     */
+	    private String cnCity;
+	    
 	    public String getCompanyId() {
 	        return companyId;
 	    }
@@ -236,4 +256,45 @@ public class UserCompanyInfoDetailResponse extends BaseResponse{
 	    public void setAdminUserId(String adminUserId) {
 	        this.adminUserId = adminUserId == null ? null : adminUserId.trim();
 	    }
+
+		public String getAuditor() {
+			return auditor;
+		}
+
+		public void setAuditor(String auditor) {
+			this.auditor = auditor;
+		}
+
+		public Timestamp getCheckTime() {
+			return checkTime;
+		}
+
+		public void setCheckTime(Timestamp checkTime) {
+			this.checkTime = checkTime;
+		}
+
+		public String getCountry() {
+			return country;
+		}
+
+		public void setCountry(String country) {
+			this.country = country;
+		}
+
+		public String getProvince() {
+			return province;
+		}
+
+		public void setProvince(String province) {
+			this.province = province;
+		}
+
+		public String getCnCity() {
+			return cnCity;
+		}
+
+		public void setCnCity(String cnCity) {
+			this.cnCity = cnCity;
+		}
+	    
 }
