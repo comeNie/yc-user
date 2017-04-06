@@ -59,6 +59,10 @@ public class UserCompanyPageInfo {
 	 * 是否译员
 	 */
 	private int isTranslator;
+	/**
+	 * 企业账户Id
+	 */
+	private long companyAccount;
 	
 	public String getAdminUserId() {
 		return adminUserId;
@@ -155,6 +159,12 @@ public class UserCompanyPageInfo {
 	}
 	public void setIsTranslator(int isTranslator) {
 		this.isTranslator = isTranslator;
+	}
+	public long getCompanyAccount() {
+		return companyAccount;
+	}
+	public void setCompanyAccount(long companyAccount) {
+		this.companyAccount = companyAccount;
 	}
 	
 }
