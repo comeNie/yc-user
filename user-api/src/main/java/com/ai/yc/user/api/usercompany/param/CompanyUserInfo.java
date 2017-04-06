@@ -132,6 +132,10 @@ public class CompanyUserInfo {
 	     */
 	    private Long companyAccountId;
 	    /**
+	     * 国家
+	     */
+	    private String country;
+	    /**
 	     * 省
 	     */
 	    private String province;
@@ -472,6 +476,14 @@ public class CompanyUserInfo {
 
 		public void setAuditor(String auditor) {
 			this.auditor = auditor;
+		}
+
+		public String getCountry() {
+			return country;
+		}
+
+		public void setCountry(String country) {
+			this.country = country;
 		}
 		
 }
