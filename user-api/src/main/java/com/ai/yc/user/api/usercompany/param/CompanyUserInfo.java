@@ -1,5 +1,6 @@
 package com.ai.yc.user.api.usercompany.param;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class CompanyUserInfo {
@@ -169,6 +170,13 @@ public class CompanyUserInfo {
 	     * 结算方式
 	     */
 	    private String accountType;
+	    
+	    private BigDecimal discount;
+
+	    private String accountPeriod;
+
+	    private String accountDay;
+	    
 	    
 		public String getUserId() {
 			return userId;
@@ -496,6 +504,30 @@ public class CompanyUserInfo {
 
 		public void setAccountType(String accountType) {
 			this.accountType = accountType;
+		}
+
+		public BigDecimal getDiscount() {
+			return discount;
+		}
+
+		public void setDiscount(BigDecimal discount) {
+			this.discount = discount;
+		}
+
+		public String getAccountPeriod() {
+			return accountPeriod;
+		}
+
+		public void setAccountPeriod(String accountPeriod) {
+			this.accountPeriod = accountPeriod;
+		}
+
+		public String getAccountDay() {
+			return accountDay;
+		}
+
+		public void setAccountDay(String accountDay) {
+			this.accountDay = accountDay;
 		}
 		
 }
