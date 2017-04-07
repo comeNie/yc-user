@@ -92,8 +92,14 @@ public class UserCompanyInfoRequest {
 	     * 市
 	     */
 	    private String cnCity;
-	    
+	    /**
+	     * 审核人
+	     */
 	    private String auditor;
+	    /**
+	     * 审核时间
+	     */
+	    private Timestamp checkTime;
 
 	    public String getCompanyId() {
 	        return companyId;
@@ -278,6 +284,14 @@ public class UserCompanyInfoRequest {
 
 		public void setAuditor(String auditor) {
 			this.auditor = auditor;
+		}
+
+		public Timestamp getCheckTime() {
+			return checkTime;
+		}
+
+		public void setCheckTime(Timestamp checkTime) {
+			this.checkTime = checkTime;
 		}
 	    
 }
