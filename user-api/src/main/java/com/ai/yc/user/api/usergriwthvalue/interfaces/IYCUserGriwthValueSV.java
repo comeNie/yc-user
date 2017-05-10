@@ -45,7 +45,7 @@ public interface IYCUserGriwthValueSV {
 	 * @param 
 	 * @return
 	 * @ApiCode USR_00014
-     * @RestRelativeURL ycusergriwthvalue/insertGriwthValueInfo
+     * @RestRelativeURL ycusergriwthvalue/queryGriwthValueInfo
 	 */
 	@POST
 	@Path("/queryGriwthValueInfo")
