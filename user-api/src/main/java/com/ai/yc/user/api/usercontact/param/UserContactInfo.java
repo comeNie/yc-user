@@ -22,7 +22,7 @@ private static final long serialVersionUID = 1L;
 	/**
 	 * 手机
 	 */
-	private String mobelPhone;
+	private String mobilePhone;
 	
 	/**
 	 * 邮箱
@@ -59,12 +59,12 @@ private static final long serialVersionUID = 1L;
 		this.userName = userName;
 	}
 
-	public String getMobelPhone() {
-		return mobelPhone;
+	public String getMobilePhone() {
+		return mobilePhone;
 	}
 
-	public void setMobelPhone(String mobelPhone) {
-		this.mobelPhone = mobelPhone;
+	public void setMobilePhone(String mobilePhone) {
+		this.mobilePhone = mobilePhone;
 	}
 
 	public String getEmail() {
