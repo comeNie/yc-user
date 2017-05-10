@@ -56,9 +56,9 @@ public class testusrcontact {
 	public void testQueryContactInfo() {
 		
 		UserContactInfoRespose response1 = new UserContactInfoRespose();
-		response1.setUserId("1");
-		System.out.println("========"+JSON.toJSONString(response1));
-		
+		response1.setUserId("525335");
+		UserContactInfoRespose response = usSV.queryContactInfo("525335");
+		System.out.println("========"+JSON.toJSONString(response.getUsrContactList()));
 		/*UserContactInfoRespose response = usSV.queryContactInfo("4444314");
 		List<String> list = new ArrayList<String>();
 		list.add("1");

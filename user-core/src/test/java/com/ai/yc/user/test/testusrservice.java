@@ -48,7 +48,8 @@ public class testusrservice {
 		UcMembersGetOperationcodeRequest ucMembersGetOperationcodeRequest = new UcMembersGetOperationcodeRequest();
 		ucMembersGetOperationcodeRequest.setUserinfo(PhoneNum);
 		ucMembersGetOperationcodeRequest.setOperationtype("1");
-		UcMembersGetOperationcodeResponse umgor = iUcMembersOperationSV.ucGetOperationcode(ucMembersGetOperationcodeRequest);
+		System.out.println("========="+JSON.toJSONString(ucMembersGetOperationcodeRequest));
+	/*	UcMembersGetOperationcodeResponse umgor = iUcMembersOperationSV.ucGetOperationcode(ucMembersGetOperationcodeRequest);
 		
 		InsertYCUserRequest insertu = new InsertYCUserRequest(umgor.getDate().get("uid").toString(),umgor.getDate().get("operationcode").toString().substring(1) + "1", "2", "172.245.32.172", "hbhb123", null, Email, Password, null, null, null, 0, PhoneNum, null, null, null, null, null, null,null);
 		YCInsertUserResponse User =  usSV.insertYCUser(insertu);
@@ -69,7 +70,7 @@ public class testusrservice {
 		SearchYCUserRequest sr2 = new SearchYCUserRequest();
 		sr1.setUserId(UserID);
 		YCUserInfoResponse uir2 = usSV.searchYCUserInfo(sr2);
-		System.out.println(JSON.toJSONString(uir2));
+		System.out.println(JSON.toJSONString(uir2));*/
 	}
 	
 	@Test
