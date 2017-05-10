@@ -104,12 +104,13 @@ public class YCUserContactBusiSVImpl implements IYCUserContactBusiSV{
 		LinkedList<UserContactInfo> returnList = new LinkedList<UserContactInfo>();
 		ResponseHeader header = null;
 		try{
+			example.setOrderByClause("create_time desc");
 			List<UsrContact> list = ycUSContactAtomSV.queryContactInfo(example);
 			for(int i=0;i<list.size();i++){
 				UserContactInfo contactInfo = new UserContactInfo();
 				UsrContact usrContact = list.get(i);
 				BeanUtils.copyProperties(contactInfo, usrContact);
-				if(contactInfo.getIsDefault()==1){
+				if(contactInfo.getIsDefault()!=null&&contactInfo.getIsDefault()==1){
 					returnList.addFirst(contactInfo);
 				}else{
 					returnList.add(contactInfo);
