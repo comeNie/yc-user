@@ -75,4 +75,22 @@ public class YCUserContactSVImpl implements IYCUserContactSV{
 		return ycUsrContactBusiSv.queryContactInfoByCId(contactId);
 	}
 
+	@Override
+	@POST
+	@Path("/checnUserName")
+	public UserContactResponse checnUserName(String userName)
+			throws BusinessException, SystemException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	@POST
+	@Path("/queryContactByCid")
+	public UserContactResponse checnUserEmail(String userEmail)
+			throws BusinessException, SystemException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

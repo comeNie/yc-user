@@ -81,4 +81,26 @@ public interface IYCUserContactSV {
 	@POST
 	@Path("/queryContactByCid")
 	public UserContactResponse queryContactByCid(String contactId)throws BusinessException,SystemException;
+
+	/**
+	 * 检查用户名
+	 * @param 
+	 * @return
+	 * @ApiCode USR_0001
+     * @RestRelativeURL ycusercontact/checnUserName
+	 */
+	@POST
+	@Path("/checnUserName")
+	public UserContactResponse checnUserName(String userName)throws BusinessException,SystemException;
+	
+	/**
+	 * 检查邮箱
+	 * @param 
+	 * @return
+	 * @ApiCode USR_0001
+     * @RestRelativeURL ycusercontact/checnUserEmail
+	 */
+	@POST
+	@Path("/queryContactByCid")
+	public UserContactResponse checnUserEmail(String userEmail)throws BusinessException,SystemException;
 }

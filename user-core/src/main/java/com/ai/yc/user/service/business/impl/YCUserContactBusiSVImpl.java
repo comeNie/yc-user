@@ -163,4 +163,50 @@ public class YCUserContactBusiSVImpl implements IYCUserContactBusiSV{
 		return response;
 	}
 
+	@Override
+	public UserContactResponse checkUserName(String userName) {
+		UserContactResponse response = new UserContactResponse();
+		UsrContactCriteria example = new UsrContactCriteria();
+		UsrContactCriteria.Criteria criteria = example.createCriteria();
+		criteria.andUserNameEqualTo(userName);
+		ResponseHeader header = null;
+		try{
+			List<UsrContact> list = ycUSContactAtomSV.queryContactInfo(example);
+			if(list!=null&&list.size()>0){
+				header = new ResponseHeader(false, ExceptCodeConstants.SUCCESS, "姓名已存在");
+			}else{
+				header = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
+			}
+			header = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
+		}catch(Exception e){
+			header = new ResponseHeader(true, ExceptCodeConstants.FAILD, "查询失败");
+			LOG.error("查询失败", e);
+		}
+		response.setResponseHeader(header);
+		return response;
+	}
+
+	@Override
+	public UserContactResponse checkUserEmail(String email) {
+		UserContactResponse response = new UserContactResponse();
+		UsrContactCriteria example = new UsrContactCriteria();
+		UsrContactCriteria.Criteria criteria = example.createCriteria();
+		criteria.andEmailEqualTo(email);
+		ResponseHeader header = null;
+		try{
+			List<UsrContact> list = ycUSContactAtomSV.queryContactInfo(example);
+			if(list!=null&&list.size()>0){
+				header = new ResponseHeader(false, ExceptCodeConstants.SUCCESS, "邮箱已存在");
+			}else{
+				header = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
+			}
+			
+		}catch(Exception e){
+			header = new ResponseHeader(false, ExceptCodeConstants.FAILD, "查询失败");
+			LOG.error("查询失败", e);
+		}
+		response.setResponseHeader(header);
+		return response;
+	}
+
 }

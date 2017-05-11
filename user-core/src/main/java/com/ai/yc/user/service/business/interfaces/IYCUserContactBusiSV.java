@@ -12,4 +12,6 @@ public interface IYCUserContactBusiSV {
 	public UserContactInfoRespose queryContactInfo(String userId);
 	public BaseResponse updateContactDefaultMode(UsrContact contactInfo);
 	public UserContactResponse queryContactInfoByCId(String contactId);
+	public UserContactResponse checkUserName(String userName);
+	public UserContactResponse checkUserEmail(String email);
 }

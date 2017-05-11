@@ -36,6 +36,8 @@ private static final long serialVersionUID = 1L;
 	 */
 
 	private Integer isDefault;
+	
+	
 
 	public String getContactId() {
 		return contactId;
