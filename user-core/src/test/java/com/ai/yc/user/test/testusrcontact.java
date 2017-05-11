@@ -15,6 +15,7 @@ import com.ai.yc.user.api.usercontact.interfaces.IYCUserContactSV;
 import com.ai.yc.user.api.usercontact.param.UserContactInfo;
 import com.ai.yc.user.api.usercontact.param.UserContactInfoRequest;
 import com.ai.yc.user.api.usercontact.param.UserContactInfoRespose;
+import com.ai.yc.user.api.usercontact.param.UserContactResponse;
 import com.alibaba.fastjson.JSON;
 
 /** 
@@ -71,5 +72,11 @@ public class testusrcontact {
 			UserContactInfo info = list.get(i);
 			System.out.println(info.getIsDefault());
 		}*/
+	}
+	
+	@Test
+	public void testQueryContactInfoById() {
+		UserContactResponse response = usSV.queryContactByCid("00000070");
+		System.out.println("========"+JSON.toJSONString(response));
 	}
 }

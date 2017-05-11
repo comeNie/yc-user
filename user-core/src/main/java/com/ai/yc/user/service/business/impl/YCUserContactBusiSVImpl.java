@@ -16,6 +16,7 @@ import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.paas.ipaas.util.StringUtil;
 import com.ai.yc.user.api.usercontact.param.UserContactInfo;
 import com.ai.yc.user.api.usercontact.param.UserContactInfoRespose;
+import com.ai.yc.user.api.usercontact.param.UserContactResponse;
 import com.ai.yc.user.constants.ExceptCodeConstants;
 import com.ai.yc.user.dao.mapper.bo.UsrContact;
 import com.ai.yc.user.dao.mapper.bo.UsrContactCriteria;
@@ -135,6 +136,28 @@ public class YCUserContactBusiSVImpl implements IYCUserContactBusiSV{
 			header = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"联系默认方式设置成功");
 		}catch(Exception e){
 			header = new ResponseHeader(false,ExceptCodeConstants.FAILD,"联系默认方式设置失败");
+		}
+		response.setResponseHeader(header);
+		return response;
+	}
+
+	@Override
+	public UserContactResponse queryContactInfoByCId(String contactId) {
+		UserContactResponse response = new UserContactResponse();
+		UsrContactCriteria example = new UsrContactCriteria();
+		UsrContactCriteria.Criteria criteria = example.createCriteria();
+		criteria.andContactIdEqualTo(contactId);
+		ResponseHeader header = null;
+		try{
+			List<UsrContact> list = ycUSContactAtomSV.queryContactInfo(example);
+			if(list!=null&&list.size()>0){
+				UsrContact usrContact = list.get(0);
+				BeanUtils.copyProperties(response, usrContact);
+			}
+			header = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
+		}catch(Exception e){
+			header = new ResponseHeader(true, ExceptCodeConstants.FAILD, "查询失败");
+			LOG.error("查询失败", e);
 		}
 		response.setResponseHeader(header);
 		return response;

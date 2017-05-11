@@ -6,12 +6,15 @@ import javax.ws.rs.Path;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ai.opt.base.exception.BusinessException;
+import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.sdk.components.sequence.util.SeqUtil;
 import com.ai.opt.sdk.util.BeanUtils;
 import com.ai.yc.user.api.usercontact.interfaces.IYCUserContactSV;
 import com.ai.yc.user.api.usercontact.param.UserContactInfoRequest;
 import com.ai.yc.user.api.usercontact.param.UserContactInfoRespose;
+import com.ai.yc.user.api.usercontact.param.UserContactResponse;
 import com.ai.yc.user.dao.mapper.bo.UsrContact;
 import com.ai.yc.user.service.business.interfaces.IYCUserContactBusiSV;
 import com.alibaba.dubbo.config.annotation.Service;
@@ -62,6 +65,14 @@ public class YCUserContactSVImpl implements IYCUserContactSV{
 		UsrContact userContact = new UsrContact();
 		BeanUtils.copyProperties(userContact, contactInfo);
 		return ycUsrContactBusiSv.updateContactDefaultMode(userContact);
+	}
+
+	@Override
+	@POST
+	@Path("/queryContactByCid")
+	public UserContactResponse queryContactByCid(String contactId)
+			throws BusinessException, SystemException {
+		return ycUsrContactBusiSv.queryContactInfoByCId(contactId);
 	}
 
 }

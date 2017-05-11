@@ -47,6 +47,4 @@ public class YCUserContactAtomSVImpl implements IYCUserContactAtomSV{
 	public int getContactCount(UsrContactCriteria example) {
 		return uContactMapper.countByExample(example);
 	}
-	
-
 }
