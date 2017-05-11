@@ -11,6 +11,7 @@ import com.ai.opt.base.exception.SystemException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.yc.user.api.usercontact.param.UserContactInfoRequest;
 import com.ai.yc.user.api.usercontact.param.UserContactInfoRespose;
+import com.ai.yc.user.api.usercontact.param.UserContactResponse;
 
 @Path("/ycusercontact")
 @Consumes({ MediaType.APPLICATION_JSON })
@@ -69,4 +70,15 @@ public interface IYCUserContactSV {
 	@POST
 	@Path("/updateContactDefaultMode")
 	public BaseResponse updateContactDefaultMode(UserContactInfoRequest contactInfo)throws BusinessException,SystemException;
+
+	/**
+	 * 查询某一个联系方式
+	 * @param 
+	 * @return
+	 * @ApiCode USR_0001
+     * @RestRelativeURL ycusercontact/queryContactByCid
+	 */
+	@POST
+	@Path("/queryContactByCid")
+	public UserContactResponse queryContactByCid(String contactId)throws BusinessException,SystemException;
 }
