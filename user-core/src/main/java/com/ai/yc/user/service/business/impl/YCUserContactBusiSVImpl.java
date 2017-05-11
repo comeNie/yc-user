@@ -132,6 +132,17 @@ public class YCUserContactBusiSVImpl implements IYCUserContactBusiSV{
 		BaseResponse response = new BaseResponse();
 		ResponseHeader header = null;
 		try{
+			if(contactInfo.getIsDefault()==1){
+				UsrContactCriteria example = new UsrContactCriteria();
+				UsrContactCriteria.Criteria criteria = example.createCriteria();
+				criteria.andUserIdEqualTo(contactInfo.getUserId());
+				List<UsrContact> list = ycUSContactAtomSV.queryContactInfo(example);
+				for(int i=0;i<list.size();i++){
+					UsrContact usrContact = list.get(i);
+					usrContact.setIsDefault(0);
+					ycUSContactAtomSV.updateContactInfo(contactInfo);
+				}
+			}
 			ycUSContactAtomSV.updateContactInfo(contactInfo);
 			header = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"联系默认方式设置成功");
 		}catch(Exception e){
