@@ -1,9 +1,8 @@
 package com.ai.yc.user.api.usercontact.param;
 
-import java.io.Serializable;
+import com.ai.opt.base.vo.BaseResponse;
 
-public class UserContactInfo implements Serializable{
-	
+public class UserContactResponse extends BaseResponse{
 private static final long serialVersionUID = 1L;
 	
 	/**
@@ -61,6 +60,7 @@ private static final long serialVersionUID = 1L;
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
 
 	public String getMobilePhone() {
 		return mobilePhone;
