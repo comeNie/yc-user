@@ -80,8 +80,7 @@ public class YCUserContactSVImpl implements IYCUserContactSV{
 	@Path("/checnUserName")
 	public UserContactResponse checnUserName(String userName)
 			throws BusinessException, SystemException {
-		// TODO Auto-generated method stub
-		return null;
+		return ycUsrContactBusiSv.checkUserName(userName);
 	}
 
 	@Override
@@ -89,8 +88,7 @@ public class YCUserContactSVImpl implements IYCUserContactSV{
 	@Path("/queryContactByCid")
 	public UserContactResponse checnUserEmail(String userEmail)
 			throws BusinessException, SystemException {
-		// TODO Auto-generated method stub
-		return null;
+		return ycUsrContactBusiSv.checkUserEmail(userEmail);
 	}
 
 }
