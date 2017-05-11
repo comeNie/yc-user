@@ -173,11 +173,10 @@ public class YCUserContactBusiSVImpl implements IYCUserContactBusiSV{
 		try{
 			List<UsrContact> list = ycUSContactAtomSV.queryContactInfo(example);
 			if(list!=null&&list.size()>0){
-				header = new ResponseHeader(false, ExceptCodeConstants.SUCCESS, "姓名已存在");
+				header = new ResponseHeader(false, ExceptCodeConstants.FAILD, "姓名已存在");
 			}else{
 				header = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
 			}
-			header = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
 		}catch(Exception e){
 			header = new ResponseHeader(true, ExceptCodeConstants.FAILD, "查询失败");
 			LOG.error("查询失败", e);

@@ -91,7 +91,7 @@ public interface IYCUserContactSV {
 	 */
 	@POST
 	@Path("/checnUserName")
-	public UserContactResponse checnUserName(String userName)throws BusinessException,SystemException;
+	public UserContactResponse checkUserName(String userName)throws BusinessException,SystemException;
 	
 	/**
 	 * 检查邮箱

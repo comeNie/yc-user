@@ -78,7 +78,7 @@ public class YCUserContactSVImpl implements IYCUserContactSV{
 	@Override
 	@POST
 	@Path("/checnUserName")
-	public UserContactResponse checnUserName(String userName)
+	public UserContactResponse checkUserName(String userName)
 			throws BusinessException, SystemException {
 		return ycUsrContactBusiSv.checkUserName(userName);
 	}
