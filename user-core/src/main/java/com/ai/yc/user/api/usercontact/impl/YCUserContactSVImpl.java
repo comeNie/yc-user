@@ -91,4 +91,12 @@ public class YCUserContactSVImpl implements IYCUserContactSV{
 		return ycUsrContactBusiSv.checkUserEmail(userEmail);
 	}
 
+	@Override
+	@POST
+	@Path("/checnUserEmail")
+	public UserContactResponse checnUserPhone(String userPhone)
+			throws BusinessException, SystemException {
+		return ycUsrContactBusiSv.checkUserPhone(userPhone);
+	}
+
 }

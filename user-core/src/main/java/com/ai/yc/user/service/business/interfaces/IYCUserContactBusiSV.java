@@ -14,4 +14,5 @@ public interface IYCUserContactBusiSV {
 	public UserContactResponse queryContactInfoByCId(String contactId);
 	public UserContactResponse checkUserName(String userName);
 	public UserContactResponse checkUserEmail(String email);
+	public UserContactResponse checkUserPhone(String phone);
 }

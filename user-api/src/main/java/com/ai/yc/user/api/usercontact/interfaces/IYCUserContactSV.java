@@ -101,6 +101,17 @@ public interface IYCUserContactSV {
      * @RestRelativeURL ycusercontact/checnUserEmail
 	 */
 	@POST
-	@Path("/queryContactByCid")
+	@Path("/checnUserEmail")
 	public UserContactResponse checnUserEmail(String userEmail)throws BusinessException,SystemException;
+	
+	/**
+	 * 检查手机号
+	 * @param 
+	 * @return
+	 * @ApiCode USR_0001
+     * @RestRelativeURL ycusercontact/checnUserPhone
+	 */
+	@POST
+	@Path("/checnUserEmail")
+	public UserContactResponse checnUserPhone(String userPhone)throws BusinessException,SystemException;
 }

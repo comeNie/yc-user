@@ -173,6 +173,7 @@ public class YCUserContactBusiSVImpl implements IYCUserContactBusiSV{
 		try{
 			List<UsrContact> list = ycUSContactAtomSV.queryContactInfo(example);
 			if(list!=null&&list.size()>0){
+				BeanUtils.copyProperties(response, list.get(0));
 				header = new ResponseHeader(false, ExceptCodeConstants.FAILD, "姓名已存在");
 			}else{
 				header = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
@@ -195,6 +196,31 @@ public class YCUserContactBusiSVImpl implements IYCUserContactBusiSV{
 		try{
 			List<UsrContact> list = ycUSContactAtomSV.queryContactInfo(example);
 			if(list!=null&&list.size()>0){
+				BeanUtils.copyProperties(response, list.get(0));
+				header = new ResponseHeader(false, ExceptCodeConstants.SUCCESS, "邮箱已存在");
+			}else{
+				header = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
+			}
+			
+		}catch(Exception e){
+			header = new ResponseHeader(false, ExceptCodeConstants.FAILD, "查询失败");
+			LOG.error("查询失败", e);
+		}
+		response.setResponseHeader(header);
+		return response;
+	}
+	
+	@Override
+	public UserContactResponse checkUserPhone(String phone) {
+		UserContactResponse response = new UserContactResponse();
+		UsrContactCriteria example = new UsrContactCriteria();
+		UsrContactCriteria.Criteria criteria = example.createCriteria();
+		criteria.andMobilePhoneEqualTo(phone);
+		ResponseHeader header = null;
+		try{
+			List<UsrContact> list = ycUSContactAtomSV.queryContactInfo(example);
+			if(list!=null&&list.size()>0){
+				BeanUtils.copyProperties(response, list.get(0));
 				header = new ResponseHeader(false, ExceptCodeConstants.SUCCESS, "邮箱已存在");
 			}else{
 				header = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
