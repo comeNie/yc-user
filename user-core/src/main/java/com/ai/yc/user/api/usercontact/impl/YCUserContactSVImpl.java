@@ -85,16 +85,16 @@ public class YCUserContactSVImpl implements IYCUserContactSV{
 
 	@Override
 	@POST
-	@Path("/queryContactByCid")
-	public UserContactResponse checnUserEmail(String userEmail)
+	@Path("/checkUserEmail")
+	public UserContactResponse checkUserEmail(String userEmail)
 			throws BusinessException, SystemException {
 		return ycUsrContactBusiSv.checkUserEmail(userEmail);
 	}
 
 	@Override
 	@POST
-	@Path("/checnUserEmail")
-	public UserContactResponse checnUserPhone(String userPhone)
+	@Path("/checkUserPhone")
+	public UserContactResponse checkUserPhone(String userPhone)
 			throws BusinessException, SystemException {
 		return ycUsrContactBusiSv.checkUserPhone(userPhone);
 	}

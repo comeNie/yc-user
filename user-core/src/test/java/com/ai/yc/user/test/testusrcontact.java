@@ -79,4 +79,10 @@ public class testusrcontact {
 		UserContactResponse response = usSV.queryContactByCid("00000070");
 		System.out.println("========"+JSON.toJSONString(response));
 	}
+	
+	@Test
+	public void testCheckPhone() {
+		UserContactResponse response = usSV.checkUserPhone("13254565647");
+		System.out.println("========"+JSON.toJSONString(response));
+	}
 }

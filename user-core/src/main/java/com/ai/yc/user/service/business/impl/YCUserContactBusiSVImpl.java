@@ -232,7 +232,7 @@ public class YCUserContactBusiSVImpl implements IYCUserContactBusiSV{
 			List<UsrContact> list = ycUSContactAtomSV.queryContactInfo(example);
 			if(list!=null&&list.size()>0){
 				BeanUtils.copyProperties(response, list.get(0));
-				header = new ResponseHeader(false, ExceptCodeConstants.SUCCESS, "邮箱已存在");
+				header = new ResponseHeader(false, ExceptCodeConstants.SUCCESS, "手机号已存在");
 			}else{
 				header = new ResponseHeader(true, ExceptCodeConstants.SUCCESS, "查询成功");
 			}

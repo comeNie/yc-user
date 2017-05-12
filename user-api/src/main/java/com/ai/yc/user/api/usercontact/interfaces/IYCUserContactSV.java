@@ -98,20 +98,20 @@ public interface IYCUserContactSV {
 	 * @param 
 	 * @return
 	 * @ApiCode USR_0001
-     * @RestRelativeURL ycusercontact/checnUserEmail
+     * @RestRelativeURL ycusercontact/checkUserEmail
 	 */
 	@POST
 	@Path("/checnUserEmail")
-	public UserContactResponse checnUserEmail(String userEmail)throws BusinessException,SystemException;
+	public UserContactResponse checkUserEmail(String userEmail)throws BusinessException,SystemException;
 	
 	/**
 	 * 检查手机号
 	 * @param 
 	 * @return
 	 * @ApiCode USR_0001
-     * @RestRelativeURL ycusercontact/checnUserPhone
+     * @RestRelativeURL ycusercontact/checkUserPhone
 	 */
 	@POST
-	@Path("/checnUserEmail")
-	public UserContactResponse checnUserPhone(String userPhone)throws BusinessException,SystemException;
+	@Path("/checkUserPhone")
+	public UserContactResponse checkUserPhone(String userPhone)throws BusinessException,SystemException;
 }
