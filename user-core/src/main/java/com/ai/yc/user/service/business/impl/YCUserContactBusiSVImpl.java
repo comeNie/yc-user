@@ -143,7 +143,7 @@ public class YCUserContactBusiSVImpl implements IYCUserContactBusiSV{
 				for(int i=0;i<list.size();i++){
 					UsrContact usrContact = list.get(i);
 					usrContact.setIsDefault(0);
-					ycUSContactAtomSV.updateContactInfo(contactInfo);
+					ycUSContactAtomSV.updateContactInfo(usrContact);
 				}
 			}
 			ycUSContactAtomSV.updateContactInfo(contactInfo);
