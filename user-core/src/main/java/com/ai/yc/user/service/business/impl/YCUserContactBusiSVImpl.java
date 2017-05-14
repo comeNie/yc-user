@@ -53,7 +53,7 @@ public class YCUserContactBusiSVImpl implements IYCUserContactBusiSV{
 			UsrContactCriteria.Criteria criteria = example.createCriteria();
 			criteria.andUserIdEqualTo(contactInfo.getUserId());
 			int count = ycUSContactAtomSV.getContactCount(example);
-			if(count>5){
+			if(count>=5){
 				header = new ResponseHeader(true,ExceptCodeConstants.Contact.INSERT_ERROR,"绑定的联系方式超过5个");
 			}else{
 				contactInfo.setCreateTime(DateUtil.getSysDate());
