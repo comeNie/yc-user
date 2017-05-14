@@ -34,14 +34,22 @@ public class testusrcontact {
 	@Test
 	public void testInsertContactInfo() {
 		UserContactInfoRequest contactInfo = new UserContactInfoRequest();
-		contactInfo.setEmail("178070754aaa@qq.com");
-		contactInfo.setGnCountryId(2);
-		contactInfo.setMobilePhone("13718206604");
+		contactInfo.setEmail("123@qq.com");
+		contactInfo.setGnCountryId(86);
+		contactInfo.setMobilePhone("13718206614");
 		contactInfo.setUserName("张三111111111");
-		contactInfo.setIsDefault(1);
+		contactInfo.setIsDefault(0);
 		contactInfo.setUserId("444");
-		contactInfo.setCreateTime(DateUtil.getTimestamp("2017-09-08 16:00:00"));
 		usSV.insertContactInfo(contactInfo);
+	}
+	
+	@Test
+	public void testUpdateDefaultValue(){
+		UserContactInfoRequest request = new UserContactInfoRequest();
+		request.setIsDefault(1);
+		request.setUserId("525335");
+		request.setContactId("00000044");
+		usSV.updateContactDefaultMode(request);
 	}
 	
 	@Test
