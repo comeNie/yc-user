@@ -13,6 +13,7 @@ import com.ai.opt.base.exception.BusinessException;
 import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
+import com.ai.opt.sdk.util.DateUtil;
 import com.ai.paas.ipaas.util.StringUtil;
 import com.ai.yc.user.api.usercontact.param.UserContactInfo;
 import com.ai.yc.user.api.usercontact.param.UserContactInfoRespose;
@@ -55,6 +56,8 @@ public class YCUserContactBusiSVImpl implements IYCUserContactBusiSV{
 			if(count>5){
 				header = new ResponseHeader(true,ExceptCodeConstants.Contact.INSERT_ERROR,"绑定的联系方式超过5个");
 			}else{
+				contactInfo.setCreateTime(DateUtil.getSysDate());
+				contactInfo.setIsDefault(0);
 				ycUSContactAtomSV.insertContactInfo(contactInfo);
 				header = new ResponseHeader(true,ExceptCodeConstants.SUCCESS,"联系方式新增成功");
 			}
