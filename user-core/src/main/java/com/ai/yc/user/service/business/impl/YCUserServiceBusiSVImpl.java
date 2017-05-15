@@ -279,9 +279,12 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 				 */
 				ISendCouponSV sendCouponSV = DubboConsumerFactory.getService(ISendCouponSV.class);
 				SendCouponRequest couponRequest = new SendCouponRequest();
-				couponRequest.setActivityName("注册");
+				couponRequest.setActivityName("注册测试");
 				couponRequest.setUserId(tUser.getUserId());
-				sendCouponSV.registerSendCoupon(couponRequest);
+				BaseResponse baseResponse = sendCouponSV.registerSendCoupon(couponRequest);
+				if(!baseResponse.getResponseHeader().isSuccess()){
+					LOG.info("======优惠券赠送失败=======");
+				}
 			}catch(Exception e){
 				e.printStackTrace();
 				LOG.info("优惠券赠送失败");
