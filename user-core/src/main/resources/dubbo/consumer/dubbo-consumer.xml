@@ -53,4 +53,10 @@
 		interface="com.ai.yc.user.api.userCompany.interfaces.IYCUserCompanySV" />	 
 	<dubbo:reference id="iYCUserServiceSV"
 		interface="com.ai.yc.user.api.userservice.interfaces.IYCUserServiceSV" />
+	<!--优惠券-->
+	<dubbo:reference id="iSendCouponSV" interface="com.ai.slp.balance.api.sendcoupon.interfaces.ISendCouponSV"/>
+	<!-- 成长值 -->
+	<dubbo:reference id="iYCUserGriwthValueSV" interface="com.ai.yc.user.api.usergriwthvalue.interfaces.IYCUserGriwthValueSV"/>
+	<!-- 积分 -->
+	<dubbo:reference id="iIntegralsSV " interface="com.ai.slp.balance.api.integrals.interfaces.IIntegralsSV "/>
 </beans>

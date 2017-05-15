@@ -14,6 +14,12 @@ dependencies {
 	compile 'com.ai.yc.common:country:1.0-SNAPSHOT'
 	//译员服务
     compile 'com.ai.yc.translator:translatorservice:1.0-SNAPSHOT'
+    //优惠券
+    compile 'com.ai.slp.balance:sendcoupon:1.0-SNAPSHOT'
+    //成长值
+	compile 'com.ai.yc.user:usergriwthvalue:2.1-SNAPSHOT'
+	//积分
+	compile 'com.ai.slp.balance:integrals:2.0-SNAPSHOT'
     testCompile(
             "org.springframework:spring-test:4.1.7.RELEASE",
             "junit:junit:4.12"

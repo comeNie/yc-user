@@ -78,7 +78,6 @@ public class YCUserServiceSVImpl implements IYCUserServiceSV {
 				response.setResponseHeader(responseHeader);
 		        return response;
 			} else {
-				
 				response = new YCInsertUserResponse();
 				responseHeader = new ResponseHeader(false,ExceptCodeConstants.FAILD,"传入不支持注册类型，注册失败");
 				response.setResponseHeader(responseHeader);

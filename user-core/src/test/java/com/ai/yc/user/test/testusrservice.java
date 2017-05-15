@@ -39,6 +39,18 @@ public class testusrservice {
 	private IYCUserServiceSV usSV;
 	
 	@Test
+	public void testInsertUser(){
+		InsertYCUserRequest req = new InsertYCUserRequest();
+		req.setMobilePhone("13566666666");
+		req.setLoginway("2");
+		req.setOperationcode("345678");
+        req.setUserId("456778");
+        req.setRegip("1.1.1.1");
+        req.setUserName("323");
+        usSV.insertYCUser(req);
+	}
+	
+	@Test
 	public void testRegister() {
 		String PhoneNum = "13512926354";
 		String Email = "yhniausv4@qq.com";

@@ -24,6 +24,10 @@ import com.ai.opt.sdk.util.UUIDUtil;
 import com.ai.paas.ipaas.image.IImageClient;
 import com.ai.slp.balance.api.accountmaintain.interfaces.IAccountMaintainSV;
 import com.ai.slp.balance.api.accountmaintain.param.RegAccReq;
+import com.ai.slp.balance.api.integrals.interfaces.IIntegralsSV;
+import com.ai.slp.balance.api.integrals.param.UpdateIntegralsParam;
+import com.ai.slp.balance.api.sendcoupon.interfaces.ISendCouponSV;
+import com.ai.slp.balance.api.sendcoupon.param.SendCouponRequest;
 import com.ai.yc.common.api.country.interfaces.IGnCountrySV;
 import com.ai.yc.common.api.country.param.CountryRequest;
 import com.ai.yc.common.api.country.param.CountryResponse;
@@ -32,6 +36,8 @@ import com.ai.yc.ucenter.api.members.param.UcMembersResponse;
 import com.ai.yc.ucenter.api.members.param.editpass.UcMembersEditPassRequest;
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterRequest;
 import com.ai.yc.ucenter.api.members.param.register.UcMembersRegisterResponse;
+import com.ai.yc.user.api.usergriwthvalue.interfaces.IYCUserGriwthValueSV;
+import com.ai.yc.user.api.usergriwthvalue.param.UsrGriwthValueRequest;
 import com.ai.yc.user.api.userservice.param.CompleteUserInfoRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCContactRequest;
 import com.ai.yc.user.api.userservice.param.InsertYCUserRequest;
@@ -267,6 +273,50 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 			} catch (Exception e) {
 				throw new BusinessException(ExceptCodeConstants.Special.SYSTEM_ERROR, e);
 			}
+			try{
+				/**
+				 * 注册成功赠送优惠券
+				 */
+				ISendCouponSV sendCouponSV = DubboConsumerFactory.getService(ISendCouponSV.class);
+				SendCouponRequest couponRequest = new SendCouponRequest();
+				couponRequest.setActivityName("注册");
+				couponRequest.setUserId(tUser.getUserId());
+				sendCouponSV.registerSendCoupon(couponRequest);
+			}catch(Exception e){
+				e.printStackTrace();
+				LOG.info("优惠券赠送失败");
+			}
+			try{
+				/**
+				 * 注册成功送成长值
+				 */
+				IYCUserGriwthValueSV userGriwthValue = DubboConsumerFactory.getService(IYCUserGriwthValueSV.class);
+				UsrGriwthValueRequest griwthValueReqeust = new UsrGriwthValueRequest();
+				griwthValueReqeust.setUserId(tUser.getUserId());
+				griwthValueReqeust.setGriwthValue(400);
+				griwthValueReqeust.setResourceDetail("注册译云用户");
+				griwthValueReqeust.setGriwthResource("注册");
+				userGriwthValue.insertGriwthValueInfo(griwthValueReqeust);
+			}catch(Exception e){
+				e.printStackTrace();
+				LOG.info("成长值赠送失败");
+			}
+			try{
+				/**
+				 * 注册送积分
+				 */
+				IIntegralsSV integralsSv = DubboConsumerFactory.getService(IIntegralsSV.class);
+				UpdateIntegralsParam param = new UpdateIntegralsParam();
+				param.setUserId(tUser.getUserId());
+				param.setIntegrals(50);
+				param.setIntegralsResource("注册");
+				param.setSystemResource("注册");
+				integralsSv.updateIntegrals(param);
+			}catch(Exception e){
+				e.printStackTrace();
+				LOG.info("优惠券赠送失败");
+			}
+			
 			LOG.info("创建个人信息---------------" + JSON.toJSONString(tUser));
 			YCInsertUserResponse insertResp = new YCInsertUserResponse();
 			insertResp.setUserId(tUser.getUserId());
