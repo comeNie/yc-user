@@ -11,6 +11,7 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.opt.base.vo.PageInfo;
 import com.ai.opt.base.vo.ResponseHeader;
 import com.ai.opt.sdk.util.BeanUtils;
+import com.ai.opt.sdk.util.DateUtil;
 import com.ai.yc.user.api.usergriwthvalue.param.UserGriwthValueListResponse;
 import com.ai.yc.user.api.usergriwthvalue.param.UsrGriwthValueInfo;
 import com.ai.yc.user.api.usergriwthvalue.param.UsrGriwthValuePageInfoRequest;
@@ -38,6 +39,7 @@ public class YCUserGriwthValueBusiSVImpl implements IYCUserGriwthValueBusiSV{
 		BaseResponse response = new BaseResponse();
 		ResponseHeader header = null;
 		try{
+			griwthValueInfo.setCreateTime(DateUtil.getSysDate());
 			/**
 			 * 新增成长值
 			 */
