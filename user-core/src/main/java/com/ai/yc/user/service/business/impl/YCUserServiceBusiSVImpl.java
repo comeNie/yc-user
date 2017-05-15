@@ -302,7 +302,7 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 				userGriwthValue.insertGriwthValueInfo(griwthValueReqeust);
 			}catch(Exception e){
 				e.printStackTrace();
-				LOG.info("成长值赠送失败");
+				LOG.info("赠送成长值失败");
 			}
 			try{
 				/**
@@ -314,10 +314,13 @@ public class YCUserServiceBusiSVImpl implements IYCUserServiceBusiSV {
 				param.setIntegrals(50);
 				param.setIntegralsResource("注册");
 				param.setSystemResource("注册");
-				integralsSv.updateIntegrals(param);
+				BaseResponse response = integralsSv.updateIntegrals(param);
+				if(!response.getResponseHeader().isSuccess()){
+					integralsSv.delIntegrals(tUser.getUserId());
+				}
 			}catch(Exception e){
 				e.printStackTrace();
-				LOG.info("优惠券赠送失败");
+				LOG.info("积分赠送失败");
 			}
 			
 			LOG.info("创建个人信息---------------" + JSON.toJSONString(tUser));
