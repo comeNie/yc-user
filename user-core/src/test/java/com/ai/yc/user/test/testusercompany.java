@@ -1,5 +1,7 @@
 package com.ai.yc.user.test;
 
+import com.ai.yc.user.api.usercompanyrelation.interfaces.IYCUserCompanyRelationSV;
+import com.ai.yc.user.api.usercompanyrelation.param.ManagerResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,8 @@ public class testusercompany {
 	
 	@Autowired
 	private IYCUserCompanySV userCompanySV;
+	@Autowired
+	private IYCUserCompanyRelationSV iycUserCompanyRelationSV;
 	
 	@Test
 	public void insertCompanyInfo(){
@@ -81,5 +85,12 @@ public class testusercompany {
 		request.setUserId("405411");
 		UserCompanyInfoDetailResponse response = userCompanySV.queryCompanyInfoDetail(request);
 		System.out.println("============="+JSON.toJSONString(response));
+	}
+
+	@Test
+	public void getUserIsManager(){
+
+		ManagerResponse userIsManager = iycUserCompanyRelationSV.getUserIsManager("525535");
+		System.out.println("============="+JSON.toJSONString(userIsManager));
 	}
 }

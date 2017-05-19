@@ -46,5 +46,11 @@ public class YCUserCompanyRelationAtomSVImpl implements IYCUserCompanyRelationAt
 		return usrCompanyRelationAttachMapper.getCompanyInfoCount(companyId);
 	}
 
-
+	@Override
+	public List<UsrCompanyRelation> getusrCompanyRelationInfo(String userID) {
+		UsrCompanyRelationCriteria example = new UsrCompanyRelationCriteria();
+		example.createCriteria().andUserIdEqualTo(userID);
+		List<UsrCompanyRelation> usrCompanyRelations = usrCompanyRelationMapper.selectByExample(example);
+		return usrCompanyRelations;
+	}
 }

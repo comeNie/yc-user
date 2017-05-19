@@ -17,4 +17,6 @@ public interface IYCUserCompanyRelationAtomSV {
 	public List<UserCompanyRelationPageInfo> getCompanyUser(String companyId,int pageNo,int pageSize);
 	
 	public int getCompanyUserCount(String companyId);
+
+	public List<UsrCompanyRelation> getusrCompanyRelationInfo(String userID);
 }

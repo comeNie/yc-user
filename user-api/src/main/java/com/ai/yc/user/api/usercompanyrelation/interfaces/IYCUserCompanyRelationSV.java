@@ -12,6 +12,7 @@ import com.ai.opt.base.vo.BaseResponse;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoRequest;
 import com.ai.yc.user.api.usercompany.param.UserCompanyInfoResponse;
 import com.ai.yc.user.api.usercompanyrelation.param.CompanyRelationResponse;
+import com.ai.yc.user.api.usercompanyrelation.param.ManagerResponse;
 import com.ai.yc.user.api.usercompanyrelation.param.UserCompanyRelationPageInfoRequest;
 
 @Path("/ycusercompanyrelation")
@@ -50,5 +51,16 @@ public interface IYCUserCompanyRelationSV {
 	@POST
 	@Path("/getCompanyUsers")
 	public CompanyRelationResponse getCompanyUsers(UserCompanyRelationPageInfoRequest pageInfoRequest);
+
+	/**
+	 * 判断用户是否具有管理员权限
+	 * @param
+	 * @return
+	 * @ApiCode USR_0007
+	 * @RestRelativeURL ycusercompanyrelation/getManagers
+	 */
+	@POST
+	@Path("/getManagers")
+	public ManagerResponse getUserIsManager(String userID);
 	
 }

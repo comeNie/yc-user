@@ -95,4 +95,8 @@ public class YCUserCompanyRelationBusiSVImpl implements IYCUserCompanyRelationBu
 		return response;
 	}
 
+	@Override
+	public List<UsrCompanyRelation> getusrCompanyRelationInfo(String userID) {
+		return ycUserCompanyAtomSV.getusrCompanyRelationInfo(userID);
+	}
 }
