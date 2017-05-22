@@ -10,8 +10,14 @@ public class LevelInfoResponse extends BaseResponse{
 
     private String userId;
 
+    /**
+     * 级别  1:普通会员 2:VIP会员 3:SVIP会员  4:SVIP白金会员
+     */
     private String level;
 
+    /**
+     * 用户当前的成长值
+     */
     private Long griwthValue;
 
     private Timestamp updateTime;
