@@ -26,7 +26,7 @@ public class YCUserLevelChangeAtomSVImpl implements IYCUserLevelChangeAtomSV{
 		UserLevelChanageCriteria example = new UserLevelChanageCriteria();
 		UserLevelChanageCriteria.Criteria criteria = example.createCriteria();
 		example.setOrderByClause("update_time desc");
-		example.createCriteria().andUserIdEqualTo(userId);
+		criteria.andUserIdEqualTo(userId);
 		List<UserLevelChanage> levelChanages = userLevelChanageMapper.selectByExample(example);
 		return levelChanages;
 	}
